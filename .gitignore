@@ -1,6 +1,9 @@
 # IDE-local caches and rules — not project content
 .qoder/
 
+# Preserved nested-repo history (was .git of the prompt-system copy)
+.git.nested-backup/
+
 # OS noise
 Thumbs.db
 .DS_Store

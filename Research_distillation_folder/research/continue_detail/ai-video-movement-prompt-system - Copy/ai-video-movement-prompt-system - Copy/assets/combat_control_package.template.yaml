@@ -1,0 +1,264 @@
+# CPCS Combat Control Package — TEMPLATE
+# One file per fight sequence. Fill the slots. The model reads `compiled_prompt` at the bottom;
+# everything above is the scaffolding that forces the compiled prose to be biomechanically specific.
+#
+# This extends the UGC clip control template (clip_control_package.template.yaml) with:
+#   - per-beat kinematics (velocities, distances, rotation, frame timing ratios)
+#   - character profiles with body proportions and fighting style
+#   - spatial geometry (arena dimensions, engagement range)
+#   - tempo/BPM escalation curves
+#   - power curves (normalized force scaling across beats)
+#   - per-strike anticipation:contact:follow-through frame breakdowns
+#   - mathematical constraints with tolerances
+#
+# Reference: ../references/combat_choreography.md
+#            ../references/facs_laban_reference.md
+
+schema: "cpcs-authoring/1.1"
+document_id: "combat.<genre>.<scene_slug>"
+project: "<project_name>"
+
+imports:
+  - id: "facs_reference"
+    uri: "asset://references/facs_laban_reference.md"
+    media_type: "text/markdown"
+  - id: "combat_reference"
+    uri: "asset://references/combat_choreography.md"
+    media_type: "text/markdown"
+  - id: "skeleton_rig"
+    uri: "asset://skeletons/<rig_file>.json"
+    media_type: "application/cpcs+json"
+    sha256: "pending"
+
+scope:
+  project: "<project_slug>"
+  shot: "<shot_id>"
+
+shot:
+  duration_s: <total_seconds>
+  fps: <24|30>
+  total_frames: <duration_s × fps>
+  aspect_ratio: "<16:9|9:16>"
+
+  style_overrides:
+    visual:
+      medium: "<photorealistic|2d_anime_cel|3d_stylized>"
+      linework: "<description if anime/stylized>"
+      contrast: <0.0–2.0>
+      vfx: "<none|speed_lines|energy_effects|etc>"
+    motion:
+      realism: "<biomechanical|anime_biomechanical>"
+      frame_rate_style: "<uniform|mixed>"   # mixed = 1s on impacts, 2s on motion, 3s on holds
+      transition_smoothness: <0.0–1.0>
+      microvariation: <0.0–0.1>
+      smear_frames: <true|false>
+
+  # ── TEMPO (fight rhythm) ──
+  tempo:
+    global_bpm: <beats_per_minute>
+    escalation_curve: "<linear|exponential|flat>"
+    bpm_by_beat:
+      <beat_id>: <bpm>
+      # repeat per beat
+    rest_beats_frames:
+      after_<beat_id>: <frames>
+      # recovery frames between beats — the audience needs these to process
+
+  # ── POWER CURVE (escalation math) ──
+  power_curve:
+    description: "<how force scales across the arc>"
+    normalized_by_beat:             # 0.0–1.0, must generally escalate (dips allowed for tension)
+      <beat_id>: <0.0–1.0>
+
+  # ── SPATIAL GEOMETRY (arena math) ──
+  spatial_geometry:
+    arena_width_m: <meters>
+    arena_depth_m: <meters>
+    elevation_m: <meters>           # 0 for ground level
+    engagement_range_m: <meters>    # striking distance
+    max_aerial_height_m: <meters>   # peak of jumps above the surface
+
+narrative:
+  objective: "<one line — what this fight tests or demonstrates>"
+  audience_takeaway: "<what the viewer should feel>"
+  arc: "<beat-label sequence, e.g. approach → exchange → evasion → charge → commit → release>"
+
+# ── CHARACTERS (with body math) ──
+characters:
+  char_a:
+    id: "fighter_a"
+    description: "<appearance, outfit, distinguishing features>"
+    fighting_style: "<archetype — brawler, interceptor, grappler, etc. + behavioral notes>"
+    stance: "<width, height, weight position, guard position>"
+    dominant_hand: "<left|right>"
+    body_proportions:
+      height_m: <meters>
+      reach_m: <meters>             # arm reach, fingertip to shoulder
+      weight_kg: <kilograms>
+  char_b:
+    id: "fighter_b"
+    description: "<appearance, outfit, distinguishing features>"
+    fighting_style: "<archetype + behavioral notes>"
+    stance: "<width, height, weight position, guard position>"
+    dominant_hand: "<left|right>"
+    body_proportions:
+      height_m: <meters>
+      reach_m: <meters>
+      weight_kg: <kilograms>
+
+# ── BEATS (the fight, in time) ──
+beats:
+  - id: "<b01.label>"
+    start: <seconds>
+    end: <seconds>
+    frames: <frame_count>           # must equal (end - start) × fps
+    label: "<short action label>"
+    description: "<what happens in prose>"
+
+    # ── KINEMATICS (the math of the motion) ──
+    kinematics:
+      closing_speed_ms: <m/s>       # how fast the gap closes (combined velocity if both moving)
+      char_a_velocity_ms: <m/s>
+      char_b_velocity_ms: <m/s>
+      screen_velocity_pct_s: <0–100>  # % of screen width crossed per second
+      gap_start_m: <meters>
+      gap_end_m: <meters>
+      strike_velocity_ms: <m/s>     # fist/weapon speed at contact (if applicable)
+      torso_rotation_per_strike_deg: <degrees>   # rotational power generation
+      body_lean_angle_deg: <degrees>
+      # add domain-specific metrics: flip_arc_height_m, rotation_deg, recoil_distance_m, etc.
+
+    # ── FRAME TIMING (animation math) ──
+    timing:
+      exposure: "<1s|2s|3s|mixed>"  # base animation exposure for this beat
+      anticipation_frames: <N>      # wind-up before the action
+      contact_frames: <N>           # the impact / peak moment
+      follow_through_frames: <N>    # recovery / settling after
+      held_frames: <N>              # held impact frames (shonen signature, 0 if none)
+      # for multi-strike exchanges, break down per strike:
+      per_strike:
+        - { id: "<strike_label>", anticipation_f: <N>, contact_f: <N>, follow_through_f: <N>, hold_f: <N>, total_f: <N> }
+      # sum of all per_strike totals must equal beat frame count
+
+    # ── FACS (faces, per character, in time) ──
+    facs:
+      char_a:
+        - { start: <s>, end: <s>, aus: "<AU codes>", intensity: "<A–E>", plain: "<what the face does in plain language>" }
+        # minimum 2 events per beat — no frozen faces
+      char_b:
+        - { start: <s>, end: <s>, aus: "<AU codes>", intensity: "<A–E>", plain: "<plain language>" }
+
+    # ── LABAN (movement quality) ──
+    laban:
+      effort: "<named Effort: Thrust|Slash|Punch|Press|Flick|Float|Glide|Wring|Dab>"
+      weight: "<light|strong>"
+      time: "<sustained|sudden>"
+      space: "<direct|indirect>"
+      flow: "<free|bound>"
+      shape: "<rising|sinking|advancing|retreating|spreading|enclosing>"
+      accent:
+        - { at_s: <s>, duration_f: <N>, type: "<Effort name>", note: "<why this accent>" }
+
+    # ── BODY MECHANICS (per character, per beat) ──
+    body_mechanics:
+      char_a:
+        torso: "<angle, rotation, lean, core engagement>"
+        arms: "<position, extension, guard, strike path>"
+        legs: "<stance, drive, weight transfer, footwork>"
+        head: "<tracking, tilt, tuck, exposure>"
+        shoulders: "<tension, rotation, guard position>"
+        weight_distribution: "<front/back %, shift pattern>"
+        breathing: "<pattern, audibility, sync to actions>"
+      char_b:
+        torso: "<...>"
+        arms: "<...>"
+        legs: "<...>"
+        head: "<...>"
+        shoulders: "<...>"
+        weight_distribution: "<...>"
+        breathing: "<...>"
+
+    # ── CAMERA (per beat, quantified) ──
+    camera:
+      type: "<tracking|static|whip_pan|pull_back|etc>"
+      focal_length_mm: <mm>
+      angle_deg: <degrees>          # negative = looking up, positive = looking down
+      tracking_speed_match: <0–1>   # 1.0 = camera matches subject speed
+      shake_amplitude_px: <pixels>  # 0 = no shake
+      shake_frequency_hz: <Hz>
+      shake_decay_frames: <N>       # frames for shake to die after impact
+      composition: "<framing notes>"
+
+    # ── AUDIO (per beat) ──
+    audio:
+      elements: ["<sound 1>", "<sound 2>"]
+      intensity: <0.0–1.0>
+
+# ── CONSTRAINTS (mathematical tolerances) ──
+constraints:
+  - id: "continuous_motion"
+    expression: "<rule in plain language>"
+    mode: "<hard|soft>"
+
+  - id: "identity_preservation"
+    expression: "Fighters must remain visually distinct throughout."
+    mode: "hard"
+    minimum_score: 0.95
+
+  - id: "contact_accuracy"
+    expression: "Strike-to-target distance at contact frames."
+    mode: "hard"
+    tolerance_m: 0.05
+
+  - id: "frame_budget"
+    expression: "Total frames per beat must sum to duration × fps."
+    mode: "hard"
+    validation: "<beat sums = total ✓>"
+
+  - id: "power_escalation"
+    expression: "Perceived power must escalate across the arc."
+    mode: "hard"
+
+  - id: "held_impact_minimum"
+    expression: "Climax held impact frame count."
+    mode: "hard"
+    minimum_frames: <N>
+
+  - id: "facial_continuity"
+    expression: "No frozen expression > 1.0s. Min 2 FACS events per beat per character."
+    mode: "hard"
+    max_hold_s: 1.0
+    min_events_per_beat: 2
+
+  - id: "body_mechanics_completeness"
+    expression: "Every beat must specify torso, arms, legs, head, weight_distribution for both characters."
+    mode: "hard"
+
+  - id: "audio_sync"
+    expression: "Audio impacts must align within tolerance of visual contact frames."
+    mode: "hard"
+    tolerance_frames: 2
+
+# ── VERIFICATION ──
+verify:
+  frame_budget_total: <N>
+  frame_budget_check: "<sum equation = N ✓>"
+  distinct_facs_events: <count>
+  distinct_laban_efforts: <count>
+  power_curve_monotonic: <true|false>
+  identity_swap_risk: "<low|medium|high>"
+  held_impact_present: <true|false>
+  body_mechanics_complete: <true|false>
+
+# ── COMPILED PROMPT ──
+# THE DELIVERABLE — the prose the model actually reads.
+# Translate every AU/Laban/kinematic term into plain language.
+# Bake the key numbers into the prose (degrees, meters, frame counts, speeds).
+# End with (no on-screen text, no subtitles).
+compiled_prompt: >
+  <Describe the full sequence: style, setting, characters, then each beat in time
+  with the performance (face, body, movement quality), camera, and audio translated
+  to plain language. Include the mathematical specifics where they add precision
+  (closing speed, rotation degrees, frame holds, distances). The model reads THIS —
+  the scaffolding above is for you.>
+  (no on-screen text, no subtitles)

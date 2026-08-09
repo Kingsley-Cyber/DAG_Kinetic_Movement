@@ -1,0 +1,229 @@
+{
+  "$schema": "https://schemas.example.org/cpcs/1.1/cpcs.schema.json",
+  "schema_version": "cpcs/1.1",
+  "document_id": "combat.<genre>.<scene_slug>.kinematics",
+  "source": "<motion_solver_version>",
+
+  "_README": [
+    "CPCS Kinematic Data Layer — companion to the authoring YAML.",
+    "",
+    "Two-document architecture:",
+    "  authoring YAML  = creative direction (beats, FACS, Laban categorical, body mechanics prose)",
+    "  kinematic JSON  = motion solver output (coordinate tracks, contact events, Laban floats, camera path)",
+    "",
+    "The authoring doc says WHAT happens. This doc says WHERE and WHEN in coordinate space.",
+    "Provenance links connect the two: /constraints points back to the authoring YAML,",
+    "/tracks/body points to the motion solver that generated the coordinates.",
+    "",
+    "Neither document is the compiled_prompt — that's prose generated FROM both layers.",
+    "",
+    "Fill pattern:",
+    "  1. Author the fight in the YAML (beats, FACS, Laban categories, body mechanics)",
+    "  2. Run a motion solver (or hand-author) to produce this kinematic JSON",
+    "  3. Validate contacts against constraints",
+    "  4. Compile both into the prose prompt the model reads",
+    "",
+    "Coordinate system: right-handed, Y-up, meters. Origin at arena center.",
+    "  +X = stage right,  -X = stage left",
+    "  +Y = up,           -Y = down",
+    "  +Z = toward camera, -Z = away from camera"
+  ],
+
+  "timebase": {
+    "fps": 24,
+    "duration_s": "<total_seconds>",
+    "frame_count": "<duration_s × fps>"
+  },
+
+  "actors": [
+    {
+      "actor_id": "fighter_a",
+      "name": "<display_name>",
+      "color": "<hex_color>",
+      "skeleton_ref": "<skeleton_asset_id>"
+    },
+    {
+      "actor_id": "fighter_b",
+      "name": "<display_name>",
+      "color": "<hex_color>",
+      "skeleton_ref": "<skeleton_asset_id>"
+    }
+  ],
+
+  "tracks": {
+
+    "body": {
+      "_comment": [
+        "Per-actor motion tracks. Each track is an array of {t, x, y, z} keyframes.",
+        "root_motion = center of mass / hip position over time.",
+        "joint_tracks = per-joint positions (right_arm, left_arm, right_leg, left_leg, head, etc.).",
+        "Interpolation between keyframes is linear unless otherwise specified.",
+        "All positions in meters, relative to the coordinate system origin."
+      ],
+
+      "fighter_a": {
+        "root_motion": {
+          "positions": [
+            {"t": 0.0, "x": 0.0, "y": 0.0, "z": 0.0}
+          ]
+        },
+        "joint_tracks": {
+          "right_arm": {
+            "positions": [
+              {"t": 0.0, "x": 0.0, "y": 0.0, "z": 0.0}
+            ]
+          },
+          "left_arm": {
+            "positions": [
+              {"t": 0.0, "x": 0.0, "y": 0.0, "z": 0.0}
+            ]
+          },
+          "right_leg": {
+            "positions": [
+              {"t": 0.0, "x": 0.0, "y": 0.0, "z": 0.0}
+            ]
+          },
+          "left_leg": {
+            "positions": [
+              {"t": 0.0, "x": 0.0, "y": 0.0, "z": 0.0}
+            ]
+          },
+          "head": {
+            "positions": [
+              {"t": 0.0, "x": 0.0, "y": 0.0, "z": 0.0}
+            ]
+          }
+        }
+      },
+
+      "fighter_b": {
+        "root_motion": {
+          "positions": [
+            {"t": 0.0, "x": 0.0, "y": 0.0, "z": 0.0}
+          ]
+        },
+        "joint_tracks": {
+          "right_arm": {
+            "positions": [
+              {"t": 0.0, "x": 0.0, "y": 0.0, "z": 0.0}
+            ]
+          },
+          "left_arm": {
+            "positions": [
+              {"t": 0.0, "x": 0.0, "y": 0.0, "z": 0.0}
+            ]
+          }
+        }
+      }
+    },
+
+    "contacts": [
+      {
+        "_comment": [
+          "Contact events define when and where two actors interact physically.",
+          "Types: impact (strike lands), near_miss (dodge), grasp (grab/hold),",
+          "  grasp_and_shove (grab then push), block (defensive stop).",
+          "region_a/region_b = body part labels from the skeleton_ref.",
+          "tolerance_m = maximum allowed distance between regions at contact time.",
+          "The kinematic solver validates that joint positions satisfy this tolerance."
+        ],
+        "id": "<c01.label>",
+        "actor_a": "fighter_a",
+        "region_a": "<body_part>",
+        "actor_b": "fighter_b",
+        "region_b": "<body_part>",
+        "start_s": 0.0,
+        "end_s": 0.0,
+        "type": "<impact|near_miss|block|grasp|grasp_and_shove>",
+        "mode": "hard",
+        "tolerance_m": 0.05
+      }
+    ],
+
+    "lab_control": {
+      "_comment": [
+        "Laban Effort as continuous float values over time intervals.",
+        "This is the machine-readable counterpart to the categorical Laban in the authoring YAML.",
+        "",
+        "Axis ranges:",
+        "  weight: 0.0 (light) → 1.0 (strong)",
+        "  time:   0.0 (sustained) → 1.0 (sudden)",
+        "  space:  0.0 (indirect) → 1.0 (direct)",
+        "  flow:  -1.0 (bound) → 0.0 (neutral) → 1.0 (free)",
+        "",
+        "Mapping from categorical to float (approximate):",
+        "  light = 0.2–0.4,  strong = 0.7–0.9",
+        "  sustained = 0.2–0.4,  sudden = 0.7–0.9",
+        "  indirect = 0.2–0.4,  direct = 0.7–0.9",
+        "  bound = -0.5 to -0.3,  free = 0.3 to 0.5",
+        "",
+        "Named Effort mappings:",
+        "  Thrust  = {w:0.8, t:0.9, s:0.9, f:-0.3}  (sudden/strong/direct/bound)",
+        "  Slash   = {w:0.8, t:0.9, s:0.3, f:0.3}   (sudden/strong/indirect/free)",
+        "  Punch   = {w:0.8, t:0.9, s:0.9, f:0.2}   (sudden/strong/direct/bound→free)",
+        "  Press   = {w:0.8, t:0.2, s:0.9, f:-0.4}   (sustained/strong/direct/bound)",
+        "  Flick   = {w:0.2, t:0.9, s:0.3, f:0.4}   (sudden/light/indirect/free)",
+        "  Dab     = {w:0.2, t:0.9, s:0.9, f:-0.3}   (sudden/light/direct/bound)",
+        "  Float   = {w:0.2, t:0.2, s:0.3, f:0.4}   (sustained/light/indirect/free)",
+        "  Wring   = {w:0.8, t:0.2, s:0.3, f:-0.4}   (sustained/strong/indirect/bound)",
+        "  Glide   = {w:0.2, t:0.2, s:0.9, f:0.3}   (sustained/light/direct/free)"
+      ],
+
+      "fighter_a": [
+        {
+          "interval_s": [0.0, 0.0],
+          "effort": { "weight": 0.0, "time": 0.0, "space": 0.0, "flow": 0.0 }
+        }
+      ],
+      "fighter_b": [
+        {
+          "interval_s": [0.0, 0.0],
+          "effort": { "weight": 0.0, "time": 0.0, "space": 0.0, "flow": 0.0 }
+        }
+      ]
+    },
+
+    "camera": {
+      "_comment": [
+        "Camera motion as a spatial path. Positions in meters (same coordinate system as actors).",
+        "Orientations in degrees: yaw (horizontal rotation), pitch (vertical tilt).",
+        "pitch < 0 = looking up, pitch > 0 = looking down.",
+        "Interpolation is linear between keyframes."
+      ],
+      "positions": [
+        {"t": 0.0, "x": 0.0, "y": 1.4, "z": -3.0}
+      ],
+      "orientations": [
+        {"t": 0.0, "yaw": 0.0, "pitch": 0.0}
+      ]
+    }
+  },
+
+  "hard_constraints": [
+    {
+      "id": "<constraint_id>",
+      "expression": "<evaluatable expression>",
+      "mode": "hard"
+    }
+  ],
+
+  "verification": {
+    "hard_failures": [
+      "contact_time_error_ms > 50",
+      "contact_distance_m > 0.05",
+      "identity_drift_score < 0.95"
+    ],
+    "metrics": {
+      "contact_time_error_ms": { "target": 0, "tolerance": 50 },
+      "contact_distance_m": { "target": 0, "tolerance": 0.05 },
+      "identity_score": { "target": 1.0, "tolerance": 0.05 },
+      "motion_continuity": { "target": 1.0, "tolerance": 0.02 }
+    }
+  },
+
+  "provenance": {
+    "/tracks/body": "<motion_solver_or_hand_authored>",
+    "/constraints": "authoring: <authoring_yaml_filename>",
+    "/tracks/contacts": "<kinematic_solver_or_hand_authored>"
+  }
+}

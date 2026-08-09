@@ -1,0 +1,762 @@
+# v006 — COMBAT / hand-to-hand — YAML AUTHORING + EMBEDDED JSON KINEMATIC TRUTH, one dual-parse doc.
+# domain: combat_action ; control_paradigm: hybrid (descriptive_prose + numeric_canonical_truth)
+# target: google veo-3.1 (8s, 24fps, native sync audio) ; format: yaml_json
+#
+# LINEAGE: v005 proved numeric kinematic JSON alone drives good choreography. v006 fixes a physical
+# defect in v005 and tightens the kinematic layer, then fuses it with the YAML authoring layer so ONE
+# paste carries creative intent + motion truth + prose.
+#
+# THE v005 DEFECT (found by lab/scripts/validate_kinematics.py, not by eye):
+#   v005 placed the fighters 1.60 m apart at the c01 contact, but their combined reach is 1.42 m —
+#   an 0.18 m deficit. The contact events asserted strikes the position tracks could not physically
+#   produce. The model had to reconcile contradictory numbers, so it approximated. THAT is the
+#   "good but not precise" ceiling. Every contact in v006 is now reach-verified.
+#
+# WHAT v006 ADDS OVER v005:
+#   1. reach-verified contact geometry — striker's limb is provably AT the target at peak frame
+#   2. sample rate 0.5s -> 0.25s baseline, 1/24s (single-frame) inside contact windows
+#   3. joint ROTATIONS (euler deg) — v005 was position-only; a punch has pronation/shoulder rotation
+#   4. explicit VELOCITY vectors, cross-checked against the position tracks that produce them
+#   5. EASING per segment (v005 implied linear; real strikes are cubic_in to contact)
+#   6. contact NORMAL vectors + IMPULSE (N.s) + peak_force (N) + frame-exact peak_frame
+#   7. FOOT CONTACT track (plant/release/pivot) — kills foot-sliding, the #1 AI motion tell
+#   8. CENTER OF MASS track separate from root — balance and weight transfer become readable
+#   9. SECONDARY MOTION lag constants (cloth/particulate follow-through) from CPCS-MX
+#  10. VEO block — real cinematography units (focal mm, shutter angle, f-stop) Veo acts on
+#
+# VALIDATION: python lab/scripts/validate_kinematics.py lab/variants/v006_combat_veo_yaml_json.txt
+#   -> 0 failures. Frame math, velocity magnitudes, position/velocity coherence, contact reach,
+#      unit normals, impulse/force/duration, foot grounding and effort ranges all check out.
+#
+# The whole file is valid YAML. The `kinematics:` value is valid JSON (JSON is a subset of YAML),
+# so a JSON parser can lift it directly. Veo consumes `compiled_prompt` — everything above it is the
+# scaffolding that forces the prose to be numerically specific.
+
+schema: "cpcs/1.2"
+document_id: "combat.fast_exchange.veo.hybrid"
+project: "combat_benchmark"
+target_model: "veo-3.1"
+control_paradigm: "hybrid"
+supersedes: "v005_combat_kinematic_json.jsonc"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# LAYER 1 — AUTHORING (creative direction, human-readable)
+# ─────────────────────────────────────────────────────────────────────────────
+
+shot:
+  duration_s: 8.0
+  fps: 24
+  frame_count: 192
+  aspect_ratio: "16:9"
+  medium: "photorealistic"
+  vfx: "none"
+  cuts: 0
+
+narrative:
+  objective: "Unbroken 8s hand-to-hand exchange. Five contacts. No cuts, no slow-mo, no VFX."
+  audience_takeaway: "Two trained fighters, real weight, real contact — nothing embellished."
+  arc: "probe -> counter -> evade -> deflect -> catch_and_reset"
+
+actors:
+  fighter_a:
+    name: "Aggressor"
+    build: "lean-muscular, 1.78m, 74kg"
+    style: "pressure boxer — forward, committed, telegraphs slightly"
+    wardrobe: "black training tee, grey drawstring trousers, bare feet, taped wrists"
+    reach_m: 0.72
+  fighter_b:
+    name: "Defender"
+    build: "compact, 1.74m, 70kg, orthodox, low guard"
+    style: "wing-chun-inflected interceptor — economical, redirects rather than blocks"
+    wardrobe: "dark grey mandarin-collar training top, black trousers, bare feet"
+    reach_m: 0.70
+
+setting:
+  location: "empty concrete-floored training hall, high clerestory windows"
+  light: "hard directional daylight from camera-left clerestory, deep falloff to the right"
+  air: "fine dust visible in the light shaft, disturbed by movement"
+  floor: "polished concrete — audible bare-foot friction, no mats"
+
+# Engagement distance is the spine of the choreography. Every contact is reach-verified.
+engagement:
+  combined_reach_m: 1.42
+  separation_schedule:
+    - {t: 0.0, sep_m: 1.90, state: "out_of_range"}
+    - {t: 1.0, sep_m: 1.00, state: "c01 punch/parry — inside range"}
+    - {t: 2.5, sep_m: 0.72, state: "c02 palm strike — close"}
+    - {t: 4.0, sep_m: 0.81, state: "c03 hook near-miss — close"}
+    - {t: 5.5, sep_m: 1.00, state: "c04 deflect — inside range"}
+    - {t: 7.5, sep_m: 0.80, state: "c05 catch and shove — clinch range"}
+    - {t: 8.0, sep_m: 1.30, state: "reset to guard"}
+
+beats:
+  - id: "b01.probe_parry"
+    interval_s: [0.0, 1.5]
+    label: "A steps in, right straight — B parries with left forearm"
+    laban_a: "Thrust (strong/sudden/direct/bound)"
+    laban_b: "Dab (light/sudden/direct/bound)"
+    facs_a: "brow lowered AU4:C, lids tight AU7:C, lips pressed AU23:B — committed, reading range"
+    facs_b: "near-neutral AU7:B, one blink at 1.15s — clinical, unbothered"
+    body_a: "front foot plants 0.06s BEFORE the fist arrives; hip drives 28 deg; fist pronates to knuckles-vertical"
+    body_b: "weight stays 55/45 rear; parry is a 30 deg redirect arc, not a block; head slips 4cm off-line"
+
+  - id: "b02.counter_palm"
+    interval_s: [1.5, 3.0]
+    label: "B counters left palm to sternum — A absorbs, gives ground"
+    laban_a: "Wring (strong/sustained/indirect/bound) — absorbing"
+    laban_b: "Punch (strong/sudden/direct/bound)"
+    facs_a: "brow raise AU1+2:C into wince AU4+AU6+AU9:C on impact, breath forced out"
+    facs_b: "lids tighten AU7:C, jaw set AU17:B — no expression waste"
+    body_a: "chest concaves 6cm on contact, both heels lift, torso rotates 12 deg with the force"
+    body_b: "full kinetic chain — rear heel pivots 35 deg, hip leads palm by 0.08s"
+
+  - id: "b03.hook_evade"
+    interval_s: [3.0, 4.5]
+    label: "A winds left hook — B ducks under, pivots right"
+    laban_a: "Slash (strong/sudden/indirect/free)"
+    laban_b: "Flick (light/sudden/indirect/free)"
+    facs_a: "teeth bared AU10+AU25:C on the swing, eyes track through"
+    facs_b: "eyes stay open and up through the duck AU5:B — watching, not flinching"
+    body_a: "hook arcs 95 deg horizontally; overcommits — torso carries 15 deg past target line"
+    body_b: "drops 22cm at the KNEES (not the waist), pivots 40 deg on the ball of the right foot"
+
+  - id: "b04.straight_deflect"
+    interval_s: [4.5, 6.0]
+    label: "A right straight — B redirects with open right palm"
+    laban_a: "Thrust (strong/sudden/direct/bound)"
+    laban_b: "Glide (light/sustained/direct/free)"
+    facs_a: "brow AU4:D, lids AU7:D — frustration entering, more force less precision"
+    facs_b: "brow flat, faint asymmetric dimple AU14:A — reading him now"
+    body_a: "arm extends to 97% reach — overextension, elbow locks 0.05s"
+    body_b: "palm meets at 42 deg oblique, redirects along the vector rather than opposing it"
+
+  - id: "b05.catch_shove"
+    interval_s: [6.0, 8.0]
+    label: "A left hook — B catches the arm, shoves A back. Reset to distance."
+    laban_a: "Slash decaying into Wring (caught, resisting)"
+    laban_b: "Press (strong/sustained/direct/bound)"
+    facs_a: "surprise AU1+2+5:C, then jaw clench AU17+AU23:C as he is moved"
+    facs_b: "sustained exhale, brow neutral — this is control, not aggression"
+    body_a: "arm caught at the forearm; feet break plant, takes 2 braking recovery steps"
+    body_b: "both hands to A's forearm, drops center 8cm, drives from the legs not the arms"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# LAYER 2 — KINEMATIC TRUTH (embedded JSON — machine-readable, coordinate-level)
+# Coordinate system: right-handed, Y-up, meters. Origin = arena center, floor plane y=0.
+#   +X = toward fighter_b's side    +Y = up    +Z = toward camera
+#   A holds the -X side, B holds the +X side. They never pass through each other;
+#   distance opens and closes along X while they circle along Z.
+# Rotations: euler degrees, order XYZ, in the joint's local frame.
+# Easing: linear | ease_in | ease_out | ease_in_out | cubic_in | cubic_out | impact
+#   cubic_in = accelerating (a strike travelling to contact)
+#   impact   = near-instant velocity reversal (the contact frame itself)
+# ─────────────────────────────────────────────────────────────────────────────
+
+kinematics: {
+  "schema_version": "cpcs/1.2",
+  "timebase": {
+    "fps": 24,
+    "duration_s": 8.0,
+    "frame_count": 192,
+    "sample_rate_s": 0.25,
+    "contact_window_sample_rate_s": 0.0417,
+    "interpolation_default": "ease_in_out"
+  },
+  "dynamics": {
+    "gravity_ms2": 9.81,
+    "floor_friction_coeff": 0.62,
+    "air_resistance": "negligible"
+  },
+  "actors": [
+    {"actor_id": "fighter_a", "mass_kg": 74, "height_m": 1.78, "reach_m": 0.72, "skeleton_ref": "human_biped_v3"},
+    {"actor_id": "fighter_b", "mass_kg": 70, "height_m": 1.74, "reach_m": 0.70, "skeleton_ref": "human_biped_v3"}
+  ],
+
+  "tracks": {
+
+    "root_motion": {
+      "fighter_a": {
+        "positions": [
+          {"t": 0.00, "x": -0.95, "y": 0.00, "z": 0.00, "ease": "ease_in"},
+          {"t": 0.25, "x": -0.86, "y": 0.01, "z": 0.10, "ease": "linear"},
+          {"t": 0.50, "x": -0.76, "y": 0.01, "z": 0.20, "ease": "linear"},
+          {"t": 0.75, "x": -0.64, "y": 0.02, "z": 0.30, "ease": "cubic_in"},
+          {"t": 1.00, "x": -0.50, "y": 0.00, "z": 0.38, "ease": "impact"},
+          {"t": 1.25, "x": -0.44, "y": 0.00, "z": 0.44, "ease": "ease_out"},
+          {"t": 1.50, "x": -0.40, "y": 0.00, "z": 0.48, "ease": "ease_out"},
+          {"t": 1.75, "x": -0.36, "y": 0.00, "z": 0.44, "ease": "linear"},
+          {"t": 2.00, "x": -0.33, "y": 0.00, "z": 0.36, "ease": "linear"},
+          {"t": 2.25, "x": -0.31, "y": 0.01, "z": 0.26, "ease": "cubic_out"},
+          {"t": 2.50, "x": -0.30, "y": 0.00, "z": 0.18, "ease": "impact"},
+          {"t": 2.75, "x": -0.38, "y": 0.00, "z": 0.12, "ease": "ease_out"},
+          {"t": 3.00, "x": -0.48, "y": 0.00, "z": 0.06, "ease": "ease_in"},
+          {"t": 3.25, "x": -0.52, "y": 0.01, "z": 0.00, "ease": "linear"},
+          {"t": 3.50, "x": -0.55, "y": 0.01, "z": -0.06, "ease": "cubic_in"},
+          {"t": 3.75, "x": -0.48, "y": 0.02, "z": -0.10, "ease": "cubic_in"},
+          {"t": 4.00, "x": -0.38, "y": 0.01, "z": -0.14, "ease": "ease_out"},
+          {"t": 4.25, "x": -0.40, "y": 0.00, "z": -0.16, "ease": "linear"},
+          {"t": 4.50, "x": -0.44, "y": 0.00, "z": -0.14, "ease": "ease_in"},
+          {"t": 4.75, "x": -0.48, "y": 0.01, "z": -0.10, "ease": "linear"},
+          {"t": 5.00, "x": -0.50, "y": 0.01, "z": -0.06, "ease": "cubic_in"},
+          {"t": 5.25, "x": -0.50, "y": 0.01, "z": -0.02, "ease": "cubic_in"},
+          {"t": 5.50, "x": -0.50, "y": 0.00, "z": 0.02, "ease": "impact"},
+          {"t": 5.75, "x": -0.52, "y": 0.00, "z": 0.06, "ease": "ease_out"},
+          {"t": 6.00, "x": -0.54, "y": 0.00, "z": 0.10, "ease": "linear"},
+          {"t": 6.25, "x": -0.52, "y": 0.01, "z": 0.14, "ease": "linear"},
+          {"t": 6.50, "x": -0.48, "y": 0.01, "z": 0.18, "ease": "cubic_in"},
+          {"t": 6.75, "x": -0.44, "y": 0.02, "z": 0.20, "ease": "cubic_in"},
+          {"t": 7.00, "x": -0.40, "y": 0.01, "z": 0.22, "ease": "ease_out"},
+          {"t": 7.25, "x": -0.38, "y": 0.00, "z": 0.22, "ease": "linear"},
+          {"t": 7.50, "x": -0.38, "y": 0.00, "z": 0.20, "ease": "impact"},
+          {"t": 7.75, "x": -0.58, "y": 0.01, "z": 0.14, "ease": "ease_out"},
+          {"t": 8.00, "x": -0.75, "y": 0.00, "z": 0.08, "ease": "ease_out"}
+        ],
+        "center_of_mass": [
+          {"t": 0.00, "x": -0.95, "y": 1.02, "z": 0.00, "balance": "centered"},
+          {"t": 1.00, "x": -0.46, "y": 0.98, "z": 0.40, "balance": "forward_committed"},
+          {"t": 2.50, "x": -0.26, "y": 1.05, "z": 0.16, "balance": "driven_back_heels_lifting"},
+          {"t": 4.00, "x": -0.32, "y": 0.96, "z": -0.16, "balance": "overcommitted_left_of_line"},
+          {"t": 5.50, "x": -0.46, "y": 0.99, "z": 0.02, "balance": "overextended"},
+          {"t": 7.50, "x": -0.40, "y": 1.04, "z": 0.20, "balance": "arrested_mid_swing"},
+          {"t": 8.00, "x": -0.75, "y": 1.02, "z": 0.08, "balance": "recovering_rearward"}
+        ],
+        "velocity": [
+          {"t": 0.25, "vx": 0.36, "vy": 0.00, "vz": 0.40, "speed_ms": 0.54},
+          {"t": 0.75, "vx": 0.52, "vy": 0.00, "vz": 0.38, "speed_ms": 0.64},
+          {"t": 1.00, "vx": 0.44, "vy": 0.00, "vz": 0.28, "speed_ms": 0.52},
+          {"t": 2.50, "vx": 0.04, "vy": 0.00, "vz": -0.36, "speed_ms": 0.36},
+          {"t": 2.75, "vx": -0.32, "vy": 0.00, "vz": -0.24, "speed_ms": 0.40},
+          {"t": 4.00, "vx": 0.38, "vy": 0.00, "vz": -0.16, "speed_ms": 0.41},
+          {"t": 7.75, "vx": -0.80, "vy": 0.00, "vz": -0.24, "speed_ms": 0.84}
+        ]
+      },
+      "fighter_b": {
+        "positions": [
+          {"t": 0.00, "x": 0.95, "y": 0.00, "z": 0.00, "ease": "ease_in"},
+          {"t": 0.25, "x": 0.86, "y": 0.00, "z": -0.08, "ease": "linear"},
+          {"t": 0.50, "x": 0.76, "y": 0.00, "z": -0.16, "ease": "linear"},
+          {"t": 0.75, "x": 0.64, "y": 0.00, "z": -0.24, "ease": "ease_out"},
+          {"t": 1.00, "x": 0.50, "y": 0.00, "z": -0.30, "ease": "impact"},
+          {"t": 1.25, "x": 0.48, "y": 0.00, "z": -0.26, "ease": "linear"},
+          {"t": 1.50, "x": 0.46, "y": 0.00, "z": -0.20, "ease": "cubic_in"},
+          {"t": 1.75, "x": 0.44, "y": 0.01, "z": -0.12, "ease": "cubic_in"},
+          {"t": 2.00, "x": 0.43, "y": 0.01, "z": -0.04, "ease": "cubic_in"},
+          {"t": 2.25, "x": 0.42, "y": 0.01, "z": 0.04, "ease": "cubic_in"},
+          {"t": 2.50, "x": 0.42, "y": 0.00, "z": 0.10, "ease": "impact"},
+          {"t": 2.75, "x": 0.46, "y": 0.00, "z": 0.10, "ease": "ease_out"},
+          {"t": 3.00, "x": 0.52, "y": 0.00, "z": 0.08, "ease": "ease_in"},
+          {"t": 3.25, "x": 0.55, "y": -0.08, "z": 0.04, "ease": "cubic_in"},
+          {"t": 3.50, "x": 0.55, "y": -0.18, "z": 0.00, "ease": "ease_out"},
+          {"t": 3.75, "x": 0.50, "y": -0.22, "z": -0.04, "ease": "linear"},
+          {"t": 4.00, "x": 0.43, "y": -0.20, "z": -0.08, "ease": "ease_out"},
+          {"t": 4.25, "x": 0.42, "y": -0.11, "z": -0.10, "ease": "ease_out"},
+          {"t": 4.50, "x": 0.44, "y": 0.00, "z": -0.10, "ease": "linear"},
+          {"t": 4.75, "x": 0.46, "y": 0.00, "z": -0.08, "ease": "linear"},
+          {"t": 5.00, "x": 0.48, "y": 0.00, "z": -0.04, "ease": "linear"},
+          {"t": 5.25, "x": 0.50, "y": 0.00, "z": 0.00, "ease": "ease_out"},
+          {"t": 5.50, "x": 0.50, "y": 0.00, "z": 0.04, "ease": "impact"},
+          {"t": 5.75, "x": 0.52, "y": 0.00, "z": 0.08, "ease": "ease_out"},
+          {"t": 6.00, "x": 0.54, "y": 0.00, "z": 0.12, "ease": "linear"},
+          {"t": 6.25, "x": 0.52, "y": 0.00, "z": 0.16, "ease": "linear"},
+          {"t": 6.50, "x": 0.48, "y": 0.00, "z": 0.20, "ease": "linear"},
+          {"t": 6.75, "x": 0.44, "y": 0.00, "z": 0.22, "ease": "ease_in"},
+          {"t": 7.00, "x": 0.42, "y": 0.00, "z": 0.24, "ease": "ease_in"},
+          {"t": 7.25, "x": 0.42, "y": -0.04, "z": 0.24, "ease": "cubic_in"},
+          {"t": 7.50, "x": 0.42, "y": -0.08, "z": 0.22, "ease": "impact"},
+          {"t": 7.75, "x": 0.48, "y": -0.04, "z": 0.18, "ease": "ease_out"},
+          {"t": 8.00, "x": 0.55, "y": 0.00, "z": 0.12, "ease": "ease_out"}
+        ],
+        "center_of_mass": [
+          {"t": 0.00, "x": 0.95, "y": 1.00, "z": 0.00, "balance": "centered_rear_weighted"},
+          {"t": 1.00, "x": 0.54, "y": 1.00, "z": -0.28, "balance": "rooted_55_45_rear"},
+          {"t": 2.50, "x": 0.38, "y": 0.97, "z": 0.12, "balance": "driving_forward"},
+          {"t": 3.50, "x": 0.55, "y": 0.79, "z": 0.00, "balance": "dropped_low_coiled"},
+          {"t": 5.50, "x": 0.50, "y": 1.00, "z": 0.04, "balance": "centered_neutral"},
+          {"t": 7.50, "x": 0.44, "y": 0.92, "z": 0.22, "balance": "low_braced_driving_base"},
+          {"t": 8.00, "x": 0.55, "y": 1.00, "z": 0.12, "balance": "settled_guard"}
+        ],
+        "velocity": [
+          {"t": 0.25, "vx": -0.36, "vy": 0.00, "vz": -0.32, "speed_ms": 0.48},
+          {"t": 1.00, "vx": -0.48, "vy": 0.00, "vz": -0.16, "speed_ms": 0.51},
+          {"t": 2.00, "vx": -0.05, "vy": 0.02, "vz": 0.32, "speed_ms": 0.32},
+          {"t": 3.50, "vx": 0.00, "vy": -0.40, "vz": -0.16, "speed_ms": 0.43},
+          {"t": 7.50, "vx": 0.10, "vy": -0.16, "vz": -0.08, "speed_ms": 0.21}
+        ]
+      }
+    },
+
+    "joint_tracks": {
+      "fighter_a": {
+        "right_hand": {
+          "positions": [
+            {"t": 0.00, "x": -0.78, "y": 1.28, "z": 0.08, "ease": "ease_out"},
+            {"t": 0.42, "x": -0.72, "y": 1.30, "z": 0.02, "ease": "ease_out"},
+            {"t": 0.58, "x": -0.70, "y": 1.31, "z": -0.02, "ease": "cubic_in"},
+            {"t": 0.75, "x": -0.60, "y": 1.30, "z": 0.04, "ease": "cubic_in"},
+            {"t": 0.875, "x": -0.44, "y": 1.29, "z": 0.14, "ease": "cubic_in"},
+            {"t": 0.958, "x": -0.19, "y": 1.28, "z": 0.24, "ease": "cubic_in"},
+            {"t": 1.000, "x": 0.15, "y": 1.28, "z": 0.36, "ease": "impact"},
+            {"t": 1.042, "x": 0.17, "y": 1.27, "z": 0.37, "ease": "impact"},
+            {"t": 1.083, "x": 0.08, "y": 1.26, "z": 0.34, "ease": "ease_out"},
+            {"t": 1.25, "x": -0.16, "y": 1.24, "z": 0.38, "ease": "ease_out"},
+            {"t": 1.50, "x": -0.30, "y": 1.26, "z": 0.44, "ease": "ease_in_out"},
+            {"t": 2.50, "x": -0.20, "y": 1.20, "z": 0.20, "ease": "ease_out"},
+            {"t": 3.00, "x": -0.34, "y": 1.26, "z": 0.10, "ease": "ease_in"},
+            {"t": 4.50, "x": -0.30, "y": 1.28, "z": -0.10, "ease": "ease_out"},
+            {"t": 5.00, "x": -0.52, "y": 1.30, "z": -0.04, "ease": "ease_out"},
+            {"t": 5.17, "x": -0.62, "y": 1.30, "z": -0.04, "ease": "cubic_in"},
+            {"t": 5.33, "x": -0.44, "y": 1.30, "z": 0.00, "ease": "cubic_in"},
+            {"t": 5.458, "x": -0.16, "y": 1.29, "z": 0.04, "ease": "cubic_in"},
+            {"t": 5.500, "x": 0.20, "y": 1.28, "z": 0.06, "ease": "impact"},
+            {"t": 5.583, "x": 0.22, "y": 1.27, "z": 0.07, "ease": "ease_out"},
+            {"t": 5.75, "x": 0.02, "y": 1.24, "z": 0.10, "ease": "ease_out"},
+            {"t": 6.00, "x": -0.24, "y": 1.22, "z": 0.14, "ease": "ease_out"},
+            {"t": 7.50, "x": -0.36, "y": 1.22, "z": 0.26, "ease": "linear"},
+            {"t": 8.00, "x": -0.68, "y": 1.20, "z": 0.14, "ease": "ease_out"}
+          ],
+          "rotations": [
+            {"t": 0.00, "rx": 0, "ry": -18, "rz": 4, "note": "guard, palm inward"},
+            {"t": 0.58, "rx": -6, "ry": -32, "rz": 8, "note": "loaded, wrist cocked"},
+            {"t": 0.958, "rx": 0, "ry": -4, "rz": 0, "note": "pronating through the strike"},
+            {"t": 1.000, "rx": 2, "ry": 0, "rz": -2, "note": "fully pronated at contact — knuckles vertical"},
+            {"t": 1.083, "rx": 6, "ry": -12, "rz": 4, "note": "supinating off the parry"},
+            {"t": 5.500, "rx": 2, "ry": 0, "rz": -2, "note": "pronated at contact, elbow locked"}
+          ],
+          "angular_velocity_degs": [
+            {"t": 0.75, "wx": 0, "wy": 168, "wz": -24, "note": "pronation rate through the punch"},
+            {"t": 1.00, "wx": 0, "wy": 24, "wz": 0, "note": "rotation arrested at contact"}
+          ],
+          "linear_velocity": [
+            {"t": 0.58, "vx": -0.30, "vy": 0.05, "vz": -0.25, "speed_ms": 0.39, "phase": "loaded"},
+            {"t": 0.75, "vx": 1.28, "vy": -0.04, "vz": 0.80, "speed_ms": 1.51, "phase": "accelerating"},
+            {"t": 0.875, "vx": 3.02, "vy": -0.05, "vz": 1.18, "speed_ms": 3.24, "phase": "accelerating"},
+            {"t": 0.958, "vx": 5.95, "vy": -0.10, "vz": 2.35, "speed_ms": 6.40, "phase": "near_peak"},
+            {"t": 0.992, "vx": 7.60, "vy": -0.12, "vz": 2.70, "speed_ms": 8.07, "phase": "peak_pre_contact"},
+            {"t": 1.000, "vx": 8.02, "vy": -0.12, "vz": 2.82, "speed_ms": 8.50, "phase": "CONTACT"},
+            {"t": 1.042, "vx": 0.62, "vy": -0.15, "vz": 0.30, "speed_ms": 0.70, "phase": "arrested"},
+            {"t": 1.083, "vx": -2.10, "vy": -0.20, "vz": 0.35, "speed_ms": 2.14, "phase": "recoil"},
+            {"t": 5.33, "vx": 2.80, "vy": 0.05, "vz": 0.40, "speed_ms": 2.83, "phase": "accelerating"},
+            {"t": 5.458, "vx": 7.20, "vy": -0.15, "vz": 0.55, "speed_ms": 7.22, "phase": "near_peak"},
+            {"t": 5.500, "vx": 8.85, "vy": -0.20, "vz": 0.60, "speed_ms": 8.87, "phase": "CONTACT_deflected"},
+            {"t": 5.583, "vx": 0.80, "vy": -0.25, "vz": 0.20, "speed_ms": 0.86, "phase": "redirected_past"}
+          ],
+          "peak_acceleration_ms2": {"t": 0.92, "value": 78.0, "note": "punch acceleration phase"},
+          "peak_deceleration_ms2": {"t": 1.02, "value": -186.0, "note": "arrested by the parry"}
+        },
+        "left_hand": {
+          "positions": [
+            {"t": 0.00, "x": -1.02, "y": 1.22, "z": 0.10, "ease": "linear"},
+            {"t": 1.00, "x": -0.62, "y": 1.24, "z": 0.30, "ease": "linear"},
+            {"t": 2.50, "x": -0.34, "y": 1.16, "z": 0.22, "ease": "impact"},
+            {"t": 3.00, "x": -0.56, "y": 1.20, "z": 0.02, "ease": "ease_out"},
+            {"t": 3.42, "x": -0.68, "y": 1.24, "z": -0.24, "ease": "ease_out"},
+            {"t": 3.58, "x": -0.72, "y": 1.26, "z": -0.30, "ease": "cubic_in"},
+            {"t": 3.75, "x": -0.50, "y": 1.28, "z": -0.24, "ease": "cubic_in"},
+            {"t": 3.875, "x": -0.20, "y": 1.30, "z": -0.18, "ease": "cubic_in"},
+            {"t": 3.958, "x": 0.14, "y": 1.24, "z": -0.11, "ease": "cubic_in"},
+            {"t": 4.000, "x": 0.34, "y": 1.22, "z": -0.09, "ease": "linear"},
+            {"t": 4.083, "x": 0.52, "y": 1.20, "z": -0.04, "ease": "ease_out"},
+            {"t": 4.25, "x": 0.60, "y": 1.18, "z": 0.06, "ease": "ease_out"},
+            {"t": 4.50, "x": 0.44, "y": 1.20, "z": 0.14, "ease": "ease_in_out"},
+            {"t": 6.00, "x": -0.30, "y": 1.20, "z": 0.18, "ease": "ease_in"},
+            {"t": 6.92, "x": -0.66, "y": 1.24, "z": 0.02, "ease": "ease_out"},
+            {"t": 7.08, "x": -0.70, "y": 1.26, "z": -0.02, "ease": "cubic_in"},
+            {"t": 7.25, "x": -0.52, "y": 1.28, "z": 0.02, "ease": "cubic_in"},
+            {"t": 7.42, "x": -0.16, "y": 1.28, "z": 0.10, "ease": "cubic_in"},
+            {"t": 7.500, "x": 0.10, "y": 1.30, "z": 0.20, "ease": "impact"},
+            {"t": 7.583, "x": 0.12, "y": 1.29, "z": 0.21, "ease": "linear"},
+            {"t": 7.70, "x": 0.06, "y": 1.26, "z": 0.18, "ease": "ease_out"},
+            {"t": 8.00, "x": -0.48, "y": 1.20, "z": 0.10, "ease": "ease_out"}
+          ],
+          "rotations": [
+            {"t": 3.58, "rx": 0, "ry": 26, "rz": -14, "note": "hook loaded wide, palm down"},
+            {"t": 4.00, "rx": 0, "ry": -8, "rz": -6, "note": "hook apex, forearm horizontal"},
+            {"t": 7.50, "rx": 0, "ry": -4, "rz": -8, "note": "caught mid-arc"}
+          ],
+          "linear_velocity": [
+            {"t": 3.58, "vx": 0.20, "vy": 0.08, "vz": 0.10, "speed_ms": 0.24, "phase": "loaded"},
+            {"t": 3.875, "vx": 3.20, "vy": 0.15, "vz": 0.70, "speed_ms": 3.28, "phase": "accelerating"},
+            {"t": 4.000, "vx": 5.05, "vy": -0.60, "vz": 0.95, "speed_ms": 5.17, "phase": "PEAK_near_miss"},
+            {"t": 4.083, "vx": 3.60, "vy": -0.50, "vz": 0.80, "speed_ms": 3.72, "phase": "carrying_through"},
+            {"t": 7.42, "vx": 3.10, "vy": 0.20, "vz": 1.15, "speed_ms": 3.31, "phase": "accelerating"},
+            {"t": 7.500, "vx": 3.55, "vy": 0.24, "vz": 1.30, "speed_ms": 3.79, "phase": "CAUGHT"},
+            {"t": 7.583, "vx": 0.30, "vy": -0.10, "vz": 0.15, "speed_ms": 0.35, "phase": "arrested_by_grip"}
+          ],
+          "peak_deceleration_ms2": {"t": 7.54, "value": -142.0, "note": "arm caught — abrupt arrest"}
+        }
+      },
+      "fighter_b": {
+        "left_hand": {
+          "positions": [
+            {"t": 0.00, "x": 0.78, "y": 1.20, "z": 0.04, "ease": "linear"},
+            {"t": 0.75, "x": 0.52, "y": 1.24, "z": -0.10, "ease": "ease_out"},
+            {"t": 0.917, "x": 0.28, "y": 1.28, "z": 0.06, "ease": "cubic_in"},
+            {"t": 0.958, "x": 0.10, "y": 1.29, "z": 0.18, "ease": "cubic_in"},
+            {"t": 1.000, "x": -0.07, "y": 1.29, "z": 0.30, "ease": "impact"},
+            {"t": 1.042, "x": -0.10, "y": 1.28, "z": 0.32, "ease": "ease_out"},
+            {"t": 1.25, "x": 0.10, "y": 1.24, "z": 0.20, "ease": "ease_out"},
+            {"t": 1.50, "x": 0.30, "y": 1.20, "z": 0.06, "ease": "ease_in"},
+            {"t": 2.00, "x": 0.20, "y": 1.18, "z": 0.00, "ease": "cubic_in"},
+            {"t": 2.25, "x": 0.04, "y": 1.22, "z": 0.10, "ease": "cubic_in"},
+            {"t": 2.375, "x": -0.02, "y": 1.25, "z": 0.13, "ease": "cubic_in"},
+            {"t": 2.458, "x": -0.08, "y": 1.27, "z": 0.15, "ease": "cubic_in"},
+            {"t": 2.500, "x": -0.24, "y": 1.30, "z": 0.18, "ease": "impact"},
+            {"t": 2.583, "x": -0.28, "y": 1.29, "z": 0.19, "ease": "linear"},
+            {"t": 2.75, "x": -0.10, "y": 1.24, "z": 0.16, "ease": "ease_out"},
+            {"t": 3.00, "x": 0.14, "y": 1.20, "z": 0.10, "ease": "ease_out"},
+            {"t": 3.50, "x": 0.30, "y": 0.98, "z": 0.02, "ease": "linear"},
+            {"t": 4.50, "x": 0.14, "y": 1.18, "z": -0.08, "ease": "ease_in"},
+            {"t": 6.00, "x": 0.26, "y": 1.20, "z": 0.10, "ease": "linear"},
+            {"t": 7.25, "x": 0.16, "y": 1.26, "z": 0.20, "ease": "ease_out"},
+            {"t": 7.458, "x": 0.04, "y": 1.29, "z": 0.18, "ease": "cubic_in"},
+            {"t": 7.500, "x": -0.02, "y": 1.30, "z": 0.17, "ease": "impact"},
+            {"t": 7.583, "x": 0.00, "y": 1.30, "z": 0.17, "ease": "linear"},
+            {"t": 7.70, "x": 0.14, "y": 1.26, "z": 0.14, "ease": "cubic_out"},
+            {"t": 8.00, "x": 0.42, "y": 1.20, "z": 0.08, "ease": "ease_out"}
+          ],
+          "rotations": [
+            {"t": 0.917, "rx": 0, "ry": 34, "rz": 22, "note": "forearm angled for the redirect"},
+            {"t": 1.000, "rx": 0, "ry": 30, "rz": 30, "note": "parry contact — 30 deg deflection plane"},
+            {"t": 2.458, "rx": 0, "ry": -8, "rz": 0, "note": "palm square to the sternum"},
+            {"t": 7.500, "rx": 0, "ry": 12, "rz": -20, "note": "hand closing on the forearm"}
+          ],
+          "linear_velocity": [
+            {"t": 0.917, "vx": -3.10, "vy": 0.30, "vz": 2.20, "speed_ms": 3.81, "phase": "intercepting"},
+            {"t": 1.000, "vx": -4.30, "vy": 0.05, "vz": 3.02, "speed_ms": 5.25, "phase": "PARRY_CONTACT"},
+            {"t": 2.375, "vx": -3.20, "vy": 0.50, "vz": 0.50, "speed_ms": 3.28, "phase": "accelerating"},
+            {"t": 2.500, "vx": -4.20, "vy": 0.72, "vz": 0.72, "speed_ms": 4.32, "phase": "PALM_CONTACT"},
+            {"t": 2.583, "vx": -0.55, "vy": 0.10, "vz": 0.10, "speed_ms": 0.57, "phase": "follow_through_arrested"}
+          ]
+        },
+        "right_hand": {
+          "positions": [
+            {"t": 0.00, "x": 1.14, "y": 1.24, "z": 0.02, "ease": "linear"},
+            {"t": 1.00, "x": 0.66, "y": 1.22, "z": -0.16, "ease": "linear"},
+            {"t": 2.50, "x": 0.50, "y": 1.20, "z": 0.02, "ease": "linear"},
+            {"t": 3.50, "x": 0.62, "y": 0.94, "z": -0.06, "ease": "ease_out"},
+            {"t": 4.50, "x": 0.50, "y": 1.22, "z": -0.14, "ease": "ease_out"},
+            {"t": 5.25, "x": 0.22, "y": 1.26, "z": -0.04, "ease": "ease_out"},
+            {"t": 5.42, "x": 0.10, "y": 1.28, "z": -0.02, "ease": "linear"},
+            {"t": 5.500, "x": 0.24, "y": 1.29, "z": 0.02, "ease": "impact"},
+            {"t": 5.583, "x": 0.36, "y": 1.27, "z": 0.06, "ease": "cubic_out"},
+            {"t": 5.75, "x": 0.44, "y": 1.24, "z": 0.10, "ease": "ease_out"},
+            {"t": 6.00, "x": 0.50, "y": 1.22, "z": 0.14, "ease": "linear"},
+            {"t": 7.458, "x": 0.10, "y": 1.28, "z": 0.20, "ease": "cubic_in"},
+            {"t": 7.500, "x": 0.04, "y": 1.29, "z": 0.19, "ease": "impact"},
+            {"t": 7.583, "x": 0.06, "y": 1.29, "z": 0.19, "ease": "linear"},
+            {"t": 7.70, "x": 0.20, "y": 1.25, "z": 0.16, "ease": "cubic_out"},
+            {"t": 8.00, "x": 0.52, "y": 1.22, "z": 0.10, "ease": "ease_out"}
+          ],
+          "rotations": [
+            {"t": 5.42, "rx": 0, "ry": 42, "rz": 10, "note": "open palm angled 42 deg oblique"},
+            {"t": 5.500, "rx": 0, "ry": 42, "rz": 12, "note": "deflection contact — redirect, not oppose"},
+            {"t": 7.500, "rx": 0, "ry": -16, "rz": 24, "note": "second hand clamps the forearm"}
+          ],
+          "linear_velocity": [
+            {"t": 5.42, "vx": 1.20, "vy": 0.10, "vz": 0.45, "speed_ms": 1.29, "phase": "meeting"},
+            {"t": 5.500, "vx": 1.70, "vy": 0.12, "vz": 0.55, "speed_ms": 1.79, "phase": "DEFLECT_CONTACT"},
+            {"t": 5.583, "vx": 1.40, "vy": -0.10, "vz": 0.40, "speed_ms": 1.46, "phase": "riding_the_vector"}
+          ]
+        }
+      }
+    },
+
+    "foot_contacts": [
+      {"actor": "fighter_a", "foot": "right", "planted_s": [0.00, 0.62]},
+      {"actor": "fighter_a", "foot": "left",  "planted_s": [0.20, 0.98]},
+      {"actor": "fighter_a", "foot": "right", "planted_s": [0.94, 1.80], "note": "lands 0.06s BEFORE fist contact — kinetic chain grounded"},
+      {"actor": "fighter_a", "foot": "left",  "planted_s": [1.70, 2.50]},
+      {"actor": "fighter_a", "foot": "right", "planted_s": [2.44, 2.76], "note": "heel lifts on the palm impact, toe stays down"},
+      {"actor": "fighter_a", "foot": "left",  "planted_s": [2.70, 3.60]},
+      {"actor": "fighter_a", "foot": "right", "planted_s": [3.44, 4.24], "pivot_deg": 30, "note": "pivot foot for the hook"},
+      {"actor": "fighter_a", "foot": "left",  "planted_s": [4.10, 5.50]},
+      {"actor": "fighter_a", "foot": "right", "planted_s": [5.34, 6.44], "note": "plants for the second straight"},
+      {"actor": "fighter_a", "foot": "left",  "planted_s": [6.20, 7.60]},
+      {"actor": "fighter_a", "foot": "right", "planted_s": [7.54, 7.90], "note": "braking recovery step 1"},
+      {"actor": "fighter_a", "foot": "left",  "planted_s": [7.84, 8.00], "note": "braking recovery step 2"},
+      {"actor": "fighter_b", "foot": "left",  "planted_s": [0.00, 1.50]},
+      {"actor": "fighter_b", "foot": "right", "planted_s": [0.00, 1.94], "note": "rear anchor through the parry — never breaks"},
+      {"actor": "fighter_b", "foot": "right", "planted_s": [1.90, 2.48], "pivot_deg": 35, "note": "heel pivots to drive the palm"},
+      {"actor": "fighter_b", "foot": "left",  "planted_s": [2.10, 3.20]},
+      {"actor": "fighter_b", "foot": "right", "planted_s": [3.06, 3.94], "pivot_deg": 40, "note": "pivot under the hook"},
+      {"actor": "fighter_b", "foot": "left",  "planted_s": [3.60, 4.84]},
+      {"actor": "fighter_b", "foot": "right", "planted_s": [4.60, 6.14]},
+      {"actor": "fighter_b", "foot": "left",  "planted_s": [5.90, 7.24]},
+      {"actor": "fighter_b", "foot": "right", "planted_s": [7.06, 8.00], "note": "braced base for the shove — drives from the leg"},
+      {"actor": "fighter_b", "foot": "left",  "planted_s": [7.34, 8.00]}
+    ],
+
+    "contacts": [
+      {
+        "id": "c01.punch_parry",
+        "actor_a": "fighter_a", "region_a": "right_fist",
+        "actor_b": "fighter_b", "region_b": "left_forearm",
+        "start_s": 0.958, "peak_s": 1.000, "end_s": 1.083,
+        "peak_frame": 24, "duration_frames": 3,
+        "type": "impact", "mode": "hard", "tolerance_m": 0.03,
+        "root_separation_m": 1.00, "reach_check": "A fist at x=0.15 is 0.65m from root x=-0.50 (reach 0.72) — VERIFIED",
+        "closing_speed_ms": 13.75,
+        "normal": {"nx": 0.94, "ny": -0.02, "nz": 0.33},
+        "impulse_ns": 21.3, "peak_force_n": 512,
+        "outcome": "deflected 30 deg off-line; A's momentum carries past B's centerline"
+      },
+      {
+        "id": "c02.palm_strike",
+        "actor_a": "fighter_b", "region_a": "left_palm",
+        "actor_b": "fighter_a", "region_b": "sternum",
+        "start_s": 2.458, "peak_s": 2.500, "end_s": 2.583,
+        "peak_frame": 60, "duration_frames": 3,
+        "type": "impact", "mode": "hard", "tolerance_m": 0.03,
+        "root_separation_m": 0.72, "reach_check": "B palm at x=-0.24 is 0.66m from root x=0.42 (reach 0.70) — VERIFIED",
+        "closing_speed_ms": 3.82,
+        "normal": {"nx": -0.97, "ny": 0.17, "nz": 0.17},
+        "impulse_ns": 18.6, "peak_force_n": 388,
+        "outcome": "A's chest concaves 6cm, both heels lift, driven back 0.08m over 0.25s"
+      },
+      {
+        "id": "c03.left_hook_near_miss",
+        "actor_a": "fighter_a", "region_a": "left_fist",
+        "actor_b": "fighter_b", "region_b": "head_volume",
+        "start_s": 3.958, "peak_s": 4.000, "end_s": 4.083,
+        "peak_frame": 96, "duration_frames": 0,
+        "type": "near_miss", "mode": "hard",
+        "clearance_m": 0.114, "clearance_tolerance_m": 0.035,
+        "geometry": "A fist (0.34, 1.22, -0.09) vs B ducked crown (0.43, 1.15, -0.08)",
+        "note": "fist passes 11cm clear of the crown — must READ as a miss, not a phase-through",
+        "outcome": "A carries 15 deg past the target line — overcommitted, exposed"
+      },
+      {
+        "id": "c04.right_straight_deflect",
+        "actor_a": "fighter_a", "region_a": "right_fist",
+        "actor_b": "fighter_b", "region_b": "right_palm",
+        "start_s": 5.458, "peak_s": 5.500, "end_s": 5.583,
+        "peak_frame": 132, "duration_frames": 3,
+        "type": "deflection", "mode": "hard", "tolerance_m": 0.03,
+        "root_separation_m": 1.00, "reach_check": "A fist at x=0.20 is 0.70m from root x=-0.50 (97% of reach) — VERIFIED",
+        "closing_speed_ms": 10.66,
+        "normal": {"nx": 0.71, "ny": -0.02, "nz": 0.70},
+        "deflection_angle_deg": 42,
+        "impulse_ns": 9.2, "peak_force_n": 184,
+        "note": "LOW impulse by design — B redirects along the vector instead of opposing it",
+        "outcome": "A's arm slides past on the 42 deg oblique; elbow locks 0.05s — overextended"
+      },
+      {
+        "id": "c05.hook_catch_shove",
+        "actor_a": "fighter_a", "region_a": "left_forearm",
+        "actor_b": "fighter_b", "region_b": "both_hands",
+        "start_s": 7.500, "peak_s": 7.583, "end_s": 7.700,
+        "peak_frame": 182, "duration_frames": 5,
+        "type": "grasp_and_shove", "mode": "hard", "tolerance_m": 0.02,
+        "root_separation_m": 0.80, "reach_check": "B hands at x=0.00 are 0.42m from root x=0.42 — well inside reach, VERIFIED",
+        "grasp_established_s": 7.521,
+        "shove_impulse_ns": 34.8, "shove_duration_s": 0.179,
+        "normal": {"nx": -0.94, "ny": 0.08, "nz": 0.33},
+        "outcome": "A displaced 0.37m rearward over 0.5s, takes 2 braking steps; both reset to guard"
+      }
+    ],
+
+    "lab_control": {
+      "fighter_a": [
+        {"interval_s": [0.00, 1.00], "effort": {"weight": 0.82, "time": 0.90, "space": 0.92, "flow": -0.28}, "named": "Thrust"},
+        {"interval_s": [1.00, 2.50], "effort": {"weight": 0.52, "time": 0.44, "space": 0.60, "flow": -0.42}, "named": "Press_decaying"},
+        {"interval_s": [2.50, 3.00], "effort": {"weight": 0.74, "time": 0.30, "space": 0.28, "flow": -0.55}, "named": "Wring", "note": "absorbing the palm — indirect and bound"},
+        {"interval_s": [3.00, 4.50], "effort": {"weight": 0.86, "time": 0.92, "space": 0.26, "flow": 0.34}, "named": "Slash"},
+        {"interval_s": [4.50, 6.00], "effort": {"weight": 0.88, "time": 0.94, "space": 0.90, "flow": -0.20}, "named": "Thrust", "note": "more force, less precision — frustration"},
+        {"interval_s": [6.00, 7.50], "effort": {"weight": 0.84, "time": 0.90, "space": 0.30, "flow": 0.28}, "named": "Slash"},
+        {"interval_s": [7.50, 8.00], "effort": {"weight": 0.70, "time": 0.24, "space": 0.34, "flow": -0.62}, "named": "Wring", "note": "caught — resisting, bound"}
+      ],
+      "fighter_b": [
+        {"interval_s": [0.00, 1.00], "effort": {"weight": 0.24, "time": 0.88, "space": 0.90, "flow": -0.34}, "named": "Dab", "note": "light and direct — a redirect, not a block"},
+        {"interval_s": [1.00, 2.50], "effort": {"weight": 0.78, "time": 0.86, "space": 0.88, "flow": 0.18}, "named": "Punch"},
+        {"interval_s": [2.50, 4.50], "effort": {"weight": 0.22, "time": 0.92, "space": 0.30, "flow": 0.42}, "named": "Flick", "note": "the duck — light, sudden, evasive"},
+        {"interval_s": [4.50, 6.00], "effort": {"weight": 0.26, "time": 0.22, "space": 0.88, "flow": 0.36}, "named": "Glide", "note": "the deflection rides the incoming vector"},
+        {"interval_s": [6.00, 8.00], "effort": {"weight": 0.86, "time": 0.20, "space": 0.90, "flow": -0.46}, "named": "Press", "note": "the shove — sustained, strong, direct"}
+      ]
+    },
+
+    "secondary_motion": {
+      "lag_frames": 2,
+      "channels": [
+        {"target": "fighter_a.tee_hem", "type": "cloth", "stiffness": 0.30, "damping": 0.55, "amplitude_m": 0.05},
+        {"target": "fighter_a.trouser_leg", "type": "cloth", "stiffness": 0.22, "damping": 0.48, "amplitude_m": 0.09},
+        {"target": "fighter_b.collar", "type": "cloth", "stiffness": 0.52, "damping": 0.62, "amplitude_m": 0.03},
+        {"target": "fighter_b.sleeve", "type": "cloth", "stiffness": 0.34, "damping": 0.50, "amplitude_m": 0.07},
+        {"target": "dust_motes", "type": "particulate", "disturbance_radius_m": 0.9, "settle_s": 1.4}
+      ],
+      "note": "cloth peaks 2 frames AFTER the limb it hangs from — absence of this lag is a core AI tell"
+    },
+
+    "camera": {
+      "rig": "handheld_operator",
+      "positions": [
+        {"t": 0.00, "x": 0.00, "y": 1.42, "z": -3.00, "ease": "ease_in_out"},
+        {"t": 1.00, "x": 0.12, "y": 1.42, "z": -2.92, "ease": "linear"},
+        {"t": 2.00, "x": 0.20, "y": 1.40, "z": -2.80, "ease": "ease_in_out"},
+        {"t": 3.00, "x": 0.06, "y": 1.38, "z": -2.94, "ease": "linear"},
+        {"t": 4.00, "x": -0.20, "y": 1.34, "z": -3.20, "ease": "ease_in_out"},
+        {"t": 5.00, "x": -0.08, "y": 1.38, "z": -3.10, "ease": "linear"},
+        {"t": 6.00, "x": 0.10, "y": 1.40, "z": -3.00, "ease": "ease_in_out"},
+        {"t": 7.00, "x": 0.16, "y": 1.42, "z": -2.88, "ease": "linear"},
+        {"t": 7.50, "x": 0.10, "y": 1.42, "z": -2.94, "ease": "ease_out"},
+        {"t": 8.00, "x": 0.00, "y": 1.42, "z": -3.00, "ease": "ease_out"}
+      ],
+      "orientations": [
+        {"t": 0.00, "yaw": 0.0, "pitch": -4.0, "roll": 0.0},
+        {"t": 2.50, "yaw": 2.2, "pitch": -4.5, "roll": 0.4},
+        {"t": 4.00, "yaw": -1.8, "pitch": -3.0, "roll": -0.3},
+        {"t": 7.50, "yaw": 1.4, "pitch": -4.2, "roll": 0.5},
+        {"t": 8.00, "yaw": 0.0, "pitch": -4.0, "roll": 0.0}
+      ],
+      "handheld_noise": {"amplitude_deg": 0.35, "frequency_hz": 1.8, "seed": 7},
+      "optics": {
+        "focal_length_mm": 35,
+        "sensor": "super35",
+        "f_stop": 4.0,
+        "shutter_angle_deg": 180,
+        "focus_mode": "operator_follow",
+        "focus_targets": [
+          {"t": 0.0, "target": "midpoint"},
+          {"t": 1.0, "target": "contact_c01"},
+          {"t": 2.5, "target": "fighter_a_torso"},
+          {"t": 4.0, "target": "fighter_b_head"},
+          {"t": 7.5, "target": "contact_c05"}
+        ]
+      },
+      "note": "180 deg shutter at 24fps = 1/48s exposure — natural motion blur on fast limbs. Do NOT render crisp-frozen limbs; that is the video-game tell."
+    }
+  },
+
+  "hard_constraints": [
+    {"id": "no_slow_mo", "expression": "time_scale == 1.0 for all t", "mode": "hard"},
+    {"id": "no_vfx", "expression": "vfx.effects == []", "mode": "hard"},
+    {"id": "no_cuts", "expression": "cuts == 0", "mode": "hard"},
+    {"id": "identity_lock", "expression": "identity_score >= 0.95 for both actors across all frames", "mode": "hard"},
+    {"id": "reach_feasibility", "expression": "for every impact: |striker_limb - target| <= striker.reach_m", "mode": "hard"},
+    {"id": "no_foot_slide", "expression": "planted_foot.world_velocity_ms < 0.05 during planted_s intervals", "mode": "hard"},
+    {"id": "contact_timing", "expression": "abs(observed_contact_frame - peak_frame) <= 1", "mode": "hard"},
+    {"id": "near_miss_reads_as_miss", "expression": "c03.clearance_m in [0.079, 0.149]", "mode": "hard"},
+    {"id": "motion_blur_present", "expression": "limb_blur_at_peak_velocity == true", "mode": "hard"},
+    {"id": "secondary_motion_lag", "expression": "cloth_peak_frame - limb_peak_frame in [1, 4]", "mode": "soft"}
+  ],
+
+  "verification": {
+    "hard_failures": [
+      "contact_time_error_frames > 1",
+      "contact_distance_m > 0.03",
+      "identity_drift_score < 0.95",
+      "foot_slide_detected",
+      "slow_motion_detected",
+      "vfx_detected",
+      "cut_detected",
+      "near_miss_rendered_as_contact",
+      "strike_exceeds_reach"
+    ],
+    "metrics": {
+      "contact_time_error_frames": {"target": 0, "tolerance": 1},
+      "contact_distance_m": {"target": 0, "tolerance": 0.03},
+      "near_miss_clearance_m": {"target": 0.114, "tolerance": 0.035},
+      "identity_score": {"target": 1.0, "tolerance": 0.05},
+      "motion_continuity": {"target": 1.0, "tolerance": 0.02},
+      "foot_slide_velocity_ms": {"target": 0.0, "tolerance": 0.05},
+      "peak_limb_velocity_ms": {"target": 8.87, "tolerance": 1.5}
+    }
+  },
+
+  "provenance": {
+    "/tracks/root_motion": "hand_authored_v006 — regeometried for reach feasibility",
+    "/tracks/joint_tracks": "hand_authored_v006 (tightened from motion_solver_v3.2 @ v005)",
+    "/tracks/contacts": "kinematic_solver + impulse model, reach-verified",
+    "/tracks/foot_contacts": "hand_authored_v006 (new channel)",
+    "/tracks/secondary_motion": "CPCS-MX secondary-motion concept",
+    "/authoring": "v006 beats block above",
+    "/validation": "lab/scripts/validate_kinematics.py — 0 failures"
+  }
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# LAYER 3 — VEO TARGETING
+# ─────────────────────────────────────────────────────────────────────────────
+
+veo:
+  model: "veo-3.1"
+  duration_s: 8.0
+  aspect: "16:9"
+  fps: 24
+  audio: "native_sync"
+  audio_direction: >
+    Bare feet squeaking and slapping on polished concrete. Sharp fabric snap on each fast limb.
+    Two distinct impact sounds: a hard forearm-on-fist crack at 1.0s, a duller heavier thud into
+    the chest at 2.5s. Forced breath out of A on the 2.5s chest impact. Controlled nasal exhale
+    from B on the 7.5s shove. Large empty hall — every sound has a short slap-back reflection.
+    No music. No crowd.
+  negative: >
+    slow motion, speed ramping, time remapping, VFX, energy effects, sparks, motion trails,
+    cuts, jump cuts, camera teleport, crisp frozen limbs with no motion blur, sliding feet,
+    floating stance, weightless impacts, limbs passing through bodies, punches landing from
+    out of range, identity morphing, face swapping, extra limbs, six fingers, mannequin
+    stiffness, video-game animation
+
+# ─────────────────────────────────────────────────────────────────────────────
+# THE DELIVERABLE — what Veo actually reads. Numbers baked into prose.
+# ─────────────────────────────────────────────────────────────────────────────
+
+compiled_prompt: >
+  A single unbroken 8-second handheld shot, 35mm lens on Super 35, f/4, 24fps at a 180-degree
+  shutter so fast limbs carry natural motion blur — never crisp-frozen. Camera at chest height,
+  1.4m, four degrees down, drifting only 20-30cm across the whole take with a faint 1.8Hz operator
+  sway. No cuts. No slow motion. No visual effects.
+
+  An empty concrete-floored training hall. Hard directional daylight from high clerestory windows
+  camera-left, falling off deep into shadow on the right. Fine dust hangs in the light shaft and
+  stirs when the fighters move. Both are barefoot on polished concrete.
+
+  Fighter A: lean-muscular, 1.78m, black training tee, grey drawstring trousers, taped wrists. A
+  pressure fighter — forward, committed, telegraphs a fraction. Fighter B: compact, 1.74m, dark
+  grey mandarin-collar training top, black trousers. An interceptor — economical, redirects rather
+  than blocks.
+
+  0.0-1.5s. They start 1.9 metres apart, out of range. A closes to exactly one metre and throws a
+  right straight. His front foot plants six hundredths of a second BEFORE the fist arrives — the
+  whole chain grounded — hip driving 28 degrees, fist pronating to knuckles-vertical as it travels.
+  The hand accelerates from a standstill to 8.5 metres per second over four tenths of a second. At
+  one second exactly, B's left forearm meets it — not a hard block but a 30-degree redirect arc,
+  B's weight staying back 55/45, his rear foot never once breaking contact with the floor, his head
+  slipping four centimetres off the line. A's fist is arrested hard and rebounds; his momentum
+  carries him past B's centreline. B blinks once, otherwise unbothered. A's brow is low and tight,
+  lips pressed.
+
+  1.5-3.0s. B counters immediately with a left palm to the sternum, driving from the ground — rear
+  heel pivoting 35 degrees, hip leading the hand by eight hundredths of a second, palm arriving at
+  4.3 metres per second. At two and a half seconds it lands flat on A's chest. A's chest visibly
+  concaves about six centimetres, both his heels lift off the concrete while his toes stay down,
+  his torso rotates twelve degrees with the force, and he gives ground. His brows shoot up then
+  collapse into a wince, cheeks and nose creasing, breath forced audibly out of him. B's face
+  barely changes — lids tighten, jaw sets.
+
+  3.0-4.5s. A resets and winds a left hook, arcing 95 degrees horizontally, hand reaching 5.2
+  metres per second at the apex. B drops 22 centimetres by bending his KNEES — not folding at the
+  waist — and pivots 40 degrees on the ball of his right foot. The fist passes eleven centimetres
+  clear of the crown of B's head. It must clearly MISS — a visible gap of air, nothing passing
+  through anything. B's eyes stay open and tracking upward through the entire duck. A's teeth are
+  bared with the effort and he carries fifteen degrees past his target line, overcommitted and open.
+
+  4.5-6.0s. A throws a second right straight, harder and less precise, arm extending to
+  ninety-seven percent of its reach at 8.9 metres per second. B meets it at five and a half seconds
+  with an open right palm angled 42 degrees oblique and redirects it along its own vector rather
+  than opposing it — a light, gliding contact with barely any shock. A's arm slides past and his
+  elbow locks for a twentieth of a second, fully overextended. A's brow is hard with frustration;
+  the faintest asymmetric dimple appears on B's cheek — he has read him now.
+
+  6.0-8.0s. A throws one more left hook. At seven and a half seconds B catches the forearm with
+  both hands, drops his centre eight centimetres, braces his rear foot and shoves — driving from
+  the legs, not the arms, over about a fifth of a second. A's arm stops dead mid-arc and he is
+  displaced roughly forty centimetres backward, taking two braking recovery steps. His face goes
+  from surprise — brows and eyes wide — to a hard jaw clench as he is moved against his will. B's
+  brow stays neutral through a long controlled exhale. Both settle back to guard at distance.
+
+  Throughout: every planted foot stays absolutely locked to the concrete with zero sliding. Cloth
+  hems and sleeves lag about two frames behind the limbs they hang from and settle after. Impacts
+  transfer real weight — bodies are moved by them. Every strike is thrown from inside actual
+  striking range, never from too far away. Motion blur on every fast limb.
+
+  (no on-screen text, no subtitles, no slow motion, no visual effects, no cuts)

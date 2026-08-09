@@ -1,0 +1,730 @@
+schema: "cpcs-authoring/1.1"
+document_id: "combat.shonen.naruto_sasuke_rooftop_clash"
+project: "shonen_fight_choreography"
+
+imports:
+  - id: "facs_reference"
+    uri: "asset://references/facs_laban_reference.md"
+    media_type: "text/markdown"
+  - id: "anime_cel_rig"
+    uri: "asset://skeletons/shonen_biped_2char.json"
+    media_type: "application/cpcs+json"
+    sha256: "pending"
+
+scope:
+  project: "shonen_fight_benchmark"
+  shot: "valley_rooftop_clash_01"
+
+shot:
+  duration_s: 10.0
+  fps: 24
+  total_frames: 240
+  aspect_ratio: "16:9"
+
+  style_overrides:
+    visual:
+      medium: "2d_anime_cel"
+      linework: "hand-drawn ink, confident crosshatch"
+      shadow_style: "flat_cel_shapes"
+      color_palette: "warm_dusk_orange_vs_cool_blue_energy"
+      contrast: 1.2
+      vfx: "speed_lines, impact_frames, energy_effects"
+    motion:
+      realism: "anime_biomechanical"
+      frame_rate_style: "mixed"  # 1s on impacts, 2s on motion, 3s on held poses
+      transition_smoothness: 0.85
+      microvariation: 0.03
+      smear_frames: true  # shonen smear on fast strikes
+
+  tempo:
+    global_bpm: 160
+    escalation_curve: "exponential"  # each beat hits harder/faster than the last
+    bpm_by_beat:
+      b01: 140     # sprint approach — building
+      b02: 180     # taijutsu flurry — peak exchange rate
+      b03: 120     # evasion — brief deceleration for contrast
+      b04: 100     # power charge — sustained tension, slow buildup
+      b05: 200     # launch — fastest movement in the sequence
+      b06: 60      # collision — time dilation, held impact, then release
+    rest_beats_frames:
+      after_b02: 3   # 3-frame breath between flurry and evasion
+      after_b03: 4   # 4-frame settle before charge begins
+      after_b06: 6   # 6-frame silence after shockwave
+
+  power_curve:
+    description: "Shonen escalation — taijutsu baseline → jutsu multiplier → collision climax"
+    normalized_by_beat:
+      b01: 0.30   # sprinting — kinetic but no contact
+      b02: 0.55   # hand-to-hand — real strikes landing
+      b03: 0.40   # evasion — power dips during dodge (tension builder)
+      b04: 0.75   # charge — energy accumulating, not yet released
+      b05: 0.90   # launch — full commitment, maximum velocity
+      b06: 1.00   # collision — everything pays off
+
+  spatial_geometry:
+    arena_width_m: 12.0
+    arena_depth_m: 8.0
+    elevation_m: 25.0  # rooftop height above ground
+    water_tower_separation_m: 8.0
+    engagement_range_m: 0.6  # striking distance
+    max_aerial_height_m: 4.0  # peak of jumps/flips above platform
+
+narrative:
+  objective: "10s shonen anime fight — two kid ninjas escalate from taijutsu to signature jutsu to mid-air collision."
+  audience_takeaway: "Raw escalation. Every beat raises the stakes. The collision is earned."
+  arc: "approach → exchange → evasion → charge → commit → release"
+
+characters:
+  char_a:
+    id: "fighter_a"
+    description: "12-year-old boy, spiky sun-blond hair, bright blue eyes, orange-and-blue zip jumpsuit with white collar, metal forehead protector with leaf emblem, scuffed and dirty"
+    fighting_style: "brawler — aggressive, forward-pressure, emotionally driven, telegraphs but compensates with speed and heart"
+    stance: "wide, low, weight forward, fists up but loose"
+    dominant_hand: "right"
+    body_proportions:
+      height_m: 1.45
+      reach_m: 0.58
+      weight_kg: 40
+
+  char_b:
+    id: "fighter_b"
+    description: "12-year-old boy, sharp black hair spiked at back, dark intense eyes, dark navy high-collared shirt, white arm wraps, pale skin"
+    fighting_style: "interceptor — reactive, efficient, minimal motion, exploits openings, technically superior"
+    stance: "narrow, upright, weight centered, one hand forward (lead), one low (counter)"
+    dominant_hand: "left"
+    body_proportions:
+      height_m: 1.50
+      reach_m: 0.61
+      weight_kg: 42
+
+beats:
+  - id: "b01.sprint_approach"
+    start: 0.0
+    end: 1.5
+    frames: 36
+    label: "Both sprint at each other — gap closes"
+    description: "Both explode into ninja-run sprint across the rooftop, bodies pitched low, arms trailing behind. Gap closes from 10m to contact range."
+
+    kinematics:
+      closing_speed_ms: 6.7          # 10m covered in 1.5s, combined velocity
+      char_a_velocity_ms: 3.5
+      char_b_velocity_ms: 3.2
+      screen_velocity_pct_s: 45      # characters cross 45% of screen width per second
+      gap_start_m: 10.0
+      gap_end_m: 0.6                 # engagement range
+      body_lean_angle_deg: 25        # forward pitch of the sprint
+      stride_length_m: 0.9
+      stride_frequency_hz: 3.8      # ~3.8 strides per second
+
+    timing:
+      exposure: "2s"                 # motion frames, not impacts
+      anticipation_frames: 0        # no wind-up — explosive start
+      action_frames: 36
+      follow_through_frames: 0
+      held_frames: 0
+
+    facs:
+      char_a:
+        - { start: 0.0, end: 0.8, aus: "AU4+AU7", intensity: "C", plain: "brow furrowed with narrowed eyes — locked-on targeting focus" }
+        - { start: 0.8, end: 1.5, aus: "AU4+AU5+AU23", intensity: "C", plain: "brow tight, eyes widen with intent, lips pressed — building to engagement" }
+      char_b:
+        - { start: 0.0, end: 1.5, aus: "AU7+AU23", intensity: "B", plain: "eyes narrowed and calm, lips pressed in a thin line — zero wasted expression, clinical approach" }
+
+    laban:
+      effort: "Thrust"              # sudden, strong, direct, bound
+      weight: "strong"
+      time: "sudden"
+      space: "direct"
+      flow: "bound"
+      shape: "advancing"
+      shape_note: "both bodies driven forward, elongating toward contact"
+      accent: null                  # no accent beat — pure sustained drive
+
+    body_mechanics:
+      char_a:
+        torso: "pitched 25° forward, slight lateral sway with each stride"
+        arms: "trailing behind at ~160° extension, hands open, fingers splayed"
+        legs: "explosive quad drive, knees high, ball-of-foot contact"
+        head: "chin tucked 10°, eyes up and locked on char_b"
+        shoulders: "rolled forward, trapezius engaged"
+        weight_distribution: "70% front foot at each stride contact"
+        breathing: "sharp exhales synced to strides"
+      char_b:
+        torso: "pitched 20° forward, tighter form, less sway"
+        arms: "trailing behind, hands loosely closed, more compact than char_a"
+        legs: "efficient stride, lower knee lift, faster turnover"
+        head: "level, minimal bounce, tracking char_a"
+        shoulders: "back and down — relaxed predator"
+        weight_distribution: "60% front foot, more balanced"
+        breathing: "controlled nasal breathing, no visible exertion"
+
+    camera:
+      type: "low_angle_tracking"
+      focal_length_mm: 18
+      angle_deg: 15                 # 15° upward cant from ground
+      tracking_speed_match: 0.85    # camera slightly behind the action
+      shake_amplitude_px: 0
+      motion: "rushing alongside both runners left-to-right"
+      composition: "both fighters in opposing thirds, dusk sky fills upper third"
+
+    audio:
+      elements: ["rapid footfalls on concrete", "fabric rustling from speed", "wind rushing past", "dust scattering"]
+      intensity: 0.4
+
+  - id: "b02.taijutsu_flurry"
+    start: 1.5
+    end: 3.0
+    frames: 36
+    label: "Close-quarters taijutsu — 5-strike exchange"
+    description: "Rapid hand-to-hand: right punch → left parry → knee → elbow block → spinning backfist. All strikes contacted or blocked. No clean hits."
+
+    kinematics:
+      strikes_per_second: 3.3       # 5 strikes in 1.5s
+      exchange_rhythm: "syncopated" # not metronomic — grouped 2-1-2
+      strike_velocity_ms: 8.5       # fist speed at contact
+      contact_distance_m: 0.05      # fist-to-target gap at "contact" frame
+      gap_distance_m: 0.5           # locked in close range
+      torso_rotation_per_strike_deg: 35
+      weight_transfer_time_ms: 120  # time to shift weight between strikes
+      recoil_distance_m: 0.08       # arm recoil on blocked strikes
+
+    timing:
+      exposure: "1s"                # impacts on 1s for maximum snap
+      per_strike:
+        - { id: "s1_right_punch", anticipation_f: 2, contact_f: 1, follow_through_f: 2, hold_f: 2, total_f: 7 }
+        - { id: "s2_left_parry", anticipation_f: 1, contact_f: 1, follow_through_f: 2, hold_f: 1, total_f: 5 }
+        - { id: "s3_knee_strike", anticipation_f: 2, contact_f: 1, follow_through_f: 3, hold_f: 2, total_f: 8 }
+        - { id: "s4_elbow_block", anticipation_f: 1, contact_f: 1, follow_through_f: 2, hold_f: 1, total_f: 5 }
+        - { id: "s5_spinning_backfist", anticipation_f: 3, contact_f: 1, follow_through_f: 4, hold_f: 3, total_f: 11 }
+      # total: 7+5+8+5+11 = 36 frames ✓
+
+    facs:
+      char_a:
+        - { start: 1.5, end: 2.0, aus: "AU4+AU5+AU25", intensity: "C", plain: "brow furrowed, eyes wide, mouth open — attack aggression, teeth bared on the punch" }
+        - { start: 2.0, end: 2.5, aus: "AU4+AU7+AU23", intensity: "D", plain: "eyes narrow hard, lips press — the focus peak when the knee connects" }
+        - { start: 2.5, end: 3.0, aus: "AU4+AU10+AU25", intensity: "C", plain: "upper lip lifts with exertion, jaw open, grunting through the backfist" }
+      char_b:
+        - { start: 1.5, end: 2.0, aus: "AU7+AU14", intensity: "B", plain: "eyes narrow, one-sided smirk — parrying easily, almost bored" }
+        - { start: 2.0, end: 2.5, aus: "AU4+AU5+AU7", intensity: "C", plain: "smirk drops — brow tightens, eyes widen then narrow — char_a's knee surprised him" }
+        - { start: 2.5, end: 3.0, aus: "AU4+AU23+AU24", intensity: "C", plain: "brow down, lips pressed and tight — recalculating, composure recovering" }
+
+    laban:
+      effort: "Slash"               # sudden, strong, indirect, free
+      weight: "strong"
+      time: "sudden"
+      space: "indirect"             # limbs cutting unpredictable arcs
+      flow: "free"
+      shape: "spreading"            # both bodies opening up to strike wide
+      accent:
+        - { at_s: 2.3, duration_f: 3, type: "Punch", note: "maximum Thrust on the knee-to-torso, hardest hit in the exchange" }
+        - { at_s: 2.9, duration_f: 4, type: "Slash", note: "spinning backfist — rotational slash energy, widest arc" }
+
+    body_mechanics:
+      char_a:
+        torso: "rotating 35° per strike, core driving the power, spine slightly curved forward"
+        arms: "full extension on punches (95% reach), retraction to guard between strikes, elbow tight on hooks"
+        legs: "front-foot plants on straight punches, rear hip drives on the knee, balls of feet throughout"
+        head: "tracks char_b's center mass, chin tucked on strikes, slight head slip right after s2"
+        shoulders: "snapping forward on punches, rising on the knee drive"
+        weight_distribution: "oscillates 65/35 front-back with each strike"
+        breathing: "sharp kiai exhale on s1, s3, s5 — silent on transitional moves"
+        impact_vibration: "forearms vibrate 3 frames on each blocked strike, transmitted through shoulders"
+      char_b:
+        torso: "minimal rotation — 15° max, efficient, stays square to char_a"
+        arms: "parries use redirecting arcs not hard blocks, open palms, deflecting force at 30° angle"
+        legs: "small shuffle adjustments, never fully commits weight, always ready to exit"
+        head: "slight backward lean on s3 knee (2cm pullback), otherwise perfectly still center"
+        shoulders: "absorb impact with micro-give rather than rigid block — reads as technical mastery"
+        weight_distribution: "stays 55/45, barely shifts — rooted"
+        breathing: "one sharp nasal exhale on the elbow block — the only audible exertion"
+
+    camera:
+      type: "tight_medium"
+      focal_length_mm: 35
+      angle_deg: 0                  # eye level
+      tracking: "whip_pan"
+      whip_pan_speed_deg_s: 180     # degrees per second on pans between strikes
+      shake_amplitude_px: 4         # per impact
+      shake_frequency_hz: 12        # sharp rattle, not smooth
+      shake_decay_frames: 3         # shake dies in 3 frames
+      composition: "both fighters fill frame, speed lines radiate from contact points"
+
+    audio:
+      elements: ["bone-on-bone impact thuds", "fabric snap on fast strikes", "sharp breath kiais", "metallic ring from forehead protectors clashing"]
+      impact_db_boost: 6
+      intensity: 0.7
+
+  - id: "b03.evasion_deflection"
+    start: 3.0
+    end: 4.5
+    frames: 36
+    label: "B backflips off railing — A throws kunai — mid-air deflection"
+    description: "Char_b launches into a backflip off the railing. At apex, char_a throws a kunai. Char_b flicks a counter-kunai mid-air — sparks fly on the deflection. Char_b lands in a low crouch."
+
+    kinematics:
+      flip_arc_height_m: 2.5
+      flip_rotation_deg: 360        # full backflip
+      flip_duration_s: 0.9          # airborne time
+      flip_peak_at_s: 3.45          # apex of the arc at 0.45s into the beat
+      kunai_velocity_ms: 15.0       # thrown projectile speed
+      counter_kunai_velocity_ms: 12.0
+      deflection_angle_deg: 65      # angle of deflection off the counter-kunai
+      spark_count: 3                # visual spark particles
+      landing_impact_force_g: 2.8   # force on landing in crouch
+      screen_velocity_pct_s: 30     # char_b crossing screen during flip
+      char_a_throw_reach_m: 0.65    # full arm extension on throw
+
+    timing:
+      exposure: "mixed"
+      phases:
+        - { id: "flip_launch", frames: 4, exposure: "1s", note: "explosive push-off" }
+        - { id: "flip_rise", frames: 8, exposure: "2s", note: "ascending arc" }
+        - { id: "apex_deflection", frames: 6, exposure: "1s", note: "kunai throw + mid-air counter, HELD 2 frames on spark" }
+        - { id: "flip_descent", frames: 8, exposure: "2s", note: "descending arc" }
+        - { id: "landing_settle", frames: 10, exposure: "2s", note: "crouch landing + hand-touch stabilization" }
+      held_impact_frames: 2         # spark collision held for 2 frames
+
+    facs:
+      char_a:
+        - { start: 3.0, end: 3.5, aus: "AU4+AU5+AU7", intensity: "C", plain: "brow tight, eyes widen then narrow — tracking the flip, calculating the throw" }
+        - { start: 3.5, end: 4.0, aus: "AU1+AU2+AU5", intensity: "C", plain: "brows lift, eyes widen — surprise and frustration as kunai is deflected" }
+        - { start: 4.0, end: 4.5, aus: "AU4+AU23", intensity: "C", plain: "brow slams back down, lips press — frustrated reset, jaw clenching" }
+      char_b:
+        - { start: 3.0, end: 3.3, aus: "AU7+AU23", intensity: "B", plain: "narrowed eyes, pressed lips — focused launch" }
+        - { start: 3.3, end: 3.9, aus: "AU7", intensity: "A", plain: "face goes almost neutral mid-flip — pure calculation, no wasted expression" }
+        - { start: 3.9, end: 4.5, aus: "AU7+AU14", intensity: "B", plain: "eyes sharp, tiniest one-sided smirk on landing — satisfied exhale through nose" }
+
+    laban:
+      effort_char_a: "Press"        # strong, sustained, direct, bound — committed throw
+      effort_char_b: "Flick"        # light, sudden, indirect, free — effortless evasion
+      weight_a: "strong"
+      weight_b: "light"
+      time_a: "sustained"
+      time_b: "sudden"
+      space_a: "direct"
+      space_b: "indirect"
+      flow_a: "bound"
+      flow_b: "free"
+      shape_char_b: ["rising", "retreating", "enclosing"]  # rise through flip, retreat spatially, enclose on landing crouch
+      shape_char_a: "advancing"     # pressing forward with the throw
+
+    body_mechanics:
+      char_a:
+        torso: "full rotation into throw — 180° from wind-up to release, front shoulder extends past midline"
+        arms: "right arm full extension on release at 175° angle, left arm counterbalances behind"
+        legs: "front foot plants hard on the throw, rear foot pivots 90°, slight forward stumble on follow-through"
+        head: "tracks the kunai trajectory, then snaps to char_b's landing position"
+        weight_distribution: "shifts 80/20 front on release, stumbles to 60/40 recovering"
+        breathing: "sharp exhale on release — kiai on the throw"
+      char_b:
+        torso: "tucks tight at apex (knees to chest), extends on descent, absorbs impact through hip flexion on landing"
+        arms: "right arm flicks counter-kunai at flip apex (wrist snap, 0.15s motion), left arm extends for rotational balance"
+        legs: "push-off from railing generates the flip torque, legs tuck at apex, extend to absorb landing, one knee touches near-ground"
+        head: "tracks char_a inverted at apex, rights during descent, level on landing"
+        hands: "right hand — kunai release at apex is a wrist flick (40° snap in 4 frames), left hand touches ground on landing for 3-point stability"
+        weight_distribution: "airborne → lands 70/30 front foot, hand-touch stabilizes"
+        breathing: "held breath during flip, controlled exhale through nose on landing"
+
+    camera:
+      type: "pull_back_wide"
+      focal_length_mm: 24
+      angle_deg: -5                 # slight downward to capture full arc
+      tracking: "follows char_b's arc"
+      slow_motion_factor: 1.0       # real-time, but HELD frames on spark create perceived slo-mo
+      composition: "full flip arc visible, char_a in lower-left throwing, spark collision at center-top of frame"
+
+    audio:
+      elements: ["metallic kunai ring on deflection", "whoosh of the flip", "sharp spark crack", "boots-on-concrete landing thud", "fabric flutter during rotation"]
+      intensity: 0.5
+
+  - id: "b04.charge_buildup"
+    start: 4.5
+    end: 6.5
+    frames: 48
+    label: "Both charge signature jutsu — energy accumulation"
+    description: "From opposite water towers — char_a charges spiraling blue sphere in right palm, char_b generates crackling white-blue lightning in left hand. Sustained tension. Trembling intensity. Environmental response (wind, debris, light)."
+
+    kinematics:
+      gap_distance_m: 8.0           # full water tower separation
+      char_a_sphere_radius_growth:
+        start_m: 0.02
+        end_m: 0.12
+        growth_curve: "logarithmic" # fast initial growth, plateaus
+      char_a_sphere_rpm: 3000       # spiral rotation speed at peak
+      char_b_lightning_arc_length_m: 0.8  # shoulder to fingertips
+      char_b_lightning_frequency_hz: 30   # flicker rate of the lightning
+      tremor_amplitude_mm: 3        # body tremor from energy containment
+      tremor_frequency_hz: 8
+      wind_speed_ms: 4.0            # generated by energy output
+      debris_particle_count: 12     # small concrete chips lifting from the platform
+      screen_velocity_pct_s: 0      # both stationary — tension is internal
+
+    timing:
+      exposure: "3s"                # held poses — animation on 3s with tremor overlay
+      phases:
+        - { id: "stance_set", frames: 8, exposure: "2s", note: "both take charge positions" }
+        - { id: "energy_build", frames: 28, exposure: "3s", note: "main accumulation, tremor increasing, held with micro-animation overlaid" }
+        - { id: "peak_ready", frames: 12, exposure: "2s", note: "both fully charged, beat before launch" }
+      held_pose_with_overlay: true  # base pose held on 3s, tremor/energy animated on 1s
+
+    facs:
+      char_a:
+        - { start: 4.5, end: 5.2, aus: "AU1+AU4+AU25", intensity: "C", plain: "inner brows lift with brow furrowed — desperate concentration, mouth open, breathing hard" }
+        - { start: 5.2, end: 6.0, aus: "AU4+AU5+AU7+AU25", intensity: "D", plain: "brow crushes down, eyes widen then narrow with maximum intent, teeth clench as the sphere stabilizes — the face of someone pouring everything into one shot" }
+        - { start: 6.0, end: 6.5, aus: "AU4+AU7+AU23", intensity: "D", plain: "locked — brow tight, eyes narrowed, lips pressed shut, jaw muscles visible — holding the charge, ready" }
+      char_b:
+        - { start: 4.5, end: 5.0, aus: "AU7+AU23", intensity: "B", plain: "eyes narrow, lips press — the same clinical focus, beginning the technique" }
+        - { start: 5.0, end: 5.8, aus: "AU5+AU7", intensity: "C", plain: "eyes widen a fraction then narrow harder — the first real emotion, surprise at his own power, then cold resolve clamping down" }
+        - { start: 5.8, end: 6.5, aus: "AU4+AU7+AU17", intensity: "C", plain: "brow lowers, eyes narrow, chin lifts slightly — superiority, absolute confidence, looking down at char_a across the gap" }
+
+    laban:
+      effort: "Press"               # strong, sustained, direct, bound
+      weight: "strong"
+      time: "sustained"
+      space: "direct"
+      flow: "bound"                 # energy contained, fighting to hold it
+      shape: ["rising", "advancing"]  # drawing energy upward, bodies orienting toward each other
+      accent: null                  # no sudden accent — this is the sustained tension beat
+      quality_note: "the bound flow is the key — both bodies trembling because the energy WANTS to release but is being held. The audience feels the pressure building."
+
+    body_mechanics:
+      char_a:
+        torso: "upright, slight backward lean from the energy pushing against the palm, core braced, shirt whipping from energy wind"
+        arms: "right arm extended at 45° angle, left hand braces the right wrist, both arms trembling with effort, veins visible on forearms"
+        legs: "wide stance (shoulder width + 20cm), knees bent 15°, feet rooted, slight vibration transmitted through quads"
+        head: "chin tucked, eyes up at char_b across the gap, hair whipping upward from energy output"
+        shoulders: "raised and forward, trapezius engaged, protecting the neck — full-body brace"
+        weight_distribution: "50/50, rooted, center of gravity lowered"
+        breathing: "deep labored breaths visible in chest expansion, sharp exhale at sphere stabilization (5.2s)"
+      char_b:
+        torso: "upright, nearly still, tall posture — only the fine tremor betrays the effort, shirt collar fluttering from static"
+        arms: "left arm lowered at 30° angle, lightning crawling from shoulder down to fingertips, right hand grips left wrist for control"
+        legs: "narrow stance, weight centered, barely bent knees — standing tall where char_a braces wide"
+        head: "level, perfectly still except hair lifting from static charge, eyes locked on char_a"
+        shoulders: "back and down even under strain — controlled even now"
+        weight_distribution: "55/45 slightly forward, leaning into the technique"
+        breathing: "slow controlled breathing, chest barely moves — discipline even in extremis"
+
+    camera:
+      type: "split_composition"
+      focal_length_mm: 50
+      angle_deg: -10                # low angle looking up at both
+      tracking: "alternating close-ups"
+      sequence: ["wide establishing both", "CU char_a face", "CU char_a hand + sphere", "CU char_b face", "CU char_b hand + lightning", "wide both framed in opposing thirds"]
+      cut_timing_s: [4.5, 4.9, 5.2, 5.5, 5.8, 6.1]
+      composition: "both characters in opposing thirds against dusk sky, energy illuminates each face from below"
+      lens_flare: true              # from energy glow
+
+    audio:
+      elements: ["deep sub-bass rumble building under sphere (40Hz → 80Hz)", "high-pitched electric screech from lightning (2kHz → 6kHz)", "wind howling across rooftop", "concrete cracking from energy pressure", "fabric snapping in wind"]
+      intensity_curve: "0.3 → 0.8"  # builds across the beat
+      frequency_escalation: true    # both sounds rise in pitch toward the end
+
+  - id: "b05.launch_commit"
+    start: 6.5
+    end: 8.5
+    frames: 48
+    label: "Both launch — full airborne commitment"
+    description: "Both leap off water towers toward each other in profile. Attack arms cocked back. Maximum velocity. Full commitment — no recovery possible."
+
+    kinematics:
+      launch_velocity_ms: 9.0       # explosive jump speed
+      closing_speed_combined_ms: 16.0  # both moving toward each other
+      gap_start_m: 8.0
+      gap_end_m: 0.3                # near-contact at beat end
+      aerial_height_m: 3.5          # peak of the jump arc
+      screen_velocity_pct_s: 55     # fastest screen movement in the sequence
+      body_rotation_deg: 15         # slight forward rotation from jump torque
+      arm_cock_angle_deg: 165       # attack arm pulled back nearly straight
+      time_to_contact_at_end_s: 0.0 # beat ends at the moment of collision
+
+    timing:
+      exposure: "2s"                # fast but smooth motion
+      phases:
+        - { id: "launch", frames: 6, exposure: "1s", note: "explosive push-off, smear frame on the legs" }
+        - { id: "flight_rise", frames: 12, exposure: "2s", note: "ascending, arms cocking back" }
+        - { id: "flight_peak", frames: 6, exposure: "2s", note: "peak of arc, brief weightlessness" }
+        - { id: "flight_close", frames: 18, exposure: "2s", note: "descending toward each other, gap closing fast" }
+        - { id: "pre_contact", frames: 6, exposure: "1s", note: "last frames before collision — arms extending, faces filling frame" }
+
+    facs:
+      char_a:
+        - { start: 6.5, end: 7.5, aus: "AU4+AU5+AU25+AU26", intensity: "D", plain: "full war-cry — brow crushed down, eyes blazing wide, mouth wide open yelling, every muscle in the face engaged" }
+        - { start: 7.5, end: 8.5, aus: "AU4+AU5+AU7+AU10+AU25", intensity: "E", plain: "maximum intensity — brow locked, eyes wide and narrowed simultaneously (AU5+7 = intent stare), upper lip lifted, mouth open, face contorted with total commitment" }
+      char_b:
+        - { start: 6.5, end: 7.5, aus: "AU4+AU7+AU23", intensity: "C", plain: "cold mask holds for the launch — brow down, eyes narrow, lips pressed" }
+        - { start: 7.5, end: 8.5, aus: "AU4+AU5+AU10+AU25", intensity: "D", plain: "mask cracks fully — teeth bared, brow crushed, eyes wide with predatory focus, matching char_a's intensity for the first time" }
+
+    laban:
+      effort: "Thrust"              # sudden, strong, direct, bound — maximum commitment
+      weight: "strong"
+      time: "sudden"
+      space: "direct"
+      flow: "bound"
+      shape: "advancing"            # bodies elongating toward each other at full extension
+      accent:
+        - { at_s: 8.2, duration_f: 6, type: "Punch", note: "the final extension — arms driving forward, bound flow at maximum before it breaks on contact" }
+
+    body_mechanics:
+      char_a:
+        torso: "twisted 40° to load the right arm, uncoiling during flight, full rotational commitment"
+        arms: "right arm cocked back at 165° with blue sphere blazing in the palm, left arm extended forward for counterbalance and aim"
+        legs: "trailing behind at 30° angle, knees slightly bent, feet together — fully airborne, no ground contact possible"
+        head: "chin forward, eyes locked on char_b's center mass, mouth open in a sustained yell"
+        shoulders: "right shoulder pulled back loading the strike, rotating forward during the last 6 frames as the arm extends"
+        weight_distribution: "airborne — body weight committed forward of center of gravity, no recovery"
+        breathing: "sustained yell/kiai — continuous vocalization through the entire beat"
+      char_b:
+        torso: "twisted 35° to load the left arm, tighter rotation than char_a — efficient even in full commitment"
+        arms: "left arm lowered and back with lightning crawling along the entire limb, right arm forward — mirror image of char_a"
+        legs: "trailing, slightly more tucked than char_a — compact aerial form"
+        head: "level, eyes locked on char_a, chin slightly lifted"
+        shoulders: "left shoulder loaded back, rotating forward in the final frames"
+        weight_distribution: "airborne — committed but more centered than char_a's desperate forward lean"
+
+    camera:
+      type: "side_tracking"
+      focal_length_mm: 28
+      angle_deg: -10                # slightly below and behind
+      tracking_speed_match: 1.0     # camera moves at character speed
+      direction: "right_to_left"
+      composition: "both fighters crossing frame in profile with speed lines filling background, silhouetted against orange sky"
+      final_frames: "push in to tight shot of both faces closing the gap, split down the middle of the frame"
+
+    audio:
+      elements: ["rushing wind (dominant)", "sphere humming at high pitch", "lightning crackling and screeching", "war-cry yell from char_a", "low growl from char_b"]
+      intensity: 0.9
+      wind_doppler: true            # pitch shifts as they close the gap
+
+  - id: "b06.collision_shockwave"
+    start: 8.5
+    end: 10.0
+    frames: 36
+    label: "Collision — held impact — shockwave release"
+    description: "Blue sphere meets white lightning mid-air. Held impact frame. Energy dome expands. Debris erupts. Both fighters silhouetted inside the blast."
+
+    kinematics:
+      impact_velocity_combined_ms: 18.0   # combined closing speed at contact
+      shockwave_radius_growth_ms: 12.0    # expansion speed of the energy dome
+      shockwave_max_radius_m: 6.0         # final dome size at beat end
+      debris_velocity_ms: 8.0             # ejected pipe/concrete speed
+      debris_particle_count: 25
+      knockback_distance_m: 2.0           # both pushed apart by the blast
+      energy_flash_lumens: "overexpose"   # blinding white at contact
+      time_dilation_factor: 0.4           # perceived slow-motion on the held impact
+      screen_velocity_pct_s: 0            # frozen at impact, then expanding
+
+    timing:
+      exposure: "1s"
+      phases:
+        - { id: "contact", frames: 2, exposure: "1s", note: "arms connect, energy compresses" }
+        - { id: "held_impact", frames: 6, exposure: "HELD", note: "6 frames held on the collision — radiating linework, ink splatter, time stops. This is the money frame." }
+        - { id: "flash", frames: 3, exposure: "1s", note: "white-out flash, overexposed" }
+        - { id: "shockwave_expand", frames: 15, exposure: "2s", note: "dome expands, debris flies, camera pulls back" }
+        - { id: "aftermath", frames: 10, exposure: "3s", note: "smoke clearing, both figures visible inside the blast radius, held wide shot" }
+      held_impact_frames: 6         # THE key number — 6 frames (0.25s) of frozen impact
+
+    facs:
+      char_a:
+        - { start: 8.5, end: 8.7, aus: "AU4+AU5+AU10+AU25", intensity: "E", plain: "maximum exertion face — brow locked, eyes wide, upper lip pulled, mouth open in yell" }
+        - { start: 8.7, end: 9.2, aus: "AU43+AU4", intensity: "D", plain: "eyes squeeze shut from blinding flash, brow still crushed, face contorted" }
+        - { start: 9.2, end: 10.0, aus: "AU4+AU7+AU23", intensity: "C", plain: "eyes crack open, brow furrowed, lips pressed — dazed, determining if it's over" }
+      char_b:
+        - { start: 8.5, end: 8.7, aus: "AU4+AU5+AU10+AU25", intensity: "E", plain: "mirror of char_a — total exertion, mask completely gone, teeth bared, face twisted" }
+        - { start: 8.7, end: 9.2, aus: "AU43+AU4", intensity: "D", plain: "eyes shut, brow furrowed, grimacing from the blast force" }
+        - { start: 9.2, end: 10.0, aus: "AU4+AU7", intensity: "C", plain: "eyes open to slits, narrow and tracking — still calculating, even now" }
+
+    laban:
+      effort: "transition"
+      description: "the collision is the moment Bound breaks into Free — Thrust (sudden/strong/direct/bound) at contact, then the energy that was contained explodes into Slash (sudden/strong/indirect/free)"
+      pre_contact: { weight: "strong", time: "sudden", space: "direct", flow: "bound" }
+      post_contact: { weight: "strong", time: "sudden", space: "indirect", flow: "free" }
+      shape: "spreading"            # explosive radial expansion from the contact point
+      shape_note: "the tightest moment (two fists meeting) expands to the widest (shockwave dome filling the frame)"
+
+    body_mechanics:
+      char_a:
+        torso: "fully extended at contact, then arched backward from shockwave force, ragdolling slightly"
+        arms: "right arm locked at full extension at contact point, trembling from force, then blown backward"
+        legs: "splayed from blast force, airborne, no ground contact"
+        head: "snaps back from the flash, then forward again trying to see"
+        shoulders: "driven back by the shockwave, arms flung wide"
+        clothing: "jumpsuit torn at the sleeve, fabric debris trailing"
+      char_b:
+        torso: "extended at contact, pushed back more upright than char_a — absorbs the force with less ragdoll"
+        arms: "left arm locked at contact, lightning arcing wildly as it destabilizes, then blown back"
+        legs: "more controlled than char_a — tucked, preparing to land even during the blast"
+        head: "turns slightly away from the flash, then re-centers"
+        shoulders: "driven back but recovers faster"
+        clothing: "shirt collar torn, arm wraps shredding"
+
+    camera:
+      type: "impact_to_pullback"
+      sequence:
+        - { id: "tight_impact", focal_mm: 50, angle_deg: 0, frames: 8, note: "tight on the contact point — two fists meeting, energy compressing between them" }
+        - { id: "flash_whiteout", focal_mm: 50, angle_deg: 0, frames: 3, note: "screen whites out" }
+        - { id: "rapid_pullback", focal_mm: 18, angle_deg: -15, frames: 15, note: "rapid pullback to extreme wide — shockwave dome expanding, debris flying, two small figures inside" }
+        - { id: "aftermath_wide", focal_mm: 24, angle_deg: -5, frames: 10, note: "wide hold — smoke clearing, both figures visible, dusk sky above" }
+      shake_amplitude_px: 12        # maximum camera shake on impact
+      shake_decay_frames: 8
+
+    audio:
+      elements: ["massive low-frequency impact boom (30Hz)", "glass-shatter crack", "metal rending (water pipes)", "debris scattering", "wind rush from shockwave"]
+      post_impact: ["brief 0.3s silence", "high-pitched tinnitus ring (8kHz, fading)", "settling debris clatter"]
+      intensity: 1.0
+
+    energy_vfx:
+      contact_point: "blue sphere and white lightning compress into a single white-blue point"
+      held_frame: "radiating speed lines emanating from contact, ink splatter effect at edges, screen-tone halftone pattern radiating outward"
+      dome: "expanding hemisphere of white-blue energy with crackling edges, internal lightning arcs"
+      debris: "water pipes bursting, concrete chunks, dust clouds, metal fragments spiraling outward"
+      color_shift: "warm dusk orange → blown-out white → settles to cool blue-grey aftermath"
+
+constraints:
+  - id: "continuous_motion"
+    expression: "No cuts within beats. Camera motion is continuous. Jump cuts only at beat boundaries if needed."
+    mode: "hard"
+
+  - id: "identity_preservation"
+    expression: "Char_a and char_b must remain visually distinct throughout — hair color, outfit, and expression register never swap or merge."
+    mode: "hard"
+    minimum_score: 0.95
+
+  - id: "contact_accuracy"
+    expression: "Strike-to-target distance < 0.05m at all contact frames in b02."
+    mode: "hard"
+    tolerance_m: 0.05
+
+  - id: "power_escalation_monotonic"
+    expression: "Perceived power must increase across the arc (b01 < b02 < b04 < b05 < b06). b03 dip is allowed as tension builder."
+    mode: "hard"
+
+  - id: "frame_timing_integrity"
+    expression: "Total frames per beat must sum to beat duration × fps. No frame budget overrun."
+    mode: "hard"
+    validation: "b01:36 b02:36 b03:36 b04:48 b05:48 b06:36 = 240 frames = 10.0s × 24fps ✓"
+
+  - id: "held_impact_minimum"
+    expression: "Collision held impact frame (b06) must be ≥ 4 frames (0.167s). Current: 6 frames (0.25s)."
+    mode: "hard"
+    minimum_frames: 4
+
+  - id: "facial_expression_continuity"
+    expression: "No character holds a single frozen expression for more than 1.0s. FACS events must sequence ≥ 2 per beat per character."
+    mode: "hard"
+    max_hold_s: 1.0
+    min_events_per_beat: 2
+
+  - id: "laban_effort_variation"
+    expression: "At least 3 distinct named Efforts must appear across the 6 beats. Current: Thrust, Slash, Flick, Press, Punch = 5 ✓"
+    mode: "soft"
+    minimum_distinct_efforts: 3
+
+  - id: "body_mechanics_never_frozen"
+    expression: "Every beat must specify torso, arms, legs, head, and weight_distribution for both characters. No static mannequins."
+    mode: "hard"
+
+  - id: "audio_impact_sync"
+    expression: "Audio impact events must align within ±2 frames of visual contact frames."
+    mode: "hard"
+    tolerance_frames: 2
+
+  - id: "anime_style_consistency"
+    expression: "Speed lines present on all movements > 5 m/s screen velocity. Held impact frames on all force contacts. Smear frames on fastest strikes."
+    mode: "soft"
+
+verify:
+  frame_budget_total: 240
+  frame_budget_check: "36+36+36+48+48+36 = 240 ✓"
+  distinct_facs_events: 18          # 3 per character × 6 beats (minimum met)
+  distinct_laban_efforts: 5
+  power_curve_monotonic: true       # excluding b03 tension dip
+  identity_swap_risk: "low — distinct hair color, outfit, and expression register"
+  held_impact_present: true
+  body_mechanics_complete: true     # all beats, both characters, all body parts
+
+compiled_prompt: >
+  2D anime cel animation in the style of early-2000s shonen action — hand-drawn
+  cel-shaded frames with confident ink linework, flat shadow shapes, speed lines on
+  fast motion, held impact frames on every strike contact, mixed frame-rate animation
+  dropping to ones on the hardest hits and threes on held tension poses, occasional
+  smear frames on the fastest strikes.
+
+  Two 12-year-old ninja boys face off on a cracked concrete water-tower rooftop at
+  burnt-orange dusk, dramatic cloud streaks behind them, warm backlight rimming both
+  fighters, dust particles drifting in the air.
+
+  The blond boy in an orange-and-blue jumpsuit with a metal leaf forehead protector —
+  a brawler, wide low stance, weight forward, emotionally driven. The black-haired boy
+  in a dark navy high-collared shirt with white arm wraps — an interceptor, narrow
+  upright stance, technically superior, wasting nothing.
+
+  0.0–1.5 seconds: Both explode into a flat-out sprint at each other, bodies pitched
+  25 degrees forward, arms trailing behind in the ninja-run, feet kicking up dust with
+  each stride. The blond's brow furrows with narrowed locked-on eyes, jaw clenched. The
+  dark-haired boy's face is almost blank — narrowed calm eyes, thin pressed lips, zero
+  wasted expression. Low-angle tracking camera rushes alongside from ground level,
+  tilted up so they tower against the dusk sky. They close ten meters in a second and
+  a half.
+
+  1.5–3.0 seconds: They collide mid-frame. Five strikes in a second and a half — right
+  straight parried by a left forearm, knee to the torso absorbed with an elbow brace,
+  spinning backfist caught on a high guard. Each blocked strike gets a held impact frame
+  with speed lines radiating from contact. The blond bares his teeth with effort, eyes
+  wide and fierce, brow furrowed deep, kiai exhales on every other strike. The
+  dark-haired boy smirks on the first parry — then the smirk drops when the knee
+  surprises him, brow tightening, recalculating. Torsos twist thirty-five degrees with
+  each strike generating rotational power, shoulders snapping forward then recoiling
+  from blocked impacts with visible vibration through the forearms, weight transferring
+  rapidly from front foot to back. Tight medium shot whip-panning between strikes at
+  180 degrees per second, camera rattling on each impact.
+
+  3.0–4.5 seconds: The dark-haired boy launches a clean backflip off the railing — a
+  full 360-degree rotation arcing two and a half meters high. At the apex the blond
+  hurls a kunai knife at full arm extension. Mid-flip, face calm and calculating, the
+  dark-haired boy flicks a counter-kunai with a fast wrist snap — sparks fly as metal
+  deflects metal, held for two frames. He lands in a low three-point crouch, one hand
+  touching ground, the tiniest satisfied smirk. The blond's brows lift with frustrated
+  surprise, teeth gritting. Camera pulls back wide to capture the full arc against the
+  sky.
+
+  4.5–6.5 seconds: They face each other from opposite water towers, eight meters apart.
+  The blond charges a spiraling blue energy sphere in his right palm — left hand bracing
+  the wrist, legs braced wide, whole body trembling with the effort of containment,
+  shirt whipping from the energy wind, hair standing up. His brow crushes down with
+  desperate focus, eyes burning, teeth clenching as the sphere stabilizes and grows. The
+  dark-haired boy's left hand erupts in crackling white-blue lightning that crawls from
+  shoulder to fingertips — right hand gripping the left wrist for control, standing tall
+  with only a fine tremor betraying the strain, hair lifting from static charge. His
+  eyes widen a fraction — the first real emotion — then narrow with cold resolve, chin
+  lifting with superiority. Animation drops to threes on the held poses, with the
+  tremor and energy effects animated on ones overlaid. Alternating close-ups of each
+  face and each charging hand, low angle against the sky, lens flare from the energy
+  glow. Deep rumble builds under the sphere, electric screech from the lightning, wind
+  howling, both rising in pitch.
+
+  6.5–8.5 seconds: Both launch off the towers toward each other in profile — attack arms
+  cocked back at 165 degrees, bodies fully airborne, closing sixteen meters per second
+  combined. The blond's face is a full war-cry — mouth wide open, brow crushed, eyes
+  blazing, every facial muscle engaged in a sustained yell. The dark-haired boy's cold
+  mask cracks fully — teeth bared for the first time, brow driven down, predatory focus
+  matching the blond's intensity. Both bodies stretched into flying attack postures,
+  lead arms loaded with their techniques, trailing arms back for counterbalance, torsos
+  twisted forty degrees to channel full rotational force, clothes and hair streaming
+  backward. Side-tracking camera scrolling fast right-to-left, both crossing in profile
+  with speed lines filling the background, silhouetted against the orange sky. Smear
+  frame on the launch push-off.
+
+  8.5–10.0 seconds: Blue sphere meets white lightning mid-air. Six frames held on the
+  collision — radiating speed lines, ink splatter, screen-tone halftone pattern
+  expanding from the contact point, both arms locked at full extension, faces contorted
+  in mirror images of total exertion, eyes squeezed shut. A quarter-second of frozen
+  time. Then a blinding white flash overexposes the frame. Then rapid camera pullback to
+  extreme wide as a shockwave dome of white-blue energy expands outward, water pipes
+  burst and spray, concrete cracks and lifts, metal fragments and debris spiral in every
+  direction, both small figures silhouetted inside the blast. Massive low-frequency boom,
+  glass-shatter crack, metal rending — then brief silence — then a high-pitched ringing
+  tone fading over the settling dust. The warm dusk sky washes to cool blue-grey in the
+  aftermath.
+
+  (no on-screen text, no subtitles, no logo)

@@ -1,0 +1,273 @@
+# CPCS Prompt Lab — master registry (AI entry point)
+# An agent loads THIS single file to (a) understand what's been tested and (b) recommend prompt
+# combinations. Detailed bodies live in variants/, the results ledger in runs/results.csv, A/B tests
+# in experiments/. Record shapes: schema/records.schema.json. How to use it: AGENTS.md.
+version: 1
+updated: "2026-07-18"
+rating:
+  scale: "1-5 (5 = best)"
+  dimensions: [realism, skin, motion, adherence]   # adherence = did it follow the prompt
+control_surface: CONTROL_SURFACE.md   # full map of control channels + the unexplored frontier
+block_library: blocks.yaml            # tested modular blocks + composition rules (primary compose mode)
+concept_index: CONCEPT_INDEX.md       # ALL modular concepts from the research papers, mapped to lab status
+concept_corpus: concepts.jsonl        # semantic retrieval cards (nl_triggers -> ingredient); query via scripts/concepts.py
+format_control_map: FORMAT_CONTROL_MAP.md   # which format carries which control (YAML=intent, JSON=precision, XML=order/triggers)
+universal_motion_skeleton: UNIVERSAL_MOTION_SKELETON.md   # 14-layer x 3-format canonical skeleton, coverage-audited vs all papers
+graph: graph.json                     # DERIVED knowledge graph (build_graph.py); traverse via scripts/graph.py
+runbooks:
+  reference_to_kinematic_truth: RUNBOOK_reference_to_kinematic_truth.md   # video -> VOG -> v005-style JSON -> regenerate -> round-trip verify
+  pegasus_extraction: RUNBOOK_pegasus_extraction.md                       # trigger: "pegasus extraction" -> semantic-lane workflow (passes, provenance, normalization)
+  cross_style_switching: RUNBOOK_cross_style_switching.md                 # trigger: "make it anime/superhuman" -> content/perf/style/presentation separation + typed transform + ablation
+  format_mixing_and_tinkering: RUNBOOK_format_mixing_and_tinkering.md     # trigger: "mix formats" / "timing feels off" -> combo compiler + symptom->field map + growth protocol
+profiles_dir: profiles/               # profile:// modular ingredients (movement/capture/camera/performance/screen_action/style); see profiles/README.md
+scripts:
+  pose_tier2: scripts/extract_pose_tier2.py   # Tier-2 measurement lane: 2D pose -> schema-valid observation records (runbook Step 3)
+  validate_repo: scripts/validate_repo.py     # pre-commit gate (root AGENTS.md law) — run from repo root; must exit 0
+  concepts: scripts/concepts.py               # concept kitchen: query/card/stats/validate over concepts.jsonl
+  build_graph: scripts/build_graph.py         # regenerate lab/graph.json (DERIVED view; never hand-edit)
+  graph: scripts/graph.py                     # traversal: stats/neighbors/path/clusters/walk (creative composition)
+  sync_repo: scripts/sync_repo.py             # CONTROL PLANE: E2E sync check (gate [10]); --fix regenerates derived artifacts
+  validate_kinematics: scripts/validate_kinematics.py  # numeric-truth gate: reach feasibility, frame math, velocity coherence, contact geometry, foot grounding — run on any combat kinematic doc; exit 0 = math is self-consistent
+
+# ── LEVERS ──────────────────────────────────────────────────────────────────────────────────────
+# The controlled vocabulary of knobs. A variant = one chosen value per relevant lever. Keep values
+# from this list so variants stay comparable and patterns are minable. `affects` = which score
+# dimension this lever tends to move.
+levers:
+  camera.device:        {values: [iphone_12, iphone_15, android_generic, webcam, dslr], affects: [realism]}
+  camera.fps:           {values: [24, 30, 60], affects: [realism], note: "24 reads cinematic; 30 reads real phone video"}
+  camera.dof:           {values: [deep_no_bokeh, shallow_bokeh], affects: [realism]}
+  camera.stabilization: {values: [handheld_shaky, builtin_floaty, gimbal], affects: [realism]}
+  lighting:             {values: [flat_overhead, window_soft, golden_hour, ring_light, mixed], affects: [realism]}
+  skin.strategy:        {values: [real_microtexture_forbid_smooth, heavy_texture, smooth, default], affects: [skin]}
+  performance.direction: {values: [loose_casual, scored_beats, neutral], affects: [realism, adherence]}
+  face.motion:          {values: [alive_face_motion, minimal, none], affects: [realism, motion]}
+  format:               {values: [prose, yaml_xml, yaml_json, minified_json, xml], affects: [adherence], note: "organizational only; model reads the prose"}
+  audio:                {values: [phone_mic_roomtone, studio_clean, none], affects: [realism]}
+  render_style:         {values: [raw_ugc, cinematic], affects: [realism]}
+  control_paradigm:     {values: [descriptive_prose, numeric_canonical_truth, hybrid], affects: [motion, adherence], note: "prose for look/feel; numeric truth (joint keyframes+contacts+effort vectors) for precise motion/choreography — see CONTROL_SURFACE.md"}
+  domain:               {values: [ugc_talkinghead, combat_action, dance, anime, product_demo, other], affects: [], note: "task family; selects which channels/levers matter"}
+  authoring_layers:     {values: [prose_only, yaml_only, json_canonical_only, yaml_plus_json, xml_plus_json, tri_layer], affects: [motion, adherence], note: "WHICH layers get pasted to the model (paper §19.3 three-representation architecture); v005 succeeded with json_canonical_only — layers-pasted A/B untested"}
+
+# ── VARIANTS ────────────────────────────────────────────────────────────────────────────────────
+# Tracked prompt packages. `best` denormalizes the top run so an agent can rank without opening runs.
+variants:
+  - id: v001_iphone12_rawugc_yamlxml
+    parent: null
+    prompt_file: variants/v001_iphone12_rawugc_yamlxml.xml
+    target_model: veo-3.1
+    format: yaml_xml
+    char_count: 1981
+    lever_tags:
+      camera.device: iphone_12
+      camera.fps: 30
+      camera.dof: deep_no_bokeh
+      camera.stabilization: builtin_floaty
+      lighting: flat_overhead
+      skin.strategy: real_microtexture_forbid_smooth
+      performance.direction: loose_casual
+      face.motion: alive_face_motion
+      format: yaml_xml
+      audio: phone_mic_roomtone
+      render_style: raw_ugc
+    best: {run: r001, realism: 5, skin: 5, motion: 4, adherence: 5, verdict: keep}
+    notes: "CHAMPION for raw iPhone UGC. User-validated 'really good' in the authoring session."
+  - id: v002_iphone12_rawugc_yamljson
+    parent: v001_iphone12_rawugc_yamlxml
+    prompt_file: variants/v002_iphone12_rawugc_yamljson.txt
+    target_model: veo-3.1
+    format: yaml_json
+    char_count: 1764
+    lever_tags:  # identical to v001 except the format lever
+      camera.device: iphone_12
+      camera.fps: 30
+      camera.dof: deep_no_bokeh
+      camera.stabilization: builtin_floaty
+      lighting: flat_overhead
+      skin.strategy: real_microtexture_forbid_smooth
+      performance.direction: loose_casual
+      face.motion: alive_face_motion
+      format: yaml_json
+      audio: phone_mic_roomtone
+      render_style: raw_ugc
+    best: {run: r002, realism: 5, skin: 5, motion: 4, adherence: 5, verdict: keep}
+    notes: "Same content as v001, YAML+JSON format. Used to confirm format is realism-neutral."
+  - id: v003_scored_facs_laban_cinematic
+    parent: null
+    prompt_file: variants/v003_scored_facs_laban_cinematic.md
+    target_model: veo-3.1
+    format: yaml
+    lever_tags:  # NOT iPhone/raw; the salient levers made it cinematic
+      camera.fps: 24
+      camera.dof: shallow_bokeh
+      lighting: window_soft
+      skin.strategy: real_microtexture_forbid_smooth
+      performance.direction: scored_beats
+      face.motion: alive_face_motion
+      format: yaml
+      audio: phone_mic_roomtone
+      render_style: cinematic
+    best: {run: r003, realism: 3, skin: 4, motion: 5, adherence: 5, verdict: iterate}
+    notes: "Fully-scored FACS/Laban/body. User: 'really good video' initially, then 'too movie like ... not natural ugc'. High production value but reads as an ad -> motivated the raw-UGC pivot."
+  - id: v004_iphone12_smooth_skin
+    parent: v001_iphone12_rawugc_yamlxml
+    prompt_file: variants/v004_iphone12_smooth_skin.md
+    target_model: veo-3.1
+    format: yaml_xml
+    lever_tags:  # near-isolated sibling of v001: only skin.strategy differs
+      camera.device: iphone_12
+      camera.fps: 30
+      camera.dof: deep_no_bokeh
+      camera.stabilization: builtin_floaty
+      lighting: flat_overhead
+      skin.strategy: smooth
+      performance.direction: loose_casual
+      face.motion: alive_face_motion
+      format: yaml_xml
+      audio: phone_mic_roomtone
+      render_style: raw_ugc
+    best: {run: r004, realism: 2, skin: 1, motion: 4, adherence: 5, verdict: reject}
+    notes: "ANTI-PATTERN. Near-isolated sibling of v001 with skin.strategy=smooth. User: skin 'really ai like'. The counter-example that proves p001."
+  - id: v005_combat_kinematic_json
+    parent: null
+    prompt_file: variants/v005_combat_kinematic_json.jsonc
+    authoring_artifact: variants/v005_combat_full_authoring.md   # full tri-layer source (brief + YAML + JSON)
+    target_model: unspecified
+    format: json
+    domain: combat_action
+    control_paradigm: numeric_canonical_truth
+    lever_tags:
+      control_paradigm: numeric_canonical_truth
+      domain: combat_action
+      authoring_layers: json_canonical_only   # only the JSON was pasted; sufficient alone
+      render_style: raw_ugc          # grounded: no vfx, no slow-mo
+    channels_used: [body_kinematics, contact_solver, laban_effort_vectors, camera_keyframes, hard_constraints_verification]
+    best: {run: r005, realism: 5, motion: 5, adherence: 5, verdict: keep}   # no skin dim (not a face task)
+    notes: "NEW PARADIGM. User pasted ONLY the JSON canon truth -> 'really good choreograph fight scene ... good for anime.' Numeric kinematic truth drove precise, unbroken, identity-locked hand-to-hand. See CONTROL_SURFACE.md."
+
+  - id: naruto_sasuke_rooftop_clash
+    parent: null
+    prompt_file: variants/naruto_sasuke_rooftop_clash.yaml
+    target_model: ltx-2.3
+    format: yaml
+    domain: combat_action
+    control_paradigm: descriptive_prose   # authoring-layer scoring; anime, not numeric truth
+    lever_tags:
+      control_paradigm: descriptive_prose
+      domain: combat_action
+      medium: anime_cel
+      authoring_layers: yaml_authoring_plus_prose
+    channels_used: [facs_events, laban_effort_named, body_mechanics, camera_descriptive, tempo_curve, power_curve, frame_timing]
+    notes: "10s shonen anime fight (authoring-layer worked example). Full CPCS scoring: FACS per character per beat, named Laban efforts, body mechanics, frame-timing budget, tempo/power curves. Companion to the combat authoring template."
+
+  - id: v006_combat_veo_yaml_json
+    parent: v005_combat_kinematic_json
+    prompt_file: variants/v006_combat_veo_yaml_json.txt
+    target_model: veo-3.1
+    format: yaml_json                 # hybrid: YAML authoring + embedded JSON kinematic truth + prose compiled_prompt
+    domain: combat_action
+    control_paradigm: hybrid          # descriptive_prose + numeric_canonical_truth in one doc
+    lever_tags:
+      control_paradigm: hybrid
+      domain: combat_action
+      authoring_layers: yaml_authoring_plus_json_truth_plus_prose
+      render_style: raw_ugc           # grounded: no vfx, no slow-mo
+    channels_used: [body_kinematics, joint_rotations, velocity_vectors, easing_curves, contact_solver, impulse_model, foot_contact_track, center_of_mass, laban_effort_vectors, secondary_motion, camera_keyframes, camera_optics, hard_constraints_verification]
+    validated_by: scripts/validate_kinematics.py   # 35 checks pass, 0 failures
+    best: {run: r006, motion: 5, adherence: 5, verdict: pending}
+    notes: "TIGHTENS v005. Found+fixed a physical defect: v005 placed fighters 1.60m apart at a contact but combined reach is 1.42m (0.18m deficit) — the model had to reconcile impossible numbers, hence 'good but not precise.' v006 is reach-verified and adds joint rotations, velocity vectors, per-segment easing, foot-contact track (anti foot-slide), impulse/force, secondary-motion lag, and a Veo optics block (35mm/f4/180deg-shutter for motion blur). Dual-parse YAML+JSON; Veo reads compiled_prompt."
+
+# ── PATTERNS ────────────────────────────────────────────────────────────────────────────────────
+# Curated 'lever(s) -> effect' findings = the recommendation engine. To recommend a combination for a
+# goal, pick patterns whose effect_on matches the goal and whose direction is positive, union their
+# `set` levers, and apply their `avoid`. confidence reflects EVIDENCE strength, not how sure it sounds.
+#   direction: strongly_positive | positive | neutral | negative
+#   confidence: high | medium | low   (low/medium until an ISOLATED A/B confirms; bundled evidence = lower)
+patterns:
+  - id: p001_skin_microtexture_beats_smooth
+    statement: "Name real skin microtexture AND forbid smooth_ai_skin. Asking for 'smooth' skin causes the waxy/plastic AI tell."
+    set: {skin.strategy: real_microtexture_forbid_smooth}
+    avoid: {skin.strategy: smooth}
+    effect_on: skin
+    direction: strongly_positive
+    confidence: high
+    evidence: [e002, r001, r004]   # r001 microtexture='really good' vs r004 smooth='really ai like' (near-isolated skin flip)
+    recommend_when: "goal includes realistic skin / 'not AI-looking'"
+  - id: p002_30fps_beats_24
+    statement: "30fps reads as a real phone video; 24fps reads as cinematic film."
+    set: {camera.fps: 30}
+    avoid: {camera.fps: 24}
+    effect_on: realism
+    direction: positive
+    confidence: low
+    evidence: [v001]     # bundled in champion; not yet isolated -> low
+    recommend_when: "goal = raw UGC / phone-real"
+  - id: p003_deep_focus_no_bokeh
+    statement: "Deep focus / no bokeh reads as phone selfie; shallow bokeh reads as cinema."
+    set: {camera.dof: deep_no_bokeh}
+    avoid: {camera.dof: shallow_bokeh}
+    effect_on: realism
+    direction: positive
+    confidence: low
+    evidence: [v001]
+    recommend_when: "goal = raw UGC"
+  - id: p004_loose_performance
+    statement: "Loose casual delivery (a small 'um', a glance away) beats choreographed scored beats for UGC; over-direction reads as a paid actor."
+    set: {performance.direction: loose_casual}
+    avoid: {performance.direction: scored_beats}
+    effect_on: realism
+    direction: positive
+    confidence: medium
+    evidence: [v001, r003]   # r003 scored/cinematic drew 'too movie like ... not natural ugc'
+    recommend_when: "goal = raw/candid UGC (NOT a polished hero ad)"
+  - id: p005_alive_face_motion
+    statement: "An explicit face_motion layer (eye darts, blinks, brow flickers, talking mouth) prevents the stiff/frozen AI face."
+    set: {face.motion: alive_face_motion}
+    avoid: {face.motion: none}
+    effect_on: [realism, motion]
+    direction: positive
+    confidence: low
+    evidence: [v001]
+    recommend_when: "any talking-head"
+  - id: p006_format_is_realism_neutral
+    statement: "Format is organizational for LOOK/realism — the model reads the prose; prefer YAML-in-XML or YAML+JSON to carry every lever in one <2000-char paste. CAVEATS: (a) holds for LOOK only — for MOTION, numeric canonical-truth structure IS a real control channel (p008); (b) format still shifts output VARIANCE across serializations — a diversity lever, not a quality one (p009)."
+    set: {format: yaml_xml}     # or yaml_json
+    effect_on: adherence
+    direction: neutral
+    confidence: high
+    evidence: [v001, v002]
+    recommend_when: "packaging any clip for a capped input box"
+  - id: p007_raw_ugc_beats_cinematic
+    statement: "For UGC, raw_ugc (anti-cinematic: flat light, deep focus, loose delivery) beats cinematic/scored — a polished scored clip reads as an AD, not a real person."
+    set: {render_style: raw_ugc}
+    avoid: {render_style: cinematic}
+    effect_on: realism
+    direction: positive
+    confidence: medium
+    evidence: [r003, r001]   # r003 cinematic='too movie like'; r001 raw champion='really good'
+    recommend_when: "goal = authentic UGC (not a hero/brand ad)"
+  - id: p008_numeric_truth_drives_choreography
+    statement: "For precise motion/choreography (combat, dance, anime), a numeric canonical-truth track (joint keyframes + timed contacts + Laban effort vectors + camera keyframes) drives tracked, unbroken, identity-locked action that prose cannot specify. The JSON alone was sufficient (no prose)."
+    set: {control_paradigm: numeric_canonical_truth}
+    effect_on: motion
+    direction: strongly_positive
+    confidence: medium
+    evidence: [r005]
+    recommend_when: "goal = precise choreography / fight / dance / anime motion (NOT a casual UGC look)"
+  - id: p009_format_is_a_variance_lever
+    statement: "The SAME semantic prompt in different serializations (NL / YAML / XML / JSON / YAML+JSON / YAML+XML / JSON+XML) renders DIFFERENT outputs. Format does NOT systematically raise realism (p006) but reliably produces output VARIANCE — a diversity/exploration lever for A/B and selection. Owner explicitly values format-swap as a way to get options."
+    set: {format: any}
+    effect_on: output_variance
+    direction: neutral
+    confidence: low
+    evidence: [e003]   # owner-observed across format tests; not yet isolated per-format on fixed seed
+    recommend_when: "goal = generate VARIATION/options from one prompt (NOT to raise realism)"
+
+# ── EXPERIMENTS ─────────────────────────────────────────────────────────────────────────────────
+# A/B tests: change ONE lever, hold the rest constant, so an output delta is attributable. Detailed
+# records in experiments/. Seeded ones below are qualitative (from the authoring session) until
+# isolated renders exist.
+experiments:
+  - {id: e001_fps30_vs_24, lever: camera.fps, status: hypothesis, note: "30 vs 24 not yet isolated-rendered", promotes: p002}
+  - {id: e002_skin_microtexture_vs_smooth, lever: skin.strategy, status: isolated_confirmed, note: "v001(microtexture)='really good' vs v004(smooth)='really ai like' — near-isolated skin flip", promotes: p001}
+  - {id: e003_format_variance, lever: format, status: hypothesis, note: "owner: same prompt renders differently across NL/yaml/xml/json/combos — variance, not quality; isolate per-format on fixed content+seed", promotes: p009}
