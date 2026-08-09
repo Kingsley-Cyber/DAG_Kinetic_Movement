@@ -160,3 +160,34 @@ interfaces:
 - **Open threads:** none; UG-008 awaits user research or carrier_effect
   experiments.
 - **Next steps:** commit + push batch; keep counts in sync on future batches.
+
+### 2026-08-09 - D9 ingestion batch (UG-008 CLOSED; SRC-013..016)
+
+- **Focus:** ingest the user's returned hand-object research (gap_answer_01/02)
+  and three same-day supplements (03/04/05) per D9; verify the re-pasted
+  quad-carrier prompt against the captured specimen.
+- **Work done:** UG-008 renumbered to UG-009 (carrier-following gap; user's
+  research adopted as UG-008); register row + closure note written; SRC-013
+  identity + DIST-013 ledger created; 10 EXTENDs applied across 5 cards
+  (interaction_lifecycle: contact identity/epistemic classes SRC-013, bimanual
+  role permanence + regrasp SRC-015, hand-identity label stability SRC-016;
+  affordance_constraints: typed part-connection-region schema SRC-013 +
+  mechanism vocabulary SRC-015; continuity_state: unobserved transitions +
+  hard-cut discipline SRC-013; failure_mode_catalog: FAIL-01..05 + staged
+  metrics SRC-013 + role_renaming/hand_spawn/reentry_reset SRC-016;
+  capability_classes_and_loss_records: carrier rules R1-R4 SRC-013 + provider
+  control-surface matrix SRC-014); SRC-014/015/016 identities + DIST-014/
+  015/016 ledgers created; repaired accidental deletion of
+  test_predicate_preconditions_effects_declared in interaction_lifecycle
+  Verification (restored + 8 new tests); pasted prompt verified
+  character-identical to specimen (line diff, 0 differences) - no duplicate
+  capture; DMR kit renumbered to SRC-017 candidate in 12/14 + README.
+- **Decisions:** D-2026-08-09-10 (SRC-013 ingestion, UG-008 CLOSED),
+  D-11 (SRC-014 provider matrix), D-12 (SRC-015 mechanism vocabulary),
+  D-13 (SRC-016 hand-identity), D-14 (duplicate prompt verified, no re-capture).
+- **Gaps captured:** none new; UG-008 CLOSED with evidence (SRC-013 +
+  supplements 014/015/016, staged numeric claims).
+- **Open threads:** UG-001..007, UG-009 await user research; SRC-003 EXTENDs
+  and 6 pending queue sources unchanged.
+- **Next steps:** DIRECTORY.md regenerated + checker 0 deviations; commit +
+  push batch; README HEAD refresh commit.

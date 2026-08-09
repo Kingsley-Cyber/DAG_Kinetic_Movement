@@ -3,7 +3,7 @@ id: cpcs.gaps.understanding_register
 kind: gap_register
 epistemic_status: PROJECT_DERIVED
 acquisition: authored
-sources: [SRC-001, SRC-002, SRC-003, SRC-004, SRC-005, SRC-006, SRC-007, SRC-008, SRC-009, SRC-010, SRC-011, SRC-012]
+sources: [SRC-001, SRC-002, SRC-003, SRC-004, SRC-005, SRC-006, SRC-007, SRC-008, SRC-009, SRC-010, SRC-011, SRC-012, SRC-013, SRC-014, SRC-015, SRC-016]
 primary_route: cpcs/research/gaps/
 interfaces:
   - cpcs.gov.working_agent_log
@@ -53,7 +53,8 @@ parent; closing a parent promotes its remaining children to parent level.
 | UG-005 | WHY | Why is seconds the authoritative master-clock base while frame/musical references derive — what breaks if a source binds to frames? | temporal_coupling, timebase_systems | — | OPEN |
 | UG-006 | APPLY | How do I apply BML sync points to camera impact binding (phase_locks_to → binds chain) when the provider surface lacks phase controls? | beat_syncpoint_alignment, camera_impact_sync, provider_capability_snapshots | UG-001 | OPEN |
 | UG-007 | WHAT | What exactly distinguishes sequencing_delay_ms (single 55 ms CPCS_CONVENTION sample) from per-pattern lag calibration — is 55 ms transferable across actors? | bartenieff_six_patterns, phase_timing_presets | — | OPEN |
-| UG-008 | APPLY | Which carrier hierarchy does a provider surface follow best — the declared quad (YAML+XML+JSON+prose with explicit format_policy), a pair, or prose-only? | format_policy, carrier_role_semantics, carrier_effect_design | — | OPEN |
+| UG-008 | WHAT/HOW | How must articulated and deformable hand–object state transitions be represented, causally compiled, and verified — the sling-bag zipped→open hard-cut bridge (typed part graph, durative causal transitions, contact identity, action-specific verification)? | interaction_lifecycle, affordance_constraints, continuity_state, failure_mode_catalog | — | CLOSED — research returned 2026-08-09 (gap_answer_01/02 + supplements 03/04/05), ingested as SRC-013/014/015/016; see closure note below |
+| UG-009 | APPLY | Which carrier hierarchy does a provider surface follow best — the declared quad (YAML+XML+JSON+prose with explicit format_policy), a pair, or prose-only? (renumbered from UG-008 2026-08-09 — UG-008 adopted for the returned hand-object research) | format_policy, carrier_role_semantics, carrier_effect_design | — | OPEN |
 
 ### Cross-links to source questions
 
@@ -67,7 +68,8 @@ source question feeds the gap, and vice versa:
 | UG-004 | SRC-012 Q4 (evidence-class vocabulary adoption) |
 | UG-006 | SRC-012 Q5 (provider surfaces carrying timing/phase/contact controls) |
 | UG-007 | SRC-012 Q7 (sequencing_delay_ms calibration per actor/technique) |
-| UG-008 | SRC-010 A/B experiment patterns (carrier effect unmeasured — see carrier_effect_design) |
+| UG-008 | Research return SRC-013 (E1–E14: OpenUSD, NVIDIA deformables, PDDL2.1, BDDL, ARCTIC, ContactPose, TAP-Vid, VBench, PhyGenBench, Veo, Runway, Firefly); supplements SRC-014 (reliability cheat sheet), SRC-015 (manipulation directing), SRC-016 (hand diagnosis) |
+| UG-009 | SRC-010 A/B experiment patterns (carrier effect unmeasured — see carrier_effect_design) |
 
 ## 4. Research alignment (D9 — return and ingestion)
 
@@ -370,7 +372,34 @@ the transferability boundary stated (where 55 ms holds, where it does not).
 
 **Deliverable:** `UG-007_lag_calibration_design.md`
 
-### UG-008 — Provider carrier-hierarchy following (APPLY · top-level)
+### Closure note — UG-008 (2026-08-09)
+
+Closed with evidence, not assumption (D6): the user returned a research
+package (`gap_answer_01_Articulated and Deformable Hand-Obj.txt` +
+`gap_answer_02_articulated_deformable_hand_object_transitions.md`) that
+answers the primary question with a 14-source evidence registry (E1–E14),
+a typed part–connection–region schema, a durative causal transition schema,
+a contact-identity model, action-specific verification metrics, and a
+provider carrier decision matrix. Ingested as SRC-013 (identity + DIST-013
+ledger + 5 EXTENDs). The return itself is **staged research** ("not curated
+repository truth"): the EXTENDs record its actionable core; numeric claims
+(2 mm penetration, V ≥ 0.70, ≤ 0.05 m/s, ≤ 11.3 mm²) stay SRC-013 evidence
+until experiments validate them.
+
+**Supplements (same day):** the user also returned three UG-008 supplements,
+all dropped in the repo root and ingested automatically — `gap_answer_03`
+(causal video-generation reliability cheat sheet → SRC-014, provider
+control-surface matrix + negative-prompt precedence in
+capability_classes_and_loss_records), `gap_answer_04` (AI video directing
+for causal human-object manipulation → SRC-015, mechanism vocabulary in
+affordance_constraints + bimanual role permanence/regrasp observability in
+interaction_lifecycle), and `gap_answer_05` (why AI video adds extra or
+mismatched hands → SRC-016, hand-identity label stability in
+interaction_lifecycle + role_renaming/hand_spawn/reentry_reset rows in
+failure_mode_catalog). All three corroborate the SRC-013 core; their
+provider facts and artifact-rate claims stay staged evidence.
+
+### UG-009 — Provider carrier-hierarchy following (APPLY · top-level)
 
 **Primary question:** Which carrier hierarchy does a provider surface follow
 best — the declared quad (YAML+XML+JSON+prose with explicit `format_policy`),

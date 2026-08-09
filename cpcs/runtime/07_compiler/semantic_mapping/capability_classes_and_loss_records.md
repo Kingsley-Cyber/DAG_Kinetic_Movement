@@ -232,6 +232,54 @@ base. No patch to unrelated paths, no weakening of hard constraints; empty
 patch + `needs_escalation` when no safe patch exists. (Consistent with
 `repair_strategy.md`; the package adds the empty-patch escalation form.)
 
+## Execution-carrier decision rules R1–R4 (SRC-013 EXTEND)
+
+> **Source:** SRC-013 (user research return, staged) — gap_answer_02
+> §provider-control carrier decision matrix; evidence E8 (Veo first/last
+> frame), E11 (Veo reference images), E12 (Runway Gen-4.5).
+
+Carrier selection is a provider-surface decision, recorded per compile:
+
+- **R1 — Endpoint authority:** when the provider exposes first/last-frame
+  conditioning, boundary states compile to endpoint frames and the prompt
+  carries only the in-between mechanism — endpoints are constraints, not a
+  physics solver.
+- **R2 — Mechanism authority:** when the provider exposes no per-event
+  controls, the causal mechanism stays in the prompt as positive-language
+  invariants; negative phrasing names failures, it does not encode physics.
+- **R3 — One causal event per clip:** split at every causal handoff
+  (unzip ≠ open); never pack two state-changing hand events into one
+  unconstrained generation.
+- **R4 — Carrier escalation:** escalate carriers only when a lower carrier
+  demonstrably fails verification; the declared `format_policy` hierarchy
+  is a request — the provider's real control surface is the ground truth
+  for capability class.
+
+## Provider control-surface matrix (SRC-014 EXTEND)
+
+> **Source:** SRC-014 (user research return, staged) — gap_answer_03
+> §Current provider-control matrix + §negative-prompt rule; evidence E8–E16
+> (official provider docs, dated 2026-08-09).
+
+Capability facts change fast; the matrix is dated, never eternal:
+
+- **Veo 3.1:** dedicated `negativePrompt`; first/last-frame conditioning
+  (first frame required when `lastFrame` is used); 4/6/8 s durations for
+  that workflow.
+- **Sora 2 Videos API:** no negative field documented; `input_reference`
+  anchors the first frame only; API deprecated — shutdown 2026-09-24, not a
+  new long-lived dependency.
+- **Kling VIDEO 3.0 / 3.0 Turbo:** positive + negative share one prompt
+  text; 3,072-char limit (2,500 recommended; 512/shot); Turbo is first-
+  frame only; 3–15 s.
+- **Runway Gen-4.5:** no negative field; positive phrasing recommended;
+  `promptText` 1–1,000 UTF-16 units; keyframes app (Gen-3 retired); 2–10 s.
+
+Negative-prompt precedence (compile rule): causal/geometric invariants in
+positive language → endpoint frames for boundary states → dedicated
+negative field as secondary exclusions → reject causally invalid outputs
+in verification (never expect prompt syntax to guarantee physics).
+
 ## Verification
 
 `test_semantic_mapping_records_loss_code`, `test_compile_key_has_capability_and_adapter_versions`,
@@ -241,4 +289,9 @@ patch + `needs_escalation` when no safe patch exists. (Consistent with
 `test_native_control_has_no_false_loss` (SRC-001 §26),
 `test_compiled_control_has_realization_status`,
 `test_loss_record_required_for_non_exact_realization`,
-`test_loss_linked_to_decision_id`.
+`test_loss_linked_to_decision_id`,
+`test_carrier_decision_rule_recorded`,
+`test_endpoint_frames_used_when_available`,
+`test_one_causal_event_per_clip`,
+`test_provider_matrix_dated_and_scoped`,
+`test_negative_precedence_positive_first`.

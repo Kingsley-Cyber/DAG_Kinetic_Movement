@@ -217,9 +217,93 @@ reaction-order violations. Hard checks: reaction onset ≥ contact; target
 response begins at or after contact. These complement the SRC-010 tolerances
 (contact time error ≤ 50 ms, contact distance ≤ 0.05 m).
 
+## Contact identity and epistemic contact classes (SRC-013 EXTEND)
+
+> **Source:** SRC-013 (user research return, staged) — gap_answer_02
+> §Epistemic status contract + §contact identity; evidence E5 (ARCTIC),
+> E6 (ContactPose), E7 (TAP-Vid).
+
+Contacts are **identity-bearing, time-bounded hypotheses**, not bare
+proximity events:
+
+- Monocular RGB supports `observed`/`detected` contact evidence — it does
+  not by itself measure contact force, depth, or exact 3D finger
+  trajectories; such claims stay `measured` only with calibrated capture
+  (multi-view/thermal/MoCap rigs, e.g. ARCTIC, ContactPose) [E5][E6].
+- Each contact record carries an epistemic class from the acquisition
+  vocabulary (`observed · detected · measured · inferred · authored ·
+  creative_choice`) plus `source_refs`, a time span, subject identity, and
+  `visibility = visible | occluded | out_of_frame | unknown`. **Occluded is
+  not equivalent to absent; unknown is not equivalent to false.**
+- **Contact ownership graph:** grasp persistence is tracked as stateful
+  ownership across occlusion (a hand vertex mask retains ownership while
+  occluded by object panels).
+- **Bimanual allocation:** dual-hand support is a force-allocation ratio
+  (α_left + α_right = 1.0) — the non-manipulating hand carries static
+  load-bearing responsibility.
+- **Contact transfer** (e.g. slider → panel lip) is a hand-to-part
+  assignment evaluated on spatial proximity AND velocity-vector alignment
+  before ownership transfers; a transfer without established surface
+  contact is the `ghost_contact` failure (SRC-013 FAIL-01).
+
+## Bimanual role permanence and regrasp observability (SRC-015 EXTEND)
+
+> **Source:** SRC-015 (user research return, staged) — gap_answer_04
+> §1 source table (Guiard 1987, Wan 2016, Modern Robotics ch. 12, Liang
+> 2023); evidence class: source evidence / directing choice.
+
+- **Role permanence (Guiard):** skilled bimanual activity assigns two
+  different roles — acting hand vs supporting hand — and the roles persist;
+  hands are not interchangeable. Keep the acting/supporting assignment
+  stable across frames and cuts; flipping roles mid-action is a continuity
+  violation, not a re-parameterization.
+- **Regrasp is an observable transition (Wan):** when a hand changes which
+  part it acts on, `release → reach → regrasp` must be visible or explicitly
+  declared; an implied regrasp through empty air is the `ghost_contact`
+  failure (SRC-013 FAIL-01).
+- **Contact modes (Modern Robotics):** hand–object contact is a mode state —
+  `sliding · rolling · sticking · breaking_free` — not vague proximity;
+  mode transitions carry their own preconditions.
+- **Precondition functions (Liang):** each event declares preconditions
+  that predict whether the skill execution can succeed; a contact-rich
+  event with unmet preconditions must not be attempted.
+
+## Hand-identity label stability (SRC-016 EXTEND)
+
+> **Source:** SRC-016 (user research return, staged) — gap_answer_05
+> "Why AI Video Adds Extra Or Mismatched Hands"; evidence: Sora 2 prompting
+> guide, DiffH2O, JointHOI, HanDiffuser, HandDiffuse, Video Storyboarding.
+
+Extra/mismatched hands are an **identity-ambiguity failure**, not only a
+generation weakness. Stacked drivers, each independently addressable:
+
+- **Role renaming creates extra actors:** job labels that change with the
+  beat (`zipper_hand → lip_hand → anchor_hand`) are treated by the model as
+  separate agents; keep exactly `left_hand` / `right_hand` and describe the
+  job change on the same named hand.
+- **Empty-hand transfer invites hallucination:** release→reach→grasp in
+  open air is where the model loses hand identity; keep contact continuous
+  (contact-preserving transfer, SRC-013).
+- **Hard cuts re-sample identity:** every cut is another chance for hand
+  count/pose/side to drift — declare the same-hand reentry state on the cut
+  edge (see continuity_state SRC-013 EXTEND).
+- **Exit/re-entry resets continuity:** a hand that leaves frame must be
+  restated as the same physical hand on return.
+- **POV forearms compete with a third-person prior:** with no face/body
+  anchor, hands carry the identity load; POV framing must assert the
+  two-hand constraint explicitly.
+- **Fix doctrine:** two stable labels, one continuous contact path, fewer
+  action changes per clip, endpoint/reference frames when available.
+
 ## Verification
 
 `test_predicate_preconditions_effects_declared`,
 `test_contact_mode_declared_stick_slide_roll_impact_separate`,
+`test_contact_identity_tracked_across_occlusion`,
+`test_contact_epistemic_class_declared`,
+`test_occlusion_not_absent`,
+`test_bimanual_role_permanence`,
+`test_regrasp_declared_as_observable_transition`,
+`test_hand_identity_label_stable_across_actions`,
 `test_reaction_order_causality_enforced`,
 `test_handoff_no_unsupported_interval`.

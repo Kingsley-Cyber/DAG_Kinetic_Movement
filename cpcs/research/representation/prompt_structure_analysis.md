@@ -221,10 +221,14 @@ required*. This document is therefore a hypothesis to be tested with
 
 ## 9. Open questions captured while working (D8)
 
-- **UG-008 (APPLY/WHEN):** Which carrier hierarchy does each provider
+- **UG-009 (APPLY/WHEN):** Which carrier hierarchy does each provider
   surface actually follow best — the declared quad, YAML+XML pair, or
   prose-only? No experiment data exists in the tree; `carrier_effect_design`
   is the natural harness. (Cross-linked to the understanding register.)
+  Note: the user's returned hand-object research (SRC-013, closed as UG-008)
+  independently recommends execution-carrier selection — text alone cannot
+  carry exact spatial/topological control; see SRC-013 carrier decision
+  matrix.
 
 ## Verification
 

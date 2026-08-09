@@ -198,6 +198,11 @@ not a step.
 | 2026-08-09 | D-2026-08-09-07 | Create `working_agent_log.md` (`cpcs.gov.working_agent_log`) + `understanding_gap_register.md` (`cpcs.gaps.understanding_register`); seeded with genuine gaps surfaced during SRC-012 + automation batch | D3/D8 | APPLIED |
 | 2026-08-09 | D-2026-08-09-08 | Establish research-return loop: `Research_return_folder/` intake + D9 ingestion; the user returns deep research on nesting gaps and the agent ingests it without consultation | D1/D9 | APPLIED |
 | 2026-08-09 | D-2026-08-09-09 | Representation route first content: capture user-supplied quad-carrier prompt as specimen (`fixture_set`, verbatim in `representation/hybrids/`) + structure analysis (`method`, INFERENCE — no carrier superiority claimed per §11.7) | D2/D3 | APPLIED |
+| 2026-08-09 | D-2026-08-09-10 | Ingest user research return (gap_answer_01/02) as SRC-013 + DIST-013: 5 EXTENDs across interaction/affordance/continuity/failure/carrier cards; UG-008 CLOSED with evidence; numeric claims stay staged | D1/D2/D9 | APPLIED |
+| 2026-08-09 | D-2026-08-09-11 | Ingest user supplement gap_answer_03 as SRC-014 + DIST-014: provider control-surface matrix + negative-prompt precedence EXTENDed into capability_classes_and_loss_records; corroborates R1–R3; provider facts dated, staged | D1/D2/D9 | APPLIED |
+| 2026-08-09 | D-2026-08-09-12 | Ingest user supplement gap_answer_04 as SRC-015 + DIST-015: mechanism vocabulary EXTENDed into affordance_constraints; bimanual role permanence + regrasp observability EXTENDed into interaction_lifecycle | D1/D2/D9 | APPLIED |
+| 2026-08-09 | D-2026-08-09-13 | Ingest user supplement gap_answer_05 as SRC-016 + DIST-016: hand-identity label stability EXTENDed into interaction_lifecycle; role_renaming/hand_spawn/reentry_reset rows added to failure_mode_catalog | D1/D2/D9 | APPLIED |
+| 2026-08-09 | D-2026-08-09-14 | Re-pasted quad-carrier prompt verified character-identical to the captured specimen (line diff, 0 differing lines) — no duplicate capture; analysis card remains authoritative; DMR kit renumbered to SRC-017 candidate | D7/H7 | APPLIED |
 
 ## 6. User decision briefs (the ONLY consultation points)
 

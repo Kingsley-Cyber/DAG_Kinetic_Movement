@@ -17,14 +17,14 @@ branch `main` · HEAD `d0fa4d0` (2026-08-09 — refresh on each batch) ·
 
 | Property | Value |
 | --- | --- |
-| Sources distilled | 12 (SRC-001 … SRC-012) |
-| Knowledge objects | 185 `cpcs.*` objects (180 cards + 5 system files) |
-| Files with frontmatter | 211 — ontology checker: **0 deviations** |
+| Sources distilled | 16 (SRC-001 … SRC-016) |
+| Knowledge objects | 193 `cpcs.*` objects (188 cards + 5 system files) |
+| Files with frontmatter | 219 — ontology checker: **0 deviations** |
 | Routes (directories) | 1,124 (1,011 leaves) — DIRECTORY.md LIVE |
 | Open research questions | 155 across 12 sources (0 closed) |
 | Pending distillation sources | 6 (04b, 07, 08, 09, 10, `11 Polyglot Compiler.md`) |
 | SRC-003 EXTENDs | 14 PENDING + 1 PARTIAL + 3 APPLIED |
-| Understanding gaps (UG) | 8 open, nested (UG-001 … UG-008) |
+| Understanding gaps (UG) | 9 tracked (UG-001…UG-009; UG-008 CLOSED by returned research SRC-013 + supplements SRC-014/015/016) |
 | Evidence classes | 8 epistemic statuses · 15 kinds · 10 acquisitions |
 | Control plane | agent-automated via decision tree D1–D9 |
 
@@ -35,15 +35,15 @@ knowledge and runtime architecture for directing, compiling, and verifying
 kinetic cinematic performance (live-action, anime, documentary, UGC).
 Twelve research sources — a frozen KB, the CPCS directorial paper + Pegasus
 extraction system, the empirically validated Prompt Lab, the ADRG reasoning
-package, gap-closure research, and more — have been distilled into three
-planes:
+package, gap-closure research, and more — plus four user research returns
+(D9 loop) have been distilled into three planes:
 
 - **Knowledge plane** (`cpcs/knowledge/`) — domain taxonomy: foundations,
   story, character performance (FACS/Laban/Bartenieff), action/combat, phase
   grammar, rhythm/time, interaction/contact, force physics, camera,
   style, continuity, generation complexity, interfaces.
 - **Research plane** (`cpcs/research/`) — source registry (identities),
-  distillation ledger (DIST-001…012), gaps (per-source questions +
+  distillation ledger (DIST-001…016), gaps (per-source questions +
   understanding register), experiments.
 - **Runtime plane** (`cpcs/runtime/`) — request → retrieval → synthesis
   (ADRG) → strategy/constraints → canonical control → compiler →
@@ -133,8 +133,11 @@ closed by assumption.
   granularity), UG-004 (BLEND: evidence-class vocabularies), UG-005 (WHY:
   master-clock seconds authority), UG-006 (APPLY: BML sync points → camera
   impact binding), UG-007 (WHAT: `sequencing_delay_ms` 55 ms transferability),
-  UG-008 (APPLY: provider carrier-hierarchy following — which format stack a
-  surface obeys best).
+  UG-009 (APPLY: provider carrier-hierarchy following — which format stack a
+  surface obeys best). UG-008 (hand–object state transitions) is CLOSED —
+  the user's returned research was ingested as SRC-013, with same-day
+  supplements SRC-014 (reliability cheat sheet), SRC-015 (manipulation
+  directing), and SRC-016 (mismatched-hands diagnosis).
 
 ## 6. Working agent log — session continuity
 
@@ -207,6 +210,10 @@ git -c core.longpaths=true -c user.name="Kingsley-Cyber" `
 | SRC-010 | CPCS Prompt Lab (`lab/` + `references/`, 44 files) | 9 new + 5 EXTEND |
 | SRC-011 | ADRG research package v1.0 | 3 new + 6 EXTEND |
 | SRC-012 | AI Video Motion Direction KB v1.0.0 (frozen) | 4 new + 6 EXTEND |
+| SRC-013 | User return — articulated/deformable hand–object transitions (UG-008) | 2 new + 5 EXTEND |
+| SRC-014 | User return — causal video-generation reliability cheat sheet | 2 new + 1 EXTEND |
+| SRC-015 | User return — directing causal human-object manipulation | 2 new + 2 EXTEND |
+| SRC-016 | User return — why AI video adds extra/mismatched hands | 2 new + 2 EXTEND |
 
 ### Sessions
 
@@ -218,14 +225,16 @@ git -c core.longpaths=true -c user.name="Kingsley-Cyber" `
 | 2026-08-09 | Gap + log loop | Understanding register (UG-001…007) + working agent log + D8/D9 + H6/H7; checker 209 files clean |
 | 2026-08-09 | README | This file; AGENTS.md/CLAUDE.md de-skeletoned |
 | 2026-08-09 | Representation analysis | Specimen + quad-carrier prompt analysis (UG-008); 185 objects, 211 files |
+| 2026-08-09 | D9 ingestion batch | UG-008 CLOSED: SRC-013 + supplements SRC-014/015/016 (10 EXTENDs across 5 cards); 193 objects, 219 files |
 
 ### Pending work (pick up here)
 
 1. Distill the 6 pending queue sources (04b, 07, 08, 09, 10, `11 Polyglot Compiler.md`).
 2. Apply 14 PENDING SRC-003 EXTENDs.
 3. Close 155 open questions (requires evidence — D6).
-4. Await user deep research on UG-001…007 → D9 ingestion.
-5. Overlap-audit the DMR execution kit (SRC-013 candidate) vs SRC-007.
+4. Await user deep research on UG-001…007, UG-009 → D9 ingestion.
+5. Overlap-audit the DMR execution kit (SRC-017 candidate — SRC-013…016
+   taken by D9 user returns) vs SRC-007.
 
 ## 11. Key file map
 
@@ -236,8 +245,8 @@ git -c core.longpaths=true -c user.name="Kingsley-Cyber" `
 | `cpcs/00_governance/agent_logs/working_agent_log.md` | Session journal (H6) |
 | `cpcs/research/gaps/outstanding_actions.md` | BOOT-CRITICAL action tracker |
 | `cpcs/research/gaps/understanding_gap_register.md` | Student-gap register (D8/D9) |
-| `cpcs/research/source_registry/identities/` | SRC-001…012 identities |
-| `cpcs/research/distillation/ledger/` | DIST-001…012 ledgers |
+| `cpcs/research/source_registry/identities/` | SRC-001…016 identities |
+| `cpcs/research/distillation/ledger/` | DIST-001…016 ledgers |
 | `Research_distillation_folder/` | Raw source packages (incl. nested `.git.nested-backup`) |
 | `Research_return_folder/` | Deep-research intake for D9 ingestion |
 | `cpcs/research/representation/` | Prompt format analysis + first hybrid specimen |
