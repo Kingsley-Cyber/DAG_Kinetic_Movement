@@ -140,3 +140,23 @@ interfaces:
   `Research_return_folder/` → D9 ingestion.
 - **Next steps:** none until returns land; housekeeping clean (checker 209
   files, 0 deviations).
+
+### 2026-08-09 — Prompt specimen + quad-carrier structure analysis
+
+- **Focus:** capture the user-supplied smart-glasses POV prompt as a tree
+  specimen and break down the agent's prompt structure (first content in
+  the representation route).
+- **Work done:** created `representation/hybrids/pov_glasses_bag_prompt_specimen.md`
+  (verbatim 20 s YAML+XML+JSON+prose quad artifact, lineage note); created
+  `representation/prompt_structure_analysis.md` (8 control axes × layer
+  coverage, techniques T1–T8 incl. failure-mechanism reasoning and negative
+  state-machine specification, critiques C1–C6, best-for verdict); captured
+  UG-008 (provider carrier-hierarchy following) per D8 with full brief;
+  control plane §2/§9 synced (185 objects, 211 files); README refreshed;
+  DIRECTORY.md regenerated; checker clean.
+- **Decisions:** D-2026-08-09-09 (representation route first content:
+  specimen as fixture_set, analysis as method).
+- **Gaps captured:** UG-008 (APPLY — carrier hierarchy per provider).
+- **Open threads:** none; UG-008 awaits user research or carrier_effect
+  experiments.
+- **Next steps:** commit + push batch; keep counts in sync on future batches.

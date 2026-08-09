@@ -18,13 +18,13 @@ branch `main` · HEAD `d0fa4d0` (2026-08-09 — refresh on each batch) ·
 | Property | Value |
 | --- | --- |
 | Sources distilled | 12 (SRC-001 … SRC-012) |
-| Knowledge objects | 183 `cpcs.*` objects (178 cards + 5 system files) |
-| Files with frontmatter | 209 — ontology checker: **0 deviations** |
+| Knowledge objects | 185 `cpcs.*` objects (180 cards + 5 system files) |
+| Files with frontmatter | 211 — ontology checker: **0 deviations** |
 | Routes (directories) | 1,124 (1,011 leaves) — DIRECTORY.md LIVE |
 | Open research questions | 155 across 12 sources (0 closed) |
 | Pending distillation sources | 6 (04b, 07, 08, 09, 10, `11 Polyglot Compiler.md`) |
 | SRC-003 EXTENDs | 14 PENDING + 1 PARTIAL + 3 APPLIED |
-| Understanding gaps (UG) | 7 open, nested (UG-001 … UG-007) |
+| Understanding gaps (UG) | 8 open, nested (UG-001 … UG-008) |
 | Evidence classes | 8 epistemic statuses · 15 kinds · 10 acquisitions |
 | Control plane | agent-automated via decision tree D1–D9 |
 
@@ -132,7 +132,9 @@ closed by assumption.
   (BLEND: rhythm vs phase preset reconciliation), UG-003 (WHEN: 7/4/10-phase
   granularity), UG-004 (BLEND: evidence-class vocabularies), UG-005 (WHY:
   master-clock seconds authority), UG-006 (APPLY: BML sync points → camera
-  impact binding), UG-007 (WHAT: `sequencing_delay_ms` 55 ms transferability).
+  impact binding), UG-007 (WHAT: `sequencing_delay_ms` 55 ms transferability),
+  UG-008 (APPLY: provider carrier-hierarchy following — which format stack a
+  surface obeys best).
 
 ## 6. Working agent log — session continuity
 
@@ -215,6 +217,7 @@ git -c core.longpaths=true -c user.name="Kingsley-Cyber" `
 | 2026-08-09 | GitHub publication | Public repo created; gitlink fix (733 files, HEAD 122e785) |
 | 2026-08-09 | Gap + log loop | Understanding register (UG-001…007) + working agent log + D8/D9 + H6/H7; checker 209 files clean |
 | 2026-08-09 | README | This file; AGENTS.md/CLAUDE.md de-skeletoned |
+| 2026-08-09 | Representation analysis | Specimen + quad-carrier prompt analysis (UG-008); 185 objects, 211 files |
 
 ### Pending work (pick up here)
 
@@ -237,5 +240,6 @@ git -c core.longpaths=true -c user.name="Kingsley-Cyber" `
 | `cpcs/research/distillation/ledger/` | DIST-001…012 ledgers |
 | `Research_distillation_folder/` | Raw source packages (incl. nested `.git.nested-backup`) |
 | `Research_return_folder/` | Deep-research intake for D9 ingestion |
+| `cpcs/research/representation/` | Prompt format analysis + first hybrid specimen |
 | `cpcs_ontology_check.ps1` | Deviation checker (vocabularies must match reference §6) |
 | `update_directory_md.ps1` | DIRECTORY.md generator (renders directories only) |

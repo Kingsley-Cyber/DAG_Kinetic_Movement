@@ -197,6 +197,7 @@ not a step.
 | 2026-08-09 | D-2026-08-09-06 | Extend `kind` vocabulary with `agent_log` (D4: distinct semantic — chronological agent work record; no existing kind covers it); applied to reference §6.1 + checker in one change | D4 | APPLIED |
 | 2026-08-09 | D-2026-08-09-07 | Create `working_agent_log.md` (`cpcs.gov.working_agent_log`) + `understanding_gap_register.md` (`cpcs.gaps.understanding_register`); seeded with genuine gaps surfaced during SRC-012 + automation batch | D3/D8 | APPLIED |
 | 2026-08-09 | D-2026-08-09-08 | Establish research-return loop: `Research_return_folder/` intake + D9 ingestion; the user returns deep research on nesting gaps and the agent ingests it without consultation | D1/D9 | APPLIED |
+| 2026-08-09 | D-2026-08-09-09 | Representation route first content: capture user-supplied quad-carrier prompt as specimen (`fixture_set`, verbatim in `representation/hybrids/`) + structure analysis (`method`, INFERENCE — no carrier superiority claimed per §11.7) | D2/D3 | APPLIED |
 
 ## 6. User decision briefs (the ONLY consultation points)
 

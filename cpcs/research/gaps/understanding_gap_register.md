@@ -53,6 +53,7 @@ parent; closing a parent promotes its remaining children to parent level.
 | UG-005 | WHY | Why is seconds the authoritative master-clock base while frame/musical references derive — what breaks if a source binds to frames? | temporal_coupling, timebase_systems | — | OPEN |
 | UG-006 | APPLY | How do I apply BML sync points to camera impact binding (phase_locks_to → binds chain) when the provider surface lacks phase controls? | beat_syncpoint_alignment, camera_impact_sync, provider_capability_snapshots | UG-001 | OPEN |
 | UG-007 | WHAT | What exactly distinguishes sequencing_delay_ms (single 55 ms CPCS_CONVENTION sample) from per-pattern lag calibration — is 55 ms transferable across actors? | bartenieff_six_patterns, phase_timing_presets | — | OPEN |
+| UG-008 | APPLY | Which carrier hierarchy does a provider surface follow best — the declared quad (YAML+XML+JSON+prose with explicit format_policy), a pair, or prose-only? | format_policy, carrier_role_semantics, carrier_effect_design | — | OPEN |
 
 ### Cross-links to source questions
 
@@ -66,6 +67,7 @@ source question feeds the gap, and vice versa:
 | UG-004 | SRC-012 Q4 (evidence-class vocabulary adoption) |
 | UG-006 | SRC-012 Q5 (provider surfaces carrying timing/phase/contact controls) |
 | UG-007 | SRC-012 Q7 (sequencing_delay_ms calibration per actor/technique) |
+| UG-008 | SRC-010 A/B experiment patterns (carrier effect unmeasured — see carrier_effect_design) |
 
 ## 4. Research alignment (D9 — return and ingestion)
 
@@ -367,6 +369,46 @@ an immutable-experiment design (per actor/technique) with sample budget;
 the transferability boundary stated (where 55 ms holds, where it does not).
 
 **Deliverable:** `UG-007_lag_calibration_design.md`
+
+### UG-008 — Provider carrier-hierarchy following (APPLY · top-level)
+
+**Primary question:** Which carrier hierarchy does a provider surface follow
+best — the declared quad (YAML+XML+JSON+prose with explicit `format_policy`),
+a pair, or prose-only?
+
+**Structured sub-questions:**
+1. What does `carrier_role_semantics`/`format_ownership` (SRC-004 compiler
+   cards) say about how carriers should be assigned roles, and does the
+   quad's `format_policy primary="yaml+xml" precision="json"` conform?
+2. Which provider surfaces accept structured input at all (per
+   `provider_capability_snapshots` dated matrix) vs text-only — and does
+   carrier order in the prompt change adherence?
+3. Does the CDATA quad beat the pair (YAML+XML) or prose-only on the same
+   scene (artifact rate: extra hands, morph, state jumps; shot adherence;
+   cut-edge continuity)?
+4. What experiment design (`carrier_effect_design`) isolates the carrier
+   variable from content — same scene, same laws, different carriers?
+5. What is the loss hierarchy when a surface rejects a carrier (drop JSON
+   first vs YAML first) — which axis degrades first?
+
+**Exact queries:**
+- Tree: `carrier_role_semantics`, `format_ownership`, `format_policy`,
+  `provider_capability_snapshots`, `carrier_effect_design`, `downcasting`,
+  `loss report`, `capability_classes_loss_records`, `prompt_budget`
+- Source: SRC-010 lab A/B protocol (`lab_ab_test_protocol`); SRC-004
+  compiler cards; specimen `pov_glasses_bag_prompt_specimen`
+- Field: "structured vs prose prompts video generation adherence ablation"
+
+**Evidence requirements:** carrier_effect_design harness; the specimen run
+at least twice per carrier variant; provider capability matrix rows for the
+tested surfaces.
+
+**Acceptance criteria (CLOSE when):** a measured adherence table per
+carrier-variant × provider (artifact rate, shot adherence, cut continuity);
+a stated loss hierarchy with which axis degrades first per surface; a
+conformance verdict for `format_policy` against carrier_role_semantics.
+
+**Deliverable:** `UG-008_carrier_following_matrix.md`
 
 ## 6. Verification
 

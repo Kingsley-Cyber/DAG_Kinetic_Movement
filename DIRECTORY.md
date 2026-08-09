@@ -12,7 +12,7 @@
 
 | Property | Value |
 | --- | --- |
-| Last updated | 2026-08-09 15:35:05 UTC |
+| Last updated | 2026-08-09 19:22:17 UTC |
 | Root | `cpcs/` |
 | Total routes | 1124 |
 | Leaf routes | 1011 |
