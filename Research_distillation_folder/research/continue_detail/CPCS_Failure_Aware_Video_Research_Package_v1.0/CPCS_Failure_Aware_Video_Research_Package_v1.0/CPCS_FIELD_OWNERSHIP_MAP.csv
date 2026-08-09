@@ -1,0 +1,12 @@
+proposed_contract_or_field,existing_owner,status,purpose,must_not_create
+continuity.state_ledger,universal_score.continuity,minimal typed extension,"Persist entity/object/environment states, possession, allowed transitions, and shot-boundary snapshots",parallel state database or second canonical score
+continuity.visibility_intervals,universal_score.continuity,minimal typed extension,"Represent visible/partial/hidden states, occluder, hidden path, bridge, and reappearance",standalone occlusion compiler
+entities[].identity_signature,universal_score.entities,minimal typed extension,"Bind face, body, hair, costume, voice, role, and reference assets to stable IDs",separate identity ontology
+actions[].event_edges,universal_score.actions/beats/interactions,minimal typed extension,"Encode dependency, causality, role, concurrency, and phase timing",parallel event scheduler
+shots[].spatial_transition,universal_score.shots/camera/scenes,minimal typed extension,"Coordinate frames, lane/depth transitions, axis policy, entrances/exits, camera transforms",separate scene-graph authority
+interactions[].contact_contract,universal_score.interactions/motion,minimal typed extension,"Contact type, participants, regions, separation, reaction, support, allowed deformation",physics simulator represented as prompt schema
+editing[].discontinuity_type,universal_score.editing/style/continuity,minimal typed extension,"Distinguish graphic effect, cut, world reset, hold, blur, and occlusion",parallel edit decision system
+audio.event_anchors,universal_score.audio/actions,minimal typed extension,"Bind sounds/utterances to events, sources, timing, and semantic class",independent audio timeline authority
+provider capability generalization,lab/compiler/schemas/provider_capability.schema.json + providers,schema generalization,"Represent provider/model/version-specific modes, controls, limits, audio, references, repair, and evidence",one-off adapter schemas per provider
+failure metrics catalog,verification_plan + compliance_report + lab/verification,typed metric extension,"Attach observable dimensions, methods, versions, confidence, blind spots, and thresholds",second verifier or hidden promotion path
+failure records,second_brain frozen/curated/immutable/derived tiers,research proposal until qualification,Store source-grounded failure mechanisms and derived failure cards,direct research-to-curated self-promotion

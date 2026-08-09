@@ -1,0 +1,74 @@
+{
+  "schema_version": "cpcs.research_package_validation/1.0",
+  "status": "passed",
+  "validated_at": "2026-08-05",
+  "repository": "Kingsley-Cyber/ai-video-movement-prompt-system",
+  "repository_revision": "eb0fc359de4bb61075db49ca0dad08d4d6ed5114",
+  "render_campaign_status": "not_run",
+  "checks": [
+    {
+      "check": "schema_meta_validation",
+      "status": "passed",
+      "count": 10
+    },
+    {
+      "check": "failure_records",
+      "status": "passed",
+      "count": 96
+    },
+    {
+      "check": "evaluation_metrics",
+      "status": "passed",
+      "count": 60
+    },
+    {
+      "check": "engineering_catalogs",
+      "status": "passed",
+      "failure_records": 71,
+      "metrics": 34
+    },
+    {
+      "check": "experiments",
+      "status": "passed",
+      "count": 8
+    },
+    {
+      "check": "contract_examples",
+      "status": "passed",
+      "count": 5
+    },
+    {
+      "check": "source_traceability",
+      "status": "passed",
+      "sources": 81,
+      "claims": 35,
+      "providers": 21
+    },
+    {
+      "check": "identity_and_ordinal_integrity",
+      "status": "passed"
+    },
+    {
+      "check": "required_outputs",
+      "status": "passed",
+      "count": 31
+    }
+  ],
+  "counts": {
+    "failure_records": 96,
+    "families": 16,
+    "metrics": 60,
+    "providers": 21,
+    "sources": 81,
+    "claims": 35,
+    "experiments": 8,
+    "engineering_failure_records": 71,
+    "engineering_metrics": 34,
+    "contract_examples": 5
+  },
+  "limitations": [
+    "No authorized provider renders or human rating panel were executed.",
+    "Provider reliability remains unmeasured by CPCS.",
+    "Recent preprints and official provider claims retain the limitations recorded in SOURCE_CATALOG.csv."
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "T08",
+  "title": "Force Dynamics Layer",
+  "status": "curated",
+  "principle": "Separate physical force, model-estimated force, and perceptual force cues.",
+  "force_profile": {
+    "anticipated_force": {
+      "range": [
+        0,
+        1
+      ]
+    },
+    "actual_peak_force_N": "number|null",
+    "actual_mean_force_N": "number|null",
+    "impulse_Ns": "number|null",
+    "effective_mass_kg": "number|null",
+    "resistance": {
+      "range": [
+        0,
+        1
+      ]
+    },
+    "compliance": {
+      "range": [
+        0,
+        1
+      ]
+    },
+    "recoil": {
+      "range": [
+        0,
+        1
+      ]
+    },
+    "follow_through": {
+      "range": [
+        0,
+        1
+      ]
+    },
+    "weight_commitment": {
+      "range": [
+        0,
+        1
+      ]
+    },
+    "kinetic_chain_coherence": {
+      "range": [
+        0,
+        1
+      ]
+    },
+    "support_commitment": {
+      "range": [
+        0,
+        1
+      ]
+    },
+    "contact_duration_s": "number|null",
+    "measurement_status": [
+      "measured",
+      "inverse_dynamics_estimate",
+      "visual_proxy",
+      "prompt_prior"
+    ],
+    "uncertainty": "interval/distribution"
+  },
+  "same_trajectory_different_weight": {
+    "light": {
+      "cues": [
+        "lower kinetic energy",
+        "less support/COM commitment",
+        "small pretension",
+        "reversible recovery",
+        "reduced deformation"
+      ],
+      "lma_weight": 0.15
+    },
+    "strong": {
+      "cues": [
+        "greater effective mass participation",
+        "base-to-distal sequence",
+        "pre-impact organization",
+        "larger target response",
+        "follow-through"
+      ],
+      "lma_weight": 0.85
+    },
+    "warning": "LMA Weight is not numerically identical to peak force."
+  },
+  "impact_phases": [
+    {
+      "id": "pre_impact",
+      "signals": [
+        "support loading",
+        "pretension proxy",
+        "alignment",
+        "camera/audio anticipation"
+      ]
+    },
+    {
+      "id": "contact",
+      "signals": [
+        "velocity change",
+        "deformation",
+        "impulse",
+        "sound transient",
+        "impact frame"
+      ]
+    },
+    {
+      "id": "post_impact",
+      "signals": [
+        "target motion",
+        "recoil",
+        "follow-through",
+        "secondary vibration"
+      ]
+    },
+    {
+      "id": "resolution",
+      "signals": [
+        "balance recovery",
+        "guard return",
+        "rest state",
+        "reaction beat"
+      ]
+    }
+  ],
+  "kinetic_chain": {
+    "representation": "directed temporal graph of segment power/momentum transfer",
+    "node_fields": [
+      "segment",
+      "angular_velocity",
+      "kinetic_energy",
+      "power",
+      "onset",
+      "peak_time"
+    ],
+    "edge_fields": [
+      "from",
+      "to",
+      "lag_ms",
+      "transfer_efficiency_proxy",
+      "confidence"
+    ],
+    "common_pattern": "proximal-to-distal in many high-speed strikes/throws",
+    "warning": "task and style dependent",
+    "source_ids": [
+      "S027",
+      "S028",
+      "S039"
+    ]
+  },
+  "perceived_force_features": {
+    "visual": [
+      "anticipation contrast",
+      "localized high spacing change",
+      "target deformation/displacement",
+      "whole-body reaction",
+      "damped camera response",
+      "impact hold",
+      "secondary motion"
+    ],
+    "audio": [
+      "pre-impact drop",
+      "sharp transient",
+      "low-frequency body",
+      "delayed debris/reverb"
+    ],
+    "editing": [
+      "cut on/near impact",
+      "reaction shot",
+      "time-ramp/replay"
+    ]
+  },
+  "combat_style_priors": [
+    {
+      "id": "boxing_snap",
+      "preparation_visibility": 0.25,
+      "peak_speed": 0.85,
+      "recoil": 0.8,
+      "follow_through": 0.35,
+      "weight_commitment": 0.65,
+      "status": "CPCS production prior",
+      "source_ids": [
+        "S028"
+      ]
+    },
+    {
+      "id": "muay_thai_commitment",
+      "preparation_visibility": 0.45,
+      "peak_speed": 0.8,
+      "recoil": 0.45,
+      "follow_through": 0.8,
+      "weight_commitment": 0.9,
+      "status": "CPCS production prior"
+    },
+    {
+      "id": "tai_chi_redirection",
+      "preparation_visibility": 0.25,
+      "peak_speed": 0.35,
+      "recoil": 0.25,
+      "follow_through": 0.55,
+      "weight_commitment": 0.55,
+      "status": "CPCS production prior"
+    },
+    {
+      "id": "mma_mixed",
+      "status": "not one force style; compile by technique/range/context"
+    }
+  ],
+  "source_ids": [
+    "S002",
+    "S004",
+    "S026",
+    "S027",
+    "S028",
+    "S029",
+    "S038",
+    "S039"
+  ]
+}

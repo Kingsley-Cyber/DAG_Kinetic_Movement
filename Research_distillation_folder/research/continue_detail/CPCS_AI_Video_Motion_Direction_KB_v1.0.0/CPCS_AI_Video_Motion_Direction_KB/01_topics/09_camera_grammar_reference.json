@@ -1,0 +1,423 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "T09",
+  "title": "Camera Grammar for Motion Scenes",
+  "status": "curated",
+  "principle": "Encode camera state, subject motion, and relative image-plane motion separately; compile only to controls the target model supports.",
+  "coordinate_model": {
+    "camera_pose": "C(t), R_cw(t)",
+    "intrinsics": [
+      "focal_length_or_fov",
+      "sensor/equivalent format",
+      "principal_point",
+      "focus_distance",
+      "aperture if rendered"
+    ],
+    "projection_relation": "x=fX/Z; dx/dt=f(v_x Z-X v_z)/Z²",
+    "perspective_caution": "Perspective is set by camera position; lens changes field of view. The common wide/tele perspective difference appears when camera distance changes to preserve framing.",
+    "motion_blur": "exposure_time=shutter_angle/(360*fps)",
+    "source_ids": [
+      "S040",
+      "S042"
+    ]
+  },
+  "shot_parameters": {
+    "shot_size": [
+      "extreme_close_up",
+      "close_up",
+      "medium_close_up",
+      "medium",
+      "medium_full",
+      "full",
+      "wide",
+      "extreme_wide"
+    ],
+    "angle": [
+      "high",
+      "eye_level",
+      "low",
+      "overhead",
+      "ground_level",
+      "dutch",
+      "profile",
+      "three_quarter",
+      "POV",
+      "over_shoulder"
+    ],
+    "composition": [
+      "centered",
+      "rule_of_thirds",
+      "symmetrical",
+      "negative_space",
+      "leading_room",
+      "frame_within_frame",
+      "layered_depth"
+    ],
+    "lens_class": {
+      "ultrawide": "<20mm full-frame equivalent, CPCS descriptive",
+      "wide": "20–35mm",
+      "normal": "35–65mm",
+      "telephoto": ">65mm"
+    },
+    "focus": [
+      "deep",
+      "shallow",
+      "rack",
+      "subject_tracking",
+      "fixed_plane"
+    ],
+    "stabilization": [
+      "locked",
+      "tripod_pan_tilt",
+      "dolly",
+      "gimbal",
+      "steadicam_like",
+      "handheld",
+      "shoulder",
+      "body_mount",
+      "drone_like",
+      "virtual_impossible"
+    ]
+  },
+  "camera_motion_primitives": [
+    {
+      "id": "pan",
+      "axis": "yaw",
+      "parameters": [
+        "degrees",
+        "duration_s",
+        "easing",
+        "subject_lock"
+      ]
+    },
+    {
+      "id": "tilt",
+      "axis": "pitch",
+      "parameters": [
+        "degrees",
+        "duration_s",
+        "easing",
+        "subject_lock"
+      ]
+    },
+    {
+      "id": "roll",
+      "axis": "optical",
+      "parameters": [
+        "degrees",
+        "duration_s",
+        "easing"
+      ]
+    },
+    {
+      "id": "dolly",
+      "axis": "local_z",
+      "parameters": [
+        "distance_m",
+        "duration_s",
+        "easing"
+      ]
+    },
+    {
+      "id": "truck",
+      "axis": "local_x",
+      "parameters": [
+        "distance_m",
+        "duration_s",
+        "parallax_target"
+      ]
+    },
+    {
+      "id": "pedestal",
+      "axis": "world_y",
+      "parameters": [
+        "distance_m",
+        "duration_s"
+      ]
+    },
+    {
+      "id": "orbit",
+      "axis": "around_subject",
+      "parameters": [
+        "arc_deg",
+        "radius_m",
+        "elevation_deg",
+        "subject_lock"
+      ]
+    },
+    {
+      "id": "crane",
+      "axis": "compound",
+      "parameters": [
+        "control_points",
+        "duration_s"
+      ]
+    },
+    {
+      "id": "push_in",
+      "axis": "physical_or_optical",
+      "parameters": [
+        "screen_scale_ratio",
+        "duration_s",
+        "method"
+      ]
+    },
+    {
+      "id": "pull_out",
+      "axis": "physical_or_optical",
+      "parameters": [
+        "screen_scale_ratio",
+        "duration_s",
+        "method"
+      ]
+    },
+    {
+      "id": "whip_pan",
+      "axis": "yaw/pitch",
+      "parameters": [
+        "degrees",
+        "frames",
+        "settle_frames"
+      ]
+    },
+    {
+      "id": "handheld_impulse",
+      "axis": "6dof",
+      "parameters": [
+        "amplitude",
+        "frequency_hz",
+        "impact_sync",
+        "decay_s"
+      ]
+    }
+  ],
+  "perceived_motion_controls": [
+    {
+      "control": "follow_subject",
+      "effect": "reduces subject screen velocity while background parallax shows travel",
+      "caution": "can reduce perceived strike speed if over-locked"
+    },
+    {
+      "control": "counter_move",
+      "effect": "increases relative screen velocity",
+      "caution": "may sacrifice geography"
+    },
+    {
+      "control": "close_wide_lens",
+      "effect": "exaggerated near/far scale and parallax",
+      "caution": "edge distortion"
+    },
+    {
+      "control": "long_lens_far_camera",
+      "effect": "lower parallax/compressed depth; lateral motion legible",
+      "caution": "does not change physical speed"
+    },
+    {
+      "control": "lower_shutter_angle",
+      "effect": "crisper/staccato action",
+      "caution": "may feel harsh"
+    },
+    {
+      "control": "longer_exposure",
+      "effect": "more blur, perceived speed/softness",
+      "caution": "may erase contacts"
+    },
+    {
+      "control": "foreground_parallax",
+      "effect": "amplifies travel",
+      "caution": "avoid occluding impact"
+    }
+  ],
+  "continuity_rules": [
+    {
+      "id": "axis_180",
+      "rule": "stay on one side of established action axis unless crossing is motivated/shown",
+      "status": "PRACTICE",
+      "source_ids": [
+        "S040"
+      ]
+    },
+    {
+      "id": "change_30",
+      "rule": "change angle/size enough to avoid accidental jump cut",
+      "status": "PRACTICE with perceptual evidence",
+      "source_ids": [
+        "S040",
+        "S043"
+      ]
+    },
+    {
+      "id": "match_on_action",
+      "rule": "preserve action phase/contact continuity across cut",
+      "status": "PRACTICE",
+      "source_ids": [
+        "S040",
+        "S041"
+      ]
+    },
+    {
+      "id": "eyeline_match",
+      "rule": "preserve gaze target geometry",
+      "status": "PRACTICE"
+    },
+    {
+      "id": "screen_direction",
+      "rule": "retain left/right travel unless reversal is marked",
+      "status": "PRACTICE"
+    }
+  ],
+  "action_coverage_patterns": [
+    {
+      "id": "readability_master",
+      "shot": "full/wide",
+      "camera": "stable/slow lateral",
+      "purpose": "establish bodies, axis, distances, contacts"
+    },
+    {
+      "id": "impact_insert",
+      "shot": "medium close/detail",
+      "camera": "brief response or locked",
+      "purpose": "show contact/reaction causality"
+    },
+    {
+      "id": "pursuit_follow",
+      "shot": "medium full",
+      "camera": "parallel track",
+      "purpose": "background parallax communicates speed"
+    },
+    {
+      "id": "power_approach",
+      "shot": "low wide close",
+      "camera": "small counter-dolly/static",
+      "purpose": "amplify advance/dominance"
+    },
+    {
+      "id": "vulnerability_retreat",
+      "shot": "high or long-lens medium",
+      "camera": "slight pull-away",
+      "purpose": "negative space/low control"
+    }
+  ],
+  "impact_sync": {
+    "events": [
+      "anticipation_peak",
+      "contact_frame",
+      "reaction_onset",
+      "camera_impulse_peak",
+      "audio_transient",
+      "cut_point",
+      "settle_end"
+    ],
+    "presets": [
+      {
+        "id": "documentary_neutral",
+        "camera_peak_offset_frames": 0,
+        "amplitude": 0.05,
+        "decay_frames": 4,
+        "status": "CPCS_CONVENTION"
+      },
+      {
+        "id": "action_emphasis",
+        "camera_peak_offset_frames": 0,
+        "amplitude": 0.22,
+        "decay_frames": 6,
+        "status": "CPCS_CONVENTION"
+      },
+      {
+        "id": "anime_hyperimpact",
+        "camera_peak_offset_frames": 0,
+        "amplitude": 0.45,
+        "impact_hold_frames": 2,
+        "decay_frames": 5,
+        "status": "CPCS_CONVENTION"
+      }
+    ],
+    "rule": "Subject contact remains authoritative; camera response cannot replace contact."
+  },
+  "anime_devices": [
+    {
+      "id": "impact_frame",
+      "definition": "high-contrast/abstracted frame at contact",
+      "typical_frames": [
+        1,
+        3
+      ],
+      "status": "PRACTICE/CPCS preset"
+    },
+    {
+      "id": "smear_frame",
+      "definition": "stretched or multi-position bridge between poses",
+      "typical_frames": [
+        1,
+        2
+      ],
+      "source_ids": [
+        "S016",
+        "S044"
+      ]
+    },
+    {
+      "id": "speed_lines",
+      "parameters": [
+        "direction",
+        "density",
+        "length",
+        "opacity",
+        "vanishing_point"
+      ]
+    },
+    {
+      "id": "held_pose",
+      "parameters": [
+        "hold_frames",
+        "secondary_motion",
+        "camera_motion"
+      ]
+    },
+    {
+      "id": "dramatic_zoom",
+      "parameters": [
+        "fov_start",
+        "fov_end",
+        "frames",
+        "easing"
+      ]
+    },
+    {
+      "id": "freeze_frame",
+      "parameters": [
+        "frames",
+        "audio_continuation",
+        "graphic_treatment"
+      ]
+    }
+  ],
+  "model_compilation": {
+    "precedence": [
+      "camera_reference_or_trajectory",
+      "keyframes",
+      "documented_camera_enum",
+      "prompt_phrase",
+      "postprocess"
+    ],
+    "unsupported": "retain canonical plan, emit lossy-compilation warning, generate prompt approximation"
+  },
+  "prompt_example": {
+    "canonical": "medium-full two-shot; 28mm equivalent; lateral truck 1.4m over 2.0s; preserve axis; impact 1.25s; six-frame damped camera response; 180° shutter; focus on lead actor",
+    "prose": "A stable medium-full two-shot tracks laterally beside both fighters, preserving screen direction. At contact add one brief damped handheld jolt, then settle immediately; keep feet and contact readable."
+  },
+  "source_ids": [
+    "S016",
+    "S040",
+    "S041",
+    "S042",
+    "S043",
+    "S044",
+    "S053",
+    "S054",
+    "S055",
+    "S057",
+    "S059",
+    "S060"
+  ]
+}

@@ -1,0 +1,369 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "T05",
+  "title": "Kinematics Layer — Physics Parameters for Motion Control",
+  "status": "curated",
+  "coordinate_system": {
+    "world_axes": {
+      "x": "right",
+      "y": "up",
+      "z": "forward; handedness project-specific"
+    },
+    "units": {
+      "position": "m",
+      "rotation": "rad",
+      "time": "s",
+      "mass": "kg",
+      "force": "N",
+      "torque": "N·m",
+      "momentum": "kg·m/s"
+    },
+    "requirements": [
+      "handedness",
+      "camera calibration",
+      "actor scale",
+      "sampling rate",
+      "uncertainty"
+    ]
+  },
+  "variables": [
+    {
+      "id": "position",
+      "symbol": "x(t)",
+      "unit": "m"
+    },
+    {
+      "id": "velocity",
+      "symbol": "v(t)",
+      "unit": "m/s",
+      "formula": "dx/dt"
+    },
+    {
+      "id": "acceleration",
+      "symbol": "a(t)",
+      "unit": "m/s²",
+      "formula": "d²x/dt²"
+    },
+    {
+      "id": "jerk",
+      "symbol": "j(t)",
+      "unit": "m/s³",
+      "formula": "d³x/dt³"
+    },
+    {
+      "id": "orientation",
+      "symbol": "R(t) or q(t)"
+    },
+    {
+      "id": "angular_velocity",
+      "symbol": "ω(t)",
+      "unit": "rad/s"
+    },
+    {
+      "id": "angular_acceleration",
+      "symbol": "α(t)",
+      "unit": "rad/s²"
+    },
+    {
+      "id": "curvature",
+      "symbol": "κ",
+      "unit": "1/m",
+      "formula": "||v×a||/||v||³"
+    },
+    {
+      "id": "linear_momentum",
+      "symbol": "p",
+      "unit": "kg·m/s",
+      "formula": "m v"
+    },
+    {
+      "id": "angular_momentum",
+      "symbol": "L",
+      "unit": "kg·m²/s"
+    },
+    {
+      "id": "impulse",
+      "symbol": "J",
+      "unit": "N·s",
+      "formula": "∫Fdt=Δp"
+    },
+    {
+      "id": "segment_kinetic_energy",
+      "symbol": "E",
+      "unit": "J",
+      "formula": "0.5m||v||²+0.5ωᵀIω"
+    },
+    {
+      "id": "center_of_mass",
+      "symbol": "COM",
+      "unit": "m",
+      "formula": "Σm_i x_i/Σm_i"
+    },
+    {
+      "id": "support_polygon",
+      "symbol": "P_support",
+      "unit": "m² polygon"
+    },
+    {
+      "id": "margin_of_stability",
+      "symbol": "MoS",
+      "unit": "m",
+      "status": "method-specific"
+    }
+  ],
+  "contact_event": {
+    "types": [
+      "heel_strike",
+      "toe_strike",
+      "flat_foot",
+      "toe_off",
+      "hand_contact",
+      "grasp_on",
+      "grasp_off",
+      "impact",
+      "slide_start",
+      "slide_end",
+      "collision"
+    ],
+    "fields": [
+      "time_s",
+      "actor_body_part",
+      "target_surface",
+      "point_world_m",
+      "normal_world",
+      "contact_area_m2",
+      "relative_velocity_mps",
+      "normal_force_N",
+      "tangential_force_N",
+      "friction_coefficient",
+      "compliance_m_per_N",
+      "confidence",
+      "measurement_status"
+    ]
+  },
+  "illustrative_ranges": [
+    {
+      "activity": "preferred young-adult walking",
+      "metric": "forward speed",
+      "range": [
+        1.2,
+        1.5
+      ],
+      "unit": "m/s",
+      "status": "illustrative population band"
+    },
+    {
+      "activity": "moderate running example",
+      "metric": "forward speed",
+      "range": [
+        2.5,
+        4.0
+      ],
+      "unit": "m/s",
+      "status": "task example, not human limit"
+    },
+    {
+      "activity": "trained boxing straight punch",
+      "metric": "fist speed near impact",
+      "range": [
+        7.0,
+        12.0
+      ],
+      "unit": "m/s",
+      "status": "study-dependent illustrative band",
+      "source_ids": [
+        "S028"
+      ]
+    },
+    {
+      "activity": "trained high-speed kick",
+      "metric": "distal striking-point speed",
+      "range": [
+        10.0,
+        18.0
+      ],
+      "unit": "m/s",
+      "status": "technique/study dependent; not universal",
+      "source_ids": [
+        "S029"
+      ]
+    },
+    {
+      "activity": "vertical jump",
+      "metric": "COM take-off vertical speed",
+      "range": [
+        2.43,
+        3.43
+      ],
+      "unit": "m/s",
+      "status": "derived for 0.30–0.60m ballistic rise",
+      "formula": "sqrt(2gh)"
+    }
+  ],
+  "biomechanical_constraints": {
+    "policy": "Actor-specific model is authoritative. Generic values are soft plausibility bounds only.",
+    "illustrative_rom_deg": [
+      {
+        "joint": "shoulder_flexion",
+        "range": [
+          0,
+          180
+        ]
+      },
+      {
+        "joint": "elbow_flexion",
+        "range": [
+          0,
+          150
+        ]
+      },
+      {
+        "joint": "wrist_extension",
+        "range": [
+          0,
+          70
+        ]
+      },
+      {
+        "joint": "hip_flexion",
+        "range": [
+          0,
+          120
+        ]
+      },
+      {
+        "joint": "knee_flexion",
+        "range": [
+          0,
+          135
+        ]
+      },
+      {
+        "joint": "ankle_dorsiflexion",
+        "range": [
+          0,
+          20
+        ]
+      },
+      {
+        "joint": "ankle_plantarflexion",
+        "range": [
+          0,
+          50
+        ]
+      }
+    ],
+    "torque_policy": "Store normalized capacity fraction; use N·m only with an actor/anthropometric model.",
+    "reach_envelope": "actor-centered 3D reachable-volume mesh or signed-distance field conditioned on balance/support"
+  },
+  "video_to_physics_pipeline": [
+    {
+      "step": 1,
+      "name": "calibrate",
+      "verification": "reprojection error distribution"
+    },
+    {
+      "step": 2,
+      "name": "2d_pose",
+      "tools": [
+        "OpenPose",
+        "MediaPipe",
+        "DWPose-compatible frontend"
+      ],
+      "verification": "confidence + manual spot checks",
+      "source_ids": [
+        "S063",
+        "S064"
+      ]
+    },
+    {
+      "step": 3,
+      "name": "3d_reconstruction",
+      "verification": "reprojection + bone-length consistency",
+      "source_ids": [
+        "S024",
+        "S025"
+      ]
+    },
+    {
+      "step": 4,
+      "name": "filter",
+      "methods": [
+        "zero-phase Butterworth",
+        "Savitzky–Golay",
+        "smoothing spline"
+      ],
+      "verification": "frequency/residual analysis"
+    },
+    {
+      "step": 5,
+      "name": "differentiate",
+      "outputs": [
+        "velocity",
+        "acceleration",
+        "jerk"
+      ],
+      "verification": "stability under filter perturbation"
+    },
+    {
+      "step": 6,
+      "name": "inverse_kinematics",
+      "verification": "tracking error/range checks",
+      "source_ids": [
+        "S025",
+        "S026"
+      ]
+    },
+    {
+      "step": 7,
+      "name": "contact_inference",
+      "verification": "low contact drift, no foot skate, visual review"
+    },
+    {
+      "step": 8,
+      "name": "inverse_dynamics",
+      "requirements": [
+        "kinematics",
+        "anthropometry",
+        "external-force/contact model"
+      ],
+      "verification": "dynamic residuals/sensitivity",
+      "source_ids": [
+        "S024",
+        "S026",
+        "S027"
+      ]
+    },
+    {
+      "step": 9,
+      "name": "uncertainty",
+      "outputs": [
+        "intervals",
+        "distributions"
+      ],
+      "verification": "coverage on measured held-out trials"
+    }
+  ],
+  "motion_quality_features": [
+    "contact_integrity",
+    "COM/support consistency",
+    "momentum continuity",
+    "timing/spacing",
+    "joint-limit margin",
+    "jerk profile",
+    "secondary motion",
+    "camera-motion compensation"
+  ],
+  "separation_rule": "Never backfill missing dynamics from qualitative LMA without marking it as a proxy.",
+  "source_ids": [
+    "S007",
+    "S024",
+    "S025",
+    "S026",
+    "S027",
+    "S028",
+    "S029",
+    "S063",
+    "S064"
+  ]
+}

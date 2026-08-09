@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.org/cpcs-adrg/1.0/source-index.schema.json",
+  "title": "CPCS ADRG Reference Index",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["source_id", "title", "authors", "year", "type", "evidence_tier", "domains"],
+    "properties": {
+      "source_id": {"pattern": "^S[0-9]{3}$"},
+      "title": {"type": "string"},
+      "authors": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+      "year": {"type": "integer", "minimum": 1900},
+      "type": {"type": "string"},
+      "url": {"type": "string", "format": "uri"},
+      "uri": {"type": "string"},
+      "evidence_tier": {"type": "string"},
+      "domains": {"type": "array", "items": {"type": "string"}}
+    },
+    "anyOf": [{"required": ["url"]}, {"required": ["uri"]}],
+    "additionalProperties": false
+  }
+}

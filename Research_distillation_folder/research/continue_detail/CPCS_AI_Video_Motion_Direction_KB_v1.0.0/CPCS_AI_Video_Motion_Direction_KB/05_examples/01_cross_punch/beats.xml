@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<cpcs-sequence scene-id="ex_cross_punch_01" version="1.0.0" duration="3.0">
+  <beat id="b1" start="0" end="0.7">
+    <purpose>Establish guard, axis, and distance</purpose>
+    <event ref="fighter_a_gaze" />
+    <event ref="fighter_b_guard" />
+  </beat>
+  <beat id="b2" start="0.7" end="1.8">
+    <purpose>Cross accelerates and is intercepted by the guard</purpose>
+    <event ref="mp_cross" />
+    <event ref="int_block" />
+    <event ref="contact_01" />
+  </beat>
+  <beat id="b3" start="1.8" end="3">
+    <purpose>Both actors recoil into stable guard</purpose>
+    <event ref="fighter_a_recovery" />
+    <event ref="fighter_b_reset" />
+  </beat>
+</cpcs-sequence>

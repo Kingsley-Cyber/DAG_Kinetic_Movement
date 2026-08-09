@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<cpcs-sequence scene-id="ex_anime_block_counter_01" version="1.0.0" duration="4">
+  <beat id="attack" start="0" end="1.3">
+    <purpose>Rival attacks on readable arc</purpose>
+    <event ref="rival_slash" />
+  </beat>
+  <beat id="block" start="1.3" end="2.1">
+    <purpose>Hero interposes and redirects with graphic impact</purpose>
+    <event ref="contact_block" />
+    <event ref="impact_frame_block" />
+  </beat>
+  <beat id="counter" start="2.1" end="3.2">
+    <purpose>Hero counters after the block</purpose>
+    <event ref="mp_counter" />
+    <event ref="contact_counter" />
+    <event ref="impact_frame_counter" />
+  </beat>
+  <beat id="settle" start="3.2" end="4">
+    <purpose>Rival staggers; hero holds controlled pose</purpose>
+    <event ref="rival_stagger" />
+    <event ref="hero_settle" />
+  </beat>
+</cpcs-sequence>

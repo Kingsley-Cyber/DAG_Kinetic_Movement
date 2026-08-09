@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/cpcs/schema/motion_primitive/1.0.0",
+  "title": "CPCS Motion Primitive",
+  "type": "object",
+  "properties": {
+    "primitive_id": {
+      "type": "string"
+    },
+    "actor_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "connectivity_pattern": {
+      "enum": [
+        "breath",
+        "core_distal",
+        "head_tail",
+        "upper_lower",
+        "body_half",
+        "cross_lateral",
+        "mixed",
+        "none"
+      ]
+    },
+    "initiator": {
+      "type": "string"
+    },
+    "receiver_sequence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "intensity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "range": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "speed": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "unit": {
+          "enum": [
+            "m/s",
+            "rad/s",
+            "normalized"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "additionalProperties": false
+    },
+    "sequencing_delay_ms": {
+      "type": "number"
+    },
+    "grounding": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "breath_phase": {
+      "enum": [
+        "inhale",
+        "exhale",
+        "hold",
+        "free",
+        "unknown"
+      ]
+    },
+    "laterality": {
+      "enum": [
+        "left",
+        "right",
+        "bilateral",
+        "alternating",
+        "none"
+      ]
+    },
+    "support_contact_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "phase_timeline_id": {
+      "type": "string"
+    },
+    "laban": {
+      "type": "object",
+      "properties": {
+        "effort": {
+          "type": "object",
+          "properties": {
+            "weight": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "time": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "space_effort": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "flow": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "shape": {
+          "type": "object",
+          "properties": {
+            "vertical": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "horizontal": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "sagittal": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "mode": {
+              "enum": [
+                "shape_flow",
+                "directional",
+                "carving",
+                "mixed"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "space": {
+          "type": "object"
+        },
+        "body": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "provenance_class": {
+          "enum": [
+            "ESTABLISHED",
+            "EMPIRICAL",
+            "PRACTICE",
+            "CPCS_CONVENTION",
+            "UNVERIFIED"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{3}$"
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "measurement_status": {
+          "enum": [
+            "measured",
+            "annotated",
+            "inverse_dynamics_estimate",
+            "model_inference",
+            "visual_proxy",
+            "prompt_prior",
+            "generated"
+          ]
+        },
+        "uncertainty_note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provenance_class"
+      ],
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "primitive_id",
+    "actor_id",
+    "name",
+    "phase_timeline_id"
+  ],
+  "unevaluatedProperties": false
+}

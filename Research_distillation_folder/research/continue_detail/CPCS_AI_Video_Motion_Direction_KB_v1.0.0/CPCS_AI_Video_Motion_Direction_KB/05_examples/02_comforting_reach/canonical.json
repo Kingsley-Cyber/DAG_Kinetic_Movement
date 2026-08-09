@@ -1,0 +1,388 @@
+{
+  "cpcs_version": "1.0.0",
+  "scene_id": "ex_comforting_reach_01",
+  "title": "Consent-Aware Comforting Reach",
+  "duration_s": 5,
+  "fps": 24,
+  "intent": {
+    "primary": "comfort",
+    "secondary": [
+      "reassure"
+    ],
+    "confidence": 0.8
+  },
+  "beats": [
+    {
+      "id": "b1",
+      "start_s": 0,
+      "end_s": 1.2
+    },
+    {
+      "id": "b2",
+      "start_s": 1.2,
+      "end_s": 3.2
+    },
+    {
+      "id": "b3",
+      "start_s": 3.2,
+      "end_s": 5
+    }
+  ],
+  "actors": [
+    {
+      "actor_id": "giver",
+      "name": "Giver",
+      "role": "supporter",
+      "skeleton_profile": {
+        "skeleton_id": "cpcs_humanoid_67",
+        "height_m": 1.72,
+        "mass_kg": 68
+      },
+      "appearance_refs": [],
+      "capabilities": [
+        "full_body_motion"
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.7
+      }
+    },
+    {
+      "actor_id": "receiver",
+      "name": "Receiver",
+      "role": "distressed_person",
+      "skeleton_profile": {
+        "skeleton_id": "cpcs_humanoid_67",
+        "height_m": 1.7,
+        "mass_kg": 65
+      },
+      "appearance_refs": [],
+      "capabilities": [
+        "full_body_motion"
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.7
+      }
+    }
+  ],
+  "affect_tracks": [
+    {
+      "track_id": "aff_giver",
+      "actor_id": "giver",
+      "keyframes": [
+        {
+          "time_s": 0,
+          "valence": 0.58,
+          "arousal": 0.28,
+          "dominance": 0.55,
+          "confidence_state": 0.62,
+          "certainty": 0.55,
+          "engagement": 0.9
+        },
+        {
+          "time_s": 2.2,
+          "valence": 0.68,
+          "arousal": 0.22,
+          "dominance": 0.52,
+          "confidence_state": 0.7,
+          "certainty": 0.68,
+          "engagement": 0.95
+        },
+        {
+          "time_s": 5,
+          "valence": 0.72,
+          "arousal": 0.18,
+          "dominance": 0.5,
+          "confidence_state": 0.72,
+          "certainty": 0.72,
+          "engagement": 0.85
+        }
+      ],
+      "interpolation": "monotone_cubic",
+      "channel": "combined",
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.5
+      }
+    }
+  ],
+  "phase_timelines": [
+    {
+      "timeline_id": "pt_reach",
+      "action_id": "comforting_reach",
+      "duration_s": 2.0,
+      "phases": [
+        {
+          "phase_id": "initiation",
+          "t_start_s": 0,
+          "t_end_s": 0.15,
+          "progress_curve": "ease_in",
+          "semantic_role": "attention shift",
+          "force_role": "none",
+          "emotion_role": "concern",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "preparation",
+          "t_start_s": 0.15,
+          "t_end_s": 0.5,
+          "progress_curve": "ease_in_out",
+          "semantic_role": "open hand/ask",
+          "force_role": "none",
+          "emotion_role": "reassure",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "acceleration",
+          "t_start_s": 0.5,
+          "t_end_s": 0.95,
+          "progress_curve": "ease_in",
+          "semantic_role": "approach",
+          "force_role": "light",
+          "emotion_role": "care",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "stroke",
+          "t_start_s": 0.95,
+          "t_end_s": 1.25,
+          "progress_curve": "ease_out",
+          "semantic_role": "soft shoulder contact",
+          "force_role": "yield",
+          "emotion_role": "comfort",
+          "contact_event_ids": [
+            "contact_10"
+          ]
+        },
+        {
+          "phase_id": "recovery",
+          "t_start_s": 1.25,
+          "t_end_s": 1.65,
+          "progress_curve": "ease_in_out",
+          "semantic_role": "reduce pressure",
+          "force_role": "release",
+          "emotion_role": "respect",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "settle",
+          "t_start_s": 1.65,
+          "t_end_s": 2.0,
+          "progress_curve": "ease_out",
+          "semantic_role": "hand rests or withdraws",
+          "force_role": "none",
+          "emotion_role": "calm",
+          "contact_event_ids": []
+        }
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.65
+      }
+    }
+  ],
+  "motion_primitives": [
+    {
+      "primitive_id": "mp_reach",
+      "actor_id": "giver",
+      "name": "comforting_reach",
+      "connectivity_pattern": "core_distal",
+      "initiator": "sternum_core",
+      "receiver_sequence": [
+        "right_scapula",
+        "right_shoulder",
+        "right_elbow",
+        "right_hand"
+      ],
+      "intensity": 0.32,
+      "range": 0.48,
+      "speed": {
+        "value": 0.45,
+        "unit": "m/s"
+      },
+      "sequencing_delay_ms": 90,
+      "grounding": 0.58,
+      "breath_phase": "exhale",
+      "laterality": "right",
+      "support_contact_ids": [
+        "left_foot_floor",
+        "right_foot_floor"
+      ],
+      "phase_timeline_id": "pt_reach",
+      "laban": {
+        "effort": {
+          "weight": 0.28,
+          "time": 0.22,
+          "space_effort": 0.58,
+          "flow": 0.48
+        },
+        "shape": {
+          "vertical": 0.52,
+          "horizontal": 0.6,
+          "sagittal": 0.62,
+          "mode": "directional"
+        },
+        "space": {
+          "reach": 0.52,
+          "pathway": "arc_like"
+        },
+        "body": {
+          "sequence": "core_distal"
+        }
+      },
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.65
+      }
+    }
+  ],
+  "facs_tracks": [
+    {
+      "track_id": "face_g",
+      "actor_id": "giver",
+      "events": [
+        {
+          "au_code": "1",
+          "side": "bilateral",
+          "peak_intensity": 0.22,
+          "t_onset_start_s": 0.3,
+          "t_apex_start_s": 1,
+          "t_apex_end_s": 2.1,
+          "t_offset_end_s": 4,
+          "onset_curve": "ease_in",
+          "offset_curve": "ease_out",
+          "masking_au_codes": [],
+          "confidence": 0.45
+        },
+        {
+          "au_code": "12",
+          "side": "bilateral",
+          "peak_intensity": 0.18,
+          "t_onset_start_s": 2,
+          "t_apex_start_s": 2.7,
+          "t_apex_end_s": 3.4,
+          "t_offset_end_s": 4.4,
+          "onset_curve": "ease_in",
+          "offset_curve": "ease_out",
+          "masking_au_codes": [],
+          "confidence": 0.4
+        }
+      ],
+      "gaze_target": "receiver.eyes",
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.45
+      }
+    }
+  ],
+  "interactions": [
+    {
+      "interaction_id": "int_touch",
+      "predicate": "touch",
+      "agent_id": "giver",
+      "patient_id": "receiver",
+      "t_start_s": 2.15,
+      "t_end_s": 3.15,
+      "agent_body_parts": [
+        "right_palm"
+      ],
+      "patient_parts": [
+        "left_shoulder"
+      ],
+      "contact_ids": [
+        "contact_10"
+      ],
+      "parameters": {
+        "force_N": null,
+        "impulse_Ns": null,
+        "duration_s": 1,
+        "contact_area_m2": null,
+        "friction_coefficient": null,
+        "compliance": 0.75,
+        "resistance": 0.15
+      },
+      "preconditions": [
+        "receiver_does_not_withdraw"
+      ],
+      "effects": [
+        "support_signal_visible"
+      ],
+      "confidence": 0.8,
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.55
+      }
+    }
+  ],
+  "camera_tracks": [
+    {
+      "track_id": "cam_c",
+      "shot_id": "two_shot",
+      "t_start_s": 0,
+      "t_end_s": 5,
+      "fps": 24,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "focal_length_equiv_mm": 50,
+      "shutter_angle_deg": 180,
+      "shot_size": "medium",
+      "composition": [
+        "contact_readable",
+        "preserve_screen_direction"
+      ],
+      "motion_primitives": [
+        {
+          "type": "dolly",
+          "t_start_s": 0,
+          "t_end_s": 5,
+          "parameters": {
+            "distance_m": 0.18,
+            "direction": "in",
+            "easing": "very_slow"
+          }
+        }
+      ],
+      "subject_lock_ids": [
+        "giver",
+        "receiver"
+      ],
+      "impact_bindings": [],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.7
+      }
+    }
+  ],
+  "style": {
+    "profile": "documentary",
+    "exaggeration": 0.05,
+    "contact_topology_locked": true
+  },
+  "rhythm": {
+    "profile": "sustained",
+    "micro_pause_before_contact_s": 0.18
+  },
+  "constraints": [
+    {
+      "id": "consent",
+      "type": "interaction",
+      "rule": "pause before contact; abort if receiver withdraws"
+    }
+  ],
+  "target_adapters": [
+    "runway_act_two",
+    "luma_ray_3_2_modify",
+    "veo_3_1_gemini"
+  ],
+  "provenance": {
+    "provenance_class": "CPCS_CONVENTION",
+    "confidence": 0.65
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "adapter_id": "runway_gen_4_5_web_v2026_07_30",
+  "provider": "Runway",
+  "model_id": "Gen-4.5",
+  "surface": "Runway web (API availability/schema must be checked separately)",
+  "status": "current",
+  "verified_at": "2026-07-30",
+  "ttl_days": 30,
+  "source_ids": [
+    "S055"
+  ],
+  "native_capabilities": {
+    "text_to_video": true,
+    "image_to_video": true,
+    "duration_seconds": "2–10",
+    "fps": [
+      24,
+      25
+    ],
+    "aspect_ratio": "documented options; output crop may apply",
+    "resolution": "documented surface around 720p; verify endpoint"
+  },
+  "reference_capabilities": {
+    "initial_composition_identity": "input image"
+  },
+  "prompt_only": [
+    "camera movement",
+    "laban_bess",
+    "facs",
+    "interaction phases"
+  ],
+  "unsupported": [],
+  "validation_rules": [
+    "Do not inherit Gen-3/older controls.",
+    "Verify API separately from web surface."
+  ],
+  "request_template": {
+    "surface": "web_or_api",
+    "model": "Gen-4.5",
+    "input_image": "${optional}",
+    "prompt": "${prompt}",
+    "duration": "${duration}",
+    "aspect_ratio": "${aspect}"
+  },
+  "loss_risk": {
+    "identity_without_image": "high",
+    "contact_topology": "high",
+    "per_frame_timing": "high"
+  },
+  "provenance": {
+    "provenance_class": "ESTABLISHED",
+    "source_ids": [
+      "S055"
+    ],
+    "confidence": 0.92
+  }
+}

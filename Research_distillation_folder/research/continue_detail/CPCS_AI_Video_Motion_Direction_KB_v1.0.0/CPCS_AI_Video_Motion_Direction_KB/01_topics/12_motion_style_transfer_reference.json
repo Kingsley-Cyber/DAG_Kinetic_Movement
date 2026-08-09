@@ -1,0 +1,261 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "T12",
+  "title": "Style Transfer in Motion",
+  "status": "curated",
+  "principle": "Separate choreography/content invariants from a transformation layer. Style may alter timing, exaggeration, secondary motion, camera, and rendering without silently changing action semantics or contacts.",
+  "content_invariants": [
+    {
+      "id": "actor_identity",
+      "default": "preserve"
+    },
+    {
+      "id": "action_predicates",
+      "default": "preserve"
+    },
+    {
+      "id": "root_path",
+      "default": "preserve within tolerance"
+    },
+    {
+      "id": "contact_topology",
+      "default": "preserve"
+    },
+    {
+      "id": "phase_order",
+      "default": "preserve"
+    },
+    {
+      "id": "target/object state",
+      "default": "preserve"
+    },
+    {
+      "id": "safety_constraints",
+      "default": "preserve"
+    }
+  ],
+  "style_transform_fields": {
+    "timing_warp": "monotonic mapping source phase→styled phase",
+    "spatial_exaggeration": "per-part amplitude multipliers",
+    "squash_stretch": "volume-aware deformation envelope",
+    "line_of_action": "curvature/exaggeration target",
+    "motion_blur": "shutter/renderer or prompt cue",
+    "secondary_motion": "hair/cloth/props/body lag",
+    "frame_cadence": "fps + held/repeated frames",
+    "camera_transform": "shot/lens/motion style",
+    "render_style": "visual model/style reference",
+    "contact_tolerance": "maximum allowed deviation"
+  },
+  "style_profiles": [
+    {
+      "id": "anime",
+      "frame_cadence": "variable/held",
+      "exaggeration": [
+        0.6,
+        1.0
+      ],
+      "squash_stretch": [
+        0.4,
+        0.9
+      ],
+      "devices": [
+        "smears",
+        "impact frames",
+        "speed lines",
+        "holds",
+        "dramatic zooms"
+      ],
+      "contact_policy": "preserve semantic contact; permit graphic abstraction",
+      "source_ids": [
+        "S016",
+        "S044"
+      ]
+    },
+    {
+      "id": "family_feature_cg",
+      "aliases": [
+        "Pixar-like as user-facing shorthand only"
+      ],
+      "frame_cadence": "smooth theatrical",
+      "exaggeration": [
+        0.35,
+        0.75
+      ],
+      "squash_stretch": [
+        0.35,
+        0.75
+      ],
+      "devices": [
+        "clear silhouettes",
+        "appeal",
+        "overlap",
+        "readable anticipation"
+      ],
+      "contact_policy": "physical readability with controlled stylization"
+    },
+    {
+      "id": "documentary",
+      "frame_cadence": "natural capture",
+      "exaggeration": [
+        0,
+        0.2
+      ],
+      "squash_stretch": [
+        0,
+        0.05
+      ],
+      "devices": [
+        "handheld restraint",
+        "natural blur",
+        "imperfect timing"
+      ],
+      "contact_policy": "strict plausible contact"
+    },
+    {
+      "id": "martial_arts_film",
+      "frame_cadence": "clear action cadence",
+      "exaggeration": [
+        0.15,
+        0.55
+      ],
+      "devices": [
+        "wide readability masters",
+        "impact inserts",
+        "wirework optional",
+        "rhythmic exchanges"
+      ],
+      "contact_policy": "clear causal exchange"
+    },
+    {
+      "id": "fashion",
+      "frame_cadence": "sustained holds/glides",
+      "exaggeration": [
+        0.15,
+        0.5
+      ],
+      "devices": [
+        "elongated line",
+        "controlled turns",
+        "product/garment secondary motion"
+      ],
+      "contact_policy": "preserve garment/body relation"
+    },
+    {
+      "id": "commercial",
+      "frame_cadence": "crisp beat-aligned",
+      "exaggeration": [
+        0.2,
+        0.65
+      ],
+      "devices": [
+        "product legibility holds",
+        "clean transitions",
+        "repeatable hero motion"
+      ],
+      "contact_policy": "product interaction exact"
+    },
+    {
+      "id": "hyperreal",
+      "frame_cadence": "high temporal fidelity",
+      "exaggeration": [
+        0,
+        0.15
+      ],
+      "devices": [
+        "physical blur",
+        "soft-tissue response",
+        "microbalance corrections"
+      ],
+      "contact_policy": "strict geometry/dynamics"
+    }
+  ],
+  "compiler_order": [
+    "lock invariants",
+    "apply timing warp",
+    "apply spatial/pose exaggeration",
+    "re-solve contacts/IK",
+    "add secondary motion",
+    "apply camera transform",
+    "apply rendering style",
+    "validate predicates and contacts"
+  ],
+  "style_mood_interaction": [
+    {
+      "style": "anime",
+      "interaction": "high arousal may use compressed timing + impact frames; low arousal may use long held poses and environmental motion"
+    },
+    {
+      "style": "documentary",
+      "interaction": "affect should emerge from performance/camera observation, not broad deformation"
+    },
+    {
+      "style": "commercial",
+      "interaction": "emotion is subordinated to clarity, brand safety, and product legibility"
+    },
+    {
+      "style": "hyperreal",
+      "interaction": "small facial/postural changes and physical aftermath carry intensity"
+    }
+  ],
+  "research_systems": [
+    {
+      "name": "Unpaired Motion Style Transfer",
+      "capability": "learned video-to-animation style transfer",
+      "source_ids": [
+        "S050"
+      ]
+    },
+    {
+      "name": "Motion Puzzle",
+      "capability": "body-part-local arbitrary style transfer",
+      "source_ids": [
+        "S051"
+      ]
+    },
+    {
+      "name": "Holden et al.",
+      "capability": "learned motion synthesis/editing representation",
+      "source_ids": [
+        "S052"
+      ]
+    },
+    {
+      "name": "ProMPs",
+      "capability": "primitive conditioning/blending",
+      "source_ids": [
+        "S068"
+      ]
+    },
+    {
+      "name": "LaMoGen",
+      "capability": "Laban-guided text-to-motion",
+      "source_ids": [
+        "S072"
+      ]
+    }
+  ],
+  "failure_modes": [
+    "content leakage: style changes action",
+    "contact drift",
+    "identity drift",
+    "phase inversion",
+    "root trajectory drift",
+    "over-exaggeration breaks joint limits",
+    "style prompt overrides reference motion"
+  ],
+  "source_ids": [
+    "S016",
+    "S031",
+    "S038",
+    "S044",
+    "S045",
+    "S050",
+    "S051",
+    "S052",
+    "S065",
+    "S067",
+    "S068",
+    "S069",
+    "S072"
+  ]
+}

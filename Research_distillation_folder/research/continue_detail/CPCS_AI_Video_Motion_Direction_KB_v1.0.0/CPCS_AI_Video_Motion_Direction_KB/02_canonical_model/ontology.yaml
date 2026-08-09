@@ -1,0 +1,109 @@
+ontology_id: cpcs.motion.ontology.v1
+version: 1.0.0
+namespaces:
+  cpcs: https://example.org/cpcs/
+  prov: http://www.w3.org/ns/prov#
+  schema: https://schema.org/
+classes:
+  CreativeIntent:
+    subclasses:
+    - SocialIntent
+    - NarrativeIntent
+    - AdvertisingIntent
+  Beat: {}
+  AffectState: {}
+  Actor: {}
+  BodyPart: {}
+  Object: {}
+  EnvironmentSurface: {}
+  MotionPrimitive: {}
+  ConnectivityPattern: {}
+  BasicExercise: {}
+  LabanBody: {}
+  LabanEffort: {}
+  LabanShape: {}
+  LabanSpace: {}
+  Phase: {}
+  KinematicSample: {}
+  ContactEvent: {}
+  InteractionPredicate: {}
+  ForceProfile: {}
+  RhythmProfile: {}
+  CameraShot: {}
+  StyleProfile: {}
+  ModelAdapter: {}
+  Experiment: {}
+  Claim: {}
+  Source: {}
+  DerivedWeight: {}
+relations:
+  HAS_INTENT:
+    domain: Scene|Beat
+    range: CreativeIntent
+  HAS_BEAT:
+    domain: Scene
+    range: Beat
+    ordered: true
+  HAS_AFFECT:
+    domain: Actor|Beat
+    range: AffectState
+  PERFORMED_BY:
+    domain: MotionPrimitive|InteractionPredicate
+    range: Actor
+  INVOLVES_PART:
+    domain: MotionPrimitive|ContactEvent
+    range: BodyPart
+  INSTANTIATES:
+    domain: MotionPrimitive
+    range: ConnectivityPattern|BasicExercise
+  HAS_PHASE:
+    domain: MotionPrimitive
+    range: Phase
+    ordered: true
+  EXPRESSES:
+    domain: MotionPrimitive
+    range: LabanBody|LabanEffort|LabanShape|LabanSpace
+  PRECEDES:
+    domain: Beat|Phase|MotionPrimitive
+    range: same
+  OVERLAPS:
+    domain: Beat|Phase|MotionPrimitive
+    range: same
+  CONTACTS:
+    domain: BodyPart|Object
+    range: BodyPart|Object|EnvironmentSurface
+    temporal: true
+  AGENT_OF:
+    domain: Actor
+    range: InteractionPredicate
+  PATIENT_OF:
+    domain: Actor|Object|BodyPart
+    range: InteractionPredicate
+  HAS_FORCE_PROFILE:
+    domain: MotionPrimitive|ContactEvent
+    range: ForceProfile
+  OBSERVED_BY:
+    domain: Beat|MotionPrimitive
+    range: CameraShot
+  TRANSFORMED_BY:
+    domain: MotionPrimitive|Scene
+    range: StyleProfile
+  COMPILED_FOR:
+    domain: Scene
+    range: ModelAdapter
+  EVALUATED_IN:
+    domain: Scene|Output
+    range: Experiment
+  SUPPORTED_BY:
+    domain: Claim
+    range: Source
+  DERIVED_FROM:
+    domain: DerivedWeight
+    range: Experiment
+constraints:
+- Every derived weight must trace to immutable experiments.
+- Every empirical claim must trace to at least one Source.
+- A ContactEvent must have start<=end and distinct endpoint entities unless self-contact
+  is explicit.
+- Phase order follows its phase profile unless an interruption edge exists.
+- ModelAdapter is date- and surface-specific.

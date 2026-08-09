@@ -1,0 +1,56 @@
+{
+  "schema_version": "cpcs.occlusion_continuity_contract/1.0-candidate",
+  "contract_id": "occlusion_water_splash_b_dive",
+  "subject_id": "actor_B",
+  "occluder_id": "effect_water_column_01",
+  "pre_occlusion_state_ref": "state://beat_04/actor_B",
+  "occlusion_interval": {
+    "start_seconds": 4.25,
+    "end_seconds": 5.1,
+    "visibility_state": "complete"
+  },
+  "hidden_motion_path": {
+    "coordinate_frame": "screen_normalized",
+    "start_region": [
+      0.68,
+      0.58
+    ],
+    "end_region": [
+      0.72,
+      0.73
+    ],
+    "trajectory_class": "dive",
+    "control_asset_ref": "asset_pose_track_actor_B_001"
+  },
+  "expected_reappearance_region": [
+    0.62,
+    0.62,
+    0.82,
+    0.9
+  ],
+  "identity_lock": true,
+  "actor_count_lock": 2,
+  "state_change_allowed": [
+    "actor_B.visible:false",
+    "actor_B.pose:continued_dive"
+  ],
+  "state_change_forbidden": [
+    "actor_B.identity",
+    "actor_B.costume",
+    "actor_B.role",
+    "actor_count",
+    "world_layout"
+  ],
+  "visibility_bridge": {
+    "kind": "bubble_trail",
+    "subject_id": "actor_B",
+    "asset_ref": "asset_bubble_track_001",
+    "minimum_coverage_fraction": 0.6
+  },
+  "verification_assertions": [
+    "actor_B remains the same persistent entity throughout the hidden interval",
+    "actor_B reappears only inside expected_reappearance_region",
+    "actor_count remains exactly 2",
+    "water column originates at actor_A kick impact point, not actor_B position"
+  ]
+}

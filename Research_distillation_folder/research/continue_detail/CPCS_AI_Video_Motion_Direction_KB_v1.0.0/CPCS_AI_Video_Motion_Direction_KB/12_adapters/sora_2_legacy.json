@@ -1,0 +1,38 @@
+{
+  "adapter_id": "openai_sora_2_legacy_v2026_07_30",
+  "provider": "OpenAI",
+  "model_id": "sora-2",
+  "surface": "legacy API",
+  "status": "legacy_deprecating",
+  "verified_at": "2026-07-30",
+  "ttl_days": 7,
+  "source_ids": [
+    "S061",
+    "S062"
+  ],
+  "native_capabilities": {
+    "legacy_reference_only": true
+  },
+  "reference_capabilities": {},
+  "prompt_only": [],
+  "unsupported": [
+    "new primary production dependency"
+  ],
+  "validation_rules": [
+    "Block new compilation by default.",
+    "API scheduled to end 2026-09-24.",
+    "Web/app ended 2026-04-26."
+  ],
+  "request_template": {},
+  "loss_risk": {
+    "service_end": "certain_on_announced_schedule"
+  },
+  "provenance": {
+    "provenance_class": "ESTABLISHED",
+    "source_ids": [
+      "S061",
+      "S062"
+    ],
+    "confidence": 0.99
+  }
+}

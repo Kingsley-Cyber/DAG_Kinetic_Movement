@@ -1,0 +1,120 @@
+{
+  "date": "2026-07-23",
+  "document_id": "CPCS-ADRG-RP-2026-01",
+  "file_count": 22,
+  "files": [
+    {
+      "bytes": 4857,
+      "path": "README.md",
+      "sha256": "86ba2a34af72c67c726c1b66878038f0bef06e3dd6c2aedea4862335e7fde136"
+    },
+    {
+      "bytes": 4892,
+      "path": "examples/canonical_reasoning_graph.json",
+      "sha256": "2d2898d070f8d89bfb9c9a050e50d1abaf197d40421d5e4a49b613eefa58adf8"
+    },
+    {
+      "bytes": 591,
+      "path": "examples/compiled_natural_language_prompt.txt",
+      "sha256": "07f3c37f5410922cad165feff7f1e7bef37c529c981d186caf85799b695ba41b"
+    },
+    {
+      "bytes": 1386,
+      "path": "examples/director_envelope.xml",
+      "sha256": "d39b796a06406a9e2871003994b49ebfdfa028885a736aab3dac4459f4321ed0"
+    },
+    {
+      "bytes": 912,
+      "path": "examples/director_request.yaml",
+      "sha256": "a1abb6e16432390e3539502d464ecdb28f792b5a7e33e98108923d6c5933e7d9"
+    },
+    {
+      "bytes": 1466,
+      "path": "examples/dual_format_patterns.md",
+      "sha256": "8568a68d8721efdabf970963b756072bcba3aed6b213f58ccc846d6f9c645aeb"
+    },
+    {
+      "bytes": 7793,
+      "path": "examples/planner_prompt_templates.md",
+      "sha256": "5a8ab9bda40d98f6955235b52380178d7f0c3a581eb260a0f9a4d04b15ad193a"
+    },
+    {
+      "bytes": 3551,
+      "path": "examples/reasoning_policy.yaml",
+      "sha256": "1ccfdee469224a358adfc689031eb6fa66f0d439b140efd29179400f73e5d619"
+    },
+    {
+      "bytes": 1871,
+      "path": "integration/BUILD_GRAPH_EXTENSION.md",
+      "sha256": "34e6a48e13f6919c1d1b8668898ba72f4177fbb9a5d919c397053c754cdc722f"
+    },
+    {
+      "bytes": 2632,
+      "path": "integration/CONCEPT_INDEX_ADDITION.md",
+      "sha256": "86df4377b5a7edd96818fa5c10ba4a2f6f629447e6c3807a7ecf0494767f7984"
+    },
+    {
+      "bytes": 1912,
+      "path": "integration/REPO_INTEGRATION_PLAN.md",
+      "sha256": "a63542003f8a8b8e76eb160f1fbf48c3753141e8d64cdfcc4fa2ef610632bece"
+    },
+    {
+      "bytes": 10608,
+      "path": "integration/concept_cards.proposed.jsonl",
+      "sha256": "a979f96e1538cd736491a830ef71a03cac6ac75c4a289de453eb191bd60872f2"
+    },
+    {
+      "bytes": 451,
+      "path": "manifests/rag_manifest.json",
+      "sha256": "43173330082d3b7f8f60712c6b64b850a86f9a8a9f25f3c1c1d05e30c23bb0ea"
+    },
+    {
+      "bytes": 109261,
+      "path": "paper/CPCS_Adaptive_Director_Reasoning_Graph_and_Polyglot_Prompt_Compiler.md",
+      "sha256": "2d100ddf488dc3b2433969f7ccec3e764d4b14bc9fcf0710c6a1d2e446c566b2"
+    },
+    {
+      "bytes": 198021,
+      "path": "rag/CPCS_ADRG_RAG_Corpus.jsonl",
+      "sha256": "ebae969360dec85d65607be523062d33dd8993640cb7671098e92734e495dd46"
+    },
+    {
+      "bytes": 18881,
+      "path": "references/ADRG_Reference_Index.json",
+      "sha256": "58e60e4fa34593f224ac541b3a369cfe018b757510b36b1bfb8cf56acfff7cb0"
+    },
+    {
+      "bytes": 1473,
+      "path": "schemas/CPCS_ADRG_RAG_Record_Schema.json",
+      "sha256": "f249f70b62bc0133a2551d6265dfe54613eb7777ddc9bedba1240332da534713"
+    },
+    {
+      "bytes": 6840,
+      "path": "schemas/CPCS_ADRG_Reasoning_Graph_Schema.json",
+      "sha256": "b3cf04d9b7f4553d4a37b3a779b2568128b9d76aa6314bfbba175138e728d63b"
+    },
+    {
+      "bytes": 897,
+      "path": "schemas/CPCS_ADRG_Source_Index_Schema.json",
+      "sha256": "9cee35d9bdb1548073f5ec5cba1d21370f762acbe3c6f9515cb5d2dff04c158f"
+    },
+    {
+      "bytes": 14875,
+      "path": "scripts/build_adrg_rag.py",
+      "sha256": "53abe35242dcf2eea124f61f9f44336bfd9e7c0b8e9a0c2fe2e15bdb81c78b0d"
+    },
+    {
+      "bytes": 15307,
+      "path": "scripts/validate_package.py",
+      "sha256": "98beec969966d328871861d9c7a0dc895b9516fc6d2289e2ec16b072888c49c4"
+    },
+    {
+      "bytes": 1862,
+      "path": "tests/retrieval_queries.json",
+      "sha256": "83036d5f399bb4ecb05768efd168e02c4f1e3113bc042ec0f21e0c65c99c7d07"
+    }
+  ],
+  "manifest_version": "1.0",
+  "package_id": "CPCS_Adaptive_Director_Reasoning_Graph_Research_Package_v1.0",
+  "version": "1.0"
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "query_id": "q001",
+    "query": "Which reasoning method should I use for a mini model that must output valid JSON?",
+    "expected_concepts": ["c_model_scaled_reasoning_policy", "c_schema_constrained_specialists", "c_reasoning_router"],
+    "expected_operator": "fixed_least_to_most",
+    "must_include_terms": ["schema", "external validation", "bounded repair"]
+  },
+  {
+    "query_id": "q002",
+    "query": "Create meaningful camera and performance variants without changing the choreography.",
+    "expected_concepts": ["c_variant_lattice", "c_selective_branch_admission", "c_protected_invariants"],
+    "expected_operator": "selective_tree_of_thoughts",
+    "must_include_terms": ["invariants", "axes", "semantic deltas"]
+  },
+  {
+    "query_id": "q003",
+    "query": "How do YAML and XML work together without duplicating control?",
+    "expected_concepts": ["c_semantic_format_ownership", "c_house_formats", "c_format_control_map"],
+    "expected_operator": "direct_compile_validate",
+    "must_include_terms": ["one authority", "shared semantic model", "canonical JSON"]
+  },
+  {
+    "query_id": "q004",
+    "query": "The target video model cannot accept an exact camera path. What should the compiler do?",
+    "expected_concepts": ["c_compile_loss_ledger", "c_execution_carrier", "c_adapter_contract"],
+    "expected_operator": "direct_compile_validate",
+    "must_include_terms": ["compressed_to_text", "baked_into_reference", "evaluation_only"]
+  },
+  {
+    "query_id": "q005",
+    "query": "Connect face, movement, camera, target capability, and validation decisions in one plan.",
+    "expected_concepts": ["c_adaptive_director_reasoning_graph", "c_five_graph_planes", "c_reasoning_control_plane"],
+    "expected_operator": "graph_of_thoughts_subgraph",
+    "must_include_terms": ["dependencies", "decision ledger", "compile loss"]
+  }
+]

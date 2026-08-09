@@ -1,0 +1,151 @@
+{
+  "scene_id": "dmr.example.blocked_turning_kick",
+  "contract_id": "google.vertex.veo-3.1-generate-001.2026-07-31",
+  "solved_timeline_s": {
+    "a.kick:end": 2.2,
+    "a.kick:start": 1.3,
+    "a.plant:end": 1.3,
+    "a.plant:start": 0.9,
+    "a.prepare:end": 1.2,
+    "a.prepare:start": 0.5,
+    "a.recovery:end": 3.1,
+    "a.recovery:start": 2.2,
+    "b.block:end": 2.15,
+    "b.block:start": 1.75,
+    "b.reaction:end": 2.55,
+    "b.reaction:start": 2.05,
+    "contact:end": 2.05,
+    "contact:start": 2.0,
+    "scene:end": 8.0,
+    "scene:start": 0.0
+  },
+  "provider_request": {
+    "model": "veo-3.1-generate-001",
+    "parameters": {
+      "durationSeconds": 8,
+      "aspectRatio": "16:9",
+      "seed": 731042
+    },
+    "instances": [
+      {
+        "image": {
+          "gcsUri": "gs://dmr-example-assets/blocked-kick/first-frame.png",
+          "mimeType": "image/png"
+        },
+        "prompt": "Scene: Blocked turning kick with causal reaction. Duration 8s.\n[0.50-1.20s] fighter_a: loads weight onto the left leg and turns the pelvis.\n[0.90-1.30s] fighter_a: plants and stabilizes the left support foot toward ground.\n[1.30-2.20s] fighter_a: executes a right turning kick toward fighter_b.left_forearm.\n[1.75-2.15s] fighter_b: raises the left forearm into a compact guard block toward fighter_a.right_foot.\n[2.05-2.55s] fighter_b: compresses locally at the guard, then shifts the root backward.\n[2.20-3.10s] fighter_a: retracts the right leg and returns to a balanced guard.\nContact at 2.00s: fighter_a.right_foot -> fighter_b.left_forearm (guard_contact).\nControl intent — interaction.contacts: {\"contact_id\":\"contact.blocked_kick\",\"sites\":[\"right_foot\",\"left_forearm\"],\"time_s\":2.0}.\nControl intent — camera.trajectory: {\"kind\":\"static_then_shake\",\"shake_start_s\":2.0}.\nControl intent — performance.laban: {\"fighter_a\":{\"flow\":\"bound\",\"space\":\"direct\",\"time\":\"sudden\",\"weight\":\"strong\"}}."
+      }
+    ]
+  },
+  "prompt": "Scene: Blocked turning kick with causal reaction. Duration 8s.\n[0.50-1.20s] fighter_a: loads weight onto the left leg and turns the pelvis.\n[0.90-1.30s] fighter_a: plants and stabilizes the left support foot toward ground.\n[1.30-2.20s] fighter_a: executes a right turning kick toward fighter_b.left_forearm.\n[1.75-2.15s] fighter_b: raises the left forearm into a compact guard block toward fighter_a.right_foot.\n[2.05-2.55s] fighter_b: compresses locally at the guard, then shifts the root backward.\n[2.20-3.10s] fighter_a: retracts the right leg and returns to a balanced guard.\nContact at 2.00s: fighter_a.right_foot -> fighter_b.left_forearm (guard_contact).\nControl intent — interaction.contacts: {\"contact_id\":\"contact.blocked_kick\",\"sites\":[\"right_foot\",\"left_forearm\"],\"time_s\":2.0}.\nControl intent — camera.trajectory: {\"kind\":\"static_then_shake\",\"shake_start_s\":2.0}.\nControl intent — performance.laban: {\"fighter_a\":{\"flow\":\"bound\",\"space\":\"direct\",\"time\":\"sudden\",\"weight\":\"strong\"}}.",
+  "loss_report": [
+    {
+      "control_id": "ctrl.duration",
+      "canonical_path": "generation.duration_s",
+      "requested_value": 8,
+      "required": true,
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "parameters.durationSeconds",
+      "compiled_value": 8,
+      "residual_risk": null,
+      "evidence_source": "Google Cloud Veo 3.1 model documentation"
+    },
+    {
+      "control_id": "ctrl.aspect",
+      "canonical_path": "generation.aspect_ratio",
+      "requested_value": "16:9",
+      "required": true,
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "parameters.aspectRatio",
+      "compiled_value": "16:9",
+      "residual_risk": null,
+      "evidence_source": "Google Cloud Veo 3.1 model documentation"
+    },
+    {
+      "control_id": "ctrl.seed",
+      "canonical_path": "generation.seed",
+      "requested_value": 731042,
+      "required": false,
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "parameters.seed",
+      "compiled_value": 731042,
+      "residual_risk": null,
+      "evidence_source": "Google Cloud Veo API parameter documentation"
+    },
+    {
+      "control_id": "ctrl.first_frame",
+      "canonical_path": "conditioning.first_frame",
+      "requested_value": {
+        "gcsUri": "gs://dmr-example-assets/blocked-kick/first-frame.png",
+        "mimeType": "image/png"
+      },
+      "required": true,
+      "classification": "media-conditioned",
+      "carrier": "image",
+      "provider_parameter": "instances[0].image",
+      "compiled_value": {
+        "gcsUri": "gs://dmr-example-assets/blocked-kick/first-frame.png",
+        "mimeType": "image/png"
+      },
+      "residual_risk": "Adherence depends on the conditioning asset and model response; it is not a hard trajectory constraint.",
+      "evidence_source": "Google Cloud Veo 3.1 model documentation"
+    },
+    {
+      "control_id": "ctrl.contact",
+      "canonical_path": "interaction.contacts",
+      "requested_value": {
+        "contact_id": "contact.blocked_kick",
+        "time_s": 2.0,
+        "sites": [
+          "right_foot",
+          "left_forearm"
+        ]
+      },
+      "required": false,
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "provider_parameter": null,
+      "compiled_value": "Control intent — interaction.contacts: {\"contact_id\":\"contact.blocked_kick\",\"sites\":[\"right_foot\",\"left_forearm\"],\"time_s\":2.0}.",
+      "residual_risk": "Converted to semantic text; numeric or causal semantics are not guaranteed.",
+      "evidence_source": "No native contact constraint documented"
+    },
+    {
+      "control_id": "ctrl.camera",
+      "canonical_path": "camera.trajectory",
+      "requested_value": {
+        "kind": "static_then_shake",
+        "shake_start_s": 2.0
+      },
+      "required": false,
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "provider_parameter": null,
+      "compiled_value": "Control intent — camera.trajectory: {\"kind\":\"static_then_shake\",\"shake_start_s\":2.0}.",
+      "residual_risk": "Converted to semantic text; numeric or causal semantics are not guaranteed.",
+      "evidence_source": "No native trajectory parameter documented for this exact surface"
+    },
+    {
+      "control_id": "ctrl.laban",
+      "canonical_path": "performance.laban",
+      "requested_value": {
+        "fighter_a": {
+          "weight": "strong",
+          "time": "sudden",
+          "space": "direct",
+          "flow": "bound"
+        }
+      },
+      "required": false,
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "provider_parameter": null,
+      "compiled_value": "Control intent — performance.laban: {\"fighter_a\":{\"flow\":\"bound\",\"space\":\"direct\",\"time\":\"sudden\",\"weight\":\"strong\"}}.",
+      "residual_risk": "Converted to semantic text; numeric or causal semantics are not guaranteed.",
+      "evidence_source": "No native Laban control documented"
+    }
+  ],
+  "validation_issues": [],
+  "hard_failure": false
+}

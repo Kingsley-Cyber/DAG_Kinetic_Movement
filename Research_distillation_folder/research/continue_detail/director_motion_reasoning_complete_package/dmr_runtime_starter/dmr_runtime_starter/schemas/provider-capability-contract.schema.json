@@ -1,0 +1,175 @@
+{
+  "$defs": {
+    "CapabilityClass": {
+      "enum": [
+        "native",
+        "media-conditioned",
+        "semantic-text-only",
+        "approximated",
+        "unsupported",
+        "unknown"
+      ],
+      "title": "CapabilityClass",
+      "type": "string"
+    },
+    "CapabilityMapping": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_path": {
+          "title": "Canonical Path",
+          "type": "string"
+        },
+        "classification": {
+          "$ref": "#/$defs/CapabilityClass"
+        },
+        "carrier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Carrier"
+        },
+        "provider_parameter": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Provider Parameter"
+        },
+        "transform": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Transform"
+        },
+        "limits": {
+          "additionalProperties": true,
+          "title": "Limits",
+          "type": "object"
+        },
+        "evidence_source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence Source"
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Notes"
+        }
+      },
+      "required": [
+        "canonical_path",
+        "classification"
+      ],
+      "title": "CapabilityMapping",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": {
+      "const": "dmr.provider-capability-contract/0.1",
+      "default": "dmr.provider-capability-contract/0.1",
+      "title": "Schema Id",
+      "type": "string"
+    },
+    "contract_id": {
+      "title": "Contract Id",
+      "type": "string"
+    },
+    "provider": {
+      "title": "Provider",
+      "type": "string"
+    },
+    "api_surface": {
+      "title": "Api Surface",
+      "type": "string"
+    },
+    "model_id": {
+      "title": "Model Id",
+      "type": "string"
+    },
+    "contract_kind": {
+      "default": "api",
+      "enum": [
+        "api",
+        "product_profile",
+        "local_workflow"
+      ],
+      "title": "Contract Kind",
+      "type": "string"
+    },
+    "verified_on": {
+      "title": "Verified On",
+      "type": "string"
+    },
+    "documentation_urls": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Documentation Urls",
+      "type": "array"
+    },
+    "lifecycle": {
+      "additionalProperties": true,
+      "title": "Lifecycle",
+      "type": "object"
+    },
+    "mappings": {
+      "items": {
+        "$ref": "#/$defs/CapabilityMapping"
+      },
+      "title": "Mappings",
+      "type": "array"
+    },
+    "unknowns": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Unknowns",
+      "type": "array"
+    }
+  },
+  "required": [
+    "contract_id",
+    "provider",
+    "api_surface",
+    "model_id",
+    "verified_on",
+    "documentation_urls",
+    "mappings"
+  ],
+  "title": "ProviderCapabilityContract",
+  "type": "object"
+}

@@ -1,0 +1,389 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "T14",
+  "title": "AI Video Model Capabilities and Control Surfaces",
+  "status": "dynamic_snapshot",
+  "verified_at": "2026-07-30",
+  "scope_note": "Original query omitted Topic 14 bullets; this matrix reconstructs the stated control-surface objective.",
+  "capability_status": [
+    "native",
+    "reference_conditioned",
+    "prompt_only",
+    "postprocess",
+    "unsupported",
+    "unknown",
+    "legacy"
+  ],
+  "adapter_rule": "A canonical control is never reported as native unless current official documentation exposes it. Unknown remains unknown.",
+  "models": [
+    {
+      "adapter_id": "veo_3_1_gemini",
+      "provider": "Google",
+      "model_family": "Veo 3.1",
+      "status": "current_preview/GA depends endpoint",
+      "verified_at": "2026-07-30",
+      "inputs": {
+        "text": true,
+        "start_image": true,
+        "last_frame": true,
+        "reference_images": {
+          "max": 3,
+          "constraints": "model/version dependent"
+        },
+        "video_extension": true,
+        "audio_prompt": true
+      },
+      "native_controls": {
+        "duration_seconds": [
+          4,
+          6,
+          8
+        ],
+        "aspect_ratio": [
+          "16:9",
+          "9:16"
+        ],
+        "resolution": [
+          "720p",
+          "1080p",
+          "4k model-dependent"
+        ],
+        "seed": true,
+        "native_audio": true
+      },
+      "prompt_only": [
+        "camera movement",
+        "Laban/FACS prose",
+        "phase timing except via described sequence"
+      ],
+      "notes": [
+        "8 seconds required for reference-image/extension and some high-resolution modes per documentation."
+      ],
+      "source_ids": [
+        "S053"
+      ]
+    },
+    {
+      "adapter_id": "kling_video_3_0",
+      "provider": "Kling AI",
+      "model_family": "VIDEO 3.0",
+      "status": "current",
+      "verified_at": "2026-07-30",
+      "inputs": {
+        "text": true,
+        "image_to_video": true,
+        "start_end_frames": true,
+        "element_reference": true
+      },
+      "native_controls": {
+        "duration_seconds": "3–15",
+        "multi_shot": true,
+        "custom_shot_duration": true,
+        "native_audio": true,
+        "resolution": [
+          "720p",
+          "1080p documented through current surfaces"
+        ],
+        "aspect_ratio": [
+          "16:9",
+          "9:16 and surface-dependent"
+        ]
+      },
+      "reference_conditioned": [
+        "elements",
+        "images",
+        "start/end frames"
+      ],
+      "prompt_only": [
+        "fine-grained BESS/FACS unless exposed by prompt/reference"
+      ],
+      "notes": [
+        "UI and API availability must be probed separately."
+      ],
+      "source_ids": [
+        "S054"
+      ]
+    },
+    {
+      "adapter_id": "kling_video_3_0_omni",
+      "provider": "Kling AI",
+      "model_family": "VIDEO 3.0 Omni",
+      "status": "current",
+      "verified_at": "2026-07-30",
+      "inputs": {
+        "text": true,
+        "images": true,
+        "video_element_reference": true,
+        "voice_reference": true,
+        "start_end_frames": true
+      },
+      "native_controls": {
+        "duration_seconds": "3–15",
+        "multi_shot": true,
+        "shot_level_duration": true,
+        "native_audio": true,
+        "element_voice": true,
+        "resolution": [
+          "720p",
+          "1080p"
+        ]
+      },
+      "reference_conditioned": [
+        "multi-angle elements",
+        "3–8s character video",
+        "voice binding"
+      ],
+      "notes": [
+        "Exact input-count limits depend on video/no-video mode; store endpoint response."
+      ],
+      "source_ids": [
+        "S076"
+      ]
+    },
+    {
+      "adapter_id": "runway_gen_4_5",
+      "provider": "Runway",
+      "model_family": "Gen-4.5",
+      "status": "current",
+      "verified_at": "2026-07-30",
+      "inputs": {
+        "text_to_video": true,
+        "image_to_video": true
+      },
+      "native_controls": {
+        "duration_seconds": "2–10 on documented web surface",
+        "fps": [
+          24,
+          25
+        ],
+        "aspect_ratio": "multiple; crop behavior applies",
+        "resolution": "documented surface around 720p; verify endpoint"
+      },
+      "prompt_only": [
+        "camera and choreography descriptions",
+        "BESS/FACS/phase prose"
+      ],
+      "postprocess": [
+        "upscale",
+        "edit/continue through Runway apps"
+      ],
+      "notes": [
+        "Do not inherit retired Gen-3 controls; current keyframe/video-edit capabilities live in separate apps."
+      ],
+      "source_ids": [
+        "S055"
+      ]
+    },
+    {
+      "adapter_id": "runway_act_two",
+      "provider": "Runway",
+      "model_family": "Act-Two",
+      "status": "current",
+      "verified_at": "2026-07-30",
+      "inputs": {
+        "driving_performance_video": true,
+        "character_image": true,
+        "character_video": true
+      },
+      "native_controls": {
+        "duration_seconds": "3–30",
+        "fps": 24,
+        "gesture_control": "character image mode",
+        "resolution": [
+          "1280x720",
+          "720x1280",
+          "960x960",
+          "1104x832",
+          "832x1104",
+          "1584x672"
+        ]
+      },
+      "reference_conditioned": [
+        "face/expression/speech/motion from performance"
+      ],
+      "notes": [
+        "Character video preserves original environment/camera and supports facial control but not gesture control; image mode allows body/hand gesture control."
+      ],
+      "source_ids": [
+        "S056"
+      ]
+    },
+    {
+      "adapter_id": "luma_ray_3_2_modify",
+      "provider": "Luma AI",
+      "model_family": "Ray 3.2 Modify Video",
+      "status": "current",
+      "verified_at": "2026-07-30",
+      "inputs": {
+        "source_video": true,
+        "keyframes": true,
+        "text": true
+      },
+      "native_controls": {
+        "motion": "Off or 1–9",
+        "structure": "Off or 1–9",
+        "faces": "binary/selection behavior by surface",
+        "bodies_poses": "Poses or Blocking and associated controls"
+      },
+      "reference_conditioned": [
+        "source motion",
+        "source structure",
+        "character performance"
+      ],
+      "notes": [
+        "Poses is stronger skeletal adherence; Blocking is sparser/more flexible. Settings may matter more than prompt for preservation."
+      ],
+      "source_ids": [
+        "S057",
+        "S058"
+      ]
+    },
+    {
+      "adapter_id": "adobe_firefly_video",
+      "provider": "Adobe",
+      "model_family": "Firefly Video",
+      "status": "current",
+      "verified_at": "2026-07-30",
+      "inputs": {
+        "text": true,
+        "first_frame": true,
+        "last_frame": true,
+        "camera_motion_reference_video": true,
+        "composition_reference": true
+      },
+      "native_controls": {
+        "camera_motion_reference": "5–10s, under 200MB; first 5s used",
+        "camera_angles/motion": "documented UI controls",
+        "style_presets": true,
+        "seed": "surface-dependent",
+        "transparent_background": "supported workflow"
+      },
+      "notes": [
+        "Some style/frame/reference controls are mutually unavailable; validate selected model/surface."
+      ],
+      "source_ids": [
+        "S059",
+        "S060"
+      ]
+    },
+    {
+      "adapter_id": "sora_2_legacy",
+      "provider": "OpenAI",
+      "model_family": "Sora 2",
+      "status": "legacy_deprecating",
+      "verified_at": "2026-07-30",
+      "inputs": {
+        "text": true,
+        "image_or_video": "legacy endpoint dependent"
+      },
+      "native_controls": {
+        "status_only": "Do not build new primary adapter without migration plan."
+      },
+      "deprecation": {
+        "web_app_ended": "2026-04-26",
+        "api_scheduled_end": "2026-09-24"
+      },
+      "source_ids": [
+        "S061",
+        "S062"
+      ]
+    }
+  ],
+  "canonical_to_surface": [
+    {
+      "canonical": "actor_identity",
+      "preferred": [
+        "element/reference image/video",
+        "character asset"
+      ],
+      "fallback": "descriptive prompt + seed",
+      "loss_risk": "high without reference"
+    },
+    {
+      "canonical": "motion_trajectory",
+      "preferred": [
+        "source/performance video",
+        "motion control",
+        "keyframes"
+      ],
+      "fallback": "prompt prose",
+      "loss_risk": "high"
+    },
+    {
+      "canonical": "camera_track",
+      "preferred": [
+        "camera motion reference",
+        "shot-level camera controls"
+      ],
+      "fallback": "camera prompt phrases",
+      "loss_risk": "medium-high"
+    },
+    {
+      "canonical": "phase_timing",
+      "preferred": [
+        "shot duration/keyframes/performance video"
+      ],
+      "fallback": "ordered prompt with time markers",
+      "loss_risk": "high"
+    },
+    {
+      "canonical": "FACS",
+      "preferred": [
+        "driving performance/reference face"
+      ],
+      "fallback": "visible feature prose, not AU codes alone",
+      "loss_risk": "high"
+    },
+    {
+      "canonical": "BESS",
+      "preferred": [
+        "performance/motion reference"
+      ],
+      "fallback": "natural-language descriptors",
+      "loss_risk": "medium-high"
+    },
+    {
+      "canonical": "audio/dialogue",
+      "preferred": [
+        "native audio + speaker/voice controls"
+      ],
+      "fallback": "postproduction",
+      "loss_risk": "model dependent"
+    }
+  ],
+  "capability_probe": {
+    "required_fields": [
+      "provider",
+      "endpoint/model_id",
+      "surface",
+      "account_region",
+      "request_schema_hash",
+      "response_schema_hash",
+      "observed limits",
+      "documentation_url",
+      "verified_at"
+    ],
+    "release_gate": "Block adapter release if docs or live schema are older than configured TTL or contradict each other."
+  },
+  "compilation_policy": [
+    "Preserve canonical intent even when downcast is lossy.",
+    "Emit `loss_report` for every unsupported/approximated field.",
+    "Prefer references and native structured controls over prose.",
+    "Do not assume wrapper/aggregator controls equal native provider API.",
+    "Store seed as reproducibility hint, not guarantee.",
+    "Version prompt templates by model and surface."
+  ],
+  "source_ids": [
+    "S053",
+    "S054",
+    "S055",
+    "S056",
+    "S057",
+    "S058",
+    "S059",
+    "S060",
+    "S061",
+    "S062",
+    "S076"
+  ]
+}

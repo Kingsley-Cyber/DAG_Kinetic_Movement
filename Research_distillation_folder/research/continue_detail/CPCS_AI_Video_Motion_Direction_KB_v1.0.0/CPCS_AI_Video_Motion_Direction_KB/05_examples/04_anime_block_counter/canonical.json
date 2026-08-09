@@ -1,0 +1,504 @@
+{
+  "cpcs_version": "1.0.0",
+  "scene_id": "ex_anime_block_counter_01",
+  "title": "Anime Block and Counter",
+  "duration_s": 4,
+  "fps": 24,
+  "intent": {
+    "primary": "protect",
+    "secondary": [
+      "challenge",
+      "assert"
+    ],
+    "confidence": 0.82
+  },
+  "beats": [
+    {
+      "id": "attack",
+      "start_s": 0,
+      "end_s": 1.3
+    },
+    {
+      "id": "block",
+      "start_s": 1.3,
+      "end_s": 2.1
+    },
+    {
+      "id": "counter",
+      "start_s": 2.1,
+      "end_s": 3.2
+    },
+    {
+      "id": "settle",
+      "start_s": 3.2,
+      "end_s": 4
+    }
+  ],
+  "actors": [
+    {
+      "actor_id": "hero",
+      "name": "Hero",
+      "role": "defender",
+      "skeleton_profile": {
+        "skeleton_id": "cpcs_humanoid_67",
+        "height_m": 1.74,
+        "mass_kg": 72
+      },
+      "appearance_refs": [],
+      "capabilities": [
+        "full_body_motion"
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.7
+      }
+    },
+    {
+      "actor_id": "rival",
+      "name": "Rival",
+      "role": "attacker",
+      "skeleton_profile": {
+        "skeleton_id": "cpcs_humanoid_67",
+        "height_m": 1.82,
+        "mass_kg": 82
+      },
+      "appearance_refs": [],
+      "capabilities": [
+        "full_body_motion"
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.7
+      }
+    }
+  ],
+  "phase_timelines": [
+    {
+      "timeline_id": "pt_attack",
+      "action_id": "slash_attack",
+      "duration_s": 1.0,
+      "phases": [
+        {
+          "phase_id": "preparation",
+          "t_start_s": 0,
+          "t_end_s": 0.24,
+          "progress_curve": "ease_in",
+          "semantic_role": "telegraph",
+          "force_role": "preload",
+          "emotion_role": "threat",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "acceleration",
+          "t_start_s": 0.24,
+          "t_end_s": 0.55,
+          "progress_curve": "steep",
+          "semantic_role": "slash",
+          "force_role": "propulsive",
+          "emotion_role": "attack",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "stroke",
+          "t_start_s": 0.55,
+          "t_end_s": 0.64,
+          "progress_curve": "linear",
+          "semantic_role": "intercepted",
+          "force_role": "impact",
+          "emotion_role": "shock",
+          "contact_event_ids": [
+            "contact_block"
+          ]
+        },
+        {
+          "phase_id": "overshoot",
+          "t_start_s": 0.64,
+          "t_end_s": 0.8,
+          "progress_curve": "ease_out",
+          "semantic_role": "redirected follow-through",
+          "force_role": "momentum",
+          "emotion_role": "surprise",
+          "contact_event_ids": [
+            "contact_block"
+          ]
+        },
+        {
+          "phase_id": "recovery",
+          "t_start_s": 0.8,
+          "t_end_s": 1,
+          "progress_curve": "ease_out",
+          "semantic_role": "off-line",
+          "force_role": "recoil",
+          "emotion_role": "loss of dominance",
+          "contact_event_ids": []
+        }
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.65
+      }
+    },
+    {
+      "timeline_id": "pt_counter",
+      "action_id": "counter_strike",
+      "duration_s": 0.9,
+      "phases": [
+        {
+          "phase_id": "initiation",
+          "t_start_s": 0,
+          "t_end_s": 0.08,
+          "progress_curve": "steep",
+          "semantic_role": "counter decision",
+          "force_role": "align",
+          "emotion_role": "assert",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "preparation",
+          "t_start_s": 0.08,
+          "t_end_s": 0.18,
+          "progress_curve": "ease_in",
+          "semantic_role": "coil",
+          "force_role": "preload",
+          "emotion_role": "focused",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "acceleration",
+          "t_start_s": 0.18,
+          "t_end_s": 0.43,
+          "progress_curve": "steep",
+          "semantic_role": "counter",
+          "force_role": "propulsive",
+          "emotion_role": "high arousal",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "stroke",
+          "t_start_s": 0.43,
+          "t_end_s": 0.51,
+          "progress_curve": "linear",
+          "semantic_role": "armor contact",
+          "force_role": "impact",
+          "emotion_role": "accent",
+          "contact_event_ids": [
+            "contact_counter"
+          ]
+        },
+        {
+          "phase_id": "overshoot",
+          "t_start_s": 0.51,
+          "t_end_s": 0.64,
+          "progress_curve": "ease_out",
+          "semantic_role": "smear/follow-through",
+          "force_role": "momentum",
+          "emotion_role": "accent decay",
+          "contact_event_ids": [
+            "contact_counter"
+          ]
+        },
+        {
+          "phase_id": "recovery",
+          "t_start_s": 0.64,
+          "t_end_s": 0.82,
+          "progress_curve": "ease_in_out",
+          "semantic_role": "guard",
+          "force_role": "recoil",
+          "emotion_role": "control",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "settle",
+          "t_start_s": 0.82,
+          "t_end_s": 0.9,
+          "progress_curve": "ease_out",
+          "semantic_role": "hero pose",
+          "force_role": "dissipate",
+          "emotion_role": "dominance",
+          "contact_event_ids": []
+        }
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.65
+      }
+    }
+  ],
+  "motion_primitives": [
+    {
+      "primitive_id": "mp_block",
+      "actor_id": "hero",
+      "name": "cross_lateral_forearm_block",
+      "connectivity_pattern": "cross_lateral",
+      "initiator": "left_rear_foot",
+      "receiver_sequence": [
+        "pelvis",
+        "thorax",
+        "right_shoulder",
+        "right_forearm"
+      ],
+      "intensity": 0.8,
+      "range": 0.62,
+      "speed": {
+        "value": 5.2,
+        "unit": "m/s"
+      },
+      "sequencing_delay_ms": 40,
+      "grounding": 0.86,
+      "breath_phase": "exhale",
+      "laterality": "right",
+      "support_contact_ids": [
+        "hero_left_foot",
+        "hero_right_foot"
+      ],
+      "phase_timeline_id": "pt_attack",
+      "laban": {
+        "effort": {
+          "weight": 0.8,
+          "time": 0.9,
+          "space_effort": 0.95,
+          "flow": 0.82
+        },
+        "shape": {
+          "vertical": 0.62,
+          "horizontal": 0.82,
+          "sagittal": 0.65,
+          "mode": "directional"
+        },
+        "space": {
+          "reach": 0.64,
+          "pathway": "spoke_like"
+        },
+        "body": {
+          "sequence": "cross_lateral"
+        }
+      },
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.6
+      }
+    },
+    {
+      "primitive_id": "mp_counter",
+      "actor_id": "hero",
+      "name": "counter_palm_strike",
+      "connectivity_pattern": "upper_lower",
+      "initiator": "front_foot_ground",
+      "receiver_sequence": [
+        "pelvis",
+        "spine",
+        "left_shoulder",
+        "left_palm"
+      ],
+      "intensity": 0.9,
+      "range": 0.75,
+      "speed": {
+        "value": 7.8,
+        "unit": "m/s"
+      },
+      "sequencing_delay_ms": 35,
+      "grounding": 0.88,
+      "breath_phase": "exhale",
+      "laterality": "left",
+      "support_contact_ids": [
+        "hero_left_foot",
+        "hero_right_foot"
+      ],
+      "phase_timeline_id": "pt_counter",
+      "laban": {
+        "effort": {
+          "weight": 0.88,
+          "time": 0.95,
+          "space_effort": 0.97,
+          "flow": 0.72
+        },
+        "shape": {
+          "vertical": 0.68,
+          "horizontal": 0.7,
+          "sagittal": 0.9,
+          "mode": "directional"
+        },
+        "space": {
+          "reach": 0.78,
+          "pathway": "spoke_like"
+        },
+        "body": {
+          "sequence": "proximal_to_distal"
+        }
+      },
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.6
+      }
+    }
+  ],
+  "facs_tracks": [],
+  "interactions": [
+    {
+      "interaction_id": "int_block_anime",
+      "predicate": "block",
+      "agent_id": "hero",
+      "patient_id": "rival.right_forearm",
+      "t_start_s": 1.48,
+      "t_end_s": 1.64,
+      "agent_body_parts": [
+        "right_forearm"
+      ],
+      "patient_parts": [
+        "right_forearm"
+      ],
+      "contact_ids": [
+        "contact_block"
+      ],
+      "parameters": {
+        "force_N": null,
+        "impulse_Ns": null,
+        "duration_s": 0.16,
+        "contact_area_m2": null,
+        "friction_coefficient": null,
+        "compliance": 0.22,
+        "resistance": 0.88
+      },
+      "preconditions": [
+        "rival_slash_path"
+      ],
+      "effects": [
+        "slash_redirected"
+      ],
+      "confidence": 0.9,
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.6
+      }
+    },
+    {
+      "interaction_id": "int_counter_anime",
+      "predicate": "strike",
+      "agent_id": "hero",
+      "patient_id": "rival.torso_armor",
+      "t_start_s": 2.62,
+      "t_end_s": 2.72,
+      "agent_body_parts": [
+        "left_palm"
+      ],
+      "patient_parts": [
+        "torso_armor"
+      ],
+      "contact_ids": [
+        "contact_counter"
+      ],
+      "parameters": {
+        "force_N": null,
+        "impulse_Ns": null,
+        "duration_s": 0.1,
+        "contact_area_m2": null,
+        "friction_coefficient": null,
+        "compliance": 0.3,
+        "resistance": 0.55
+      },
+      "preconditions": [
+        "block_completed"
+      ],
+      "effects": [
+        "rival_staggers"
+      ],
+      "confidence": 0.88,
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.6
+      }
+    }
+  ],
+  "camera_tracks": [
+    {
+      "track_id": "cam_anime",
+      "shot_id": "action_master",
+      "t_start_s": 0,
+      "t_end_s": 4,
+      "fps": 24,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "focal_length_equiv_mm": 24,
+      "shutter_angle_deg": 180,
+      "shot_size": "full",
+      "composition": [
+        "contact_readable",
+        "preserve_screen_direction"
+      ],
+      "motion_primitives": [
+        {
+          "type": "orbit",
+          "t_start_s": 0,
+          "t_end_s": 1.4,
+          "parameters": {
+            "arc_deg": 18,
+            "radius_m": 3.2,
+            "subject_lock": true
+          }
+        },
+        {
+          "type": "push_in",
+          "t_start_s": 2.1,
+          "t_end_s": 2.7,
+          "parameters": {
+            "screen_scale_ratio": 1.25,
+            "method": "physical"
+          }
+        }
+      ],
+      "subject_lock_ids": [
+        "hero",
+        "rival"
+      ],
+      "impact_bindings": [],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.7
+      }
+    }
+  ],
+  "style": {
+    "profile": "anime",
+    "smear_frames": 1,
+    "impact_frames": 2,
+    "held_reaction_frames": 5,
+    "contact_topology_locked": true
+  },
+  "rhythm": {
+    "profile": "explosive",
+    "impact_frames": {
+      "block": 2,
+      "counter": 2
+    },
+    "counter_delay_s": 0.35
+  },
+  "constraints": [
+    {
+      "id": "causality",
+      "type": "interaction",
+      "rule": "block completes before counter acceleration"
+    },
+    {
+      "id": "non_gory",
+      "type": "safety",
+      "rule": "no blood, injury detail, or body penetration"
+    }
+  ],
+  "target_adapters": [
+    "kling_video_3_0_omni",
+    "veo_3_1_gemini",
+    "luma_ray_3_2_modify"
+  ],
+  "provenance": {
+    "provenance_class": "CPCS_CONVENTION",
+    "confidence": 0.62
+  }
+}

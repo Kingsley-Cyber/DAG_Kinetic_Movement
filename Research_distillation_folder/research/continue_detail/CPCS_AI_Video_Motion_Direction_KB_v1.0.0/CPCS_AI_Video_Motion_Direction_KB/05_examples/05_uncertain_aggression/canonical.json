@@ -1,0 +1,422 @@
+{
+  "cpcs_version": "1.0.0",
+  "scene_id": "ex_uncertain_aggression_01",
+  "title": "Uncertain Aggression in a Hallway",
+  "duration_s": 7,
+  "fps": 24,
+  "intent": {
+    "primary": "uncertain_aggression",
+    "secondary": [
+      "threaten",
+      "read_room"
+    ],
+    "confidence": 0.72
+  },
+  "beats": [
+    {
+      "id": "read",
+      "start_s": 0,
+      "end_s": 2
+    },
+    {
+      "id": "pressure",
+      "start_s": 2,
+      "end_s": 4.3
+    },
+    {
+      "id": "false_start",
+      "start_s": 4.3,
+      "end_s": 5.8
+    },
+    {
+      "id": "hold",
+      "start_s": 5.8,
+      "end_s": 7
+    }
+  ],
+  "actors": [
+    {
+      "actor_id": "actor_a",
+      "name": "Pressure Actor",
+      "role": "ambiguous_aggressor",
+      "skeleton_profile": {
+        "skeleton_id": "cpcs_humanoid_67",
+        "height_m": 1.8,
+        "mass_kg": 82
+      },
+      "appearance_refs": [],
+      "capabilities": [
+        "full_body_motion"
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.7
+      }
+    },
+    {
+      "actor_id": "actor_b",
+      "name": "Other Actor",
+      "role": "receiver",
+      "skeleton_profile": {
+        "skeleton_id": "cpcs_humanoid_67",
+        "height_m": 1.75,
+        "mass_kg": 75
+      },
+      "appearance_refs": [],
+      "capabilities": [
+        "full_body_motion"
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.7
+      }
+    }
+  ],
+  "affect_tracks": [
+    {
+      "track_id": "aff_uncertain",
+      "actor_id": "actor_a",
+      "keyframes": [
+        {
+          "time_s": 0,
+          "valence": 0.35,
+          "arousal": 0.48,
+          "dominance": 0.58,
+          "confidence_state": 0.55,
+          "certainty": 0.34,
+          "engagement": 0.8
+        },
+        {
+          "time_s": 3.5,
+          "valence": 0.24,
+          "arousal": 0.72,
+          "dominance": 0.68,
+          "confidence_state": 0.58,
+          "certainty": 0.42,
+          "engagement": 0.95
+        },
+        {
+          "time_s": 5,
+          "valence": 0.2,
+          "arousal": 0.84,
+          "dominance": 0.61,
+          "confidence_state": 0.44,
+          "certainty": 0.22,
+          "engagement": 0.98
+        },
+        {
+          "time_s": 7,
+          "valence": 0.28,
+          "arousal": 0.58,
+          "dominance": 0.52,
+          "confidence_state": 0.4,
+          "certainty": 0.3,
+          "engagement": 0.82
+        }
+      ],
+      "interpolation": "cubic_hermite",
+      "channel": "combined",
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.48
+      }
+    }
+  ],
+  "phase_timelines": [
+    {
+      "timeline_id": "pt_false_start",
+      "action_id": "advance_false_start",
+      "duration_s": 1.8,
+      "phases": [
+        {
+          "phase_id": "initiation",
+          "t_start_s": 0,
+          "t_end_s": 0.2,
+          "progress_curve": "ease_in",
+          "semantic_role": "gaze lock",
+          "force_role": "none",
+          "emotion_role": "threat",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "preparation",
+          "t_start_s": 0.2,
+          "t_end_s": 0.75,
+          "progress_curve": "uneven",
+          "semantic_role": "weight forward",
+          "force_role": "preload",
+          "emotion_role": "uncertain",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "acceleration",
+          "t_start_s": 0.75,
+          "t_end_s": 1.0,
+          "progress_curve": "steep",
+          "semantic_role": "half-step advance",
+          "force_role": "none",
+          "emotion_role": "aggression",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "stroke",
+          "t_start_s": 1.0,
+          "t_end_s": 1.18,
+          "progress_curve": "ease_out",
+          "semantic_role": "stops short",
+          "force_role": "none",
+          "emotion_role": "ambiguity",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "recovery",
+          "t_start_s": 1.18,
+          "t_end_s": 1.55,
+          "progress_curve": "ease_in_out",
+          "semantic_role": "weight retreats",
+          "force_role": "release",
+          "emotion_role": "doubt",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "settle",
+          "t_start_s": 1.55,
+          "t_end_s": 1.8,
+          "progress_curve": "uneven",
+          "semantic_role": "guarded neutral",
+          "force_role": "none",
+          "emotion_role": "monitor",
+          "contact_event_ids": []
+        }
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.65
+      }
+    }
+  ],
+  "motion_primitives": [
+    {
+      "primitive_id": "mp_false_start",
+      "actor_id": "actor_a",
+      "name": "advance_then_abort",
+      "connectivity_pattern": "upper_lower",
+      "initiator": "sternum_then_front_foot",
+      "receiver_sequence": [
+        "pelvis",
+        "front_foot",
+        "shoulders",
+        "hands"
+      ],
+      "intensity": 0.58,
+      "range": 0.32,
+      "speed": {
+        "value": 0.8,
+        "unit": "m/s"
+      },
+      "sequencing_delay_ms": 120,
+      "grounding": 0.65,
+      "breath_phase": "hold",
+      "laterality": "left",
+      "support_contact_ids": [
+        "left_foot_floor",
+        "right_foot_floor"
+      ],
+      "phase_timeline_id": "pt_false_start",
+      "laban": {
+        "effort": {
+          "weight": 0.62,
+          "time": 0.68,
+          "space_effort": 0.58,
+          "flow": 0.88
+        },
+        "shape": {
+          "vertical": 0.52,
+          "horizontal": 0.42,
+          "sagittal": 0.64,
+          "mode": "directional"
+        },
+        "space": {
+          "reach": 0.38,
+          "pathway": "spoke_like_then_reversal"
+        },
+        "body": {
+          "sequence": "incomplete upper_lower"
+        }
+      },
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.55
+      }
+    }
+  ],
+  "facs_tracks": [
+    {
+      "track_id": "face_uncertain",
+      "actor_id": "actor_a",
+      "events": [
+        {
+          "au_code": "4",
+          "side": "bilateral",
+          "peak_intensity": 0.4,
+          "t_onset_start_s": 1.6,
+          "t_apex_start_s": 3.6,
+          "t_apex_end_s": 5,
+          "t_offset_end_s": 6.5,
+          "onset_curve": "slow",
+          "offset_curve": "ease_out",
+          "masking_au_codes": [],
+          "confidence": 0.45
+        },
+        {
+          "au_code": "7",
+          "side": "bilateral",
+          "peak_intensity": 0.3,
+          "t_onset_start_s": 3,
+          "t_apex_start_s": 4.4,
+          "t_apex_end_s": 5.1,
+          "t_offset_end_s": 6,
+          "onset_curve": "ease_in",
+          "offset_curve": "ease_out",
+          "masking_au_codes": [],
+          "confidence": 0.4
+        },
+        {
+          "au_code": "23",
+          "side": "bilateral",
+          "peak_intensity": 0.32,
+          "t_onset_start_s": 4,
+          "t_apex_start_s": 4.8,
+          "t_apex_end_s": 5.3,
+          "t_offset_end_s": 6.2,
+          "onset_curve": "ease_in",
+          "offset_curve": "ease_out",
+          "masking_au_codes": [],
+          "confidence": 0.4
+        }
+      ],
+      "gaze_target": "actor_b.eyes_then_exit",
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.42
+      }
+    }
+  ],
+  "interactions": [
+    {
+      "interaction_id": "int_approach",
+      "predicate": "approach",
+      "agent_id": "actor_a",
+      "patient_id": "actor_b",
+      "t_start_s": 2.1,
+      "t_end_s": 5.1,
+      "agent_body_parts": [
+        "whole_body"
+      ],
+      "patient_parts": [
+        "whole_body"
+      ],
+      "contact_ids": [],
+      "parameters": {
+        "force_N": null,
+        "impulse_Ns": null,
+        "duration_s": 3,
+        "contact_area_m2": null,
+        "friction_coefficient": null,
+        "compliance": 0.3,
+        "resistance": 0.55
+      },
+      "preconditions": [
+        "distance_above_personal_boundary"
+      ],
+      "effects": [
+        "distance_reduced_but_no_contact"
+      ],
+      "confidence": 0.85,
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.55
+      }
+    }
+  ],
+  "camera_tracks": [
+    {
+      "track_id": "cam_uncertain",
+      "shot_id": "hallway_two_shot",
+      "t_start_s": 0,
+      "t_end_s": 7,
+      "fps": 24,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "focal_length_equiv_mm": 50,
+      "shutter_angle_deg": 180,
+      "shot_size": "medium_full",
+      "composition": [
+        "contact_readable",
+        "preserve_screen_direction"
+      ],
+      "motion_primitives": [
+        {
+          "type": "dolly",
+          "t_start_s": 2,
+          "t_end_s": 5.5,
+          "parameters": {
+            "distance_m": 0.25,
+            "direction": "back",
+            "subject_lock": false,
+            "easing": "slow"
+          }
+        }
+      ],
+      "subject_lock_ids": [
+        "actor_a",
+        "actor_b"
+      ],
+      "impact_bindings": [],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.7
+      }
+    }
+  ],
+  "style": {
+    "profile": "documentary",
+    "exaggeration": 0.05,
+    "ambiguity_locked": true
+  },
+  "rhythm": {
+    "profile": "hesitant",
+    "false_start_count": 2,
+    "micro_pauses_s": [
+      0.22,
+      0.35
+    ]
+  },
+  "constraints": [
+    {
+      "id": "no_contact",
+      "type": "interaction",
+      "rule": "minimum separation 0.55m"
+    },
+    {
+      "id": "ambiguous",
+      "type": "narrative",
+      "rule": "do not resolve into attack or retreat"
+    }
+  ],
+  "target_adapters": [
+    "runway_act_two",
+    "luma_ray_3_2_modify",
+    "veo_3_1_gemini"
+  ],
+  "provenance": {
+    "provenance_class": "CPCS_CONVENTION",
+    "confidence": 0.58
+  }
+}

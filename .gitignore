@@ -1,0 +1,6 @@
+# IDE-local caches and rules — not project content
+.qoder/
+
+# OS noise
+Thumbs.db
+.DS_Store

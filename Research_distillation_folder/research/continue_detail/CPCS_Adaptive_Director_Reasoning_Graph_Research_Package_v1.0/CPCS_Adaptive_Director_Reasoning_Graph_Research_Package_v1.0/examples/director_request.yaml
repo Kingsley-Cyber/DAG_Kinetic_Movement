@@ -1,0 +1,26 @@
+schema: "cpcs-adrg-authoring/1.0"
+document_id: "filmA.scene12.shot04"
+request:
+  intent: "Mara approaches Jon while hiding fear; recognition breaks composure only at the final step."
+  audience_takeaway: "control is chosen and briefly fails"
+  duration_s: 6.0
+  requested_outputs:
+    - "canonical_reasoning_graph_json"
+    - "director_envelope_xml"
+    - "compiled_natural_language"
+  target_model_profile: "adapter://generic/prompt-video@2026-07-23"
+  hard_invariants:
+    - "one continuous shot"
+    - "recognition coincides with final foot plant"
+    - "no early gaze break"
+    - "end in close-up"
+  variation_axes:
+    camera_treatment:
+      values: ["late_dolly_in", "telephoto_observer"]
+    leakage_channel:
+      values: ["face_and_breath", "face_and_torso"]
+  maximum_simultaneous_deltas: 2
+reasoning:
+  planner_profile: "planner.mini.strict.v1"
+  decision_ledger: true
+  raw_chain_of_thought: false

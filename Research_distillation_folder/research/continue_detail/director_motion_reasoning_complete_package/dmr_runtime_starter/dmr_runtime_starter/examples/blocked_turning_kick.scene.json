@@ -1,0 +1,583 @@
+{
+  "schema_id": "dmr.scene-plan/0.1",
+  "scene_id": "dmr.example.blocked_turning_kick",
+  "title": "Blocked turning kick with causal reaction",
+  "duration_s": 8.0,
+  "fps": 24.0,
+  "origin_point": "scene:start",
+  "end_point": "scene:end",
+  "actors": [
+    {
+      "actor_id": "fighter_a",
+      "display_name": "Attacker",
+      "reference_asset_ids": [
+        "first_frame"
+      ],
+      "initial_screen_side": "left",
+      "initial_support_effectors": [
+        "left_foot",
+        "right_foot"
+      ],
+      "initial_held_objects": {}
+    },
+    {
+      "actor_id": "fighter_b",
+      "display_name": "Defender",
+      "reference_asset_ids": [
+        "first_frame"
+      ],
+      "initial_screen_side": "right",
+      "initial_support_effectors": [
+        "left_foot",
+        "right_foot"
+      ],
+      "initial_held_objects": {}
+    }
+  ],
+  "objects": [],
+  "assets": [
+    {
+      "asset_id": "first_frame",
+      "role": "first_frame",
+      "uri": "asset://blocked-kick/first-frame.png",
+      "sha256": null
+    }
+  ],
+  "actions": [
+    {
+      "action_id": "a.prepare_turn",
+      "actor_id": "fighter_a",
+      "verb": "loads weight onto the left leg and turns the pelvis",
+      "target_ref": null,
+      "start_point": "a.prepare:start",
+      "end_point": "a.prepare:end",
+      "body_regions": [
+        "pelvis",
+        "torso",
+        "left_leg"
+      ],
+      "resource_locks": [
+        "pelvis",
+        "left_leg"
+      ],
+      "preconditions": [
+        {
+          "kind": "grounded",
+          "actor_id": "fighter_a",
+          "key": null,
+          "value": true
+        }
+      ],
+      "effects": [],
+      "reacts_to_contact_id": null,
+      "recovers_from_action_id": null,
+      "evidence": []
+    },
+    {
+      "action_id": "a.plant_support",
+      "actor_id": "fighter_a",
+      "verb": "plants and stabilizes the left support foot",
+      "target_ref": "ground",
+      "start_point": "a.plant:start",
+      "end_point": "a.plant:end",
+      "body_regions": [
+        "left_foot",
+        "left_leg"
+      ],
+      "resource_locks": [
+        "left_foot"
+      ],
+      "preconditions": [
+        {
+          "kind": "grounded",
+          "actor_id": "fighter_a",
+          "key": null,
+          "value": true
+        }
+      ],
+      "effects": [
+        {
+          "kind": "add_support",
+          "actor_id": "fighter_a",
+          "key": "left_foot",
+          "value": true
+        }
+      ],
+      "reacts_to_contact_id": null,
+      "recovers_from_action_id": null,
+      "evidence": []
+    },
+    {
+      "action_id": "a.turning_kick",
+      "actor_id": "fighter_a",
+      "verb": "executes a right turning kick",
+      "target_ref": "fighter_b.left_forearm",
+      "start_point": "a.kick:start",
+      "end_point": "a.kick:end",
+      "body_regions": [
+        "pelvis",
+        "torso",
+        "right_leg",
+        "right_foot"
+      ],
+      "resource_locks": [
+        "right_leg",
+        "right_foot"
+      ],
+      "preconditions": [
+        {
+          "kind": "support_present",
+          "actor_id": "fighter_a",
+          "key": "left_foot",
+          "value": true
+        }
+      ],
+      "effects": [],
+      "reacts_to_contact_id": null,
+      "recovers_from_action_id": null,
+      "evidence": []
+    },
+    {
+      "action_id": "b.forearm_block",
+      "actor_id": "fighter_b",
+      "verb": "raises the left forearm into a compact guard block",
+      "target_ref": "fighter_a.right_foot",
+      "start_point": "b.block:start",
+      "end_point": "b.block:end",
+      "body_regions": [
+        "left_arm",
+        "left_forearm",
+        "torso"
+      ],
+      "resource_locks": [
+        "left_arm",
+        "left_forearm"
+      ],
+      "preconditions": [
+        {
+          "kind": "grounded",
+          "actor_id": "fighter_b",
+          "key": null,
+          "value": true
+        }
+      ],
+      "effects": [],
+      "reacts_to_contact_id": null,
+      "recovers_from_action_id": null,
+      "evidence": []
+    },
+    {
+      "action_id": "b.contact_reaction",
+      "actor_id": "fighter_b",
+      "verb": "compresses locally at the guard, then shifts the root backward",
+      "target_ref": null,
+      "start_point": "b.reaction:start",
+      "end_point": "b.reaction:end",
+      "body_regions": [
+        "left_arm",
+        "torso",
+        "pelvis"
+      ],
+      "resource_locks": [
+        "torso",
+        "pelvis"
+      ],
+      "preconditions": [],
+      "effects": [],
+      "reacts_to_contact_id": "contact.blocked_kick",
+      "recovers_from_action_id": null,
+      "evidence": []
+    },
+    {
+      "action_id": "a.kick_recovery",
+      "actor_id": "fighter_a",
+      "verb": "retracts the right leg and returns to a balanced guard",
+      "target_ref": null,
+      "start_point": "a.recovery:start",
+      "end_point": "a.recovery:end",
+      "body_regions": [
+        "right_leg",
+        "pelvis",
+        "torso"
+      ],
+      "resource_locks": [
+        "right_leg",
+        "pelvis"
+      ],
+      "preconditions": [],
+      "effects": [
+        {
+          "kind": "add_support",
+          "actor_id": "fighter_a",
+          "key": "right_foot",
+          "value": true
+        }
+      ],
+      "reacts_to_contact_id": null,
+      "recovers_from_action_id": "a.turning_kick",
+      "evidence": []
+    }
+  ],
+  "phases": [
+    {
+      "phase_id": "phase.kick.anticipation",
+      "action_id": "a.turning_kick",
+      "kind": "anticipation",
+      "start_point": "a.prepare:start",
+      "end_point": "a.kick:start"
+    },
+    {
+      "phase_id": "phase.kick.execution",
+      "action_id": "a.turning_kick",
+      "kind": "execution",
+      "start_point": "a.kick:start",
+      "end_point": "contact:start"
+    },
+    {
+      "phase_id": "phase.kick.contact",
+      "action_id": "a.turning_kick",
+      "kind": "contact",
+      "start_point": "contact:start",
+      "end_point": "contact:end"
+    },
+    {
+      "phase_id": "phase.kick.recovery",
+      "action_id": "a.kick_recovery",
+      "kind": "recovery",
+      "start_point": "a.recovery:start",
+      "end_point": "a.recovery:end"
+    }
+  ],
+  "contacts": [
+    {
+      "contact_id": "contact.blocked_kick",
+      "contact_type": "guard_contact",
+      "actor_a": "fighter_a",
+      "site_a": "right_foot",
+      "target_ref": "fighter_b",
+      "site_b": "left_forearm",
+      "start_point": "contact:start",
+      "end_point": "contact:end",
+      "contact_normal": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "relative_velocity_mps": null,
+      "minimum_distance_m": 0.02,
+      "visibility": "visible",
+      "support_status": "non_supporting",
+      "confidence": 0.8,
+      "reaction_action_id": "b.contact_reaction",
+      "camera_presentation": "hold readable two-shot; add restrained shake only after contact",
+      "cinematic_cheat_allowed": true,
+      "evidence": []
+    }
+  ],
+  "temporal_constraints": [
+    {
+      "constraint_id": "t.scene.duration",
+      "left_point": "scene:start",
+      "right_point": "scene:end",
+      "min_delta_s": 8.0,
+      "max_delta_s": 8.0,
+      "hard": true,
+      "explanation": "Fixed scene duration",
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.prepare.start",
+      "left_point": "scene:start",
+      "right_point": "a.prepare:start",
+      "min_delta_s": 0.5,
+      "max_delta_s": 0.5,
+      "hard": true,
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.prepare.end",
+      "left_point": "scene:start",
+      "right_point": "a.prepare:end",
+      "min_delta_s": 1.2,
+      "max_delta_s": 1.2,
+      "hard": true,
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.plant.start",
+      "left_point": "scene:start",
+      "right_point": "a.plant:start",
+      "min_delta_s": 0.9,
+      "max_delta_s": 0.9,
+      "hard": true,
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.plant.end",
+      "left_point": "scene:start",
+      "right_point": "a.plant:end",
+      "min_delta_s": 1.3,
+      "max_delta_s": 1.3,
+      "hard": true,
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.kick.start",
+      "left_point": "scene:start",
+      "right_point": "a.kick:start",
+      "min_delta_s": 1.3,
+      "max_delta_s": 1.3,
+      "hard": true,
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.kick.end",
+      "left_point": "scene:start",
+      "right_point": "a.kick:end",
+      "min_delta_s": 2.2,
+      "max_delta_s": 2.2,
+      "hard": true,
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.block.start",
+      "left_point": "scene:start",
+      "right_point": "b.block:start",
+      "min_delta_s": 1.75,
+      "max_delta_s": 1.75,
+      "hard": true,
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.block.end",
+      "left_point": "scene:start",
+      "right_point": "b.block:end",
+      "min_delta_s": 2.15,
+      "max_delta_s": 2.15,
+      "hard": true,
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.contact.start",
+      "left_point": "scene:start",
+      "right_point": "contact:start",
+      "min_delta_s": 2.0,
+      "max_delta_s": 2.0,
+      "hard": true,
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.contact.end",
+      "left_point": "scene:start",
+      "right_point": "contact:end",
+      "min_delta_s": 2.05,
+      "max_delta_s": 2.05,
+      "hard": true,
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.reaction.start",
+      "left_point": "scene:start",
+      "right_point": "b.reaction:start",
+      "min_delta_s": 2.05,
+      "max_delta_s": 2.05,
+      "hard": true,
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.reaction.end",
+      "left_point": "scene:start",
+      "right_point": "b.reaction:end",
+      "min_delta_s": 2.55,
+      "max_delta_s": 2.55,
+      "hard": true,
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.recovery.start",
+      "left_point": "scene:start",
+      "right_point": "a.recovery:start",
+      "min_delta_s": 2.2,
+      "max_delta_s": 2.2,
+      "hard": true,
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.recovery.end",
+      "left_point": "scene:start",
+      "right_point": "a.recovery:end",
+      "min_delta_s": 3.1,
+      "max_delta_s": 3.1,
+      "hard": true,
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.contact.inside_kick.left",
+      "left_point": "a.kick:start",
+      "right_point": "contact:start",
+      "min_delta_s": 0.0,
+      "max_delta_s": 0.8,
+      "hard": true,
+      "explanation": "Contact follows kick initiation",
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.contact.inside_kick.right",
+      "left_point": "contact:end",
+      "right_point": "a.kick:end",
+      "min_delta_s": 0.0,
+      "max_delta_s": 0.3,
+      "hard": true,
+      "explanation": "Kick follow-through ends after contact",
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.reaction.after_contact",
+      "left_point": "contact:start",
+      "right_point": "b.reaction:start",
+      "min_delta_s": 0.0,
+      "max_delta_s": 0.15,
+      "hard": true,
+      "explanation": "No defender reaction before contact",
+      "evidence": []
+    },
+    {
+      "constraint_id": "t.recovery.after_kick",
+      "left_point": "a.kick:end",
+      "right_point": "a.recovery:start",
+      "min_delta_s": 0.0,
+      "max_delta_s": 0.2,
+      "hard": true,
+      "evidence": []
+    }
+  ],
+  "camera_events": [
+    {
+      "camera_event_id": "camera.readable_two_shot",
+      "kind": "static",
+      "start_point": "scene:start",
+      "end_point": "scene:end",
+      "subject_ref": "fighter_a,fighter_b",
+      "parameters": {
+        "shot_size": "medium_wide",
+        "axis_lock": true
+      }
+    },
+    {
+      "camera_event_id": "camera.impact_shake",
+      "kind": "shake",
+      "start_point": "contact:start",
+      "end_point": "b.reaction:end",
+      "subject_ref": "contact.blocked_kick",
+      "parameters": {
+        "amplitude": "restrained",
+        "decay": "fast"
+      }
+    }
+  ],
+  "control_requests": [
+    {
+      "control_id": "ctrl.duration",
+      "canonical_path": "generation.duration_s",
+      "value": 8,
+      "required": true,
+      "preferred_carrier": "api_parameter",
+      "rationale": "Match solved scene duration"
+    },
+    {
+      "control_id": "ctrl.aspect",
+      "canonical_path": "generation.aspect_ratio",
+      "value": "16:9",
+      "required": true,
+      "preferred_carrier": "api_parameter",
+      "rationale": "Benchmark framing"
+    },
+    {
+      "control_id": "ctrl.seed",
+      "canonical_path": "generation.seed",
+      "value": 731042,
+      "required": false,
+      "preferred_carrier": "api_parameter",
+      "rationale": "Repeatability where supported"
+    },
+    {
+      "control_id": "ctrl.first_frame",
+      "canonical_path": "conditioning.first_frame",
+      "value": {
+        "gcsUri": "gs://dmr-example-assets/blocked-kick/first-frame.png",
+        "mimeType": "image/png"
+      },
+      "required": true,
+      "preferred_carrier": "image",
+      "rationale": "Identity and initial blocking"
+    },
+    {
+      "control_id": "ctrl.contact",
+      "canonical_path": "interaction.contacts",
+      "value": {
+        "contact_id": "contact.blocked_kick",
+        "time_s": 2.0,
+        "sites": [
+          "right_foot",
+          "left_forearm"
+        ]
+      },
+      "required": false,
+      "preferred_carrier": "prompt_or_pose",
+      "rationale": "Model has no documented hard contact channel"
+    },
+    {
+      "control_id": "ctrl.camera",
+      "canonical_path": "camera.trajectory",
+      "value": {
+        "kind": "static_then_shake",
+        "shake_start_s": 2.0
+      },
+      "required": false,
+      "preferred_carrier": "prompt_text",
+      "rationale": "Perceptual impact compensation"
+    },
+    {
+      "control_id": "ctrl.laban",
+      "canonical_path": "performance.laban",
+      "value": {
+        "fighter_a": {
+          "weight": "strong",
+          "time": "sudden",
+          "space": "direct",
+          "flow": "bound"
+        }
+      },
+      "required": false,
+      "preferred_carrier": "prompt_text",
+      "rationale": "Project-authored performance intent, not a native provider control"
+    }
+  ],
+  "acceptance_gates": [
+    {
+      "metric": "action_order_accuracy",
+      "operator": ">=",
+      "value": 1.0,
+      "hard": true
+    },
+    {
+      "metric": "contact_time_error_s",
+      "operator": "<=",
+      "value": 0.15,
+      "hard": true
+    },
+    {
+      "metric": "actor_swap_count",
+      "operator": "==",
+      "value": 0,
+      "hard": true
+    },
+    {
+      "metric": "human_contact_readability",
+      "operator": ">=",
+      "value": 4,
+      "hard": false
+    }
+  ],
+  "provenance": []
+}

@@ -1,0 +1,46 @@
+artifacts:
+- 00_ORIGINAL_SPEC.txt
+- 01_SPEC_AUDIT_AND_VERDICT.md
+- 02_REPO_GAP_MATRIX.csv
+- 02_REPO_GAP_MATRIX.jsonl
+- 04_HARDENED_CODEX_EXECUTION_PROMPT.md
+- 05_DEEP_RESEARCH_SOURCE_PROMPT.md
+- 06_REPO_INTEGRATION_PLAN.md
+- 07_SOURCE_SEED_CATALOG.csv
+- execution_manifest.json
+- execution_manifest.yaml
+- schemas/gap_record.schema.json
+- tools/validate_kit.py
+- SHA256SUMS.txt
+- VERIFICATION_REPORT.txt
+audit:
+  primary_verdict: gap-first lab integration; do not create a duplicate research package
+    by default
+  priority_counts:
+    P0: 15
+    P1: 34
+    P2: 6
+  requirement_clusters: 55
+  status_counts:
+    conflict: 1
+    existing_partial: 22
+    existing_strong: 20
+    missing: 12
+basis:
+  reason: GitHub connector exposed read/search operations but no repository write
+    action; local container could not resolve github.com for clone.
+  repository_branch_inspected: main
+  repository_write_status: not_performed_from_this_runtime
+  uploaded_spec: 00_ORIGINAL_SPEC.txt
+  uploaded_spec_line_count_observed: 1399
+  repository_access_check:
+    github_connector: read/search capability confirmed; no create/update/commit action
+      exposed
+    gh_cli: not installed
+    git_network: 'git ls-remote failed: Could not resolve host github.com'
+created_for_repo: Kingsley-Cyber/ai-video-movement-prompt-system
+kit_id: dmr-execution-kit-2026-07-31
+verification:
+  required:
+  - python3 tools/validate_kit.py
+  - sha256sum --check SHA256SUMS.txt

@@ -1,0 +1,247 @@
+{
+  "schema_id": "dmr.provider-capability-contract/0.1",
+  "contract_id": "google.vertex.veo-3.1-generate-001.2026-07-31",
+  "provider": "Google Cloud",
+  "api_surface": "Gemini Enterprise Agent Platform / Veo video generation",
+  "model_id": "veo-3.1-generate-001",
+  "contract_kind": "api",
+  "verified_on": "2026-07-31",
+  "documentation_urls": [
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/veo/3-1-generate",
+    "https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/veo-video-generation"
+  ],
+  "lifecycle": {
+    "launch_stage": "GA",
+    "release_date": "2025-11-17",
+    "retirement_date": "2026-11-17 or later",
+    "region": [
+      "us-central1"
+    ],
+    "duration_s": [
+      4,
+      6,
+      8
+    ],
+    "fps": [
+      24
+    ],
+    "aspect_ratio": [
+      "16:9",
+      "9:16"
+    ],
+    "output_resolution": [
+      "720p",
+      "1080p",
+      "4K"
+    ]
+  },
+  "mappings": [
+    {
+      "canonical_path": "prompt.text",
+      "classification": "native",
+      "carrier": "text",
+      "provider_parameter": "instances[0].prompt",
+      "transform": "identity",
+      "evidence_source": "Google Cloud Veo 3.1 model documentation"
+    },
+    {
+      "canonical_path": "prompt.negative",
+      "classification": "native",
+      "carrier": "text",
+      "provider_parameter": "parameters.negativePrompt",
+      "transform": "identity",
+      "evidence_source": "Google Cloud Veo API parameter documentation"
+    },
+    {
+      "canonical_path": "conditioning.first_frame",
+      "classification": "media-conditioned",
+      "carrier": "image",
+      "provider_parameter": "instances[0].image",
+      "transform": "identity",
+      "evidence_source": "Google Cloud Veo 3.1 model documentation"
+    },
+    {
+      "canonical_path": "conditioning.last_frame",
+      "classification": "media-conditioned",
+      "carrier": "image",
+      "provider_parameter": "instances[0].lastFrame",
+      "transform": "identity",
+      "evidence_source": "Google Cloud Veo 3.1 model documentation"
+    },
+    {
+      "canonical_path": "conditioning.reference_images",
+      "classification": "media-conditioned",
+      "carrier": "asset_images",
+      "provider_parameter": "instances[0].referenceImages",
+      "transform": "identity",
+      "limits": {
+        "role": "asset"
+      },
+      "evidence_source": "Google Cloud Veo 3.1 model documentation"
+    },
+    {
+      "canonical_path": "generation.duration_s",
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "parameters.durationSeconds",
+      "transform": "seconds_to_integer",
+      "limits": {
+        "allowed": [
+          4,
+          6,
+          8
+        ],
+        "integer": true
+      },
+      "evidence_source": "Google Cloud Veo 3.1 model documentation"
+    },
+    {
+      "canonical_path": "generation.aspect_ratio",
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "parameters.aspectRatio",
+      "transform": "identity",
+      "limits": {
+        "allowed": [
+          "16:9",
+          "9:16"
+        ]
+      },
+      "evidence_source": "Google Cloud Veo 3.1 model documentation"
+    },
+    {
+      "canonical_path": "generation.resolution",
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "parameters.resolution",
+      "transform": "identity",
+      "limits": {
+        "allowed": [
+          "720p",
+          "1080p",
+          "4K"
+        ]
+      },
+      "evidence_source": "Google Cloud Veo 3.1 model documentation"
+    },
+    {
+      "canonical_path": "generation.seed",
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "parameters.seed",
+      "transform": "identity",
+      "evidence_source": "Google Cloud Veo API parameter documentation"
+    },
+    {
+      "canonical_path": "generation.fps",
+      "classification": "native",
+      "carrier": "fixed_model_setting",
+      "transform": "identity",
+      "limits": {
+        "allowed": [
+          24
+        ]
+      },
+      "evidence_source": "Google Cloud Veo 3.1 model documentation"
+    },
+    {
+      "canonical_path": "generation.audio",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "Google Cloud Veo 3.1 model documentation",
+      "notes": "This exact Vertex/Agent Platform model page marks sound generation unsupported; the Gemini API preview surface documents video with audio and must be a separate contract."
+    },
+    {
+      "canonical_path": "generation.extension",
+      "classification": "native",
+      "carrier": "source_video",
+      "provider_parameter": "instances[0].video",
+      "transform": "identity",
+      "evidence_source": "Google Cloud Veo 3.1 model documentation"
+    },
+    {
+      "canonical_path": "camera.*",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "evidence_source": "No native trajectory parameter documented for this exact surface"
+    },
+    {
+      "canonical_path": "editing.*",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "evidence_source": "No native edit-timeline parameter documented"
+    },
+    {
+      "canonical_path": "vfx.*",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "evidence_source": "No native VFX event track documented"
+    },
+    {
+      "canonical_path": "motion.joint_tracks",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "No native joint-trajectory input documented"
+    },
+    {
+      "canonical_path": "motion.pose_control",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "No native pose-map input documented"
+    },
+    {
+      "canonical_path": "motion.depth_control",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "No native depth-map input documented"
+    },
+    {
+      "canonical_path": "motion.optical_flow",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "No native optical-flow input documented"
+    },
+    {
+      "canonical_path": "interaction.contacts",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "evidence_source": "No native contact constraint documented"
+    },
+    {
+      "canonical_path": "performance.facs",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "evidence_source": "No native FACS control documented"
+    },
+    {
+      "canonical_path": "performance.laban",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "evidence_source": "No native Laban control documented"
+    },
+    {
+      "canonical_path": "temporal.exact_timestamps",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "No exact event timestamp track documented"
+    },
+    {
+      "canonical_path": "temporal.frame_count",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "Frame rate is fixed and duration is discrete; no arbitrary frame-count input documented"
+    },
+    {
+      "canonical_path": "identity.binding",
+      "classification": "media-conditioned",
+      "carrier": "reference_images",
+      "provider_parameter": "instances[0].referenceImages",
+      "transform": "identity",
+      "evidence_source": "Asset reference images are documented; hard identity guarantees are not"
+    }
+  ],
+  "unknowns": [
+    "The exact degree of adherence to semantic camera, contact, FACS, Laban, or timestamp instructions is not documented as a hard capability.",
+    "Audio differs across Google API surfaces; do not reuse this contract for Gemini API preview endpoints."
+  ]
+}

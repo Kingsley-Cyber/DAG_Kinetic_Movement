@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "coordinate_convention": {
+    "world": "right-handed; +x right, +y up, +z forward by project convention",
+    "rotation": "quaternion [w,x,y,z] canonical",
+    "angles": "radians canonical; degrees allowed in human-facing exports",
+    "time": "seconds canonical; frame index derived",
+    "screen": "normalized [0,1] top-left unless stated"
+  },
+  "units": {
+    "length": "m",
+    "time": "s",
+    "angle": "rad",
+    "linear_velocity": "m/s",
+    "linear_acceleration": "m/s^2",
+    "jerk": "m/s^3",
+    "angular_velocity": "rad/s",
+    "force": "N",
+    "torque": "N*m",
+    "mass": "kg",
+    "impulse": "N*s",
+    "energy": "J",
+    "frequency": "Hz",
+    "tempo": "BPM",
+    "normalized": "unitless [0,1]"
+  },
+  "normalization": {
+    "bipolar": "signed [-1,1]; unit=(signed+1)/2",
+    "actor_range": "value / actor-specific comfortable or max range, named explicitly",
+    "body_weight_force": "force/(mass*g)",
+    "screen_position": "viewport normalized; retain crop/aspect"
+  },
+  "rounding": "Store continuous time/values. Quantize only at target render/export boundary."
+}

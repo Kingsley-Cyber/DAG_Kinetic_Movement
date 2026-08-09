@@ -1,0 +1,162 @@
+{
+  "schema_version": "cpcs-adrg/1.0",
+  "document_id": "filmA.scene12.shot04.adrg",
+  "request_id": "filmA.scene12.shot04",
+  "planner_profile": "planner.mini.strict.v1",
+  "budgets": {
+    "maximum_context_tokens": 16000,
+    "maximum_output_tokens": 1800,
+    "retrieval_top_k": 4,
+    "branch_width": 2,
+    "branch_depth": 1,
+    "critic_passes": 1
+  },
+  "nodes": [
+    {
+      "id": "goal.controlled_approach",
+      "type": "goal",
+      "plane": "scene_intent_control",
+      "title": "Control fails only at recognition",
+      "status": "resolved",
+      "confidence": 1.0
+    },
+    {
+      "id": "question.camera_treatment",
+      "type": "question",
+      "plane": "reasoning_execution",
+      "title": "Select camera treatment for recognition",
+      "status": "resolved",
+      "inputs": ["goal.controlled_approach"]
+    },
+    {
+      "id": "candidate.camera.late_dolly",
+      "type": "candidate",
+      "plane": "reasoning_execution",
+      "title": "Late dolly-in beginning at recognition",
+      "status": "resolved",
+      "evidence_refs": ["c_perceptual_constraints"],
+      "payload": {"axis": "camera_treatment", "value": "late_dolly_in"}
+    },
+    {
+      "id": "candidate.camera.telephoto",
+      "type": "candidate",
+      "plane": "reasoning_execution",
+      "title": "Telephoto observer with no camera participation",
+      "status": "resolved",
+      "payload": {"axis": "camera_treatment", "value": "telephoto_observer"}
+    },
+    {
+      "id": "decision.camera.primary",
+      "type": "decision",
+      "plane": "reasoning_execution",
+      "title": "Choose the primary camera treatment",
+      "status": "resolved",
+      "selected_candidate": "candidate.camera.late_dolly",
+      "confidence": 0.77
+    },
+    {
+      "id": "control.camera.primary",
+      "type": "artifact",
+      "plane": "scene_intent_control",
+      "title": "Late recognition dolly control",
+      "status": "ready"
+    },
+    {
+      "id": "artifact.prompt.primary",
+      "type": "artifact",
+      "plane": "compilation_realization",
+      "title": "Compiled natural-language prompt",
+      "status": "ready"
+    },
+    {
+      "id": "validation.graph_integrity",
+      "type": "validation",
+      "plane": "verification_experiment",
+      "title": "Graph and decision integrity validation",
+      "status": "resolved",
+      "payload": {"result": "pass"}
+    }
+  ],
+  "edges": [
+    {
+      "id": "e001",
+      "type": "decomposes_to",
+      "from": "goal.controlled_approach",
+      "to": "question.camera_treatment"
+    },
+    {
+      "id": "e002",
+      "type": "proposes",
+      "from": "question.camera_treatment",
+      "to": "candidate.camera.late_dolly"
+    },
+    {
+      "id": "e003",
+      "type": "proposes",
+      "from": "question.camera_treatment",
+      "to": "candidate.camera.telephoto"
+    },
+    {
+      "id": "e004",
+      "type": "selected_over",
+      "from": "candidate.camera.late_dolly",
+      "to": "candidate.camera.telephoto",
+      "decision_id": "decision.camera.primary"
+    },
+    {
+      "id": "e005",
+      "type": "compiled_to",
+      "from": "decision.camera.primary",
+      "to": "control.camera.primary",
+      "target_adapter": "cpcs-canonical/1.1",
+      "realization_status": "native_exact"
+    },
+    {
+      "id": "e006",
+      "type": "compiled_to",
+      "from": "control.camera.primary",
+      "to": "artifact.prompt.primary",
+      "target_adapter": "prompt_only.generic.v1",
+      "realization_status": "compressed_to_text"
+    },
+    {
+      "id": "e007",
+      "type": "validated_by",
+      "from": "decision.camera.primary",
+      "to": "validation.graph_integrity"
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "decision.camera.primary",
+      "question": "Which camera treatment best reveals the brief failure of control?",
+      "alternatives": ["late_dolly_in", "telephoto_observer"],
+      "criteria": ["recognition_emphasis", "timing_clarity", "generation_reliability"],
+      "scores": {
+        "late_dolly_in": [0.86, 0.90, 0.75],
+        "telephoto_observer": [0.72, 0.82, 0.78]
+      },
+      "selected": "late_dolly_in",
+      "evidence_refs": ["c_perceptual_constraints"],
+      "assumptions": ["target model can follow a semantic dolly instruction"],
+      "confidence": 0.77,
+      "unresolved": ["exact camera trajectory is not natively controlled"],
+      "loss": ["camera path compressed to text for prompt-only target"]
+    }
+  ],
+  "coverage": {
+    "intent": true,
+    "performance": true,
+    "action": true,
+    "camera": true,
+    "target_capability": true,
+    "verification": true
+  },
+  "unresolved": ["exact camera trajectory requires a stronger execution carrier"],
+  "provenance": {
+    "created_at": "2026-07-23T00:00:00Z",
+    "model_profile": "planner.mini.strict.v1",
+    "compiler_version": "cpcs-adrg-reference/1.0",
+    "source_refs": ["S001", "S003", "S005", "S040", "S041"]
+  }
+}

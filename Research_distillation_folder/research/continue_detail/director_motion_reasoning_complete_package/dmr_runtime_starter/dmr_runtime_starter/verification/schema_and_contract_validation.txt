@@ -1,0 +1,5 @@
+provider_contracts_valid=5
+scene_model_valid=true
+compilation_result_valid=true
+provider_instances_array=true
+example_validation_error_count=0

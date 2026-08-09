@@ -1,0 +1,25 @@
+{"test_id": "TC001", "name": "schema_valid", "description": "All example canonical JSON validates", "category": "structural", "expected": "pass"}
+{"test_id": "TC002", "name": "source_resolution", "description": "Every source ID exists", "category": "provenance", "expected": "pass"}
+{"test_id": "TC003", "name": "phase_negative", "description": "Reject phase end before start", "category": "temporal", "expected": "error"}
+{"test_id": "TC004", "name": "phase_outside", "description": "Reject phase outside scene duration", "category": "temporal", "expected": "error"}
+{"test_id": "TC005", "name": "contact_reaction", "description": "Flag reaction before contact", "category": "interaction", "expected": "error"}
+{"test_id": "TC006", "name": "throw_release", "description": "Require release before free flight", "category": "interaction", "expected": "error"}
+{"test_id": "TC007", "name": "handoff_support", "description": "Require shared support/grasp interval", "category": "interaction", "expected": "error"}
+{"test_id": "TC008", "name": "facs_order", "description": "Reject apex before onset", "category": "facs", "expected": "error"}
+{"test_id": "TC009", "name": "facs_deception", "description": "Reject fact claim of deception from AU motif", "category": "ethics", "expected": "error"}
+{"test_id": "TC010", "name": "force_units", "description": "Reject measured force without unit/status", "category": "kinematics", "expected": "error"}
+{"test_id": "TC011", "name": "lma_force", "description": "Reject direct LMA Weight\u2192N conversion", "category": "semantics", "expected": "error"}
+{"test_id": "TC012", "name": "adapter_expired", "description": "Block active adapter past TTL", "category": "adapter", "expected": "error"}
+{"test_id": "TC013", "name": "adapter_unknown", "description": "Unknown canonical field appears in loss report", "category": "adapter", "expected": "pass"}
+{"test_id": "TC014", "name": "sora_legacy", "description": "Block new Sora primary compile", "category": "adapter", "expected": "error"}
+{"test_id": "TC015", "name": "style_contact", "description": "Style transform preserves locked contact", "category": "style", "expected": "pass"}
+{"test_id": "TC016", "name": "camera_visibility", "description": "Warn when contact is outside shot", "category": "camera", "expected": "warning"}
+{"test_id": "TC017", "name": "unit_frames", "description": "Round frames only at export boundary", "category": "units", "expected": "pass"}
+{"test_id": "TC018", "name": "derived_lineage", "description": "Reject derived weight without experiment manifest hash", "category": "lineage", "expected": "error"}
+{"test_id": "TC019", "name": "immutable_edit", "description": "Reject overwrite of experiment record", "category": "lineage", "expected": "error"}
+{"test_id": "TC020", "name": "unverified_curated", "description": "Reject UNVERIFIED claim in curated graph", "category": "provenance", "expected": "error"}
+{"test_id": "TC021", "name": "culture_missing", "description": "Warn when universal gesture asserted without context", "category": "intent", "expected": "warning"}
+{"test_id": "TC022", "name": "product_label", "description": "Detect identity/text drift in UGC example", "category": "identity", "expected": "metric"}
+{"test_id": "TC023", "name": "foot_skate", "description": "Measure planted-foot drift", "category": "physics", "expected": "metric"}
+{"test_id": "TC024", "name": "impact_sync", "description": "Measure camera/audio/contact offsets", "category": "rhythm", "expected": "metric"}
+{"test_id": "TC025", "name": "round_trip", "description": "JSON\u2192YAML/XML views preserve IDs/times", "category": "serialization", "expected": "pass"}

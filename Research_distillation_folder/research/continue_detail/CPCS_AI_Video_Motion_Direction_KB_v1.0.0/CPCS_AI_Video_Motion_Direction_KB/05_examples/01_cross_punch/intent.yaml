@@ -1,0 +1,16 @@
+scene_id: ex_cross_punch_01
+primary_intent: assert
+secondary_intents:
+- challenge
+genre: realist_martial_arts_film
+target_models:
+- veo_3_1_gemini
+- kling_video_3_0
+- runway_gen_4_5
+constraints:
+- staged non-injury choreography
+- contact is blocked on guard
+- feet and contact visible
+- no blood or injury
+desired_read: compact grounded power with fast recoil
+

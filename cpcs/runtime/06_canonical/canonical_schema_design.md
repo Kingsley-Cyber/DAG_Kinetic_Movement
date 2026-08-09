@@ -1,0 +1,189 @@
+---
+id: cpcs.runtime.canonical_schema
+kind: schema_draft
+epistemic_status: SOURCE_EVIDENCE
+acquisition: authored
+sources: [SRC-005 §25]
+primary_route: cpcs/runtime/06_canonical/
+secondary_routes:
+  - cpcs/runtime/07_compiler/
+  - cpcs/knowledge/00_foundations/
+interfaces:
+  - cpcs.found.exactness_taxonomy
+  - cpcs.found.timebase_systems
+  - cpcs.body.skeleton_topology
+  - cpcs.runtime.constraint_compilation
+  - cpcs.runtime.interchange_manifests
+---
+
+# Canonical Schema Design
+
+> **Source:** SRC-005 §25 — "Canonical schema design"
+
+## Design principles
+
+1. Every number has a semantic field and declared unit.
+2. Temporal order is represented by arrays and timestamps, not object-member order.
+3. Dense arrays are external assets with shapes and hashes.
+4. Evidence and authoring status are explicit.
+5. Hard constraints are distinct from preferences.
+6. Style transformation is distinct from anatomical motion.
+7. Character, rig, and performer identity are separate entities.
+8. Coordinate systems are referenced, not assumed.
+9. Derived values record their derivation method.
+10. Unsupported target capabilities create reports, not silent omissions.
+
+The canonical representation is JSON validated by JSON Schema Draft 2020-12.
+YAML may author the same data model, but canonicalization removes YAML
+aliases, implicit typing, comments, and formatting choices before hashing.
+
+## Top-level structure
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_id": "urn:cpcs-mx:schema:1.0",
+  "document_id": "score.project_001.sequence_004",
+  "timebase": {},
+  "coordinate_systems": [],
+  "assets": [],
+  "characters": [],
+  "rigs": [],
+  "style_profiles": [],
+  "shots": [],
+  "constraints": [],
+  "verification_plan": {},
+  "provenance": {},
+  "extensions": {}
+}
+```
+
+## Core object types
+
+### Track object
+
+A uniform track contract: `track_id`, `semantic`, `subject_ref`,
+`coordinate_system_ref`, `unit`, `authority`, `representation` (constant,
+keyframes, sampled_inline, external-asset, procedural, or derived), and
+`evidence` (class, source_refs, confidence).
+
+### Interval object
+
+Explicit boundaries with optional fades: `interval_id`, `start_s`, `end_s`,
+`boundary_semantics` (half-open by default), `fade_in_s`, `fade_out_s`. An
+interval does not imply constant values; it can reference curves or
+subphrases.
+
+### Event object
+
+`event_id`, `type`, `time_s`, `participants`, `tolerance_s`, `hard` (boolean),
+and `payload`. Events may occur at a point or over an interval. A point event
+can link to audio, facial, VFX, and reaction events through temporal
+relations.
+
+### Laban object
+
+`laban_control` with `effort` (weight/time/space/flow, each pole + intensity),
+`shape` (vertical/sagittal/horizontal), `phrasing` (pattern, peak event ref),
+`status` (authored_descriptor), and `computational_proxy_profile`. The
+descriptor and its computational proxy are separate. This avoids claiming
+that a specific velocity threshold is the universal meaning of `sudden`.
+
+### Constraint object
+
+`constraint_id`, `scope` (subject + interval), `type`, `site`, `target`,
+`priority` (hard/soft), `tolerances`, and `failure_policy`. Perceptual
+constraints use project-defined metrics with versioned definitions and
+calibration datasets.
+
+## Extension namespacing
+
+Projects may add fields under explicit namespaces (`urn:studio.example:...`).
+Unrecognized extensions are retained but not executed unless the target
+adapter declares support.
+
+## Versioning and migration
+
+Schema versions follow explicit migrations: e.g., 1.0 to 1.1 renames
+`physics_scale` to `virtual_physics_profile`, splits scalar `style_intensity`
+into typed transformation dimensions, and preserves old values in migration
+provenance. A migration cannot silently reinterpret a number.
+
+## Boundary
+
+This card defines the canonical schema. It does not prescribe a specific
+serialization library; it defines the semantic contract that any library
+must respect.
+
+## Concrete field catalog (SRC-008 EXTEND)
+
+The frozen package provides a 1,610-line JSON Schema (`CPCS_MX_Schema.json`,
+`$id: urn:cpcs-mx:schema:1.0`) with 20 top-level fields:
+
+`schema_id` (const), `document_id`, `title`, `description`, `safety_scope`,
+`rights_scope`, `timebase`, `coordinate_systems`, `assets`, `entities`,
+`characters`, `rigs`, `style_profiles`, `shots`, `phases`, `tracks`, `events`,
+`contacts`, `laban_controls`, `facial_events`, `breath_tracks`,
+`mannerism_profiles`, `secondary_motion`, `style_transforms`, `constraints`,
+`verification_plan`, `capability_report`, `provenance`, `extensions`.
+
+Required fields: `schema_id`, `document_id`, `timebase`.
+
+### Authority values (4)
+
+| Value | Meaning |
+| --- | --- |
+| `locked` | must be satisfied within tolerance |
+| `guided` | strong target; solver may deviate and report residual |
+| `preferred` | weighted style or quality target |
+| `free` | generated by the motion prior or solver |
+
+### Constraint priorities (3)
+
+| Value | Failure policy |
+| --- | --- |
+| `hard` | reject candidate or require authorized relaxation |
+| `soft` | optimize and measure residual |
+| `advisory` | prompt or review guidance |
+
+### Minimum canonical score
+
+```json
+{
+  "schema_id": "urn:cpcs-mx:schema:1.0",
+  "document_id": "score.example.001",
+  "timebase": {
+    "canonical": "seconds",
+    "fps": {"numerator": 24, "denominator": 1},
+    "sample_rate_hz": 120,
+    "interval_semantics": "half_open"
+  },
+  "shots": [], "tracks": [], "events": [],
+  "constraints": [],
+  "verification_plan": {"metrics": [], "acceptance_gates": []}
+}
+```
+
+A minimal score can validate structurally while still being too weak for exact
+generation. Capability and coverage reports remain necessary.
+
+## v1.2 schema additions (SRC-009 EXTEND)
+
+The v1.2 package introduces additional schema elements beyond the frozen
+package (SRC-008). The VOG schema (`$id: cpcs/video-observation-graph/1.0`)
+adds 10 required top-level fields: `schema`, `graph_id`, `source`, `clock`,
+`segments`, `entities`, `observations`, `resolved_claims`,
+`contradictions`, `cpcs_projection`, `validation`.
+
+The cross-format compiler reference (Appendix G) adds these required
+canonical fields: `schema_version`, `ontology_version`,
+`document_revision`, `effective_styles`, `adapter_extensions`,
+`rights_and_approvals`, `content_digest`. The style domain registry
+defines 10 independently-inheritable style domains under `/style/`.
+
+The observation record contract (Appendix H) requires: `record_id`,
+`source_id`, `time_range`, `clock`, `layer`, `claim`, `evidence_class`
+(5 values: measured, detected, inferred, interpreted, authored),
+`confidence`, `extractor` (with `parameters_digest`), `evidence` array.
+
+See also: `cpcs.runtime.typed_merge_algebra`, `cpcs.runtime.cross_format_compiler_reference`.

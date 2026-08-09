@@ -1,0 +1,54 @@
+{
+  "schema_version": "cpcs.spatial_state_transition/1.0-candidate",
+  "transition_id": "spatial_actor_b_dive_right_lane",
+  "coordinate_frame": "screen_normalized",
+  "camera_state_ref": "camera://shot_01/locked_axis",
+  "before": {
+    "actor_A": {
+      "screen_lane": "left",
+      "depth_lane": "mid",
+      "facing": "right"
+    },
+    "actor_B": {
+      "screen_lane": "right",
+      "depth_lane": "mid",
+      "facing": "left"
+    }
+  },
+  "motion": {
+    "entity_id": "actor_B",
+    "trajectory": [
+      [
+        0.72,
+        0.54
+      ],
+      [
+        0.73,
+        0.62
+      ],
+      [
+        0.74,
+        0.74
+      ]
+    ],
+    "screen_lane_before": "right",
+    "screen_lane_after": "right",
+    "depth_lane_before": "mid",
+    "depth_lane_after": "subsurface_mid"
+  },
+  "after": {
+    "actor_A": {
+      "screen_lane": "left",
+      "depth_lane": "mid"
+    },
+    "actor_B": {
+      "screen_lane": "right",
+      "depth_lane": "subsurface_mid"
+    }
+  },
+  "invariants": [
+    "actor_A remains left of actor_B",
+    "no axis crossing",
+    "no world-layout reset"
+  ]
+}

@@ -1,0 +1,351 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "T03",
+  "title": "Motion Grammar — Phase State Machines",
+  "status": "curated",
+  "status_note": "Exact seven-phase sequence is CPCS synthesis, not a universal standard.",
+  "source_models": {
+    "gesture": {
+      "phases": [
+        "preparation",
+        "prestroke_hold",
+        "stroke",
+        "poststroke_hold",
+        "retraction"
+      ],
+      "rule": "stroke is the only obligatory phase",
+      "source_ids": [
+        "S014",
+        "S015"
+      ]
+    },
+    "bml": {
+      "syncpoints": [
+        "start",
+        "ready",
+        "stroke_start",
+        "stroke",
+        "stroke_end",
+        "relax",
+        "end"
+      ],
+      "source_ids": [
+        "S013"
+      ]
+    },
+    "animation": {
+      "principles": [
+        "anticipation",
+        "timing",
+        "arcs",
+        "follow_through",
+        "overlap",
+        "slow_in_slow_out",
+        "exaggeration"
+      ],
+      "source_ids": [
+        "S016"
+      ]
+    },
+    "biomechanics": {
+      "rule": "boundaries depend on action/contact/analysis objective",
+      "source_ids": [
+        "S027",
+        "S028"
+      ]
+    }
+  },
+  "canonical_phases": [
+    {
+      "id": "initiation",
+      "order": 1,
+      "purpose": "first observable or inferred commitment",
+      "optional": true,
+      "carries": [
+        "intent",
+        "attention shift",
+        "deception setup"
+      ],
+      "provenance": "CPCS synthesis"
+    },
+    {
+      "id": "preparation",
+      "order": 2,
+      "purpose": "organize support, alignment, backswing, guard, anticipation",
+      "optional": true,
+      "carries": [
+        "readability",
+        "feint information",
+        "pre-tension"
+      ],
+      "provenance": "gesture preparation + animation anticipation + biomechanics"
+    },
+    {
+      "id": "acceleration",
+      "order": 3,
+      "purpose": "increase linear/angular velocity toward focal event",
+      "optional": false,
+      "carries": [
+        "force development",
+        "urgency",
+        "commitment"
+      ],
+      "provenance": "biomechanical action phase"
+    },
+    {
+      "id": "stroke",
+      "order": 4,
+      "purpose": "meaning-bearing apex, target acquisition, or contact",
+      "optional": false,
+      "carries": [
+        "semantic payload",
+        "contact",
+        "emotion accent"
+      ],
+      "provenance": "Kendon/McNeill gesture stroke + action apex"
+    },
+    {
+      "id": "overshoot",
+      "order": 5,
+      "purpose": "post-apex continuation due to momentum/follow-through/exaggeration",
+      "optional": true,
+      "carries": [
+        "perceived force",
+        "style exaggeration"
+      ],
+      "provenance": "animation + biomechanics"
+    },
+    {
+      "id": "recovery",
+      "order": 6,
+      "purpose": "retract, recoil, redirect, or return toward stable organization",
+      "optional": true,
+      "carries": [
+        "defensive readiness",
+        "recoil",
+        "aftereffect"
+      ],
+      "provenance": "gesture retraction/BML relax-to-end"
+    },
+    {
+      "id": "settle",
+      "order": 7,
+      "purpose": "dissipate residual motion and establish next stable state",
+      "optional": true,
+      "carries": [
+        "weight resolution",
+        "secondary motion",
+        "reaction beat"
+      ],
+      "provenance": "CPCS production phase"
+    }
+  ],
+  "timing_presets": {
+    "explosive": {
+      "ratios": {
+        "initiation": 0.03,
+        "preparation": 0.09,
+        "acceleration": 0.19,
+        "stroke": 0.22,
+        "overshoot": 0.14,
+        "recovery": 0.22,
+        "settle": 0.11
+      },
+      "status": "CPCS_CONVENTION"
+    },
+    "ballistic": {
+      "ratios": {
+        "initiation": 0.03,
+        "preparation": 0.07,
+        "acceleration": 0.21,
+        "stroke": 0.22,
+        "overshoot": 0.2,
+        "recovery": 0.18,
+        "settle": 0.09
+      },
+      "status": "CPCS_CONVENTION"
+    },
+    "controlled": {
+      "ratios": {
+        "initiation": 0.07,
+        "preparation": 0.17,
+        "acceleration": 0.17,
+        "stroke": 0.22,
+        "overshoot": 0.07,
+        "recovery": 0.19,
+        "settle": 0.11
+      },
+      "status": "CPCS_CONVENTION"
+    },
+    "sustained": {
+      "ratios": {
+        "initiation": 0.07,
+        "preparation": 0.14,
+        "acceleration": 0.17,
+        "stroke": 0.27,
+        "overshoot": 0.06,
+        "recovery": 0.18,
+        "settle": 0.11
+      },
+      "status": "CPCS_CONVENTION"
+    },
+    "microgesture": {
+      "ratios": {
+        "initiation": 0.08,
+        "preparation": 0.1,
+        "acceleration": 0.16,
+        "stroke": 0.3,
+        "overshoot": 0.04,
+        "recovery": 0.18,
+        "settle": 0.14
+      },
+      "status": "CPCS_CONVENTION"
+    }
+  },
+  "state_machine": {
+    "allowed_skips": [
+      [
+        "initiation",
+        "acceleration"
+      ],
+      [
+        "preparation",
+        "stroke"
+      ],
+      [
+        "stroke",
+        "recovery"
+      ],
+      [
+        "stroke",
+        "settle"
+      ],
+      [
+        "recovery",
+        "initiation"
+      ]
+    ],
+    "interruptions": [
+      {
+        "event": "block_or_collision",
+        "target": "recovery_or_new_chain"
+      },
+      {
+        "event": "feint_abort",
+        "target": "settle_or_alternate_acceleration"
+      },
+      {
+        "event": "target_moves",
+        "target": "retarget_or_redirect"
+      },
+      {
+        "event": "loss_of_balance",
+        "target": "protective_recovery"
+      }
+    ],
+    "record_fields": [
+      "t_start_s",
+      "t_end_s",
+      "progress_curve",
+      "primary_joints",
+      "contact_events",
+      "force_role",
+      "semantic_role",
+      "emotion_role",
+      "confidence"
+    ]
+  },
+  "action_decompositions": {
+    "jab": [
+      "gaze/guard intent",
+      "minimal hidden preparation",
+      "lead-side acceleration",
+      "contact/max extension",
+      "small overshoot",
+      "rapid guard return",
+      "stance restabilizes"
+    ],
+    "cross_punch": [
+      "ground/hip commitment",
+      "rear-side load",
+      "leg–pelvis–trunk–arm acceleration",
+      "contact",
+      "rotational continuation",
+      "recoil/deceleration",
+      "guard reset"
+    ],
+    "roundhouse_kick": [
+      "weight shift",
+      "chamber/pivot",
+      "pelvis–thigh–shank acceleration",
+      "foot/shin contact",
+      "rotational continuation",
+      "re-chamber/step-through",
+      "stance reset"
+    ],
+    "block": [
+      "threat orientation",
+      "interception preparation",
+      "blocking surface acceleration",
+      "contact/deflection",
+      "redirect",
+      "return/counter",
+      "new guard"
+    ],
+    "evade": [
+      "attention/weight release",
+      "base organization",
+      "COM leaves line",
+      "maximum clearance",
+      "optional angle continuation",
+      "reorient",
+      "counter-ready position"
+    ],
+    "reach": [
+      "gaze to object",
+      "postural organization",
+      "hand approach",
+      "grasp/contact",
+      "optional miss overshoot",
+      "transport/retract",
+      "new contact state"
+    ],
+    "turn": [
+      "eyes/head orient",
+      "base preload",
+      "pelvis/trunk rotate",
+      "new orientation",
+      "secondary lag",
+      "braking",
+      "stable posture"
+    ],
+    "walk_step": [
+      "weight transfer",
+      "swing limb unload",
+      "swing advances",
+      "foot contact",
+      "COM progresses",
+      "opposite transition",
+      "normally no settle in continuous gait"
+    ]
+  },
+  "compiler_rules": [
+    "Normalize durations to clip duration after optional holds.",
+    "Pin contact events before time warping.",
+    "Do not create overshoot when contact constraints forbid it.",
+    "Address semantic apex and physical contact separately.",
+    "Represent omitted phases explicitly rather than zero-duration phantoms."
+  ],
+  "source_ids": [
+    "S013",
+    "S014",
+    "S015",
+    "S016",
+    "S027",
+    "S028",
+    "S029",
+    "S039",
+    "S073",
+    "S075"
+  ]
+}

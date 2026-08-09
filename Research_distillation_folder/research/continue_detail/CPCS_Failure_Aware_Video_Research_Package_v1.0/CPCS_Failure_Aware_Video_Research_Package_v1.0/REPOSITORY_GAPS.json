@@ -1,0 +1,32 @@
+[
+  {
+    "gap_id": "repo_gap_001",
+    "finding": "The requested root REPO_CONTINUITY_IMPLEMENTATION_PLAN.md was not found in the inspected tree.",
+    "impact": "The research uses ARCHITECTURE.md plus lab/second_brain/IMPLEMENTATION_PLAN.md as the nearest current architecture/continuity owners; this substitution must be reviewed by the repository owner.",
+    "action": "Do not create a duplicate plan. Confirm whether the root file was renamed, moved, or never committed."
+  },
+  {
+    "gap_id": "repo_gap_002",
+    "finding": "Only Veo 3.1 is represented as a versioned compiler provider capability profile in the inspected repository.",
+    "impact": "Seedance, Kling, Runway, MiniMax, Wan, LTX, and other rows in this research remain knowledge records, not executable adapters.",
+    "action": "Add provider profiles one at a time through the existing compiler provider schema after official-interface and live-request qualification."
+  },
+  {
+    "gap_id": "repo_gap_003",
+    "finding": "The universal score has existing top-level owners but several relevant objects remain structurally open rather than typed for hidden state, state transitions, and causal events.",
+    "impact": "Prompt adapters can serialize intent, but cannot deterministically prove that all continuity obligations were represented.",
+    "action": "Review the candidate schemas in this package as minimal nested extensions under existing owners; do not add a second root score."
+  },
+  {
+    "gap_id": "repo_gap_004",
+    "finding": "Current verification supports artifact identity/basic media properties and a small number of closed measurements, but not the complete failure metric catalog.",
+    "impact": "Most new failure assertions require new calibrated measured/semantic/human lanes before they can block or promote a run.",
+    "action": "Implement metrics incrementally behind lab/verification, starting with actor/object count, event order, screen side, effect origin, and occlusion reappearance region."
+  },
+  {
+    "gap_id": "repo_gap_005",
+    "finding": "No authorized provider render campaign or human calibration bundle was available in this session.",
+    "impact": "The package cannot report provider-specific success rates or universal complexity thresholds.",
+    "action": "Execute the pre-registered repeated-seed fixtures and record raw prompts, requests, seeds, outputs, evaluator versions, and human verdicts."
+  }
+]

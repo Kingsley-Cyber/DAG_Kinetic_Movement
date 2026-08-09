@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/cpcs/schema/affect_trajectory/1.0.0",
+  "title": "CPCS Affect Trajectory",
+  "type": "object",
+  "properties": {
+    "track_id": {
+      "type": "string"
+    },
+    "actor_id": {
+      "type": "string"
+    },
+    "keyframes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "time_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "valence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "arousal": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "dominance": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "confidence_state": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "certainty": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "engagement": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "label_hint": {
+            "type": "string"
+          },
+          "cause_event_id": {
+            "type": "string"
+          },
+          "interval": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        },
+        "required": [
+          "time_s",
+          "valence",
+          "arousal",
+          "dominance"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "interpolation": {
+      "enum": [
+        "linear",
+        "cubic_hermite",
+        "monotone_cubic",
+        "ease_in_out",
+        "step"
+      ]
+    },
+    "channel": {
+      "enum": [
+        "latent_intent",
+        "face",
+        "body",
+        "voice",
+        "camera",
+        "combined"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "provenance_class": {
+          "enum": [
+            "ESTABLISHED",
+            "EMPIRICAL",
+            "PRACTICE",
+            "CPCS_CONVENTION",
+            "UNVERIFIED"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{3}$"
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "measurement_status": {
+          "enum": [
+            "measured",
+            "annotated",
+            "inverse_dynamics_estimate",
+            "model_inference",
+            "visual_proxy",
+            "prompt_prior",
+            "generated"
+          ]
+        },
+        "uncertainty_note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provenance_class"
+      ],
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "track_id",
+    "actor_id",
+    "keyframes",
+    "interpolation",
+    "channel"
+  ],
+  "unevaluatedProperties": false
+}

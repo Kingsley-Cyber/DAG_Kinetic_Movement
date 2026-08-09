@@ -1,0 +1,587 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "T01",
+  "title": "Laban Movement Analysis — Full BESS Framework",
+  "status": "curated",
+  "provenance_policy": {
+    "framework_terms": "ESTABLISHED",
+    "continuous_normalization": "CPCS_CONVENTION",
+    "computational_proxies": "EMPIRICAL unless marked otherwise"
+  },
+  "normalization": {
+    "signed_range": [
+      -1,
+      1
+    ],
+    "unit_range": [
+      0,
+      1
+    ],
+    "conversion": "unit=(signed+1)/2",
+    "neutral": "signed 0 / unit 0.5 means mixed, midrange, or unspecified; not a fifth LMA pole"
+  },
+  "body": {
+    "active_parts": [
+      "head",
+      "eyes",
+      "spine",
+      "pelvis",
+      "left_arm",
+      "right_arm",
+      "left_hand",
+      "right_hand",
+      "left_leg",
+      "right_leg",
+      "left_foot",
+      "right_foot"
+    ],
+    "organization": {
+      "initiation_locus": [
+        "core",
+        "head",
+        "tail",
+        "proximal_joint",
+        "distal_extremity",
+        "multiple",
+        "external_contact",
+        "unknown"
+      ],
+      "sequencing": [
+        "simultaneous",
+        "proximal_to_distal",
+        "distal_to_proximal",
+        "upper_to_lower",
+        "lower_to_upper",
+        "ipsilateral",
+        "cross_lateral",
+        "spiral",
+        "mixed"
+      ],
+      "support_contacts": [
+        "left_foot",
+        "right_foot",
+        "left_knee",
+        "right_knee",
+        "pelvis",
+        "left_hand",
+        "right_hand",
+        "environment"
+      ],
+      "symmetry": {
+        "range": [
+          0,
+          1
+        ],
+        "status": "CPCS metric"
+      },
+      "participation": "per-part activation and onset/offset track"
+    }
+  },
+  "effort": {
+    "dimensions": [
+      {
+        "id": "weight",
+        "negative": "light",
+        "positive": "strong",
+        "descriptors": {
+          "light": [
+            "delicate",
+            "buoyant",
+            "gentle"
+          ],
+          "strong": [
+            "powerful",
+            "heavy",
+            "forceful"
+          ]
+        },
+        "proxies": [
+          {
+            "feature": "segment kinetic energy / deceleration",
+            "status": "EMPIRICAL and task-dependent",
+            "source_ids": [
+              "S007"
+            ]
+          }
+        ],
+        "warning": "Perceived Weight is not measured external force."
+      },
+      {
+        "id": "time",
+        "negative": "sustained",
+        "positive": "sudden",
+        "descriptors": {
+          "sustained": [
+            "lingering",
+            "gradual",
+            "unhurried"
+          ],
+          "sudden": [
+            "urgent",
+            "quick",
+            "abrupt"
+          ]
+        },
+        "proxies": [
+          {
+            "feature": "weighted acceleration / time-to-peak",
+            "status": "EMPIRICAL",
+            "source_ids": [
+              "S007"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "space_effort",
+        "negative": "indirect",
+        "positive": "direct",
+        "descriptors": {
+          "indirect": [
+            "wandering",
+            "multi-focused",
+            "flexible attention"
+          ],
+          "direct": [
+            "targeted",
+            "single-focused",
+            "straight"
+          ]
+        },
+        "proxies": [
+          {
+            "feature": "path_efficiency",
+            "formula": "net displacement / path length",
+            "status": "CPCS_CONVENTION"
+          },
+          {
+            "feature": "curvature",
+            "status": "EMPIRICAL; context-dependent"
+          }
+        ]
+      },
+      {
+        "id": "flow",
+        "negative": "free",
+        "positive": "bound",
+        "descriptors": {
+          "free": [
+            "released",
+            "ongoing",
+            "unrestrained"
+          ],
+          "bound": [
+            "controlled",
+            "checked",
+            "restrained"
+          ]
+        },
+        "proxies": [
+          {
+            "feature": "jerk/control residuals",
+            "status": "weak EMPIRICAL proxy"
+          }
+        ],
+        "warning": "Flow is latent control/tension and is harder to infer from vision than geometric factors."
+      }
+    ],
+    "states": [
+      {
+        "id": "awake",
+        "components": [
+          "space_effort",
+          "time"
+        ],
+        "missing": [
+          "weight",
+          "flow"
+        ],
+        "aliases": [
+          "alert"
+        ]
+      },
+      {
+        "id": "dreamlike",
+        "components": [
+          "weight",
+          "flow"
+        ],
+        "missing": [
+          "space_effort",
+          "time"
+        ],
+        "aliases": [
+          "dream"
+        ]
+      },
+      {
+        "id": "distant",
+        "components": [
+          "space_effort",
+          "flow"
+        ],
+        "missing": [
+          "weight",
+          "time"
+        ],
+        "aliases": [
+          "remote"
+        ]
+      },
+      {
+        "id": "near",
+        "components": [
+          "weight",
+          "time"
+        ],
+        "missing": [
+          "space_effort",
+          "flow"
+        ],
+        "aliases": [
+          "rhythm"
+        ]
+      },
+      {
+        "id": "stable",
+        "components": [
+          "space_effort",
+          "weight"
+        ],
+        "missing": [
+          "time",
+          "flow"
+        ]
+      },
+      {
+        "id": "mobile",
+        "components": [
+          "time",
+          "flow"
+        ],
+        "missing": [
+          "space_effort",
+          "weight"
+        ],
+        "aliases": [
+          "labile"
+        ]
+      }
+    ],
+    "drives": [
+      {
+        "id": "action_drive",
+        "components": [
+          "space_effort",
+          "weight",
+          "time"
+        ],
+        "missing": "flow"
+      },
+      {
+        "id": "passion_drive",
+        "components": [
+          "weight",
+          "time",
+          "flow"
+        ],
+        "missing": "space_effort"
+      },
+      {
+        "id": "vision_drive",
+        "components": [
+          "space_effort",
+          "time",
+          "flow"
+        ],
+        "missing": "weight"
+      },
+      {
+        "id": "spell_drive",
+        "components": [
+          "space_effort",
+          "weight",
+          "flow"
+        ],
+        "missing": "time"
+      }
+    ],
+    "basic_effort_actions": [
+      {
+        "id": "float",
+        "space_effort": "indirect",
+        "weight": "light",
+        "time": "sustained"
+      },
+      {
+        "id": "punch",
+        "space_effort": "direct",
+        "weight": "strong",
+        "time": "sudden"
+      },
+      {
+        "id": "glide",
+        "space_effort": "direct",
+        "weight": "light",
+        "time": "sustained"
+      },
+      {
+        "id": "slash",
+        "space_effort": "indirect",
+        "weight": "strong",
+        "time": "sudden"
+      },
+      {
+        "id": "dab",
+        "space_effort": "direct",
+        "weight": "light",
+        "time": "sudden"
+      },
+      {
+        "id": "wring",
+        "space_effort": "indirect",
+        "weight": "strong",
+        "time": "sustained"
+      },
+      {
+        "id": "flick",
+        "space_effort": "indirect",
+        "weight": "light",
+        "time": "sudden"
+      },
+      {
+        "id": "press",
+        "space_effort": "direct",
+        "weight": "strong",
+        "time": "sustained"
+      }
+    ]
+  },
+  "shape": {
+    "modes": [
+      {
+        "id": "shape_flow",
+        "focus": "self-referential change such as breath expansion"
+      },
+      {
+        "id": "directional",
+        "focus": "goal-directed bridge",
+        "subtypes": [
+          "spoke_like",
+          "arc_like"
+        ]
+      },
+      {
+        "id": "carving",
+        "focus": "three-dimensional accommodation around volume"
+      }
+    ],
+    "axes": [
+      {
+        "id": "vertical",
+        "negative": "sinking",
+        "positive": "rising",
+        "unit_anchors": {
+          "sinking": 0,
+          "neutral": 0.5,
+          "rising": 1
+        }
+      },
+      {
+        "id": "horizontal",
+        "negative": "enclosing",
+        "positive": "spreading",
+        "unit_anchors": {
+          "enclosing": 0,
+          "neutral": 0.5,
+          "spreading": 1
+        }
+      },
+      {
+        "id": "sagittal",
+        "negative": "retreating",
+        "positive": "advancing",
+        "unit_anchors": {
+          "retreating": 0,
+          "neutral": 0.5,
+          "advancing": 1
+        }
+      }
+    ],
+    "computational_features": [
+      "convex-hull volume",
+      "body-width/height/depth ratios",
+      "axis rate of change",
+      "contraction index"
+    ]
+  },
+  "space": {
+    "kinesphere": {
+      "reach": {
+        "range": [
+          0,
+          1
+        ],
+        "anchors": {
+          "near": 0,
+          "middle": 0.5,
+          "far": 1
+        },
+        "normalization": "distance from actor center divided by actor-specific max reach"
+      },
+      "levels": [
+        "low",
+        "middle",
+        "high"
+      ],
+      "directions": [
+        "front",
+        "back",
+        "left",
+        "right",
+        "up",
+        "down",
+        "diagonals"
+      ]
+    },
+    "pathways": [
+      {
+        "id": "spoke_like",
+        "geometry": "radial/direct"
+      },
+      {
+        "id": "arc_like",
+        "geometry": "curved planar"
+      },
+      {
+        "id": "carved_multi_planar",
+        "geometry": "3D volume-accommodating"
+      },
+      {
+        "id": "peripheral",
+        "geometry": "outer kinesphere"
+      },
+      {
+        "id": "central",
+        "geometry": "through/near body center"
+      }
+    ],
+    "spatial_harmony": {
+      "forms": [
+        "diagonal",
+        "diametral",
+        "transverse",
+        "scale",
+        "ring"
+      ],
+      "solids": [
+        "octahedron",
+        "cube",
+        "icosahedron"
+      ],
+      "encoding": "direction vectors + ordered transitions, not one scalar"
+    }
+  },
+  "digitization": [
+    {
+      "name": "LabanWriter",
+      "type": "manual notation editor",
+      "automatic_detector": false,
+      "source_ids": [
+        "S005"
+      ]
+    },
+    {
+      "name": "LabanXML",
+      "type": "XML notation interchange",
+      "automatic_detector": false,
+      "source_ids": [
+        "S009"
+      ]
+    },
+    {
+      "name": "MovementXML",
+      "type": "semantic movement XML",
+      "automatic_detector": false,
+      "source_ids": [
+        "S010"
+      ]
+    },
+    {
+      "name": "Laban ontology",
+      "type": "semantic ontology",
+      "automatic_detector": false,
+      "source_ids": [
+        "S011"
+      ]
+    },
+    {
+      "name": "EMOTE",
+      "type": "expressive generation",
+      "source_ids": [
+        "S031"
+      ]
+    },
+    {
+      "name": "Samadani et al.",
+      "type": "continuous feature correlates",
+      "source_ids": [
+        "S007"
+      ]
+    },
+    {
+      "name": "Guo et al.",
+      "type": "supervised BESS-related classification",
+      "source_ids": [
+        "S006"
+      ]
+    },
+    {
+      "name": "MoRTELaban",
+      "type": "neurosymbolic representation",
+      "source_ids": [
+        "S012"
+      ]
+    }
+  ],
+  "prompt_example": {
+    "canonical": {
+      "body": {
+        "initiation_locus": "core",
+        "sequencing": "proximal_to_distal"
+      },
+      "effort": {
+        "weight": 0.75,
+        "time": 0.8,
+        "space_effort": 0.85,
+        "flow": 0.35
+      },
+      "shape": {
+        "vertical": 0.6,
+        "horizontal": 0.45,
+        "sagittal": 0.9,
+        "mode": "directional"
+      },
+      "space": {
+        "reach": 0.85,
+        "pathway": "spoke_like",
+        "level": "middle"
+      }
+    },
+    "prose": "Initiate from the torso, sequence shoulder–elbow–fist, advance on a straight mid-level spoke with strong, sudden, direct energy, and allow moderate follow-through."
+  },
+  "source_ids": [
+    "S001",
+    "S002",
+    "S004",
+    "S005",
+    "S006",
+    "S007",
+    "S008",
+    "S009",
+    "S010",
+    "S011",
+    "S012",
+    "S031"
+  ]
+}

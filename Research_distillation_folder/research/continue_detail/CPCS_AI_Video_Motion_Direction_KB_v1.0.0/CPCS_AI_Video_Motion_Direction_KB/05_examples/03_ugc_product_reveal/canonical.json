@@ -1,0 +1,393 @@
+{
+  "cpcs_version": "1.0.0",
+  "scene_id": "ex_ugc_reveal_01",
+  "title": "Vertical UGC Product Reveal",
+  "duration_s": 6,
+  "fps": 30,
+  "intent": {
+    "primary": "invite",
+    "secondary": [
+      "assert",
+      "celebrate"
+    ],
+    "confidence": 0.82
+  },
+  "beats": [
+    {
+      "id": "hook",
+      "start_s": 0,
+      "end_s": 1
+    },
+    {
+      "id": "problem",
+      "start_s": 1,
+      "end_s": 2.1
+    },
+    {
+      "id": "reveal",
+      "start_s": 2.1,
+      "end_s": 3.6
+    },
+    {
+      "id": "proof",
+      "start_s": 3.6,
+      "end_s": 5
+    },
+    {
+      "id": "cta",
+      "start_s": 5,
+      "end_s": 6
+    }
+  ],
+  "actors": [
+    {
+      "actor_id": "creator",
+      "name": "Creator",
+      "role": "ugc_presenter",
+      "skeleton_profile": {
+        "skeleton_id": "cpcs_humanoid_67",
+        "height_m": 1.7,
+        "mass_kg": 65
+      },
+      "appearance_refs": [],
+      "capabilities": [
+        "full_body_motion"
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.7
+      }
+    }
+  ],
+  "affect_tracks": [
+    {
+      "track_id": "aff_creator",
+      "actor_id": "creator",
+      "keyframes": [
+        {
+          "time_s": 0,
+          "valence": 0.65,
+          "arousal": 0.82,
+          "dominance": 0.62,
+          "confidence_state": 0.7,
+          "certainty": 0.72,
+          "engagement": 0.98
+        },
+        {
+          "time_s": 3,
+          "valence": 0.82,
+          "arousal": 0.76,
+          "dominance": 0.72,
+          "confidence_state": 0.84,
+          "certainty": 0.86,
+          "engagement": 1
+        },
+        {
+          "time_s": 6,
+          "valence": 0.78,
+          "arousal": 0.55,
+          "dominance": 0.76,
+          "confidence_state": 0.9,
+          "certainty": 0.9,
+          "engagement": 0.96
+        }
+      ],
+      "interpolation": "ease_in_out",
+      "channel": "combined",
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.55
+      }
+    }
+  ],
+  "phase_timelines": [
+    {
+      "timeline_id": "pt_reveal",
+      "action_id": "product_reveal",
+      "duration_s": 1.5,
+      "phases": [
+        {
+          "phase_id": "initiation",
+          "t_start_s": 0,
+          "t_end_s": 0.08,
+          "progress_curve": "steep",
+          "semantic_role": "attention snap",
+          "force_role": "none",
+          "emotion_role": "curiosity",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "preparation",
+          "t_start_s": 0.08,
+          "t_end_s": 0.3,
+          "progress_curve": "ease_in",
+          "semantic_role": "hide product below frame",
+          "force_role": "none",
+          "emotion_role": "anticipation",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "acceleration",
+          "t_start_s": 0.3,
+          "t_end_s": 0.58,
+          "progress_curve": "steep",
+          "semantic_role": "raise product",
+          "force_role": "light",
+          "emotion_role": "excitement",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "stroke",
+          "t_start_s": 0.58,
+          "t_end_s": 0.85,
+          "progress_curve": "ease_out",
+          "semantic_role": "label reveal",
+          "force_role": "none",
+          "emotion_role": "positive accent",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "overshoot",
+          "t_start_s": 0.85,
+          "t_end_s": 1.0,
+          "progress_curve": "ease_out",
+          "semantic_role": "small presentation arc",
+          "force_role": "none",
+          "emotion_role": "celebrate",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "recovery",
+          "t_start_s": 1,
+          "t_end_s": 1.25,
+          "progress_curve": "ease_in_out",
+          "semantic_role": "center product",
+          "force_role": "none",
+          "emotion_role": "confident",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "settle",
+          "t_start_s": 1.25,
+          "t_end_s": 1.5,
+          "progress_curve": "ease_out",
+          "semantic_role": "legibility hold",
+          "force_role": "none",
+          "emotion_role": "CTA",
+          "contact_event_ids": []
+        }
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.65
+      }
+    }
+  ],
+  "motion_primitives": [
+    {
+      "primitive_id": "mp_product_reveal",
+      "actor_id": "creator",
+      "name": "raise_and_present_product",
+      "connectivity_pattern": "upper_lower",
+      "initiator": "right_hand_below_frame",
+      "receiver_sequence": [
+        "right_elbow",
+        "right_shoulder",
+        "sternum_orientation"
+      ],
+      "intensity": 0.62,
+      "range": 0.55,
+      "speed": {
+        "value": 1.1,
+        "unit": "m/s"
+      },
+      "sequencing_delay_ms": 35,
+      "grounding": 0.7,
+      "breath_phase": "free",
+      "laterality": "right",
+      "support_contact_ids": [
+        "left_foot_floor",
+        "right_foot_floor"
+      ],
+      "phase_timeline_id": "pt_reveal",
+      "laban": {
+        "effort": {
+          "weight": 0.35,
+          "time": 0.82,
+          "space_effort": 0.9,
+          "flow": 0.55
+        },
+        "shape": {
+          "vertical": 0.75,
+          "horizontal": 0.7,
+          "sagittal": 0.68,
+          "mode": "directional"
+        },
+        "space": {
+          "reach": 0.58,
+          "pathway": "spoke_like"
+        },
+        "body": {
+          "sequence": "distal_to_proximal presentation"
+        }
+      },
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.62
+      }
+    }
+  ],
+  "facs_tracks": [
+    {
+      "track_id": "face_creator",
+      "actor_id": "creator",
+      "events": [
+        {
+          "au_code": "6",
+          "side": "bilateral",
+          "peak_intensity": 0.42,
+          "t_onset_start_s": 1.8,
+          "t_apex_start_s": 2.5,
+          "t_apex_end_s": 3.7,
+          "t_offset_end_s": 5.7,
+          "onset_curve": "ease_in",
+          "offset_curve": "ease_out",
+          "masking_au_codes": [],
+          "confidence": 0.5
+        },
+        {
+          "au_code": "12",
+          "side": "bilateral",
+          "peak_intensity": 0.55,
+          "t_onset_start_s": 1.8,
+          "t_apex_start_s": 2.45,
+          "t_apex_end_s": 3.8,
+          "t_offset_end_s": 5.8,
+          "onset_curve": "ease_in",
+          "offset_curve": "ease_out",
+          "masking_au_codes": [],
+          "confidence": 0.55
+        }
+      ],
+      "gaze_target": "camera_lens",
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.5
+      }
+    }
+  ],
+  "interactions": [
+    {
+      "interaction_id": "int_hold_product",
+      "predicate": "hold",
+      "agent_id": "creator",
+      "patient_id": "product_01",
+      "t_start_s": 0,
+      "t_end_s": 6,
+      "agent_body_parts": [
+        "right_hand"
+      ],
+      "patient_parts": [
+        "product_body"
+      ],
+      "contact_ids": [
+        "grasp_product"
+      ],
+      "parameters": {
+        "force_N": null,
+        "impulse_Ns": null,
+        "duration_s": 6,
+        "contact_area_m2": null,
+        "friction_coefficient": null,
+        "compliance": 0.1,
+        "resistance": 0.7
+      },
+      "preconditions": [
+        "product_identity_locked"
+      ],
+      "effects": [
+        "product_remains_controlled"
+      ],
+      "confidence": 0.95,
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.7
+      }
+    }
+  ],
+  "camera_tracks": [
+    {
+      "track_id": "cam_ugc",
+      "shot_id": "vertical_single",
+      "t_start_s": 0,
+      "t_end_s": 6,
+      "fps": 30,
+      "resolution": [
+        1080,
+        1920
+      ],
+      "focal_length_equiv_mm": 28,
+      "shutter_angle_deg": 180,
+      "shot_size": "medium_close_up",
+      "composition": [
+        "contact_readable",
+        "preserve_screen_direction"
+      ],
+      "motion_primitives": [
+        {
+          "type": "handheld_impulse",
+          "t_start_s": 0,
+          "t_end_s": 6,
+          "parameters": {
+            "amplitude": 0.04,
+            "frequency_hz": 1.2,
+            "decay_s": 0.2
+          }
+        }
+      ],
+      "subject_lock_ids": [
+        "creator",
+        "product_01"
+      ],
+      "impact_bindings": [],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.7
+      }
+    }
+  ],
+  "style": {
+    "profile": "commercial",
+    "ugc_authenticity": 0.72,
+    "product_identity_locked": true
+  },
+  "rhythm": {
+    "tempo_bpm": 120,
+    "profile": "hook_reveal_proof_cta",
+    "product_legibility_hold_s": 0.8
+  },
+  "constraints": [
+    {
+      "id": "label",
+      "type": "identity",
+      "rule": "label remains correctly oriented and legible during reveal/CTA"
+    },
+    {
+      "id": "claims",
+      "type": "content",
+      "rule": "spoken/on-screen claims must come from approved copy"
+    }
+  ],
+  "target_adapters": [
+    "veo_3_1_gemini",
+    "kling_video_3_0",
+    "adobe_firefly_video"
+  ],
+  "provenance": {
+    "provenance_class": "CPCS_CONVENTION",
+    "confidence": 0.65
+  }
+}

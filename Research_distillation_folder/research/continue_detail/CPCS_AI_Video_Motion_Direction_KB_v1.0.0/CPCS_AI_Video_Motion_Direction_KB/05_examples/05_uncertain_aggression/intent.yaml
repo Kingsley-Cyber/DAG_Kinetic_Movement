@@ -1,0 +1,17 @@
+scene_id: ex_uncertain_aggression_01
+primary_intent: uncertain_aggression
+secondary_intents:
+- threaten
+- read_room
+genre: psychological_drama
+target_models:
+- runway_act_two
+- luma_ray_3_2_modify
+- veo_3_1_gemini
+constraints:
+- no physical contact
+- preserve ambiguity
+- actor alternates advance and retreat cues
+desired_read: pressure without full commitment; audience cannot yet tell whether the
+  actor will attack or back down
+

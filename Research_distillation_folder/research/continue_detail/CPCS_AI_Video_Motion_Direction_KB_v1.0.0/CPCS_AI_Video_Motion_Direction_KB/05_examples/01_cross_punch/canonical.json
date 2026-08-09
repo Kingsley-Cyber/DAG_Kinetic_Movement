@@ -1,0 +1,415 @@
+{
+  "cpcs_version": "1.0.0",
+  "scene_id": "ex_cross_punch_01",
+  "title": "Grounded Cross Punch into Guard",
+  "duration_s": 3.0,
+  "fps": 24,
+  "intent": {
+    "primary": "assert",
+    "secondary": [
+      "challenge"
+    ],
+    "confidence": 0.78
+  },
+  "beats": [
+    {
+      "id": "b1",
+      "label": "establish guard",
+      "start_s": 0,
+      "end_s": 0.7
+    },
+    {
+      "id": "b2",
+      "label": "cross and block",
+      "start_s": 0.7,
+      "end_s": 1.8
+    },
+    {
+      "id": "b3",
+      "label": "recoil/reset",
+      "start_s": 1.8,
+      "end_s": 3.0
+    }
+  ],
+  "actors": [
+    {
+      "actor_id": "fighter_a",
+      "name": "Attacker",
+      "role": "staged_attacker",
+      "skeleton_profile": {
+        "skeleton_id": "cpcs_humanoid_67",
+        "height_m": 1.78,
+        "mass_kg": 80
+      },
+      "appearance_refs": [],
+      "capabilities": [
+        "full_body_motion"
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.7
+      }
+    },
+    {
+      "actor_id": "fighter_b",
+      "name": "Defender",
+      "role": "staged_defender",
+      "skeleton_profile": {
+        "skeleton_id": "cpcs_humanoid_67",
+        "height_m": 1.76,
+        "mass_kg": 78
+      },
+      "appearance_refs": [],
+      "capabilities": [
+        "full_body_motion"
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.7
+      }
+    }
+  ],
+  "affect_tracks": [
+    {
+      "track_id": "aff_a",
+      "actor_id": "fighter_a",
+      "keyframes": [
+        {
+          "time_s": 0,
+          "valence": 0.32,
+          "arousal": 0.58,
+          "dominance": 0.68,
+          "confidence_state": 0.75,
+          "certainty": 0.72,
+          "engagement": 0.9
+        },
+        {
+          "time_s": 1.2,
+          "valence": 0.22,
+          "arousal": 0.86,
+          "dominance": 0.78,
+          "confidence_state": 0.8,
+          "certainty": 0.82,
+          "engagement": 0.96
+        },
+        {
+          "time_s": 3,
+          "valence": 0.35,
+          "arousal": 0.45,
+          "dominance": 0.7,
+          "confidence_state": 0.72,
+          "certainty": 0.68,
+          "engagement": 0.82
+        }
+      ],
+      "interpolation": "cubic_hermite",
+      "channel": "combined",
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.5
+      }
+    }
+  ],
+  "phase_timelines": [
+    {
+      "timeline_id": "pt_cross",
+      "action_id": "cross_punch",
+      "duration_s": 1.1,
+      "phases": [
+        {
+          "phase_id": "initiation",
+          "t_start_s": 0,
+          "t_end_s": 0.06,
+          "progress_curve": "ease_in",
+          "semantic_role": "commit",
+          "force_role": "align",
+          "emotion_role": "focused",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "preparation",
+          "t_start_s": 0.06,
+          "t_end_s": 0.2,
+          "progress_curve": "ease_in",
+          "semantic_role": "load",
+          "force_role": "preload",
+          "emotion_role": "restrained anger",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "acceleration",
+          "t_start_s": 0.2,
+          "t_end_s": 0.43,
+          "progress_curve": "steep",
+          "semantic_role": "approach",
+          "force_role": "propulsive",
+          "emotion_role": "high arousal",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "stroke",
+          "t_start_s": 0.43,
+          "t_end_s": 0.5,
+          "progress_curve": "linear",
+          "semantic_role": "blocked contact",
+          "force_role": "impact",
+          "emotion_role": "accent",
+          "contact_event_ids": [
+            "contact_01"
+          ]
+        },
+        {
+          "phase_id": "overshoot",
+          "t_start_s": 0.5,
+          "t_end_s": 0.61,
+          "progress_curve": "ease_out",
+          "semantic_role": "follow-through",
+          "force_role": "momentum",
+          "emotion_role": "accent decay",
+          "contact_event_ids": [
+            "contact_01"
+          ]
+        },
+        {
+          "phase_id": "recovery",
+          "t_start_s": 0.61,
+          "t_end_s": 0.91,
+          "progress_curve": "ease_in_out",
+          "semantic_role": "guard return",
+          "force_role": "recoil",
+          "emotion_role": "controlled",
+          "contact_event_ids": []
+        },
+        {
+          "phase_id": "settle",
+          "t_start_s": 0.91,
+          "t_end_s": 1.1,
+          "progress_curve": "ease_out",
+          "semantic_role": "stance reset",
+          "force_role": "dissipate",
+          "emotion_role": "ready",
+          "contact_event_ids": []
+        }
+      ],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.65
+      }
+    }
+  ],
+  "motion_primitives": [
+    {
+      "primitive_id": "mp_cross",
+      "actor_id": "fighter_a",
+      "name": "cross_punch",
+      "connectivity_pattern": "cross_lateral",
+      "initiator": "right_rear_foot",
+      "receiver_sequence": [
+        "pelvis",
+        "thorax",
+        "right_shoulder",
+        "right_elbow",
+        "right_fist"
+      ],
+      "intensity": 0.78,
+      "range": 0.68,
+      "speed": {
+        "value": 8.2,
+        "unit": "m/s"
+      },
+      "sequencing_delay_ms": 55,
+      "grounding": 0.86,
+      "breath_phase": "exhale",
+      "laterality": "right",
+      "support_contact_ids": [
+        "left_foot_floor",
+        "right_foot_floor"
+      ],
+      "phase_timeline_id": "pt_cross",
+      "laban": {
+        "effort": {
+          "weight": 0.82,
+          "time": 0.88,
+          "space_effort": 0.92,
+          "flow": 0.66
+        },
+        "shape": {
+          "vertical": 0.56,
+          "horizontal": 0.48,
+          "sagittal": 0.88,
+          "mode": "directional"
+        },
+        "space": {
+          "reach": 0.79,
+          "pathway": "spoke_like"
+        },
+        "body": {
+          "sequence": "proximal_to_distal"
+        }
+      },
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.62
+      }
+    }
+  ],
+  "facs_tracks": [
+    {
+      "track_id": "face_a",
+      "actor_id": "fighter_a",
+      "events": [
+        {
+          "au_code": "4",
+          "side": "bilateral",
+          "peak_intensity": 0.42,
+          "t_onset_start_s": 0.4,
+          "t_apex_start_s": 0.9,
+          "t_apex_end_s": 1.3,
+          "t_offset_end_s": 2.3,
+          "onset_curve": "ease_in",
+          "offset_curve": "ease_out",
+          "masking_au_codes": [],
+          "confidence": 0.55
+        },
+        {
+          "au_code": "7",
+          "side": "bilateral",
+          "peak_intensity": 0.35,
+          "t_onset_start_s": 0.55,
+          "t_apex_start_s": 0.95,
+          "t_apex_end_s": 1.25,
+          "t_offset_end_s": 2.0,
+          "onset_curve": "ease_in",
+          "offset_curve": "ease_out",
+          "masking_au_codes": [],
+          "confidence": 0.5
+        }
+      ],
+      "gaze_target": "fighter_b.upper_chest",
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.5
+      }
+    }
+  ],
+  "interactions": [
+    {
+      "interaction_id": "int_block",
+      "predicate": "block",
+      "agent_id": "fighter_b",
+      "patient_id": "fighter_a.right_fist",
+      "t_start_s": 1.13,
+      "t_end_s": 1.25,
+      "agent_body_parts": [
+        "left_forearm"
+      ],
+      "patient_parts": [
+        "right_fist"
+      ],
+      "contact_ids": [
+        "contact_01"
+      ],
+      "parameters": {
+        "force_N": null,
+        "impulse_Ns": null,
+        "duration_s": 0.12,
+        "contact_area_m2": null,
+        "friction_coefficient": null,
+        "compliance": 0.25,
+        "resistance": 0.82
+      },
+      "preconditions": [
+        "fist_on_intercept_path"
+      ],
+      "effects": [
+        "head_contact_prevented",
+        "fist_path_redirected"
+      ],
+      "confidence": 0.9,
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "measurement_status": "prompt_prior",
+        "confidence": 0.6
+      }
+    }
+  ],
+  "camera_tracks": [
+    {
+      "track_id": "cam_1",
+      "shot_id": "master",
+      "t_start_s": 0,
+      "t_end_s": 3,
+      "fps": 24,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "focal_length_equiv_mm": 32,
+      "shutter_angle_deg": 180,
+      "shot_size": "full",
+      "composition": [
+        "contact_readable",
+        "preserve_screen_direction"
+      ],
+      "motion_primitives": [
+        {
+          "type": "truck",
+          "t_start_s": 0.65,
+          "t_end_s": 1.7,
+          "parameters": {
+            "distance_m": 0.65,
+            "direction": "right",
+            "subject_lock": true
+          }
+        }
+      ],
+      "subject_lock_ids": [
+        "fighter_a",
+        "fighter_b"
+      ],
+      "impact_bindings": [],
+      "provenance": {
+        "provenance_class": "CPCS_CONVENTION",
+        "confidence": 0.7
+      }
+    }
+  ],
+  "style": {
+    "profile": "martial_arts_film",
+    "exaggeration": 0.2,
+    "contact_topology_locked": true
+  },
+  "rhythm": {
+    "profile": "explosive",
+    "contact_s": 1.18,
+    "setup_strike_recovery": [
+      0.4,
+      0.18,
+      0.42
+    ]
+  },
+  "constraints": [
+    {
+      "id": "safe_contact",
+      "type": "interaction",
+      "rule": "fist stops/redirects on guard, not face"
+    },
+    {
+      "id": "foot_visibility",
+      "type": "camera",
+      "rule": "both support feet visible through contact"
+    }
+  ],
+  "target_adapters": [
+    "veo_3_1_gemini",
+    "kling_video_3_0",
+    "runway_gen_4_5"
+  ],
+  "provenance": {
+    "provenance_class": "CPCS_CONVENTION",
+    "confidence": 0.65
+  }
+}

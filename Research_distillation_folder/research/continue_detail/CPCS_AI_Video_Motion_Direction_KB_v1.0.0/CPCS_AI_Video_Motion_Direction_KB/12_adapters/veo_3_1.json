@@ -1,0 +1,77 @@
+{
+  "adapter_id": "veo_3_1_gemini_v2026_07_30",
+  "provider": "Google",
+  "model_id": "veo-3.1 family (exact endpoint variant required)",
+  "surface": "Gemini API",
+  "status": "preview",
+  "verified_at": "2026-07-30",
+  "ttl_days": 30,
+  "source_ids": [
+    "S053"
+  ],
+  "native_capabilities": {
+    "text_prompt": true,
+    "start_image": true,
+    "last_frame": true,
+    "reference_images": {
+      "max": 3,
+      "conditional": true
+    },
+    "video_extension": true,
+    "duration_seconds": [
+      4,
+      6,
+      8
+    ],
+    "aspect_ratio": [
+      "16:9",
+      "9:16"
+    ],
+    "resolution": [
+      "720p",
+      "1080p",
+      "4k conditional"
+    ],
+    "seed": true,
+    "native_audio": true
+  },
+  "reference_capabilities": {
+    "identity": "reference images",
+    "initial_pose": "start image",
+    "end_pose": "last frame",
+    "continuation": "video extension"
+  },
+  "prompt_only": [
+    "laban_bess",
+    "facs_track",
+    "phase_microtiming",
+    "interaction_predicates",
+    "camera trajectory unless reference/control exposed"
+  ],
+  "unsupported": [],
+  "validation_rules": [
+    "Use exact model variant capability table.",
+    "Reference-image generation requires supported variant and documented combinations.",
+    "Some reference/extension/high-resolution operations require duration=8."
+  ],
+  "request_template": {
+    "model": "${model_id}",
+    "prompt": "${prompt}",
+    "config": "${native_config}",
+    "image": "${start_image_optional}",
+    "referenceImages": "${reference_images_optional}"
+  },
+  "loss_risk": {
+    "contact_topology": "high",
+    "per_frame_facs": "high",
+    "identity_without_reference": "high",
+    "camera_path_from_prose": "medium_high"
+  },
+  "provenance": {
+    "provenance_class": "ESTABLISHED",
+    "source_ids": [
+      "S053"
+    ],
+    "confidence": 0.95
+  }
+}

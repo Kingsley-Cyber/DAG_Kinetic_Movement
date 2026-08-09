@@ -1,0 +1,172 @@
+{
+  "schema_id": "dmr.provider-capability-contract/0.1",
+  "contract_id": "lightricks.ltx-video-0.9.8.local.2026-07-31",
+  "provider": "Lightricks",
+  "api_surface": "Open-source local inference.py workflow",
+  "model_id": "ltxv-13b-0.9.8-distilled",
+  "contract_kind": "local_workflow",
+  "verified_on": "2026-07-31",
+  "documentation_urls": [
+    "https://huggingface.co/Lightricks/LTX-Video"
+  ],
+  "lifecycle": {
+    "recommended_max_frames": 257,
+    "frame_divisibility": "8n+1",
+    "resolution_divisibility": 32
+  },
+  "mappings": [
+    {
+      "canonical_path": "prompt.text",
+      "classification": "native",
+      "carrier": "cli_parameter",
+      "provider_parameter": "prompt",
+      "transform": "identity",
+      "evidence_source": "Official LTX-Video model card"
+    },
+    {
+      "canonical_path": "conditioning.first_frame",
+      "classification": "media-conditioned",
+      "carrier": "image",
+      "provider_parameter": "input_image_path",
+      "transform": "identity",
+      "evidence_source": "Official LTX-Video model card"
+    },
+    {
+      "canonical_path": "conditioning.reference_images",
+      "classification": "media-conditioned",
+      "carrier": "image_at_target_frame",
+      "provider_parameter": "conditioning_media_paths",
+      "transform": "identity",
+      "evidence_source": "Official LTX-Video model card"
+    },
+    {
+      "canonical_path": "conditioning.reference_videos",
+      "classification": "media-conditioned",
+      "carrier": "video_segment_at_target_frame",
+      "provider_parameter": "conditioning_media_paths",
+      "transform": "identity",
+      "evidence_source": "Official LTX-Video model card"
+    },
+    {
+      "canonical_path": "conditioning.target_frames",
+      "classification": "native",
+      "carrier": "frame_index_list",
+      "provider_parameter": "conditioning_start_frames",
+      "transform": "identity",
+      "evidence_source": "Official LTX-Video model card"
+    },
+    {
+      "canonical_path": "conditioning.strength",
+      "classification": "native",
+      "carrier": "conditioning_strength",
+      "provider_parameter": "conditioning_strengths",
+      "transform": "identity",
+      "evidence_source": "Official LTX-Video model card"
+    },
+    {
+      "canonical_path": "generation.frame_count",
+      "classification": "native",
+      "carrier": "cli_parameter",
+      "provider_parameter": "num_frames",
+      "transform": "identity",
+      "limits": {
+        "recommended_max": 257,
+        "shape": "8n+1"
+      },
+      "evidence_source": "Official LTX-Video model card"
+    },
+    {
+      "canonical_path": "generation.seed",
+      "classification": "native",
+      "carrier": "cli_parameter",
+      "provider_parameter": "seed",
+      "transform": "identity",
+      "evidence_source": "Official LTX-Video model card"
+    },
+    {
+      "canonical_path": "generation.height",
+      "classification": "native",
+      "carrier": "cli_parameter",
+      "provider_parameter": "height",
+      "transform": "identity",
+      "limits": {
+        "divisible_by": 32
+      },
+      "evidence_source": "Official LTX-Video model card"
+    },
+    {
+      "canonical_path": "generation.width",
+      "classification": "native",
+      "carrier": "cli_parameter",
+      "provider_parameter": "width",
+      "transform": "identity",
+      "limits": {
+        "divisible_by": 32
+      },
+      "evidence_source": "Official LTX-Video model card"
+    },
+    {
+      "canonical_path": "motion.pose_control",
+      "classification": "unknown",
+      "carrier": null,
+      "transform": "identity",
+      "evidence_source": "Official model card documents separate 0.9.7 IC-LoRA checkpoints, not this exact 0.9.8 base workflow",
+      "notes": "Create a separately pinned 0.9.7 IC-LoRA workflow contract before treating this control as executable."
+    },
+    {
+      "canonical_path": "motion.depth_control",
+      "classification": "unknown",
+      "carrier": null,
+      "transform": "identity",
+      "evidence_source": "Official model card documents separate 0.9.7 IC-LoRA checkpoints, not this exact 0.9.8 base workflow",
+      "notes": "Create a separately pinned 0.9.7 IC-LoRA workflow contract before treating this control as executable."
+    },
+    {
+      "canonical_path": "motion.joint_tracks",
+      "classification": "approximated",
+      "carrier": "rendered_pose_conditioning",
+      "evidence_source": "Pose conditioning can carry a rendered control sequence, not the symbolic joint array directly"
+    },
+    {
+      "canonical_path": "camera.*",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text_or_conditioning_video",
+      "evidence_source": "No native 6DoF trajectory parameter documented"
+    },
+    {
+      "canonical_path": "interaction.contacts",
+      "classification": "approximated",
+      "carrier": "pose_or_reference_video",
+      "evidence_source": "No native contact constraint; reference/control media can approximate presentation"
+    },
+    {
+      "canonical_path": "performance.facs",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text_or_face_reference",
+      "evidence_source": "No native AU track documented"
+    },
+    {
+      "canonical_path": "performance.laban",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text_or_motion_reference",
+      "evidence_source": "No native Laban track documented"
+    },
+    {
+      "canonical_path": "temporal.exact_timestamps",
+      "classification": "approximated",
+      "carrier": "target_frame_conditioning",
+      "evidence_source": "Conditions can be placed at target frames, but internal action events are not hard constrained"
+    },
+    {
+      "canonical_path": "identity.binding",
+      "classification": "media-conditioned",
+      "carrier": "multiple_image_or_video_conditions",
+      "provider_parameter": "conditioning_media_paths",
+      "transform": "identity",
+      "evidence_source": "Official model card"
+    }
+  ],
+  "unknowns": [
+    "Capabilities vary materially by checkpoint and ComfyUI workflow; every deployed graph must pin hashes and configs."
+  ]
+}

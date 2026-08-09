@@ -1,0 +1,51 @@
+claim_id,topic_id,claim_type,provenance_class,confidence,source_ids,scope,claim
+C001,T01,DEFINITION,ESTABLISHED,0.95,S001;S002,framework definition,"LMA is represented in CPCS as Body, Effort, Shape, and Space."
+C002,T01,DEFINITION,ESTABLISHED,0.95,S004,foundational framework,"Effort factors are Weight, Time, Space, and Flow with bipolar qualities."
+C003,T01,ENGINEERING,CPCS_CONVENTION,1.0,,repository convention,"Signed-to-unit axis conversion is a CPCS normalization, not official LMA notation."
+C004,T01,LIMITATION,EMPIRICAL,0.88,S008,study conditions,LMA expert labels show nonzero inter-rater disagreement and require reliability reporting.
+C005,T01,METHOD,EMPIRICAL,0.9,S009;S010;S011,"representation, not detection",Labanotation has been represented in XML and ontology forms.
+C006,T02,DISTINCTION,ESTABLISHED,0.95,S002;S003,inventory distinction,Bartenieff Basic Six exercises differ from six connectivity patterns.
+C007,T02,METHOD,PRACTICE,0.65,S003;S039,task dependent,Cross-lateral organization is a useful prior for contralateral locomotion and rotational actions.
+C008,T03,SYNTHESIS,CPCS_CONVENTION,0.98,S013;S014;S015;S016,explicit synthesis,The exact seven-phase CPCS sequence is not a universal established standard.
+C009,T03,DEFINITION,ESTABLISHED,0.9,S014;S015,gesture analysis,Gesture stroke is the obligatory meaning-bearing phase in McNeill/Kendon-style analysis; other phases can be optional.
+C010,T03,DEFINITION,ESTABLISHED,0.95,S013,BML specification,"BML exposes synchronization points including start, ready, stroke and end-related points."
+C011,T04,DISTINCTION,ESTABLISHED,0.98,S017,manual scope,"FACS codes visible facial action, not emotion or deception directly."
+C012,T04,DISTINCTION,ESTABLISHED,0.88,S017;S018,edition/implementation dependent,A flat count of 44 AUs depends on code grouping and implementation convention.
+C013,T04,METHOD,ESTABLISHED,0.98,S019,current project documentation,OpenFace reports presence and 0–5 intensity for a subset of AUs.
+C014,T04,MEASUREMENT,EMPIRICAL,0.95,S022;S023,pain-expression context,"PSPI uses AU4 + max(AU6,AU7) + max(AU9,AU10) + AU43."
+C015,T04,LIMITATION,EMPIRICAL,0.9,S070,survey,Micro-expression duration thresholds vary across datasets and are not a universal deception rule.
+C016,T05,DEFINITION,ESTABLISHED,0.98,S026;S027,biomechanics,Kinematics describes motion; force estimation requires dynamics assumptions or measurements.
+C017,T05,METHOD,EMPIRICAL,0.94,S024,validated study,OpenCap estimates movement dynamics from smartphone video with a musculoskeletal pipeline.
+C018,T05,METHOD,EMPIRICAL,0.95,S025,open-source paper,Pose2Sim supports multiview markerless kinematics and inverse-kinematics workflows.
+C019,T05,MEASUREMENT,EMPIRICAL,0.94,S028,Olympic boxer protocol,"Published punch velocities/forces are protocol- and population-specific, not universal limits."
+C020,T06,LIMITATION,EMPIRICAL,0.9,S033,cross-cultural review,Intent-to-motion mappings are probabilistic and culture/context conditioned.
+C021,T06,DATASET,EMPIRICAL,0.95,S030,dataset paper,BEAT is a large multimodal conversational gesture dataset with emotion and multiple languages.
+C022,T06,METHOD,EMPIRICAL,0.94,S031,SIGGRAPH model,EMOTE parameterizes expressive motion with Effort and Shape.
+C023,T06,LIMITATION,EMPIRICAL,0.9,S017;S020,scope/cue limits,There is no validated universal visible-motion signature for deception.
+C024,T07,DATASET,EMPIRICAL,0.95,S034,600 HOI classes,HICO-DET supplies a broad human-object interaction verb/object vocabulary.
+C025,T07,DATASET,EMPIRICAL,0.94,S036,dataset paper,Inter-X focuses on versatile two-person interaction data.
+C026,T07,LIMITATION,EMPIRICAL,0.8,S037;S038,generation/contact research,Generated interaction can remain visually plausible while violating contact physics.
+C027,T08,DISTINCTION,ESTABLISHED,0.98,S004;S027,qualitative vs physical,LMA Weight is not equal to force in newtons.
+C028,T08,METHOD,EMPIRICAL,0.78,S027;S028;S039,sports biomechanics,Kinetic-chain sequencing can be represented as temporal segment transfer but is task specific.
+C029,T09,DEFINITION,ESTABLISHED,0.9,S040;S042,cinematography/perception,"Apparent motion depends on relative camera/subject motion, projection and depth."
+C030,T09,PRACTICE,PRACTICE,0.9,S040;S043,film grammar,"180-degree, 30-degree and match-on-action are continuity conventions, not physical laws."
+C031,T10,PRACTICE,PRACTICE,0.9,S041,film editing research/practice,"Editing rhythm includes timing, pacing, trajectory phrasing, tension and release."
+C032,T10,DATASET,EMPIRICAL,0.95,S045,dataset paper,AIST++ supports music/dance alignment research.
+C033,T11,DEFINITION,ESTABLISHED,0.97,S046;S047;S048,affect research,"VAD represents affect along valence, arousal and dominance dimensions."
+C034,T11,RIGHTS,ESTABLISHED,0.98,S049,official dataset page,"The NRC VAD lexicon should be referenced under its terms, not redistributed in this package."
+C035,T11,LIMITATION,EMPIRICAL,0.85,S047;S048,construct distinction,Lexical VAD ratings do not directly equal embodied performance measurements.
+C036,T12,METHOD,EMPIRICAL,0.9,S050;S051,peer-reviewed methods,"Motion style can be transferred with learned models, including body-part-local approaches."
+C037,T12,LIMITATION,EMPIRICAL,0.85,S050;S051;S052,method limitation,Content/style disentanglement does not guarantee preservation of action or contact.
+C038,T13,CONCLUSION,CPCS_INFERENCE,0.82,S005;S006;S007;S008;S012;S071,survey inference as of 2026-07-30,No broadly validated full-BESS real-time OpenFace-equivalent detector was identified.
+C039,T13,DATASET,EMPIRICAL,0.97,S071,dataset paper,"BoME contains 1,600 clips with expert labels for 11 selected LMA motor elements."
+C040,T13,LIMITATION,CPCS_INFERENCE,0.72,S007;S008;S071,evidence-backed inference,Weight and Flow are harder to infer visually than geometric Space/Time features.
+C041,T13,UNVERIFIED,UNVERIFIED,0.7,,search gap; absence cannot be certain,LabanWRML and ChoosenMove were not verified as established detector systems under those names.
+C042,T14,PRODUCT_CAPABILITY,ESTABLISHED,0.96,S053,verified 2026-07-30,"Veo 3.1 documentation exposes structured duration, aspect, resolution, seed and reference/image controls with variant-specific constraints."
+C043,T14,PRODUCT_CAPABILITY,ESTABLISHED,0.9,S054;S076,UI/API parity unknown,Kling VIDEO 3.0 documents 3–15 second multi-shot generation and references/audio on current surfaces.
+C044,T14,PRODUCT_CAPABILITY,ESTABLISHED,0.95,S055,web surface,Runway Gen-4.5 documents 2–10 second generation and 24/25 fps on its current guide.
+C045,T14,PRODUCT_CAPABILITY,ESTABLISHED,0.96,S056,web surface,"Runway Act-Two uses a driving performance and character input, with different behavior for image versus video character modes."
+C046,T14,PRODUCT_CAPABILITY,ESTABLISHED,0.95,S057;S058,current official guide,Ray 3.2 Modify exposes Motion/Structure controls and Poses/Blocking behavior.
+C047,T14,PRODUCT_CAPABILITY,ESTABLISHED,0.96,S059;S060,current official docs,Adobe Firefly documents a camera-motion reference workflow with input constraints and control incompatibilities.
+C048,T14,PRODUCT_CAPABILITY,ESTABLISHED,0.99,S061;S062,official notice,OpenAI ended Sora web/app on 2026-04-26 and schedules Sora API end for 2026-09-24.
+C049,T14,ENGINEERING,CPCS_CONVENTION,0.98,S054;S055;S057;S060,adapter rule,UI and API surfaces must be versioned separately.
+C050,T14,ENGINEERING,CPCS_CONVENTION,1.0,,repository invariant,Unsupported canonical fields must remain visible in a loss report.

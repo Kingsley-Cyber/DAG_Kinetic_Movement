@@ -1,0 +1,48 @@
+{
+  "package_root": "/mnt/data/CPCS_AI_Video_Motion_Direction_KB",
+  "validated_at": "2026-07-31T07:38:59.303476+00:00",
+  "as_of_date": "2026-07-31",
+  "errors": [],
+  "warnings": [],
+  "checks": {
+    "parse_all_machine_readable": true,
+    "schema_metaschema": true,
+    "example_schema_validation": true,
+    "adapter_schema_validation": true,
+    "source_resolution": true,
+    "textual_source_resolution": true,
+    "claim_integrity": true,
+    "topic_pairing": true,
+    "example_semantics": true,
+    "adapter_freshness": true,
+    "graph_integrity": true,
+    "example_sidecars": true,
+    "repository_structure": true
+  },
+  "counts": {
+    "parsed_files": {
+      "json": 42,
+      "jsonl": 7,
+      "yaml": 6,
+      "xml": 5,
+      "csv": 5
+    },
+    "schemas": 10,
+    "canonical_examples": 5,
+    "model_adapters": 8,
+    "sources": 76,
+    "unique_source_references": 76,
+    "textual_source_references": 95,
+    "claims": 50,
+    "topic_pairs": 14,
+    "graph_entities": 263,
+    "graph_relations": 409
+  },
+  "summary": {
+    "passed": true,
+    "error_count": 0,
+    "warning_count": 0,
+    "check_count": 13,
+    "checks_passed": 13
+  }
+}

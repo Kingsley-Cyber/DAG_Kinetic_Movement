@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/cpcs/schema/camera_track/1.0.0",
+  "title": "CPCS Camera Track",
+  "type": "object",
+  "properties": {
+    "track_id": {
+      "type": "string"
+    },
+    "shot_id": {
+      "type": "string"
+    },
+    "t_start_s": {
+      "type": "number",
+      "minimum": 0
+    },
+    "t_end_s": {
+      "type": "number",
+      "minimum": 0
+    },
+    "fps": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "resolution": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "integer",
+          "minimum": 1
+        }
+      ],
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "focal_length_equiv_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "shutter_angle_deg": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 360
+    },
+    "shot_size": {
+      "type": "string"
+    },
+    "composition": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "motion_primitives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "t_start_s": {
+            "type": "number"
+          },
+          "t_end_s": {
+            "type": "number"
+          },
+          "parameters": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "type",
+          "t_start_s",
+          "t_end_s"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "subject_lock_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "impact_bindings": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "provenance_class": {
+          "enum": [
+            "ESTABLISHED",
+            "EMPIRICAL",
+            "PRACTICE",
+            "CPCS_CONVENTION",
+            "UNVERIFIED"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{3}$"
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "measurement_status": {
+          "enum": [
+            "measured",
+            "annotated",
+            "inverse_dynamics_estimate",
+            "model_inference",
+            "visual_proxy",
+            "prompt_prior",
+            "generated"
+          ]
+        },
+        "uncertainty_note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provenance_class"
+      ],
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "track_id",
+    "shot_id",
+    "t_start_s",
+    "t_end_s",
+    "fps",
+    "resolution"
+  ],
+  "unevaluatedProperties": false
+}

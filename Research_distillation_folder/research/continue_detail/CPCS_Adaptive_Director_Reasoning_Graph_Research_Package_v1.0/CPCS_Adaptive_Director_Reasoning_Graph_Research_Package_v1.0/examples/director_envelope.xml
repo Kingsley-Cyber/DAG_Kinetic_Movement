@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adrg:directorPackage
+    xmlns:adrg="urn:cpcs:adrg:1.0"
+    xmlns:cpcs="urn:cpcs:core:1.1"
+    xmlns:perf="urn:cpcs:performance:1.1"
+    xmlns:cam="urn:cpcs:camera:1.1"
+    id="filmA.scene12.shot04">
+  <adrg:intent audienceTakeaway="control is chosen and briefly fails">
+    Mara approaches while concealing fear. Recognition breaks composure only at the final step.
+  </adrg:intent>
+  <adrg:beat id="approach" start="0.00s" end="2.50s">
+    <perf:direction actor="mara" display="restrained" gazeTarget="jon.eyes"/>
+    <perf:effort actor="mara" time="sustained" space="direct" flow="bound"/>
+  </adrg:beat>
+  <adrg:beat id="recognition" start="2.50s" end="2.82s">
+    <perf:event actor="mara" type="final_foot_plant" time="2.50s"/>
+    <perf:gaze actor="mara" target="jon.shirt.blood" start="2.50s" end="2.76s"/>
+    <perf:breath actor="mara" event="soft_inhalation_interrupt" time="2.73s"/>
+    <cam:move type="dolly_in" start="2.50s" end="3.50s" framingEnd="close_up"/>
+  </adrg:beat>
+  <adrg:beat id="recovery" start="2.82s" end="6.00s">
+    <perf:gaze actor="mara" target="jon.eyes" start="2.82s" end="6.00s"/>
+  </adrg:beat>
+  <cpcs:score href="asset://scores/filmA.scene12.shot04.cpcs.json"
+              mediaType="application/cpcs+json"
+              schema="cpcs/1.1"
+              sha256="placeholder-digest"/>
+</adrg:directorPackage>

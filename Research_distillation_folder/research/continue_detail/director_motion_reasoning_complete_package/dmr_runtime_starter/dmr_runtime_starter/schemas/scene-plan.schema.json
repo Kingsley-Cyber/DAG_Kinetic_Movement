@@ -1,0 +1,1040 @@
+{
+  "$defs": {
+    "AcceptanceGate": {
+      "additionalProperties": false,
+      "properties": {
+        "metric": {
+          "title": "Metric",
+          "type": "string"
+        },
+        "operator": {
+          "enum": [
+            "<",
+            "<=",
+            "==",
+            ">=",
+            ">"
+          ],
+          "title": "Operator",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "Value"
+        },
+        "hard": {
+          "default": true,
+          "title": "Hard",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "metric",
+        "operator",
+        "value"
+      ],
+      "title": "AcceptanceGate",
+      "type": "object"
+    },
+    "Action": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "title": "Action Id",
+          "type": "string"
+        },
+        "actor_id": {
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "verb": {
+          "title": "Verb",
+          "type": "string"
+        },
+        "target_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target Ref"
+        },
+        "start_point": {
+          "title": "Start Point",
+          "type": "string"
+        },
+        "end_point": {
+          "title": "End Point",
+          "type": "string"
+        },
+        "body_regions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Body Regions",
+          "type": "array"
+        },
+        "resource_locks": {
+          "description": "Actor-local mutually exclusive resources, e.g. right_hand or left_leg.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Resource Locks",
+          "type": "array"
+        },
+        "preconditions": {
+          "items": {
+            "$ref": "#/$defs/StateCondition"
+          },
+          "title": "Preconditions",
+          "type": "array"
+        },
+        "effects": {
+          "items": {
+            "$ref": "#/$defs/StateEffect"
+          },
+          "title": "Effects",
+          "type": "array"
+        },
+        "reacts_to_contact_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reacts To Contact Id"
+        },
+        "recovers_from_action_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Recovers From Action Id"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/EvidenceRef"
+          },
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "action_id",
+        "actor_id",
+        "verb",
+        "start_point",
+        "end_point"
+      ],
+      "title": "Action",
+      "type": "object"
+    },
+    "ActionPhase": {
+      "additionalProperties": false,
+      "properties": {
+        "phase_id": {
+          "title": "Phase Id",
+          "type": "string"
+        },
+        "action_id": {
+          "title": "Action Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "preparation",
+            "anticipation",
+            "execution",
+            "contact",
+            "follow_through",
+            "flight",
+            "landing",
+            "reaction",
+            "recovery",
+            "hold",
+            "release",
+            "other"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "start_point": {
+          "title": "Start Point",
+          "type": "string"
+        },
+        "end_point": {
+          "title": "End Point",
+          "type": "string"
+        }
+      },
+      "required": [
+        "phase_id",
+        "action_id",
+        "kind",
+        "start_point",
+        "end_point"
+      ],
+      "title": "ActionPhase",
+      "type": "object"
+    },
+    "Actor": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_id": {
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "display_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Display Name"
+        },
+        "morphology_profile_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Morphology Profile Id"
+        },
+        "reference_asset_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reference Asset Ids",
+          "type": "array"
+        },
+        "initial_screen_side": {
+          "default": "unknown",
+          "enum": [
+            "left",
+            "center",
+            "right",
+            "unknown"
+          ],
+          "title": "Initial Screen Side",
+          "type": "string"
+        },
+        "initial_support_effectors": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Initial Support Effectors",
+          "type": "array"
+        },
+        "initial_held_objects": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map hand/effector to object_id.",
+          "title": "Initial Held Objects",
+          "type": "object"
+        }
+      },
+      "required": [
+        "actor_id"
+      ],
+      "title": "Actor",
+      "type": "object"
+    },
+    "AssetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_id": {
+          "title": "Asset Id",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "first_frame",
+            "last_frame",
+            "reference_image",
+            "reference_video",
+            "audio",
+            "pose",
+            "depth",
+            "mask",
+            "flow",
+            "other"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "uri": {
+          "title": "Uri",
+          "type": "string"
+        },
+        "sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sha256"
+        }
+      },
+      "required": [
+        "asset_id",
+        "role",
+        "uri"
+      ],
+      "title": "AssetRef",
+      "type": "object"
+    },
+    "CameraEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "camera_event_id": {
+          "title": "Camera Event Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "static",
+            "pan",
+            "tilt",
+            "dolly",
+            "truck",
+            "crane",
+            "orbit",
+            "zoom",
+            "shake",
+            "reframe",
+            "other"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "start_point": {
+          "title": "Start Point",
+          "type": "string"
+        },
+        "end_point": {
+          "title": "End Point",
+          "type": "string"
+        },
+        "subject_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Subject Ref"
+        },
+        "parameters": {
+          "additionalProperties": true,
+          "title": "Parameters",
+          "type": "object"
+        }
+      },
+      "required": [
+        "camera_event_id",
+        "kind",
+        "start_point",
+        "end_point"
+      ],
+      "title": "CameraEvent",
+      "type": "object"
+    },
+    "Contact": {
+      "additionalProperties": false,
+      "properties": {
+        "contact_id": {
+          "title": "Contact Id",
+          "type": "string"
+        },
+        "contact_type": {
+          "$ref": "#/$defs/ContactType"
+        },
+        "actor_a": {
+          "title": "Actor A",
+          "type": "string"
+        },
+        "site_a": {
+          "title": "Site A",
+          "type": "string"
+        },
+        "target_ref": {
+          "title": "Target Ref",
+          "type": "string"
+        },
+        "site_b": {
+          "title": "Site B",
+          "type": "string"
+        },
+        "start_point": {
+          "title": "Start Point",
+          "type": "string"
+        },
+        "end_point": {
+          "title": "End Point",
+          "type": "string"
+        },
+        "contact_normal": {
+          "anyOf": [
+            {
+              "maxItems": 3,
+              "minItems": 3,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Contact Normal"
+        },
+        "relative_velocity_mps": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Relative Velocity Mps"
+        },
+        "minimum_distance_m": {
+          "anyOf": [
+            {
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Minimum Distance M"
+        },
+        "visibility": {
+          "default": "unknown",
+          "enum": [
+            "visible",
+            "occluded",
+            "partial",
+            "unknown"
+          ],
+          "title": "Visibility",
+          "type": "string"
+        },
+        "support_status": {
+          "default": "unknown",
+          "enum": [
+            "supporting",
+            "non_supporting",
+            "unknown"
+          ],
+          "title": "Support Status",
+          "type": "string"
+        },
+        "confidence": {
+          "default": 1.0,
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "reaction_action_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reaction Action Id"
+        },
+        "camera_presentation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Camera Presentation"
+        },
+        "cinematic_cheat_allowed": {
+          "default": false,
+          "title": "Cinematic Cheat Allowed",
+          "type": "boolean"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/EvidenceRef"
+          },
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "contact_id",
+        "contact_type",
+        "actor_a",
+        "site_a",
+        "target_ref",
+        "site_b",
+        "start_point",
+        "end_point"
+      ],
+      "title": "Contact",
+      "type": "object"
+    },
+    "ContactType": {
+      "enum": [
+        "support",
+        "touch",
+        "impact",
+        "near_miss",
+        "guard_contact",
+        "grasp",
+        "sustained_hold",
+        "release",
+        "slide",
+        "push",
+        "pull",
+        "brace"
+      ],
+      "title": "ContactType",
+      "type": "string"
+    },
+    "ControlRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "control_id": {
+          "title": "Control Id",
+          "type": "string"
+        },
+        "canonical_path": {
+          "title": "Canonical Path",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value"
+        },
+        "required": {
+          "default": false,
+          "title": "Required",
+          "type": "boolean"
+        },
+        "preferred_carrier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Preferred Carrier"
+        },
+        "rationale": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rationale"
+        }
+      },
+      "required": [
+        "control_id",
+        "canonical_path",
+        "value"
+      ],
+      "title": "ControlRequest",
+      "type": "object"
+    },
+    "EvidenceClass": {
+      "enum": [
+        "measured",
+        "detected",
+        "inferred",
+        "interpreted",
+        "authored"
+      ],
+      "title": "EvidenceClass",
+      "type": "string"
+    },
+    "EvidenceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "source_uri": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Uri"
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Locator"
+        },
+        "evidence_class": {
+          "$ref": "#/$defs/EvidenceClass"
+        },
+        "confidence": {
+          "maximum": 1.0,
+          "minimum": 0.0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "extractor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Extractor"
+        },
+        "accessed_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Accessed At"
+        }
+      },
+      "required": [
+        "evidence_id",
+        "evidence_class",
+        "confidence"
+      ],
+      "title": "EvidenceRef",
+      "type": "object"
+    },
+    "SceneObject": {
+      "additionalProperties": false,
+      "properties": {
+        "object_id": {
+          "title": "Object Id",
+          "type": "string"
+        },
+        "display_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Display Name"
+        },
+        "initial_owner_actor_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Initial Owner Actor Id"
+        }
+      },
+      "required": [
+        "object_id"
+      ],
+      "title": "SceneObject",
+      "type": "object"
+    },
+    "StateCondition": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "support_present",
+            "support_absent",
+            "object_held",
+            "object_not_held",
+            "screen_side",
+            "grounded",
+            "airborne",
+            "region_free"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "actor_id": {
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Key"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "kind",
+        "actor_id"
+      ],
+      "title": "StateCondition",
+      "type": "object"
+    },
+    "StateEffect": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "add_support",
+            "remove_support",
+            "acquire_object",
+            "release_object",
+            "set_screen_side",
+            "set_grounded",
+            "set_airborne"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "actor_id": {
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "key": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Key"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "kind",
+        "actor_id"
+      ],
+      "title": "StateEffect",
+      "type": "object"
+    },
+    "TemporalConstraint": {
+      "additionalProperties": false,
+      "properties": {
+        "constraint_id": {
+          "title": "Constraint Id",
+          "type": "string"
+        },
+        "left_point": {
+          "title": "Left Point",
+          "type": "string"
+        },
+        "right_point": {
+          "title": "Right Point",
+          "type": "string"
+        },
+        "min_delta_s": {
+          "title": "Min Delta S",
+          "type": "number"
+        },
+        "max_delta_s": {
+          "title": "Max Delta S",
+          "type": "number"
+        },
+        "hard": {
+          "default": true,
+          "title": "Hard",
+          "type": "boolean"
+        },
+        "explanation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Explanation"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/EvidenceRef"
+          },
+          "title": "Evidence",
+          "type": "array"
+        }
+      },
+      "required": [
+        "constraint_id",
+        "left_point",
+        "right_point",
+        "min_delta_s",
+        "max_delta_s"
+      ],
+      "title": "TemporalConstraint",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_id": {
+      "const": "dmr.scene-plan/0.1",
+      "default": "dmr.scene-plan/0.1",
+      "title": "Schema Id",
+      "type": "string"
+    },
+    "scene_id": {
+      "title": "Scene Id",
+      "type": "string"
+    },
+    "title": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Title"
+    },
+    "duration_s": {
+      "exclusiveMinimum": 0.0,
+      "title": "Duration S",
+      "type": "number"
+    },
+    "fps": {
+      "exclusiveMinimum": 0.0,
+      "title": "Fps",
+      "type": "number"
+    },
+    "origin_point": {
+      "default": "scene:start",
+      "title": "Origin Point",
+      "type": "string"
+    },
+    "end_point": {
+      "default": "scene:end",
+      "title": "End Point",
+      "type": "string"
+    },
+    "actors": {
+      "items": {
+        "$ref": "#/$defs/Actor"
+      },
+      "title": "Actors",
+      "type": "array"
+    },
+    "objects": {
+      "items": {
+        "$ref": "#/$defs/SceneObject"
+      },
+      "title": "Objects",
+      "type": "array"
+    },
+    "assets": {
+      "items": {
+        "$ref": "#/$defs/AssetRef"
+      },
+      "title": "Assets",
+      "type": "array"
+    },
+    "actions": {
+      "items": {
+        "$ref": "#/$defs/Action"
+      },
+      "title": "Actions",
+      "type": "array"
+    },
+    "phases": {
+      "items": {
+        "$ref": "#/$defs/ActionPhase"
+      },
+      "title": "Phases",
+      "type": "array"
+    },
+    "contacts": {
+      "items": {
+        "$ref": "#/$defs/Contact"
+      },
+      "title": "Contacts",
+      "type": "array"
+    },
+    "temporal_constraints": {
+      "items": {
+        "$ref": "#/$defs/TemporalConstraint"
+      },
+      "title": "Temporal Constraints",
+      "type": "array"
+    },
+    "camera_events": {
+      "items": {
+        "$ref": "#/$defs/CameraEvent"
+      },
+      "title": "Camera Events",
+      "type": "array"
+    },
+    "control_requests": {
+      "items": {
+        "$ref": "#/$defs/ControlRequest"
+      },
+      "title": "Control Requests",
+      "type": "array"
+    },
+    "acceptance_gates": {
+      "items": {
+        "$ref": "#/$defs/AcceptanceGate"
+      },
+      "title": "Acceptance Gates",
+      "type": "array"
+    },
+    "provenance": {
+      "items": {
+        "$ref": "#/$defs/EvidenceRef"
+      },
+      "title": "Provenance",
+      "type": "array"
+    }
+  },
+  "required": [
+    "scene_id",
+    "duration_s",
+    "fps",
+    "actors",
+    "actions",
+    "temporal_constraints"
+  ],
+  "title": "ScenePlan",
+  "type": "object"
+}

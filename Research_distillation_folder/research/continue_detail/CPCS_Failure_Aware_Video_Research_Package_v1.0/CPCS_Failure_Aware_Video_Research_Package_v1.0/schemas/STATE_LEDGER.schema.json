@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cpcs://research/state-ledger/1.0",
+  "title": "CPCS State Ledger candidate",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "ledger_id",
+    "timebase",
+    "entities",
+    "transitions",
+    "invariants"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "cpcs.state_ledger/1.0-candidate"
+    },
+    "ledger_id": {
+      "type": "string",
+      "pattern": "^ledger_[A-Za-z0-9._-]+$"
+    },
+    "timebase": {
+      "enum": [
+        "seconds",
+        "frames",
+        "beats"
+      ]
+    },
+    "entities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "entity_id",
+          "entity_type",
+          "initial_state",
+          "persistent_attributes"
+        ],
+        "properties": {
+          "entity_id": {
+            "type": "string"
+          },
+          "entity_type": {
+            "enum": [
+              "actor",
+              "prop",
+              "product",
+              "environment",
+              "effect",
+              "audio_source"
+            ]
+          },
+          "initial_state": {
+            "type": "object",
+            "required": [
+              "exists",
+              "visible",
+              "count",
+              "holder",
+              "location_ref",
+              "material_state"
+            ],
+            "properties": {
+              "exists": {
+                "type": "boolean"
+              },
+              "visible": {
+                "type": "boolean"
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "holder": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "location_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "material_state": {
+                "type": "object"
+              }
+            },
+            "additionalProperties": false
+          },
+          "persistent_attributes": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "transitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "transition_id",
+          "entity_id",
+          "at",
+          "from_state",
+          "to_state",
+          "cause_event_id",
+          "reversible"
+        ],
+        "properties": {
+          "transition_id": {
+            "type": "string"
+          },
+          "entity_id": {
+            "type": "string"
+          },
+          "at": {
+            "type": "number",
+            "minimum": 0
+          },
+          "from_state": {
+            "type": "object"
+          },
+          "to_state": {
+            "type": "object"
+          },
+          "cause_event_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reversible": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

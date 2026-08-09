@@ -1,0 +1,346 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "T10",
+  "title": "Rhythm Layer for Motion Sequencing",
+  "status": "curated",
+  "principle": "Represent rhythm as clock, beat grid, phrase, action phases, accents, and frame-level deviation. Music is optional; all movement still has cadence.",
+  "time_representation": {
+    "master_clock": "seconds",
+    "frame_clock": "integer frame + fps",
+    "musical_clock": "bar:beat:subdivision + tempo map",
+    "conversion": "seconds_per_beat=60/BPM; frame=round(seconds*fps)",
+    "policy": "retain continuous time and derive frames once; avoid repeated rounding",
+    "source_ids": [
+      "S013",
+      "S041",
+      "S045"
+    ]
+  },
+  "components": {
+    "tempo_bpm": "number|null",
+    "tempo_curve": "time-varying BPM/action rate",
+    "cadence": "event interval distribution",
+    "meter": "optional beats/subdivision",
+    "beat_phase": "[0,1)",
+    "syncopation": "accent displacement",
+    "micro_pause_s": "local hold within phrase",
+    "anticipation_beats": "lead to focal event",
+    "accent_strength": "[0,1]",
+    "density": "events/sec or beat",
+    "swing_ratio": "alternating subdivision ratio",
+    "rubato": "local timing deviation",
+    "entrainment_strength": "actor/music alignment [0,1]",
+    "phase_lock": "event-to-cue binding"
+  },
+  "hierarchy": [
+    "sequence",
+    "scene",
+    "phrase",
+    "exchange",
+    "action",
+    "phase",
+    "micro_event",
+    "frame"
+  ],
+  "action_presets": [
+    {
+      "id": "explosive",
+      "ratios": {
+        "initiation": 0.05,
+        "preparation": 0.22,
+        "acceleration": 0.18,
+        "stroke": 0.1,
+        "overshoot": 0.1,
+        "recovery": 0.2,
+        "settle": 0.15
+      },
+      "status": "CPCS_CONVENTION"
+    },
+    {
+      "id": "ballistic",
+      "ratios": {
+        "initiation": 0.04,
+        "preparation": 0.14,
+        "acceleration": 0.22,
+        "stroke": 0.12,
+        "overshoot": 0.2,
+        "recovery": 0.18,
+        "settle": 0.1
+      },
+      "status": "CPCS_CONVENTION"
+    },
+    {
+      "id": "controlled",
+      "ratios": {
+        "initiation": 0.08,
+        "preparation": 0.18,
+        "acceleration": 0.18,
+        "stroke": 0.18,
+        "overshoot": 0.06,
+        "recovery": 0.2,
+        "settle": 0.12
+      },
+      "status": "CPCS_CONVENTION"
+    },
+    {
+      "id": "sustained",
+      "ratios": {
+        "initiation": 0.08,
+        "preparation": 0.12,
+        "acceleration": 0.16,
+        "stroke": 0.28,
+        "overshoot": 0.06,
+        "recovery": 0.18,
+        "settle": 0.12
+      },
+      "status": "CPCS_CONVENTION"
+    },
+    {
+      "id": "hesitant",
+      "ratios": {
+        "initiation": 0.12,
+        "preparation": 0.27,
+        "acceleration": 0.1,
+        "stroke": 0.12,
+        "overshoot": 0.04,
+        "recovery": 0.18,
+        "settle": 0.17
+      },
+      "status": "CPCS_CONVENTION"
+    }
+  ],
+  "combat_patterns": [
+    {
+      "id": "feint_break",
+      "pattern": [
+        "regular pulse",
+        "partial preparation on expected beat",
+        "micro-pause",
+        "true stroke off-beat",
+        "short recovery"
+      ],
+      "safety": "staged choreography; performer safety overrides timing"
+    },
+    {
+      "id": "three_hit_escalation",
+      "pattern": [
+        "short",
+        "short",
+        "long accent"
+      ],
+      "count": "1-1-2"
+    },
+    {
+      "id": "counter_window",
+      "pattern": [
+        "attack stroke",
+        "evasion overlap",
+        "counter preparation during overshoot",
+        "counter during recovery"
+      ],
+      "constraint": "defense/contact causality first"
+    },
+    {
+      "id": "reset_breath",
+      "pattern": [
+        "exchange",
+        "separation",
+        "low-density beat",
+        "gaze/guard reset"
+      ]
+    }
+  ],
+  "dance_patterns": [
+    {
+      "id": "on_beat",
+      "rule": "primary kinetic accent at beat phase 0",
+      "source_ids": [
+        "S045"
+      ]
+    },
+    {
+      "id": "before_beat",
+      "rule": "initiation leads; apex on beat"
+    },
+    {
+      "id": "after_beat",
+      "rule": "body accent delayed"
+    },
+    {
+      "id": "phrase_arc",
+      "rule": "energy grows/resolves over phrase"
+    },
+    {
+      "id": "counterpoint",
+      "rule": "parts/actors use offset related rhythms"
+    }
+  ],
+  "dialogue_ugc_patterns": [
+    {
+      "id": "speech_gesture_sync",
+      "rule": "stroke aligns with semantically prominent speech region; exact alignment is language/gesture dependent",
+      "source_ids": [
+        "S013",
+        "S014",
+        "S015",
+        "S030"
+      ]
+    },
+    {
+      "id": "hook_reveal_proof_cta",
+      "beats": [
+        "visual hook",
+        "problem cue",
+        "reveal",
+        "proof",
+        "reaction",
+        "call-to-action"
+      ],
+      "status": "advertising template, not scientific universal"
+    },
+    {
+      "id": "pattern_interrupt",
+      "rule": "planned cadence/framing/sound reset without losing comprehension"
+    },
+    {
+      "id": "product_legibility_hold",
+      "rule": "stable frames long enough for product reading; validate by platform"
+    }
+  ],
+  "editing": {
+    "cut_candidates": [
+      "acceleration",
+      "contact",
+      "gaze shift",
+      "directional wipe",
+      "phrase boundary",
+      "audio transient",
+      "reaction onset"
+    ],
+    "avoid": [
+      "cut before causality is understood",
+      "stack unrelated accents",
+      "destroy geography"
+    ],
+    "elastic_match_on_action": "same phase with compatible pose and trajectory",
+    "source_ids": [
+      "S040",
+      "S041"
+    ]
+  },
+  "micro_timing": [
+    {
+      "id": "snappy_24fps",
+      "onset_frames": [
+        2,
+        4
+      ],
+      "acceleration_frames": [
+        2,
+        4
+      ],
+      "impact_hold_frames": [
+        0,
+        2
+      ],
+      "settle_frames": [
+        3,
+        7
+      ],
+      "status": "CPCS_CONVENTION"
+    },
+    {
+      "id": "floaty_24fps",
+      "onset_frames": [
+        6,
+        12
+      ],
+      "acceleration_frames": [
+        6,
+        14
+      ],
+      "impact_hold_frames": [
+        0,
+        1
+      ],
+      "settle_frames": [
+        8,
+        18
+      ],
+      "status": "CPCS_CONVENTION"
+    },
+    {
+      "id": "anime_limited",
+      "key_pose_hold_frames": [
+        2,
+        12
+      ],
+      "smear_frames": [
+        1,
+        2
+      ],
+      "impact_frames": [
+        1,
+        3
+      ],
+      "status": "PRACTICE/CPCS_CONVENTION",
+      "source_ids": [
+        "S044"
+      ]
+    }
+  ],
+  "setup_strike_recovery": [
+    {
+      "id": "readable_realist",
+      "ratio": [
+        0.4,
+        0.18,
+        0.42
+      ]
+    },
+    {
+      "id": "fast_combo",
+      "ratio": [
+        0.28,
+        0.22,
+        0.5
+      ]
+    },
+    {
+      "id": "telegraphed_power",
+      "ratio": [
+        0.52,
+        0.18,
+        0.3
+      ]
+    },
+    {
+      "id": "surprise_snap",
+      "ratio": [
+        0.2,
+        0.28,
+        0.52
+      ]
+    }
+  ],
+  "metrics": [
+    "beat_alignment_error_s",
+    "inter_onset_interval_cv",
+    "phase_ratio_error",
+    "contact_causality_error",
+    "snappiness_proxy",
+    "floatiness_proxy",
+    "cut_rhythm_divergence"
+  ],
+  "source_ids": [
+    "S013",
+    "S014",
+    "S015",
+    "S016",
+    "S030",
+    "S040",
+    "S041",
+    "S044",
+    "S045"
+  ]
+}

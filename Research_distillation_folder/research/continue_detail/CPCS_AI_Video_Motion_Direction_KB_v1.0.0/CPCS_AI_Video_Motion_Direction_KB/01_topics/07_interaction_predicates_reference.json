@@ -1,0 +1,1177 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "T07",
+  "title": "Interaction Layer — Motion Predicates",
+  "status": "curated",
+  "predicate_vocabulary": [
+    {
+      "id": "support",
+      "definition": "maintain load/stability",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "touch",
+      "definition": "non-load-bearing contact",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "contact",
+      "definition": "generic physical contact",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "grasp",
+      "definition": "constrain target against free separation",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "hold",
+      "definition": "maintain grasp/support",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "release",
+      "definition": "terminate contact constraint",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "push",
+      "definition": "apply force increasing distance",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "pull",
+      "definition": "apply force reducing distance",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "press",
+      "definition": "sustained compression",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "slide",
+      "definition": "tangential motion under contact",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "roll",
+      "definition": "rotational progression with limited slip",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "carry",
+      "definition": "support and transport",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "lift",
+      "definition": "increase height against gravity",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "lower",
+      "definition": "controlled decrease in height",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "throw",
+      "definition": "accelerate then release into flight",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "catch",
+      "definition": "intercept and transition to support/grasp",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "place",
+      "definition": "transport then release at intended pose",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "open",
+      "definition": "change articulated object toward open state",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "close",
+      "definition": "change articulated object toward closed state",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "strike",
+      "definition": "transient impact",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "block",
+      "definition": "interpose to prevent/absorb path",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "parry",
+      "definition": "briefly redirect incoming path",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "deflect",
+      "definition": "change trajectory away",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "redirect",
+      "definition": "change force/motion direction",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "trap",
+      "definition": "constrain degrees of freedom",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "pin",
+      "definition": "constrain against environment/body",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "evade",
+      "definition": "avoid predicted contact",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "dodge",
+      "definition": "rapid evade with readiness",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "intercept",
+      "definition": "arrive at future path/time",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "collide",
+      "definition": "neutral/unplanned impact",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "stagger",
+      "definition": "balance loss/recovery after perturbation",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "yield",
+      "definition": "allow displacement under controlled compliance",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "resist",
+      "definition": "oppose force/displacement",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "guide",
+      "definition": "low-force directional constraint",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "embrace",
+      "definition": "bilateral enclosing social/support contact",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "shield",
+      "definition": "interpose to protect",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "mount",
+      "definition": "establish supported position atop target",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "disarm",
+      "definition": "cause held object release",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "handoff",
+      "definition": "transfer grasp/support ownership",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "point_at",
+      "definition": "orient distal effector to indicate",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "look_at",
+      "definition": "orient gaze",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "approach",
+      "definition": "reduce distance",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "retreat",
+      "definition": "increase distance",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    },
+    {
+      "id": "circle",
+      "definition": "move around target while oriented",
+      "roles": [
+        "agent",
+        "patient_or_target"
+      ],
+      "optional_roles": [
+        "instrument",
+        "surface",
+        "beneficiary",
+        "opponent"
+      ],
+      "parameters": [
+        "t_start",
+        "t_end",
+        "body_parts",
+        "target_parts",
+        "force",
+        "contact",
+        "path",
+        "confidence"
+      ]
+    }
+  ],
+  "physical_parameters": {
+    "force_magnitude": "N or normalized",
+    "impulse": "N·s",
+    "duration": "s",
+    "contact_area": "m² or categorical",
+    "friction_coefficient": "dimensionless",
+    "compliance": "m/N or normalized",
+    "resistance": "N, N·m, or normalized",
+    "relative_velocity": "m/s",
+    "penetration_tolerance": "m",
+    "grip": "0..1"
+  },
+  "contact_topology": {
+    "representation": "temporal attributed multigraph",
+    "node_types": [
+      "actor",
+      "body_part",
+      "object",
+      "object_part",
+      "environment_surface"
+    ],
+    "edge_types": [
+      "contact",
+      "grasp",
+      "support",
+      "constraint",
+      "proximity",
+      "gaze"
+    ],
+    "edge_fields": [
+      "id",
+      "source_node",
+      "target_node",
+      "interval",
+      "point_or_patch",
+      "normal",
+      "tangent_basis",
+      "mode",
+      "normal_force",
+      "tangential_force",
+      "friction",
+      "compliance",
+      "confidence"
+    ],
+    "invariants": [
+      "stick contact has near-zero tangential relative velocity",
+      "support contributes load/stability",
+      "grasp restricts intended degrees of freedom",
+      "release closes contact before flight",
+      "no penetration beyond tolerance"
+    ]
+  },
+  "two_person_patterns": [
+    {
+      "id": "combat_exchange",
+      "structure": "attack → defense/interception → counter → reaction/recovery",
+      "source_ids": [
+        "S036",
+        "S037"
+      ]
+    },
+    {
+      "id": "dance_partnering",
+      "structure": "shared support, lead/follow, counterbalance, synchrony"
+    },
+    {
+      "id": "conversation",
+      "structure": "proxemics, gaze, turn-taking, gesture holds, touch context"
+    },
+    {
+      "id": "handoff",
+      "structure": "giver grasp → shared grasp → receiver support → giver release"
+    }
+  ],
+  "chain_examples": [
+    {
+      "id": "block_counter_push_stagger",
+      "sequence": [
+        "block",
+        "redirect",
+        "strike",
+        "push",
+        "stagger"
+      ]
+    },
+    {
+      "id": "throw_catch",
+      "sequence": [
+        "grasp",
+        "accelerate",
+        "release",
+        "free_flight",
+        "intercept",
+        "catch",
+        "hold"
+      ]
+    }
+  ],
+  "dataset_alignment": {
+    "HICO_DET": "seed verb/object vocabulary; still images, no continuous force",
+    "BABEL": "temporal action labels; not contact ontology",
+    "Inter_X": "two-person sequences/descriptions",
+    "InterGen": "interaction generation; physics not guaranteed",
+    "CG_HOI": "contact-guided synthesis"
+  },
+  "source_ids": [
+    "S034",
+    "S035",
+    "S036",
+    "S037",
+    "S038",
+    "S068"
+  ]
+}

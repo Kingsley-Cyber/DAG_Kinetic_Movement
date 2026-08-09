@@ -1,0 +1,398 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "T11",
+  "title": "Emotional Dynamics — VAD Trajectories",
+  "status": "curated",
+  "principle": "Encode time-indexed affect hypotheses and observable channels. VAD guides performance; it does not prove a private state.",
+  "vad": {
+    "valence": {
+      "range": [
+        0,
+        1
+      ],
+      "low": "unpleasant",
+      "high": "pleasant"
+    },
+    "arousal": {
+      "range": [
+        0,
+        1
+      ],
+      "low": "deactivated",
+      "high": "activated"
+    },
+    "dominance": {
+      "range": [
+        0,
+        1
+      ],
+      "low": "low agency/controlled",
+      "high": "agentic/in-control"
+    },
+    "neutral": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "source_ids": [
+      "S046",
+      "S047",
+      "S048",
+      "S049"
+    ]
+  },
+  "licensing": {
+    "NRC_VAD": "Referenced, not redistributed. Preserve official license/version metadata.",
+    "anchors": "Values below are CPCS engineering seeds, not copied lexicon norms."
+  },
+  "cpcs_seed_anchors": [
+    {
+      "label": "joy",
+      "vad": [
+        0.85,
+        0.72,
+        0.72
+      ]
+    },
+    {
+      "label": "calm",
+      "vad": [
+        0.76,
+        0.2,
+        0.62
+      ]
+    },
+    {
+      "label": "anger",
+      "vad": [
+        0.15,
+        0.82,
+        0.7
+      ]
+    },
+    {
+      "label": "fear",
+      "vad": [
+        0.1,
+        0.84,
+        0.25
+      ]
+    },
+    {
+      "label": "sadness",
+      "vad": [
+        0.12,
+        0.25,
+        0.28
+      ]
+    },
+    {
+      "label": "surprise",
+      "vad": [
+        0.55,
+        0.78,
+        0.5
+      ]
+    },
+    {
+      "label": "disgust",
+      "vad": [
+        0.12,
+        0.63,
+        0.55
+      ]
+    },
+    {
+      "label": "contempt",
+      "vad": [
+        0.22,
+        0.48,
+        0.68
+      ]
+    },
+    {
+      "label": "relief",
+      "vad": [
+        0.8,
+        0.3,
+        0.58
+      ]
+    },
+    {
+      "label": "shame",
+      "vad": [
+        0.18,
+        0.38,
+        0.18
+      ]
+    }
+  ],
+  "extensions": {
+    "confidence": {
+      "range": [
+        0,
+        1
+      ],
+      "meaning": "self-assessed success/correctness; distinct from dominance"
+    },
+    "certainty": {
+      "range": [
+        0,
+        1
+      ],
+      "meaning": "stability of appraisal"
+    },
+    "engagement": {
+      "range": [
+        0,
+        1
+      ],
+      "meaning": "allocation of attention/participation"
+    }
+  },
+  "trajectory": {
+    "keyframe_fields": [
+      "time_s",
+      "valence",
+      "arousal",
+      "dominance",
+      "confidence",
+      "certainty",
+      "engagement",
+      "label_hint",
+      "cause_event",
+      "confidence_interval"
+    ],
+    "interpolation": [
+      "linear",
+      "cubic_hermite",
+      "monotone_cubic",
+      "ease_in_out",
+      "step"
+    ],
+    "transition_types": [
+      {
+        "id": "gradual",
+        "duration_s": "contextual",
+        "curve": "smooth"
+      },
+      {
+        "id": "sudden",
+        "duration_s": "short relative to beat",
+        "curve": "steep/step with physical lag"
+      },
+      {
+        "id": "masked",
+        "definition": "internal/intent trajectory changes while observable channels lag or oppose"
+      },
+      {
+        "id": "mixed",
+        "definition": "different channels carry different affect components"
+      }
+    ]
+  },
+  "example_arcs": [
+    {
+      "id": "approach_conflict_resolution",
+      "keyframes": [
+        {
+          "t": 0,
+          "vad": [
+            0.62,
+            0.35,
+            0.55
+          ]
+        },
+        {
+          "t": 2,
+          "vad": [
+            0.4,
+            0.62,
+            0.52
+          ]
+        },
+        {
+          "t": 4,
+          "vad": [
+            0.18,
+            0.88,
+            0.65
+          ]
+        },
+        {
+          "t": 6,
+          "vad": [
+            0.55,
+            0.45,
+            0.58
+          ]
+        },
+        {
+          "t": 8,
+          "vad": [
+            0.72,
+            0.28,
+            0.62
+          ]
+        }
+      ]
+    },
+    {
+      "id": "confidence_collapse",
+      "keyframes": [
+        {
+          "t": 0,
+          "vad": [
+            0.58,
+            0.5,
+            0.78
+          ],
+          "confidence": 0.85
+        },
+        {
+          "t": 2,
+          "vad": [
+            0.45,
+            0.68,
+            0.55
+          ],
+          "confidence": 0.52
+        },
+        {
+          "t": 3,
+          "vad": [
+            0.22,
+            0.8,
+            0.25
+          ],
+          "confidence": 0.15
+        }
+      ]
+    }
+  ],
+  "motion_mapping": {
+    "valence": {
+      "high_priors": [
+        "more open/spreading in affiliative contexts",
+        "smoother approach",
+        "positive social rhythm"
+      ],
+      "low_priors": [
+        "enclosing/withdrawal or confrontational advance depending dominance"
+      ],
+      "confidence": "low-to-medium"
+    },
+    "arousal": {
+      "high_priors": [
+        "higher event density",
+        "speed/acceleration",
+        "larger amplitude",
+        "reduced holds"
+      ],
+      "low_priors": [
+        "slower tempo",
+        "smaller amplitude",
+        "longer holds"
+      ],
+      "confidence": "medium"
+    },
+    "dominance": {
+      "high_priors": [
+        "rising/spreading/advancing",
+        "larger kinesphere",
+        "stable base",
+        "controlled tempo"
+      ],
+      "low_priors": [
+        "sinking/enclosing/retreating",
+        "reduced kinesphere",
+        "yielding"
+      ],
+      "confidence": "medium"
+    },
+    "certainty": {
+      "high_priors": [
+        "direct path",
+        "clean phase transitions"
+      ],
+      "low_priors": [
+        "indirect path",
+        "false starts",
+        "checking gaze"
+      ]
+    },
+    "engagement": {
+      "high_priors": [
+        "gaze/contact orientation",
+        "forward torso",
+        "responsive timing"
+      ],
+      "low_priors": [
+        "gaze withdrawal",
+        "reduced participation"
+      ]
+    },
+    "warning": "Context can reverse any prior."
+  },
+  "face_mapping": [
+    {
+      "region": "positive_high_arousal",
+      "motifs": [
+        "AU6+12",
+        "AU25/26 optional"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "region": "negative_high_arousal_high_dominance",
+      "motifs": [
+        "AU4+7",
+        "AU23/24 optional"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "region": "negative_high_arousal_low_dominance",
+      "motifs": [
+        "AU1+2+4+5+20/26 fear prototype"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "region": "negative_low_arousal_low_dominance",
+      "motifs": [
+        "AU1+4+15 sadness prototype"
+      ],
+      "confidence": "medium"
+    },
+    {
+      "region": "ambiguous",
+      "motifs": [
+        "blend or channel conflict; no deterministic AU set"
+      ],
+      "confidence": "high for caution"
+    }
+  ],
+  "culture_context": [
+    "culture",
+    "display rules",
+    "relationship",
+    "power",
+    "genre",
+    "camera visibility",
+    "actor baseline",
+    "situational appropriateness"
+  ],
+  "source_ids": [
+    "S007",
+    "S021",
+    "S030",
+    "S032",
+    "S033",
+    "S046",
+    "S047",
+    "S048",
+    "S049",
+    "S071"
+  ]
+}

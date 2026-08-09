@@ -1,0 +1,118 @@
+schema_version: cpcs.experiment_plan/1.0
+experiment_id: experiment://failure/repair_strategy/1
+title: Full regeneration versus localized repair
+status: designed_not_run
+blocked_reason: No authorized provider credentials, generation budget, local model weights, or human rating panel were supplied
+  in this session.
+research_question: Which repair route restores the failed interval while minimizing collateral identity, state, geography,
+  and timing changes?
+hypothesis: Localized interval repair or shot split will preserve accepted state better than full regeneration when stable
+  boundary frames and an edit-capable workflow exist; postproduction will be best for deterministic effects.
+providers:
+- provider: google_vertex_ai
+  model: veo-3.1-generate-001
+  status: candidate_requires_authorization_and_live_profile_check
+- provider: runway
+  model: gen4.5
+  status: candidate_requires_authorization
+- provider: bytedance_seed
+  model: Seedance 2.0 native exact endpoint TBD
+  status: candidate_requires_interface_capture
+- provider: kuaishou
+  model: Kling Video 3.0/Omni exact endpoint TBD
+  status: candidate_requires_interface_capture
+- provider: minimax
+  model: MiniMax-Hailuo-2.3
+  status: candidate_requires_authorization
+- provider: alibaba_model_studio
+  model: wan2.7 exact endpoint by mode
+  status: candidate_requires_region_and_endpoint_pin
+- provider: local
+  model: LTX-2 or Wan2.2 exact checkpoint/workflow
+  status: candidate_requires_weights_and_hardware_workflow
+fixed_factors:
+  input: one retained failed artifact with one adjudicated failure interval
+  canonical_score: fixed
+  acceptance: fixed
+  provider: same provider for primary contrasts; substitution is a separate secondary experiment
+arms:
+- arm_id: REP_A0
+  label: Full regeneration
+  isolated_control: regenerate entire artifact
+  canonical_semantics: same score
+  provider_projection: new full request
+- arm_id: REP_A1
+  label: Localized repair prompt
+  isolated_control: text-only interval repair
+  canonical_semantics: same score and preservation envelope
+  provider_projection: provider edit/inpaint where available
+- arm_id: REP_A2
+  label: Localized repair with boundary frames
+  isolated_control: first/last accepted frames
+  canonical_semantics: same score
+  provider_projection: edit workflow with in/out anchors
+- arm_id: REP_A3
+  label: Shot split and edit
+  isolated_control: decomposition
+  canonical_semantics: same final event graph
+  provider_projection: regenerate failed subshot and assemble
+- arm_id: REP_A4
+  label: Postproduction effect replacement
+  isolated_control: deterministic finishing
+  canonical_semantics: same final event graph
+  provider_projection: replace only effect/audio/camera impulse
+- arm_id: REP_A5
+  label: Provider substitution
+  isolated_control: model/provider
+  canonical_semantics: same sealed canonical target
+  provider_projection: new provider build
+seed_policy:
+  initial_completed_candidates_per_arm: 20
+  open_local_target_per_arm: 30
+  pairing: Use identical seed values within provider where exposed; record retry/sample identifiers when seeds are unavailable.
+  interpretation: Seed pairing reduces one variation source but does not imply identical output or perfect causal isolation.
+  randomization: Randomize arm execution order within provider and batch; do not select best-of-N for the primary analysis.
+metrics:
+- metric_state_transition_accuracy
+- metric_identity_continuity
+- metric_environment_layout_consistency
+- metric_action_graph_agreement
+- metric_instruction_coverage
+critical_assertions:
+- original failed assertion is corrected
+- all previously passing critical assertions remain passing
+- seams are acceptable
+- no undeclared state change occurs
+- cost and latency are recorded
+human_review:
+  required: true
+  minimum_reviewers: 2
+  blind_to_arm: true
+  adjudication: A third reviewer adjudicates disagreement on any critical assertion; preserve all original labels.
+retention:
+  retain_all_outputs: true
+  retain_failed_outputs: true
+  required_lineage:
+  - canonical_score
+  - provider_build
+  - request
+  - assets
+  - provider/model/version
+  - seed_or_retry
+  - artifact
+  - evaluators
+  - human_labels
+  - cost
+  - latency
+analysis:
+  binary_outcomes: Per-arm success proportion with Wilson 95% confidence interval; paired analysis where pairing is valid.
+  continuous_outcomes: Median, distribution, and bootstrap 95% interval; report failed intervals, not only aggregate means.
+  multiple_comparisons: Holm correction within each family; predeclare the primary contrast.
+  decision_rule: Promote only when the isolated intervention improves the critical success distribution and does not increase
+    another critical failure beyond its pre-registered margin.
+stop_conditions:
+- Provider/interface/version changes during the campaign.
+- Prompt rewrite or enhancement behavior cannot be disabled or captured consistently.
+- Evaluator calibration falls below the pre-registered requirement.
+- Artifact/request/asset lineage is incomplete.
+- A safety, rights, or budget condition is violated.

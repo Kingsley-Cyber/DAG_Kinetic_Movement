@@ -1,0 +1,211 @@
+{
+  "schema_id": "dmr.provider-capability-contract/0.1",
+  "contract_id": "byteplus.modelark.seedance-2.0.2026-07-31",
+  "provider": "BytePlus ModelArk",
+  "api_surface": "Video generation API",
+  "model_id": "dreamina-seedance-2-0-260128",
+  "contract_kind": "api",
+  "verified_on": "2026-07-31",
+  "documentation_urls": [
+    "https://docs.byteplus.com/en/docs/modelark/1520757"
+  ],
+  "lifecycle": {
+    "duration_s_min": 4,
+    "duration_s_max": 15,
+    "max_reference_images": 9,
+    "max_reference_videos": 3,
+    "max_reference_audio": 3
+  },
+  "mappings": [
+    {
+      "canonical_path": "prompt.text",
+      "classification": "native",
+      "carrier": "text",
+      "provider_parameter": "content.text",
+      "transform": "identity",
+      "evidence_source": "BytePlus ModelArk video generation API documentation"
+    },
+    {
+      "canonical_path": "conditioning.first_frame",
+      "classification": "media-conditioned",
+      "carrier": "image_role_first_frame",
+      "provider_parameter": "content.image.first_frame",
+      "transform": "identity",
+      "evidence_source": "BytePlus ModelArk documentation"
+    },
+    {
+      "canonical_path": "conditioning.last_frame",
+      "classification": "media-conditioned",
+      "carrier": "image_role_last_frame",
+      "provider_parameter": "content.image.last_frame",
+      "transform": "identity",
+      "evidence_source": "BytePlus ModelArk documentation"
+    },
+    {
+      "canonical_path": "conditioning.reference_images",
+      "classification": "media-conditioned",
+      "carrier": "reference_images",
+      "provider_parameter": "content.reference_images",
+      "transform": "identity",
+      "limits": {
+        "max_items": 9
+      },
+      "evidence_source": "BytePlus ModelArk documentation"
+    },
+    {
+      "canonical_path": "conditioning.reference_videos",
+      "classification": "media-conditioned",
+      "carrier": "reference_videos",
+      "provider_parameter": "content.reference_videos",
+      "transform": "identity",
+      "limits": {
+        "max_items": 3
+      },
+      "evidence_source": "BytePlus ModelArk documentation"
+    },
+    {
+      "canonical_path": "conditioning.reference_audio",
+      "classification": "media-conditioned",
+      "carrier": "reference_audio",
+      "provider_parameter": "content.reference_audio",
+      "transform": "identity",
+      "limits": {
+        "max_items": 3
+      },
+      "evidence_source": "BytePlus ModelArk documentation"
+    },
+    {
+      "canonical_path": "generation.duration_s",
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "duration",
+      "transform": "seconds_to_integer",
+      "limits": {
+        "min": 4,
+        "max": 15,
+        "integer": true
+      },
+      "evidence_source": "BytePlus ModelArk documentation"
+    },
+    {
+      "canonical_path": "generation.aspect_ratio",
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "ratio",
+      "transform": "identity",
+      "evidence_source": "BytePlus ModelArk documentation"
+    },
+    {
+      "canonical_path": "generation.resolution",
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "resolution",
+      "transform": "identity",
+      "evidence_source": "BytePlus ModelArk documentation"
+    },
+    {
+      "canonical_path": "generation.seed",
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "seed",
+      "transform": "identity",
+      "evidence_source": "BytePlus ModelArk documentation"
+    },
+    {
+      "canonical_path": "generation.camera_fixed",
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "camera_fixed",
+      "transform": "identity",
+      "evidence_source": "BytePlus ModelArk documentation"
+    },
+    {
+      "canonical_path": "generation.audio",
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "generate_audio",
+      "transform": "identity",
+      "evidence_source": "BytePlus ModelArk documentation"
+    },
+    {
+      "canonical_path": "generation.extension",
+      "classification": "media-conditioned",
+      "carrier": "source_video",
+      "provider_parameter": "content.reference_videos",
+      "transform": "identity",
+      "evidence_source": "BytePlus documentation describes generation, editing, and extension"
+    },
+    {
+      "canonical_path": "camera.*",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "evidence_source": "camera_fixed is native; arbitrary trajectory is not documented as a path input"
+    },
+    {
+      "canonical_path": "editing.*",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text_or_reference_video",
+      "evidence_source": "Editing is supported, but no canonical edit-event track is documented"
+    },
+    {
+      "canonical_path": "motion.joint_tracks",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "No native joint trajectory input documented"
+    },
+    {
+      "canonical_path": "motion.pose_control",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "No native pose map input documented for exact API"
+    },
+    {
+      "canonical_path": "motion.depth_control",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "No native depth map input documented for exact API"
+    },
+    {
+      "canonical_path": "interaction.contacts",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text_or_reference_video",
+      "evidence_source": "No native contact constraint documented"
+    },
+    {
+      "canonical_path": "performance.facs",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text_or_reference_media",
+      "evidence_source": "No native FACS track documented"
+    },
+    {
+      "canonical_path": "performance.laban",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text_or_reference_media",
+      "evidence_source": "No native Laban track documented"
+    },
+    {
+      "canonical_path": "temporal.exact_timestamps",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "No exact event timestamp track documented"
+    },
+    {
+      "canonical_path": "temporal.frame_count",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "Frame-count parameter is documented for Seedance 1.0, not this exact Seedance 2.0 contract"
+    },
+    {
+      "canonical_path": "identity.binding",
+      "classification": "media-conditioned",
+      "carrier": "multi_reference_media",
+      "provider_parameter": "content.reference_images",
+      "transform": "identity",
+      "evidence_source": "Multi-reference inputs are documented; hard identity guarantees are not"
+    }
+  ],
+  "unknowns": [
+    "The official documentation is JavaScript-rendered and changes frequently; exact request-body nesting must be validated with the API explorer before production deployment.",
+    "Prompt-embedded legacy parameters may silently default; this contract intentionally models top-level parameters only."
+  ]
+}

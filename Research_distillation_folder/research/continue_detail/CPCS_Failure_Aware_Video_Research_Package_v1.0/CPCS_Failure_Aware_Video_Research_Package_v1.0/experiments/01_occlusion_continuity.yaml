@@ -1,0 +1,130 @@
+schema_version: cpcs.experiment_plan/1.0
+experiment_id: experiment://failure/occlusion_continuity/1
+title: Occlusion continuity and water-splash hidden state
+status: designed_not_run
+blocked_reason: No authorized provider credentials, generation budget, local model weights, or human rating panel were supplied
+  in this session.
+research_question: Which carrier most reliably preserves one actor's identity, count, hidden dive path, and reappearance region
+  through a splash?
+hypothesis: Complete opaque occlusion will produce the highest continuity failure; a visible bridge and then tracked control
+  media will improve continuity more than equivalent additional prose.
+providers:
+- provider: google_vertex_ai
+  model: veo-3.1-generate-001
+  status: candidate_requires_authorization_and_live_profile_check
+- provider: runway
+  model: gen4.5
+  status: candidate_requires_authorization
+- provider: bytedance_seed
+  model: Seedance 2.0 native exact endpoint TBD
+  status: candidate_requires_interface_capture
+- provider: kuaishou
+  model: Kling Video 3.0/Omni exact endpoint TBD
+  status: candidate_requires_interface_capture
+- provider: minimax
+  model: MiniMax-Hailuo-2.3
+  status: candidate_requires_authorization
+- provider: alibaba_model_studio
+  model: wan2.7 exact endpoint by mode
+  status: candidate_requires_region_and_endpoint_pin
+- provider: local
+  model: LTX-2 or Wan2.2 exact checkpoint/workflow
+  status: candidate_requires_weights_and_hardware_workflow
+fixed_factors:
+  scene: two visually distinct actors on a continuous flat water plane; actor B dives; actor A's kick misses B and strikes
+    only water; water column briefly occludes B
+  duration_seconds: 8
+  aspect_ratio: '16:9'
+  actor_count: 2
+  camera: locked or low-complexity tracking, no axis crossing
+  canonical_event_graph: identical across arms
+  identity_and_costume: locked
+  negative_constraints: identical across arms where representable
+arms:
+- arm_id: OCC_A0
+  label: No splash control
+  isolated_control: no occlusion
+  canonical_semantics: All events except splash; B remains fully visible
+  provider_projection: baseline prompt/reference
+- arm_id: OCC_A1
+  label: Narrow partial splash
+  isolated_control: partial occlusion
+  canonical_semantics: Same event graph; B remains at least 30% visible
+  provider_projection: prompt-only partial splash
+- arm_id: OCC_A2
+  label: Complete splash
+  isolated_control: complete opaque occlusion
+  canonical_semantics: Same hidden path and reappearance target
+  provider_projection: prompt-only complete splash
+- arm_id: OCC_A3
+  label: Complete splash plus silhouette/trail
+  isolated_control: visibility bridge
+  canonical_semantics: Same hidden path; bridge bound to actor B
+  provider_projection: reference/mask/silhouette/bubble trail where supported
+- arm_id: OCC_A4
+  label: Complete splash plus explicit hidden-path contract
+  isolated_control: structured state and path
+  canonical_semantics: Occlusion continuity contract included
+  provider_projection: compressed provider-native prompt plus first/last/reference if available
+- arm_id: OCC_A5
+  label: Complete splash plus tracked control
+  isolated_control: pose/point/depth path
+  canonical_semantics: Same contract and control path
+  provider_projection: provider-native control media or source-video workflow
+- arm_id: OCC_A6
+  label: Shot split and composited effect
+  isolated_control: decomposition/post
+  canonical_semantics: Same final canonical sequence
+  provider_projection: clean choreography, separate splash plate, deterministic edit
+seed_policy:
+  initial_completed_candidates_per_arm: 20
+  open_local_target_per_arm: 30
+  pairing: Use identical seed values within provider where exposed; record retry/sample identifiers when seeds are unavailable.
+  interpretation: Seed pairing reduces one variation source but does not imply identical output or perfect causal isolation.
+  randomization: Randomize arm execution order within provider and batch; do not select best-of-N for the primary analysis.
+metrics:
+- metric_hidden_path_consistency
+- metric_occlusion_reappearance_region_error
+- metric_actor_count_consistency
+- metric_identity_continuity
+- metric_effect_origin_error
+- metric_state_transition_accuracy
+critical_assertions:
+- actor count remains exactly two
+- actor B remains the same identity and costume while invisible
+- actor B follows the same hidden dive direction and reappears only in the declared region
+- actor A's kick does not contact actor B
+- water column begins only after and at the water impact point
+- world layout and water topology do not reset
+human_review:
+  required: true
+  minimum_reviewers: 2
+  blind_to_arm: true
+  adjudication: A third reviewer adjudicates disagreement on any critical assertion; preserve all original labels.
+retention:
+  retain_all_outputs: true
+  retain_failed_outputs: true
+  required_lineage:
+  - canonical_score
+  - provider_build
+  - request
+  - assets
+  - provider/model/version
+  - seed_or_retry
+  - artifact
+  - evaluators
+  - human_labels
+  - cost
+  - latency
+analysis:
+  binary_outcomes: Per-arm success proportion with Wilson 95% confidence interval; paired analysis where pairing is valid.
+  continuous_outcomes: Median, distribution, and bootstrap 95% interval; report failed intervals, not only aggregate means.
+  multiple_comparisons: Holm correction within each family; predeclare the primary contrast.
+  decision_rule: Promote only when the isolated intervention improves the critical success distribution and does not increase
+    another critical failure beyond its pre-registered margin.
+stop_conditions:
+- Provider/interface/version changes during the campaign.
+- Prompt rewrite or enhancement behavior cannot be disabled or captured consistently.
+- Evaluator calibration falls below the pre-registered requirement.
+- Artifact/request/asset lineage is incomplete.
+- A safety, rights, or budget condition is violated.

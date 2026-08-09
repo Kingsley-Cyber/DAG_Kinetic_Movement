@@ -1,0 +1,278 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "T02",
+  "title": "Bartenieff Fundamentals — Body Connectivity Patterns",
+  "status": "curated",
+  "taxonomy_correction": {
+    "basic_six_are_exercises": true,
+    "connectivity_patterns_are_developmental_organization": true,
+    "do_not_merge": true,
+    "source_ids": [
+      "S002",
+      "S003"
+    ]
+  },
+  "basic_six": [
+    {
+      "id": "thigh_lift",
+      "name": "Thigh Lift",
+      "action": "femoral flexion with pelvic organization",
+      "cues": [
+        "release femur in hip socket",
+        "maintain pelvic support"
+      ]
+    },
+    {
+      "id": "forward_pelvic_shift",
+      "name": "Forward Pelvic Shift",
+      "action": "sagittal pelvic translation with lower-body support",
+      "cues": [
+        "pelvis glides forward without lumbar collapse"
+      ]
+    },
+    {
+      "id": "lateral_pelvic_shift",
+      "name": "Lateral Pelvic Shift",
+      "action": "side translation with countertension",
+      "cues": [
+        "pelvis shifts laterally while ribs counterbalance"
+      ]
+    },
+    {
+      "id": "body_half",
+      "name": "Body Half",
+      "action": "ipsilateral organization",
+      "cues": [
+        "same-side arm and leg organize as a unit"
+      ]
+    },
+    {
+      "id": "knee_drop",
+      "name": "Knee Drop",
+      "action": "diagonal lower-body rotation/reach",
+      "cues": [
+        "knee releases across diagonal while pelvis spirals"
+      ]
+    },
+    {
+      "id": "arm_circle",
+      "name": "Arm Circle",
+      "action": "scapular-humeral sequencing with torso",
+      "cues": [
+        "circle begins at scapula then shoulder–elbow–wrist"
+      ]
+    }
+  ],
+  "connectivity_patterns": [
+    {
+      "id": "breath",
+      "order": 1,
+      "organization": "whole-body expansion/condensation through respiratory support",
+      "source_locator": "S003, from p.54"
+    },
+    {
+      "id": "core_distal",
+      "order": 2,
+      "organization": "radiation from center to limbs and return",
+      "source_locator": "S003, from p.71"
+    },
+    {
+      "id": "head_tail",
+      "order": 3,
+      "organization": "axial connection between cranial and coccygeal poles",
+      "source_locator": "S003, from p.90"
+    },
+    {
+      "id": "upper_lower",
+      "order": 4,
+      "organization": "differentiation/integration of upper and lower body",
+      "source_locator": "S003, from p.121"
+    },
+    {
+      "id": "body_half",
+      "order": 5,
+      "organization": "ipsilateral integration",
+      "source_locator": "S003, from p.181"
+    },
+    {
+      "id": "cross_lateral",
+      "order": 6,
+      "organization": "contralateral diagonal integration",
+      "source_locator": "S003, from p.193"
+    }
+  ],
+  "primitive_schema": {
+    "fields": {
+      "primitive_id": "URI",
+      "connectivity_pattern": "enum",
+      "basic_exercise": "nullable enum",
+      "initiator": "body region",
+      "receiver_sequence": "ordered parts",
+      "intensity": {
+        "range": [
+          0,
+          1
+        ],
+        "status": "CPCS"
+      },
+      "speed": "m/s, rad/s, or normalized",
+      "range": {
+        "range": [
+          0,
+          1
+        ],
+        "meaning": "fraction of actor-specific comfortable range"
+      },
+      "sequencing_delay_ms": "number",
+      "grounding": {
+        "range": [
+          0,
+          1
+        ]
+      },
+      "breath_phase": [
+        "inhale",
+        "exhale",
+        "hold",
+        "free"
+      ],
+      "laterality": [
+        "left",
+        "right",
+        "bilateral",
+        "alternating"
+      ],
+      "support_contacts": "contact IDs",
+      "phase_profile": "phase timeline URI",
+      "confidence": {
+        "range": [
+          0,
+          1
+        ]
+      }
+    }
+  },
+  "composition_rules": [
+    {
+      "id": "sequence",
+      "operation": "end-to-start or overlap B after A",
+      "constraints": [
+        "contact continuity",
+        "joint limits",
+        "support stability"
+      ]
+    },
+    {
+      "id": "blend",
+      "operation": "weighted blend of compatible primitives",
+      "constraints": [
+        "same skeleton",
+        "compatible contacts",
+        "phase normalization"
+      ]
+    },
+    {
+      "id": "condition",
+      "operation": "adapt primitive to target/end state",
+      "source_ids": [
+        "S068"
+      ]
+    },
+    {
+      "id": "mirror",
+      "operation": "swap laterality and reflect path"
+    },
+    {
+      "id": "scale",
+      "operation": "time/amplitude warp then recheck force/contact constraints"
+    }
+  ],
+  "compound_examples": [
+    {
+      "name": "walking_step",
+      "chain": [
+        "breath",
+        "upper_lower",
+        "cross_lateral"
+      ],
+      "domains": [
+        "everyday",
+        "dance",
+        "combat footwork"
+      ]
+    },
+    {
+      "name": "cross_punch",
+      "chain": [
+        "lower-body push",
+        "cross-lateral pelvis/trunk",
+        "proximal-to-distal arm",
+        "recoil"
+      ],
+      "domains": [
+        "boxing",
+        "cinematic combat"
+      ]
+    },
+    {
+      "name": "comforting_reach",
+      "chain": [
+        "breath",
+        "core_distal",
+        "head_tail orientation",
+        "distal hand contact"
+      ],
+      "domains": [
+        "conversation",
+        "caregiving"
+      ]
+    },
+    {
+      "name": "dance_turn",
+      "chain": [
+        "upper_lower support",
+        "head_tail spotting",
+        "cross_lateral initiation",
+        "sequential arm shaping"
+      ],
+      "domains": [
+        "dance"
+      ]
+    }
+  ],
+  "domain_mapping": {
+    "combat": {
+      "core_distal": "guard expansion/withdrawal",
+      "head_tail": "slips and level changes",
+      "upper_lower": "base-to-strike transfer",
+      "body_half": "same-side shields",
+      "cross_lateral": "crosses, diagonal throws, locomotion"
+    },
+    "dance": {
+      "breath": "phrasing",
+      "core_distal": "extension/return",
+      "head_tail": "spinal articulation",
+      "upper_lower": "grounded legs/mobile torso",
+      "body_half": "lateral phrasing",
+      "cross_lateral": "spirals/turns"
+    },
+    "everyday": {
+      "core_distal": "reaching",
+      "head_tail": "looking/bending",
+      "upper_lower": "standing/sitting",
+      "body_half": "rolling/side-step",
+      "cross_lateral": "walking/carrying"
+    }
+  },
+  "warnings": [
+    "Connectivity patterns are experiential/organizational concepts, not directly measured muscle synergies.",
+    "Scaling must preserve contact and balance.",
+    "Do not infer pathology from deviation."
+  ],
+  "source_ids": [
+    "S002",
+    "S003",
+    "S039",
+    "S068"
+  ]
+}

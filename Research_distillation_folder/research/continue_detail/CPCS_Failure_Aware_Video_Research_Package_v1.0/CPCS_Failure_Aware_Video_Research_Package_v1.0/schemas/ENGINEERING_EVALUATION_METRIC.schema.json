@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cpcs://research/evaluation-metric/1.0",
+  "title": "CPCS Failure Evaluation Metric",
+  "type": "object",
+  "required": [
+    "metric_id",
+    "name",
+    "observable_dimension",
+    "measurement_method",
+    "unit",
+    "threshold_policy",
+    "evaluator_or_tool",
+    "confidence",
+    "known_blind_spots",
+    "human_calibration_requirement",
+    "source_refs"
+  ],
+  "properties": {
+    "metric_id": {
+      "type": "string",
+      "pattern": "^metric_[A-Za-z0-9._-]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3
+    },
+    "observable_dimension": {
+      "type": "string",
+      "minLength": 10
+    },
+    "measurement_method": {
+      "type": "string",
+      "minLength": 10
+    },
+    "unit": {
+      "type": "string"
+    },
+    "threshold_policy": {
+      "type": "string"
+    },
+    "evaluator_or_tool": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "string"
+    },
+    "known_blind_spots": {
+      "type": "string"
+    },
+    "human_calibration_requirement": {
+      "type": "string"
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[RMB][0-9]{3}$"
+      }
+    }
+  },
+  "additionalProperties": false
+}

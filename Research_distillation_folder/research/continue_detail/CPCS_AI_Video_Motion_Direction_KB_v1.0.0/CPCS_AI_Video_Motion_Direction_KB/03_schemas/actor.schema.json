@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/cpcs/schema/actor/1.0.0",
+  "title": "CPCS Actor",
+  "type": "object",
+  "properties": {
+    "actor_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    },
+    "skeleton_profile": {
+      "type": "object",
+      "properties": {
+        "skeleton_id": {
+          "type": "string"
+        },
+        "height_m": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "mass_kg": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "joint_limits_uri": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "skeleton_id"
+      ],
+      "additionalProperties": false
+    },
+    "appearance_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "baseline_posture": {
+      "type": "string"
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "provenance_class": {
+          "enum": [
+            "ESTABLISHED",
+            "EMPIRICAL",
+            "PRACTICE",
+            "CPCS_CONVENTION",
+            "UNVERIFIED"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{3}$"
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "measurement_status": {
+          "enum": [
+            "measured",
+            "annotated",
+            "inverse_dynamics_estimate",
+            "model_inference",
+            "visual_proxy",
+            "prompt_prior",
+            "generated"
+          ]
+        },
+        "uncertainty_note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provenance_class"
+      ],
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "actor_id",
+    "skeleton_profile"
+  ],
+  "unevaluatedProperties": false
+}

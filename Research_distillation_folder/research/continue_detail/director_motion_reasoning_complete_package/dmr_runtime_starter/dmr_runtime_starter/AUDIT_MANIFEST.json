@@ -1,0 +1,209 @@
+{
+  "audit_date": "2026-07-31",
+  "environment": {
+    "pydantic": "2.13.4",
+    "pytest": "9.0.2",
+    "python": "3.13.5"
+  },
+  "file_count_excluding_manifest_and_checksum_list": 35,
+  "files": [
+    {
+      "bytes": 7631,
+      "path": "README.md",
+      "sha256": "a137ee75290ba8918226727a907c1c54a733e5e6f238d4574b2071aab5066c8f"
+    },
+    {
+      "bytes": 3556,
+      "path": "contracts/kling-video-3.0-omni.product.json",
+      "sha256": "b4f86687df37215d3bb6ca7b414c062eb3e7cf2d3e732e992acd4aad9fe07b24"
+    },
+    {
+      "bytes": 6116,
+      "path": "contracts/ltx-video-0.9.8.local.json",
+      "sha256": "3333a7e893c44a4f81162650f958ebdd4f78e2b01cd0834a72faf285523e2378"
+    },
+    {
+      "bytes": 5704,
+      "path": "contracts/runway-gen4.5.api.json",
+      "sha256": "4f0847a3f0dbd0e48e7e33a34572832951f9e3f50d4dc092d89daa94caf84982"
+    },
+    {
+      "bytes": 7266,
+      "path": "contracts/seedance-2.0-modelark.api.json",
+      "sha256": "b76bce53970c42d4317ae4804d7b581cd5d2a5fc0876dd260c52cd6fc39ba4f0"
+    },
+    {
+      "bytes": 7830,
+      "path": "contracts/veo-3.1-generate-001.vertex.json",
+      "sha256": "26d85525075c2a57b3ef67566feb3e1d54e57c150787fc85683328a5fe43eb18"
+    },
+    {
+      "bytes": 1615,
+      "path": "docs/INTEGRATION_CHECKLIST.md",
+      "sha256": "22201336bf2467da20e3722a29b30f98c3863419df9782e57d1942bc67457b73"
+    },
+    {
+      "bytes": 89409,
+      "path": "docs/director_motion_reasoning_gap_report.md",
+      "sha256": "2d275a28631420dc583c8264c20c7860fad4f2880a7d9b5b6b24e640c552f27f"
+    },
+    {
+      "bytes": 24542,
+      "path": "docs/source_research_brief.md",
+      "sha256": "0a216c8bb5ba65fbc3d83956c95b36684e232a116cf2002aa08b15d32dad5108"
+    },
+    {
+      "bytes": 14677,
+      "path": "examples/blocked_turning_kick.scene.json",
+      "sha256": "ed78777d0dffcfbf802fdb8d25c16f56825cd681c6aa67663d908865497a1faa"
+    },
+    {
+      "bytes": 1477,
+      "path": "examples/blocked_turning_kick.solved.json",
+      "sha256": "d8f6a2b52b721d58bcdf33114be328836563c804af71cd01f6986401d4e70b47"
+    },
+    {
+      "bytes": 7199,
+      "path": "examples/blocked_turning_kick.veo.compilation.json",
+      "sha256": "bc284c52cb5c43b58ac47e9269d1694ca9ce07a7b6de2b41f4b73e078cba8615"
+    },
+    {
+      "bytes": 8447,
+      "path": "experiments/experiment_queue.csv",
+      "sha256": "dba0e69593bf64c6295aad4be41552d0c6f1d5b1d007fc9b7de9b1759c761820"
+    },
+    {
+      "bytes": 551,
+      "path": "pyproject.toml",
+      "sha256": "fcec61f85a9e06bb1263e65bdadb13f72d962f959ab44c290deb3b7a32da93ed"
+    },
+    {
+      "bytes": 4844,
+      "path": "schemas/compilation-result.schema.json",
+      "sha256": "9e6dfc4f92727f8e6e51e361fae53003e80e98eeb9a0b2227f703d0c7ac9087b"
+    },
+    {
+      "bytes": 3639,
+      "path": "schemas/provider-capability-contract.schema.json",
+      "sha256": "7c3b84ceb1599d97af8ba61d7c9d570baefc35fc4d5f029752225e69714e3475"
+    },
+    {
+      "bytes": 22419,
+      "path": "schemas/scene-plan.schema.json",
+      "sha256": "7f5e128420d1c6e4173afb44a18ede434ff7a53a3cea57752e2672c46267d0d4"
+    },
+    {
+      "bytes": 363,
+      "path": "src/dmr_runtime/__init__.py",
+      "sha256": "d02d24046c5ac2f355d1ddd5e5de1024ff190ce84dcfbf4d656e0f4c0398442e"
+    },
+    {
+      "bytes": 305,
+      "path": "src/dmr_runtime/capabilities.py",
+      "sha256": "d96904ddfb95586ab843fedb5c60cd2768de369805ed6b9a6d0d94d03d0fa9e5"
+    },
+    {
+      "bytes": 2466,
+      "path": "src/dmr_runtime/cli.py",
+      "sha256": "bc176c49186ba5bef6139236e763dadc63c4fa82b4bab1ecf8a7e47358e6093c"
+    },
+    {
+      "bytes": 12681,
+      "path": "src/dmr_runtime/compiler.py",
+      "sha256": "a98544aa7c39df6d29265cff5235a727ef1930545c82a73c0c293e9cec737e49"
+    },
+    {
+      "bytes": 11106,
+      "path": "src/dmr_runtime/models.py",
+      "sha256": "b992935dcf25e1e311a0b07b09eb1d923792fb64ab686aa6c2e6adf793665e77"
+    },
+    {
+      "bytes": 5252,
+      "path": "src/dmr_runtime/temporal.py",
+      "sha256": "6b2b1a8063bdfa1c732d866574b82b5ec37b1ffcb7759bb8f8f51b07a2207f89"
+    },
+    {
+      "bytes": 12166,
+      "path": "src/dmr_runtime/validation.py",
+      "sha256": "31dd80f6edb30bcc26ac8948245e4d594a4a693b5c98b274ecb8c190c177258a"
+    },
+    {
+      "bytes": 3824,
+      "path": "tests/test_compiler.py",
+      "sha256": "cfba92cc9ebaef66742f9a5c5d084ed353f171b348bc2ffd5f56548e5cabf169"
+    },
+    {
+      "bytes": 1531,
+      "path": "tests/test_temporal.py",
+      "sha256": "c6896c783d5917c4eb6bcd6027312df880875dbf658a7ebe606822cdce6f4987"
+    },
+    {
+      "bytes": 1842,
+      "path": "tests/test_validation.py",
+      "sha256": "f9df7588efc332deafef70257a9e65cb1ae977c4bc16ad20ddf37ae577a9d71d"
+    },
+    {
+      "bytes": 1564,
+      "path": "verification/VERIFICATION.md",
+      "sha256": "5a1995b9040ac163f5d3c728840a9980c7a65eaa1c2cf99a7ee17b87b6a11f95"
+    },
+    {
+      "bytes": 17,
+      "path": "verification/compileall.txt",
+      "sha256": "f8ebc65bcf3d22d004eddde09612fcff2d08ea954cb441132209d74adf4b6451"
+    },
+    {
+      "bytes": 3,
+      "path": "verification/example_validation.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "bytes": 80,
+      "path": "verification/pytest.txt",
+      "sha256": "eb27a136c18598aedc0e4f11e6893b614a04335a9faf3ec03433325d777e2663"
+    },
+    {
+      "bytes": 143,
+      "path": "verification/schema_and_contract_validation.txt",
+      "sha256": "71a9b72e422c737553721f468d5a0a24fa88ff73b9f239acbb676491998c55c2"
+    },
+    {
+      "bytes": 797,
+      "path": "verification/wheel_build.txt",
+      "sha256": "f0f9dc5421fa8a8eb7132d2c89bb139a810b8005399a9ab6251b86e68f804100"
+    },
+    {
+      "bytes": 351,
+      "path": "verification/wheel_install_test.txt",
+      "sha256": "c65280499d04575e10848b211eb587d41e67e5c574b220d4d797d57e96648261"
+    },
+    {
+      "bytes": 18051,
+      "path": "verification/wheelhouse/dmr_runtime-0.1.0-py3-none-any.whl",
+      "sha256": "e2289b690b8026cf5dab352b962a009dec6417e590ebe62fa14de8ea97cacba2"
+    }
+  ],
+  "provider_contract_boundary": {
+    "kling_contract_kind": "product_profile_non_executable",
+    "note": "Contracts must be reverified before production use; video APIs and model lifecycles change.",
+    "verified_on": "2026-07-31"
+  },
+  "repository": {
+    "commit": "3db5dcef5f4902ac7343b79a3d9bdae7dc17fc7e",
+    "full_name": "Kingsley-Cyber/ai-video-movement-prompt-system",
+    "ref": "main",
+    "repository_writes_performed": false
+  },
+  "schema": "dmr.audit-manifest/1.0",
+  "verification": {
+    "compileall": "pass",
+    "example_compilation_valid": true,
+    "example_validation_error_count": 0,
+    "generated_video_round_trip_performed": false,
+    "live_provider_call_performed": false,
+    "provider_contracts_valid": 5,
+    "pytest": "12 passed",
+    "source_wheel_built": true,
+    "wheel_import_smoke": true
+  }
+}

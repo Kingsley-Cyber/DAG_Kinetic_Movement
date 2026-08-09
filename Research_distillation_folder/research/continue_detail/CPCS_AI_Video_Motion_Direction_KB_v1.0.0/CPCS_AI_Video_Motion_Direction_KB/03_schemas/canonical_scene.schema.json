@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/cpcs/schema/canonical_scene/1.0.0",
+  "title": "CPCS Canonical Scene",
+  "type": "object",
+  "properties": {
+    "cpcs_version": {
+      "type": "string"
+    },
+    "scene_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "duration_s": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "fps": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "intent": {
+      "type": "object"
+    },
+    "beats": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "actors": {
+      "type": "array",
+      "items": {
+        "$ref": "https://example.org/cpcs/schema/actor/1.0.0"
+      },
+      "minItems": 1
+    },
+    "affect_tracks": {
+      "type": "array",
+      "items": {
+        "$ref": "https://example.org/cpcs/schema/affect_trajectory/1.0.0"
+      }
+    },
+    "phase_timelines": {
+      "type": "array",
+      "items": {
+        "$ref": "https://example.org/cpcs/schema/phase_timeline/1.0.0"
+      }
+    },
+    "motion_primitives": {
+      "type": "array",
+      "items": {
+        "$ref": "https://example.org/cpcs/schema/motion_primitive/1.0.0"
+      }
+    },
+    "facs_tracks": {
+      "type": "array",
+      "items": {
+        "$ref": "https://example.org/cpcs/schema/facs_track/1.0.0"
+      }
+    },
+    "interactions": {
+      "type": "array",
+      "items": {
+        "$ref": "https://example.org/cpcs/schema/interaction/1.0.0"
+      }
+    },
+    "camera_tracks": {
+      "type": "array",
+      "items": {
+        "$ref": "https://example.org/cpcs/schema/camera_track/1.0.0"
+      }
+    },
+    "style": {
+      "type": "object"
+    },
+    "rhythm": {
+      "type": "object"
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "target_adapters": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "provenance_class": {
+          "enum": [
+            "ESTABLISHED",
+            "EMPIRICAL",
+            "PRACTICE",
+            "CPCS_CONVENTION",
+            "UNVERIFIED"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{3}$"
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "measurement_status": {
+          "enum": [
+            "measured",
+            "annotated",
+            "inverse_dynamics_estimate",
+            "model_inference",
+            "visual_proxy",
+            "prompt_prior",
+            "generated"
+          ]
+        },
+        "uncertainty_note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provenance_class"
+      ],
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "cpcs_version",
+    "scene_id",
+    "title",
+    "duration_s",
+    "fps",
+    "actors"
+  ],
+  "unevaluatedProperties": false
+}

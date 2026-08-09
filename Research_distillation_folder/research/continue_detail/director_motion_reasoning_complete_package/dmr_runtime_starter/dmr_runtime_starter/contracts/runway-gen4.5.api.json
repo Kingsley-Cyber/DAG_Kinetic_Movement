@@ -1,0 +1,172 @@
+{
+  "schema_id": "dmr.provider-capability-contract/0.1",
+  "contract_id": "runway.api.gen4.5.2026-07-31",
+  "provider": "Runway",
+  "api_surface": "Runway API text-to-video / image-to-video",
+  "model_id": "gen4.5",
+  "contract_kind": "api",
+  "verified_on": "2026-07-31",
+  "documentation_urls": [
+    "https://docs.dev.runwayml.com/api/",
+    "https://docs.dev.runwayml.com/api-details/api_changelog/"
+  ],
+  "lifecycle": {
+    "current_as_of": "2026-07-31",
+    "recommended_quality_model": true
+  },
+  "mappings": [
+    {
+      "canonical_path": "prompt.text",
+      "classification": "native",
+      "carrier": "text",
+      "provider_parameter": "promptText",
+      "transform": "identity",
+      "evidence_source": "Runway API reference"
+    },
+    {
+      "canonical_path": "conditioning.first_frame",
+      "classification": "media-conditioned",
+      "carrier": "image",
+      "provider_parameter": "promptImage",
+      "transform": "identity",
+      "evidence_source": "Runway image-to-video API reference"
+    },
+    {
+      "canonical_path": "conditioning.last_frame",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "Not documented for exact gen4.5 endpoint; other Runway-routed models may differ"
+    },
+    {
+      "canonical_path": "conditioning.reference_images",
+      "classification": "approximated",
+      "carrier": "promptImage",
+      "provider_parameter": "promptImage",
+      "transform": "list_first",
+      "evidence_source": "Runway image-to-video API reference",
+      "notes": "A single prompt image is not equivalent to multi-reference identity binding."
+    },
+    {
+      "canonical_path": "generation.duration_s",
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "duration",
+      "transform": "identity",
+      "evidence_source": "Runway API reference and flexible generation length changelog",
+      "limits": {
+        "min": 2,
+        "max": 10,
+        "integer": true
+      }
+    },
+    {
+      "canonical_path": "generation.aspect_ratio",
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "ratio",
+      "transform": "identity",
+      "evidence_source": "Runway API reference",
+      "limits": {
+        "allowed": [
+          "1280:720",
+          "720:1280",
+          "1104:832",
+          "960:960",
+          "832:1104",
+          "1584:672"
+        ]
+      }
+    },
+    {
+      "canonical_path": "generation.seed",
+      "classification": "native",
+      "carrier": "api_parameter",
+      "provider_parameter": "seed",
+      "transform": "identity",
+      "evidence_source": "Runway API reference",
+      "limits": {
+        "min": 0,
+        "max": 4294967295,
+        "integer": true
+      }
+    },
+    {
+      "canonical_path": "generation.audio",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "Not documented for exact gen4.5 video generation endpoint"
+    },
+    {
+      "canonical_path": "camera.*",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "evidence_source": "No native 6DoF camera trajectory parameter documented for gen4.5"
+    },
+    {
+      "canonical_path": "editing.*",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "evidence_source": "No native edit-event timeline documented for gen4.5"
+    },
+    {
+      "canonical_path": "motion.joint_tracks",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "No native joint-trajectory input documented"
+    },
+    {
+      "canonical_path": "motion.pose_control",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "No native pose-map input documented for exact gen4.5 endpoint"
+    },
+    {
+      "canonical_path": "motion.depth_control",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "No native depth-map input documented for exact gen4.5 endpoint"
+    },
+    {
+      "canonical_path": "interaction.contacts",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "evidence_source": "No native contact constraint documented"
+    },
+    {
+      "canonical_path": "performance.facs",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "evidence_source": "No native FACS track documented"
+    },
+    {
+      "canonical_path": "performance.laban",
+      "classification": "semantic-text-only",
+      "carrier": "prompt_text",
+      "evidence_source": "No native Laban track documented"
+    },
+    {
+      "canonical_path": "temporal.exact_timestamps",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "No exact event timestamp interface documented"
+    },
+    {
+      "canonical_path": "temporal.multi_shot",
+      "classification": "unsupported",
+      "carrier": null,
+      "evidence_source": "No exact gen4.5 native storyboard timeline documented; provider catalog includes other models with different capabilities"
+    },
+    {
+      "canonical_path": "identity.binding",
+      "classification": "media-conditioned",
+      "carrier": "first_frame_image",
+      "provider_parameter": "promptImage",
+      "transform": "identity",
+      "evidence_source": "Image-to-video conditioning; hard identity guarantees are not documented"
+    }
+  ],
+  "unknowns": [
+    "Runway exposes multiple first-party and third-party video models. Capabilities from Aleph 2, Seedance 2, Gemini Omni, or Veo must not be inherited by gen4.5.",
+    "Exact parameter limits should be regression-tested because the Runway API changelog is active."
+  ]
+}

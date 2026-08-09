@@ -1,0 +1,315 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cpcs://research/failure-record/1.0",
+  "title": "CPCS Failure Research Record",
+  "type": "object",
+  "required": [
+    "failure_id",
+    "failure_code",
+    "name",
+    "category",
+    "definition",
+    "scope",
+    "trigger_conditions",
+    "observed_symptoms",
+    "suspected_causes",
+    "evidence_class",
+    "source_refs",
+    "empirical_confidence",
+    "severity",
+    "likelihood_when_triggered",
+    "canonical_fields_affected",
+    "prompt_risk_patterns",
+    "mitigations",
+    "verification_metrics",
+    "regression_fixtures",
+    "provider_specific_notes",
+    "unresolved_questions",
+    "cpcs_impact",
+    "finding_classification",
+    "controllability",
+    "research_status"
+  ],
+  "properties": {
+    "failure_id": {
+      "type": "string",
+      "pattern": "^failure://"
+    },
+    "failure_code": {
+      "type": "string",
+      "pattern": "^[A-J][0-9]{2}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3
+    },
+    "category": {
+      "type": "string",
+      "minLength": 3
+    },
+    "definition": {
+      "type": "string",
+      "minLength": 20
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "providers",
+        "models",
+        "workflows",
+        "version_scope"
+      ],
+      "properties": {
+        "providers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "models": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "workflows": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "version_scope": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "trigger_conditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "observed_symptoms": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "suspected_causes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "mechanism_id",
+          "mechanism",
+          "causal_status"
+        ],
+        "properties": {
+          "mechanism_id": {
+            "type": "string",
+            "pattern": "^mechanism://"
+          },
+          "mechanism": {
+            "type": "string"
+          },
+          "causal_status": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "evidence_class": {
+      "type": "string"
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[RMB][0-9]{3}$"
+      }
+    },
+    "empirical_confidence": {
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "likelihood_when_triggered": {
+      "type": "string"
+    },
+    "canonical_fields_affected": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "prompt_risk_patterns": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "mitigations": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "level",
+          "level_name",
+          "method",
+          "expected_benefit",
+          "token_or_character_cost",
+          "generation_cost_impact",
+          "risk_of_new_failure",
+          "provider_dependency",
+          "evidence_strength",
+          "verification_method",
+          "verification_metric_ids",
+          "rollback",
+          "limitations"
+        ],
+        "properties": {
+          "level": {
+            "enum": [
+              "L0",
+              "L1",
+              "L2",
+              "L3",
+              "L4",
+              "L5",
+              "L6",
+              "L7",
+              "L8",
+              "L9"
+            ]
+          },
+          "level_name": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string",
+            "minLength": 10
+          },
+          "expected_benefit": {
+            "type": "string"
+          },
+          "token_or_character_cost": {
+            "type": "string"
+          },
+          "generation_cost_impact": {
+            "type": "string"
+          },
+          "risk_of_new_failure": {
+            "type": "string"
+          },
+          "provider_dependency": {
+            "type": "string"
+          },
+          "evidence_strength": {
+            "type": "string"
+          },
+          "verification_method": {
+            "type": "string"
+          },
+          "verification_metric_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^metric_"
+            }
+          },
+          "rollback": {
+            "type": "string"
+          },
+          "limitations": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "verification_metrics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^metric_"
+      }
+    },
+    "regression_fixtures": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "string",
+        "pattern": "^fixture://"
+      }
+    },
+    "provider_specific_notes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "unresolved_questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "cpcs_impact": {
+      "type": "object",
+      "minProperties": 10
+    },
+    "finding_classification": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "knowledge_only",
+          "contract_affecting",
+          "implementation_affecting",
+          "provider_version_affecting",
+          "verification_affecting",
+          "policy_affecting",
+          "unverified"
+        ]
+      }
+    },
+    "controllability": {
+      "enum": [
+        "preventable_by_prompting",
+        "partially_mitigated_by_prompting",
+        "requires_visual_or_control_conditioning",
+        "requires_shot_decomposition",
+        "requires_postproduction",
+        "currently_unreliable_or_unsupported"
+      ]
+    },
+    "research_status": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

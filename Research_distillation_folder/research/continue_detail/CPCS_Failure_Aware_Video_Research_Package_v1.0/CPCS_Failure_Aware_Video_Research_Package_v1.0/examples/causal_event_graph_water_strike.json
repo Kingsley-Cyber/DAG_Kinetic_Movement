@@ -1,0 +1,59 @@
+{
+  "schema_version": "cpcs.causal_event_graph/1.0-candidate",
+  "graph_id": "graph_water_strike_sequence",
+  "events": [
+    {
+      "event_id": "event_B_dive",
+      "initiator_id": "actor_B",
+      "target_id": null,
+      "action": "dives below the kick line",
+      "onset": 3.9,
+      "apex": 4.25,
+      "consequence": "actor_B is below the kick trajectory",
+      "reaction_delay": 0.0,
+      "recovery": "continues hidden dive path"
+    },
+    {
+      "event_id": "event_A_kick_water",
+      "initiator_id": "actor_A",
+      "target_id": "water_plane",
+      "action": "axe kick misses actor_B and strikes only the water",
+      "onset": 4.05,
+      "apex": 4.42,
+      "consequence": "surface displacement begins at the kick impact point",
+      "reaction_delay": 0.03,
+      "recovery": "actor_A retracts and settles"
+    },
+    {
+      "event_id": "event_water_column",
+      "initiator_id": "water_plane",
+      "target_id": null,
+      "action": "water column rises from the kick impact point",
+      "onset": 4.45,
+      "apex": 4.85,
+      "consequence": "brief opaque occlusion",
+      "reaction_delay": 0.03,
+      "recovery": "column collapses into centered ripples"
+    }
+  ],
+  "edges": [
+    {
+      "from_event": "event_B_dive",
+      "to_event": "event_A_kick_water",
+      "relation": "only_after",
+      "hard": true
+    },
+    {
+      "from_event": "event_A_kick_water",
+      "to_event": "event_water_column",
+      "relation": "causes",
+      "hard": true
+    }
+  ],
+  "terminal_state": {
+    "actor_A": "left, recovering",
+    "actor_B": "right, submerged then reappearing",
+    "water_plane": "same topology, centered ripples",
+    "actor_count": 2
+  }
+}

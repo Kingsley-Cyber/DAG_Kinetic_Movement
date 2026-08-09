@@ -1,0 +1,59 @@
+{
+  "adapter_id": "adobe_firefly_video_web_v2026_07_30",
+  "provider": "Adobe",
+  "model_id": "Firefly Video / selected partner model",
+  "surface": "Firefly web",
+  "status": "current",
+  "verified_at": "2026-07-30",
+  "ttl_days": 30,
+  "source_ids": [
+    "S059",
+    "S060"
+  ],
+  "native_capabilities": {
+    "text_prompt": true,
+    "first_frame": true,
+    "last_frame": true,
+    "camera_motion_reference_video": true,
+    "camera_controls": true,
+    "composition_reference": true,
+    "style_presets": true
+  },
+  "reference_capabilities": {
+    "camera_motion": "5–10s reference under 200MB; first 5s used on documented workflow",
+    "composition": "reference",
+    "initial_final_frame": "first/last frame"
+  },
+  "prompt_only": [
+    "laban_bess",
+    "facs",
+    "interaction topology"
+  ],
+  "unsupported": [],
+  "validation_rules": [
+    "Controls vary by selected model.",
+    "Some reference/style/camera options are mutually unavailable.",
+    "Validate file type/size/duration."
+  ],
+  "request_template": {
+    "model": "${selected_model}",
+    "prompt": "${prompt}",
+    "first_frame": "${optional}",
+    "last_frame": "${optional}",
+    "camera_reference": "${optional}",
+    "settings": "${native_settings}"
+  },
+  "loss_risk": {
+    "identity": "model_dependent",
+    "contact": "high",
+    "control_combination_conflict": "medium_high"
+  },
+  "provenance": {
+    "provenance_class": "ESTABLISHED",
+    "source_ids": [
+      "S059",
+      "S060"
+    ],
+    "confidence": 0.94
+  }
+}

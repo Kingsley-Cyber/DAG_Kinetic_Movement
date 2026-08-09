@@ -1,0 +1,16 @@
+scene_id: ex_comforting_reach_01
+primary_intent: comfort
+secondary_intents:
+- reassure
+genre: naturalistic_drama
+target_models:
+- runway_act_two
+- luma_ray_3_2_modify
+- veo_3_1_gemini
+constraints:
+- consensual shoulder contact
+- no forced embrace
+- low arousal
+- receiver retains option to withdraw
+desired_read: gentle support without crowding
+

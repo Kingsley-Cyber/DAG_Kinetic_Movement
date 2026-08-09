@@ -1,0 +1,422 @@
+[
+  {
+    "source_id": "S001",
+    "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+    "authors": ["Jason Wei", "Xuezhi Wang", "Dale Schuurmans", "Maarten Bosma", "Brian Ichter", "Fei Xia", "Ed Chi", "Quoc V. Le", "Denny Zhou"],
+    "year": 2022,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2201.11903",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["chain_of_thought", "reasoning", "model_scaling"]
+  },
+  {
+    "source_id": "S002",
+    "title": "Self-Consistency Improves Chain of Thought Reasoning in Language Models",
+    "authors": ["Xuezhi Wang", "Jason Wei", "Dale Schuurmans", "Quoc V. Le", "Ed H. Chi", "Sharan Narang", "Aakanksha Chowdhery", "Denny Zhou"],
+    "year": 2022,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2203.11171",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["self_consistency", "reasoning", "sampling"]
+  },
+  {
+    "source_id": "S003",
+    "title": "Least-to-Most Prompting Enables Complex Reasoning in Large Language Models",
+    "authors": ["Denny Zhou", "Nathanael Schärli", "Le Hou", "Jason Wei", "Nathan Scales", "Xuezhi Wang", "Dale Schuurmans", "Claire Cui", "Olivier Bousquet", "Quoc V. Le", "Ed H. Chi"],
+    "year": 2022,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2205.10625",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["decomposition", "reasoning", "compositional_generalization"]
+  },
+  {
+    "source_id": "S004",
+    "title": "Tree of Thoughts: Deliberate Problem Solving with Large Language Models",
+    "authors": ["Shunyu Yao", "Dian Yu", "Jeffrey Zhao", "Izhak Shafran", "Thomas L. Griffiths", "Yuan Cao", "Karthik Narasimhan"],
+    "year": 2023,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2305.10601",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["tree_of_thoughts", "search", "planning"]
+  },
+  {
+    "source_id": "S005",
+    "title": "Graph of Thoughts: Solving Elaborate Problems with Large Language Models",
+    "authors": ["Maciej Besta", "Nils Blach", "Ales Kubicek", "Robert Gerstenberger", "Michal Podstawski", "Lukas Gianinazzi", "Joanna Gajda", "Tomasz Lehmann", "Hubert Niewiadomski", "Piotr Nyczyk", "Torsten Hoefler"],
+    "year": 2023,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2308.09687",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["graph_of_thoughts", "reasoning_graph", "aggregation"]
+  },
+  {
+    "source_id": "S006",
+    "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+    "authors": ["Shunyu Yao", "Jeffrey Zhao", "Dian Yu", "Nan Du", "Izhak Shafran", "Karthik Narasimhan", "Yuan Cao"],
+    "year": 2022,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2210.03629",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["reasoning_and_acting", "tools", "retrieval"]
+  },
+  {
+    "source_id": "S007",
+    "title": "Self-Refine: Iterative Refinement with Self-Feedback",
+    "authors": ["Aman Madaan", "Niket Tandon", "Prakhar Gupta", "Skyler Hallinan", "Luyu Gao", "Sarah Wiegreffe", "Uri Alon", "Nouha Dziri", "Shrimai Prabhumoye", "Yiming Yang", "Shashank Gupta", "Bodhisattwa Prasad Majumder", "Katherine Hermann", "Sean Welleck", "Amir Yazdanbakhsh", "Peter Clark"],
+    "year": 2023,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2303.17651",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["self_refinement", "feedback", "generation"]
+  },
+  {
+    "source_id": "S008",
+    "title": "Large Language Models Cannot Self-Correct Reasoning Yet",
+    "authors": ["Jie Huang", "Xinyun Chen", "Swaroop Mishra", "Huaixiu Steven Zheng", "Adams Wei Yu", "Xinying Song", "Denny Zhou"],
+    "year": 2023,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2310.01798",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["self_correction", "external_feedback", "reasoning_limits"]
+  },
+  {
+    "source_id": "S009",
+    "title": "Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting",
+    "authors": ["Miles Turpin", "Julian Michael", "Ethan Perez", "Samuel R. Bowman"],
+    "year": 2023,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2305.04388",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["chain_of_thought", "faithfulness", "explanations"]
+  },
+  {
+    "source_id": "S010",
+    "title": "Measuring Faithfulness in Chain-of-Thought Reasoning",
+    "authors": ["Tamera Lanham", "Anna Chen", "Ansh Radhakrishnan", "Benoit Steiner", "Carson Denison", "Danny Hernandez", "Dustin Li", "Esin Durmus", "Evan Hubinger", "Jackson Kernion", "Kamile Lukosiute", "Karina Nguyen", "Newton Cheng", "Nicholas Joseph", "Nicholas Schiefer", "Oliver Rausch", "Robin Larson", "Sam McCandlish", "Sandipan Kundu", "Saurav Kadavath", "Shannon Yang", "Thomas Henighan", "Timothy Maxwell", "Timothy Telleen-Lawton", "Tristan Hume", "Zac Hatfield-Dodds", "Jared Kaplan", "Jan Brauner", "Samuel R. Bowman", "Ethan Perez"],
+    "year": 2023,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2307.13702",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["chain_of_thought", "faithfulness", "evaluation"]
+  },
+  {
+    "source_id": "S011",
+    "title": "Distilling Step-by-Step! Outperforming Larger Language Models with Less Training Data and Smaller Model Sizes",
+    "authors": ["Cheng-Yu Hsieh", "Chun-Liang Li", "Chih-Kuan Yeh", "Hootan Nakhost", "Yasuhisa Fujii", "Alexander Ratner", "Ranjay Krishna", "Chen-Yu Lee", "Tomas Pfister"],
+    "year": 2023,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2305.02301",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["distillation", "small_models", "rationales"]
+  },
+  {
+    "source_id": "S012",
+    "title": "Symbolic Chain-of-Thought Distillation: Small Models Can Also Think Step-by-Step",
+    "authors": ["Liunian Harold Li", "Jack Hessel", "Youngjae Yu", "Xiang Ren", "Kai-Wei Chang", "Yejin Choi"],
+    "year": 2023,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2306.14050",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["distillation", "small_models", "chain_of_thought"]
+  },
+  {
+    "source_id": "S013",
+    "title": "Chain of Draft: Thinking Faster by Writing Less",
+    "authors": ["Silei Xu", "Wenhao Xie", "Lingxiao Zhao", "Pengcheng He"],
+    "year": 2025,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2502.18600",
+    "evidence_tier": "emerging",
+    "domains": ["concise_reasoning", "token_efficiency", "chain_of_draft"]
+  },
+  {
+    "source_id": "S014",
+    "title": "D-COT: Disciplined Chain-of-Thought Learning for Efficient Reasoning in Small Language Models",
+    "authors": ["Shunsuke Ubukata"],
+    "year": 2026,
+    "type": "preprint",
+    "url": "https://arxiv.org/abs/2602.21786",
+    "evidence_tier": "emerging_preprint",
+    "domains": ["small_models", "reasoning_efficiency", "overthinking"]
+  },
+  {
+    "source_id": "S015",
+    "title": "Think Deep, Not Just Long: Measuring LLM Reasoning Effort via Deep-Thinking Tokens",
+    "authors": ["Wei-Lin Chen", "Liqian Peng", "Tian Tan", "Chao Zhao", "Blake JianHang Chen", "Ziqian Lin", "Alec Go", "Yu Meng"],
+    "year": 2026,
+    "type": "preprint",
+    "url": "https://arxiv.org/abs/2602.13517",
+    "evidence_tier": "emerging_preprint",
+    "domains": ["test_time_compute", "reasoning_budget", "overthinking"]
+  },
+  {
+    "source_id": "S016",
+    "title": "Program of Thoughts Prompting: Disentangling Computation from Reasoning for Numerical Reasoning Tasks",
+    "authors": ["Wenhu Chen", "Xueguang Ma", "Xinyi Wang", "William W. Cohen"],
+    "year": 2022,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2211.12588",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["program_of_thoughts", "tool_execution", "reasoning"]
+  },
+  {
+    "source_id": "S017",
+    "title": "PAL: Program-aided Language Models",
+    "authors": ["Luyu Gao", "Aman Madaan", "Shuyan Zhou", "Uri Alon", "Pengfei Liu", "Yiming Yang", "Jamie Callan", "Graham Neubig"],
+    "year": 2022,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2211.10435",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["program_aided_language_models", "external_runtime", "reasoning"]
+  },
+  {
+    "source_id": "S018",
+    "title": "DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines",
+    "authors": ["Omar Khattab", "Arnav Singhvi", "Paridhi Maheshwari", "Zhiyuan Zhang", "Keshav Santhanam", "Sri Vardhamanan", "Saiful Haq", "Ashutosh Sharma", "Thomas T. Joshi", "Hanna Moazam", "Heather Miller", "Matei Zaharia", "Christopher Potts"],
+    "year": 2023,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2310.03714",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["prompt_compilers", "declarative_pipelines", "optimization"]
+  },
+  {
+    "source_id": "S019",
+    "title": "PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models",
+    "authors": ["Torsten Scholak", "Nathan Schucher", "Dzmitry Bahdanau"],
+    "year": 2021,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2109.05093",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["constrained_decoding", "formal_languages", "validity"]
+  },
+  {
+    "source_id": "S020",
+    "title": "DSPy Assertions: Computational Constraints for Self-Refining Language Model Pipelines",
+    "authors": ["Arnav Singhvi", "Manish Shetty", "Shangyin Tan", "Christopher Potts", "Koushik Sen", "Matei Zaharia", "Omar Khattab"],
+    "year": 2023,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2312.13382",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["assertions", "constraints", "self_refinement"]
+  },
+  {
+    "source_id": "S021",
+    "title": "Generating Structured Outputs from Language Models: Benchmark and Studies",
+    "authors": ["Saibo Geng", "Hudson Cooper", "Michal Moskal", "Samuel Jenkins", "Julian Berman", "Nathan Ranchin", "Robert West", "Eric Horvitz", "Harsha Nori"],
+    "year": 2025,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2501.10868",
+    "evidence_tier": "emerging",
+    "domains": ["structured_outputs", "json_schema", "constrained_decoding"]
+  },
+  {
+    "source_id": "S022",
+    "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+    "authors": ["Patrick Lewis", "Ethan Perez", "Aleksandra Piktus", "Fabio Petroni", "Vladimir Karpukhin", "Naman Goyal", "Heinrich Kuttler", "Mike Lewis", "Wen-tau Yih", "Tim Rocktaschel", "Sebastian Riedel", "Douwe Kiela"],
+    "year": 2020,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2005.11401",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["rag", "retrieval", "provenance"]
+  },
+  {
+    "source_id": "S023",
+    "title": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization",
+    "authors": ["Darren Edge", "Ha Trinh", "Newman Cheng", "Joshua Bradley", "Alex Chao", "Apurva Mody", "Steven Truitt", "Jonathan Larson"],
+    "year": 2024,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2404.16130",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["graph_rag", "community_summaries", "global_queries"]
+  },
+  {
+    "source_id": "S024",
+    "title": "RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval",
+    "authors": ["Parth Sarthi", "Salman Abdullah", "Aditi Tuli", "Shubh Khanna", "Anna Goldie", "Christopher D. Manning"],
+    "year": 2024,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2401.18059",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["hierarchical_retrieval", "summarization", "rag"]
+  },
+  {
+    "source_id": "S025",
+    "title": "HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models",
+    "authors": ["Bernal Jimenez Gutierrez", "Yiheng Shu", "Yu Gu", "Michihiro Yasunaga", "Yu Su"],
+    "year": 2024,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2405.14831",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["knowledge_graph", "multi_hop_retrieval", "rag"]
+  },
+  {
+    "source_id": "S026",
+    "title": "Lost in the Middle: How Language Models Use Long Contexts",
+    "authors": ["Nelson F. Liu", "Kevin Lin", "John Hewitt", "Ashwin Paranjape", "Michele Bevilacqua", "Fabio Petroni", "Percy Liang"],
+    "year": 2023,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2307.03172",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["long_context", "retrieval_position", "context_limits"]
+  },
+  {
+    "source_id": "S027",
+    "title": "Large Language Models Are Human-Level Prompt Engineers",
+    "authors": ["Yongchao Zhou", "Andrei Ioan Muresanu", "Ziwen Han", "Keiran Paster", "Silviu Pitis", "Harris Chan", "Jimmy Ba"],
+    "year": 2022,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2211.01910",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["prompt_optimization", "candidate_search", "evaluation"]
+  },
+  {
+    "source_id": "S028",
+    "title": "Large Language Models as Optimizers",
+    "authors": ["Chengrun Yang", "Xuezhi Wang", "Yifeng Lu", "Hanxiao Liu", "Quoc V. Le", "Denny Zhou", "Xinyun Chen"],
+    "year": 2023,
+    "type": "research_paper",
+    "url": "https://arxiv.org/abs/2309.03409",
+    "evidence_tier": "peer_reviewed_or_foundational",
+    "domains": ["optimization_by_prompting", "prompt_search", "feedback"]
+  },
+  {
+    "source_id": "S029",
+    "title": "YAML Ain't Markup Language (YAML) Version 1.2, Revision 1.2.2",
+    "authors": ["YAML Language Development Team"],
+    "year": 2021,
+    "type": "technical_standard",
+    "url": "https://yaml.org/spec/1.2.2/",
+    "evidence_tier": "normative_standard",
+    "domains": ["yaml", "serialization", "authoring"]
+  },
+  {
+    "source_id": "S030",
+    "title": "RFC 8259: The JavaScript Object Notation (JSON) Data Interchange Format",
+    "authors": ["Tim Bray"],
+    "year": 2017,
+    "type": "technical_standard",
+    "url": "https://www.rfc-editor.org/rfc/rfc8259",
+    "evidence_tier": "normative_standard",
+    "domains": ["json", "serialization", "interchange"]
+  },
+  {
+    "source_id": "S031",
+    "title": "JSON Schema Draft 2020-12",
+    "authors": ["Austin Wright", "Henry Andrews", "Ben Hutton", "Greg Dennis"],
+    "year": 2022,
+    "type": "technical_standard",
+    "url": "https://json-schema.org/draft/2020-12",
+    "evidence_tier": "normative_standard",
+    "domains": ["json_schema", "validation", "structured_outputs"]
+  },
+  {
+    "source_id": "S032",
+    "title": "RFC 6901: JavaScript Object Notation (JSON) Pointer",
+    "authors": ["Paul Bryan", "Kris Zyp", "Mark Nottingham"],
+    "year": 2013,
+    "type": "technical_standard",
+    "url": "https://www.rfc-editor.org/rfc/rfc6901",
+    "evidence_tier": "normative_standard",
+    "domains": ["json_pointer", "addressing", "patching"]
+  },
+  {
+    "source_id": "S033",
+    "title": "RFC 6902: JavaScript Object Notation (JSON) Patch",
+    "authors": ["Paul Bryan", "Mark Nottingham"],
+    "year": 2013,
+    "type": "technical_standard",
+    "url": "https://www.rfc-editor.org/rfc/rfc6902",
+    "evidence_tier": "normative_standard",
+    "domains": ["json_patch", "revision", "auditability"]
+  },
+  {
+    "source_id": "S034",
+    "title": "Extensible Markup Language (XML) 1.0 (Fifth Edition)",
+    "authors": ["Tim Bray", "Jean Paoli", "C. M. Sperberg-McQueen", "Eve Maler", "Francois Yergeau"],
+    "year": 2008,
+    "type": "technical_standard",
+    "url": "https://www.w3.org/TR/xml/",
+    "evidence_tier": "normative_standard",
+    "domains": ["xml", "ordered_content", "markup"]
+  },
+  {
+    "source_id": "S035",
+    "title": "W3C XML Schema Definition Language (XSD) 1.1 Part 1: Structures",
+    "authors": ["W3C XML Schema Working Group"],
+    "year": 2012,
+    "type": "technical_standard",
+    "url": "https://www.w3.org/TR/xmlschema11-1/",
+    "evidence_tier": "normative_standard",
+    "domains": ["xsd", "xml_validation", "namespaces"]
+  },
+  {
+    "source_id": "S036",
+    "title": "AI Video Movement Prompt System Repository Governance",
+    "authors": ["Kingsley-Cyber"],
+    "year": 2026,
+    "type": "repository_document",
+    "uri": "repo://AGENTS.md",
+    "evidence_tier": "project_source_of_truth",
+    "domains": ["repository_governance", "graph_build", "validation"]
+  },
+  {
+    "source_id": "S037",
+    "title": "AI Video Movement Prompt System Concept Cards",
+    "authors": ["Kingsley-Cyber"],
+    "year": 2026,
+    "type": "repository_dataset",
+    "uri": "repo://lab/concepts.jsonl",
+    "evidence_tier": "project_source_of_truth",
+    "domains": ["concept_graph", "retrieval", "evidence"]
+  },
+  {
+    "source_id": "S038",
+    "title": "AI Video Movement Prompt System Graph Builder",
+    "authors": ["Kingsley-Cyber"],
+    "year": 2026,
+    "type": "repository_code",
+    "uri": "repo://lab/scripts/build_graph.py",
+    "evidence_tier": "project_source_of_truth",
+    "domains": ["knowledge_graph", "derived_artifacts", "compiler"]
+  },
+  {
+    "source_id": "S039",
+    "title": "AI Video Movement Prompt System Control Surface",
+    "authors": ["Kingsley-Cyber"],
+    "year": 2026,
+    "type": "repository_document",
+    "uri": "repo://lab/CONTROL_SURFACE.md",
+    "evidence_tier": "project_source_of_truth",
+    "domains": ["video_control", "prose", "numeric_truth"]
+  },
+  {
+    "source_id": "S040",
+    "title": "AI Video Movement Prompt System Format-Control Map",
+    "authors": ["Kingsley-Cyber"],
+    "year": 2026,
+    "type": "repository_document",
+    "uri": "repo://lab/FORMAT_CONTROL_MAP.md",
+    "evidence_tier": "project_source_of_truth",
+    "domains": ["yaml", "json", "xml", "format_ownership"]
+  },
+  {
+    "source_id": "S041",
+    "title": "From Action Units to Action Beats: CPCS Research Paper",
+    "authors": ["OpenAI"],
+    "year": 2026,
+    "type": "repository_research_paper",
+    "uri": "repo://research/CPCS_FACS_Laban_AI_Video_Research_Package_v1.2/paper/CPCS_FACS_Laban_AI_Video_Directorial_Control_Research_Paper.md",
+    "evidence_tier": "project_research_synthesis",
+    "domains": ["cpcs", "video_prompt_compilation", "rag", "structured_languages"]
+  },
+  {
+    "source_id": "S042",
+    "title": "AI Video Movement Prompt Lab Operating Procedure",
+    "authors": ["Kingsley-Cyber"],
+    "year": 2026,
+    "type": "repository_document",
+    "uri": "repo://lab/AGENTS.md",
+    "evidence_tier": "project_source_of_truth",
+    "domains": ["prompt_composition", "experiments", "format_discipline"]
+  }
+]

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<cpcs-sequence scene-id="ex_ugc_reveal_01" version="1.0.0" duration="6">
+  <beat id="hook" start="0" end="1">
+    <purpose>Direct-to-camera visual hook</purpose>
+    <event ref="gaze_lens" />
+    <event ref="pattern_interrupt" />
+  </beat>
+  <beat id="problem" start="1" end="2.1">
+    <purpose>Brief problem setup</purpose>
+    <event ref="product_hidden" />
+  </beat>
+  <beat id="reveal" start="2.1" end="3.6">
+    <purpose>Fast product rise and label reveal</purpose>
+    <event ref="mp_product_reveal" />
+    <event ref="label_front" />
+  </beat>
+  <beat id="proof" start="3.6" end="5">
+    <purpose>Approved proof gesture/demo</purpose>
+    <event ref="approved_demo" />
+  </beat>
+  <beat id="cta" start="5" end="6">
+    <purpose>Stable product and direct CTA</purpose>
+    <event ref="product_legibility_hold" />
+    <event ref="gaze_lens" />
+  </beat>
+</cpcs-sequence>

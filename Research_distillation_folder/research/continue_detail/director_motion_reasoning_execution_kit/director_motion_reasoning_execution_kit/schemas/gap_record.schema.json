@@ -1,0 +1,63 @@
+{
+  "$id": "urn:dmr:gap-record:1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "area": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "existing_evidence": {
+      "type": "string"
+    },
+    "id": {
+      "pattern": "^DMR-[0-9]{3}$",
+      "type": "string"
+    },
+    "priority": {
+      "enum": [
+        "P0",
+        "P1",
+        "P2",
+        "P3"
+      ]
+    },
+    "recommended_action": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "requirement": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "existing_strong",
+        "existing_partial",
+        "missing",
+        "conflict"
+      ]
+    },
+    "verification_checkpoint": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "verified_gap_or_risk": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "area",
+    "requirement",
+    "status",
+    "existing_evidence",
+    "verified_gap_or_risk",
+    "recommended_action",
+    "priority",
+    "verification_checkpoint"
+  ],
+  "title": "Director Motion Reasoning Gap Record",
+  "type": "object"
+}

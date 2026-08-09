@@ -1,0 +1,17 @@
+scene_id: ex_anime_block_counter_01
+primary_intent: protect
+secondary_intents:
+- challenge
+- assert
+genre: anime_action
+target_models:
+- kling_video_3_0_omni
+- veo_3_1_gemini
+- luma_ray_3_2_modify
+constraints:
+- stylized non-gory action
+- preserve block-before-counter causality
+- one impact frame at block and counter
+desired_read: readable defense, explosive counter, graphic energy without contact
+  confusion
+

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<cpcs-sequence scene-id="ex_comforting_reach_01" version="1.0.0" duration="5">
+  <beat id="b1" start="0" end="1.2">
+    <purpose>Giver reads receiver before acting</purpose>
+    <event ref="gaze_receiver" />
+    <event ref="open_hand" />
+  </beat>
+  <beat id="b2" start="1.2" end="3.2">
+    <purpose>Slow reach with pause and soft shoulder contact</purpose>
+    <event ref="mp_reach" />
+    <event ref="contact_10" />
+  </beat>
+  <beat id="b3" start="3.2" end="5">
+    <purpose>Pressure releases; receiver remains unboxed-in</purpose>
+    <event ref="release_contact" />
+    <event ref="shared_breath" />
+  </beat>
+</cpcs-sequence>

@@ -1,0 +1,1400 @@
+I need a detailed full with e2e details and explantiry and how to. 
+
+Act as a principal research engineer, computational movement scientist, animation systems architect, film director, ontology engineer, knowledge-graph architect, multimodal AI researcher, and prompt-language designer.
+
+Perform a deep, source-grounded research and repository-building project that creates a complete RAG-ready knowledge folder for computationally representing, interpreting, reasoning about, and prompting complex human behavior and motion.
+
+Do not stop after producing a plan or summary. Inspect the repository, research the subject deeply, create the requested folder and files, implement the machine-readable schemas and validation utilities, and verify the resulting artifacts.
+
+PRIMARY OBJECTIVE
+
+Create a unified knowledge and reasoning architecture that enables an LLM to:
+
+1. Observe human behavior from text, reference images, and reference videos.
+2. Decompose that behavior into atomic, observable, measurable movement concepts.
+3. Separate direct observation from interpretation, emotion, narrative intent, style, and marketing intent.
+4. Represent facial action, body organization, movement quality, action choreography, emotional state, camera direction, editing, animation, VFX, and audience effect.
+5. Reason compositionally from atomic movement units into natural human cadence, complete performances, cinematic scenes, anime-style action, product demonstrations, and advertising creatives.
+6. Translate the same canonical meaning into:
+    * Markdown and controlled natural language
+    * YAML
+    * XML
+    * JSON
+    * JSONL
+7. Explain how each representation changes tokenization, hierarchy visibility, ordering, ambiguity, schema enforcement, parsing reliability, generation reliability, human readability, and likely LLM interpretation.
+8. Produce prompts for image and video generation models without losing temporal, biomechanical, emotional, directorial, or stylistic meaning.
+9. Support a graph-RAG reasoning layer that can retrieve, connect, compare, compose, transform, and validate motion concepts.
+10. Generalize across realistic human behavior, dramatic film performance, original anime action, VFX scenes, UGC advertising, product demonstrations, and other visual media.
+
+The final result must function as a technical knowledge base and implementation specification—not merely a reading list.
+
+IMPORTANT TERMINOLOGY RULE
+
+Distinguish three classes of content throughout the research:
+
+1. ESTABLISHED STANDARD
+    A published or recognized framework such as FACS, Laban Movement Analysis, Bartenieff Fundamentals, Behavior Markup Language, biomechanical coordinate systems, affective dimensional models, cinematography terminology, or established animation principles.
+2. RESEARCH-DERIVED PARAMETERIZATION
+    A numerical or computational translation of an established qualitative framework. Clearly explain where the original framework is qualitative and where researchers have proposed quantitative features.
+3. PROJECT-SPECIFIC SYNTHESIS
+    A new ontology or computational control created for this repository, such as a Screen Combat Action Ontology or unified Director Motion Coding System.
+
+Never present a proposed project-specific code as an existing industry standard.
+
+Do not claim that “Combat Action Units,” “CAU,” “CACS,” or a universal seven-phase movement model is established unless authoritative sources prove it.
+
+Investigate whether an authoritative seven-phase movement model exists. If no single universal model can be verified, explicitly state that and design a project-specific normalized seven-phase abstraction grounded in biomechanics, motor control, animation, movement notation, and temporal action segmentation.
+
+REPOSITORY BEHAVIOR
+
+Before creating files:
+
+1. Inspect the current repository structure.
+2. Read its README, contributor instructions, agent instructions, schemas, naming conventions, and existing motion-language files.
+3. Search for existing implementations or terminology related to:
+    * FACS
+    * Laban
+    * Bartenieff
+    * BML
+    * movement
+    * motion
+    * behavior
+    * combat
+    * camera
+    * animation
+    * VFX
+    * prompt
+    * ontology
+    * graph
+    * schema
+4. Reuse compatible conventions.
+5. Do not overwrite or duplicate existing work without documenting why.
+6. Do not modify unrelated application code.
+7. Record the repository state before and after the task.
+
+Create the research package at:
+
+research/director_motion_reasoning/
+
+If a clearly established repository convention requires a different documentation path, follow that convention but preserve the complete internal structure described below.
+
+REQUIRED DIRECTORY STRUCTURE
+
+Create at minimum:
+
+research/director_motion_reasoning/
+README.md
+00_RESEARCH_METHOD.md
+01_UNIFIED_SYSTEM_ARCHITECTURE.md
+02_CANONICAL_MOTION_MODEL.md
+GLOSSARY.md
+SOURCE_CATALOG.md
+LIMITATIONS_AND_ETHICS.md
+
+foundations/
+01_FACS_FACE_AND_GAZE.md
+02_FACIAL_TEMPORAL_DYNAMICS.md
+03_LABAN_BESS_COMPLETE_MODEL.md
+04_BARTENIEFF_BODY_CONNECTIVITY.md
+05_BIOMECHANICS_AND_COORDINATE_SYSTEMS.md
+06_PROXIMAL_DISTAL_MOTION.md
+07_AFFECT_VALENCE_AROUSAL_DOMINANCE.md
+08_GESTURE_POSTURE_GAZE_AND_PROXEMICS.md
+09_CULTURAL_CONTEXTUAL_AND_INDIVIDUAL_VARIATION.md
+
+action/
+01_GENERAL_ACTION_DECOMPOSITION.md
+02_SCREEN_COMBAT_ACTION_ONTOLOGY.md
+03_ACTION_REACTION_AND_INTERACTION.md
+04_PRODUCT_DEMONSTRATION_MOTION.md
+05_MULTI_ACTOR_COORDINATION.md
+06_CONTACT_BALANCE_WEIGHT_AND_ENVIRONMENT.md
+
+timing/
+01_MOTION_PHASES_AND_PHRASES.md
+02_NORMALIZED_SEVEN_PHASE_MODEL.md
+03_TIMING_SPACING_AND_EASING.md
+04_CADENCE_RHYTHM_AND_MICROTIMING.md
+05_OVERLAP_FOLLOW_THROUGH_AND_SECONDARY_MOTION.md
+06_TEMPORAL_UNCERTAINTY_AND_ALIGNMENT.md
+
+directing/
+01_BLOCKING_STAGING_AND_SCREEN_GEOGRAPHY.md
+02_SHOT_SIZE_ANGLE_LENS_AND_COMPOSITION.md
+03_CAMERA_MOVEMENT_AND_SUBJECT_TRACKING.md
+04_EDITING_CONTINUITY_AND_TEMPORAL_GRAMMAR.md
+05_PERFORMANCE_DIRECTION_AND_NARRATIVE_INTENT.md
+06_SOUND_MUSIC_AND_AUDIOVISUAL_SYNCHRONIZATION.md
+
+stylization/
+01_ANIMATION_MOTION_PRINCIPLES.md
+02_ANIME_ACTION_AND_ORIGINAL_SHONEN_GRAMMAR.md
+03_VFX_EFFECTS_AND_PHYSICAL_INTERACTION.md
+04_REALISM_TO_STYLIZATION_CONTINUUM.md
+05_STYLE_TRANSFER_WITHOUT_IDENTITY_COPYING.md
+
+marketing/
+01_MARKETING_AND_CONVERSION_CONTROLS.md
+02_HOOK_PROOF_OBJECTION_AND_CTA.md
+03_TARGET_AUDIENCE_AS_EVIDENCE_BASED_HYPOTHESIS.md
+04_PRODUCT_STYLE_RECREATION_AND_TRANSFER.md
+05_CREATIVE_DIAGNOSIS_AND_IMPROVEMENT.md
+
+multimodal/
+01_TEXT_IMAGE_AND_VIDEO_INPUTS.md
+02_REFERENCE_VIDEO_OBSERVATION_PIPELINE.md
+03_REFERENCE_IMAGE_INTERPRETATION.md
+04_VISUAL_EVIDENCE_CONFIDENCE_AND_OCCLUSION.md
+05_TRACKING_SHOTS_ACTORS_AND_BODY_PARTS.md
+06_OBSERVATION_VS_INFERENCE.md
+
+representation/
+01_CONTROLLED_NATURAL_LANGUAGE_AND_MARKDOWN.md
+02_YAML_REPRESENTATION.md
+03_XML_AND_BEHAVIOR_MARKUP.md
+04_JSON_AND_JSON_SCHEMA.md
+05_JSONL_EVENT_STREAMS.md
+06_CROSS_FORMAT_SEMANTIC_EQUIVALENCE.md
+07_TOKENIZATION_AND_MODEL_INTERPRETATION.md
+08_CONSTRAINED_DECODING_AND_VALIDATION.md
+09_FORMAT_SELECTION_GUIDE.md
+
+reasoning/
+01_ATOMIC_TO_COMPOSITE_REASONING.md
+02_TEMPORAL_CAUSAL_GRAPH.md
+03_BEHAVIOR_INTENT_AND_CONTEXT_REASONING.md
+04_REFERENCE_TO_CANONICAL_REPRESENTATION.md
+05_CANONICAL_REPRESENTATION_TO_PROMPT.md
+06_PROMPT_TO_IMAGE_AND_VIDEO_MODEL.md
+07_GRAPH_RAG_RETRIEVAL_AND_COMPOSITION.md
+08_CONFLICT_RESOLUTION_AND_UNCERTAINTY.md
+09_EXPLICIT_INTERMEDIATE_REPRESENTATIONS.md
+
+ontology/
+01_NODE_TYPES.md
+02_EDGE_TYPES.md
+03_PROPERTY_MODEL.md
+04_TEMPORAL_MODEL.md
+05_PROVENANCE_AND_CONFIDENCE.md
+06_ONTOLOGY_ALIGNMENT.md
+07_RETRIEVAL_QUERY_PATTERNS.md
+
+schemas/
+canonical_motion.schema.json
+canonical_motion.example.json
+canonical_motion.example.yaml
+canonical_motion.example.xml
+canonical_motion.example.jsonl
+canonical_motion.example.md
+ontology.schema.json
+source_record.schema.json
+extraction_record.schema.json
+prompt_record.schema.json
+
+examples/
+01_NATURAL_HUMAN_INTERACTION.md
+02_REALISTIC_WALK_AND_GESTURE.md
+03_CINEMATIC_DIALOGUE_PERFORMANCE.md
+04_HAND_TO_HAND_SCREEN_COMBAT.md
+05_ORIGINAL_ANIME_ACTION.md
+06_VFX_SUPERHUMAN_ACTION.md
+07_UGC_PRODUCT_DEMONSTRATION.md
+08_DROPSHIPPING_CREATIVE_TRANSFER.md
+09_SAME_SCENE_IN_ALL_FORMATS.md
+
+prompts/
+01_VIDEO_ROUTER_PROMPT.md
+02_GENERAL_MOTION_EXTRACTION_PROMPT.md
+03_SCREEN_COMBAT_EXTRACTION_PROMPT.md
+04_PRODUCT_DEMO_EXTRACTION_PROMPT.md
+05_CREATIVE_INTELLIGENCE_PROMPT.md
+06_CANONICAL_PROMPT_COMPILER.md
+07_IMAGE_REFERENCE_ANALYSIS_PROMPT.md
+08_VIDEO_REFERENCE_ANALYSIS_PROMPT.md
+09_STYLE_RECREATION_PROMPT.md
+10_VALIDATION_AND_CRITIQUE_PROMPT.md
+
+tools/
+validate_schemas.py
+validate_examples.py
+convert_representations.py
+build_source_index.py
+
+tests/
+test_schema_validation.py
+test_cross_format_equivalence.py
+test_required_fields.py
+test_temporal_constraints.py
+ACCEPTANCE_TESTS.md
+
+RAG-READY DOCUMENT STANDARD
+
+Every major Markdown research file must be independently useful when retrieved as a RAG chunk.
+
+Use YAML front matter similar to:
+
+⸻
+
+document_id: DMR-FOUNDATION-FACS
+title: FACS Face and Gaze
+version: 1.0.0
+status: researched
+knowledge_type: established_standard
+primary_domains:
+
+* facial_behavior
+* affect
+* animation
+    entities:
+* FACS
+* Action Unit
+    relations:
+* FACIAL_ACTION_EXPRESSES_AFFECT
+* ACTION_UNIT_COACTIVATES_WITH_ACTION_UNIT
+    prerequisites: []
+    related_documents: []
+    source_quality: primary_and_peer_reviewed
+    last_verified: YYYY-MM-DD
+
+⸻
+
+Each file must contain:
+
+1. Purpose and scope
+2. Established terminology
+3. What the framework measures
+4. What it does not measure
+5. Observable units
+6. Temporal behavior
+7. Intensity or magnitude representation
+8. Laterality and asymmetry
+9. Continuous versus categorical parameters
+10. Measurement units and normalization
+11. Computational parameterization
+12. Uncertainty and inter-rater reliability
+13. Cultural and individual variation
+14. Composition rules
+15. Conflicts and incompatible combinations
+16. Translation into director language
+17. Translation into image/video prompting
+18. Representation in Markdown, YAML, XML, JSON, and JSONL
+19. Knowledge-graph node and edge mapping
+20. Retrieval questions that this document can answer
+21. Validation checks
+22. Limitations
+23. Primary and secondary sources
+
+Use explicit internal links between related files.
+
+Avoid generic prose. Prefer definitions, parameter tables, equations where supported, state machines, typed properties, examples, constraints, and graph relationships.
+
+RESEARCH METHODOLOGY
+
+Perform actual external research.
+
+Prioritize sources in this order:
+
+1. Original manuals, standards, specifications, and foundational publications
+2. Peer-reviewed papers
+3. Official research institutions and professional organizations
+4. University course material
+5. Reputable publisher descriptions
+6. High-quality technical documentation
+7. Secondary summaries only when primary sources are unavailable
+
+For every material assertion:
+
+* Cite the source.
+* Include author or organization, title, year, and stable locator.
+* Record whether the source is primary, peer-reviewed, official, or secondary.
+* Record access date.
+* Distinguish direct evidence from synthesis.
+* Do not fabricate page numbers, quotations, standards, or terminology.
+* Do not treat search snippets as sufficient evidence.
+* Do not rely on Wikipedia as a final authority.
+* Do not copy large copyrighted sections.
+* Paraphrase and derive schemas from concepts rather than reproducing proprietary manuals.
+* Mark inaccessible or paywalled details as unverified.
+* State when a claim cannot be verified with 100% certainty.
+
+SOURCE_CATALOG.md must include a source matrix with:
+
+* Source ID
+* Domain
+* Author or institution
+* Title
+* Publication year
+* Source type
+* Primary or secondary
+* Peer-reviewed status
+* URL or DOI
+* Access status
+* Concepts supported
+* Reliability assessment
+* Licensing or copyright note
+* Files that cite it
+
+REQUIRED RESEARCH DOMAINS
+
+A. FACS AND FACIAL BEHAVIOR
+
+Research:
+
+* Facial Action Coding System structure
+* Action Units and Action Descriptors
+* Intensity notation
+* Onset, apex, offset, duration, and coactivation
+* Laterality and asymmetry
+* Neutral baseline
+* Visibility and unscorable states
+* Facial behavior versus inferred emotion
+* Gaze, blink, jaw, head, and gross behavior descriptors
+* Automated AU detection
+* Landmark-based and appearance-based representations
+* Inter-rater reliability
+* Identity and morphology normalization
+* Facial motion for animation and video prompting
+
+Design a computational representation that separates:
+
+* observed facial configuration
+* muscle-related AU code
+* intensity
+* temporal phase
+* confidence
+* emotional interpretation
+* narrative interpretation
+* stylized rendering instruction
+
+Do not equate a single AU with one emotion.
+
+B. LABAN MOVEMENT ANALYSIS
+
+Produce a complete BESS breakdown:
+
+Body
+
+Research and encode:
+
+* body-part initiation
+* body-part participation
+* sequencing
+* simultaneous versus successive movement
+* whole-body organization
+* support
+* weight transfer
+* balance
+* locomotion
+* gesture
+* posture
+* isolation
+* connectivity
+* phrasing
+
+Effort
+
+Research the four Effort factors and their poles:
+
+* Weight: light ↔ strong
+* Time: sustained ↔ sudden
+* Space: indirect/flexible ↔ direct
+* Flow: free ↔ bound
+
+Determine carefully:
+
+* which labels are canonical
+* whether the original framework is categorical, qualitative, continuous, or mixed
+* how researchers have converted Effort into computational features
+* what numerical ranges are defensible
+* how to avoid false precision
+
+Create proposed normalized axes only when clearly labeled as project-specific:
+
+* weight: -1.0 light to +1.0 strong
+* time: -1.0 sustained to +1.0 sudden
+* space: -1.0 indirect to +1.0 direct
+* flow: -1.0 free to +1.0 bound
+
+Explain that these numerical axes are computational translations unless authoritative sources specify otherwise.
+
+Research Effort combinations, Actions, Drives, affinities, transitions, and temporal variation.
+
+Shape
+
+Research and encode:
+
+* Shape Flow
+* Directional movement
+* Shaping
+* rising/sinking
+* widening/narrowing
+* advancing/retreating
+* enclosing/spreading
+* body adaptation
+* environment-directed shape
+* self-directed shape
+* shape change over time
+
+Space
+
+Research and encode:
+
+* kinesphere
+* levels
+* directions
+* dimensions
+* planes
+* pathways
+* reach space
+* general space
+* body-centric coordinates
+* world-centric coordinates
+* camera-centric coordinates
+* spatial intent
+* direct and indirect pathways
+* symmetry
+* orientation
+* facing
+
+Phrasing and Relationship
+
+Include phrasing even where it is treated as a meta-category rather than part of BESS:
+
+* preparation
+* initiation
+* exertion
+* emphasis
+* recovery
+* transition
+* rhythm
+* accent
+* increasing/decreasing intensity
+* interaction with people, objects, and environment
+
+C. BARTENIEFF FUNDAMENTALS
+
+Research the recognized Patterns of Total Body Connectivity:
+
+* Breath
+* Core-Distal
+* Head-Tail
+* Upper-Lower
+* Body-Half
+* Cross-Lateral
+
+Include:
+
+* initiation point
+* connectivity path
+* proximal-to-distal propagation
+* distal-to-proximal propagation
+* contralateral coordination
+* phase lag between body regions
+* joint chain participation
+* center-of-mass implications
+* support and weight shift
+* relationship to natural locomotion and expressive motion
+* measurable proxy features from pose or motion-capture data
+* prompt-language translation
+
+Correct spelling and terminology while preserving aliases for retrieval.
+
+D. BIOMECHANICS AND COORDINATE REPRESENTATION
+
+Research and define:
+
+* sagittal, frontal/coronal, and transverse planes
+* vertical, mediolateral, and anteroposterior axes
+* joint angles
+* joint positions
+* rotations
+* quaternions versus Euler angles
+* velocity
+* acceleration
+* angular velocity
+* angular acceleration
+* jerk
+* center of mass
+* base of support
+* momentum
+* impulse
+* force direction
+* contact state
+* foot plant
+* ground interaction
+* balance
+* collision and reaction
+* kinematic chains
+* degrees of freedom
+* normalization by body dimensions
+
+Specify coordinate-frame conventions:
+
+* body-local
+* joint-local
+* actor-root
+* world
+* camera
+* screen-space 2D
+
+Specify handedness, units, axis orientation, timestamps, frame rate, missing-data handling, uncertainty, and coordinate transformations.
+
+Create a computational sagittal encoding section covering movement toward/away, flexion/extension, forward/backward displacement, and projection from 3D to camera space.
+
+E. MOTION PHASES AND TIMING
+
+Investigate established temporal models from:
+
+* biomechanics
+* motor control
+* gesture research
+* FACS temporal annotation
+* Laban phrasing
+* animation timing
+* motion capture
+* action recognition
+* text-to-motion generation
+* stage and screen combat
+
+Determine whether a universal seven-phase model exists.
+
+If no universal model exists, create and clearly label a project-specific normalized seven-phase model such as:
+
+1. Baseline and intent
+2. Preparation and loading
+3. Anticipation
+4. Initiation
+5. Execution and acceleration
+6. Peak, contact, apex, or hold
+7. Recoil, recovery, and settle
+
+Evaluate whether preparation and anticipation should remain separate for different domains.
+
+Represent each phase with:
+
+* normalized start and end in [0,1]
+* wall-clock start and end
+* frame start and end
+* duration
+* duration ratio
+* velocity profile
+* acceleration profile
+* easing
+* intensity
+* dominant body regions
+* overlap with other phases
+* confidence
+* optionality
+* interruption state
+
+Timing ratios must be evidence-based or explicitly labeled as examples. Do not assert universal ratios for punches, walks, gestures, reactions, or product handling without data.
+
+Research:
+
+* onset/apex/offset
+* preparation/stroke/hold/retraction
+* anticipation/action/reaction/recovery
+* contact and flight phases
+* cyclic versus ballistic motion
+* periodic versus aperiodic motion
+* slow-in and slow-out
+* overshoot
+* follow-through
+* secondary motion
+* phase offsets
+* actor-to-actor synchronization
+* delayed reaction
+* cadence
+* rhythm
+* microtiming
+* temporal exaggeration
+
+F. AFFECT AND HUMAN BEHAVIOR
+
+Research:
+
+* valence
+* arousal
+* dominance
+* dimensional affect coordinates
+* time-varying affect trajectories
+* uncertainty
+* multimodal disagreement
+* expression versus internal state
+* baseline personality and individual style
+* posture, gaze, movement, voice, and context
+* emotion blends
+* dominance/submission cues
+* approach/avoidance
+* attention
+* intention
+* cognitive load
+* hesitation
+* confidence
+* fatigue
+
+Represent affect as probabilistic interpretation rather than objective truth.
+
+A proposed representation may include:
+
+* valence in [-1,1]
+* arousal in [0,1]
+* dominance in [0,1]
+* confidence in [0,1]
+* evidence list
+* temporal trajectory
+* observer/context metadata
+
+Clearly label normalized scales as project conventions unless the cited method defines them.
+
+G. CULTURAL, CONTEXTUAL, AND INDIVIDUAL VARIATION
+
+Create a dedicated treatment of:
+
+* culture
+* social role
+* gender presentation
+* age
+* physical ability
+* disability
+* training background
+* fatigue
+* clothing
+* environment
+* interpersonal familiarity
+* power relationship
+* genre conventions
+* individual baseline
+* camera distortion
+* performance versus spontaneous behavior
+
+Do not encode stereotypes as universal rules.
+
+Require:
+
+* contextual qualifiers
+* uncertainty
+* alternative interpretations
+* source population
+* individual calibration
+* culture-specific evidence
+* prohibition against inferring protected traits from motion alone
+
+H. ACTION AND SCREEN COMBAT ONTOLOGY
+
+Do not invent a fake established CAU standard.
+
+Build a project-specific Screen Combat Action Ontology grounded in:
+
+* general biomechanics
+* action recognition
+* animation
+* screen combat
+* stage combat
+* movement analysis
+* camera and editing language
+
+This ontology is for staged, fictional, animated, and cinematic analysis—not real-world harm optimization.
+
+Include observable categories:
+
+* stance
+* guard
+* posture transition
+* step
+* pivot
+* plant
+* advance
+* retreat
+* lateral displacement
+* level change
+* jump
+* landing
+* reach
+* strike-like motion
+* block
+* parry
+* evade
+* grab
+* clinch
+* throw-like motion
+* fall
+* slide
+* brace
+* reaction
+* recoil
+* recovery
+* environmental interaction
+
+Each unit must support:
+
+* actor
+* target
+* affected body region
+* start/end timestamps
+* movement path
+* force quality
+* contact visibility
+* balance state
+* weight shift
+* spatial relationship
+* reaction
+* narrative function
+* camera presentation
+* animation translation
+* VFX translation
+* safety/staging interpretation
+* confidence
+
+Separate choreography description from instructions intended to injure.
+
+I. DIRECTOR CONTROLS
+
+Research and parameterize:
+
+* shot size
+* camera angle
+* height
+* pitch/yaw/roll
+* lens focal length
+* field of view
+* depth of field
+* focus target
+* camera-subject distance
+* camera speed
+* camera acceleration
+* pan
+* tilt
+* roll
+* dolly
+* truck
+* pedestal
+* crane
+* orbit
+* handheld motion
+* stabilization
+* tracking behavior
+* blocking
+* eyelines
+* screen direction
+* axis of action
+* composition
+* foreground/midground/background
+* occlusion
+* reveal
+* reaction shot
+* insert
+* point of view
+* continuity
+* match on action
+* cut timing
+* shot duration
+* montage
+* tempo
+* visual hierarchy
+* lighting direction and contrast
+* sound synchronization
+
+For each control, distinguish:
+
+* physical parameter
+* perceptual effect
+* narrative function
+* prompt phrase
+* potential ambiguity
+* model-specific limitation
+
+J. ANIMATION, ANIME, AND VFX
+
+Research:
+
+* timing
+* spacing
+* anticipation
+* staging
+* arcs
+* overlapping action
+* follow-through
+* secondary action
+* holds
+* smear frames
+* impact frames
+* line boil
+* speed lines
+* camera shake
+* exaggerated perspective
+* foreshortening
+* silhouette readability
+* deformation
+* debris
+* smoke
+* dust
+* particles
+* energy trails
+* light interaction
+* environmental response
+* cloth and hair lag
+* squash and stretch
+* stylized recoil
+* effects compositing
+* interaction lighting
+* occlusion
+* motion blur
+
+Separate:
+
+1. underlying physical motion
+2. animated exaggeration
+3. camera treatment
+4. editing treatment
+5. VFX treatment
+6. genre/style treatment
+
+Do not make the ontology dependent on copying a specific copyrighted franchise. Use language such as original shonen action, limited-animation holds, full-animation bursts, stylized impact frames, and cinematic elemental VFX.
+
+K. MARKETING AND DROPSHIPPING CONTROLS
+
+Research how visual behavior maps to:
+
+* hook
+* pain point
+* desire
+* product visibility
+* demonstration
+* visual proof
+* comparison
+* objection handling
+* trust
+* novelty
+* curiosity
+* audience hypothesis
+* awareness stage
+* pacing
+* retention
+* CTA
+* transferability to similar products
+* creative fatigue
+* reshoot recommendation
+* A/B test variation
+
+Target-audience analysis must be represented as a hypothesis supported by visible evidence, product context, copy, platform conventions, and external market evidence—not as certainty derived from appearance.
+
+Create mappings such as:
+
+visual observation
+→ inferred creative function
+→ audience hypothesis
+→ confidence
+→ evidence
+→ transferable template
+→ improvement recommendation
+
+L. DATA REPRESENTATION AND MARKUP RESEARCH
+
+Compare five representations:
+
+1. Markdown plus controlled natural language
+2. YAML
+3. XML
+4. JSON
+5. JSONL
+
+For each, research and document:
+
+* syntax
+* hierarchy
+* ordering
+* repetition
+* attributes versus nested objects
+* comments
+* schema support
+* streaming support
+* batch support
+* validation
+* parsing
+* escaping
+* verbosity
+* token overhead
+* tokenizer behavior
+* error recovery
+* constrained generation
+* suitability for prompt input
+* suitability for model output
+* suitability for storage
+* suitability for graph ingestion
+* suitability for RAG chunks
+* suitability for temporal event streams
+* suitability for human editing
+* common model failure modes
+
+Do not assume one format is universally best.
+
+Search for empirical evidence on whether formatting changes LLM accuracy. Distinguish:
+
+* evidence from controlled studies
+* provider-specific recommendations
+* anecdotal prompt-engineering guidance
+* architectural reasoning
+* project-specific tests
+
+Create a semantic-equivalence compiler design:
+
+canonical object
+→ Markdown
+→ YAML
+→ XML
+→ JSON
+→ JSONL
+
+All encodings must preserve the same semantic IDs, temporal values, provenance, confidence, actors, body parts, relationships, and constraints.
+
+Create at least one identical scene represented in all five formats.
+
+Explain likely translation effects:
+
+* Markdown may emphasize narrative and headings.
+* YAML may improve human editing but has indentation and implicit-type risks.
+* XML may make boundaries, attributes, and timed behavior explicit but can be verbose.
+* JSON may support strict schemas and application interchange.
+* JSONL may support streaming, event logs, batch extraction, and atomic graph ingestion.
+
+Treat these as hypotheses to verify, not predetermined conclusions.
+
+M. BEHAVIOR MARKUP AND SYNCHRONIZATION
+
+Research Behavior Markup Language and related multimodal behavior representations.
+
+Document:
+
+* speech
+* gaze
+* gesture
+* posture
+* face
+* head movement
+* synchronization points
+* start/end timing
+* stroke phases
+* parallel and sequential behavior
+* modality-independent descriptions
+* realization layers
+
+Determine what can be reused, adapted, or aligned with the canonical model.
+
+Do not claim full standards compliance unless the generated XML actually conforms to a verified specification.
+
+N. REASONING ARCHITECTURE
+
+Design an auditable reasoning pipeline:
+
+reference text/image/video
+→ evidence observations
+→ actor and object tracking
+→ atomic movement units
+→ temporal phases
+→ body connectivity
+→ Effort/Shape/Space qualities
+→ facial and affective signals
+→ interaction graph
+→ camera/edit/VFX analysis
+→ narrative or marketing interpretation
+→ canonical scene representation
+→ target-model prompt compilation
+→ validation
+
+Do not depend on hidden chain-of-thought.
+
+Use explicit intermediate representations such as:
+
+* observations
+* claims
+* evidence spans
+* confidence
+* constraints
+* alternatives
+* causal relationships
+* temporal relationships
+* transformation records
+* validation results
+
+The system must distinguish:
+
+* observation
+* measurement
+* classification
+* interpretation
+* directorial decision
+* prompt realization
+
+O. KNOWLEDGE GRAPH DESIGN
+
+Define node types including:
+
+* Source
+* Video
+* Image
+* TextSpan
+* Shot
+* FrameRange
+* Observation
+* Actor
+* BodyPart
+* Object
+* Environment
+* ActionUnit
+* FACSActionUnit
+* LabanBodyFeature
+* LabanEffort
+* LabanShape
+* LabanSpace
+* BartenieffPattern
+* MotionPhase
+* Gesture
+* Gaze
+* Posture
+* AffectState
+* Interaction
+* Contact
+* CameraState
+* CameraMove
+* Edit
+* LightingState
+* AnimationControl
+* VFXControl
+* NarrativeIntent
+* MarketingIntent
+* AudienceHypothesis
+* StyleProfile
+* PromptSegment
+* ValidationResult
+
+Define edge types including:
+
+* OBSERVED_IN
+* OCCURS_DURING
+* PRECEDES
+* FOLLOWS
+* OVERLAPS
+* INITIATES
+* REACTS_TO
+* TARGETS
+* CONTACTS
+* MOVES
+* ROTATES
+* HAS_PHASE
+* HAS_EFFORT
+* HAS_SHAPE
+* OCCUPIES_SPACE
+* USES_CONNECTIVITY
+* ACTIVATES_AU
+* EXPRESSES
+* MAY_INDICATE
+* FRAMED_BY
+* TRACKED_BY
+* CUT_TO
+* MODIFIED_BY
+* STYLIZED_AS
+* SUPPORTS_CLAIM
+* CONTRADICTS
+* DERIVED_FROM
+* TRANSLATES_TO
+* COMPILED_AS
+* VALIDATED_BY
+* HAS_CONFIDENCE
+* HAS_ALTERNATIVE
+
+Each derived node or edge must support provenance and confidence.
+
+Specify:
+
+* stable IDs
+* source IDs
+* t_start/t_end
+* frame_start/frame_end
+* confidence
+* evidence type
+* derivation method
+* model/version
+* reviewer status
+* cultural/context qualifiers
+* uncertainty
+* alternative interpretations
+
+Provide graph-reasoning examples such as:
+
+* Retrieve examples of sudden, strong, direct movement followed by delayed recoil.
+* Find product demonstrations using macro close-ups and hand rotation to prove compactness.
+* Translate a low-arousal, negative-valence, low-dominance posture into a cinematic performance prompt.
+* Find combat exchanges where a cross-lateral initiation transitions into a low-angle impact shot.
+* Compare realistic versus anime-stylized realizations of the same canonical action.
+* Recreate the structure of a reference video for a similar product without copying identity-specific assets.
+* Identify missing continuity between actor motion and camera direction.
+* Find culturally ambiguous gestures and surface alternative interpretations.
+
+P. CANONICAL MOTION SCHEMA
+
+The canonical schema must include at minimum:
+
+* schema_version
+* scene_id
+* source
+* medium
+* actors
+* objects
+* environment
+* shots
+* observations
+* face
+* gaze
+* posture
+* body_connectivity
+* laban
+* actions
+* interactions
+* motion_phases
+* affect
+* camera
+* editing
+* lighting
+* animation
+* vfx
+* sound
+* narrative
+* marketing
+* style
+* evidence
+* provenance
+* confidence
+* constraints
+* alternatives
+* prompt_realizations
+
+Every action must support:
+
+* action ID
+* actor
+* target
+* verb
+* action class
+* affected body parts
+* coordinate frame
+* path
+* direction
+* displacement
+* velocity profile
+* acceleration profile
+* intensity
+* effort
+* shape
+* phase sequence
+* start/end
+* contact
+* reaction
+* environment
+* narrative function
+* camera relationship
+* style modifiers
+* confidence
+* source evidence
+
+Create JSON Schema validation for the canonical model.
+
+Use conditional validation where appropriate.
+
+Examples must validate.
+
+Q. PROMPT COMPILATION
+
+Design a compiler that can produce:
+
+1. Long-form natural-language director prompt
+2. Short character-constrained prompt
+3. Markdown scene specification
+4. YAML scene specification
+5. XML scene specification
+6. JSON scene specification
+7. JSONL event stream
+8. Shot-by-shot prompt set
+9. Image-generation keyframe prompts
+10. Image-to-video continuation prompts
+11. Reference-video recreation prompt
+12. Improvement prompt
+13. Negative constraints
+
+Prompt compilation must preserve:
+
+* identity constraints
+* actor roles
+* action order
+* timing
+* body mechanics
+* affect
+* camera
+* continuity
+* environment
+* VFX
+* style
+* marketing function
+* confidence and uncertainty when relevant
+
+Create rules for character-budget compression:
+
+* preserve action order
+* preserve actor assignments
+* preserve high-value motion controls
+* preserve camera and timing
+* remove redundant adjectives
+* compress low-value metadata
+* do not convert uncertainty into certainty
+
+R. EXAMPLES
+
+Every major framework must include concrete examples.
+
+At minimum, implement the following canonical scenes:
+
+1. A person entering a room cautiously, noticing another person, relaxing, and greeting them.
+2. A natural conversational gesture with gaze shifts, posture adjustment, and affect transition.
+3. A realistic walk transitioning into a sudden stop and turn.
+4. A staged hand-to-hand screen-combat exchange.
+5. An original shonen-style version of the same exchange.
+6. A live-action VFX-enhanced version of the same exchange.
+7. A UGC product demonstration emphasizing product size.
+8. A recreation of the product-demo structure for a similar but different product.
+9. A dialogue shot represented with FACS, Laban, VAD, camera, editing, and audio timing.
+
+For each example provide:
+
+* evidence/observation layer
+* canonical layer
+* graph mapping
+* Markdown
+* YAML
+* XML
+* JSON
+* JSONL
+* long director prompt
+* short prompt
+* image keyframe prompt
+* image-to-video prompt
+* validation result
+* explanation of information lost or emphasized in each encoding
+
+TOOLING REQUIREMENTS
+
+Implement lightweight Python tooling.
+
+validate_schemas.py must:
+
+* load every JSON schema
+* validate every JSON example
+* report exact paths for failures
+* exit nonzero on failure
+
+validate_examples.py must:
+
+* verify required example files exist
+* verify timestamps are monotonic
+* verify normalized phase durations are within [0,1]
+* verify phase ratios approximately sum to 1 when required
+* verify confidence values remain within declared ranges
+* verify IDs are unique
+* verify references resolve
+* verify provenance exists for derived claims
+
+convert_representations.py must:
+
+* load the canonical JSON example
+* generate deterministic YAML, XML, JSONL, and Markdown versions
+* preserve semantic IDs
+* preserve ordering where meaningful
+* avoid lossy type conversion
+* report fields that cannot be represented equivalently
+
+build_source_index.py must:
+
+* extract citations and source IDs from Markdown
+* report broken source references
+* generate a source-to-document index
+
+Prefer existing repository dependencies. If no suitable YAML or schema libraries exist, add the smallest justified development dependency and document it.
+
+TEST AND VERIFICATION CHECKPOINTS
+
+Run and record:
+
+1. Repository inspection
+2. Source-link verification where technically possible
+3. JSON syntax validation
+4. JSON Schema validation
+5. YAML parsing
+6. XML parsing
+7. JSONL line-by-line parsing
+8. Cross-format semantic-equivalence checks
+9. Internal Markdown link checks
+10. Citation/source-ID checks
+11. Unique-ID checks
+12. Temporal-order checks
+13. Range checks
+14. Unit consistency checks
+15. Test suite
+
+Provide observable commands and results.
+
+Examples:
+
+python tools/validate_schemas.py
+python tools/validate_examples.py
+python tools/convert_representations.py –check
+python tools/build_source_index.py –check
+pytest research/director_motion_reasoning/tests -q
+
+Adapt commands to the repository environment.
+
+Do not claim success unless the command output verifies it.
+
+QUALITY GATES
+
+The task is incomplete if:
+
+* files contain placeholders
+* sections merely say “research this”
+* citations are missing
+* project-specific inventions are presented as standards
+* all motion is reduced to generic prose
+* Laban is reduced only to four Effort adjectives
+* Bartenieff connectivity is omitted
+* temporal phases lack measurable representation
+* coordinate systems are undefined
+* affect is treated as certain
+* culture is treated stereotypically
+* camera/editing/VFX are not connected to body motion
+* the five serialization formats are not compared
+* examples do not preserve semantic equivalence
+* schemas do not validate
+* graph nodes lack provenance
+* prompts cannot be generated from the canonical structure
+* the system depends on hidden chain-of-thought
+* combat analysis becomes real-world harm instruction
+* marketing audience claims are unsupported
+* source quality is not evaluated
+
+FINAL RESPONSE
+
+After completing the work, return:
+
+1. The exact folder created
+2. A concise architectural summary
+3. The full file tree
+4. Major established frameworks found
+5. Project-specific syntheses introduced
+6. Ambiguous terms that could not be verified
+7. Source count by type
+8. Schemas and utilities created
+9. Tests and validation commands run
+10. Exact test results
+11. Important limitations
+12. Git diff summary
+13. Recommended next implementation step
+
+Do not merely tell me how to do this. Perform the research, create the files, implement the schemas and tools, run the checks, and report the verified results.

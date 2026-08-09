@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "classes": {
+    "ESTABLISHED": {
+      "definition": "source-defined standard/manual/framework or current official documentation",
+      "mutable": false
+    },
+    "EMPIRICAL": {
+      "definition": "study/dataset result with stated scope",
+      "mutable": false,
+      "requires": [
+        "source_ids",
+        "scope",
+        "method",
+        "uncertainty"
+      ]
+    },
+    "PRACTICE": {
+      "definition": "professional convention",
+      "mutable": true,
+      "requires": [
+        "domain",
+        "evidence_note"
+      ]
+    },
+    "CPCS_CONVENTION": {
+      "definition": "engineering normalization, schema, preset, or mapping created by CPCS",
+      "mutable": true,
+      "requires": [
+        "version",
+        "rationale",
+        "tests"
+      ]
+    },
+    "UNVERIFIED": {
+      "definition": "not reliably established",
+      "allowed_in_curated": false
+    }
+  },
+  "measurement_status": [
+    "measured",
+    "annotated",
+    "inverse_dynamics_estimate",
+    "model_inference",
+    "visual_proxy",
+    "prompt_prior",
+    "generated"
+  ],
+  "record_fields": [
+    "provenance_class",
+    "source_ids",
+    "confidence",
+    "scope",
+    "uncertainty_note",
+    "verified_at",
+    "created_by",
+    "version",
+    "supersedes"
+  ],
+  "precedence": [
+    "measured",
+    "annotated",
+    "inverse_dynamics_estimate",
+    "model_inference",
+    "visual_proxy",
+    "prompt_prior",
+    "generated"
+  ]
+}

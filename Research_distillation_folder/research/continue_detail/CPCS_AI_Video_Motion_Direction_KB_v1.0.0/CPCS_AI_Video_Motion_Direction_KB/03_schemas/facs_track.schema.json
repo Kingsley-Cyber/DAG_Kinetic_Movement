@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/cpcs/schema/facs_track/1.0.0",
+  "title": "CPCS FACS Track",
+  "type": "object",
+  "properties": {
+    "track_id": {
+      "type": "string"
+    },
+    "actor_id": {
+      "type": "string"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "au_code": {
+            "type": "string"
+          },
+          "side": {
+            "enum": [
+              "bilateral",
+              "left",
+              "right",
+              "asymmetric_mixed",
+              "none"
+            ]
+          },
+          "peak_intensity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "t_onset_start_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "t_apex_start_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "t_apex_end_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "t_offset_end_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "onset_curve": {
+            "type": "string"
+          },
+          "offset_curve": {
+            "type": "string"
+          },
+          "masking_au_codes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "required": [
+          "au_code",
+          "side",
+          "peak_intensity",
+          "t_onset_start_s",
+          "t_apex_start_s",
+          "t_apex_end_s",
+          "t_offset_end_s"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "gaze_target": {
+      "type": "string"
+    },
+    "head_track_id": {
+      "type": "string"
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "provenance_class": {
+          "enum": [
+            "ESTABLISHED",
+            "EMPIRICAL",
+            "PRACTICE",
+            "CPCS_CONVENTION",
+            "UNVERIFIED"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{3}$"
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "measurement_status": {
+          "enum": [
+            "measured",
+            "annotated",
+            "inverse_dynamics_estimate",
+            "model_inference",
+            "visual_proxy",
+            "prompt_prior",
+            "generated"
+          ]
+        },
+        "uncertainty_note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provenance_class"
+      ],
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "track_id",
+    "actor_id",
+    "events"
+  ],
+  "unevaluatedProperties": false
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": "cpcs.state_ledger/1.0-candidate",
+  "ledger_id": "ledger_two_actor_water_scene",
+  "timebase": "seconds",
+  "entities": [
+    {
+      "entity_id": "actor_A",
+      "entity_type": "actor",
+      "initial_state": {
+        "exists": true,
+        "visible": true,
+        "count": 1,
+        "holder": null,
+        "location_ref": "screen_lane_left",
+        "material_state": {
+          "costume": "orange_jacket_charcoal_base"
+        }
+      },
+      "persistent_attributes": {
+        "identity_lock": true,
+        "role": "attacker",
+        "screen_side_lock": "left"
+      }
+    },
+    {
+      "entity_id": "actor_B",
+      "entity_type": "actor",
+      "initial_state": {
+        "exists": true,
+        "visible": true,
+        "count": 1,
+        "holder": null,
+        "location_ref": "screen_lane_right",
+        "material_state": {
+          "costume": "indigo_tunic_grey_trousers"
+        }
+      },
+      "persistent_attributes": {
+        "identity_lock": true,
+        "role": "defender",
+        "screen_side_lock": "right"
+      }
+    },
+    {
+      "entity_id": "water_plane",
+      "entity_type": "environment",
+      "initial_state": {
+        "exists": true,
+        "visible": true,
+        "count": 1,
+        "holder": null,
+        "location_ref": "continuous_flat_plane",
+        "material_state": {
+          "surface_height": 0.0,
+          "topology": "continuous_flat"
+        }
+      },
+      "persistent_attributes": {
+        "topology_lock": true
+      }
+    }
+  ],
+  "transitions": [
+    {
+      "transition_id": "t_actor_b_submerge",
+      "entity_id": "actor_B",
+      "at": 4.25,
+      "from_state": {
+        "visible": true
+      },
+      "to_state": {
+        "visible": false,
+        "exists": true
+      },
+      "cause_event_id": "event_B_dive",
+      "reversible": true
+    },
+    {
+      "transition_id": "t_actor_b_reappear",
+      "entity_id": "actor_B",
+      "at": 5.1,
+      "from_state": {
+        "visible": false,
+        "exists": true
+      },
+      "to_state": {
+        "visible": true,
+        "exists": true
+      },
+      "cause_event_id": "event_B_surface",
+      "reversible": true
+    }
+  ],
+  "invariants": [
+    "actor_count==2",
+    "actor_A.left_of(actor_B)",
+    "water_plane.surface_height==0.0",
+    "no_new_props",
+    "no_identity_or_costume_change"
+  ]
+}

@@ -1,0 +1,194 @@
+{
+  "schema_version": "1.0.0",
+  "id": "cpcs.layer_stack.v1",
+  "ordering": [
+    "creative_intent",
+    "narrative_beats",
+    "affect_trajectory",
+    "actor_and_identity",
+    "body_organization",
+    "laban_bess",
+    "motion_primitives",
+    "phase_grammar",
+    "kinematics",
+    "interaction_topology",
+    "force_dynamics",
+    "rhythm",
+    "camera",
+    "style_transform",
+    "model_adapter",
+    "evaluation"
+  ],
+  "layers": [
+    {
+      "id": "creative_intent",
+      "question": "Why is the action performed?",
+      "truth_type": "latent production specification",
+      "outputs": [
+        "intent distribution",
+        "goal",
+        "constraints",
+        "alternatives"
+      ]
+    },
+    {
+      "id": "narrative_beats",
+      "question": "What changes and in what order?",
+      "truth_type": "authorial specification",
+      "outputs": [
+        "beats",
+        "state transitions",
+        "causal links"
+      ]
+    },
+    {
+      "id": "affect_trajectory",
+      "question": "How does affect evolve?",
+      "truth_type": "performance hypothesis",
+      "outputs": [
+        "VAD+CCE tracks",
+        "channel timing"
+      ]
+    },
+    {
+      "id": "actor_and_identity",
+      "question": "Who/what performs?",
+      "truth_type": "asset/scene state",
+      "outputs": [
+        "actor profiles",
+        "skeleton",
+        "appearance refs",
+        "capabilities"
+      ]
+    },
+    {
+      "id": "body_organization",
+      "question": "Which parts initiate and connect?",
+      "truth_type": "qualitative/structural",
+      "outputs": [
+        "Bartenieff patterns",
+        "initiation",
+        "sequencing",
+        "support"
+      ]
+    },
+    {
+      "id": "laban_bess",
+      "question": "What qualitative dynamics/form/space?",
+      "truth_type": "movement analysis",
+      "outputs": [
+        "Body",
+        "Effort",
+        "Shape",
+        "Space tracks"
+      ]
+    },
+    {
+      "id": "motion_primitives",
+      "question": "What reusable motion units compose the action?",
+      "truth_type": "engineering representation",
+      "outputs": [
+        "primitive instances",
+        "blend/sequence graph"
+      ]
+    },
+    {
+      "id": "phase_grammar",
+      "question": "How is each action phased?",
+      "truth_type": "CPCS production convention",
+      "outputs": [
+        "phase state machines",
+        "event bindings"
+      ]
+    },
+    {
+      "id": "kinematics",
+      "question": "What measurable trajectory and derivatives?",
+      "truth_type": "measured/estimated/prior",
+      "outputs": [
+        "poses",
+        "velocity",
+        "acceleration",
+        "contacts"
+      ]
+    },
+    {
+      "id": "interaction_topology",
+      "question": "Who contacts/acts on whom/what?",
+      "truth_type": "scene relation",
+      "outputs": [
+        "predicates",
+        "contact graph",
+        "object states"
+      ]
+    },
+    {
+      "id": "force_dynamics",
+      "question": "What physical and perceived force profile?",
+      "truth_type": "measured/estimated/perceptual",
+      "outputs": [
+        "force profile",
+        "kinetic chain",
+        "impact cues"
+      ]
+    },
+    {
+      "id": "rhythm",
+      "question": "How are events temporally patterned?",
+      "truth_type": "timing plan",
+      "outputs": [
+        "clock/beat grid",
+        "cadence",
+        "accents",
+        "microtiming"
+      ]
+    },
+    {
+      "id": "camera",
+      "question": "How is motion observed?",
+      "truth_type": "cinematography plan",
+      "outputs": [
+        "shot/camera track",
+        "continuity",
+        "impact sync"
+      ]
+    },
+    {
+      "id": "style_transform",
+      "question": "How is invariant choreography stylized?",
+      "truth_type": "transformation plan",
+      "outputs": [
+        "timing/spatial/camera/render transforms",
+        "locked invariants"
+      ]
+    },
+    {
+      "id": "model_adapter",
+      "question": "What can target model actually receive?",
+      "truth_type": "dated capability snapshot",
+      "outputs": [
+        "native request",
+        "prompt",
+        "references",
+        "loss report"
+      ]
+    },
+    {
+      "id": "evaluation",
+      "question": "Did output preserve intent, action, contacts, identity, camera, and style?",
+      "truth_type": "immutable observation",
+      "outputs": [
+        "scores",
+        "annotations",
+        "derived weights"
+      ]
+    }
+  ],
+  "precedence_rules": [
+    "Safety and explicit interaction constraints override style.",
+    "Contact topology overrides decorative trajectories.",
+    "Measured data overrides estimates; estimates override prompt priors, without deleting lower-level provenance.",
+    "Native/reference controls outrank prose in model compilation.",
+    "Curated definitions are never mutated by derived weights."
+  ]
+}

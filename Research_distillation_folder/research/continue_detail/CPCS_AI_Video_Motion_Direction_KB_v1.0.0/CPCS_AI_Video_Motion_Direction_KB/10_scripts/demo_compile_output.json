@@ -1,0 +1,45 @@
+{
+  "compiler": "cpcs_offline_demo/1.0.0",
+  "scene_id": "ex_cross_punch_01",
+  "scene_sha256": "6208e56e2fb8f09124955008b97a2882688ed9087161270c3c30169b51cac444",
+  "adapter_id": "veo_3_1_gemini_v2026_07_30",
+  "adapter_verified_at": "2026-07-30",
+  "status": "preview",
+  "compiled_prompt": "Intent: assert. Beat order: establish guard; cross and block; recoil/reset. Motion: cross_punch: {'weight': 0.82, 'time': 0.88, 'space_effort': 0.92, 'flow': 0.66}, shape {'vertical': 0.56, 'horizontal': 0.48, 'sagittal': 0.88, 'mode': 'directional'}. Camera: full at 32mm; truck. Preserve actor identity, contact causality, support contacts, screen direction, and the final settle. Do not add unrequested actions.",
+  "request_draft": {
+    "model": "veo-3.1 family (exact endpoint variant required)",
+    "prompt": "Intent: assert. Beat order: establish guard; cross and block; recoil/reset. Motion: cross_punch: {'weight': 0.82, 'time': 0.88, 'space_effort': 0.92, 'flow': 0.66}, shape {'vertical': 0.56, 'horizontal': 0.48, 'sagittal': 0.88, 'mode': 'directional'}. Camera: full at 32mm; truck. Preserve actor identity, contact causality, support contacts, screen direction, and the final settle. Do not add unrequested actions.",
+    "config": {
+      "duration": 3.0,
+      "fps": 24
+    },
+    "image": null,
+    "referenceImages": null
+  },
+  "preserved_or_native": [
+    "intent",
+    "beat_order",
+    "actor_roles",
+    "duration",
+    "reference-conditioned channels when supplied"
+  ],
+  "lossy_or_prompt_only": [
+    "camera trajectory unless reference/control exposed",
+    "facs_track",
+    "interaction_predicates",
+    "laban_bess",
+    "phase_microtiming"
+  ],
+  "loss_risk": {
+    "contact_topology": "high",
+    "per_frame_facs": "high",
+    "identity_without_reference": "high",
+    "camera_path_from_prose": "medium_high"
+  },
+  "verification_required": [
+    "Use exact model variant capability table.",
+    "Reference-image generation requires supported variant and documented combinations.",
+    "Some reference/extension/high-resolution operations require duration=8."
+  ],
+  "not_executed": true
+}

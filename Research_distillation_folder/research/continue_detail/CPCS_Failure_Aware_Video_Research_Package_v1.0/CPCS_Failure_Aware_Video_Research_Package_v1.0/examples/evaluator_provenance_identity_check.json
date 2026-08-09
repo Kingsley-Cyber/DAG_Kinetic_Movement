@@ -1,0 +1,16 @@
+{
+  "schema_version": "cpcs.evaluator_provenance/1.0-candidate",
+  "evaluator_id": "evaluator://identity_continuity/human_calibrated_v1",
+  "version": "example-only-not-qualified",
+  "configuration_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "artifact_hash": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+  "observable_dimension": "actor_B identity continuity across the complete water-splash occlusion interval",
+  "lane": "human_review",
+  "confidence": null,
+  "known_blind_spots": [
+    "fast smear frames",
+    "complete opaque occlusion",
+    "similar costume colors"
+  ],
+  "human_calibration_status": "human_only"
+}

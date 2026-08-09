@@ -1,0 +1,362 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "T13",
+  "title": "Computational Laban Notation — State of the Art",
+  "status": "curated",
+  "conclusion": "A practical Laban inference pipeline is feasible, but no broadly validated OpenFace-equivalent full-BESS detector was identified. Space/Time and geometric Shape are more directly observable than Weight/Flow.",
+  "systems": [
+    {
+      "name": "LabanWriter",
+      "category": "manual notation editor",
+      "input": "human notation",
+      "output": "Labanotation score",
+      "automatic": false,
+      "source_ids": [
+        "S005"
+      ]
+    },
+    {
+      "name": "LabanXML/LabanEditor2",
+      "category": "notation interchange/editor",
+      "input": "symbolic score",
+      "output": "XML/score",
+      "automatic": false,
+      "source_ids": [
+        "S009"
+      ]
+    },
+    {
+      "name": "MovementXML",
+      "category": "semantic representation",
+      "input": "movement semantics",
+      "output": "XML",
+      "automatic": false,
+      "source_ids": [
+        "S010"
+      ]
+    },
+    {
+      "name": "Laban ontology",
+      "category": "semantic/knowledge representation",
+      "input": "dance movement concepts",
+      "output": "ontology graph",
+      "automatic": false,
+      "source_ids": [
+        "S011"
+      ]
+    },
+    {
+      "name": "EMOTE",
+      "category": "expressive synthesis",
+      "input": "motion + Effort/Shape parameters",
+      "output": "styled motion",
+      "automatic_detector": false,
+      "source_ids": [
+        "S031"
+      ]
+    },
+    {
+      "name": "Samadani et al.",
+      "category": "feature correlates/classification",
+      "input": "mocap hand/arm trajectories",
+      "output": "selected Effort/Shape estimates",
+      "scope": "small constrained dataset",
+      "source_ids": [
+        "S007"
+      ]
+    },
+    {
+      "name": "Guo et al.",
+      "category": "supervised BESS classification",
+      "input": "video-derived motion features",
+      "output": "BESS-related annotations",
+      "scope": "research prototype",
+      "source_ids": [
+        "S006"
+      ]
+    },
+    {
+      "name": "MoRTELaban",
+      "category": "neurosymbolic representation",
+      "input": "motion",
+      "output": "Laban representation",
+      "scope": "recent research",
+      "source_ids": [
+        "S012"
+      ]
+    },
+    {
+      "name": "BoME",
+      "category": "expert-annotated dataset/modeling",
+      "input": "video clips",
+      "output": "11 selected emotion-related motor elements",
+      "scope": "not full BESS",
+      "source_ids": [
+        "S071"
+      ]
+    },
+    {
+      "name": "LaMoGen",
+      "category": "generation guidance",
+      "input": "text + Laban features",
+      "output": "3D motion",
+      "scope": "preprint, not detector",
+      "source_ids": [
+        "S072"
+      ]
+    },
+    {
+      "name": "Bouchard/Badler",
+      "category": "mocap segmentation",
+      "input": "mocap",
+      "output": "semantic segments",
+      "source_ids": [
+        "S073"
+      ]
+    },
+    {
+      "name": "Bayesian LMA perspective model",
+      "category": "gesture classification",
+      "input": "tracked gesture features",
+      "output": "limited LMA-inspired classes",
+      "source_ids": [
+        "S074"
+      ]
+    },
+    {
+      "name": "LMA + HMM dynamic gesture recognition",
+      "category": "gesture recognition",
+      "input": "motion sequence",
+      "output": "gesture class",
+      "source_ids": [
+        "S075"
+      ]
+    }
+  ],
+  "unverified_aliases": [
+    {
+      "name": "LabanWRML",
+      "status": "UNVERIFIED_ALIAS",
+      "search_result": "no stable citable system under exact name"
+    },
+    {
+      "name": "ChoosenMove",
+      "status": "UNVERIFIED_ALIAS"
+    },
+    {
+      "name": "MoveScape",
+      "status": "not verified as automatic LMA detector"
+    }
+  ],
+  "datasets": [
+    {
+      "name": "BoME",
+      "native_laban_labels": true,
+      "labels": "11 selected emotion-related LMA motor elements",
+      "size": "1,600 clips",
+      "source_ids": [
+        "S071"
+      ]
+    },
+    {
+      "name": "AMASS",
+      "native_laban_labels": false,
+      "labels": "mocap/SMPL motion archive",
+      "source_ids": [
+        "S065"
+      ]
+    },
+    {
+      "name": "BABEL",
+      "native_laban_labels": false,
+      "labels": "semantic action labels over AMASS",
+      "source_ids": [
+        "S035"
+      ]
+    },
+    {
+      "name": "HumanAct12",
+      "native_laban_labels": false,
+      "labels": "12 action categories",
+      "source_ids": [
+        "S066"
+      ]
+    },
+    {
+      "name": "BEAT",
+      "native_laban_labels": false,
+      "labels": "speech, gesture, emotion, semantics",
+      "source_ids": [
+        "S030"
+      ]
+    },
+    {
+      "name": "AIST++",
+      "native_laban_labels": false,
+      "labels": "dance/music alignment",
+      "source_ids": [
+        "S045"
+      ]
+    },
+    {
+      "name": "CMD",
+      "native_laban_labels": "unknown",
+      "status": "ambiguous acronym in supplied query; no Laban-native dataset verified"
+    }
+  ],
+  "pose_frontends": [
+    {
+      "name": "OpenPose",
+      "output": "2D body/hand/face keypoints",
+      "source_ids": [
+        "S063"
+      ]
+    },
+    {
+      "name": "MediaPipe Pose",
+      "output": "2D landmarks + model-relative world coordinates",
+      "source_ids": [
+        "S064"
+      ]
+    },
+    {
+      "name": "DWPose-compatible front end",
+      "output": "whole-body keypoints",
+      "status": "implementation-specific; validate model/license"
+    },
+    {
+      "name": "Pose2Sim/OpenCap",
+      "output": "calibrated multiview 3D/biomechanics",
+      "source_ids": [
+        "S024",
+        "S025"
+      ]
+    }
+  ],
+  "proposed_detector": {
+    "stages": [
+      "video decode + camera stabilization",
+      "multi-person tracking",
+      "2D whole-body pose",
+      "3D lifting/triangulation",
+      "body-scale normalization",
+      "contact and support inference",
+      "kinematic feature bank",
+      "BESS factor heads",
+      "temporal smoothing/state model",
+      "expert-calibrated uncertainty",
+      "explanation/provenance output"
+    ],
+    "factor_heads": {
+      "space": [
+        "path directness",
+        "reach",
+        "level",
+        "direction",
+        "kinesphere",
+        "planes"
+      ],
+      "time": [
+        "duration",
+        "time-to-peak",
+        "acceleration"
+      ],
+      "shape": [
+        "axis expansion/contraction",
+        "directional/carving proxies"
+      ],
+      "body": [
+        "initiation",
+        "sequencing",
+        "participation",
+        "connectivity"
+      ],
+      "weight": [
+        "effective mass/support/energy/target response proxies"
+      ],
+      "flow": [
+        "braking, reversibility, jerk/control, continuation proxies"
+      ]
+    },
+    "training": "multi-task ordinal/continuous labels + coder disagreement distribution",
+    "output": "probability distributions, not hard labels"
+  },
+  "difficulty_ranking": [
+    {
+      "factor": "Space",
+      "observability": "high",
+      "reason": "geometry/path"
+    },
+    {
+      "factor": "Time",
+      "observability": "high",
+      "reason": "timing/derivatives"
+    },
+    {
+      "factor": "Shape",
+      "observability": "medium-high",
+      "reason": "body volume/axes, but mode interpretation contextual"
+    },
+    {
+      "factor": "Body",
+      "observability": "medium",
+      "reason": "requires reliable segmentation/initiation/contacts"
+    },
+    {
+      "factor": "Weight",
+      "observability": "low-medium",
+      "reason": "perceived force and support are partly latent"
+    },
+    {
+      "factor": "Flow",
+      "observability": "low",
+      "reason": "control/tension/reversibility are not uniquely visible"
+    }
+  ],
+  "evaluation": {
+    "labels": "at least two certified analysts + adjudication",
+    "metrics": [
+      "weighted kappa",
+      "ICC",
+      "macro F1",
+      "ordinal MAE",
+      "Brier score",
+      "calibration error",
+      "segment IoU",
+      "cross-dataset generalization"
+    ],
+    "splits": [
+      "actor-disjoint",
+      "camera-disjoint",
+      "culture/style-disjoint",
+      "domain-disjoint"
+    ],
+    "realtime_target": "measure latency after accuracy/calibration threshold, not before"
+  },
+  "source_ids": [
+    "S005",
+    "S006",
+    "S007",
+    "S008",
+    "S009",
+    "S010",
+    "S011",
+    "S012",
+    "S019",
+    "S024",
+    "S025",
+    "S030",
+    "S031",
+    "S035",
+    "S045",
+    "S063",
+    "S064",
+    "S065",
+    "S066",
+    "S071",
+    "S072",
+    "S073",
+    "S074",
+    "S075"
+  ]
+}

@@ -1,0 +1,409 @@
+{"relation_id": "rel_source_S001_T01", "source": "topic:T01", "predicate": "SUPPORTED_BY", "target": "source:S001", "attributes": {"locator": "§ What is Laban/Bartenieff Movement Analysis?"}}
+{"relation_id": "rel_source_S001_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S001", "attributes": {"locator": "§ What is Laban/Bartenieff Movement Analysis?"}}
+{"relation_id": "rel_source_S002_T01", "source": "topic:T01", "predicate": "SUPPORTED_BY", "target": "source:S002", "attributes": {"locator": "Ch.3 pp.23–48; Ch.4 pp.49–68; Ch.5 pp.69–82; Ch.6 pp.83–100; Appendix B from p.229"}}
+{"relation_id": "rel_source_S002_T02", "source": "topic:T02", "predicate": "SUPPORTED_BY", "target": "source:S002", "attributes": {"locator": "Ch.3 pp.23–48; Ch.4 pp.49–68; Ch.5 pp.69–82; Ch.6 pp.83–100; Appendix B from p.229"}}
+{"relation_id": "rel_source_S002_T08", "source": "topic:T08", "predicate": "SUPPORTED_BY", "target": "source:S002", "attributes": {"locator": "Ch.3 pp.23–48; Ch.4 pp.49–68; Ch.5 pp.69–82; Ch.6 pp.83–100; Appendix B from p.229"}}
+{"relation_id": "rel_source_S002_T10", "source": "topic:T10", "predicate": "SUPPORTED_BY", "target": "source:S002", "attributes": {"locator": "Ch.3 pp.23–48; Ch.4 pp.49–68; Ch.5 pp.69–82; Ch.6 pp.83–100; Appendix B from p.229"}}
+{"relation_id": "rel_source_S003_T02", "source": "topic:T02", "predicate": "SUPPORTED_BY", "target": "source:S003", "attributes": {"locator": "Ch.5 p.41; Breath p.54; Core–Distal p.71; Head–Tail p.90; Upper–Lower p.121; Body-Half p.181; Cross-Lateral p.193; Integration p.219"}}
+{"relation_id": "rel_source_S004_T01", "source": "topic:T01", "predicate": "SUPPORTED_BY", "target": "source:S004", "attributes": {"locator": "Parts on motion factors and basic effort actions; edition-specific pagination"}}
+{"relation_id": "rel_source_S004_T08", "source": "topic:T08", "predicate": "SUPPORTED_BY", "target": "source:S004", "attributes": {"locator": "Parts on motion factors and basic effort actions; edition-specific pagination"}}
+{"relation_id": "rel_source_S005_T01", "source": "topic:T01", "predicate": "SUPPORTED_BY", "target": "source:S005", "attributes": {"locator": "§ LabanWriter; description of 700+ symbols and notation editor"}}
+{"relation_id": "rel_source_S005_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S005", "attributes": {"locator": "§ LabanWriter; description of 700+ symbols and notation editor"}}
+{"relation_id": "rel_source_S006_T01", "source": "topic:T01", "predicate": "SUPPORTED_BY", "target": "source:S006", "attributes": {"locator": "Abstract; §§3–5; manuscript pp.1–12"}}
+{"relation_id": "rel_source_S006_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S006", "attributes": {"locator": "Abstract; §§3–5; manuscript pp.1–12"}}
+{"relation_id": "rel_source_S007_T01", "source": "topic:T01", "predicate": "SUPPORTED_BY", "target": "source:S007", "attributes": {"locator": "pp.343–348; §§II–V; Tables I–IV"}}
+{"relation_id": "rel_source_S007_T05", "source": "topic:T05", "predicate": "SUPPORTED_BY", "target": "source:S007", "attributes": {"locator": "pp.343–348; §§II–V; Tables I–IV"}}
+{"relation_id": "rel_source_S007_T11", "source": "topic:T11", "predicate": "SUPPORTED_BY", "target": "source:S007", "attributes": {"locator": "pp.343–348; §§II–V; Tables I–IV"}}
+{"relation_id": "rel_source_S007_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S007", "attributes": {"locator": "pp.343–348; §§II–V; Tables I–IV"}}
+{"relation_id": "rel_source_S008_T01", "source": "topic:T01", "predicate": "SUPPORTED_BY", "target": "source:S008", "attributes": {"locator": "Methods; Results; Discussion on inter-rater reliability"}}
+{"relation_id": "rel_source_S008_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S008", "attributes": {"locator": "Methods; Results; Discussion on inter-rater reliability"}}
+{"relation_id": "rel_source_S009_T01", "source": "topic:T01", "predicate": "SUPPORTED_BY", "target": "source:S009", "attributes": {"locator": "Review of the National Center for Digitization 9, pp.47–51"}}
+{"relation_id": "rel_source_S009_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S009", "attributes": {"locator": "Review of the National Center for Digitization 9, pp.47–51"}}
+{"relation_id": "rel_source_S010_T01", "source": "topic:T01", "predicate": "SUPPORTED_BY", "target": "source:S010", "attributes": {"locator": "Chs.3–5 and Movement XML schema appendix"}}
+{"relation_id": "rel_source_S010_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S010", "attributes": {"locator": "Chs.3–5 and Movement XML schema appendix"}}
+{"relation_id": "rel_source_S011_T01", "source": "topic:T01", "predicate": "SUPPORTED_BY", "target": "source:S011", "attributes": {"locator": "LNCS 7206, Ch.10"}}
+{"relation_id": "rel_source_S011_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S011", "attributes": {"locator": "LNCS 7206, Ch.10"}}
+{"relation_id": "rel_source_S012_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S012", "attributes": {"locator": "Abstract; framework and evaluation sections"}}
+{"relation_id": "rel_source_S013_T03", "source": "topic:T03", "predicate": "SUPPORTED_BY", "target": "source:S013", "attributes": {"locator": "Behavior phases, sync points, and synchronization"}}
+{"relation_id": "rel_source_S013_T06", "source": "topic:T06", "predicate": "SUPPORTED_BY", "target": "source:S013", "attributes": {"locator": "Behavior phases, sync points, and synchronization"}}
+{"relation_id": "rel_source_S013_T07", "source": "topic:T07", "predicate": "SUPPORTED_BY", "target": "source:S013", "attributes": {"locator": "Behavior phases, sync points, and synchronization"}}
+{"relation_id": "rel_source_S013_T10", "source": "topic:T10", "predicate": "SUPPORTED_BY", "target": "source:S013", "attributes": {"locator": "Behavior phases, sync points, and synchronization"}}
+{"relation_id": "rel_source_S014_T03", "source": "topic:T03", "predicate": "SUPPORTED_BY", "target": "source:S014", "attributes": {"locator": "Preparation, prestroke hold, stroke, poststroke hold, retraction"}}
+{"relation_id": "rel_source_S014_T10", "source": "topic:T10", "predicate": "SUPPORTED_BY", "target": "source:S014", "attributes": {"locator": "Preparation, prestroke hold, stroke, poststroke hold, retraction"}}
+{"relation_id": "rel_source_S015_T03", "source": "topic:T03", "predicate": "SUPPORTED_BY", "target": "source:S015", "attributes": {"locator": "Chapters on gesture units, phrases, and movement phases"}}
+{"relation_id": "rel_source_S015_T06", "source": "topic:T06", "predicate": "SUPPORTED_BY", "target": "source:S015", "attributes": {"locator": "Chapters on gesture units, phrases, and movement phases"}}
+{"relation_id": "rel_source_S015_T10", "source": "topic:T10", "predicate": "SUPPORTED_BY", "target": "source:S015", "attributes": {"locator": "Chapters on gesture units, phrases, and movement phases"}}
+{"relation_id": "rel_source_S016_T03", "source": "topic:T03", "predicate": "SUPPORTED_BY", "target": "source:S016", "attributes": {"locator": "Chapters on anticipation, follow-through, timing, arcs, exaggeration"}}
+{"relation_id": "rel_source_S016_T09", "source": "topic:T09", "predicate": "SUPPORTED_BY", "target": "source:S016", "attributes": {"locator": "Chapters on anticipation, follow-through, timing, arcs, exaggeration"}}
+{"relation_id": "rel_source_S016_T10", "source": "topic:T10", "predicate": "SUPPORTED_BY", "target": "source:S016", "attributes": {"locator": "Chapters on anticipation, follow-through, timing, arcs, exaggeration"}}
+{"relation_id": "rel_source_S016_T12", "source": "topic:T12", "predicate": "SUPPORTED_BY", "target": "source:S016", "attributes": {"locator": "Chapters on anticipation, follow-through, timing, arcs, exaggeration"}}
+{"relation_id": "rel_source_S017_T04", "source": "topic:T04", "predicate": "SUPPORTED_BY", "target": "source:S017", "attributes": {"locator": "AU chapters; intensity scoring; head/eye sections; proprietary pagination"}}
+{"relation_id": "rel_source_S018_T04", "source": "topic:T04", "predicate": "SUPPORTED_BY", "target": "source:S018", "attributes": {"locator": "Public AU table and discussion of 44 FACS action units/intensity"}}
+{"relation_id": "rel_source_S019_T04", "source": "topic:T04", "predicate": "SUPPORTED_BY", "target": "source:S019", "attributes": {"locator": "Supported AUs; presence and 0–5 intensity outputs"}}
+{"relation_id": "rel_source_S019_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S019", "attributes": {"locator": "Supported AUs; presence and 0–5 intensity outputs"}}
+{"relation_id": "rel_source_S020_T04", "source": "topic:T04", "predicate": "SUPPORTED_BY", "target": "source:S020", "attributes": {"locator": "pp.22–35; p.23 spontaneous-versus-posed dynamics"}}
+{"relation_id": "rel_source_S021_T04", "source": "topic:T04", "predicate": "SUPPORTED_BY", "target": "source:S021", "attributes": {"locator": "PNAS 111(15), E1454–E1462; tables and supplementary AU prototypes"}}
+{"relation_id": "rel_source_S022_T04", "source": "topic:T04", "predicate": "SUPPORTED_BY", "target": "source:S022", "attributes": {"locator": "Pain 134(1–2), pp.82–97; PSPI formulation"}}
+{"relation_id": "rel_source_S023_T04", "source": "topic:T04", "predicate": "SUPPORTED_BY", "target": "source:S023", "attributes": {"locator": "p.370, Eq.1: AU4 + max(AU6,AU7) + max(AU9,AU10) + AU43"}}
+{"relation_id": "rel_source_S024_T05", "source": "topic:T05", "predicate": "SUPPORTED_BY", "target": "source:S024", "attributes": {"locator": "Methods pipeline; validation; limitations"}}
+{"relation_id": "rel_source_S024_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S024", "attributes": {"locator": "Methods pipeline; validation; limitations"}}
+{"relation_id": "rel_source_S025_T05", "source": "topic:T05", "predicate": "SUPPORTED_BY", "target": "source:S025", "attributes": {"locator": "JOSS 7(77), article 4362, pp.1–4"}}
+{"relation_id": "rel_source_S025_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S025", "attributes": {"locator": "JOSS 7(77), article 4362, pp.1–4"}}
+{"relation_id": "rel_source_S026_T05", "source": "topic:T05", "predicate": "SUPPORTED_BY", "target": "source:S026", "attributes": {"locator": "IEEE TBME 54(11), pp.1940–1950"}}
+{"relation_id": "rel_source_S026_T08", "source": "topic:T08", "predicate": "SUPPORTED_BY", "target": "source:S026", "attributes": {"locator": "IEEE TBME 54(11), pp.1940–1950"}}
+{"relation_id": "rel_source_S027_T05", "source": "topic:T05", "predicate": "SUPPORTED_BY", "target": "source:S027", "attributes": {"locator": "Chs.2–4 kinematics; Chs.5–7 kinetics, anthropometry, signal processing"}}
+{"relation_id": "rel_source_S027_T08", "source": "topic:T08", "predicate": "SUPPORTED_BY", "target": "source:S027", "attributes": {"locator": "Chs.2–4 kinematics; Chs.5–7 kinetics, anthropometry, signal processing"}}
+{"relation_id": "rel_source_S028_T03", "source": "topic:T03", "predicate": "SUPPORTED_BY", "target": "source:S028", "attributes": {"locator": "Br J Sports Med 39(10), pp.710–719"}}
+{"relation_id": "rel_source_S028_T05", "source": "topic:T05", "predicate": "SUPPORTED_BY", "target": "source:S028", "attributes": {"locator": "Br J Sports Med 39(10), pp.710–719"}}
+{"relation_id": "rel_source_S028_T08", "source": "topic:T08", "predicate": "SUPPORTED_BY", "target": "source:S028", "attributes": {"locator": "Br J Sports Med 39(10), pp.710–719"}}
+{"relation_id": "rel_source_S029_T03", "source": "topic:T03", "predicate": "SUPPORTED_BY", "target": "source:S029", "attributes": {"locator": "Archives of Budo SAMAES 11, pp.3–13"}}
+{"relation_id": "rel_source_S029_T05", "source": "topic:T05", "predicate": "SUPPORTED_BY", "target": "source:S029", "attributes": {"locator": "Archives of Budo SAMAES 11, pp.3–13"}}
+{"relation_id": "rel_source_S029_T08", "source": "topic:T08", "predicate": "SUPPORTED_BY", "target": "source:S029", "attributes": {"locator": "Archives of Budo SAMAES 11, pp.3–13"}}
+{"relation_id": "rel_source_S030_T06", "source": "topic:T06", "predicate": "SUPPORTED_BY", "target": "source:S030", "attributes": {"locator": "ECCV 2022; dataset statistics and §§3–5"}}
+{"relation_id": "rel_source_S030_T10", "source": "topic:T10", "predicate": "SUPPORTED_BY", "target": "source:S030", "attributes": {"locator": "ECCV 2022; dataset statistics and §§3–5"}}
+{"relation_id": "rel_source_S030_T11", "source": "topic:T11", "predicate": "SUPPORTED_BY", "target": "source:S030", "attributes": {"locator": "ECCV 2022; dataset statistics and §§3–5"}}
+{"relation_id": "rel_source_S030_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S030", "attributes": {"locator": "ECCV 2022; dataset statistics and §§3–5"}}
+{"relation_id": "rel_source_S031_T01", "source": "topic:T01", "predicate": "SUPPORTED_BY", "target": "source:S031", "attributes": {"locator": "SIGGRAPH 2000, pp.173–182"}}
+{"relation_id": "rel_source_S031_T06", "source": "topic:T06", "predicate": "SUPPORTED_BY", "target": "source:S031", "attributes": {"locator": "SIGGRAPH 2000, pp.173–182"}}
+{"relation_id": "rel_source_S031_T12", "source": "topic:T12", "predicate": "SUPPORTED_BY", "target": "source:S031", "attributes": {"locator": "SIGGRAPH 2000, pp.173–182"}}
+{"relation_id": "rel_source_S031_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S031", "attributes": {"locator": "SIGGRAPH 2000, pp.173–182"}}
+{"relation_id": "rel_source_S032_T06", "source": "topic:T06", "predicate": "SUPPORTED_BY", "target": "source:S032", "attributes": {"locator": "Computer Graphics Forum 34(6), pp.262–276"}}
+{"relation_id": "rel_source_S032_T11", "source": "topic:T11", "predicate": "SUPPORTED_BY", "target": "source:S032", "attributes": {"locator": "Computer Graphics Forum 34(6), pp.262–276"}}
+{"relation_id": "rel_source_S032_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S032", "attributes": {"locator": "Computer Graphics Forum 34(6), pp.262–276"}}
+{"relation_id": "rel_source_S033_T06", "source": "topic:T06", "predicate": "SUPPORTED_BY", "target": "source:S033", "attributes": {"locator": "Gesture 9(2), review sections"}}
+{"relation_id": "rel_source_S033_T11", "source": "topic:T11", "predicate": "SUPPORTED_BY", "target": "source:S033", "attributes": {"locator": "Gesture 9(2), review sections"}}
+{"relation_id": "rel_source_S034_T07", "source": "topic:T07", "predicate": "SUPPORTED_BY", "target": "source:S034", "attributes": {"locator": "WACV 2018; 600 HOI classes, 117 verbs, 80 objects"}}
+{"relation_id": "rel_source_S035_T07", "source": "topic:T07", "predicate": "SUPPORTED_BY", "target": "source:S035", "attributes": {"locator": "CVPR 2021; dataset and annotation sections"}}
+{"relation_id": "rel_source_S035_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S035", "attributes": {"locator": "CVPR 2021; dataset and annotation sections"}}
+{"relation_id": "rel_source_S036_T07", "source": "topic:T07", "predicate": "SUPPORTED_BY", "target": "source:S036", "attributes": {"locator": "CVPR 2023; dataset statistics and interaction annotations"}}
+{"relation_id": "rel_source_S036_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S036", "attributes": {"locator": "CVPR 2023; dataset statistics and interaction annotations"}}
+{"relation_id": "rel_source_S037_T07", "source": "topic:T07", "predicate": "SUPPORTED_BY", "target": "source:S037", "attributes": {"locator": "Paper §§3–5 and repository documentation"}}
+{"relation_id": "rel_source_S037_T12", "source": "topic:T12", "predicate": "SUPPORTED_BY", "target": "source:S037", "attributes": {"locator": "Paper §§3–5 and repository documentation"}}
+{"relation_id": "rel_source_S037_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S037", "attributes": {"locator": "Paper §§3–5 and repository documentation"}}
+{"relation_id": "rel_source_S038_T07", "source": "topic:T07", "predicate": "SUPPORTED_BY", "target": "source:S038", "attributes": {"locator": "Contact representation and synthesis sections"}}
+{"relation_id": "rel_source_S038_T08", "source": "topic:T08", "predicate": "SUPPORTED_BY", "target": "source:S038", "attributes": {"locator": "Contact representation and synthesis sections"}}
+{"relation_id": "rel_source_S038_T12", "source": "topic:T12", "predicate": "SUPPORTED_BY", "target": "source:S038", "attributes": {"locator": "Contact representation and synthesis sections"}}
+{"relation_id": "rel_source_S039_T02", "source": "topic:T02", "predicate": "SUPPORTED_BY", "target": "source:S039", "attributes": {"locator": "Segment sequencing, proximal-to-distal transfer, effective mass"}}
+{"relation_id": "rel_source_S039_T05", "source": "topic:T05", "predicate": "SUPPORTED_BY", "target": "source:S039", "attributes": {"locator": "Segment sequencing, proximal-to-distal transfer, effective mass"}}
+{"relation_id": "rel_source_S039_T08", "source": "topic:T08", "predicate": "SUPPORTED_BY", "target": "source:S039", "attributes": {"locator": "Segment sequencing, proximal-to-distal transfer, effective mass"}}
+{"relation_id": "rel_source_S040_T09", "source": "topic:T09", "predicate": "SUPPORTED_BY", "target": "source:S040", "attributes": {"locator": "Cinematography, editing, continuity, temporal relations"}}
+{"relation_id": "rel_source_S040_T10", "source": "topic:T10", "predicate": "SUPPORTED_BY", "target": "source:S040", "attributes": {"locator": "Cinematography, editing, continuity, temporal relations"}}
+{"relation_id": "rel_source_S041_T09", "source": "topic:T09", "predicate": "SUPPORTED_BY", "target": "source:S041", "attributes": {"locator": "Timing, pacing, trajectory phrasing, tension/release"}}
+{"relation_id": "rel_source_S041_T10", "source": "topic:T10", "predicate": "SUPPORTED_BY", "target": "source:S041", "attributes": {"locator": "Timing, pacing, trajectory phrasing, tension/release"}}
+{"relation_id": "rel_source_S042_T09", "source": "topic:T09", "predicate": "SUPPORTED_BY", "target": "source:S042", "attributes": {"locator": "Static, zoom, dolly, Steadicam, handheld comparisons"}}
+{"relation_id": "rel_source_S043_T09", "source": "topic:T09", "predicate": "SUPPORTED_BY", "target": "source:S043", "attributes": {"locator": "Experimental methods and results"}}
+{"relation_id": "rel_source_S044_T09", "source": "topic:T09", "predicate": "SUPPORTED_BY", "target": "source:S044", "attributes": {"locator": "CVPR 2021; formulation and occlusion-aware interpolation"}}
+{"relation_id": "rel_source_S044_T12", "source": "topic:T12", "predicate": "SUPPORTED_BY", "target": "source:S044", "attributes": {"locator": "CVPR 2021; formulation and occlusion-aware interpolation"}}
+{"relation_id": "rel_source_S045_T10", "source": "topic:T10", "predicate": "SUPPORTED_BY", "target": "source:S045", "attributes": {"locator": "ICCV 2021; dataset, beat alignment, evaluation"}}
+{"relation_id": "rel_source_S045_T12", "source": "topic:T12", "predicate": "SUPPORTED_BY", "target": "source:S045", "attributes": {"locator": "ICCV 2021; dataset, beat alignment, evaluation"}}
+{"relation_id": "rel_source_S045_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S045", "attributes": {"locator": "ICCV 2021; dataset, beat alignment, evaluation"}}
+{"relation_id": "rel_source_S046_T11", "source": "topic:T11", "predicate": "SUPPORTED_BY", "target": "source:S046", "attributes": {"locator": "JPSP 39(6), pp.1161–1178"}}
+{"relation_id": "rel_source_S047_T11", "source": "topic:T11", "predicate": "SUPPORTED_BY", "target": "source:S047", "attributes": {"locator": "Behavior Research Methods 45, pp.1191–1207"}}
+{"relation_id": "rel_source_S048_T11", "source": "topic:T11", "predicate": "SUPPORTED_BY", "target": "source:S048", "attributes": {"locator": "ACL 2018, pp.174–184; §§2–5"}}
+{"relation_id": "rel_source_S049_T11", "source": "topic:T11", "predicate": "SUPPORTED_BY", "target": "source:S049", "attributes": {"locator": "Official v2.1 page; released March 2025; arXiv:2503.23547"}}
+{"relation_id": "rel_source_S050_T12", "source": "topic:T12", "predicate": "SUPPORTED_BY", "target": "source:S050", "attributes": {"locator": "ACM TOG/SIGGRAPH 2020; architecture/evaluation"}}
+{"relation_id": "rel_source_S051_T12", "source": "topic:T12", "predicate": "SUPPORTED_BY", "target": "source:S051", "attributes": {"locator": "ACM TOG 41(4); body-part transfer and evaluation"}}
+{"relation_id": "rel_source_S052_T12", "source": "topic:T12", "predicate": "SUPPORTED_BY", "target": "source:S052", "attributes": {"locator": "ACM TOG 35(4), article 138"}}
+{"relation_id": "rel_source_S053_T14", "source": "topic:T14", "predicate": "SUPPORTED_BY", "target": "source:S053", "attributes": {"locator": "API parameters/specifications; model features; prompt guide"}}
+{"relation_id": "rel_source_S054_T14", "source": "topic:T14", "predicate": "SUPPORTED_BY", "target": "source:S054", "attributes": {"locator": "Multi-shot, 3–15 second duration, camera/storyboard guidance"}}
+{"relation_id": "rel_source_S055_T14", "source": "topic:T14", "predicate": "SUPPORTED_BY", "target": "source:S055", "attributes": {"locator": "Settings: 2–10 sec, aspect ratio, 24/25 fps"}}
+{"relation_id": "rel_source_S056_T14", "source": "topic:T14", "predicate": "SUPPORTED_BY", "target": "source:S056", "attributes": {"locator": "Inputs, gesture control, duration, resolution, fps"}}
+{"relation_id": "rel_source_S057_T14", "source": "topic:T14", "predicate": "SUPPORTED_BY", "target": "source:S057", "attributes": {"locator": "Motion, Structure, Characters, quick reference"}}
+{"relation_id": "rel_source_S058_T14", "source": "topic:T14", "predicate": "SUPPORTED_BY", "target": "source:S058", "attributes": {"locator": "Poses vs Blocking; output/control behavior"}}
+{"relation_id": "rel_source_S059_T09", "source": "topic:T09", "predicate": "SUPPORTED_BY", "target": "source:S059", "attributes": {"locator": "Reference requirements; first/last frames; advanced settings"}}
+{"relation_id": "rel_source_S059_T14", "source": "topic:T14", "predicate": "SUPPORTED_BY", "target": "source:S059", "attributes": {"locator": "Reference requirements; first/last frames; advanced settings"}}
+{"relation_id": "rel_source_S060_T14", "source": "topic:T14", "predicate": "SUPPORTED_BY", "target": "source:S060", "attributes": {"locator": "Camera, composition, motion, first/last frame, output settings"}}
+{"relation_id": "rel_source_S061_T14", "source": "topic:T14", "predicate": "SUPPORTED_BY", "target": "source:S061", "attributes": {"locator": "Discontinuation dates"}}
+{"relation_id": "rel_source_S062_T14", "source": "topic:T14", "predicate": "SUPPORTED_BY", "target": "source:S062", "attributes": {"locator": "Input/output, duration, resolution, audio, pricing"}}
+{"relation_id": "rel_source_S063_T05", "source": "topic:T05", "predicate": "SUPPORTED_BY", "target": "source:S063", "attributes": {"locator": "IEEE TPAMI 43(1), pp.172–186"}}
+{"relation_id": "rel_source_S063_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S063", "attributes": {"locator": "IEEE TPAMI 43(1), pp.172–186"}}
+{"relation_id": "rel_source_S064_T05", "source": "topic:T05", "predicate": "SUPPORTED_BY", "target": "source:S064", "attributes": {"locator": "Outputs, landmarks, world coordinates, video/live modes"}}
+{"relation_id": "rel_source_S064_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S064", "attributes": {"locator": "Outputs, landmarks, world coordinates, video/live modes"}}
+{"relation_id": "rel_source_S065_T12", "source": "topic:T12", "predicate": "SUPPORTED_BY", "target": "source:S065", "attributes": {"locator": "ICCV 2019; dataset documentation"}}
+{"relation_id": "rel_source_S065_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S065", "attributes": {"locator": "ICCV 2019; dataset documentation"}}
+{"relation_id": "rel_source_S066_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S066", "attributes": {"locator": "Dataset categories and action-to-motion paper"}}
+{"relation_id": "rel_source_S067_T01", "source": "topic:T01", "predicate": "SUPPORTED_BY", "target": "source:S067", "attributes": {"locator": "Generation method, evaluation, limitations"}}
+{"relation_id": "rel_source_S067_T06", "source": "topic:T06", "predicate": "SUPPORTED_BY", "target": "source:S067", "attributes": {"locator": "Generation method, evaluation, limitations"}}
+{"relation_id": "rel_source_S067_T12", "source": "topic:T12", "predicate": "SUPPORTED_BY", "target": "source:S067", "attributes": {"locator": "Generation method, evaluation, limitations"}}
+{"relation_id": "rel_source_S067_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S067", "attributes": {"locator": "Generation method, evaluation, limitations"}}
+{"relation_id": "rel_source_S068_T02", "source": "topic:T02", "predicate": "SUPPORTED_BY", "target": "source:S068", "attributes": {"locator": "Representation, conditioning, blending"}}
+{"relation_id": "rel_source_S068_T03", "source": "topic:T03", "predicate": "SUPPORTED_BY", "target": "source:S068", "attributes": {"locator": "Representation, conditioning, blending"}}
+{"relation_id": "rel_source_S068_T07", "source": "topic:T07", "predicate": "SUPPORTED_BY", "target": "source:S068", "attributes": {"locator": "Representation, conditioning, blending"}}
+{"relation_id": "rel_source_S068_T12", "source": "topic:T12", "predicate": "SUPPORTED_BY", "target": "source:S068", "attributes": {"locator": "Representation, conditioning, blending"}}
+{"relation_id": "rel_source_S069_T04", "source": "topic:T04", "predicate": "SUPPORTED_BY", "target": "source:S069", "attributes": {"locator": "§II-A historical AU convention; §III relative AU variation"}}
+{"relation_id": "rel_source_S069_T12", "source": "topic:T12", "predicate": "SUPPORTED_BY", "target": "source:S069", "attributes": {"locator": "§II-A historical AU convention; §III relative AU variation"}}
+{"relation_id": "rel_source_S070_T04", "source": "topic:T04", "predicate": "SUPPORTED_BY", "target": "source:S070", "attributes": {"locator": "IEEE TPAMI 44(9), pp.5826–5846"}}
+{"relation_id": "rel_source_S071_T06", "source": "topic:T06", "predicate": "SUPPORTED_BY", "target": "source:S071", "attributes": {"locator": "BoME dataset and experiment sections"}}
+{"relation_id": "rel_source_S071_T11", "source": "topic:T11", "predicate": "SUPPORTED_BY", "target": "source:S071", "attributes": {"locator": "BoME dataset and experiment sections"}}
+{"relation_id": "rel_source_S071_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S071", "attributes": {"locator": "BoME dataset and experiment sections"}}
+{"relation_id": "rel_source_S072_T01", "source": "topic:T01", "predicate": "SUPPORTED_BY", "target": "source:S072", "attributes": {"locator": "§§1–4; Laban features; experiments"}}
+{"relation_id": "rel_source_S072_T12", "source": "topic:T12", "predicate": "SUPPORTED_BY", "target": "source:S072", "attributes": {"locator": "§§1–4; Laban features; experiments"}}
+{"relation_id": "rel_source_S072_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S072", "attributes": {"locator": "§§1–4; Laban features; experiments"}}
+{"relation_id": "rel_source_S073_T03", "source": "topic:T03", "predicate": "SUPPORTED_BY", "target": "source:S073", "attributes": {"locator": "IVA 2007, LNCS 4722, pp.37–44"}}
+{"relation_id": "rel_source_S073_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S073", "attributes": {"locator": "IVA 2007, LNCS 4722, pp.37–44"}}
+{"relation_id": "rel_source_S074_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S074", "attributes": {"locator": "Feature construction, Bayesian classifier, perspective projection"}}
+{"relation_id": "rel_source_S075_T03", "source": "topic:T03", "predicate": "SUPPORTED_BY", "target": "source:S075", "attributes": {"locator": "§3 descriptors/HMM; experiments and limitations"}}
+{"relation_id": "rel_source_S075_T13", "source": "topic:T13", "predicate": "SUPPORTED_BY", "target": "source:S075", "attributes": {"locator": "§3 descriptors/HMM; experiments and limitations"}}
+{"relation_id": "rel_source_S076_T14", "source": "topic:T14", "predicate": "SUPPORTED_BY", "target": "source:S076", "attributes": {"locator": "Capabilities table; multimodal references; custom multi-shot; duration; pricing"}}
+{"relation_id": "rel_bess_Body", "source": "laban:BESS", "predicate": "HAS_CATEGORY", "target": "laban:Body", "attributes": {}}
+{"relation_id": "rel_bess_Effort", "source": "laban:BESS", "predicate": "HAS_CATEGORY", "target": "laban:Effort", "attributes": {}}
+{"relation_id": "rel_bess_Shape", "source": "laban:BESS", "predicate": "HAS_CATEGORY", "target": "laban:Shape", "attributes": {}}
+{"relation_id": "rel_bess_Space", "source": "laban:BESS", "predicate": "HAS_CATEGORY", "target": "laban:Space", "attributes": {}}
+{"relation_id": "rel_basic_not_connect", "source": "bartenieff:BasicSix", "predicate": "DISTINCT_FROM", "target": "bartenieff:Connectivity", "attributes": {"confidence": 1.0}}
+{"relation_id": "rel_effort_weight", "source": "laban:Effort", "predicate": "HAS_DIMENSION", "target": "effort:weight", "attributes": {}}
+{"relation_id": "rel_effort_time", "source": "laban:Effort", "predicate": "HAS_DIMENSION", "target": "effort:time", "attributes": {}}
+{"relation_id": "rel_effort_space_effort", "source": "laban:Effort", "predicate": "HAS_DIMENSION", "target": "effort:space_effort", "attributes": {}}
+{"relation_id": "rel_effort_flow", "source": "laban:Effort", "predicate": "HAS_DIMENSION", "target": "effort:flow", "attributes": {}}
+{"relation_id": "rel_eff_action_float", "source": "laban:Effort", "predicate": "HAS_ACTION", "target": "effort_action:float", "attributes": {}}
+{"relation_id": "rel_eff_action_punch", "source": "laban:Effort", "predicate": "HAS_ACTION", "target": "effort_action:punch", "attributes": {}}
+{"relation_id": "rel_eff_action_glide", "source": "laban:Effort", "predicate": "HAS_ACTION", "target": "effort_action:glide", "attributes": {}}
+{"relation_id": "rel_eff_action_slash", "source": "laban:Effort", "predicate": "HAS_ACTION", "target": "effort_action:slash", "attributes": {}}
+{"relation_id": "rel_eff_action_dab", "source": "laban:Effort", "predicate": "HAS_ACTION", "target": "effort_action:dab", "attributes": {}}
+{"relation_id": "rel_eff_action_wring", "source": "laban:Effort", "predicate": "HAS_ACTION", "target": "effort_action:wring", "attributes": {}}
+{"relation_id": "rel_eff_action_flick", "source": "laban:Effort", "predicate": "HAS_ACTION", "target": "effort_action:flick", "attributes": {}}
+{"relation_id": "rel_eff_action_press", "source": "laban:Effort", "predicate": "HAS_ACTION", "target": "effort_action:press", "attributes": {}}
+{"relation_id": "rel_conn_breath", "source": "bartenieff:Connectivity", "predicate": "HAS_PATTERN", "target": "connectivity:breath", "attributes": {}}
+{"relation_id": "rel_conn_core_distal", "source": "bartenieff:Connectivity", "predicate": "HAS_PATTERN", "target": "connectivity:core_distal", "attributes": {}}
+{"relation_id": "rel_conn_head_tail", "source": "bartenieff:Connectivity", "predicate": "HAS_PATTERN", "target": "connectivity:head_tail", "attributes": {}}
+{"relation_id": "rel_conn_upper_lower", "source": "bartenieff:Connectivity", "predicate": "HAS_PATTERN", "target": "connectivity:upper_lower", "attributes": {}}
+{"relation_id": "rel_conn_body_half", "source": "bartenieff:Connectivity", "predicate": "HAS_PATTERN", "target": "connectivity:body_half", "attributes": {}}
+{"relation_id": "rel_conn_cross_lateral", "source": "bartenieff:Connectivity", "predicate": "HAS_PATTERN", "target": "connectivity:cross_lateral", "attributes": {}}
+{"relation_id": "rel_phase_initiation", "source": "cpcs:PhaseGrammar", "predicate": "HAS_PHASE", "target": "phase:initiation", "attributes": {"order": 1}}
+{"relation_id": "rel_phase_preparation", "source": "cpcs:PhaseGrammar", "predicate": "HAS_PHASE", "target": "phase:preparation", "attributes": {"order": 2}}
+{"relation_id": "rel_phase_order_2", "source": "phase:initiation", "predicate": "PRECEDES", "target": "phase:preparation", "attributes": {"default": true}}
+{"relation_id": "rel_phase_acceleration", "source": "cpcs:PhaseGrammar", "predicate": "HAS_PHASE", "target": "phase:acceleration", "attributes": {"order": 3}}
+{"relation_id": "rel_phase_order_3", "source": "phase:preparation", "predicate": "PRECEDES", "target": "phase:acceleration", "attributes": {"default": true}}
+{"relation_id": "rel_phase_stroke", "source": "cpcs:PhaseGrammar", "predicate": "HAS_PHASE", "target": "phase:stroke", "attributes": {"order": 4}}
+{"relation_id": "rel_phase_order_4", "source": "phase:acceleration", "predicate": "PRECEDES", "target": "phase:stroke", "attributes": {"default": true}}
+{"relation_id": "rel_phase_overshoot", "source": "cpcs:PhaseGrammar", "predicate": "HAS_PHASE", "target": "phase:overshoot", "attributes": {"order": 5}}
+{"relation_id": "rel_phase_order_5", "source": "phase:stroke", "predicate": "PRECEDES", "target": "phase:overshoot", "attributes": {"default": true}}
+{"relation_id": "rel_phase_recovery", "source": "cpcs:PhaseGrammar", "predicate": "HAS_PHASE", "target": "phase:recovery", "attributes": {"order": 6}}
+{"relation_id": "rel_phase_order_6", "source": "phase:overshoot", "predicate": "PRECEDES", "target": "phase:recovery", "attributes": {"default": true}}
+{"relation_id": "rel_phase_settle", "source": "cpcs:PhaseGrammar", "predicate": "HAS_PHASE", "target": "phase:settle", "attributes": {"order": 7}}
+{"relation_id": "rel_phase_order_7", "source": "phase:recovery", "predicate": "PRECEDES", "target": "phase:settle", "attributes": {"default": true}}
+{"relation_id": "rel_intent_topic_threaten", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:threaten", "attributes": {}}
+{"relation_id": "rel_intent_topic_comfort", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:comfort", "attributes": {}}
+{"relation_id": "rel_intent_topic_seduce", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:seduce", "attributes": {}}
+{"relation_id": "rel_intent_topic_hesitate", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:hesitate", "attributes": {}}
+{"relation_id": "rel_intent_topic_celebrate", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:celebrate", "attributes": {}}
+{"relation_id": "rel_intent_topic_hide", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:hide", "attributes": {}}
+{"relation_id": "rel_intent_topic_challenge", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:challenge", "attributes": {}}
+{"relation_id": "rel_intent_topic_submit", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:submit", "attributes": {}}
+{"relation_id": "rel_intent_topic_invite", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:invite", "attributes": {}}
+{"relation_id": "rel_intent_topic_dismiss", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:dismiss", "attributes": {}}
+{"relation_id": "rel_intent_topic_assert", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:assert", "attributes": {}}
+{"relation_id": "rel_intent_topic_deceive", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:deceive", "attributes": {}}
+{"relation_id": "rel_intent_topic_protect", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:protect", "attributes": {}}
+{"relation_id": "rel_intent_topic_protest", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:protest", "attributes": {}}
+{"relation_id": "rel_intent_topic_surrender", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:surrender", "attributes": {}}
+{"relation_id": "rel_intent_topic_dominate", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:dominate", "attributes": {}}
+{"relation_id": "rel_intent_topic_read_room", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:read_room", "attributes": {}}
+{"relation_id": "rel_intent_topic_uncertain_aggression", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:uncertain_aggression", "attributes": {}}
+{"relation_id": "rel_intent_topic_reassure", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:reassure", "attributes": {}}
+{"relation_id": "rel_intent_topic_warn", "source": "topic:T06", "predicate": "HAS_CONCEPT", "target": "intent:warn", "attributes": {}}
+{"relation_id": "rel_pred_topic_support", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:support", "attributes": {}}
+{"relation_id": "rel_pred_topic_touch", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:touch", "attributes": {}}
+{"relation_id": "rel_pred_topic_contact", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:contact", "attributes": {}}
+{"relation_id": "rel_pred_topic_grasp", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:grasp", "attributes": {}}
+{"relation_id": "rel_pred_topic_hold", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:hold", "attributes": {}}
+{"relation_id": "rel_pred_topic_release", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:release", "attributes": {}}
+{"relation_id": "rel_pred_topic_push", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:push", "attributes": {}}
+{"relation_id": "rel_pred_topic_pull", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:pull", "attributes": {}}
+{"relation_id": "rel_pred_topic_press", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:press", "attributes": {}}
+{"relation_id": "rel_pred_topic_slide", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:slide", "attributes": {}}
+{"relation_id": "rel_pred_topic_roll", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:roll", "attributes": {}}
+{"relation_id": "rel_pred_topic_carry", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:carry", "attributes": {}}
+{"relation_id": "rel_pred_topic_lift", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:lift", "attributes": {}}
+{"relation_id": "rel_pred_topic_lower", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:lower", "attributes": {}}
+{"relation_id": "rel_pred_topic_throw", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:throw", "attributes": {}}
+{"relation_id": "rel_pred_topic_catch", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:catch", "attributes": {}}
+{"relation_id": "rel_pred_topic_place", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:place", "attributes": {}}
+{"relation_id": "rel_pred_topic_open", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:open", "attributes": {}}
+{"relation_id": "rel_pred_topic_close", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:close", "attributes": {}}
+{"relation_id": "rel_pred_topic_strike", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:strike", "attributes": {}}
+{"relation_id": "rel_pred_topic_block", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:block", "attributes": {}}
+{"relation_id": "rel_pred_topic_parry", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:parry", "attributes": {}}
+{"relation_id": "rel_pred_topic_deflect", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:deflect", "attributes": {}}
+{"relation_id": "rel_pred_topic_redirect", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:redirect", "attributes": {}}
+{"relation_id": "rel_pred_topic_trap", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:trap", "attributes": {}}
+{"relation_id": "rel_pred_topic_pin", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:pin", "attributes": {}}
+{"relation_id": "rel_pred_topic_evade", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:evade", "attributes": {}}
+{"relation_id": "rel_pred_topic_dodge", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:dodge", "attributes": {}}
+{"relation_id": "rel_pred_topic_intercept", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:intercept", "attributes": {}}
+{"relation_id": "rel_pred_topic_collide", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:collide", "attributes": {}}
+{"relation_id": "rel_pred_topic_stagger", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:stagger", "attributes": {}}
+{"relation_id": "rel_pred_topic_yield", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:yield", "attributes": {}}
+{"relation_id": "rel_pred_topic_resist", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:resist", "attributes": {}}
+{"relation_id": "rel_pred_topic_guide", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:guide", "attributes": {}}
+{"relation_id": "rel_pred_topic_embrace", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:embrace", "attributes": {}}
+{"relation_id": "rel_pred_topic_shield", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:shield", "attributes": {}}
+{"relation_id": "rel_pred_topic_mount", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:mount", "attributes": {}}
+{"relation_id": "rel_pred_topic_disarm", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:disarm", "attributes": {}}
+{"relation_id": "rel_pred_topic_handoff", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:handoff", "attributes": {}}
+{"relation_id": "rel_pred_topic_point_at", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:point_at", "attributes": {}}
+{"relation_id": "rel_pred_topic_look_at", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:look_at", "attributes": {}}
+{"relation_id": "rel_pred_topic_approach", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:approach", "attributes": {}}
+{"relation_id": "rel_pred_topic_retreat", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:retreat", "attributes": {}}
+{"relation_id": "rel_pred_topic_circle", "source": "topic:T07", "predicate": "HAS_CONCEPT", "target": "predicate:circle", "attributes": {}}
+{"relation_id": "rel_style_anime", "source": "cpcs:StyleTransform", "predicate": "HAS_PROFILE", "target": "style:anime", "attributes": {}}
+{"relation_id": "rel_style_family_feature_cg", "source": "cpcs:StyleTransform", "predicate": "HAS_PROFILE", "target": "style:family_feature_cg", "attributes": {}}
+{"relation_id": "rel_style_documentary", "source": "cpcs:StyleTransform", "predicate": "HAS_PROFILE", "target": "style:documentary", "attributes": {}}
+{"relation_id": "rel_style_martial_arts_film", "source": "cpcs:StyleTransform", "predicate": "HAS_PROFILE", "target": "style:martial_arts_film", "attributes": {}}
+{"relation_id": "rel_style_fashion", "source": "cpcs:StyleTransform", "predicate": "HAS_PROFILE", "target": "style:fashion", "attributes": {}}
+{"relation_id": "rel_style_commercial", "source": "cpcs:StyleTransform", "predicate": "HAS_PROFILE", "target": "style:commercial", "attributes": {}}
+{"relation_id": "rel_style_hyperreal", "source": "cpcs:StyleTransform", "predicate": "HAS_PROFILE", "target": "style:hyperreal", "attributes": {}}
+{"relation_id": "rel_adapter_runway_act_two_web_v2026_07_30", "source": "cpcs:ModelAdapter", "predicate": "HAS_ADAPTER", "target": "adapter:runway_act_two_web_v2026_07_30", "attributes": {}}
+{"relation_id": "rel_adapter_src_runway_act_two_web_v2026_07_30_S056", "source": "adapter:runway_act_two_web_v2026_07_30", "predicate": "SUPPORTED_BY", "target": "source:S056", "attributes": {}}
+{"relation_id": "rel_adapter_kling_video_3_0_v2026_07_30", "source": "cpcs:ModelAdapter", "predicate": "HAS_ADAPTER", "target": "adapter:kling_video_3_0_v2026_07_30", "attributes": {}}
+{"relation_id": "rel_adapter_src_kling_video_3_0_v2026_07_30_S054", "source": "adapter:kling_video_3_0_v2026_07_30", "predicate": "SUPPORTED_BY", "target": "source:S054", "attributes": {}}
+{"relation_id": "rel_adapter_openai_sora_2_legacy_v2026_07_30", "source": "cpcs:ModelAdapter", "predicate": "HAS_ADAPTER", "target": "adapter:openai_sora_2_legacy_v2026_07_30", "attributes": {}}
+{"relation_id": "rel_adapter_src_openai_sora_2_legacy_v2026_07_30_S061", "source": "adapter:openai_sora_2_legacy_v2026_07_30", "predicate": "SUPPORTED_BY", "target": "source:S061", "attributes": {}}
+{"relation_id": "rel_adapter_src_openai_sora_2_legacy_v2026_07_30_S062", "source": "adapter:openai_sora_2_legacy_v2026_07_30", "predicate": "SUPPORTED_BY", "target": "source:S062", "attributes": {}}
+{"relation_id": "rel_adapter_veo_3_1_gemini_v2026_07_30", "source": "cpcs:ModelAdapter", "predicate": "HAS_ADAPTER", "target": "adapter:veo_3_1_gemini_v2026_07_30", "attributes": {}}
+{"relation_id": "rel_adapter_src_veo_3_1_gemini_v2026_07_30_S053", "source": "adapter:veo_3_1_gemini_v2026_07_30", "predicate": "SUPPORTED_BY", "target": "source:S053", "attributes": {}}
+{"relation_id": "rel_adapter_adobe_firefly_video_web_v2026_07_30", "source": "cpcs:ModelAdapter", "predicate": "HAS_ADAPTER", "target": "adapter:adobe_firefly_video_web_v2026_07_30", "attributes": {}}
+{"relation_id": "rel_adapter_src_adobe_firefly_video_web_v2026_07_30_S059", "source": "adapter:adobe_firefly_video_web_v2026_07_30", "predicate": "SUPPORTED_BY", "target": "source:S059", "attributes": {}}
+{"relation_id": "rel_adapter_src_adobe_firefly_video_web_v2026_07_30_S060", "source": "adapter:adobe_firefly_video_web_v2026_07_30", "predicate": "SUPPORTED_BY", "target": "source:S060", "attributes": {}}
+{"relation_id": "rel_adapter_luma_ray_3_2_modify_v2026_07_30", "source": "cpcs:ModelAdapter", "predicate": "HAS_ADAPTER", "target": "adapter:luma_ray_3_2_modify_v2026_07_30", "attributes": {}}
+{"relation_id": "rel_adapter_src_luma_ray_3_2_modify_v2026_07_30_S057", "source": "adapter:luma_ray_3_2_modify_v2026_07_30", "predicate": "SUPPORTED_BY", "target": "source:S057", "attributes": {}}
+{"relation_id": "rel_adapter_src_luma_ray_3_2_modify_v2026_07_30_S058", "source": "adapter:luma_ray_3_2_modify_v2026_07_30", "predicate": "SUPPORTED_BY", "target": "source:S058", "attributes": {}}
+{"relation_id": "rel_adapter_runway_gen_4_5_web_v2026_07_30", "source": "cpcs:ModelAdapter", "predicate": "HAS_ADAPTER", "target": "adapter:runway_gen_4_5_web_v2026_07_30", "attributes": {}}
+{"relation_id": "rel_adapter_src_runway_gen_4_5_web_v2026_07_30_S055", "source": "adapter:runway_gen_4_5_web_v2026_07_30", "predicate": "SUPPORTED_BY", "target": "source:S055", "attributes": {}}
+{"relation_id": "rel_adapter_kling_video_3_0_omni_v2026_07_30", "source": "cpcs:ModelAdapter", "predicate": "HAS_ADAPTER", "target": "adapter:kling_video_3_0_omni_v2026_07_30", "attributes": {}}
+{"relation_id": "rel_adapter_src_kling_video_3_0_omni_v2026_07_30_S076", "source": "adapter:kling_video_3_0_omni_v2026_07_30", "predicate": "SUPPORTED_BY", "target": "source:S076", "attributes": {}}
+{"relation_id": "rel_claim_topic_C001", "source": "topic:T01", "predicate": "HAS_CLAIM", "target": "claim:C001", "attributes": {}}
+{"relation_id": "rel_claim_src_C001_S001", "source": "claim:C001", "predicate": "SUPPORTED_BY", "target": "source:S001", "attributes": {}}
+{"relation_id": "rel_claim_src_C001_S002", "source": "claim:C001", "predicate": "SUPPORTED_BY", "target": "source:S002", "attributes": {}}
+{"relation_id": "rel_claim_topic_C002", "source": "topic:T01", "predicate": "HAS_CLAIM", "target": "claim:C002", "attributes": {}}
+{"relation_id": "rel_claim_src_C002_S004", "source": "claim:C002", "predicate": "SUPPORTED_BY", "target": "source:S004", "attributes": {}}
+{"relation_id": "rel_claim_topic_C003", "source": "topic:T01", "predicate": "HAS_CLAIM", "target": "claim:C003", "attributes": {}}
+{"relation_id": "rel_claim_topic_C004", "source": "topic:T01", "predicate": "HAS_CLAIM", "target": "claim:C004", "attributes": {}}
+{"relation_id": "rel_claim_src_C004_S008", "source": "claim:C004", "predicate": "SUPPORTED_BY", "target": "source:S008", "attributes": {}}
+{"relation_id": "rel_claim_topic_C005", "source": "topic:T01", "predicate": "HAS_CLAIM", "target": "claim:C005", "attributes": {}}
+{"relation_id": "rel_claim_src_C005_S009", "source": "claim:C005", "predicate": "SUPPORTED_BY", "target": "source:S009", "attributes": {}}
+{"relation_id": "rel_claim_src_C005_S010", "source": "claim:C005", "predicate": "SUPPORTED_BY", "target": "source:S010", "attributes": {}}
+{"relation_id": "rel_claim_src_C005_S011", "source": "claim:C005", "predicate": "SUPPORTED_BY", "target": "source:S011", "attributes": {}}
+{"relation_id": "rel_claim_topic_C006", "source": "topic:T02", "predicate": "HAS_CLAIM", "target": "claim:C006", "attributes": {}}
+{"relation_id": "rel_claim_src_C006_S002", "source": "claim:C006", "predicate": "SUPPORTED_BY", "target": "source:S002", "attributes": {}}
+{"relation_id": "rel_claim_src_C006_S003", "source": "claim:C006", "predicate": "SUPPORTED_BY", "target": "source:S003", "attributes": {}}
+{"relation_id": "rel_claim_topic_C007", "source": "topic:T02", "predicate": "HAS_CLAIM", "target": "claim:C007", "attributes": {}}
+{"relation_id": "rel_claim_src_C007_S003", "source": "claim:C007", "predicate": "SUPPORTED_BY", "target": "source:S003", "attributes": {}}
+{"relation_id": "rel_claim_src_C007_S039", "source": "claim:C007", "predicate": "SUPPORTED_BY", "target": "source:S039", "attributes": {}}
+{"relation_id": "rel_claim_topic_C008", "source": "topic:T03", "predicate": "HAS_CLAIM", "target": "claim:C008", "attributes": {}}
+{"relation_id": "rel_claim_src_C008_S013", "source": "claim:C008", "predicate": "SUPPORTED_BY", "target": "source:S013", "attributes": {}}
+{"relation_id": "rel_claim_src_C008_S014", "source": "claim:C008", "predicate": "SUPPORTED_BY", "target": "source:S014", "attributes": {}}
+{"relation_id": "rel_claim_src_C008_S015", "source": "claim:C008", "predicate": "SUPPORTED_BY", "target": "source:S015", "attributes": {}}
+{"relation_id": "rel_claim_src_C008_S016", "source": "claim:C008", "predicate": "SUPPORTED_BY", "target": "source:S016", "attributes": {}}
+{"relation_id": "rel_claim_topic_C009", "source": "topic:T03", "predicate": "HAS_CLAIM", "target": "claim:C009", "attributes": {}}
+{"relation_id": "rel_claim_src_C009_S014", "source": "claim:C009", "predicate": "SUPPORTED_BY", "target": "source:S014", "attributes": {}}
+{"relation_id": "rel_claim_src_C009_S015", "source": "claim:C009", "predicate": "SUPPORTED_BY", "target": "source:S015", "attributes": {}}
+{"relation_id": "rel_claim_topic_C010", "source": "topic:T03", "predicate": "HAS_CLAIM", "target": "claim:C010", "attributes": {}}
+{"relation_id": "rel_claim_src_C010_S013", "source": "claim:C010", "predicate": "SUPPORTED_BY", "target": "source:S013", "attributes": {}}
+{"relation_id": "rel_claim_topic_C011", "source": "topic:T04", "predicate": "HAS_CLAIM", "target": "claim:C011", "attributes": {}}
+{"relation_id": "rel_claim_src_C011_S017", "source": "claim:C011", "predicate": "SUPPORTED_BY", "target": "source:S017", "attributes": {}}
+{"relation_id": "rel_claim_topic_C012", "source": "topic:T04", "predicate": "HAS_CLAIM", "target": "claim:C012", "attributes": {}}
+{"relation_id": "rel_claim_src_C012_S017", "source": "claim:C012", "predicate": "SUPPORTED_BY", "target": "source:S017", "attributes": {}}
+{"relation_id": "rel_claim_src_C012_S018", "source": "claim:C012", "predicate": "SUPPORTED_BY", "target": "source:S018", "attributes": {}}
+{"relation_id": "rel_claim_topic_C013", "source": "topic:T04", "predicate": "HAS_CLAIM", "target": "claim:C013", "attributes": {}}
+{"relation_id": "rel_claim_src_C013_S019", "source": "claim:C013", "predicate": "SUPPORTED_BY", "target": "source:S019", "attributes": {}}
+{"relation_id": "rel_claim_topic_C014", "source": "topic:T04", "predicate": "HAS_CLAIM", "target": "claim:C014", "attributes": {}}
+{"relation_id": "rel_claim_src_C014_S022", "source": "claim:C014", "predicate": "SUPPORTED_BY", "target": "source:S022", "attributes": {}}
+{"relation_id": "rel_claim_src_C014_S023", "source": "claim:C014", "predicate": "SUPPORTED_BY", "target": "source:S023", "attributes": {}}
+{"relation_id": "rel_claim_topic_C015", "source": "topic:T04", "predicate": "HAS_CLAIM", "target": "claim:C015", "attributes": {}}
+{"relation_id": "rel_claim_src_C015_S070", "source": "claim:C015", "predicate": "SUPPORTED_BY", "target": "source:S070", "attributes": {}}
+{"relation_id": "rel_claim_topic_C016", "source": "topic:T05", "predicate": "HAS_CLAIM", "target": "claim:C016", "attributes": {}}
+{"relation_id": "rel_claim_src_C016_S026", "source": "claim:C016", "predicate": "SUPPORTED_BY", "target": "source:S026", "attributes": {}}
+{"relation_id": "rel_claim_src_C016_S027", "source": "claim:C016", "predicate": "SUPPORTED_BY", "target": "source:S027", "attributes": {}}
+{"relation_id": "rel_claim_topic_C017", "source": "topic:T05", "predicate": "HAS_CLAIM", "target": "claim:C017", "attributes": {}}
+{"relation_id": "rel_claim_src_C017_S024", "source": "claim:C017", "predicate": "SUPPORTED_BY", "target": "source:S024", "attributes": {}}
+{"relation_id": "rel_claim_topic_C018", "source": "topic:T05", "predicate": "HAS_CLAIM", "target": "claim:C018", "attributes": {}}
+{"relation_id": "rel_claim_src_C018_S025", "source": "claim:C018", "predicate": "SUPPORTED_BY", "target": "source:S025", "attributes": {}}
+{"relation_id": "rel_claim_topic_C019", "source": "topic:T05", "predicate": "HAS_CLAIM", "target": "claim:C019", "attributes": {}}
+{"relation_id": "rel_claim_src_C019_S028", "source": "claim:C019", "predicate": "SUPPORTED_BY", "target": "source:S028", "attributes": {}}
+{"relation_id": "rel_claim_topic_C020", "source": "topic:T06", "predicate": "HAS_CLAIM", "target": "claim:C020", "attributes": {}}
+{"relation_id": "rel_claim_src_C020_S033", "source": "claim:C020", "predicate": "SUPPORTED_BY", "target": "source:S033", "attributes": {}}
+{"relation_id": "rel_claim_topic_C021", "source": "topic:T06", "predicate": "HAS_CLAIM", "target": "claim:C021", "attributes": {}}
+{"relation_id": "rel_claim_src_C021_S030", "source": "claim:C021", "predicate": "SUPPORTED_BY", "target": "source:S030", "attributes": {}}
+{"relation_id": "rel_claim_topic_C022", "source": "topic:T06", "predicate": "HAS_CLAIM", "target": "claim:C022", "attributes": {}}
+{"relation_id": "rel_claim_src_C022_S031", "source": "claim:C022", "predicate": "SUPPORTED_BY", "target": "source:S031", "attributes": {}}
+{"relation_id": "rel_claim_topic_C023", "source": "topic:T06", "predicate": "HAS_CLAIM", "target": "claim:C023", "attributes": {}}
+{"relation_id": "rel_claim_src_C023_S017", "source": "claim:C023", "predicate": "SUPPORTED_BY", "target": "source:S017", "attributes": {}}
+{"relation_id": "rel_claim_src_C023_S020", "source": "claim:C023", "predicate": "SUPPORTED_BY", "target": "source:S020", "attributes": {}}
+{"relation_id": "rel_claim_topic_C024", "source": "topic:T07", "predicate": "HAS_CLAIM", "target": "claim:C024", "attributes": {}}
+{"relation_id": "rel_claim_src_C024_S034", "source": "claim:C024", "predicate": "SUPPORTED_BY", "target": "source:S034", "attributes": {}}
+{"relation_id": "rel_claim_topic_C025", "source": "topic:T07", "predicate": "HAS_CLAIM", "target": "claim:C025", "attributes": {}}
+{"relation_id": "rel_claim_src_C025_S036", "source": "claim:C025", "predicate": "SUPPORTED_BY", "target": "source:S036", "attributes": {}}
+{"relation_id": "rel_claim_topic_C026", "source": "topic:T07", "predicate": "HAS_CLAIM", "target": "claim:C026", "attributes": {}}
+{"relation_id": "rel_claim_src_C026_S037", "source": "claim:C026", "predicate": "SUPPORTED_BY", "target": "source:S037", "attributes": {}}
+{"relation_id": "rel_claim_src_C026_S038", "source": "claim:C026", "predicate": "SUPPORTED_BY", "target": "source:S038", "attributes": {}}
+{"relation_id": "rel_claim_topic_C027", "source": "topic:T08", "predicate": "HAS_CLAIM", "target": "claim:C027", "attributes": {}}
+{"relation_id": "rel_claim_src_C027_S004", "source": "claim:C027", "predicate": "SUPPORTED_BY", "target": "source:S004", "attributes": {}}
+{"relation_id": "rel_claim_src_C027_S027", "source": "claim:C027", "predicate": "SUPPORTED_BY", "target": "source:S027", "attributes": {}}
+{"relation_id": "rel_claim_topic_C028", "source": "topic:T08", "predicate": "HAS_CLAIM", "target": "claim:C028", "attributes": {}}
+{"relation_id": "rel_claim_src_C028_S027", "source": "claim:C028", "predicate": "SUPPORTED_BY", "target": "source:S027", "attributes": {}}
+{"relation_id": "rel_claim_src_C028_S028", "source": "claim:C028", "predicate": "SUPPORTED_BY", "target": "source:S028", "attributes": {}}
+{"relation_id": "rel_claim_src_C028_S039", "source": "claim:C028", "predicate": "SUPPORTED_BY", "target": "source:S039", "attributes": {}}
+{"relation_id": "rel_claim_topic_C029", "source": "topic:T09", "predicate": "HAS_CLAIM", "target": "claim:C029", "attributes": {}}
+{"relation_id": "rel_claim_src_C029_S040", "source": "claim:C029", "predicate": "SUPPORTED_BY", "target": "source:S040", "attributes": {}}
+{"relation_id": "rel_claim_src_C029_S042", "source": "claim:C029", "predicate": "SUPPORTED_BY", "target": "source:S042", "attributes": {}}
+{"relation_id": "rel_claim_topic_C030", "source": "topic:T09", "predicate": "HAS_CLAIM", "target": "claim:C030", "attributes": {}}
+{"relation_id": "rel_claim_src_C030_S040", "source": "claim:C030", "predicate": "SUPPORTED_BY", "target": "source:S040", "attributes": {}}
+{"relation_id": "rel_claim_src_C030_S043", "source": "claim:C030", "predicate": "SUPPORTED_BY", "target": "source:S043", "attributes": {}}
+{"relation_id": "rel_claim_topic_C031", "source": "topic:T10", "predicate": "HAS_CLAIM", "target": "claim:C031", "attributes": {}}
+{"relation_id": "rel_claim_src_C031_S041", "source": "claim:C031", "predicate": "SUPPORTED_BY", "target": "source:S041", "attributes": {}}
+{"relation_id": "rel_claim_topic_C032", "source": "topic:T10", "predicate": "HAS_CLAIM", "target": "claim:C032", "attributes": {}}
+{"relation_id": "rel_claim_src_C032_S045", "source": "claim:C032", "predicate": "SUPPORTED_BY", "target": "source:S045", "attributes": {}}
+{"relation_id": "rel_claim_topic_C033", "source": "topic:T11", "predicate": "HAS_CLAIM", "target": "claim:C033", "attributes": {}}
+{"relation_id": "rel_claim_src_C033_S046", "source": "claim:C033", "predicate": "SUPPORTED_BY", "target": "source:S046", "attributes": {}}
+{"relation_id": "rel_claim_src_C033_S047", "source": "claim:C033", "predicate": "SUPPORTED_BY", "target": "source:S047", "attributes": {}}
+{"relation_id": "rel_claim_src_C033_S048", "source": "claim:C033", "predicate": "SUPPORTED_BY", "target": "source:S048", "attributes": {}}
+{"relation_id": "rel_claim_topic_C034", "source": "topic:T11", "predicate": "HAS_CLAIM", "target": "claim:C034", "attributes": {}}
+{"relation_id": "rel_claim_src_C034_S049", "source": "claim:C034", "predicate": "SUPPORTED_BY", "target": "source:S049", "attributes": {}}
+{"relation_id": "rel_claim_topic_C035", "source": "topic:T11", "predicate": "HAS_CLAIM", "target": "claim:C035", "attributes": {}}
+{"relation_id": "rel_claim_src_C035_S047", "source": "claim:C035", "predicate": "SUPPORTED_BY", "target": "source:S047", "attributes": {}}
+{"relation_id": "rel_claim_src_C035_S048", "source": "claim:C035", "predicate": "SUPPORTED_BY", "target": "source:S048", "attributes": {}}
+{"relation_id": "rel_claim_topic_C036", "source": "topic:T12", "predicate": "HAS_CLAIM", "target": "claim:C036", "attributes": {}}
+{"relation_id": "rel_claim_src_C036_S050", "source": "claim:C036", "predicate": "SUPPORTED_BY", "target": "source:S050", "attributes": {}}
+{"relation_id": "rel_claim_src_C036_S051", "source": "claim:C036", "predicate": "SUPPORTED_BY", "target": "source:S051", "attributes": {}}
+{"relation_id": "rel_claim_topic_C037", "source": "topic:T12", "predicate": "HAS_CLAIM", "target": "claim:C037", "attributes": {}}
+{"relation_id": "rel_claim_src_C037_S050", "source": "claim:C037", "predicate": "SUPPORTED_BY", "target": "source:S050", "attributes": {}}
+{"relation_id": "rel_claim_src_C037_S051", "source": "claim:C037", "predicate": "SUPPORTED_BY", "target": "source:S051", "attributes": {}}
+{"relation_id": "rel_claim_src_C037_S052", "source": "claim:C037", "predicate": "SUPPORTED_BY", "target": "source:S052", "attributes": {}}
+{"relation_id": "rel_claim_topic_C038", "source": "topic:T13", "predicate": "HAS_CLAIM", "target": "claim:C038", "attributes": {}}
+{"relation_id": "rel_claim_src_C038_S005", "source": "claim:C038", "predicate": "SUPPORTED_BY", "target": "source:S005", "attributes": {}}
+{"relation_id": "rel_claim_src_C038_S006", "source": "claim:C038", "predicate": "SUPPORTED_BY", "target": "source:S006", "attributes": {}}
+{"relation_id": "rel_claim_src_C038_S007", "source": "claim:C038", "predicate": "SUPPORTED_BY", "target": "source:S007", "attributes": {}}
+{"relation_id": "rel_claim_src_C038_S008", "source": "claim:C038", "predicate": "SUPPORTED_BY", "target": "source:S008", "attributes": {}}
+{"relation_id": "rel_claim_src_C038_S012", "source": "claim:C038", "predicate": "SUPPORTED_BY", "target": "source:S012", "attributes": {}}
+{"relation_id": "rel_claim_src_C038_S071", "source": "claim:C038", "predicate": "SUPPORTED_BY", "target": "source:S071", "attributes": {}}
+{"relation_id": "rel_claim_topic_C039", "source": "topic:T13", "predicate": "HAS_CLAIM", "target": "claim:C039", "attributes": {}}
+{"relation_id": "rel_claim_src_C039_S071", "source": "claim:C039", "predicate": "SUPPORTED_BY", "target": "source:S071", "attributes": {}}
+{"relation_id": "rel_claim_topic_C040", "source": "topic:T13", "predicate": "HAS_CLAIM", "target": "claim:C040", "attributes": {}}
+{"relation_id": "rel_claim_src_C040_S007", "source": "claim:C040", "predicate": "SUPPORTED_BY", "target": "source:S007", "attributes": {}}
+{"relation_id": "rel_claim_src_C040_S008", "source": "claim:C040", "predicate": "SUPPORTED_BY", "target": "source:S008", "attributes": {}}
+{"relation_id": "rel_claim_src_C040_S071", "source": "claim:C040", "predicate": "SUPPORTED_BY", "target": "source:S071", "attributes": {}}
+{"relation_id": "rel_claim_topic_C041", "source": "topic:T13", "predicate": "HAS_CLAIM", "target": "claim:C041", "attributes": {}}
+{"relation_id": "rel_claim_topic_C042", "source": "topic:T14", "predicate": "HAS_CLAIM", "target": "claim:C042", "attributes": {}}
+{"relation_id": "rel_claim_src_C042_S053", "source": "claim:C042", "predicate": "SUPPORTED_BY", "target": "source:S053", "attributes": {}}
+{"relation_id": "rel_claim_topic_C043", "source": "topic:T14", "predicate": "HAS_CLAIM", "target": "claim:C043", "attributes": {}}
+{"relation_id": "rel_claim_src_C043_S054", "source": "claim:C043", "predicate": "SUPPORTED_BY", "target": "source:S054", "attributes": {}}
+{"relation_id": "rel_claim_src_C043_S076", "source": "claim:C043", "predicate": "SUPPORTED_BY", "target": "source:S076", "attributes": {}}
+{"relation_id": "rel_claim_topic_C044", "source": "topic:T14", "predicate": "HAS_CLAIM", "target": "claim:C044", "attributes": {}}
+{"relation_id": "rel_claim_src_C044_S055", "source": "claim:C044", "predicate": "SUPPORTED_BY", "target": "source:S055", "attributes": {}}
+{"relation_id": "rel_claim_topic_C045", "source": "topic:T14", "predicate": "HAS_CLAIM", "target": "claim:C045", "attributes": {}}
+{"relation_id": "rel_claim_src_C045_S056", "source": "claim:C045", "predicate": "SUPPORTED_BY", "target": "source:S056", "attributes": {}}
+{"relation_id": "rel_claim_topic_C046", "source": "topic:T14", "predicate": "HAS_CLAIM", "target": "claim:C046", "attributes": {}}
+{"relation_id": "rel_claim_src_C046_S057", "source": "claim:C046", "predicate": "SUPPORTED_BY", "target": "source:S057", "attributes": {}}
+{"relation_id": "rel_claim_src_C046_S058", "source": "claim:C046", "predicate": "SUPPORTED_BY", "target": "source:S058", "attributes": {}}
+{"relation_id": "rel_claim_topic_C047", "source": "topic:T14", "predicate": "HAS_CLAIM", "target": "claim:C047", "attributes": {}}
+{"relation_id": "rel_claim_src_C047_S059", "source": "claim:C047", "predicate": "SUPPORTED_BY", "target": "source:S059", "attributes": {}}
+{"relation_id": "rel_claim_src_C047_S060", "source": "claim:C047", "predicate": "SUPPORTED_BY", "target": "source:S060", "attributes": {}}
+{"relation_id": "rel_claim_topic_C048", "source": "topic:T14", "predicate": "HAS_CLAIM", "target": "claim:C048", "attributes": {}}
+{"relation_id": "rel_claim_src_C048_S061", "source": "claim:C048", "predicate": "SUPPORTED_BY", "target": "source:S061", "attributes": {}}
+{"relation_id": "rel_claim_src_C048_S062", "source": "claim:C048", "predicate": "SUPPORTED_BY", "target": "source:S062", "attributes": {}}
+{"relation_id": "rel_claim_topic_C049", "source": "topic:T14", "predicate": "HAS_CLAIM", "target": "claim:C049", "attributes": {}}
+{"relation_id": "rel_claim_src_C049_S054", "source": "claim:C049", "predicate": "SUPPORTED_BY", "target": "source:S054", "attributes": {}}
+{"relation_id": "rel_claim_src_C049_S055", "source": "claim:C049", "predicate": "SUPPORTED_BY", "target": "source:S055", "attributes": {}}
+{"relation_id": "rel_claim_src_C049_S057", "source": "claim:C049", "predicate": "SUPPORTED_BY", "target": "source:S057", "attributes": {}}
+{"relation_id": "rel_claim_src_C049_S060", "source": "claim:C049", "predicate": "SUPPORTED_BY", "target": "source:S060", "attributes": {}}
+{"relation_id": "rel_claim_topic_C050", "source": "topic:T14", "predicate": "HAS_CLAIM", "target": "claim:C050", "attributes": {}}

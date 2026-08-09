@@ -1,0 +1,109 @@
+schema: "cpcs-adrg-planner-policy/1.0"
+policy_set_id: "adrg.default.model_scaled.v1"
+verified_on: "2026-07-23"
+status: "proposed_defaults_require_local_calibration"
+
+routing_features:
+  impact: {range: [0.0, 1.0], description: "Effect on audience meaning or hard compliance"}
+  uncertainty: {range: [0.0, 1.0], description: "Residual uncertainty after retrieval"}
+  coupling: {range: [0.0, 1.0], description: "Number and strength of cross-domain dependencies"}
+  irreversibility: {range: [0.0, 1.0], description: "Cost of a wrong decision"}
+  validator_strength: {range: [0.0, 1.0], description: "Availability of deterministic verification"}
+
+profiles:
+  mini:
+    planner_profile: "planner.mini.strict.v1"
+    decomposition: "fixed_director_dag"
+    responsibilities_per_call: 1
+    retrieval:
+      top_k: 4
+      graph_depth: 1
+      include_conflicts: true
+      include_failures: true
+    branching:
+      maximum_width: 2
+      maximum_depth: 1
+      admission: "high_impact_uncertainty_only"
+    critique:
+      intrinsic_passes: 0
+      external_validator_passes: 1
+      maximum_repairs: 1
+    output:
+      format: "json"
+      schema_constrained: true
+      decision_record: "compact"
+      raw_chain_of_thought: false
+    escalation:
+      on_hard_conflict: true
+      on_missing_capability: true
+      on_second_validation_failure: true
+
+  standard:
+    planner_profile: "planner.standard.modular.v1"
+    decomposition: "fixed_graph_with_local_extension"
+    responsibilities_per_call: 2
+    retrieval:
+      top_k: 6
+      graph_depth: 2
+      include_conflicts: true
+      include_failures: true
+    branching:
+      maximum_width: 3
+      maximum_depth: 2
+      admission: "high_value_decisions"
+    critique:
+      intrinsic_passes: 1
+      external_validator_passes: 1
+      maximum_repairs: 2
+    output:
+      format: "json"
+      schema_constrained: true
+      decision_record: "standard"
+      raw_chain_of_thought: false
+
+  large:
+    planner_profile: "planner.large.adaptive_graph.v1"
+    decomposition: "adaptive_director_reasoning_graph"
+    responsibilities_per_call: 4
+    retrieval:
+      top_k: 10
+      graph_depth: 2
+      include_conflicts: true
+      include_failures: true
+      include_hierarchical_summaries: true
+    branching:
+      maximum_width: 5
+      maximum_depth: 3
+      admission: "impact_uncertainty_coupling_budgeted"
+      use_self_consistency_on: ["high_impact_ambiguous_decision"]
+    critique:
+      intrinsic_passes: 1
+      specialist_critics: ["performance", "motion", "camera", "compiler"]
+      external_validator_passes: 1
+      maximum_repairs: 2
+    output:
+      format: "json"
+      schema_constrained: true
+      decision_record: "detailed_but_concise"
+      raw_chain_of_thought: false
+
+operator_router:
+  - when: "low_complexity and strong_validator"
+    use: "direct_compile_validate"
+  - when: "moderate_complexity"
+    use: "least_to_most"
+  - when: "high_impact and alternatives_independent"
+    use: "selective_tree_of_thoughts"
+  - when: "high_impact and cross_domain_coupling"
+    use: "graph_of_thoughts_subgraph"
+  - when: "external_state_required"
+    use: "react_tool_action"
+  - when: "deterministic_computation_required"
+    use: "program_aided_runtime"
+
+hard_policies:
+  - "no unsupported hard control may be dropped"
+  - "no raw private chain-of-thought is stored as canonical evidence"
+  - "all selected candidates require a decision record"
+  - "all canonical controls require a target realization status"
+  - "all model and adapter profiles are versioned and dated"

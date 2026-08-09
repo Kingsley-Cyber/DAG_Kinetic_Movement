@@ -1,0 +1,1186 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "T04",
+  "title": "FACS — Complete Public Reference, Intensity, and Curves",
+  "status": "curated",
+  "cardinality_note": "No single safe flat “44 AU” inventory; preserve grouped identifiers and dataset profiles. Detailed coding criteria remain in the proprietary manual.",
+  "code_entries": [
+    {
+      "code": "1",
+      "group": "facial_action_or_descriptor",
+      "name": "Inner Brow Raiser",
+      "anatomical_basis": "frontalis medial",
+      "visible_motion": "raises medial brow",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "2",
+      "group": "facial_action_or_descriptor",
+      "name": "Outer Brow Raiser",
+      "anatomical_basis": "frontalis lateral",
+      "visible_motion": "raises lateral brow",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "4",
+      "group": "facial_action_or_descriptor",
+      "name": "Brow Lowerer",
+      "anatomical_basis": "corrugator/depressor supercilii",
+      "visible_motion": "draws brows down/medial",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "5",
+      "group": "facial_action_or_descriptor",
+      "name": "Upper Lid Raiser",
+      "anatomical_basis": "levator palpebrae superioris",
+      "visible_motion": "elevates upper lid",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "6",
+      "group": "facial_action_or_descriptor",
+      "name": "Cheek Raiser",
+      "anatomical_basis": "orbicularis oculi orbital",
+      "visible_motion": "raises cheek/narrows aperture",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "7",
+      "group": "facial_action_or_descriptor",
+      "name": "Lid Tightener",
+      "anatomical_basis": "orbicularis oculi palpebral",
+      "visible_motion": "tightens lids",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "9",
+      "group": "facial_action_or_descriptor",
+      "name": "Nose Wrinkler",
+      "anatomical_basis": "levator labii superioris alaeque nasi",
+      "visible_motion": "wrinkles nose",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "10",
+      "group": "facial_action_or_descriptor",
+      "name": "Upper Lip Raiser",
+      "anatomical_basis": "levator labii superioris",
+      "visible_motion": "raises upper lip",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "11",
+      "group": "facial_action_or_descriptor",
+      "name": "Nasolabial Deepener",
+      "anatomical_basis": "zygomaticus minor",
+      "visible_motion": "deepens nasolabial furrow",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "12",
+      "group": "facial_action_or_descriptor",
+      "name": "Lip Corner Puller",
+      "anatomical_basis": "zygomaticus major",
+      "visible_motion": "pulls corners up/lateral",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "13",
+      "group": "facial_action_or_descriptor",
+      "name": "Sharp Lip Puller",
+      "anatomical_basis": "levator anguli oris; label varies",
+      "visible_motion": "sharp lip-corner pull",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "14",
+      "group": "facial_action_or_descriptor",
+      "name": "Dimpler",
+      "anatomical_basis": "buccinator",
+      "visible_motion": "tightens corner/dimple",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "15",
+      "group": "facial_action_or_descriptor",
+      "name": "Lip Corner Depressor",
+      "anatomical_basis": "depressor anguli oris",
+      "visible_motion": "pulls corners down",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "16",
+      "group": "facial_action_or_descriptor",
+      "name": "Lower Lip Depressor",
+      "anatomical_basis": "depressor labii inferioris",
+      "visible_motion": "pulls lower lip down",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "17",
+      "group": "facial_action_or_descriptor",
+      "name": "Chin Raiser",
+      "anatomical_basis": "mentalis",
+      "visible_motion": "raises/protrudes lower lip",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "18",
+      "group": "facial_action_or_descriptor",
+      "name": "Lip Pucker",
+      "anatomical_basis": "orbicularis/incisivii contribution",
+      "visible_motion": "puckers lips",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "20",
+      "group": "facial_action_or_descriptor",
+      "name": "Lip Stretcher",
+      "anatomical_basis": "risorius/platysma contribution",
+      "visible_motion": "stretches corners lateral",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "22",
+      "group": "facial_action_or_descriptor",
+      "name": "Lip Funneler",
+      "anatomical_basis": "orbicularis oris",
+      "visible_motion": "funnels lips",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "23",
+      "group": "facial_action_or_descriptor",
+      "name": "Lip Tightener",
+      "anatomical_basis": "orbicularis oris",
+      "visible_motion": "tightens lips",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "24",
+      "group": "facial_action_or_descriptor",
+      "name": "Lip Pressor",
+      "anatomical_basis": "orbicularis oris",
+      "visible_motion": "presses lips",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "25",
+      "group": "facial_action_or_descriptor",
+      "name": "Lips Part",
+      "anatomical_basis": "action descriptor",
+      "visible_motion": "separates lips",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "26",
+      "group": "facial_action_or_descriptor",
+      "name": "Jaw Drop",
+      "anatomical_basis": "jaw-opening action",
+      "visible_motion": "drops jaw",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "27",
+      "group": "facial_action_or_descriptor",
+      "name": "Mouth Stretch",
+      "anatomical_basis": "jaw/lip action",
+      "visible_motion": "stretches mouth open",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "28",
+      "group": "facial_action_or_descriptor",
+      "name": "Lip Suck",
+      "anatomical_basis": "orbicularis oris",
+      "visible_motion": "rolls lips inward",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "29",
+      "group": "facial_action_or_descriptor",
+      "name": "Jaw Thrust",
+      "anatomical_basis": "action descriptor",
+      "visible_motion": "jaw forward",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "30",
+      "group": "facial_action_or_descriptor",
+      "name": "Jaw Sideways",
+      "anatomical_basis": "action descriptor",
+      "visible_motion": "jaw lateral",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "31",
+      "group": "facial_action_or_descriptor",
+      "name": "Jaw Clencher",
+      "anatomical_basis": "masseter/jaw closers",
+      "visible_motion": "clenches jaw",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "32",
+      "group": "facial_action_or_descriptor",
+      "name": "Lip Bite",
+      "anatomical_basis": "action descriptor",
+      "visible_motion": "bites lip",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "33",
+      "group": "facial_action_or_descriptor",
+      "name": "Cheek Blow",
+      "anatomical_basis": "action descriptor",
+      "visible_motion": "blows",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "34",
+      "group": "facial_action_or_descriptor",
+      "name": "Cheek Puff",
+      "anatomical_basis": "oral pressure/buccinator",
+      "visible_motion": "puffs cheeks",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "35",
+      "group": "facial_action_or_descriptor",
+      "name": "Cheek Suck",
+      "anatomical_basis": "buccinator/oral pressure",
+      "visible_motion": "draws cheeks inward",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "36",
+      "group": "facial_action_or_descriptor",
+      "name": "Tongue Bulge",
+      "anatomical_basis": "tongue musculature",
+      "visible_motion": "tongue presses cheek/lip",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "37",
+      "group": "facial_action_or_descriptor",
+      "name": "Lip Wipe",
+      "anatomical_basis": "action descriptor",
+      "visible_motion": "wipes lips",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "38",
+      "group": "facial_action_or_descriptor",
+      "name": "Nostril Dilator",
+      "anatomical_basis": "nasalis alar",
+      "visible_motion": "widens nostrils",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "39",
+      "group": "facial_action_or_descriptor",
+      "name": "Nostril Compressor",
+      "anatomical_basis": "nasalis transverse",
+      "visible_motion": "narrows nostrils",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "41",
+      "group": "facial_action_or_descriptor",
+      "name": "Lid Droop",
+      "anatomical_basis": "reduced levator activity",
+      "visible_motion": "upper lid droops",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "42",
+      "group": "facial_action_or_descriptor",
+      "name": "Slit",
+      "anatomical_basis": "orbicularis oculi",
+      "visible_motion": "slit-like eyes",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "43",
+      "group": "facial_action_or_descriptor",
+      "name": "Eyes Closed",
+      "anatomical_basis": "closure action",
+      "visible_motion": "eyes close",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "44",
+      "group": "facial_action_or_descriptor",
+      "name": "Squint",
+      "anatomical_basis": "orbicularis/brow contribution",
+      "visible_motion": "squints",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "45",
+      "group": "facial_action_or_descriptor",
+      "name": "Blink",
+      "anatomical_basis": "orbicularis palpebral",
+      "visible_motion": "brief bilateral closure",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "46",
+      "group": "facial_action_or_descriptor",
+      "name": "Wink",
+      "anatomical_basis": "orbicularis oculi",
+      "visible_motion": "unilateral closure",
+      "laterality": [
+        "bilateral",
+        "left",
+        "right"
+      ],
+      "intensity_scored": "consult FACS manual"
+    },
+    {
+      "code": "51",
+      "group": "head_position_or_modifier",
+      "name": "Head Turn Left",
+      "laterality": [
+        "left",
+        "right",
+        "bilateral"
+      ],
+      "intensity_scored": false
+    },
+    {
+      "code": "52",
+      "group": "head_position_or_modifier",
+      "name": "Head Turn Right",
+      "laterality": [
+        "left",
+        "right",
+        "bilateral"
+      ],
+      "intensity_scored": false
+    },
+    {
+      "code": "53",
+      "group": "head_position_or_modifier",
+      "name": "Head Up",
+      "laterality": [
+        "left",
+        "right",
+        "bilateral"
+      ],
+      "intensity_scored": false
+    },
+    {
+      "code": "54",
+      "group": "head_position_or_modifier",
+      "name": "Head Down",
+      "laterality": [
+        "left",
+        "right",
+        "bilateral"
+      ],
+      "intensity_scored": false
+    },
+    {
+      "code": "55",
+      "group": "head_position_or_modifier",
+      "name": "Head Tilt Left",
+      "laterality": [
+        "left",
+        "right",
+        "bilateral"
+      ],
+      "intensity_scored": false
+    },
+    {
+      "code": "56",
+      "group": "head_position_or_modifier",
+      "name": "Head Tilt Right",
+      "laterality": [
+        "left",
+        "right",
+        "bilateral"
+      ],
+      "intensity_scored": false
+    },
+    {
+      "code": "57",
+      "group": "head_position_or_modifier",
+      "name": "Head Forward",
+      "laterality": [
+        "left",
+        "right",
+        "bilateral"
+      ],
+      "intensity_scored": false
+    },
+    {
+      "code": "58",
+      "group": "head_position_or_modifier",
+      "name": "Head Back",
+      "laterality": [
+        "left",
+        "right",
+        "bilateral"
+      ],
+      "intensity_scored": false
+    },
+    {
+      "code": "M57",
+      "group": "head_position_or_modifier",
+      "name": "Head Thrust Forward",
+      "laterality": [
+        "left",
+        "right",
+        "bilateral"
+      ],
+      "intensity_scored": false
+    },
+    {
+      "code": "M59",
+      "group": "head_position_or_modifier",
+      "name": "Head Nod",
+      "laterality": [
+        "left",
+        "right",
+        "bilateral"
+      ],
+      "intensity_scored": false
+    },
+    {
+      "code": "M60",
+      "group": "head_position_or_modifier",
+      "name": "Head Shake",
+      "laterality": [
+        "left",
+        "right",
+        "bilateral"
+      ],
+      "intensity_scored": false
+    },
+    {
+      "code": "M83",
+      "group": "head_position_or_modifier",
+      "name": "Head Up and to Side",
+      "laterality": [
+        "left",
+        "right",
+        "bilateral"
+      ],
+      "intensity_scored": false
+    },
+    {
+      "code": "61",
+      "group": "eye_position_or_modifier",
+      "name": "Eyes Turn Left",
+      "intensity_scored": false
+    },
+    {
+      "code": "62",
+      "group": "eye_position_or_modifier",
+      "name": "Eyes Turn Right",
+      "intensity_scored": false
+    },
+    {
+      "code": "63",
+      "group": "eye_position_or_modifier",
+      "name": "Eyes Up",
+      "intensity_scored": false
+    },
+    {
+      "code": "64",
+      "group": "eye_position_or_modifier",
+      "name": "Eyes Down",
+      "intensity_scored": false
+    },
+    {
+      "code": "65",
+      "group": "eye_position_or_modifier",
+      "name": "Walleye",
+      "intensity_scored": false
+    },
+    {
+      "code": "66",
+      "group": "eye_position_or_modifier",
+      "name": "Cross-eye",
+      "intensity_scored": false
+    },
+    {
+      "code": "M68",
+      "group": "eye_position_or_modifier",
+      "name": "Eyes Roll Up",
+      "intensity_scored": false
+    },
+    {
+      "code": "69",
+      "group": "eye_position_or_modifier",
+      "name": "Eyes Positioned at Other Person",
+      "intensity_scored": false
+    },
+    {
+      "code": "M69",
+      "group": "eye_position_or_modifier",
+      "name": "Head or Eyes Move to Look at Other Person",
+      "intensity_scored": false
+    },
+    {
+      "code": "70",
+      "group": "visibility",
+      "name": "Brows/Forehead Not Visible",
+      "intensity_scored": false
+    },
+    {
+      "code": "71",
+      "group": "visibility",
+      "name": "Eyes Not Visible",
+      "intensity_scored": false
+    },
+    {
+      "code": "72",
+      "group": "visibility",
+      "name": "Lower Face Not Visible",
+      "intensity_scored": false
+    },
+    {
+      "code": "73",
+      "group": "visibility",
+      "name": "Entire Face Not Visible",
+      "intensity_scored": false
+    },
+    {
+      "code": "74",
+      "group": "visibility",
+      "name": "Unscorable",
+      "intensity_scored": false
+    },
+    {
+      "code": "50",
+      "group": "gross_behavior",
+      "name": "Speech",
+      "intensity_scored": false
+    },
+    {
+      "code": "80",
+      "group": "gross_behavior",
+      "name": "Swallow",
+      "intensity_scored": false
+    },
+    {
+      "code": "81",
+      "group": "gross_behavior",
+      "name": "Chewing",
+      "intensity_scored": false
+    },
+    {
+      "code": "82",
+      "group": "gross_behavior",
+      "name": "Shoulder Shrug",
+      "intensity_scored": false
+    },
+    {
+      "code": "84",
+      "group": "gross_behavior",
+      "name": "Head Shake Back and Forth",
+      "intensity_scored": false
+    },
+    {
+      "code": "85",
+      "group": "gross_behavior",
+      "name": "Head Nod Up and Down",
+      "intensity_scored": false
+    },
+    {
+      "code": "91",
+      "group": "gross_behavior",
+      "name": "Flash",
+      "intensity_scored": false
+    },
+    {
+      "code": "92",
+      "group": "gross_behavior",
+      "name": "Partial Flash",
+      "intensity_scored": false
+    },
+    {
+      "code": "97",
+      "group": "gross_behavior",
+      "name": "Shiver/Tremble",
+      "intensity_scored": false
+    },
+    {
+      "code": "98",
+      "group": "gross_behavior",
+      "name": "Fast Up-Down Look",
+      "intensity_scored": false
+    }
+  ],
+  "intensity": {
+    "facs_ordinal": [
+      {
+        "label": "0",
+        "meaning": "absent",
+        "ordinal": 0
+      },
+      {
+        "label": "A",
+        "meaning": "trace",
+        "ordinal": 1
+      },
+      {
+        "label": "B",
+        "meaning": "slight",
+        "ordinal": 2
+      },
+      {
+        "label": "C",
+        "meaning": "marked/pronounced",
+        "ordinal": 3
+      },
+      {
+        "label": "D",
+        "meaning": "severe/extreme",
+        "ordinal": 4
+      },
+      {
+        "label": "E",
+        "meaning": "maximum for person/action",
+        "ordinal": 5
+      }
+    ],
+    "computational_unit_mapping": {
+      "0": 0,
+      "A": 0.2,
+      "B": 0.4,
+      "C": 0.6,
+      "D": 0.8,
+      "E": 1.0
+    },
+    "mapping_status": "CPCS_CONVENTION; ordinal-preserving, not equal perceptual intervals",
+    "openface": {
+      "range": [
+        0,
+        5
+      ],
+      "presence": "binary",
+      "supported_aus": [
+        "1",
+        "2",
+        "4",
+        "5",
+        "6",
+        "7",
+        "9",
+        "10",
+        "12",
+        "14",
+        "15",
+        "17",
+        "20",
+        "23",
+        "25",
+        "26",
+        "28",
+        "45"
+      ],
+      "source_ids": [
+        "S019"
+      ]
+    }
+  },
+  "laterality": {
+    "values": [
+      "bilateral",
+      "left",
+      "right",
+      "asymmetric_mixed"
+    ],
+    "fields": [
+      "left_intensity",
+      "right_intensity",
+      "onset_offset_ms",
+      "apex_offset_ms"
+    ]
+  },
+  "temporal_curve": {
+    "segments": [
+      "onset",
+      "apex_hold",
+      "offset"
+    ],
+    "fields": [
+      "t_onset_start_s",
+      "t_apex_start_s",
+      "t_apex_end_s",
+      "t_offset_end_s",
+      "onset_curve",
+      "offset_curve",
+      "peak_intensity",
+      "masking_au_ids",
+      "confidence"
+    ],
+    "posed_vs_spontaneous": {
+      "cues": [
+        "onset smoothness",
+        "co-peaking/synchrony",
+        "jerkiness",
+        "asymmetry",
+        "duration"
+      ],
+      "status": "probabilistic and study-dependent",
+      "warning": "Never infer truthfulness from dynamics alone",
+      "source_ids": [
+        "S020"
+      ]
+    }
+  },
+  "expression_motifs": [
+    {
+      "id": "duchenne_pattern_smile",
+      "required": [
+        "AU6",
+        "AU12"
+      ],
+      "optional": [
+        "AU25"
+      ],
+      "warning": "Visible pattern, not proof of genuine happiness",
+      "confidence": 0.85
+    },
+    {
+      "id": "happiness_prototype",
+      "required": [
+        "AU6",
+        "AU12"
+      ],
+      "optional": [
+        "AU25",
+        "AU26"
+      ],
+      "source_ids": [
+        "S021"
+      ],
+      "confidence": 0.75
+    },
+    {
+      "id": "surprise_prototype",
+      "required": [
+        "AU1",
+        "AU2",
+        "AU5",
+        "AU25",
+        "AU26"
+      ],
+      "optional": [
+        "AU27"
+      ],
+      "source_ids": [
+        "S021"
+      ],
+      "confidence": 0.75
+    },
+    {
+      "id": "fear_prototype",
+      "required": [
+        "AU1",
+        "AU2",
+        "AU4",
+        "AU5",
+        "AU7",
+        "AU20",
+        "AU26"
+      ],
+      "optional": [
+        "AU25"
+      ],
+      "source_ids": [
+        "S021"
+      ],
+      "confidence": 0.7
+    },
+    {
+      "id": "anger_prototype",
+      "required": [
+        "AU4",
+        "AU5",
+        "AU7",
+        "AU23"
+      ],
+      "optional": [
+        "AU24",
+        "AU17",
+        "AU38"
+      ],
+      "source_ids": [
+        "S021"
+      ],
+      "confidence": 0.7
+    },
+    {
+      "id": "sadness_prototype",
+      "required": [
+        "AU1",
+        "AU4",
+        "AU15"
+      ],
+      "optional": [
+        "AU17"
+      ],
+      "source_ids": [
+        "S021"
+      ],
+      "confidence": 0.7
+    },
+    {
+      "id": "disgust_prototype",
+      "required": [
+        "AU9",
+        "AU15",
+        "AU16"
+      ],
+      "optional": [
+        "AU10",
+        "AU17"
+      ],
+      "source_ids": [
+        "S021"
+      ],
+      "confidence": 0.65
+    },
+    {
+      "id": "contempt_prototype",
+      "required": [
+        "unilateral_AU14"
+      ],
+      "optional": [
+        "unilateral_AU12"
+      ],
+      "confidence": 0.65
+    },
+    {
+      "id": "pain_pspi",
+      "formula": "AU4 + max(AU6,AU7) + max(AU9,AU10) + AU43",
+      "range": [
+        0,
+        15
+      ],
+      "source_ids": [
+        "S022",
+        "S023"
+      ],
+      "confidence": 0.9
+    },
+    {
+      "id": "concerned",
+      "required": [
+        "low_AU1",
+        "low_AU4"
+      ],
+      "optional": [
+        "AU15",
+        "AU17",
+        "AU24"
+      ],
+      "status": "CPCS_CONVENTION",
+      "confidence": 0.45
+    },
+    {
+      "id": "skeptical",
+      "required": [
+        "unilateral_AU2",
+        "unilateral_AU14"
+      ],
+      "optional": [
+        "AU4",
+        "AU23"
+      ],
+      "status": "CPCS_CONVENTION",
+      "confidence": 0.4
+    },
+    {
+      "id": "amused_but_restrained",
+      "required": [
+        "AU6",
+        "low_AU12"
+      ],
+      "optional": [
+        "AU14",
+        "AU24"
+      ],
+      "status": "CPCS_CONVENTION",
+      "confidence": 0.45
+    },
+    {
+      "id": "dupers_delight_hypothesis",
+      "required": [
+        "possible_low_unilateral_AU12"
+      ],
+      "optional": [
+        "AU14",
+        "AU24"
+      ],
+      "status": "UNVERIFIED_HYPOTHESIS",
+      "warning": "Do not use as deception detector",
+      "confidence": 0.1
+    },
+    {
+      "id": "micro_expression_profile",
+      "definition": "brief/low-amplitude or rapidly masked AU event; threshold dataset-specific",
+      "warning": "No universal duration cutoff",
+      "source_ids": [
+        "S070"
+      ],
+      "confidence": 0.5
+    }
+  ],
+  "prompt_example": {
+    "canonical": {
+      "events": [
+        {
+          "au": "1",
+          "side": "bilateral",
+          "peak": 0.35,
+          "onset_s": 0.1,
+          "apex_s": 0.32,
+          "offset_s": 0.85
+        },
+        {
+          "au": "4",
+          "side": "bilateral",
+          "peak": 0.45,
+          "onset_s": 0.08,
+          "apex_s": 0.3,
+          "offset_s": 0.95
+        },
+        {
+          "au": "15",
+          "side": "bilateral",
+          "peak": 0.25,
+          "onset_s": 0.18,
+          "apex_s": 0.45,
+          "offset_s": 1.0
+        }
+      ],
+      "head": {
+        "tilt_deg": 4,
+        "pitch_deg": -2
+      },
+      "gaze": {
+        "target": "actor_02",
+        "engagement": 0.8
+      }
+    },
+    "prose": "A restrained concerned expression: inner brows lift slightly while drawing together; mouth corners dip faintly; small head tilt and sustained eye contact."
+  },
+  "source_ids": [
+    "S017",
+    "S018",
+    "S019",
+    "S020",
+    "S021",
+    "S022",
+    "S023",
+    "S069",
+    "S070"
+  ]
+}

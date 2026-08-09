@@ -1,0 +1,14 @@
+{
+  "corpus_path": "rag/CPCS_ADRG_RAG_Corpus.jsonl",
+  "corpus_sha256": "ebae969360dec85d65607be523062d33dd8993640cb7671098e92734e495dd46",
+  "document_id": "CPCS-ADRG-RP-2026-01",
+  "generated_by": "scripts/build_adrg_rag.py",
+  "manifest_version": "1.0",
+  "paper_sha256": "2d100ddf488dc3b2433969f7ccec3e764d4b14bc9fcf0710c6a1d2e446c566b2",
+  "record_count": 78,
+  "record_counts": {
+    "document": 1,
+    "paper_chunk": 35,
+    "source": 42
+  }
+}

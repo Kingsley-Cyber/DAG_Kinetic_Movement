@@ -1,0 +1,60 @@
+{
+  "adapter_id": "runway_act_two_web_v2026_07_30",
+  "provider": "Runway",
+  "model_id": "Act-Two",
+  "surface": "Runway web",
+  "status": "current",
+  "verified_at": "2026-07-30",
+  "ttl_days": 30,
+  "source_ids": [
+    "S056"
+  ],
+  "native_capabilities": {
+    "driving_performance_video": true,
+    "character_image": true,
+    "character_video": true,
+    "duration_seconds": "3–30",
+    "fps": 24,
+    "gesture_control": "character image mode",
+    "resolution": [
+      "1280x720",
+      "720x1280",
+      "960x960",
+      "1104x832",
+      "832x1104",
+      "1584x672"
+    ]
+  },
+  "reference_capabilities": {
+    "face_expression_speech_motion": "driving performance",
+    "identity": "character image/video"
+  },
+  "prompt_only": [
+    "style/environment additions around preserved performance"
+  ],
+  "unsupported": [
+    "gesture control in character-video mode per documented behavior"
+  ],
+  "validation_rules": [
+    "Character image and character video modes retain different channels.",
+    "Driving video must satisfy current guide requirements."
+  ],
+  "request_template": {
+    "driving_performance": "${video}",
+    "character": "${image_or_video}",
+    "mode": "${image_mode_or_video_mode}",
+    "resolution": "${resolution}"
+  },
+  "loss_risk": {
+    "identity": "medium",
+    "hands_occlusion": "medium",
+    "environment_change_in_video_mode": "high"
+  },
+  "provenance": {
+    "provenance_class": "ESTABLISHED",
+    "source_ids": [
+      "S056"
+    ],
+    "confidence": 0.94
+  }
+}

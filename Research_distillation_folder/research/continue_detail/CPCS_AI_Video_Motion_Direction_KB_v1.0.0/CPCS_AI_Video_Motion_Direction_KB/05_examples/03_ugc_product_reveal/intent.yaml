@@ -1,0 +1,16 @@
+scene_id: ex_ugc_reveal_01
+primary_intent: invite
+secondary_intents:
+- assert
+- celebrate
+genre: vertical_ugc_commercial
+target_models:
+- veo_3_1_gemini
+- kling_video_3_0
+- adobe_firefly_video
+constraints:
+- product label legible
+- one handoff-free product identity
+- no unsupported performance claims
+desired_read: fast authentic hook, clear reveal, proof gesture, clean CTA
+

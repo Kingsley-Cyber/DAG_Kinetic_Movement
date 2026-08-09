@@ -1,0 +1,780 @@
+{
+  "package": {
+    "name": "CPCS AI Video Motion Direction Knowledge Base",
+    "slug": "cpcs-ai-video-motion-direction-kb",
+    "version": "1.0.0",
+    "created_at": "2026-07-31T00:00:00-06:00",
+    "research_snapshot": "2026-07-30",
+    "validation_as_of": "2026-07-31",
+    "purpose": "Research knowledge base, canonical motion-control representation, model adapters, graph seed, and validation pipeline."
+  },
+  "scope": {
+    "topic_count": 14,
+    "topic_pairs": 14,
+    "source_count": 76,
+    "claim_count": 50,
+    "schema_count": 10,
+    "example_count": 5,
+    "adapter_count": 8,
+    "graph_entities": 263,
+    "graph_relations": 409,
+    "markdown_files": 78,
+    "markdown_words": 35776,
+    "topic_markdown_words": 16056
+  },
+  "validation": {
+    "passed": true,
+    "error_count": 0,
+    "warning_count": 0,
+    "check_count": 13,
+    "checks_passed": 13
+  },
+  "critical_boundaries": [
+    "The seven-phase motion grammar is a CPCS convention, not a universal scientific standard.",
+    "Bartenieff Basic Six exercises and total-body connectivity patterns are separate taxonomies.",
+    "FACS codes visible movement and is not a lie detector or direct emotion reader.",
+    "Video kinematics do not uniquely determine force.",
+    "Intent, emotion, culture, and style mappings are probabilistic and context-conditioned.",
+    "Vendor adapters are dated snapshots that require live revalidation after TTL or version changes."
+  ],
+  "inventory_note": "Inventory includes all package files existing before manifest.json and checksums.sha256 were generated. The ZIP is external to the package directory.",
+  "file_count_in_inventory": 147,
+  "total_bytes_in_inventory": 992055,
+  "files": [
+    {
+      "path": "00_scope/corrections_and_scope_gaps.md",
+      "bytes": 2351,
+      "sha256": "71eb0e2e24cb5cb85d827e2cb70470a098047c4afeb7c30d40da9689810305ba"
+    },
+    {
+      "path": "00_scope/evidence_confidence.md",
+      "bytes": 934,
+      "sha256": "c4626c017c491d4e4927600e362996c46ecacb2f2b2f8bcdea4e787db94591ed"
+    },
+    {
+      "path": "00_scope/methodology.md",
+      "bytes": 1803,
+      "sha256": "8f66e27691e474b55c4b05f22fc6d063d3f3a84ea1f79ab6a3268725cf87d604"
+    },
+    {
+      "path": "00_scope/research_mission.md",
+      "bytes": 1325,
+      "sha256": "66c26c0ba3c5115f5a197491777a21763be3ab24e7716660d79602fb7c25b499"
+    },
+    {
+      "path": "00_scope/terminology_crosswalk.md",
+      "bytes": 928,
+      "sha256": "61a27490ffe0a9670a7c9dc1e726047868c1c0d312134a27933ae103b028c53c"
+    },
+    {
+      "path": "01_topics/01_laban_bess.md",
+      "bytes": 11403,
+      "sha256": "616c5c250bc745a4af9471aab1f8759737b184063579b0d8cb219a266d37fac3"
+    },
+    {
+      "path": "01_topics/01_laban_bess_reference.json",
+      "bytes": 12061,
+      "sha256": "297fa732c966f54e65a09361ad3cce9d83ef7cb5e16a933cf0c6196e8e3a37eb"
+    },
+    {
+      "path": "01_topics/02_bartenieff_connectivity.md",
+      "bytes": 7722,
+      "sha256": "92b44e559175747a1721c2737fa9c463c7e3156e4988c325d4364c3d52537afa"
+    },
+    {
+      "path": "01_topics/02_bartenieff_connectivity_reference.json",
+      "bytes": 6620,
+      "sha256": "878cacaeffbb2cc474e2e44ce5ca56bd028e28a125cadc3c69328ffbab7702e9"
+    },
+    {
+      "path": "01_topics/03_motion_phase_grammar.md",
+      "bytes": 9630,
+      "sha256": "0b9a9056c4171c1773678a34b6d463d7ec6b3f5350409f75bf666c5bd07b43f9"
+    },
+    {
+      "path": "01_topics/03_motion_phase_grammar_reference.json",
+      "bytes": 8001,
+      "sha256": "5df91e16fcf93a219f43ce372dc78b894daf6dc1ad07e6457156f071f32a08b1"
+    },
+    {
+      "path": "01_topics/04_facs.md",
+      "bytes": 12092,
+      "sha256": "07c04106eb1d03aaae5c55b6f0dcf45b9d768ba7e4ed56bfe61ca20b3ab0dba4"
+    },
+    {
+      "path": "01_topics/04_facs_reference.json",
+      "bytes": 26795,
+      "sha256": "646ced4ba54a9abe0569080b2771ed80d05e46115b1335cb1da60aa5c7f3812e"
+    },
+    {
+      "path": "01_topics/05_kinematics.md",
+      "bytes": 8459,
+      "sha256": "11ad7e986c0ee5079cb77d171595752abbe096947f93de66ac2f7be4bb206fbd"
+    },
+    {
+      "path": "01_topics/05_kinematics_reference.json",
+      "bytes": 7623,
+      "sha256": "b3a589d95c24b06bf692e7d2e2a7936fd21d55a7352502acaee45b9ffee7a849"
+    },
+    {
+      "path": "01_topics/06_intent_vocabulary.md",
+      "bytes": 9777,
+      "sha256": "99df7831ce42dfa746d22c58a86792f68ca36d9d0c3b0b9f5555ba337bd12583"
+    },
+    {
+      "path": "01_topics/06_intent_vocabulary_reference.json",
+      "bytes": 19024,
+      "sha256": "014695843b2a048b578d2ff794fd4f133523b36bd75318ebfa7abf0e6309238b"
+    },
+    {
+      "path": "01_topics/07_interaction_predicates.md",
+      "bytes": 10744,
+      "sha256": "f6e341fbaa54f75bd2b4a799f25632c9da552b2a9f6dc1cd12964a4c3a72386b"
+    },
+    {
+      "path": "01_topics/07_interaction_predicates_reference.json",
+      "bytes": 23184,
+      "sha256": "252d0fce3632b49e959b370d90be17a8c830cc3a16dba3d287a29e20c4193e2a"
+    },
+    {
+      "path": "01_topics/08_force_dynamics.md",
+      "bytes": 6428,
+      "sha256": "157fb23772817c7ab992f3f978e4f9120a2a8aecc4f31e24d9ea5e690095f60a"
+    },
+    {
+      "path": "01_topics/08_force_dynamics_reference.json",
+      "bytes": 4614,
+      "sha256": "5f4de20b50264c52ff83d68d5061131540f5c940855c36e5c888768f7c7189e2"
+    },
+    {
+      "path": "01_topics/09_camera_grammar.md",
+      "bytes": 8448,
+      "sha256": "851e3f09713d8505343237b0001691028d069548fdb97c324cb7e69ced859280"
+    },
+    {
+      "path": "01_topics/09_camera_grammar_reference.json",
+      "bytes": 9740,
+      "sha256": "9c87fb5bb1c4063d95963bd62387017dc1518b45445ea65e590c3f45c09dd7fc"
+    },
+    {
+      "path": "01_topics/10_rhythm.md",
+      "bytes": 6789,
+      "sha256": "7ac0cb5419980c93901722de58dbd49d557f08cfd78b507794d7ea79e8e2305b"
+    },
+    {
+      "path": "01_topics/10_rhythm_reference.json",
+      "bytes": 7342,
+      "sha256": "9ed321e8a24e71f02362c0b4d10a77931d0be87a7b082215bb809885b1806cee"
+    },
+    {
+      "path": "01_topics/11_vad_trajectories.md",
+      "bytes": 6955,
+      "sha256": "a1ffc74fa336c966d7dfbcef4ef81e61557401fd0b7c319197883875c67c417d"
+    },
+    {
+      "path": "01_topics/11_vad_trajectories_reference.json",
+      "bytes": 7293,
+      "sha256": "8ec9432cde2219e80f9c7e4c9de5bb31475ae7a5a16a44969688718355b4165f"
+    },
+    {
+      "path": "01_topics/12_motion_style_transfer.md",
+      "bytes": 7163,
+      "sha256": "4173e0aa1cd270a60a70ed73068a188828fd307cbf9cc540ca3a423a84614b9d"
+    },
+    {
+      "path": "01_topics/12_motion_style_transfer_reference.json",
+      "bytes": 6248,
+      "sha256": "a2b273efdca4115f4bcdecc5efb7d9fe5676658bf2fc395442c69ff6f4e051e9"
+    },
+    {
+      "path": "01_topics/13_computational_laban.md",
+      "bytes": 11378,
+      "sha256": "d43f8bb91f5e6ea5fdb8d94cd84e3ca90f9d03257589d3da7a5a5273321a2bb8"
+    },
+    {
+      "path": "01_topics/13_computational_laban_reference.json",
+      "bytes": 8579,
+      "sha256": "c7a413bb35debba1819c372116a67f196ca85a1f138f225d261304951af6ea81"
+    },
+    {
+      "path": "01_topics/14_ai_video_control_surfaces.md",
+      "bytes": 9164,
+      "sha256": "a8e0ca7d829a8c5f06bd976b21688870018087a56c7ae30ea67da84c1ac76756"
+    },
+    {
+      "path": "01_topics/14_ai_video_control_surfaces_reference.json",
+      "bytes": 10441,
+      "sha256": "fdc0c9a404852601aa765797132cc39badb82d0ca2b87b247b56d9bd89d692be"
+    },
+    {
+      "path": "02_canonical_model/controlled_vocabulary.csv",
+      "bytes": 2126,
+      "sha256": "ca1a7e0945a6f5b0b5e538596460de1ee9738e21a95731acd8b683efde0b873b"
+    },
+    {
+      "path": "02_canonical_model/graph_tiers.md",
+      "bytes": 1419,
+      "sha256": "cdeae3b2748d4e2735a81fade68c18c23a7fbe2d6dad1960fb2182f16c1377cf"
+    },
+    {
+      "path": "02_canonical_model/layer_stack.json",
+      "bytes": 4825,
+      "sha256": "4b72b3f1584f2c2ff5e1a7d03a612882f106cba6663e749efa0489213c133c28"
+    },
+    {
+      "path": "02_canonical_model/layer_stack.md",
+      "bytes": 2284,
+      "sha256": "33617d4e2d7e697f549a5c317ecbecc6f89eb0f400121eedc048d747d76fb9e5"
+    },
+    {
+      "path": "02_canonical_model/mappings.jsonl",
+      "bytes": 1239,
+      "sha256": "f62f385283d61a3c22c8d8d7e3a92c71015652c4df6f218bb68a71e74d89c2c4"
+    },
+    {
+      "path": "02_canonical_model/ontology.yaml",
+      "bytes": 2564,
+      "sha256": "9556e3849d5a5c2020ca77f15b09ba3a94a4ab50681bbf72b92ab0cb8f5f590e"
+    },
+    {
+      "path": "02_canonical_model/provenance_model.json",
+      "bytes": 1461,
+      "sha256": "77161d3e0d7bbf7b6be8ae3cda01f095fcdb0f00f2f021949aec9258d2b13981"
+    },
+    {
+      "path": "02_canonical_model/unit_conventions.json",
+      "bytes": 1120,
+      "sha256": "070d45f23a693f90b3fbf252a885f1ea7188695cc009fe2bd1849a134b142601"
+    },
+    {
+      "path": "03_schemas/README.md",
+      "bytes": 508,
+      "sha256": "80636fc6013ead56d9b1164f32c7ecc61b7a4d1dae2f0fae50fd23f348fd8009"
+    },
+    {
+      "path": "03_schemas/actor.schema.json",
+      "bytes": 2185,
+      "sha256": "3db095361a12941cc6be1d11211fb4d084c8c60b9a28b6940b4c7c095a397057"
+    },
+    {
+      "path": "03_schemas/affect_trajectory.schema.json",
+      "bytes": 3205,
+      "sha256": "3a2aa7bcf42a6959ec111c4ebbe375bed4020792b47695feda19c1954fc6f4b7"
+    },
+    {
+      "path": "03_schemas/camera_track.schema.json",
+      "bytes": 2997,
+      "sha256": "3aa8c02d0cfb6ffb2ae84f0f46fc044ae0bc8cc628ee499d9cd11330ae2f12b0"
+    },
+    {
+      "path": "03_schemas/canonical_scene.schema.json",
+      "bytes": 3127,
+      "sha256": "1b0927bcc1fa92ccf25fc6b66f155217c34d71aec93ee865e0fed1be910bc7d2"
+    },
+    {
+      "path": "03_schemas/experiment_record.schema.json",
+      "bytes": 2549,
+      "sha256": "cea7252ff28e995c9e4d5211ab6c36e4a81a0983184c60b1a66fca9cd8de12ae"
+    },
+    {
+      "path": "03_schemas/facs_track.schema.json",
+      "bytes": 3046,
+      "sha256": "4c84e51f141eebbb06e685c61540be6b2ebb02084ca632ccbc2bf3913eb0f282"
+    },
+    {
+      "path": "03_schemas/interaction.schema.json",
+      "bytes": 3256,
+      "sha256": "d9697a908fd9ca3db2eb57b733d9e95161b3c237eb4cbf4e1cfd2dc9e14bed57"
+    },
+    {
+      "path": "03_schemas/model_adapter.schema.json",
+      "bytes": 2532,
+      "sha256": "01b184edb6aa82da9940b31983eb629f3c9a77953e67cef697829551b424e7d0"
+    },
+    {
+      "path": "03_schemas/motion_primitive.schema.json",
+      "bytes": 4558,
+      "sha256": "bd06e1930f8e84869cfb665adc4a00e8366f69873a15a62b8be0bd4abb9aba23"
+    },
+    {
+      "path": "03_schemas/phase_timeline.schema.json",
+      "bytes": 2857,
+      "sha256": "0dacc74a3280455a4f785aca24e4fecb9379caa72e4876d225b3e7e3bfb10cf4"
+    },
+    {
+      "path": "04_pipeline/architecture.md",
+      "bytes": 3372,
+      "sha256": "55428f1ee391bd35401a1dd299124d8b38a72e3e681b42bd9847a3cc4414297a"
+    },
+    {
+      "path": "04_pipeline/compiler.md",
+      "bytes": 2413,
+      "sha256": "f1e329efb5f0d6ad30354b106c3c043c9345d8363db32d83002dea1e74d2da8b"
+    },
+    {
+      "path": "04_pipeline/derived_weights.md",
+      "bytes": 1219,
+      "sha256": "b09033d60ff099e247081f153fd217fdff82bb4b5f2c6848735631fb7b83f7d4"
+    },
+    {
+      "path": "04_pipeline/extraction.md",
+      "bytes": 2252,
+      "sha256": "378e54e7460732545e9ffc246d783addaf3be15c8ccbc7b72d468d9df673dbff"
+    },
+    {
+      "path": "04_pipeline/immutable_experiments.md",
+      "bytes": 1326,
+      "sha256": "41aac8f6703d16b28ad56898a80cb707fde9f7ccd0a22d523fd5ab09affb3fac"
+    },
+    {
+      "path": "04_pipeline/implementation_roadmap.md",
+      "bytes": 2202,
+      "sha256": "0a874099ba9c53d40021b7197891eead4a5ff9115f34453fb7bf7e0a062e336b"
+    },
+    {
+      "path": "04_pipeline/ingestion.md",
+      "bytes": 2652,
+      "sha256": "b1870ce0e692362c7c6f3eef8e0f45043ad873372d0211f383c94630ca24b807"
+    },
+    {
+      "path": "04_pipeline/model_adapters.md",
+      "bytes": 2133,
+      "sha256": "b8782132826bfeb537c25635269a483619126bb4ec59bac3b9988f85d977b770"
+    },
+    {
+      "path": "04_pipeline/retrieval.md",
+      "bytes": 1443,
+      "sha256": "51de7570125582c8f5e1a86f964c6508a0ecea620ded5a4ab4cba3e8c49e054b"
+    },
+    {
+      "path": "04_pipeline/validation.md",
+      "bytes": 1761,
+      "sha256": "b5d5fd83bd23a28272b5aee70952beb87a0a359517e4fef34dcc730a944a0984"
+    },
+    {
+      "path": "05_examples/01_cross_punch/beats.xml",
+      "bytes": 702,
+      "sha256": "410ec61b9fd56bf109c82b1b2c554b35f116688c39325705a102373362b4887d"
+    },
+    {
+      "path": "05_examples/01_cross_punch/canonical.json",
+      "bytes": 9887,
+      "sha256": "6208e56e2fb8f09124955008b97a2882688ed9087161270c3c30169b51cac444"
+    },
+    {
+      "path": "05_examples/01_cross_punch/compiled_prompts.md",
+      "bytes": 1380,
+      "sha256": "b6e5a9ca017ad308d0d41c299a5184a7daf6df0f2c100e564d377dde532be40f"
+    },
+    {
+      "path": "05_examples/01_cross_punch/expected_checks.md",
+      "bytes": 388,
+      "sha256": "7676d22e300cb7add97261fa6de35fbf78999ab288ad945f5de3001562ae68d3"
+    },
+    {
+      "path": "05_examples/01_cross_punch/intent.yaml",
+      "bytes": 361,
+      "sha256": "a4a65d94d2a0c551228101ea1229afcb78b89ccc66825de6ed7cc06535670a5b"
+    },
+    {
+      "path": "05_examples/02_comforting_reach/beats.xml",
+      "bytes": 670,
+      "sha256": "63617f945868018e0c1cdbcfe17ec5ce1c5ff6a44fc2e7e8df71934c12298310"
+    },
+    {
+      "path": "05_examples/02_comforting_reach/canonical.json",
+      "bytes": 9179,
+      "sha256": "f5ecf8026972eb588c1c9d4196709f319276123f27f441c90fef67769fb539c6"
+    },
+    {
+      "path": "05_examples/02_comforting_reach/compiled_prompts.md",
+      "bytes": 1015,
+      "sha256": "fdb81adc9b53c328c7b469ed3d0a53dd8d49d730ab6312e651a564cd8ead9e64"
+    },
+    {
+      "path": "05_examples/02_comforting_reach/expected_checks.md",
+      "bytes": 332,
+      "sha256": "29e1aaae7d9366a2693eed6d0b3fa1b3802dbfd715dfa0ed5475d178c3cef157"
+    },
+    {
+      "path": "05_examples/02_comforting_reach/intent.yaml",
+      "bytes": 346,
+      "sha256": "812d116da9710f0f1e8afec745cea9a856a264a3a0cc7c093576a91fb63b1aee"
+    },
+    {
+      "path": "05_examples/03_ugc_product_reveal/beats.xml",
+      "bytes": 914,
+      "sha256": "0fa8916cdcf3f18259aa047d23f6912039f582dc2b46b821ba41e557d07d873f"
+    },
+    {
+      "path": "05_examples/03_ugc_product_reveal/canonical.json",
+      "bytes": 9395,
+      "sha256": "2a586a3b177b2898f005c8831992817b304c7794e312e8750ac824296cf3d75e"
+    },
+    {
+      "path": "05_examples/03_ugc_product_reveal/compiled_prompts.md",
+      "bytes": 1090,
+      "sha256": "ab9ebb124840ed366aa14452cb3e605d418e2edbf5a01aa0a053ccf8aed10fb3"
+    },
+    {
+      "path": "05_examples/03_ugc_product_reveal/expected_checks.md",
+      "bytes": 357,
+      "sha256": "9072cdfceeaeefc474d38f82348b4879bca2931e27828410f91e10cb9d301da5"
+    },
+    {
+      "path": "05_examples/03_ugc_product_reveal/intent.yaml",
+      "bytes": 377,
+      "sha256": "2e664b3d2929ad04bf879c4e8c2a8f88999f0e9342d8b4aed1a77bf54cc43440"
+    },
+    {
+      "path": "05_examples/04_anime_block_counter/beats.xml",
+      "bytes": 869,
+      "sha256": "c0292632b73e048797f6fb7851680e27c9b3faa3211d2e9d19edf9e69cfd70f4"
+    },
+    {
+      "path": "05_examples/04_anime_block_counter/canonical.json",
+      "bytes": 12105,
+      "sha256": "4d05d0fa23053e28ab28b405c462de18fa7cd888e001ebd326dc9b4d0710884d"
+    },
+    {
+      "path": "05_examples/04_anime_block_counter/compiled_prompts.md",
+      "bytes": 1282,
+      "sha256": "f508b338577cfc3c44c9841c60f5a1706823772f3c4b515e49aced1e89e09841"
+    },
+    {
+      "path": "05_examples/04_anime_block_counter/expected_checks.md",
+      "bytes": 343,
+      "sha256": "cb7258739818cf5ff5e9d41bf8e8db33b3e37e37dc05bcaafa3d735f465dd7ff"
+    },
+    {
+      "path": "05_examples/04_anime_block_counter/intent.yaml",
+      "bytes": 414,
+      "sha256": "ba06d3348f571b43d15cdfb0fcb3a0905f505b4748e07146bcd70abb198964ac"
+    },
+    {
+      "path": "05_examples/05_uncertain_aggression/beats.xml",
+      "bytes": 837,
+      "sha256": "c2f3a2bab9fc10b8095f031306f97ce42c9a408406f8280b63ab67bef5babb46"
+    },
+    {
+      "path": "05_examples/05_uncertain_aggression/canonical.json",
+      "bytes": 10103,
+      "sha256": "ecfb74abda497973a9dcc7f42c3c56e11496b8c225062ee3731e834e97b62a81"
+    },
+    {
+      "path": "05_examples/05_uncertain_aggression/compiled_prompts.md",
+      "bytes": 992,
+      "sha256": "0b1d8a74b6506516cb86430c2fad5bb646ed536b2c1534cfb0cababffc25660a"
+    },
+    {
+      "path": "05_examples/05_uncertain_aggression/expected_checks.md",
+      "bytes": 365,
+      "sha256": "fa3ac3af29bce144ee43b95c33a3155441612f95e85c7935ae302ee65672dd0a"
+    },
+    {
+      "path": "05_examples/05_uncertain_aggression/intent.yaml",
+      "bytes": 433,
+      "sha256": "35f88fecedc90d0ff330c1a5f5fa1ac690574301d0cd89eee5bca801b4b008b1"
+    },
+    {
+      "path": "06_evidence/bibliography.md",
+      "bytes": 36990,
+      "sha256": "c719df511effaec013402da3c60364fa3de423621a84cf2ecdf3d2ebb4e23041"
+    },
+    {
+      "path": "06_evidence/claim_source_map.jsonl",
+      "bytes": 8944,
+      "sha256": "bca71881c1ae97adbdaed359a1b0c255e364525927084e73c26e1037dc018a8b"
+    },
+    {
+      "path": "06_evidence/claims.jsonl",
+      "bytes": 13892,
+      "sha256": "807fa370b603ba1f389986dd58ce6a1862992968e046624f9a9c54207b166de2"
+    },
+    {
+      "path": "06_evidence/contradictions.md",
+      "bytes": 1404,
+      "sha256": "8efe707ce38971667d9c9b4f1aaef7496f151a0489f4c70f2417d698c26648d2"
+    },
+    {
+      "path": "06_evidence/evidence_matrix.csv",
+      "bytes": 7546,
+      "sha256": "d517615824a31b464d3eca3fc2e5dbe8331df447db1cba2a538778d7804e6193"
+    },
+    {
+      "path": "06_evidence/gaps.md",
+      "bytes": 1241,
+      "sha256": "ea3b81c9c249af8931c1b7e3e58e36d5ccef47ff20c0a84b5d37d3770cc05e2c"
+    },
+    {
+      "path": "06_evidence/search_log.md",
+      "bytes": 823,
+      "sha256": "cd3335c54ce5bee8249ccefba1c39bf4ed6aa352eda1712480e2c3606830dcc3"
+    },
+    {
+      "path": "06_evidence/source_quality.md",
+      "bytes": 940,
+      "sha256": "cd63fa044b4b665a5c8ba7d4856d28007d0d4fb595133f9887ef5f84acf532d8"
+    },
+    {
+      "path": "06_evidence/sources.csv",
+      "bytes": 24530,
+      "sha256": "2f6947ecd66e083e5779a0f724a6faef041739c97a87b6c652d30d537c768408"
+    },
+    {
+      "path": "06_evidence/sources.jsonl",
+      "bytes": 33808,
+      "sha256": "24f0ee3753a266f5b7d3668fd642afbd44be6de817549284ab8f8aba4b36484f"
+    },
+    {
+      "path": "07_prompts/critique.md",
+      "bytes": 730,
+      "sha256": "167d6dead0422035f59b06612193adca5e76262984ae5a14ecc4a06ad92dad38"
+    },
+    {
+      "path": "07_prompts/experiment_summarizer.md",
+      "bytes": 642,
+      "sha256": "57fea21ff2f1a7880cb0930f7bd95a255fb351b349a3bccf8148f7aaa6b7a44b"
+    },
+    {
+      "path": "07_prompts/intent_planner.md",
+      "bytes": 836,
+      "sha256": "b2b6480a10661afca8ded4b81dc061571d62998419ccb6dfbc6b82758f5b375a"
+    },
+    {
+      "path": "07_prompts/model_adapter.md",
+      "bytes": 755,
+      "sha256": "2ff297d7b66ab42b1e61c972c10d798d29ed956faa919c9f8ade6af336c3be78"
+    },
+    {
+      "path": "07_prompts/motion_compiler.md",
+      "bytes": 917,
+      "sha256": "5472e3894e78d324ad64b0ea60c944ff0124c47618847f11d71768452a34d865"
+    },
+    {
+      "path": "07_prompts/normalizer.md",
+      "bytes": 715,
+      "sha256": "53c80c769f32e28dc66f995d75ae0a7521006b2fbd6686a4ac78ca0bad537e3d"
+    },
+    {
+      "path": "07_prompts/source_extractor.md",
+      "bytes": 1263,
+      "sha256": "e0118d23e493fa53ce58907ee079eff146814925e90f2e48769e0491c780e3f3"
+    },
+    {
+      "path": "08_evaluation/acceptance_criteria.md",
+      "bytes": 1098,
+      "sha256": "37ecdf5cea2e03d7cb47da188ab07f4180f52ecbf09735ed9650fa4ac1120e4d"
+    },
+    {
+      "path": "08_evaluation/annotation_protocol.md",
+      "bytes": 1076,
+      "sha256": "5dca97a86fc3422e1edc6f59b14c154d3c079eee80baf81e16b5bb789fb79801"
+    },
+    {
+      "path": "08_evaluation/benchmark_plan.md",
+      "bytes": 1545,
+      "sha256": "c2dcfe0498d7476be136695eb45c88470edc871f83de8130bcd6c0b6f079760c"
+    },
+    {
+      "path": "08_evaluation/metrics.md",
+      "bytes": 1320,
+      "sha256": "e0d90edd1c5deb5f294178c67221b06e4f0fe4fe760f1c12612b86100ca89a74"
+    },
+    {
+      "path": "08_evaluation/model_test_matrix.csv",
+      "bytes": 3972,
+      "sha256": "4ac067fbb8a57c452cda07a8298d59c553c3057153d08154c984eb5065e48eb5"
+    },
+    {
+      "path": "08_evaluation/test_cases.jsonl",
+      "bytes": 3672,
+      "sha256": "3c5018627437e4ac7517ea0cc1f45241d4625c69a9443287404f2cc39e2ba66b"
+    },
+    {
+      "path": "09_source_notes/01_laban_bess_sources.md",
+      "bytes": 5783,
+      "sha256": "63efd89331040abfef55987f4694e428f2b8031808db136b9fe7889f918b3c4d"
+    },
+    {
+      "path": "09_source_notes/02_bartenieff_connectivity_sources.md",
+      "bytes": 1943,
+      "sha256": "192be075fdc7fee65995aef2be4dacb9473b63e9c20a33f30630ba9e4e7cca06"
+    },
+    {
+      "path": "09_source_notes/03_motion_phase_grammar_sources.md",
+      "bytes": 3846,
+      "sha256": "0e5b72e2ecb2125c02b0a1d1a35dace61cd6d5125cefbcc9bc33fbe3e4bf6c57"
+    },
+    {
+      "path": "09_source_notes/04_facs_sources.md",
+      "bytes": 4068,
+      "sha256": "188b46737319edba02442552656555891c2af87343c9dab1a8db12c7450ad093"
+    },
+    {
+      "path": "09_source_notes/05_kinematics_sources.md",
+      "bytes": 4449,
+      "sha256": "aac57a365676b8285ffc99f3a3ea8fa4208b57a248bdb5e5c7a35a38266bdbea"
+    },
+    {
+      "path": "09_source_notes/06_intent_vocabulary_sources.md",
+      "bytes": 3492,
+      "sha256": "fa25c314bcc93637fa5c3f7655495da8fad431ad2f67581446520ec96f8b8047"
+    },
+    {
+      "path": "09_source_notes/07_interaction_predicates_sources.md",
+      "bytes": 2843,
+      "sha256": "2c53a3b8493ecbe02253c68dbb9748318216ce9b284f65f164306a545c87cd35"
+    },
+    {
+      "path": "09_source_notes/08_force_dynamics_sources.md",
+      "bytes": 3410,
+      "sha256": "97c9217c56da7a4dc918a5f6bf0061f76fca8233662b0224271c6f082841dfeb"
+    },
+    {
+      "path": "09_source_notes/09_camera_grammar_sources.md",
+      "bytes": 2999,
+      "sha256": "dfafa0d20d42d66ddf5506b3ac8f5f2d469c7a58829319641f5983c740e71c1e"
+    },
+    {
+      "path": "09_source_notes/10_rhythm_sources.md",
+      "bytes": 3705,
+      "sha256": "e38e3136fffd52e18f1f38dd42f68a3fabc1df52266d4605920e1dac3f21006c"
+    },
+    {
+      "path": "09_source_notes/11_vad_trajectories_sources.md",
+      "bytes": 3910,
+      "sha256": "02358519bc7ee8fddd427b32a080f47ccd5a59ac9524f2582339fc421bf4ceeb"
+    },
+    {
+      "path": "09_source_notes/12_motion_style_transfer_sources.md",
+      "bytes": 5439,
+      "sha256": "2759ba08bc8f650dfa80a8f001cedb7e1aec1789e95a67f506e80b4a1d35a31f"
+    },
+    {
+      "path": "09_source_notes/13_computational_laban_sources.md",
+      "bytes": 12338,
+      "sha256": "b71c89fac98cb3e8493ea0026e3003c0b5f62020807b7ff060faf29f6112f2d4"
+    },
+    {
+      "path": "09_source_notes/14_ai_video_control_surfaces_sources.md",
+      "bytes": 4967,
+      "sha256": "ffaa1145f6cf55015bcaf2e546d6a2c8187081064025da8e8bcbc08728f7b51d"
+    },
+    {
+      "path": "10_scripts/README.md",
+      "bytes": 896,
+      "sha256": "a2e4128b498e15dd183cd586eea4402f86c0ae07f38988f0f1a49b3671a12f95"
+    },
+    {
+      "path": "10_scripts/compile_example.py",
+      "bytes": 4263,
+      "sha256": "9c358d09d336994f40f31e19d13dd7c7a0ae3a60fa132fbc01ec962e07fae927"
+    },
+    {
+      "path": "10_scripts/demo_compile_output.json",
+      "bytes": 2120,
+      "sha256": "2060fd244335d20b70b53c1d025beb564b231472670b768cbe4cdc5cca52b244"
+    },
+    {
+      "path": "10_scripts/export_graph.py",
+      "bytes": 2083,
+      "sha256": "cee2a2a0913b1541e4206cbe82adcba3c980a2eb9950a97a9b864660953da415"
+    },
+    {
+      "path": "10_scripts/validate_package.py",
+      "bytes": 19288,
+      "sha256": "5f3c2089bd44c1dc17aba2b5062fffdaed5e7f43afbbf6e881a76bcbea1d9de4"
+    },
+    {
+      "path": "11_graph_seed/concepts.csv",
+      "bytes": 35754,
+      "sha256": "4ba1c28e3b48515ea1b12f3e0ff84c375e30db7bf41f43153a2b3ead44f0adbd"
+    },
+    {
+      "path": "11_graph_seed/entities.jsonl",
+      "bytes": 47836,
+      "sha256": "cf6dea28fdd6a1627f3219d961a7db94dd13545c96d735f9ca14e185703a796d"
+    },
+    {
+      "path": "11_graph_seed/graph_export.cypher",
+      "bytes": 157464,
+      "sha256": "c2b0c5607c01735ca577714aeaaf710dd491dd883dcaa8962ebec740bee199ce"
+    },
+    {
+      "path": "11_graph_seed/graph_ingest.md",
+      "bytes": 776,
+      "sha256": "925399a20e6ae81c2f407608c21bd3f4f6b7172ea7dad61bb650518008b883c6"
+    },
+    {
+      "path": "11_graph_seed/relations.jsonl",
+      "bytes": 66312,
+      "sha256": "fea1b34a4175bd93b81da57131c984ccabe834109a9a83d87d2e6ae50e06eb0e"
+    },
+    {
+      "path": "12_adapters/README.md",
+      "bytes": 447,
+      "sha256": "a5df1398240c60d9010ddcb2599980b8387b17b97562177122cbcdc1da7870d3"
+    },
+    {
+      "path": "12_adapters/adobe_firefly_video.json",
+      "bytes": 1509,
+      "sha256": "bd8e71ddd382f8f4cd15b76dd424fe58c9fb398ef1b8e082ae87a101aa028531"
+    },
+    {
+      "path": "12_adapters/kling_3_0.json",
+      "bytes": 1549,
+      "sha256": "e6150bda85664ee506ad73cc0c649829eee4140e9b916375b5f2a741e86d05de"
+    },
+    {
+      "path": "12_adapters/kling_3_0_omni.json",
+      "bytes": 1522,
+      "sha256": "e3bd0379148d1c58d8a38fe03232af652ea59759d85df137cc3c5e0fe235bde6"
+    },
+    {
+      "path": "12_adapters/luma_ray_3_2.json",
+      "bytes": 1519,
+      "sha256": "b087189f16e7e59b9e17e23480330263d3fb7d42ddccce9a048db2a95953a35d"
+    },
+    {
+      "path": "12_adapters/runway_act_two.json",
+      "bytes": 1510,
+      "sha256": "53ceb2728f030956d1005b2d4ab53790760202baf52c3c6869da9382522b5b8c"
+    },
+    {
+      "path": "12_adapters/runway_gen_4_5.json",
+      "bytes": 1362,
+      "sha256": "7086927d5e58f9939ab2358781edf069c9b85df4a038057a37c3d7f21767b62a"
+    },
+    {
+      "path": "12_adapters/sora_2_legacy.json",
+      "bytes": 821,
+      "sha256": "8f4f39659cab9ffed242a4946f18eab64f2c7e2420c4df6aac85aa721674583c"
+    },
+    {
+      "path": "12_adapters/veo_3_1.json",
+      "bytes": 1839,
+      "sha256": "936ec9e651c8f542bc968ab77b789d4c4c45bb465f956126fb4bbaff90aa0c5c"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 737,
+      "sha256": "2ee1ab1c003a0cd8c6eba5e5e8e0948611d0599a9da980d33904edfd3c4d3c1b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4356,
+      "sha256": "694904a405d7661a17a56edb9633d57ece902f8f1bbd24c716368e678bc86f5f"
+    },
+    {
+      "path": "USAGE_NOTICE.md",
+      "bytes": 1257,
+      "sha256": "2d971d0c74a77d1d97e01d6fe9eb57cb2cf1c5808bbcb7042b2e66315cb16812"
+    },
+    {
+      "path": "validation_report.json",
+      "bytes": 1159,
+      "sha256": "e1aca612af48235ac1cebfb58c23d8a61520ebc752fc1ca062cd3ed124dabaa8"
+    }
+  ]
+}

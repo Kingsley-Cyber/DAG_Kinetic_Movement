@@ -1,0 +1,60 @@
+{
+  "adapter_id": "kling_video_3_0_omni_v2026_07_30",
+  "provider": "Kling AI",
+  "model_id": "Kling VIDEO 3.0 Omni (exact API model ID probe required)",
+  "surface": "official web / first-party API if available",
+  "status": "current",
+  "verified_at": "2026-07-30",
+  "ttl_days": 21,
+  "source_ids": [
+    "S076"
+  ],
+  "native_capabilities": {
+    "multimodal_inputs": true,
+    "video_character_reference": true,
+    "voice_reference": true,
+    "start_end_frames": true,
+    "duration_seconds": "3–15",
+    "multi_shot": true,
+    "shot_level_duration": true,
+    "native_audio": true,
+    "resolution": [
+      "720p",
+      "1080p"
+    ]
+  },
+  "reference_capabilities": {
+    "characters": "images or short video reference",
+    "voice": "bound voice reference",
+    "multi_angle": "element references"
+  },
+  "prompt_only": [
+    "laban_bess labels",
+    "explicit contact graph",
+    "per_frame_facs"
+  ],
+  "unsupported": [],
+  "validation_rules": [
+    "Video/no-video modes have different input limits.",
+    "Probe current API and save error/schema responses."
+  ],
+  "request_template": {
+    "model": "${live_model_id}",
+    "prompt": "${prompt}",
+    "elements": "${elements}",
+    "shot_plan": "${shot_plan}",
+    "audio": "${audio_options}"
+  },
+  "loss_risk": {
+    "contact_causality": "high",
+    "voice_binding": "medium",
+    "multi_shot_continuity": "medium_high"
+  },
+  "provenance": {
+    "provenance_class": "ESTABLISHED",
+    "source_ids": [
+      "S076"
+    ],
+    "confidence": 0.88
+  }
+}

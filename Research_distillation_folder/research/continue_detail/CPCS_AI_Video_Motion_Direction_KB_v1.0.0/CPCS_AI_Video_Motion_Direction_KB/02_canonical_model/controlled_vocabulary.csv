@@ -1,0 +1,37 @@
+namespace,term,definition,provenance_class
+layer,creative_intent,latent goal layer,ESTABLISHED/CPCS
+layer,laban_bess,Body/Effort/Shape/Space,ESTABLISHED
+layer,interaction_topology,temporal predicates and contacts,CPCS_CONVENTION
+effort.weight,light,yielding/light Weight pole,ESTABLISHED
+effort.weight,strong,forceful/strong Weight pole,ESTABLISHED
+effort.time,sustained,prolonged Time pole,ESTABLISHED
+effort.time,sudden,urgent Time pole,ESTABLISHED
+effort.space,indirect,multi-focused/flexible Space-Effort pole,ESTABLISHED
+effort.space,direct,single-focused/direct Space-Effort pole,ESTABLISHED
+effort.flow,free,released Flow pole,ESTABLISHED
+effort.flow,bound,controlled Flow pole,ESTABLISHED
+shape.vertical,sinking,negative pole,ESTABLISHED
+shape.vertical,rising,positive pole,ESTABLISHED
+shape.horizontal,enclosing,negative pole,ESTABLISHED
+shape.horizontal,spreading,positive pole,ESTABLISHED
+shape.sagittal,retreating,negative pole,ESTABLISHED
+shape.sagittal,advancing,positive pole,ESTABLISHED
+connectivity,breath,breath organization,ESTABLISHED
+connectivity,core_distal,center-to-limb relationship,ESTABLISHED
+connectivity,head_tail,axial relationship,ESTABLISHED
+connectivity,upper_lower,upper/lower relationship,ESTABLISHED
+connectivity,body_half,ipsilateral relationship,ESTABLISHED
+connectivity,cross_lateral,contralateral diagonal relationship,ESTABLISHED
+phase,initiation,first commitment,CPCS_CONVENTION
+phase,preparation,organize/anticipate,CPCS_CONVENTION
+phase,acceleration,build velocity,CPCS_CONVENTION
+phase,stroke,semantic/contact apex,CPCS_CONVENTION
+phase,overshoot,post-apex continuation,CPCS_CONVENTION
+phase,recovery,return/redirect,CPCS_CONVENTION
+phase,settle,residual dissipation,CPCS_CONVENTION
+capability,native,structured provider control,CPCS_CONVENTION
+capability,reference_conditioned,image/video/performance reference,CPCS_CONVENTION
+capability,prompt_only,natural language only,CPCS_CONVENTION
+capability,postprocess,external edit,CPCS_CONVENTION
+capability,unknown,not verified,CPCS_CONVENTION
+capability,legacy,retiring/deprecated,CPCS_CONVENTION

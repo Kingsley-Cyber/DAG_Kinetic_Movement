@@ -1,0 +1,60 @@
+{
+  "adapter_id": "kling_video_3_0_v2026_07_30",
+  "provider": "Kling AI",
+  "model_id": "Kling VIDEO 3.0 (exact API model ID probe required)",
+  "surface": "official web / first-party API if available",
+  "status": "current",
+  "verified_at": "2026-07-30",
+  "ttl_days": 21,
+  "source_ids": [
+    "S054"
+  ],
+  "native_capabilities": {
+    "text_to_video": true,
+    "image_to_video": true,
+    "start_end_frames": true,
+    "element_reference": true,
+    "duration_seconds": "3–15",
+    "multi_shot": true,
+    "custom_shot_duration": true,
+    "native_audio": true,
+    "resolution": [
+      "720p",
+      "1080p documented surfaces"
+    ]
+  },
+  "reference_capabilities": {
+    "characters_objects": "elements/images",
+    "start_end_pose": "start/end frames"
+  },
+  "prompt_only": [
+    "laban_bess",
+    "facs_track unless performance/reference encodes it",
+    "fine contact topology"
+  ],
+  "unsupported": [],
+  "validation_rules": [
+    "Do not assume web UI equals API.",
+    "Probe exact input counts, aspect ratios, and request field names.",
+    "Record subscription/tier/region."
+  ],
+  "request_template": {
+    "surface": "${surface}",
+    "model": "${live_model_id}",
+    "prompt": "${prompt}",
+    "shot_plan": "${shot_plan_optional}",
+    "elements": "${elements_optional}"
+  },
+  "loss_risk": {
+    "multi_actor_contact": "high",
+    "shot_identity_drift": "medium_high",
+    "fine_facs": "high"
+  },
+  "provenance": {
+    "provenance_class": "ESTABLISHED",
+    "source_ids": [
+      "S054"
+    ],
+    "confidence": 0.88
+  }
+}

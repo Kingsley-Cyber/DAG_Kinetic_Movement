@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cpcs://research/evaluator-provenance/1.0",
+  "title": "CPCS Evaluator Provenance candidate",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "evaluator_id",
+    "version",
+    "configuration_hash",
+    "artifact_hash",
+    "observable_dimension",
+    "lane",
+    "confidence",
+    "known_blind_spots",
+    "human_calibration_status"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "cpcs.evaluator_provenance/1.0-candidate"
+    },
+    "evaluator_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "configuration_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "artifact_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "observable_dimension": {
+      "type": "string"
+    },
+    "lane": {
+      "enum": [
+        "direct",
+        "semantic",
+        "measured",
+        "human_review"
+      ]
+    },
+    "confidence": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "known_blind_spots": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "human_calibration_status": {
+      "enum": [
+        "not_calibrated",
+        "calibrated_in_domain",
+        "calibrated_out_of_domain",
+        "human_only"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

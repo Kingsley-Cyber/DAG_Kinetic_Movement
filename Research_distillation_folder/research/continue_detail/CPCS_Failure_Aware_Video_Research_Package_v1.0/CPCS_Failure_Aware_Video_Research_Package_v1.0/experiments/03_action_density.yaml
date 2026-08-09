@@ -1,0 +1,115 @@
+schema_version: cpcs.experiment_plan/1.0
+experiment_id: experiment://failure/action_density/1
+title: Provider-specific action-density staircase
+status: designed_not_run
+blocked_reason: No authorized provider credentials, generation budget, local model weights, or human rating panel were supplied
+  in this session.
+research_question: At what dependency depth and action density does each provider/task begin to omit, merge, reverse, or invent
+  events?
+hypothesis: Failure probability will rise with primary action count and dependency depth; provider-specific split thresholds
+  will be more reliable than universal actions-per-second rules.
+providers:
+- provider: google_vertex_ai
+  model: veo-3.1-generate-001
+  status: candidate_requires_authorization_and_live_profile_check
+- provider: runway
+  model: gen4.5
+  status: candidate_requires_authorization
+- provider: bytedance_seed
+  model: Seedance 2.0 native exact endpoint TBD
+  status: candidate_requires_interface_capture
+- provider: kuaishou
+  model: Kling Video 3.0/Omni exact endpoint TBD
+  status: candidate_requires_interface_capture
+- provider: minimax
+  model: MiniMax-Hailuo-2.3
+  status: candidate_requires_authorization
+- provider: alibaba_model_studio
+  model: wan2.7 exact endpoint by mode
+  status: candidate_requires_region_and_endpoint_pin
+- provider: local
+  model: LTX-2 or Wan2.2 exact checkpoint/workflow
+  status: candidate_requires_weights_and_hardware_workflow
+fixed_factors:
+  actors: 2
+  identity_and_scene: fixed
+  camera: locked
+  effects: minimal
+  duration_seconds: fixed within staircase, then repeated at longer duration
+  event_vocabulary: matched action difficulty
+arms:
+- arm_id: DEN_A1
+  label: One primary action
+  isolated_control: action count=1
+  canonical_semantics: setup-action-recovery
+  provider_projection: provider-native projection
+- arm_id: DEN_A2
+  label: Three ordered actions
+  isolated_control: action count=3
+  canonical_semantics: three events, two dependencies
+  provider_projection: provider-native projection
+- arm_id: DEN_A3
+  label: Five ordered actions
+  isolated_control: action count=5
+  canonical_semantics: five events, four dependencies
+  provider_projection: provider-native projection
+- arm_id: DEN_A4
+  label: Full sequence
+  isolated_control: maximum planned sequence
+  canonical_semantics: all requested events and dependencies
+  provider_projection: provider-native projection
+- arm_id: DEN_A5
+  label: Full sequence split
+  isolated_control: shot decomposition
+  canonical_semantics: same sequence across multiple clips
+  provider_projection: per-shot builds plus edit
+seed_policy:
+  initial_completed_candidates_per_arm: 20
+  open_local_target_per_arm: 30
+  pairing: Use identical seed values within provider where exposed; record retry/sample identifiers when seeds are unavailable.
+  interpretation: Seed pairing reduces one variation source but does not imply identical output or perfect causal isolation.
+  randomization: Randomize arm execution order within provider and batch; do not select best-of-N for the primary analysis.
+metrics:
+- metric_action_graph_agreement
+- metric_action_omission_rate
+- metric_primary_action_completion
+- metric_temporal_event_error
+- metric_recovery_presence
+- metric_hallucinated_action_rate
+critical_assertions:
+- no primary event is omitted or duplicated
+- all hard dependencies hold
+- reaction follows cause
+- terminal state occurs without invented filler
+human_review:
+  required: true
+  minimum_reviewers: 2
+  blind_to_arm: true
+  adjudication: A third reviewer adjudicates disagreement on any critical assertion; preserve all original labels.
+retention:
+  retain_all_outputs: true
+  retain_failed_outputs: true
+  required_lineage:
+  - canonical_score
+  - provider_build
+  - request
+  - assets
+  - provider/model/version
+  - seed_or_retry
+  - artifact
+  - evaluators
+  - human_labels
+  - cost
+  - latency
+analysis:
+  binary_outcomes: Per-arm success proportion with Wilson 95% confidence interval; paired analysis where pairing is valid.
+  continuous_outcomes: Median, distribution, and bootstrap 95% interval; report failed intervals, not only aggregate means.
+  multiple_comparisons: Holm correction within each family; predeclare the primary contrast.
+  decision_rule: Promote only when the isolated intervention improves the critical success distribution and does not increase
+    another critical failure beyond its pre-registered margin.
+stop_conditions:
+- Provider/interface/version changes during the campaign.
+- Prompt rewrite or enhancement behavior cannot be disabled or captured consistently.
+- Evaluator calibration falls below the pre-registered requirement.
+- Artifact/request/asset lineage is incomplete.
+- A safety, rights, or budget condition is violated.

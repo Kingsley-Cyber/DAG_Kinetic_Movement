@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/cpcs/schema/experiment_record/1.0.0",
+  "title": "CPCS Immutable Experiment",
+  "type": "object",
+  "properties": {
+    "experiment_id": {
+      "type": "string",
+      "pattern": "^exp_[A-Za-z0-9._-]+$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "hypothesis": {
+      "type": "string"
+    },
+    "canonical_scene_hash": {
+      "type": "string"
+    },
+    "adapter_id": {
+      "type": "string"
+    },
+    "adapter_version": {
+      "type": "string"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "surface": {
+      "type": "string"
+    },
+    "request": {
+      "type": "object"
+    },
+    "prompt_text": {
+      "type": "string"
+    },
+    "reference_assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "uri": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "role": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "uri",
+          "sha256",
+          "role"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "seed": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "uri": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "latency_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "cost": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "metadata": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "uri",
+          "sha256"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "evaluations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "environment": {
+      "type": "object"
+    },
+    "supersedes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "immutable": {
+      "const": true
+    }
+  },
+  "required": [
+    "experiment_id",
+    "created_at",
+    "hypothesis",
+    "canonical_scene_hash",
+    "adapter_id",
+    "model_id",
+    "request",
+    "outputs",
+    "immutable"
+  ],
+  "unevaluatedProperties": false
+}

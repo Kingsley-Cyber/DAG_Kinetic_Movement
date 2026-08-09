@@ -1,0 +1,33 @@
+{
+  "schema_id": "dmr.provider-capability-contract/0.1",
+  "contract_id": "kling.product.video-3.0-omni.2026-07-31",
+  "provider": "Kling AI",
+  "api_surface": "Kling web product capability profile (not an API contract)",
+  "model_id": "Kling VIDEO 3.0 Omni",
+  "contract_kind": "product_profile",
+  "verified_on": "2026-07-31",
+  "documentation_urls": ["https://kling.ai/quickstart/klingai-video-3-omni-model-user-guide"],
+  "lifecycle": {"max_duration_s":15,"native_audio":true,"multi_shot":true},
+  "mappings": [
+    {"canonical_path":"prompt.text","classification":"native","carrier":"web_prompt","evidence_source":"Official Kling guide"},
+    {"canonical_path":"conditioning.first_frame","classification":"media-conditioned","carrier":"web_image","evidence_source":"Official Kling guide"},
+    {"canonical_path":"conditioning.last_frame","classification":"media-conditioned","carrier":"web_image","evidence_source":"Official Kling guide"},
+    {"canonical_path":"conditioning.reference_images","classification":"media-conditioned","carrier":"multi_image_reference_or_element","evidence_source":"Official Kling guide"},
+    {"canonical_path":"conditioning.reference_videos","classification":"media-conditioned","carrier":"video_element_reference","evidence_source":"Official Kling guide"},
+    {"canonical_path":"generation.duration_s","classification":"native","carrier":"web_control","limits":{"max":15},"evidence_source":"Official Kling guide"},
+    {"canonical_path":"generation.audio","classification":"native","carrier":"native_audio_visual_output","evidence_source":"Official Kling guide"},
+    {"canonical_path":"temporal.multi_shot","classification":"native","carrier":"storyboard","evidence_source":"Official Kling guide"},
+    {"canonical_path":"camera.shot_level","classification":"native","carrier":"storyboard_shot_fields","evidence_source":"Official Kling guide documents shot duration, framing, angle, narrative content, and camera movement"},
+    {"canonical_path":"camera.trajectory","classification":"semantic-text-only","carrier":"shot_camera_movement_text","evidence_source":"No numeric 6DoF path documented"},
+    {"canonical_path":"motion.joint_tracks","classification":"unsupported","carrier":null,"evidence_source":"No native symbolic joint-trajectory input documented"},
+    {"canonical_path":"interaction.contacts","classification":"semantic-text-only","carrier":"prompt_or_reference_media","evidence_source":"No native contact constraint documented"},
+    {"canonical_path":"performance.facs","classification":"semantic-text-only","carrier":"prompt_or_reference_media","evidence_source":"No native FACS track documented"},
+    {"canonical_path":"performance.laban","classification":"semantic-text-only","carrier":"prompt_or_reference_media","evidence_source":"No native Laban track documented"},
+    {"canonical_path":"temporal.exact_timestamps","classification":"approximated","carrier":"shot_duration_and_order","evidence_source":"Shot-level durations are documented; exact intra-shot event timestamps are not"},
+    {"canonical_path":"identity.binding","classification":"media-conditioned","carrier":"elements_and_reference_media","evidence_source":"Official guide claims consistency through references/elements; no hard numeric guarantee"}
+  ],
+  "unknowns": [
+    "The exact public API request schema and parameter names could not be verified with 100% certainty from accessible official documentation.",
+    "This profile must not be used to send API requests until replaced by a verified API-surface contract."
+  ]
+}

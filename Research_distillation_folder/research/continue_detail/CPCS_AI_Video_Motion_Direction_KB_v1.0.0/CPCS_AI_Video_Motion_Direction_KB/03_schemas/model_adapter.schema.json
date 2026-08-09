@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/cpcs/schema/model_adapter/1.0.0",
+  "title": "CPCS Model Adapter",
+  "type": "object",
+  "properties": {
+    "adapter_id": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "surface": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "current",
+        "preview",
+        "legacy_deprecating",
+        "retired",
+        "unknown"
+      ]
+    },
+    "verified_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "ttl_days": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "source_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^S[0-9]{3}$"
+      }
+    },
+    "native_capabilities": {
+      "type": "object"
+    },
+    "reference_capabilities": {
+      "type": "object"
+    },
+    "prompt_only": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unsupported": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validation_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "request_template": {
+      "type": "object"
+    },
+    "loss_risk": {
+      "type": "object"
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "provenance_class": {
+          "enum": [
+            "ESTABLISHED",
+            "EMPIRICAL",
+            "PRACTICE",
+            "CPCS_CONVENTION",
+            "UNVERIFIED"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{3}$"
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "measurement_status": {
+          "enum": [
+            "measured",
+            "annotated",
+            "inverse_dynamics_estimate",
+            "model_inference",
+            "visual_proxy",
+            "prompt_prior",
+            "generated"
+          ]
+        },
+        "uncertainty_note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provenance_class"
+      ],
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "adapter_id",
+    "provider",
+    "model_id",
+    "surface",
+    "status",
+    "verified_at",
+    "native_capabilities"
+  ],
+  "unevaluatedProperties": false
+}

@@ -1,0 +1,227 @@
+{
+  "$defs": {
+    "CapabilityClass": {
+      "enum": [
+        "native",
+        "media-conditioned",
+        "semantic-text-only",
+        "approximated",
+        "unsupported",
+        "unknown"
+      ],
+      "title": "CapabilityClass",
+      "type": "string"
+    },
+    "CompilationLossItem": {
+      "additionalProperties": false,
+      "properties": {
+        "control_id": {
+          "title": "Control Id",
+          "type": "string"
+        },
+        "canonical_path": {
+          "title": "Canonical Path",
+          "type": "string"
+        },
+        "requested_value": {
+          "title": "Requested Value"
+        },
+        "required": {
+          "title": "Required",
+          "type": "boolean"
+        },
+        "classification": {
+          "$ref": "#/$defs/CapabilityClass"
+        },
+        "carrier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Carrier"
+        },
+        "provider_parameter": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Provider Parameter"
+        },
+        "compiled_value": {
+          "default": null,
+          "title": "Compiled Value"
+        },
+        "residual_risk": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Residual Risk"
+        },
+        "evidence_source": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence Source"
+        }
+      },
+      "required": [
+        "control_id",
+        "canonical_path",
+        "requested_value",
+        "required",
+        "classification"
+      ],
+      "title": "CompilationLossItem",
+      "type": "object"
+    },
+    "Severity": {
+      "enum": [
+        "info",
+        "warning",
+        "error",
+        "unknown"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "ValidationIssue": {
+      "additionalProperties": false,
+      "properties": {
+        "issue_id": {
+          "title": "Issue Id",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "responsible_paths": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Responsible Paths",
+          "type": "array"
+        },
+        "earliest_causal_layer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Earliest Causal Layer"
+        },
+        "suggested_patch": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Suggested Patch"
+        }
+      },
+      "required": [
+        "issue_id",
+        "severity",
+        "code",
+        "message"
+      ],
+      "title": "ValidationIssue",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "scene_id": {
+      "title": "Scene Id",
+      "type": "string"
+    },
+    "contract_id": {
+      "title": "Contract Id",
+      "type": "string"
+    },
+    "solved_timeline_s": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Solved Timeline S",
+      "type": "object"
+    },
+    "provider_request": {
+      "additionalProperties": true,
+      "title": "Provider Request",
+      "type": "object"
+    },
+    "prompt": {
+      "title": "Prompt",
+      "type": "string"
+    },
+    "loss_report": {
+      "items": {
+        "$ref": "#/$defs/CompilationLossItem"
+      },
+      "title": "Loss Report",
+      "type": "array"
+    },
+    "validation_issues": {
+      "items": {
+        "$ref": "#/$defs/ValidationIssue"
+      },
+      "title": "Validation Issues",
+      "type": "array"
+    },
+    "hard_failure": {
+      "title": "Hard Failure",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "scene_id",
+    "contract_id",
+    "solved_timeline_s",
+    "provider_request",
+    "prompt",
+    "loss_report",
+    "validation_issues",
+    "hard_failure"
+  ],
+  "title": "CompilationResult",
+  "type": "object"
+}

@@ -1,0 +1,1026 @@
+{
+  "schema_version": "1.0.0",
+  "topic_id": "T06",
+  "title": "Intent Layer — Abstract Motion Intent Vocabulary",
+  "status": "curated",
+  "principle": "Intent is a latent narrative/social goal; motion features are conditioned realizations, not proof of inner state.",
+  "record_schema": {
+    "conditioning": [
+      "culture_profile",
+      "relationship",
+      "power_relation",
+      "setting",
+      "genre",
+      "actor_baseline",
+      "visibility_goal",
+      "urgency",
+      "safety_constraints"
+    ],
+    "scales": [
+      "face_only",
+      "gaze_head",
+      "hand_gesture",
+      "upper_body",
+      "full_body",
+      "group"
+    ],
+    "output": "distribution over realizations plus exclusions"
+  },
+  "intents": [
+    {
+      "id": "threaten",
+      "goal": "increase expected cost of noncompliance",
+      "effort": {
+        "weight": [
+          0.65,
+          1
+        ],
+        "time": [
+          0.45,
+          1
+        ],
+        "space_effort": [
+          0.65,
+          1
+        ],
+        "flow": [
+          0.45,
+          0.9
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.5,
+          0.9
+        ],
+        "horizontal": [
+          0.55,
+          0.9
+        ],
+        "sagittal": [
+          0.65,
+          1
+        ]
+      },
+      "body_priors": [
+        "upper_lower grounding",
+        "advancing core-distal",
+        "direct gaze"
+      ],
+      "face_priors": [
+        "anger prototype",
+        "AU4+AU7"
+      ],
+      "confidence": 0.55,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "comfort",
+      "goal": "reduce distress and signal safety",
+      "effort": {
+        "weight": [
+          0.15,
+          0.45
+        ],
+        "time": [
+          0.05,
+          0.35
+        ],
+        "space_effort": [
+          0.35,
+          0.7
+        ],
+        "flow": [
+          0.2,
+          0.55
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.35,
+          0.6
+        ],
+        "horizontal": [
+          0.5,
+          0.75
+        ],
+        "sagittal": [
+          0.5,
+          0.75
+        ]
+      },
+      "body_priors": [
+        "breath",
+        "core-distal reach",
+        "soft head-tail orientation"
+      ],
+      "face_priors": [
+        "low AU1",
+        "low AU6+12 optional"
+      ],
+      "confidence": 0.55,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "seduce",
+      "goal": "invite intimacy while preserving optionality",
+      "effort": {
+        "weight": [
+          0.2,
+          0.55
+        ],
+        "time": [
+          0.1,
+          0.45
+        ],
+        "space_effort": [
+          0.25,
+          0.65
+        ],
+        "flow": [
+          0.1,
+          0.45
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.45,
+          0.7
+        ],
+        "horizontal": [
+          0.45,
+          0.7
+        ],
+        "sagittal": [
+          0.5,
+          0.8
+        ]
+      },
+      "body_priors": [
+        "curved pathways",
+        "delayed distal gesture",
+        "gaze approach/withdraw"
+      ],
+      "face_priors": [
+        "low AU12",
+        "AU6 optional",
+        "head tilt"
+      ],
+      "confidence": 0.35,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "hesitate",
+      "goal": "delay commitment while evaluating alternatives",
+      "effort": {
+        "weight": [
+          0.15,
+          0.45
+        ],
+        "time": [
+          0.25,
+          0.65
+        ],
+        "space_effort": [
+          0.1,
+          0.45
+        ],
+        "flow": [
+          0.55,
+          0.95
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.35,
+          0.6
+        ],
+        "horizontal": [
+          0.25,
+          0.55
+        ],
+        "sagittal": [
+          0.35,
+          0.65
+        ]
+      },
+      "body_priors": [
+        "false starts",
+        "initiation without stroke",
+        "withdrawal"
+      ],
+      "face_priors": [
+        "low AU1+4",
+        "gaze shifts",
+        "AU24"
+      ],
+      "confidence": 0.65,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "celebrate",
+      "goal": "display positive outcome and recruit shared attention",
+      "effort": {
+        "weight": [
+          0.35,
+          0.75
+        ],
+        "time": [
+          0.65,
+          1
+        ],
+        "space_effort": [
+          0.35,
+          0.85
+        ],
+        "flow": [
+          0.05,
+          0.45
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.7,
+          1
+        ],
+        "horizontal": [
+          0.7,
+          1
+        ],
+        "sagittal": [
+          0.45,
+          0.8
+        ]
+      },
+      "body_priors": [
+        "core-distal expansion",
+        "upper-lower jump/reach",
+        "repetition"
+      ],
+      "face_priors": [
+        "Duchenne-pattern smile",
+        "AU25/26"
+      ],
+      "confidence": 0.7,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "hide",
+      "goal": "reduce detectability of self/object/information/emotion",
+      "effort": {
+        "weight": [
+          0.1,
+          0.45
+        ],
+        "time": [
+          0.1,
+          0.65
+        ],
+        "space_effort": [
+          0.15,
+          0.55
+        ],
+        "flow": [
+          0.6,
+          1
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.1,
+          0.45
+        ],
+        "horizontal": [
+          0,
+          0.35
+        ],
+        "sagittal": [
+          0,
+          0.35
+        ]
+      },
+      "body_priors": [
+        "enclosing",
+        "retreating",
+        "near kinesphere"
+      ],
+      "face_priors": [
+        "gaze aversion",
+        "AU24",
+        "masking"
+      ],
+      "confidence": 0.55,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "challenge",
+      "goal": "test status, competence, or boundary",
+      "effort": {
+        "weight": [
+          0.55,
+          0.9
+        ],
+        "time": [
+          0.35,
+          0.8
+        ],
+        "space_effort": [
+          0.65,
+          1
+        ],
+        "flow": [
+          0.5,
+          0.9
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.55,
+          0.9
+        ],
+        "horizontal": [
+          0.55,
+          0.85
+        ],
+        "sagittal": [
+          0.65,
+          0.95
+        ]
+      },
+      "body_priors": [
+        "stable base",
+        "direct frontal orientation"
+      ],
+      "face_priors": [
+        "AU4",
+        "AU7",
+        "unilateral AU14 optional"
+      ],
+      "confidence": 0.55,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "submit",
+      "goal": "yield status/control",
+      "effort": {
+        "weight": [
+          0.05,
+          0.35
+        ],
+        "time": [
+          0.05,
+          0.45
+        ],
+        "space_effort": [
+          0.1,
+          0.5
+        ],
+        "flow": [
+          0.45,
+          0.9
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.05,
+          0.35
+        ],
+        "horizontal": [
+          0.05,
+          0.4
+        ],
+        "sagittal": [
+          0.1,
+          0.45
+        ]
+      },
+      "body_priors": [
+        "sinking",
+        "enclosing",
+        "head/eyes lower"
+      ],
+      "face_priors": [
+        "AU1",
+        "AU15 optional",
+        "gaze down"
+      ],
+      "confidence": 0.45,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "invite",
+      "goal": "open a path for participation/approach",
+      "effort": {
+        "weight": [
+          0.1,
+          0.4
+        ],
+        "time": [
+          0.1,
+          0.45
+        ],
+        "space_effort": [
+          0.55,
+          0.9
+        ],
+        "flow": [
+          0.15,
+          0.5
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.45,
+          0.7
+        ],
+        "horizontal": [
+          0.6,
+          0.95
+        ],
+        "sagittal": [
+          0.45,
+          0.8
+        ]
+      },
+      "body_priors": [
+        "open palm",
+        "spreading",
+        "spoke/arc toward available space"
+      ],
+      "face_priors": [
+        "low AU6+12 optional",
+        "gaze target then receiver"
+      ],
+      "confidence": 0.6,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "dismiss",
+      "goal": "terminate relevance or interaction",
+      "effort": {
+        "weight": [
+          0.25,
+          0.7
+        ],
+        "time": [
+          0.35,
+          0.85
+        ],
+        "space_effort": [
+          0.45,
+          0.9
+        ],
+        "flow": [
+          0.35,
+          0.8
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.35,
+          0.65
+        ],
+        "horizontal": [
+          0.35,
+          0.75
+        ],
+        "sagittal": [
+          0.1,
+          0.45
+        ]
+      },
+      "body_priors": [
+        "distal flick",
+        "head turn away",
+        "withdraw attention"
+      ],
+      "face_priors": [
+        "unilateral AU14",
+        "AU23 optional"
+      ],
+      "confidence": 0.55,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "assert",
+      "goal": "state/enact boundary or claim confidently",
+      "effort": {
+        "weight": [
+          0.5,
+          0.85
+        ],
+        "time": [
+          0.3,
+          0.75
+        ],
+        "space_effort": [
+          0.7,
+          1
+        ],
+        "flow": [
+          0.55,
+          0.9
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.55,
+          0.85
+        ],
+        "horizontal": [
+          0.45,
+          0.75
+        ],
+        "sagittal": [
+          0.55,
+          0.85
+        ]
+      },
+      "body_priors": [
+        "stable base",
+        "direct gesture",
+        "clear stroke hold"
+      ],
+      "face_priors": [
+        "low AU4/7",
+        "low AU23/24"
+      ],
+      "confidence": 0.6,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "deceive",
+      "goal": "cause receiver to adopt a false belief",
+      "effort": {
+        "weight": [
+          0.1,
+          0.9
+        ],
+        "time": [
+          0.1,
+          0.9
+        ],
+        "space_effort": [
+          0.1,
+          0.9
+        ],
+        "flow": [
+          0.1,
+          0.9
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.1,
+          0.9
+        ],
+        "horizontal": [
+          0.1,
+          0.9
+        ],
+        "sagittal": [
+          0.1,
+          0.9
+        ]
+      },
+      "body_priors": [
+        "no universal motor signature"
+      ],
+      "face_priors": [
+        "no deterministic AU signature"
+      ],
+      "confidence": 0.1,
+      "provenance": "CPCS probabilistic prior",
+      "warning": "CPCS may direct fictional performance but must not infer real deception."
+    },
+    {
+      "id": "protect",
+      "goal": "shield self/other/object from threat",
+      "effort": {
+        "weight": [
+          0.55,
+          0.95
+        ],
+        "time": [
+          0.45,
+          1
+        ],
+        "space_effort": [
+          0.65,
+          1
+        ],
+        "flow": [
+          0.65,
+          1
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.35,
+          0.75
+        ],
+        "horizontal": [
+          0.55,
+          0.9
+        ],
+        "sagittal": [
+          0.3,
+          0.75
+        ]
+      },
+      "body_priors": [
+        "interpose body/limb",
+        "expand barrier",
+        "ground support"
+      ],
+      "face_priors": [
+        "AU4",
+        "contextual AU5/7"
+      ],
+      "confidence": 0.65,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "protest",
+      "goal": "publicly oppose action/rule/claim",
+      "effort": {
+        "weight": [
+          0.45,
+          0.9
+        ],
+        "time": [
+          0.45,
+          0.9
+        ],
+        "space_effort": [
+          0.55,
+          0.95
+        ],
+        "flow": [
+          0.45,
+          0.85
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.55,
+          0.9
+        ],
+        "horizontal": [
+          0.55,
+          0.95
+        ],
+        "sagittal": [
+          0.5,
+          0.9
+        ]
+      },
+      "body_priors": [
+        "repeated emphatic strokes",
+        "collective synchrony"
+      ],
+      "face_priors": [
+        "anger or concern motifs",
+        "speech"
+      ],
+      "confidence": 0.45,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "surrender",
+      "goal": "make nonresistance legible and transfer control",
+      "effort": {
+        "weight": [
+          0.05,
+          0.35
+        ],
+        "time": [
+          0.25,
+          0.75
+        ],
+        "space_effort": [
+          0.65,
+          0.95
+        ],
+        "flow": [
+          0.55,
+          0.95
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.55,
+          0.9
+        ],
+        "horizontal": [
+          0.65,
+          1
+        ],
+        "sagittal": [
+          0.25,
+          0.55
+        ]
+      },
+      "body_priors": [
+        "hands visible/open",
+        "object release",
+        "slowed compliance"
+      ],
+      "face_priors": [
+        "gaze monitoring",
+        "fear/concern contextual"
+      ],
+      "confidence": 0.65,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "dominate",
+      "goal": "control hierarchy, space, tempo, or options",
+      "effort": {
+        "weight": [
+          0.55,
+          1
+        ],
+        "time": [
+          0.2,
+          0.85
+        ],
+        "space_effort": [
+          0.65,
+          1
+        ],
+        "flow": [
+          0.55,
+          1
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.65,
+          1
+        ],
+        "horizontal": [
+          0.65,
+          1
+        ],
+        "sagittal": [
+          0.6,
+          1
+        ]
+      },
+      "body_priors": [
+        "occupy space",
+        "control pace",
+        "stable gaze"
+      ],
+      "face_priors": [
+        "low-medium AU4/7",
+        "unilateral AU14 optional"
+      ],
+      "confidence": 0.5,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "read_room",
+      "goal": "sample social state before action",
+      "effort": {
+        "weight": [
+          0.1,
+          0.45
+        ],
+        "time": [
+          0.05,
+          0.4
+        ],
+        "space_effort": [
+          0.05,
+          0.35
+        ],
+        "flow": [
+          0.35,
+          0.75
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.35,
+          0.65
+        ],
+        "horizontal": [
+          0.35,
+          0.65
+        ],
+        "sagittal": [
+          0.35,
+          0.65
+        ]
+      },
+      "body_priors": [
+        "gaze scan",
+        "small head turns",
+        "minimal commitment"
+      ],
+      "face_priors": [
+        "low AU1/2",
+        "low AU4 optional"
+      ],
+      "confidence": 0.6,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "uncertain_aggression",
+      "goal": "pressure while preserving retreat/deniability",
+      "effort": {
+        "weight": [
+          0.45,
+          0.85
+        ],
+        "time": [
+          0.45,
+          0.9
+        ],
+        "space_effort": [
+          0.35,
+          0.8
+        ],
+        "flow": [
+          0.65,
+          1
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.45,
+          0.75
+        ],
+        "horizontal": [
+          0.35,
+          0.7
+        ],
+        "sagittal": [
+          0.45,
+          0.85
+        ]
+      },
+      "body_priors": [
+        "advance-retreat oscillation",
+        "guarded shoulders",
+        "false starts"
+      ],
+      "face_priors": [
+        "AU4+7",
+        "AU20/23 optional"
+      ],
+      "confidence": 0.5,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "reassure",
+      "goal": "increase confidence in safety/competence/predictability",
+      "effort": {
+        "weight": [
+          0.15,
+          0.45
+        ],
+        "time": [
+          0.05,
+          0.35
+        ],
+        "space_effort": [
+          0.55,
+          0.85
+        ],
+        "flow": [
+          0.25,
+          0.6
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.45,
+          0.7
+        ],
+        "horizontal": [
+          0.5,
+          0.8
+        ],
+        "sagittal": [
+          0.45,
+          0.7
+        ]
+      },
+      "body_priors": [
+        "stable posture",
+        "slow nod",
+        "open hand"
+      ],
+      "face_priors": [
+        "low AU6+12",
+        "low AU1"
+      ],
+      "confidence": 0.55,
+      "provenance": "CPCS probabilistic prior"
+    },
+    {
+      "id": "warn",
+      "goal": "draw attention to risk and induce protective action",
+      "effort": {
+        "weight": [
+          0.35,
+          0.8
+        ],
+        "time": [
+          0.6,
+          1
+        ],
+        "space_effort": [
+          0.75,
+          1
+        ],
+        "flow": [
+          0.55,
+          0.9
+        ]
+      },
+      "shape": {
+        "vertical": [
+          0.5,
+          0.85
+        ],
+        "horizontal": [
+          0.45,
+          0.8
+        ],
+        "sagittal": [
+          0.55,
+          0.9
+        ]
+      },
+      "body_priors": [
+        "direct point/stop",
+        "gaze hazard then receiver"
+      ],
+      "face_priors": [
+        "AU1+2+5 or AU4 contextual"
+      ],
+      "confidence": 0.65,
+      "provenance": "CPCS probabilistic prior"
+    }
+  ],
+  "mapping_model": {
+    "factorization": "P(motion | intent, culture, relationship, context, actor, style, camera)",
+    "recommended": "conditional probabilistic graph or retrieval/rerank over exemplars",
+    "not_recommended": "single deterministic lookup"
+  },
+  "culture_policy": {
+    "rules": [
+      "Never call a gesture universal from one dataset.",
+      "Store production and audience culture.",
+      "Use local consultation for high-stakes cross-cultural work.",
+      "Allow no-gesture and alternate realizations."
+    ],
+    "source_ids": [
+      "S033"
+    ]
+  },
+  "dataset_links": [
+    {
+      "name": "BEAT",
+      "use": "conversational gesture/audio/text/emotion",
+      "source_ids": [
+        "S030"
+      ]
+    },
+    {
+      "name": "EMOTE",
+      "use": "effort/shape generation",
+      "source_ids": [
+        "S031"
+      ]
+    },
+    {
+      "name": "BoME",
+      "use": "expert-labeled bodily emotion LMA elements",
+      "source_ids": [
+        "S071"
+      ]
+    },
+    {
+      "name": "BML",
+      "use": "separate planning from realization",
+      "source_ids": [
+        "S013"
+      ]
+    }
+  ],
+  "source_ids": [
+    "S013",
+    "S015",
+    "S030",
+    "S031",
+    "S032",
+    "S033",
+    "S067",
+    "S071"
+  ]
+}

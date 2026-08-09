@@ -1,0 +1,118 @@
+schema_version: cpcs.experiment_plan/1.0
+experiment_id: experiment://failure/evaluator_calibration/1
+title: Failure-aware evaluator calibration
+status: designed_not_run
+blocked_reason: No authorized provider credentials, generation budget, local model weights, or human rating panel were supplied
+  in this session.
+research_question: Which evaluator lanes can reliably observe each failure family, and where is human review mandatory?
+hypothesis: Atomic interval questions plus measured evidence will outperform a single global VLM score, but fast action, occlusion,
+  stylization, and 3D contact will retain material human-review requirements.
+providers:
+- provider: google_vertex_ai
+  model: veo-3.1-generate-001
+  status: candidate_requires_authorization_and_live_profile_check
+- provider: runway
+  model: gen4.5
+  status: candidate_requires_authorization
+- provider: bytedance_seed
+  model: Seedance 2.0 native exact endpoint TBD
+  status: candidate_requires_interface_capture
+- provider: kuaishou
+  model: Kling Video 3.0/Omni exact endpoint TBD
+  status: candidate_requires_interface_capture
+- provider: minimax
+  model: MiniMax-Hailuo-2.3
+  status: candidate_requires_authorization
+- provider: alibaba_model_studio
+  model: wan2.7 exact endpoint by mode
+  status: candidate_requires_region_and_endpoint_pin
+- provider: local
+  model: LTX-2 or Wan2.2 exact checkpoint/workflow
+  status: candidate_requires_weights_and_hardware_workflow
+fixed_factors:
+  dataset: balanced retained CPCS clips with human-adjudicated positive and negative examples
+  strata:
+  - fast action
+  - complete occlusion
+  - reflection
+  - actor crossing
+  - zoom versus translation
+  - anime smear
+  - partial visibility
+  - contact versus near-contact
+  evaluation: blind and version-pinned
+arms:
+- arm_id: EVA_A0
+  label: Single global VLM score
+  isolated_control: aggregate semantic evaluator
+  canonical_semantics: same human labels
+  provider_projection: one full-video prompt
+- arm_id: EVA_A1
+  label: Atomic interval questions
+  isolated_control: scene-graph assertions
+  canonical_semantics: same human labels
+  provider_projection: time-bounded semantic questions
+- arm_id: EVA_A2
+  label: Measured trackers/pose/flow/audio
+  isolated_control: numeric evidence
+  canonical_semantics: same human labels
+  provider_projection: tool-specific extraction
+- arm_id: EVA_A3
+  label: Multilane arbitration
+  isolated_control: semantic + measured + human conflict policy
+  canonical_semantics: same human labels
+  provider_projection: CPCS compliance report
+- arm_id: EVA_A4
+  label: Human-only benchmark
+  isolated_control: reference authority
+  canonical_semantics: same rubric
+  provider_projection: two raters plus adjudicator
+seed_policy:
+  initial_completed_candidates_per_arm: 20
+  open_local_target_per_arm: 30
+  pairing: Use identical seed values within provider where exposed; record retry/sample identifiers when seeds are unavailable.
+  interpretation: Seed pairing reduces one variation source but does not imply identical output or perfect causal isolation.
+  randomization: Randomize arm execution order within provider and batch; do not select best-of-N for the primary analysis.
+metrics:
+- metric_evaluator_calibration
+- metric_human_agreement
+- metric_false_positive_rate
+- metric_false_negative_rate
+- metric_cut_flash_classification
+critical_assertions:
+- report per-family confusion matrix
+- preserve unobservable state
+- no confidence averaging across opposing lanes
+- human review required for critical unresolved conflicts
+human_review:
+  required: true
+  minimum_reviewers: 2
+  blind_to_arm: true
+  adjudication: A third reviewer adjudicates disagreement on any critical assertion; preserve all original labels.
+retention:
+  retain_all_outputs: true
+  retain_failed_outputs: true
+  required_lineage:
+  - canonical_score
+  - provider_build
+  - request
+  - assets
+  - provider/model/version
+  - seed_or_retry
+  - artifact
+  - evaluators
+  - human_labels
+  - cost
+  - latency
+analysis:
+  binary_outcomes: Per-arm success proportion with Wilson 95% confidence interval; paired analysis where pairing is valid.
+  continuous_outcomes: Median, distribution, and bootstrap 95% interval; report failed intervals, not only aggregate means.
+  multiple_comparisons: Holm correction within each family; predeclare the primary contrast.
+  decision_rule: Promote only when the isolated intervention improves the critical success distribution and does not increase
+    another critical failure beyond its pre-registered margin.
+stop_conditions:
+- Provider/interface/version changes during the campaign.
+- Prompt rewrite or enhancement behavior cannot be disabled or captured consistently.
+- Evaluator calibration falls below the pre-registered requirement.
+- Artifact/request/asset lineage is incomplete.
+- A safety, rights, or budget condition is violated.

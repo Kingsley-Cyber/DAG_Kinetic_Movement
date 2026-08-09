@@ -1,0 +1,6 @@
+{"id": "map_shape_vertical_v1", "from": "shape.vertical.signed", "to": "shape.vertical.unit", "formula": "(x+1)/2", "status": "CPCS_CONVENTION", "version": "1.0.0"}
+{"id": "map_facs_letter_unit_v1", "from": "FACS intensity 0/A/B/C/D/E", "to": "unit intensity", "mapping": {"0": 0, "A": 0.2, "B": 0.4, "C": 0.6, "D": 0.8, "E": 1}, "status": "CPCS_CONVENTION", "warning": "ordinal, not equal psychometric intervals"}
+{"id": "map_vad_arousal_motion_v1", "from": "VAD.arousal", "to": ["event_density", "speed", "acceleration", "hold_length inverse"], "status": "EMPIRICAL_PRIOR", "confidence": 0.65, "source_ids": ["S032", "S071"]}
+{"id": "map_effort_weight_force_v1", "from": "LMA.Weight", "to": "perceived_force_profile", "status": "NON_EQUIVALENCE", "warning": "never map directly to N"}
+{"id": "map_phase_bml_v1", "from": "CPCS phases", "to": "BML syncpoints", "mapping": {"initiation": "start", "preparation": "ready/stroke_start", "stroke": "stroke", "overshoot": "stroke_end", "recovery": "relax", "settle": "end"}, "status": "CPCS_CONVENTION", "source_ids": ["S013"]}
+{"id": "map_model_surface_v1", "from": "canonical control", "to": "native/reference/prompt/postprocess", "status": "CPCS_CONVENTION", "dynamic": true, "ttl_days": 30}

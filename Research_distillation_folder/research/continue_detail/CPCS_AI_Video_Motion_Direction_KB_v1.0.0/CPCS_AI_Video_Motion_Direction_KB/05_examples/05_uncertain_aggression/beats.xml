@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<cpcs-sequence scene-id="ex_uncertain_aggression_01" version="1.0.0" duration="7">
+  <beat id="read" start="0" end="2">
+    <purpose>Actor scans receiver and exit</purpose>
+    <event ref="gaze_actor_b" />
+    <event ref="gaze_exit" />
+  </beat>
+  <beat id="pressure" start="2" end="4.3">
+    <purpose>Slow advance with bound shoulders</purpose>
+    <event ref="approach" />
+    <event ref="micro_pause_1" />
+  </beat>
+  <beat id="false_start" start="4.3" end="5.8">
+    <purpose>Abrupt half-step stops short and partially retreats</purpose>
+    <event ref="mp_false_start" />
+    <event ref="micro_pause_2" />
+  </beat>
+  <beat id="hold" start="5.8" end="7">
+    <purpose>Unresolved watchful stance</purpose>
+    <event ref="no_contact" />
+    <event ref="gaze_shift" />
+  </beat>
+</cpcs-sequence>

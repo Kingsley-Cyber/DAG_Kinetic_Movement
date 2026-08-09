@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/cpcs/schema/interaction/1.0.0",
+  "title": "CPCS Interaction",
+  "type": "object",
+  "properties": {
+    "interaction_id": {
+      "type": "string"
+    },
+    "predicate": {
+      "type": "string"
+    },
+    "agent_id": {
+      "type": "string"
+    },
+    "patient_id": {
+      "type": "string"
+    },
+    "instrument_id": {
+      "type": "string"
+    },
+    "t_start_s": {
+      "type": "number",
+      "minimum": 0
+    },
+    "t_end_s": {
+      "type": "number",
+      "minimum": 0
+    },
+    "agent_body_parts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "patient_parts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "contact_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "force_N": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "impulse_Ns": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "duration_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "contact_area_m2": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "friction_coefficient": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "compliance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "resistance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "preconditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "effects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "provenance_class": {
+          "enum": [
+            "ESTABLISHED",
+            "EMPIRICAL",
+            "PRACTICE",
+            "CPCS_CONVENTION",
+            "UNVERIFIED"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{3}$"
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "measurement_status": {
+          "enum": [
+            "measured",
+            "annotated",
+            "inverse_dynamics_estimate",
+            "model_inference",
+            "visual_proxy",
+            "prompt_prior",
+            "generated"
+          ]
+        },
+        "uncertainty_note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "provenance_class"
+      ],
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "interaction_id",
+    "predicate",
+    "agent_id",
+    "patient_id",
+    "t_start_s",
+    "t_end_s"
+  ],
+  "unevaluatedProperties": false
+}

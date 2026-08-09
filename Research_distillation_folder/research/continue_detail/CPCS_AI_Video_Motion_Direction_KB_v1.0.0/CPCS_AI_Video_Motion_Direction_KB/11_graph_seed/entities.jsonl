@@ -1,0 +1,263 @@
+{"entity_id": "topic:T01", "type": "Topic", "label": "Laban BESS", "attributes": {"topic_number": 1}}
+{"entity_id": "topic:T02", "type": "Topic", "label": "Bartenieff Connectivity", "attributes": {"topic_number": 2}}
+{"entity_id": "topic:T03", "type": "Topic", "label": "Motion Phase Grammar", "attributes": {"topic_number": 3}}
+{"entity_id": "topic:T04", "type": "Topic", "label": "FACS", "attributes": {"topic_number": 4}}
+{"entity_id": "topic:T05", "type": "Topic", "label": "Kinematics", "attributes": {"topic_number": 5}}
+{"entity_id": "topic:T06", "type": "Topic", "label": "Intent Vocabulary", "attributes": {"topic_number": 6}}
+{"entity_id": "topic:T07", "type": "Topic", "label": "Interaction Predicates", "attributes": {"topic_number": 7}}
+{"entity_id": "topic:T08", "type": "Topic", "label": "Force Dynamics", "attributes": {"topic_number": 8}}
+{"entity_id": "topic:T09", "type": "Topic", "label": "Camera Grammar", "attributes": {"topic_number": 9}}
+{"entity_id": "topic:T10", "type": "Topic", "label": "Rhythm", "attributes": {"topic_number": 10}}
+{"entity_id": "topic:T11", "type": "Topic", "label": "VAD Trajectories", "attributes": {"topic_number": 11}}
+{"entity_id": "topic:T12", "type": "Topic", "label": "Motion Style Transfer", "attributes": {"topic_number": 12}}
+{"entity_id": "topic:T13", "type": "Topic", "label": "Computational Laban", "attributes": {"topic_number": 13}}
+{"entity_id": "topic:T14", "type": "Topic", "label": "AI Video Control Surfaces", "attributes": {"topic_number": 14}}
+{"entity_id": "source:S001", "type": "Source", "label": "Movement Analysis Overview", "attributes": {"year": 2026, "authority": "primary_professional_body", "url": "https://labaninternational.org/scope-of-practice/movement-analysis/movement-analysis-overview/"}}
+{"entity_id": "source:S002", "type": "Source", "label": "Body Movement: Coping with the Environment", "attributes": {"year": 1980, "authority": "foundational_text", "url": "https://books.google.com/books/about/Body_Movement.html?id=mWZGAQAAQBAJ"}}
+{"entity_id": "source:S003", "type": "Source", "label": "Making Connections: Total Body Integration Through Bartenieff Fundamentals", "attributes": {"year": 2002, "authority": "foundational_practice_text", "url": "https://books.google.com/books/about/Making_Connections.html?id=hICNAgAAQBAJ"}}
+{"entity_id": "source:S004", "type": "Source", "label": "Effort: Economy of Human Movement", "attributes": {"year": 1947, "authority": "foundational_text", "url": "https://archive.org/details/efforteconomyofh0000laba"}}
+{"entity_id": "source:S005", "type": "Source", "label": "LabanWriter", "attributes": {"year": 2026, "authority": "official_software", "url": "https://dance.osu.edu/research/dnb/laban-writer"}}
+{"entity_id": "source:S006", "type": "Source", "label": "AI-driven Human Motion Classification and Analysis using Laban Movement System", "attributes": {"year": 2022, "authority": "peer_reviewed", "url": "https://research.dwi.ufl.edu/file.php?f=guo_hcii2022.pdf"}}
+{"entity_id": "source:S007", "type": "Source", "label": "Laban Effort and Shape Analysis of Affective Hand and Arm Movements", "attributes": {"year": 2013, "authority": "peer_reviewed", "url": "https://doi.org/10.1109/ACII.2013.63"}}
+{"entity_id": "source:S008", "type": "Source", "label": "Assessing the Reliability of the Laban Movement Analysis System", "attributes": {"year": 2019, "authority": "peer_reviewed", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6564005/"}}
+{"entity_id": "source:S009", "type": "Source", "label": "An XML Representation of Labanotation, LabanXML, and Its Implementation on the Notation Editor LabanEditor2", "attributes": {"year": 2006, "authority": "peer_reviewed", "url": "https://elib.mi.sanu.ac.rs/files/journals/ncd/9/ncd09047.pdf"}}
+{"entity_id": "source:S010", "type": "Source", "label": "MovementXML: A Representation of Semantics of Human Movement Based on Labanotation", "attributes": {"year": 2006, "authority": "academic_thesis", "url": "https://summit.sfu.ca/item/2741"}}
+{"entity_id": "source:S011", "type": "Source", "label": "A Labanotation Based Ontology for Representing Dance Movement", "attributes": {"year": 2012, "authority": "peer_reviewed", "url": "https://doi.org/10.1007/978-3-642-34182-3_10"}}
+{"entity_id": "source:S012", "type": "Source", "label": "MoRTELaban: A Neurosymbolic Framework for Motion Representation Through Laban Movement Analysis", "attributes": {"year": 2025, "authority": "peer_reviewed", "url": "https://doi.org/10.1145/3708319.3734180"}}
+{"entity_id": "source:S013", "type": "Source", "label": "Behavior Markup Language 1.0 Specification", "attributes": {"year": 2011, "authority": "technical_standard", "url": "https://projects.cs.ru.is/projects/behavior-markup-language/wiki"}}
+{"entity_id": "source:S014", "type": "Source", "label": "Gesture Phases", "attributes": {"year": 2026, "authority": "academic_reference", "url": "https://mcneilllab.uchicago.edu/research/gesture-phases/"}}
+{"entity_id": "source:S015", "type": "Source", "label": "Gesture: Visible Action as Utterance", "attributes": {"year": 2004, "authority": "foundational_research_text", "url": "https://doi.org/10.1017/CBO9780511807572"}}
+{"entity_id": "source:S016", "type": "Source", "label": "The Illusion of Life: Disney Animation", "attributes": {"year": 1981, "authority": "foundational_practice_text", "url": "https://archive.org/details/illusionoflifedi0000thom"}}
+{"entity_id": "source:S017", "type": "Source", "label": "Facial Action Coding System, 2nd ed.", "attributes": {"year": 2002, "authority": "definitive_manual", "url": "https://www.paulekman.com/facial-action-coding-system/"}}
+{"entity_id": "source:S018", "type": "Source", "label": "Recognizing Action Units for Facial Expression Analysis", "attributes": {"year": 2001, "authority": "peer_reviewed", "url": "https://www.cs.cmu.edu/~face/Papers/Tian_face03.pdf"}}
+{"entity_id": "source:S019", "type": "Source", "label": "OpenFace Action Units Documentation", "attributes": {"year": 2026, "authority": "official_open_source", "url": "https://github.com/TadasBaltrusaitis/OpenFace/wiki/Action-Units"}}
+{"entity_id": "source:S020", "type": "Source", "label": "Automatic Recognition of Facial Actions in Spontaneous Expressions", "attributes": {"year": 2006, "authority": "peer_reviewed", "url": "https://mplab.ucsd.edu/46/media/Bartlett_JMM06.pdf"}}
+{"entity_id": "source:S021", "type": "Source", "label": "Compound Facial Expressions of Emotion", "attributes": {"year": 2014, "authority": "peer_reviewed", "url": "https://doi.org/10.1073/pnas.1322355111"}}
+{"entity_id": "source:S022", "type": "Source", "label": "The Face of Pain: Evidence for a Core Configuration", "attributes": {"year": 2008, "authority": "peer_reviewed", "url": "https://doi.org/10.1016/j.pain.2007.09.010"}}
+{"entity_id": "source:S023", "type": "Source", "label": "Pain Recognition Based on Joint Feature Selection and Nonlinear Modeling of Facial Expressions", "attributes": {"year": 2012, "authority": "peer_reviewed", "url": "https://ibug.doc.ic.ac.uk/media/uploads/documents/74320368.pdf"}}
+{"entity_id": "source:S024", "type": "Source", "label": "OpenCap: Human Movement Dynamics from Smartphone Videos", "attributes": {"year": 2023, "authority": "peer_reviewed", "url": "https://doi.org/10.1371/journal.pcbi.1011462"}}
+{"entity_id": "source:S025", "type": "Source", "label": "Pose2Sim: An Open-Source Python Package for Multiview Markerless Kinematics", "attributes": {"year": 2022, "authority": "peer_reviewed_open_source", "url": "https://doi.org/10.21105/joss.04362"}}
+{"entity_id": "source:S026", "type": "Source", "label": "OpenSim: Open-Source Software to Create and Analyze Dynamic Simulations of Movement", "attributes": {"year": 2007, "authority": "peer_reviewed", "url": "https://doi.org/10.1109/TBME.2007.901024"}}
+{"entity_id": "source:S027", "type": "Source", "label": "Biomechanics and Motor Control of Human Movement, 4th ed.", "attributes": {"year": 2009, "authority": "foundational_biomechanics", "url": "https://doi.org/10.1002/9780470549148"}}
+{"entity_id": "source:S028", "type": "Source", "label": "Biomechanics of the Head for Olympic Boxer Punches to the Face", "attributes": {"year": 2005, "authority": "peer_reviewed", "url": "https://doi.org/10.1136/bjsm.2004.014126"}}
+{"entity_id": "source:S029", "type": "Source", "label": "Biomechanics of the Taekwondo Axe Kick: A Review", "attributes": {"year": 2015, "authority": "peer_reviewed", "url": "https://www.redalyc.org/pdf/3010/301042304013.pdf"}}
+{"entity_id": "source:S030", "type": "Source", "label": "BEAT: A Large-Scale Semantic and Emotional Multi-Modal Dataset for Conversational Gestures Synthesis", "attributes": {"year": 2022, "authority": "peer_reviewed_dataset", "url": "https://arxiv.org/abs/2203.05297"}}
+{"entity_id": "source:S031", "type": "Source", "label": "The EMOTE Model for Effort and Shape", "attributes": {"year": 2000, "authority": "peer_reviewed", "url": "https://doi.org/10.1145/344779.352172"}}
+{"entity_id": "source:S032", "type": "Source", "label": "Emotion Analysis and Classification Using LMA Entities", "attributes": {"year": 2015, "authority": "peer_reviewed", "url": "https://doi.org/10.1111/cgf.12598"}}
+{"entity_id": "source:S033", "type": "Source", "label": "Cross-Cultural Variation of Speech-Accompanying Gesture: A Review", "attributes": {"year": 2009, "authority": "peer_reviewed", "url": "https://doi.org/10.1075/gest.9.2.03kit"}}
+{"entity_id": "source:S034", "type": "Source", "label": "HICO-DET: A Benchmark for Recognizing Human-Object Interactions in Images", "attributes": {"year": 2018, "authority": "peer_reviewed_dataset", "url": "https://www-personal.umich.edu/~ywchao/hico/"}}
+{"entity_id": "source:S035", "type": "Source", "label": "BABEL: Bodies, Action and Behavior with English Labels", "attributes": {"year": 2021, "authority": "peer_reviewed_dataset", "url": "https://babel.is.tue.mpg.de/"}}
+{"entity_id": "source:S036", "type": "Source", "label": "Inter-X: Towards Versatile Human-Human Interaction Analysis", "attributes": {"year": 2023, "authority": "peer_reviewed_dataset", "url": "https://liangxuy.github.io/inter-x/"}}
+{"entity_id": "source:S037", "type": "Source", "label": "InterGen: Diffusion-Based Multi-Human Motion Generation Under Complex Interactions", "attributes": {"year": 2023, "authority": "peer_reviewed_open_source", "url": "https://github.com/tr3e/InterGen"}}
+{"entity_id": "source:S038", "type": "Source", "label": "Contact-Guided Human-Object Interaction Synthesis", "attributes": {"year": 2024, "authority": "peer_reviewed", "url": "https://arxiv.org/abs/2311.16097"}}
+{"entity_id": "source:S039", "type": "Source", "label": "Kinetic-Chain Evidence for Overarm Striking", "attributes": {"year": 2020, "authority": "evidence_bundle", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=kinetic+chain+striking+review"}}
+{"entity_id": "source:S040", "type": "Source", "label": "Film Art: An Introduction", "attributes": {"year": 2020, "authority": "foundational_film_text", "url": "https://www.mheducation.com/highered/product/film-art-an-introduction-bordwell.html"}}
+{"entity_id": "source:S041", "type": "Source", "label": "Cutting Rhythms: Intuitive Film Editing, 2nd ed.", "attributes": {"year": 2016, "authority": "film_practice_research", "url": "https://www.routledge.com/Cutting-Rhythms-Intuitive-Film-Editing/Pearlman/p/book/9781138856516"}}
+{"entity_id": "source:S042", "type": "Source", "label": "Camera Movements and Viewer Motor Cognition", "attributes": {"year": 2019, "authority": "peer_reviewed", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6616767/"}}
+{"entity_id": "source:S043", "type": "Source", "label": "The 30-Degree Rule and Perceptual Continuity", "attributes": {"year": 2013, "authority": "peer_reviewed", "url": "https://doi.org/10.1177/2041669513505974"}}
+{"entity_id": "source:S044", "type": "Source", "label": "AnimeInterp: Open-Domain Interpolation for 2D Animation", "attributes": {"year": 2021, "authority": "peer_reviewed", "url": "https://arxiv.org/abs/2104.02495"}}
+{"entity_id": "source:S045", "type": "Source", "label": "AIST++ Dance Motion Dataset", "attributes": {"year": 2021, "authority": "peer_reviewed_dataset", "url": "https://google.github.io/aistplusplus_dataset/"}}
+{"entity_id": "source:S046", "type": "Source", "label": "A Circumplex Model of Affect", "attributes": {"year": 1980, "authority": "foundational_peer_reviewed", "url": "https://doi.org/10.1037/h0077714"}}
+{"entity_id": "source:S047", "type": "Source", "label": "Norms of Valence, Arousal, and Dominance for 13,915 English Lemmas", "attributes": {"year": 2013, "authority": "peer_reviewed_dataset", "url": "https://doi.org/10.3758/s13428-012-0314-x"}}
+{"entity_id": "source:S048", "type": "Source", "label": "Obtaining Reliable Human Ratings of Valence, Arousal, and Dominance for 20,000 English Words", "attributes": {"year": 2018, "authority": "peer_reviewed_dataset", "url": "https://doi.org/10.18653/v1/P18-1017"}}
+{"entity_id": "source:S049", "type": "Source", "label": "NRC VAD Lexicon v2", "attributes": {"year": 2025, "authority": "official_dataset", "url": "https://saifmohammad.com/WebPages/nrc-vad.html"}}
+{"entity_id": "source:S050", "type": "Source", "label": "Unpaired Motion Style Transfer from Video to Animation", "attributes": {"year": 2020, "authority": "peer_reviewed", "url": "https://arxiv.org/abs/2005.05751"}}
+{"entity_id": "source:S051", "type": "Source", "label": "Motion Puzzle: Arbitrary Motion Style Transfer by Body Part", "attributes": {"year": 2022, "authority": "peer_reviewed", "url": "https://doi.org/10.1145/3528223.3530116"}}
+{"entity_id": "source:S052", "type": "Source", "label": "A Deep Learning Framework for Character Motion Synthesis and Editing", "attributes": {"year": 2016, "authority": "peer_reviewed", "url": "https://doi.org/10.1145/2897824.2925975"}}
+{"entity_id": "source:S053", "type": "Source", "label": "Generate Videos with Veo 3.1 in the Gemini API", "attributes": {"year": 2026, "authority": "official_current", "url": "https://ai.google.dev/gemini-api/docs/veo"}}
+{"entity_id": "source:S054", "type": "Source", "label": "Kling VIDEO 3.0 Model User Guide", "attributes": {"year": 2026, "authority": "official_current", "url": "https://app.klingai.com/global/quickstart/klingai-video-3-model-user-guide"}}
+{"entity_id": "source:S055", "type": "Source", "label": "Creating with Gen-4.5", "attributes": {"year": 2026, "authority": "official_current", "url": "https://help.runwayml.com/hc/en-us/articles/46974685288467-Creating-with-Gen-4-5"}}
+{"entity_id": "source:S056", "type": "Source", "label": "Performance Capture with Act-Two", "attributes": {"year": 2026, "authority": "official_current", "url": "https://help.runwayml.com/hc/en-us/articles/42311337895827-Performance-Capture-with-Act-Two"}}
+{"entity_id": "source:S057", "type": "Source", "label": "Ray 3.2 Controls & Workflows In Depth", "attributes": {"year": 2026, "authority": "official_current", "url": "https://lumalabs.ai/learning-center/articles/ray-3-2-controls-and-workflows-in-depth"}}
+{"entity_id": "source:S058", "type": "Source", "label": "Ray 3.2 Prompting, Outputs & Controls", "attributes": {"year": 2026, "authority": "official_current", "url": "https://lumalabs.ai/learning-center/articles/ray-3-2-prompting-outputs-and-controls"}}
+{"entity_id": "source:S059", "type": "Source", "label": "Match Camera Motion to Reference Video", "attributes": {"year": 2026, "authority": "official_current", "url": "https://helpx.adobe.com/firefly/web/work-with-audio-and-video/work-with-video/match-camera-motion-to-reference-video.html"}}
+{"entity_id": "source:S060", "type": "Source", "label": "Generate Videos Using Text Prompts and Images", "attributes": {"year": 2026, "authority": "official_current", "url": "https://helpx.adobe.com/firefly/web/work-with-audio-and-video/work-with-video/generate-videos-using-text-prompts.html"}}
+{"entity_id": "source:S061", "type": "Source", "label": "What to Know About the Sora Discontinuation", "attributes": {"year": 2026, "authority": "official_current", "url": "https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation"}}
+{"entity_id": "source:S062", "type": "Source", "label": "Sora 2 Model Reference (Legacy)", "attributes": {"year": 2025, "authority": "official_legacy", "url": "https://platform.openai.com/docs/models/sora-2"}}
+{"entity_id": "source:S063", "type": "Source", "label": "OpenPose: Realtime Multi-Person 2D Pose Estimation Using Part Affinity Fields", "attributes": {"year": 2019, "authority": "peer_reviewed_open_source", "url": "https://doi.org/10.1109/TPAMI.2019.2929257"}}
+{"entity_id": "source:S064", "type": "Source", "label": "MediaPipe Pose Landmarker", "attributes": {"year": 2026, "authority": "official_current", "url": "https://ai.google.dev/edge/mediapipe/solutions/vision/pose_landmarker"}}
+{"entity_id": "source:S065", "type": "Source", "label": "AMASS: Archive of Motion Capture as Surface Shapes", "attributes": {"year": 2019, "authority": "peer_reviewed_dataset", "url": "https://amass.is.tue.mpg.de/"}}
+{"entity_id": "source:S066", "type": "Source", "label": "HumanAct12", "attributes": {"year": 2020, "authority": "peer_reviewed_dataset", "url": "https://ericguo5513.github.io/action-to-motion/"}}
+{"entity_id": "source:S067", "type": "Source", "label": "Affective Movement Generation Using Laban Effort and Shape and Hidden Markov Models", "attributes": {"year": 2020, "authority": "academic_preprint", "url": "https://arxiv.org/abs/2006.06071"}}
+{"entity_id": "source:S068", "type": "Source", "label": "ProMPs: Probabilistic Movement Primitives", "attributes": {"year": 2013, "authority": "peer_reviewed", "url": "https://doi.org/10.1162/NECO_a_00589"}}
+{"entity_id": "source:S069", "type": "Source", "label": "MagicFace: High-Fidelity Facial Expression Editing with Action-Unit Control", "attributes": {"year": 2025, "authority": "academic_preprint", "url": "https://arxiv.org/abs/2501.02260"}}
+{"entity_id": "source:S070", "type": "Source", "label": "Video-Based Facial Micro-Expression Analysis: A Survey of Datasets, Features and Algorithms", "attributes": {"year": 2022, "authority": "peer_reviewed", "url": "https://doi.org/10.1109/TPAMI.2021.3067464"}}
+{"entity_id": "source:S071", "type": "Source", "label": "Bodily Expressed Emotion Understanding Through Integrating Laban Movement Analysis", "attributes": {"year": 2023, "authority": "peer_reviewed_open_dataset", "url": "https://arxiv.org/abs/2304.02187"}}
+{"entity_id": "source:S072", "type": "Source", "label": "LaMoGen: Laban Movement-Guided Diffusion for Text-to-Motion Generation", "attributes": {"year": 2025, "authority": "academic_preprint", "url": "https://arxiv.org/abs/2509.24469"}}
+{"entity_id": "source:S073", "type": "Source", "label": "Semantic Segmentation of Motion Capture Using Laban Movement Analysis", "attributes": {"year": 2007, "authority": "peer_reviewed", "url": "https://doi.org/10.1007/978-3-540-74997-4_4"}}
+{"entity_id": "source:S074", "type": "Source", "label": "Laban Movement Analysis Using a Bayesian Model and Perspective Projections", "attributes": {"year": 2008, "authority": "peer_reviewed", "url": "https://doi.org/10.5772/6037"}}
+{"entity_id": "source:S075", "type": "Source", "label": "Dynamic Gesture Recognition with Laban Movement Analysis and Hidden Markov Models", "attributes": {"year": 2017, "authority": "peer_reviewed", "url": "https://doi.org/10.1186/s13640-017-0202-5"}}
+{"entity_id": "source:S076", "type": "Source", "label": "Kling VIDEO 3.0 Omni Model User Guide", "attributes": {"year": 2026, "authority": "official_current", "url": "https://app.klingai.com/global/quickstart/klingai-video-3-omni-model-user-guide"}}
+{"entity_id": "laban:BESS", "type": "Framework", "label": "Body Effort Shape Space", "attributes": {}}
+{"entity_id": "laban:Body", "type": "LabanCategory", "label": "Body", "attributes": {}}
+{"entity_id": "laban:Effort", "type": "LabanCategory", "label": "Effort", "attributes": {}}
+{"entity_id": "laban:Shape", "type": "LabanCategory", "label": "Shape", "attributes": {}}
+{"entity_id": "laban:Space", "type": "LabanCategory", "label": "Space", "attributes": {}}
+{"entity_id": "bartenieff:BasicSix", "type": "Inventory", "label": "Basic Six exercises", "attributes": {}}
+{"entity_id": "bartenieff:Connectivity", "type": "Inventory", "label": "Patterns of Total Body Connectivity", "attributes": {}}
+{"entity_id": "cpcs:PhaseGrammar", "type": "CPCSConvention", "label": "Seven-phase motion grammar", "attributes": {}}
+{"entity_id": "facs:FACS", "type": "Framework", "label": "Facial Action Coding System", "attributes": {}}
+{"entity_id": "physics:Kinematics", "type": "Domain", "label": "Kinematics", "attributes": {}}
+{"entity_id": "cpcs:Intent", "type": "Layer", "label": "Intent layer", "attributes": {}}
+{"entity_id": "cpcs:Interaction", "type": "Layer", "label": "Interaction layer", "attributes": {}}
+{"entity_id": "physics:ForceDynamics", "type": "Domain", "label": "Force dynamics", "attributes": {}}
+{"entity_id": "film:CameraGrammar", "type": "Domain", "label": "Camera grammar", "attributes": {}}
+{"entity_id": "cpcs:Rhythm", "type": "Layer", "label": "Rhythm layer", "attributes": {}}
+{"entity_id": "affect:VAD", "type": "Framework", "label": "Valence Arousal Dominance", "attributes": {}}
+{"entity_id": "cpcs:StyleTransform", "type": "Layer", "label": "Motion style transform", "attributes": {}}
+{"entity_id": "cpcs:LabanDetector", "type": "ProposedSystem", "label": "Computational Laban detector", "attributes": {}}
+{"entity_id": "cpcs:ModelAdapter", "type": "Layer", "label": "AI video model adapter", "attributes": {}}
+{"entity_id": "effort:weight", "type": "EffortDimension", "label": "weight", "attributes": {"negative": "light", "positive": "strong"}}
+{"entity_id": "effort:time", "type": "EffortDimension", "label": "time", "attributes": {"negative": "sustained", "positive": "sudden"}}
+{"entity_id": "effort:space_effort", "type": "EffortDimension", "label": "space_effort", "attributes": {"negative": "indirect", "positive": "direct"}}
+{"entity_id": "effort:flow", "type": "EffortDimension", "label": "flow", "attributes": {"negative": "free", "positive": "bound"}}
+{"entity_id": "effort_action:float", "type": "BasicEffortAction", "label": "float", "attributes": {}}
+{"entity_id": "effort_action:punch", "type": "BasicEffortAction", "label": "punch", "attributes": {}}
+{"entity_id": "effort_action:glide", "type": "BasicEffortAction", "label": "glide", "attributes": {}}
+{"entity_id": "effort_action:slash", "type": "BasicEffortAction", "label": "slash", "attributes": {}}
+{"entity_id": "effort_action:dab", "type": "BasicEffortAction", "label": "dab", "attributes": {}}
+{"entity_id": "effort_action:wring", "type": "BasicEffortAction", "label": "wring", "attributes": {}}
+{"entity_id": "effort_action:flick", "type": "BasicEffortAction", "label": "flick", "attributes": {}}
+{"entity_id": "effort_action:press", "type": "BasicEffortAction", "label": "press", "attributes": {}}
+{"entity_id": "connectivity:breath", "type": "ConnectivityPattern", "label": "breath", "attributes": {}}
+{"entity_id": "connectivity:core_distal", "type": "ConnectivityPattern", "label": "core_distal", "attributes": {}}
+{"entity_id": "connectivity:head_tail", "type": "ConnectivityPattern", "label": "head_tail", "attributes": {}}
+{"entity_id": "connectivity:upper_lower", "type": "ConnectivityPattern", "label": "upper_lower", "attributes": {}}
+{"entity_id": "connectivity:body_half", "type": "ConnectivityPattern", "label": "body_half", "attributes": {}}
+{"entity_id": "connectivity:cross_lateral", "type": "ConnectivityPattern", "label": "cross_lateral", "attributes": {}}
+{"entity_id": "phase:initiation", "type": "MotionPhase", "label": "initiation", "attributes": {"order": 1, "provenance_class": "CPCS_CONVENTION"}}
+{"entity_id": "phase:preparation", "type": "MotionPhase", "label": "preparation", "attributes": {"order": 2, "provenance_class": "CPCS_CONVENTION"}}
+{"entity_id": "phase:acceleration", "type": "MotionPhase", "label": "acceleration", "attributes": {"order": 3, "provenance_class": "CPCS_CONVENTION"}}
+{"entity_id": "phase:stroke", "type": "MotionPhase", "label": "stroke", "attributes": {"order": 4, "provenance_class": "CPCS_CONVENTION"}}
+{"entity_id": "phase:overshoot", "type": "MotionPhase", "label": "overshoot", "attributes": {"order": 5, "provenance_class": "CPCS_CONVENTION"}}
+{"entity_id": "phase:recovery", "type": "MotionPhase", "label": "recovery", "attributes": {"order": 6, "provenance_class": "CPCS_CONVENTION"}}
+{"entity_id": "phase:settle", "type": "MotionPhase", "label": "settle", "attributes": {"order": 7, "provenance_class": "CPCS_CONVENTION"}}
+{"entity_id": "intent:threaten", "type": "CreativeIntent", "label": "threaten", "attributes": {"goal": "increase expected cost of noncompliance", "confidence": 0.55}}
+{"entity_id": "intent:comfort", "type": "CreativeIntent", "label": "comfort", "attributes": {"goal": "reduce distress and signal safety", "confidence": 0.55}}
+{"entity_id": "intent:seduce", "type": "CreativeIntent", "label": "seduce", "attributes": {"goal": "invite intimacy while preserving optionality", "confidence": 0.35}}
+{"entity_id": "intent:hesitate", "type": "CreativeIntent", "label": "hesitate", "attributes": {"goal": "delay commitment while evaluating alternatives", "confidence": 0.65}}
+{"entity_id": "intent:celebrate", "type": "CreativeIntent", "label": "celebrate", "attributes": {"goal": "display positive outcome and recruit shared attention", "confidence": 0.7}}
+{"entity_id": "intent:hide", "type": "CreativeIntent", "label": "hide", "attributes": {"goal": "reduce detectability of self/object/information/emotion", "confidence": 0.55}}
+{"entity_id": "intent:challenge", "type": "CreativeIntent", "label": "challenge", "attributes": {"goal": "test status, competence, or boundary", "confidence": 0.55}}
+{"entity_id": "intent:submit", "type": "CreativeIntent", "label": "submit", "attributes": {"goal": "yield status/control", "confidence": 0.45}}
+{"entity_id": "intent:invite", "type": "CreativeIntent", "label": "invite", "attributes": {"goal": "open a path for participation/approach", "confidence": 0.6}}
+{"entity_id": "intent:dismiss", "type": "CreativeIntent", "label": "dismiss", "attributes": {"goal": "terminate relevance or interaction", "confidence": 0.55}}
+{"entity_id": "intent:assert", "type": "CreativeIntent", "label": "assert", "attributes": {"goal": "state/enact boundary or claim confidently", "confidence": 0.6}}
+{"entity_id": "intent:deceive", "type": "CreativeIntent", "label": "deceive", "attributes": {"goal": "cause receiver to adopt a false belief", "confidence": 0.1}}
+{"entity_id": "intent:protect", "type": "CreativeIntent", "label": "protect", "attributes": {"goal": "shield self/other/object from threat", "confidence": 0.65}}
+{"entity_id": "intent:protest", "type": "CreativeIntent", "label": "protest", "attributes": {"goal": "publicly oppose action/rule/claim", "confidence": 0.45}}
+{"entity_id": "intent:surrender", "type": "CreativeIntent", "label": "surrender", "attributes": {"goal": "make nonresistance legible and transfer control", "confidence": 0.65}}
+{"entity_id": "intent:dominate", "type": "CreativeIntent", "label": "dominate", "attributes": {"goal": "control hierarchy, space, tempo, or options", "confidence": 0.5}}
+{"entity_id": "intent:read_room", "type": "CreativeIntent", "label": "read_room", "attributes": {"goal": "sample social state before action", "confidence": 0.6}}
+{"entity_id": "intent:uncertain_aggression", "type": "CreativeIntent", "label": "uncertain_aggression", "attributes": {"goal": "pressure while preserving retreat/deniability", "confidence": 0.5}}
+{"entity_id": "intent:reassure", "type": "CreativeIntent", "label": "reassure", "attributes": {"goal": "increase confidence in safety/competence/predictability", "confidence": 0.55}}
+{"entity_id": "intent:warn", "type": "CreativeIntent", "label": "warn", "attributes": {"goal": "draw attention to risk and induce protective action", "confidence": 0.65}}
+{"entity_id": "predicate:support", "type": "InteractionPredicate", "label": "support", "attributes": {"definition": "maintain load/stability"}}
+{"entity_id": "predicate:touch", "type": "InteractionPredicate", "label": "touch", "attributes": {"definition": "non-load-bearing contact"}}
+{"entity_id": "predicate:contact", "type": "InteractionPredicate", "label": "contact", "attributes": {"definition": "generic physical contact"}}
+{"entity_id": "predicate:grasp", "type": "InteractionPredicate", "label": "grasp", "attributes": {"definition": "constrain target against free separation"}}
+{"entity_id": "predicate:hold", "type": "InteractionPredicate", "label": "hold", "attributes": {"definition": "maintain grasp/support"}}
+{"entity_id": "predicate:release", "type": "InteractionPredicate", "label": "release", "attributes": {"definition": "terminate contact constraint"}}
+{"entity_id": "predicate:push", "type": "InteractionPredicate", "label": "push", "attributes": {"definition": "apply force increasing distance"}}
+{"entity_id": "predicate:pull", "type": "InteractionPredicate", "label": "pull", "attributes": {"definition": "apply force reducing distance"}}
+{"entity_id": "predicate:press", "type": "InteractionPredicate", "label": "press", "attributes": {"definition": "sustained compression"}}
+{"entity_id": "predicate:slide", "type": "InteractionPredicate", "label": "slide", "attributes": {"definition": "tangential motion under contact"}}
+{"entity_id": "predicate:roll", "type": "InteractionPredicate", "label": "roll", "attributes": {"definition": "rotational progression with limited slip"}}
+{"entity_id": "predicate:carry", "type": "InteractionPredicate", "label": "carry", "attributes": {"definition": "support and transport"}}
+{"entity_id": "predicate:lift", "type": "InteractionPredicate", "label": "lift", "attributes": {"definition": "increase height against gravity"}}
+{"entity_id": "predicate:lower", "type": "InteractionPredicate", "label": "lower", "attributes": {"definition": "controlled decrease in height"}}
+{"entity_id": "predicate:throw", "type": "InteractionPredicate", "label": "throw", "attributes": {"definition": "accelerate then release into flight"}}
+{"entity_id": "predicate:catch", "type": "InteractionPredicate", "label": "catch", "attributes": {"definition": "intercept and transition to support/grasp"}}
+{"entity_id": "predicate:place", "type": "InteractionPredicate", "label": "place", "attributes": {"definition": "transport then release at intended pose"}}
+{"entity_id": "predicate:open", "type": "InteractionPredicate", "label": "open", "attributes": {"definition": "change articulated object toward open state"}}
+{"entity_id": "predicate:close", "type": "InteractionPredicate", "label": "close", "attributes": {"definition": "change articulated object toward closed state"}}
+{"entity_id": "predicate:strike", "type": "InteractionPredicate", "label": "strike", "attributes": {"definition": "transient impact"}}
+{"entity_id": "predicate:block", "type": "InteractionPredicate", "label": "block", "attributes": {"definition": "interpose to prevent/absorb path"}}
+{"entity_id": "predicate:parry", "type": "InteractionPredicate", "label": "parry", "attributes": {"definition": "briefly redirect incoming path"}}
+{"entity_id": "predicate:deflect", "type": "InteractionPredicate", "label": "deflect", "attributes": {"definition": "change trajectory away"}}
+{"entity_id": "predicate:redirect", "type": "InteractionPredicate", "label": "redirect", "attributes": {"definition": "change force/motion direction"}}
+{"entity_id": "predicate:trap", "type": "InteractionPredicate", "label": "trap", "attributes": {"definition": "constrain degrees of freedom"}}
+{"entity_id": "predicate:pin", "type": "InteractionPredicate", "label": "pin", "attributes": {"definition": "constrain against environment/body"}}
+{"entity_id": "predicate:evade", "type": "InteractionPredicate", "label": "evade", "attributes": {"definition": "avoid predicted contact"}}
+{"entity_id": "predicate:dodge", "type": "InteractionPredicate", "label": "dodge", "attributes": {"definition": "rapid evade with readiness"}}
+{"entity_id": "predicate:intercept", "type": "InteractionPredicate", "label": "intercept", "attributes": {"definition": "arrive at future path/time"}}
+{"entity_id": "predicate:collide", "type": "InteractionPredicate", "label": "collide", "attributes": {"definition": "neutral/unplanned impact"}}
+{"entity_id": "predicate:stagger", "type": "InteractionPredicate", "label": "stagger", "attributes": {"definition": "balance loss/recovery after perturbation"}}
+{"entity_id": "predicate:yield", "type": "InteractionPredicate", "label": "yield", "attributes": {"definition": "allow displacement under controlled compliance"}}
+{"entity_id": "predicate:resist", "type": "InteractionPredicate", "label": "resist", "attributes": {"definition": "oppose force/displacement"}}
+{"entity_id": "predicate:guide", "type": "InteractionPredicate", "label": "guide", "attributes": {"definition": "low-force directional constraint"}}
+{"entity_id": "predicate:embrace", "type": "InteractionPredicate", "label": "embrace", "attributes": {"definition": "bilateral enclosing social/support contact"}}
+{"entity_id": "predicate:shield", "type": "InteractionPredicate", "label": "shield", "attributes": {"definition": "interpose to protect"}}
+{"entity_id": "predicate:mount", "type": "InteractionPredicate", "label": "mount", "attributes": {"definition": "establish supported position atop target"}}
+{"entity_id": "predicate:disarm", "type": "InteractionPredicate", "label": "disarm", "attributes": {"definition": "cause held object release"}}
+{"entity_id": "predicate:handoff", "type": "InteractionPredicate", "label": "handoff", "attributes": {"definition": "transfer grasp/support ownership"}}
+{"entity_id": "predicate:point_at", "type": "InteractionPredicate", "label": "point_at", "attributes": {"definition": "orient distal effector to indicate"}}
+{"entity_id": "predicate:look_at", "type": "InteractionPredicate", "label": "look_at", "attributes": {"definition": "orient gaze"}}
+{"entity_id": "predicate:approach", "type": "InteractionPredicate", "label": "approach", "attributes": {"definition": "reduce distance"}}
+{"entity_id": "predicate:retreat", "type": "InteractionPredicate", "label": "retreat", "attributes": {"definition": "increase distance"}}
+{"entity_id": "predicate:circle", "type": "InteractionPredicate", "label": "circle", "attributes": {"definition": "move around target while oriented"}}
+{"entity_id": "style:anime", "type": "StyleProfile", "label": "anime", "attributes": {}}
+{"entity_id": "style:family_feature_cg", "type": "StyleProfile", "label": "family_feature_cg", "attributes": {}}
+{"entity_id": "style:documentary", "type": "StyleProfile", "label": "documentary", "attributes": {}}
+{"entity_id": "style:martial_arts_film", "type": "StyleProfile", "label": "martial_arts_film", "attributes": {}}
+{"entity_id": "style:fashion", "type": "StyleProfile", "label": "fashion", "attributes": {}}
+{"entity_id": "style:commercial", "type": "StyleProfile", "label": "commercial", "attributes": {}}
+{"entity_id": "style:hyperreal", "type": "StyleProfile", "label": "hyperreal", "attributes": {}}
+{"entity_id": "adapter:runway_act_two_web_v2026_07_30", "type": "ModelAdapter", "label": "Act-Two", "attributes": {"provider": "Runway", "surface": "Runway web", "status": "current", "verified_at": "2026-07-30"}}
+{"entity_id": "adapter:kling_video_3_0_v2026_07_30", "type": "ModelAdapter", "label": "Kling VIDEO 3.0 (exact API model ID probe required)", "attributes": {"provider": "Kling AI", "surface": "official web / first-party API if available", "status": "current", "verified_at": "2026-07-30"}}
+{"entity_id": "adapter:openai_sora_2_legacy_v2026_07_30", "type": "ModelAdapter", "label": "sora-2", "attributes": {"provider": "OpenAI", "surface": "legacy API", "status": "legacy_deprecating", "verified_at": "2026-07-30"}}
+{"entity_id": "adapter:veo_3_1_gemini_v2026_07_30", "type": "ModelAdapter", "label": "veo-3.1 family (exact endpoint variant required)", "attributes": {"provider": "Google", "surface": "Gemini API", "status": "preview", "verified_at": "2026-07-30"}}
+{"entity_id": "adapter:adobe_firefly_video_web_v2026_07_30", "type": "ModelAdapter", "label": "Firefly Video / selected partner model", "attributes": {"provider": "Adobe", "surface": "Firefly web", "status": "current", "verified_at": "2026-07-30"}}
+{"entity_id": "adapter:luma_ray_3_2_modify_v2026_07_30", "type": "ModelAdapter", "label": "Ray 3.2 Modify Video", "attributes": {"provider": "Luma AI", "surface": "Dream Machine / official surface; API probe required", "status": "current", "verified_at": "2026-07-30"}}
+{"entity_id": "adapter:runway_gen_4_5_web_v2026_07_30", "type": "ModelAdapter", "label": "Gen-4.5", "attributes": {"provider": "Runway", "surface": "Runway web (API availability/schema must be checked separately)", "status": "current", "verified_at": "2026-07-30"}}
+{"entity_id": "adapter:kling_video_3_0_omni_v2026_07_30", "type": "ModelAdapter", "label": "Kling VIDEO 3.0 Omni (exact API model ID probe required)", "attributes": {"provider": "Kling AI", "surface": "official web / first-party API if available", "status": "current", "verified_at": "2026-07-30"}}
+{"entity_id": "claim:C001", "type": "Claim", "label": "LMA is represented in CPCS as Body, Effort, Shape, and Space.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.95}}
+{"entity_id": "claim:C002", "type": "Claim", "label": "Effort factors are Weight, Time, Space, and Flow with bipolar qualities.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.95}}
+{"entity_id": "claim:C003", "type": "Claim", "label": "Signed-to-unit axis conversion is a CPCS normalization, not official LMA notation.", "attributes": {"provenance_class": "CPCS_CONVENTION", "confidence": 1.0}}
+{"entity_id": "claim:C004", "type": "Claim", "label": "LMA expert labels show nonzero inter-rater disagreement and require reliability reporting.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.88}}
+{"entity_id": "claim:C005", "type": "Claim", "label": "Labanotation has been represented in XML and ontology forms.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.9}}
+{"entity_id": "claim:C006", "type": "Claim", "label": "Bartenieff Basic Six exercises differ from six connectivity patterns.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.95}}
+{"entity_id": "claim:C007", "type": "Claim", "label": "Cross-lateral organization is a useful prior for contralateral locomotion and rotational actions.", "attributes": {"provenance_class": "PRACTICE", "confidence": 0.65}}
+{"entity_id": "claim:C008", "type": "Claim", "label": "The exact seven-phase CPCS sequence is not a universal established standard.", "attributes": {"provenance_class": "CPCS_CONVENTION", "confidence": 0.98}}
+{"entity_id": "claim:C009", "type": "Claim", "label": "Gesture stroke is the obligatory meaning-bearing phase in McNeill/Kendon-style analysis; other phases can be optional.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.9}}
+{"entity_id": "claim:C010", "type": "Claim", "label": "BML exposes synchronization points including start, ready, stroke and end-related points.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.95}}
+{"entity_id": "claim:C011", "type": "Claim", "label": "FACS codes visible facial action, not emotion or deception directly.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.98}}
+{"entity_id": "claim:C012", "type": "Claim", "label": "A flat count of 44 AUs depends on code grouping and implementation convention.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.88}}
+{"entity_id": "claim:C013", "type": "Claim", "label": "OpenFace reports presence and 0–5 intensity for a subset of AUs.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.98}}
+{"entity_id": "claim:C014", "type": "Claim", "label": "PSPI uses AU4 + max(AU6,AU7) + max(AU9,AU10) + AU43.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.95}}
+{"entity_id": "claim:C015", "type": "Claim", "label": "Micro-expression duration thresholds vary across datasets and are not a universal deception rule.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.9}}
+{"entity_id": "claim:C016", "type": "Claim", "label": "Kinematics describes motion; force estimation requires dynamics assumptions or measurements.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.98}}
+{"entity_id": "claim:C017", "type": "Claim", "label": "OpenCap estimates movement dynamics from smartphone video with a musculoskeletal pipeline.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.94}}
+{"entity_id": "claim:C018", "type": "Claim", "label": "Pose2Sim supports multiview markerless kinematics and inverse-kinematics workflows.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.95}}
+{"entity_id": "claim:C019", "type": "Claim", "label": "Published punch velocities/forces are protocol- and population-specific, not universal limits.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.94}}
+{"entity_id": "claim:C020", "type": "Claim", "label": "Intent-to-motion mappings are probabilistic and culture/context conditioned.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.9}}
+{"entity_id": "claim:C021", "type": "Claim", "label": "BEAT is a large multimodal conversational gesture dataset with emotion and multiple languages.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.95}}
+{"entity_id": "claim:C022", "type": "Claim", "label": "EMOTE parameterizes expressive motion with Effort and Shape.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.94}}
+{"entity_id": "claim:C023", "type": "Claim", "label": "There is no validated universal visible-motion signature for deception.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.9}}
+{"entity_id": "claim:C024", "type": "Claim", "label": "HICO-DET supplies a broad human-object interaction verb/object vocabulary.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.95}}
+{"entity_id": "claim:C025", "type": "Claim", "label": "Inter-X focuses on versatile two-person interaction data.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.94}}
+{"entity_id": "claim:C026", "type": "Claim", "label": "Generated interaction can remain visually plausible while violating contact physics.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.8}}
+{"entity_id": "claim:C027", "type": "Claim", "label": "LMA Weight is not equal to force in newtons.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.98}}
+{"entity_id": "claim:C028", "type": "Claim", "label": "Kinetic-chain sequencing can be represented as temporal segment transfer but is task specific.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.78}}
+{"entity_id": "claim:C029", "type": "Claim", "label": "Apparent motion depends on relative camera/subject motion, projection and depth.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.9}}
+{"entity_id": "claim:C030", "type": "Claim", "label": "180-degree, 30-degree and match-on-action are continuity conventions, not physical laws.", "attributes": {"provenance_class": "PRACTICE", "confidence": 0.9}}
+{"entity_id": "claim:C031", "type": "Claim", "label": "Editing rhythm includes timing, pacing, trajectory phrasing, tension and release.", "attributes": {"provenance_class": "PRACTICE", "confidence": 0.9}}
+{"entity_id": "claim:C032", "type": "Claim", "label": "AIST++ supports music/dance alignment research.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.95}}
+{"entity_id": "claim:C033", "type": "Claim", "label": "VAD represents affect along valence, arousal and dominance dimensions.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.97}}
+{"entity_id": "claim:C034", "type": "Claim", "label": "The NRC VAD lexicon should be referenced under its terms, not redistributed in this package.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.98}}
+{"entity_id": "claim:C035", "type": "Claim", "label": "Lexical VAD ratings do not directly equal embodied performance measurements.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.85}}
+{"entity_id": "claim:C036", "type": "Claim", "label": "Motion style can be transferred with learned models, including body-part-local approaches.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.9}}
+{"entity_id": "claim:C037", "type": "Claim", "label": "Content/style disentanglement does not guarantee preservation of action or contact.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.85}}
+{"entity_id": "claim:C038", "type": "Claim", "label": "No broadly validated full-BESS real-time OpenFace-equivalent detector was identified.", "attributes": {"provenance_class": "CPCS_INFERENCE", "confidence": 0.82}}
+{"entity_id": "claim:C039", "type": "Claim", "label": "BoME contains 1,600 clips with expert labels for 11 selected LMA motor elements.", "attributes": {"provenance_class": "EMPIRICAL", "confidence": 0.97}}
+{"entity_id": "claim:C040", "type": "Claim", "label": "Weight and Flow are harder to infer visually than geometric Space/Time features.", "attributes": {"provenance_class": "CPCS_INFERENCE", "confidence": 0.72}}
+{"entity_id": "claim:C041", "type": "Claim", "label": "LabanWRML and ChoosenMove were not verified as established detector systems under those names.", "attributes": {"provenance_class": "UNVERIFIED", "confidence": 0.7}}
+{"entity_id": "claim:C042", "type": "Claim", "label": "Veo 3.1 documentation exposes structured duration, aspect, resolution, seed and reference/image controls with variant-specific constraints.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.96}}
+{"entity_id": "claim:C043", "type": "Claim", "label": "Kling VIDEO 3.0 documents 3–15 second multi-shot generation and references/audio on current surfaces.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.9}}
+{"entity_id": "claim:C044", "type": "Claim", "label": "Runway Gen-4.5 documents 2–10 second generation and 24/25 fps on its current guide.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.95}}
+{"entity_id": "claim:C045", "type": "Claim", "label": "Runway Act-Two uses a driving performance and character input, with different behavior for image versus video character modes.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.96}}
+{"entity_id": "claim:C046", "type": "Claim", "label": "Ray 3.2 Modify exposes Motion/Structure controls and Poses/Blocking behavior.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.95}}
+{"entity_id": "claim:C047", "type": "Claim", "label": "Adobe Firefly documents a camera-motion reference workflow with input constraints and control incompatibilities.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.96}}
+{"entity_id": "claim:C048", "type": "Claim", "label": "OpenAI ended Sora web/app on 2026-04-26 and schedules Sora API end for 2026-09-24.", "attributes": {"provenance_class": "ESTABLISHED", "confidence": 0.99}}
+{"entity_id": "claim:C049", "type": "Claim", "label": "UI and API surfaces must be versioned separately.", "attributes": {"provenance_class": "CPCS_CONVENTION", "confidence": 0.98}}
+{"entity_id": "claim:C050", "type": "Claim", "label": "Unsupported canonical fields must remain visible in a loss report.", "attributes": {"provenance_class": "CPCS_CONVENTION", "confidence": 1.0}}
