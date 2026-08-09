@@ -203,6 +203,7 @@ not a step.
 | 2026-08-09 | D-2026-08-09-12 | Ingest user supplement gap_answer_04 as SRC-015 + DIST-015: mechanism vocabulary EXTENDed into affordance_constraints; bimanual role permanence + regrasp observability EXTENDed into interaction_lifecycle | D1/D2/D9 | APPLIED |
 | 2026-08-09 | D-2026-08-09-13 | Ingest user supplement gap_answer_05 as SRC-016 + DIST-016: hand-identity label stability EXTENDed into interaction_lifecycle; role_renaming/hand_spawn/reentry_reset rows added to failure_mode_catalog | D1/D2/D9 | APPLIED |
 | 2026-08-09 | D-2026-08-09-14 | Re-pasted quad-carrier prompt verified character-identical to the captured specimen (line diff, 0 differing lines) — no duplicate capture; analysis card remains authoritative; DMR kit renumbered to SRC-017 candidate | D7/H7 | APPLIED |
+| 2026-08-09 | D-2026-08-09-15 | Standalone distillation created — quad-carrier prompt document + analysis merged into one file (cpcs.distillation.quad_carrier_prompt_standalone_findings), verbatim block verified 0-line diff vs specimen, corroborated by SRC-013/014 research | D7/H5 | APPLIED |
 
 ## 6. User decision briefs (the ONLY consultation points)
 

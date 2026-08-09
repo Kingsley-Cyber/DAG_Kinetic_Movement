@@ -39,9 +39,9 @@ change to the knowledge tree.
 | Last updated | 2026-08-09 |
 | Sources distilled | 16 (SRC-001 … SRC-016) |
 | Sources pending | 6 (see §14) |
-| Total knowledge objects | 188 cards + 5 system files = 193 |
+| Total knowledge objects | 189 cards + 5 system files = 194 |
 | Routes (directories) | 1,124 (1,011 leaves) — regenerated after agent-log + gap-register addition |
-| DIRECTORY.md status | LIVE — regenerated after SRC-012 |
+| DIRECTORY.md status | LIVE — regenerated after standalone distillation addition |
 | Operating prompt | `CPCS Research Distillation Agent — Persistent Operating Prompt.md` |
 | Distillation folder | `Research_distillation_folder/` |
 | Automation doctrine | `00_governance/policies/control_plane_automation_doctrine.md` — agent-automated control plane (§15) |
@@ -253,8 +253,8 @@ Registrations live at `cpcs/research/source_registry/identities/`.
 
 ## 9. Canonical object registry
 
-188 knowledge objects + 5 system files = 193 `cpcs.*` objects (verified by id
-scan, 2026-08-09; checker confirms 219 files with frontmatter). Each has a
+189 knowledge objects + 5 system files = 194 `cpcs.*` objects (verified by id
+scan, 2026-08-09; checker confirms 220 files with frontmatter). Each has a
 unique `cpcs.*` ID. The deviation checker validates all IDs. New objects added
 during distillation MUST be recorded here. The by-domain table below is an
 approximate guide (rows ending in "and N more" are placeholders); the
@@ -304,6 +304,7 @@ authoritative census is `cpcs_ontology_check.ps1` + DIRECTORY.md.
 | research/sources | 2 | rag_ingestion (SRC-005), concept_kitchen (SRC-010) |
 | source_registry/identities | 4 | SRC-013, SRC-014, SRC-015, SRC-016 (D9 user research returns; SRC-NNN registrations, checker-validated) |
 | distillation/ledger | 4 | DIST-013, DIST-014, DIST-015, DIST-016 (D9 user research returns; DIST-NNN ledgers, checker-validated) |
+| distillation | 1 | quad_carrier_prompt_standalone_findings (standalone prompt-document + analysis distillation, SRC-013/014 corroboration) |
 | representation | 1 | prompt_structure_analysis (specimen analysis) |
 | representation/hybrids | 1 | pov_glasses_bag_prompt_specimen |
 | experiments | 5 | carrier_effect_design, src002_model_conditioning, adrg_experiments (SRC-004), cpcs_mx_experiments (SRC-005), benchmark_harness_contract (SRC-007) |

@@ -191,3 +191,20 @@ interfaces:
   and 6 pending queue sources unchanged.
 - **Next steps:** DIRECTORY.md regenerated + checker 0 deviations; commit +
   push batch; README HEAD refresh commit.
+
+---
+
+## 2026-08-09 — Standalone distillation (quad-carrier prompt: document + analysis)
+
+- **Request:** standalone md in research/distillation with findings, research,
+  and detailed explanation on both the prompt and its structure analysis.
+- **Created:** `cpcs/research/distillation/quad_carrier_prompt_standalone_findings.md`
+  (cpcs.distillation.quad_carrier_prompt_standalone_findings, kind: method,
+  INFERENCE) — Part A verbatim document (318 lines, verified 0-line diff vs
+  specimen) + Part B findings (anatomy, 8 axes, T1–T8, C1–C6, best-for
+  verdict) + research corroboration from SRC-013 (carrier rules R1–R4) and
+  SRC-014 (provider control-surface matrix).
+- **Housekeeping:** doctrine D-2026-08-09-15; control plane reference §2/§9
+  (194 objects, 220 files); README counts + story row; DIRECTORY regenerated;
+  checker 0 deviations.
+- **Open threads:** UG-001..007, UG-009 await user research.

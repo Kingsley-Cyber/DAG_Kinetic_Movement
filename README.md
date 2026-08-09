@@ -18,8 +18,8 @@ branch `main` · HEAD `8d28922` (2026-08-09 — refresh on each batch) ·
 | Property | Value |
 | --- | --- |
 | Sources distilled | 16 (SRC-001 … SRC-016) |
-| Knowledge objects | 193 `cpcs.*` objects (188 cards + 5 system files) |
-| Files with frontmatter | 219 — ontology checker: **0 deviations** |
+| Knowledge objects | 194 `cpcs.*` objects (189 cards + 5 system files) |
+| Files with frontmatter | 220 — ontology checker: **0 deviations** |
 | Routes (directories) | 1,124 (1,011 leaves) — DIRECTORY.md LIVE |
 | Open research questions | 155 across 12 sources (0 closed) |
 | Pending distillation sources | 6 (04b, 07, 08, 09, 10, `11 Polyglot Compiler.md`) |
@@ -226,6 +226,7 @@ git -c core.longpaths=true -c user.name="Kingsley-Cyber" `
 | 2026-08-09 | README | This file; AGENTS.md/CLAUDE.md de-skeletoned |
 | 2026-08-09 | Representation analysis | Specimen + quad-carrier prompt analysis (UG-008); 185 objects, 211 files |
 | 2026-08-09 | D9 ingestion batch | UG-008 CLOSED: SRC-013 + supplements SRC-014/015/016 (10 EXTENDs across 5 cards); 193 objects, 219 files |
+| 2026-08-09 | Standalone distillation | Quad-carrier prompt document + analysis merged into one file with SRC-013/014 corroboration; 194 objects, 220 files |
 
 ### Pending work (pick up here)
 
