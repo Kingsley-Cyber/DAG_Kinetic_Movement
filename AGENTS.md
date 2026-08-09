@@ -2,15 +2,26 @@
 
 Instructions for AI agents and human contributors working in this repository.
 
+> **Start with [`README.md`](./README.md)** — it is the boot file: live
+> state, boot sequence, control plane (doctrine D1–D9), the gap/research
+> loop, commands, and git conventions at granular detail.
+
 ## What This Repository Is
 
 This repository contains **CPCS**: a structured, DAG-style knowledge and
 runtime architecture for directing, compiling, and verifying kinetic
 cinematic performance (live-action, anime, documentary, UGC, etc.).
 
-It is currently in the **skeleton phase**: the full route tree exists under
-`cpcs/`, but most routes are still empty directories awaiting content
-(knowledge cards, schemas, research artifacts, code).
+It is **live, not a skeleton**: 12 research sources (SRC-001 … SRC-012)
+have been distilled into 183 `cpcs.*` objects across 209 files; the
+ontology checker runs clean (0 deviations) and DIRECTORY.md tracks 1,124
+routes (1,011 leaves). The control plane is agent-automated
+(`control_plane_automation_doctrine.md`) — resolve decisions via its
+decision tree and record them in its §5 register; consult the user only
+on its §6 brief triggers. Session continuity: read the latest entries in
+`00_governance/agent_logs/working_agent_log.md` and append one after every
+batch (H6). Understanding gaps awaiting user deep research: see
+`research/gaps/understanding_gap_register.md` (UG-001 … UG-007).
 
 The architecture has three planes:
 
