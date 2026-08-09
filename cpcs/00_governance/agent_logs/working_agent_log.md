@@ -121,3 +121,22 @@ interfaces:
 - **Open threads:** none.
 - **Next steps:** keep README counts in sync with control plane reference
   on future batches; commit + push this batch.
+
+### 2026-08-09 — Research briefs for UG gaps
+
+- **Focus:** turn the 7 understanding gaps into grad-student-grade research
+  assignments so the user's deep research produces exact outcomes.
+- **Work done:** added §5 Research briefs to `understanding_gap_register.md`
+  (291 lines): per gap — primary question, 4–5 structured sub-questions,
+  exact tree/source/field queries built from verified ecosystem vocabulary
+  (master_clock_s, phase_locks_to, setup_strike_recovery, preset ratios,
+  evidence vocabularies, provider downcasting), evidence requirements,
+  acceptance criteria to CLOSE, and a named deliverable file;
+  Verification renumbered §6.
+- **Decisions:** none (register content only, no vocabulary/state change).
+- **Gaps captured:** none new (briefs do not change statuses; all 7 stay
+  OPEN awaiting user research).
+- **Open threads:** user executes briefs and returns deliverables via
+  `Research_return_folder/` → D9 ingestion.
+- **Next steps:** none until returns land; housekeeping clean (checker 209
+  files, 0 deviations).
