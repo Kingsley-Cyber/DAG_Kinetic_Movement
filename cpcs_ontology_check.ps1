@@ -23,9 +23,9 @@ if (-not (Test-Path -LiteralPath $Root)) {
 # ---------------------------------------------------------------------------
 
 $ValidKinds = @(
-    'catalog', 'contract', 'doctrine', 'experiment_design', 'fixture_set',
-    'gap_register', 'mechanism', 'method', 'metric_contract', 'policy',
-    'principle', 'provider_finding', 'schema_draft', 'vocabulary'
+    'agent_log', 'catalog', 'contract', 'doctrine', 'experiment_design',
+    'fixture_set', 'gap_register', 'mechanism', 'method', 'metric_contract',
+    'policy', 'principle', 'provider_finding', 'schema_draft', 'vocabulary'
 ) | ForEach-Object { $_ }  # force array even if single element
 
 $ValidEpistemicStatuses = @(

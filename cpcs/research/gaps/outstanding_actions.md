@@ -488,6 +488,12 @@ reconciled 2026-08-09; both files list the same 6 PENDING sources):
   remains a candidate for a separate source (SRC-013 candidate); not distilled
   in the SRC-012 pass by user decision. A future pass should audit
   kit-vs-tree overlap before distillation.
+- **Understanding gap register LIVE (2026-08-09)**: `understanding_gap_register.md`
+  holds the agent's student gaps (UG-001 … UG-007, WHAT/WHY/HOW/WHEN/APPLY/BLEND,
+  nested). The user does deep research on UG ids and returns it via
+  `Research_return_folder/` or chat; the agent ingests per doctrine D9 and
+  closes/refines with evidence. Session continuity lives in
+  `00_governance/agent_logs/working_agent_log.md` (H6).
 
 ## How to use this file
 

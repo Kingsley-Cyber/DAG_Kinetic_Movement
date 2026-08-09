@@ -39,12 +39,15 @@ change to the knowledge tree.
 | Last updated | 2026-08-09 |
 | Sources distilled | 12 (SRC-001 … SRC-012) |
 | Sources pending | 6 (see §14) |
-| Total knowledge objects | 176 cards + 5 system files = 181 |
-| Routes (directories) | 1,123 (1,010 leaves) — regenerated after SRC-012 |
+| Total knowledge objects | 178 cards + 5 system files = 183 |
+| Routes (directories) | 1,124 (1,011 leaves) — regenerated after agent-log + gap-register addition |
 | DIRECTORY.md status | LIVE — regenerated after SRC-012 |
 | Operating prompt | `CPCS Research Distillation Agent — Persistent Operating Prompt.md` |
 | Distillation folder | `Research_distillation_folder/` |
 | Automation doctrine | `00_governance/policies/control_plane_automation_doctrine.md` — agent-automated control plane (§15) |
+| Working agent log | `00_governance/agent_logs/working_agent_log.md` — session continuity, append per H6 (§16) |
+| Understanding gaps | `research/gaps/understanding_gap_register.md` — student-gap register, automated capture D8 (§16) |
+| Research return | `Research_return_folder/` — deep-research intake for gap ingestion D9 (§16) |
 
 ### Distillation history
 
@@ -158,13 +161,14 @@ curation_status: proposal              # for schema drafts
 ### 6.1 Valid `kind` values
 
 ```text
-catalog · contract · doctrine · experiment_design · fixture_set ·
+agent_log · catalog · contract · doctrine · experiment_design · fixture_set ·
 gap_register · mechanism · method · metric_contract · policy ·
 principle · provider_finding · schema_draft · vocabulary
 ```
 
 New kind values may only be added by updating this reference and the
-deviation checker. Do not invent kind values per-card.
+deviation checker (doctrine D4 — one change, recorded in the doctrine §5).
+Do not invent kind values per-card.
 
 ### 6.2 Valid `epistemic_status` values
 
@@ -241,8 +245,8 @@ Registrations live at `cpcs/research/source_registry/identities/`.
 
 ## 9. Canonical object registry
 
-176 knowledge objects + 5 system files = 181 `cpcs.*` objects (verified by id
-scan, 2026-08-09; checker confirms 207 files with frontmatter). Each has a
+178 knowledge objects + 5 system files = 183 `cpcs.*` objects (verified by id
+scan, 2026-08-09; checker confirms 209 files with frontmatter). Each has a
 unique `cpcs.*` ID. The deviation checker validates all IDs. New objects added
 during distillation MUST be recorded here. The by-domain table below is an
 approximate guide (rows ending in "and N more" are placeholders); the
@@ -287,8 +291,8 @@ authoritative census is `cpcs_ontology_check.ps1` + DIRECTORY.md.
 | runtime/provider | 2 | provider_fallback_ladder, provider_capability_snapshots (SRC-007) |
 | verification | 9 | verification_contract, verification_expectation_model, failure_mode_catalog, repair_strategy (SRC-003), verification_layers (SRC-003), measurement_form (SRC-004), verification_metrics (SRC-004), measurement_record_form (SRC-006), observation_contract (SRC-008) |
 | schemas | 2 | universal_kernel_family, performance_expression_event |
-| governance | 6 | distillation_priority, operational_knowledge_model, reasoning_completeness_score, control_plane_reference, promotion_rules (SRC-004), automation_doctrine |
-| gaps | 12 | src001, src002, src003 (SRC-003), src004 (SRC-004), src005 (SRC-005), src006 (SRC-006), src007 (SRC-007), src008 (SRC-008), src009 (SRC-009), src010 (SRC-010), src011 (SRC-011), src012 (SRC-012) |
+| governance | 7 | distillation_priority, operational_knowledge_model, reasoning_completeness_score, control_plane_reference, promotion_rules (SRC-004), automation_doctrine, working_agent_log |
+| gaps | 13 | src001, src002, src003 (SRC-003), src004 (SRC-004), src005 (SRC-005), src006 (SRC-006), src007 (SRC-007), src008 (SRC-008), src009 (SRC-009), src010 (SRC-010), src011 (SRC-011), src012 (SRC-012), understanding_register |
 | research/sources | 2 | rag_ingestion (SRC-005), concept_kitchen (SRC-010) |
 | experiments | 5 | carrier_effect_design, src002_model_conditioning, adrg_experiments (SRC-004), cpcs_mx_experiments (SRC-005), benchmark_harness_contract (SRC-007) |
 | fixtures | 1 | src002_fixture_set |
@@ -310,6 +314,8 @@ authoritative census is `cpcs_ontology_check.ps1` + DIRECTORY.md.
 | Operational knowledge model | `00_governance/policies/operational_knowledge_model.md` | Six strata; no parallel ontologies |
 | Reasoning completeness | `00_governance/policies/reasoning_completeness_score.md` | RCS scoring |
 | Control plane automation | `00_governance/policies/control_plane_automation_doctrine.md` | Agent-automated governance — decision tree D1–D7; user consulted only on decision briefs (§6) |
+| Working agent log | `00_governance/agent_logs/working_agent_log.md` | Session continuity — append an entry after every session/batch (H6); read latest entries on boot |
+| Understanding gaps | `research/gaps/understanding_gap_register.md` | Student-gap register — automated capture while working (D8); research-return ingestion (D9) |
 
 ## 11. Known boundaries (do not overclaim)
 
@@ -337,18 +343,22 @@ A new session or agent MUST perform these steps before operating on the tree:
 2. **Read the automation doctrine** (`cpcs/00_governance/policies/control_plane_automation_doctrine.md`)
    — resolves governance decisions without user consultation; raise a brief
    only on the §6 triggers.
-3. **Read the operating prompt** (`CPCS Research Distillation Agent — Persistent
+3. **Read the working agent log** (`00_governance/agent_logs/working_agent_log.md`)
+   — what previous sessions did, what is in flight, what to pick up; and the
+   **understanding gap register** (`research/gaps/understanding_gap_register.md`)
+   — open student gaps awaiting research (take one on if the user asks).
+4. **Read the operating prompt** (`CPCS Research Distillation Agent — Persistent
    Operating Prompt.md`).
-4. **Check DIRECTORY.md** (workspace root) — confirms current route tree.
-5. **Run the deviation checker**: `pwsh -NoProfile -File .\cpcs_ontology_check.ps1`
+5. **Check DIRECTORY.md** (workspace root) — confirms current route tree.
+6. **Run the deviation checker**: `pwsh -NoProfile -File .\cpcs_ontology_check.ps1`
    — confirms the tree is clean before any work begins (doctrine D3).
-6. **Check the distillation queue** (§14 below) — identifies the next source.
-7. **Read the most recent ledger** (`cpcs/research/distillation/ledger/`) —
+7. **Check the distillation queue** (§14 below) — identifies the next source.
+8. **Read the most recent ledger** (`cpcs/research/distillation/ledger/`) —
    captures the last completed distillation's PASS outputs.
-8. **Read the outstanding actions tracker** (`research/gaps/outstanding_actions.md`)
+9. **Read the outstanding actions tracker** (`research/gaps/outstanding_actions.md`)
    — identifies unapplied EXTENDs, open research questions, and cross-source
    dependencies that need action.
-9. **Verify no orphan files** — every `.md` under `cpcs/` should have valid
+10. **Verify no orphan files** — every `.md` under `cpcs/` should have valid
    frontmatter and a known ID in §9.
 
 ## 13. Distillation workflow (summary)
@@ -381,7 +391,7 @@ Then:
 - Regenerate DIRECTORY.md → `pwsh -NoProfile -File .\update_directory_md.ps1`
 - Run ontology check → `pwsh -NoProfile -File .\cpcs_ontology_check.ps1`
 - Update this control plane reference (§2 state, §8 registry, §9 objects, §14 queue)
-- Apply housekeeping H1–H5 (automation doctrine §4) in order H5 → H1 → H2 → H3 → H4
+- Apply housekeeping H1–H7 (automation doctrine §4) in order H5 → H1 → H2 → H3 → H4 → H6 → H7
 - Record every governance decision in the automation doctrine §5 applied-decisions
   register (rule + status) — no decision is taken silently
 
@@ -422,3 +432,16 @@ conflicts, open questions, error handling) and records outcomes in its §5
 applied-decisions register. The user is consulted only on the five decision-brief
 triggers (§6 of the doctrine). When the operating prompt and the doctrine
 conflict on decision-making, the doctrine wins and the difference is recorded.
+
+## 16. Understanding gaps and agent continuity
+
+Two files complete the boot set:
+
+- `00_governance/agent_logs/working_agent_log.md` — append-only session
+  journal (doctrine H6). New sessions read the latest entries to pick up
+  open threads; entries link decisions (doctrine §5) and gaps (UG ids).
+- `research/gaps/understanding_gap_register.md` — the automated student-gap
+  register (doctrine D8): WHAT/WHY/HOW/WHEN/APPLY/BLEND gaps captured while
+  working, nested for research alignment. The user performs deep research on
+  open UG ids and returns it (chat or `Research_return_folder/`); the agent
+  ingests it per D9 and closes/refines the gap with evidence.

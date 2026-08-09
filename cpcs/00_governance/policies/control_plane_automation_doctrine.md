@@ -116,6 +116,42 @@ a provider probe, or new source evidence — then update
 - A decision not covered by D1–D6 → raise a brief (§6) with a recommended
   default; until resolved, take the conservative action and record it.
 
+### D8 — Understanding-gap capture (while working)
+
+The agent acts like a student who has learned something but cannot yet say
+what it is, why it holds, how to use it, or how to apply it. While working
+(distillation, EXTEND, query answering, verification, housekeeping), record
+GENUINE understanding gaps automatically in
+`research/gaps/understanding_gap_register.md`. Record when the agent:
+
+- cannot state WHAT a concept is with confidence,
+- cannot say WHY a principle holds (rationale missing from the tree),
+- cannot operationalize HOW to produce or use an object,
+- cannot decide WHEN to apply one concept over another (selection), or
+- cannot APPLY a concept against a live query, or trace a cross-concept
+  relationship (BLEND) the query demands.
+
+Each entry: type (WHAT/WHY/HOW/WHEN/APPLY/BLEND), concepts involved, symptom
+(where it surfaced), parent gap (nesting), research target, status. Never
+close by assumption (D6); never record process friction as a gap — only
+understanding gaps. Capture is continuous; the register is reviewed each
+batch (H7).
+
+### D9 — Research return and ingestion
+
+The user performs deep research on an open gap and returns it (chat text or
+files dropped in `Research_return_folder/`). The agent:
+
+1. Matches the return to the register by gap id/topic and to its nesting node.
+2. Ingests it like a source: REUSE/EXTEND/SUPPORT/CREATE per D2; evidence
+   class from the return's strength (never upgraded by assumption, D7).
+3. Updates the gap: RESEARCHING → RETURNED → CLOSED with evidence link and
+   closure note, or REFINED (children re-scoped, parents narrowed).
+4. Runs housekeeping H1–H7 and appends an agent-log entry (H6).
+
+A return that only restates existing content is SUPPORT, not new evidence.
+Contradictions go to PASS 7 and the contradictions register.
+
 ## 3. Kind mapping table (D3 — nearest canonical kind)
 
 | Non-canonical kind (in use) | Canonical mapping | Files |
@@ -141,7 +177,13 @@ a provider probe, or new source evidence — then update
 - H4: update `outstanding_actions.md` (EXTEND statuses, question closures,
   §3 queue, §4 notes)
 - H5: write identity + DIST ledger + gaps files
-Order: H5 → H1 → H2 → H3 → H4.
+- H6: append a working-agent-log entry
+  (`00_governance/agent_logs/working_agent_log.md`) — every session/batch:
+  focus, work done, decisions, gaps captured, open threads, next steps
+- H7: gap-analysis pass — review `understanding_gap_register.md`: re-scope
+  stale gaps, refine nested parents when children close, verify statuses
+Order: H5 → H1 → H2 → H3 → H4 → H6 → H7. Gap capture is continuous (D8),
+not a step.
 
 ## 5. Applied-decisions register
 
@@ -152,6 +194,9 @@ Order: H5 → H1 → H2 → H3 → H4.
 | 2026-08-09 | D-2026-08-09-03 | Add canonical frontmatter to `src012_open_research_questions.md` (`cpcs.gaps.src012`, `gap_register`, `PROJECT_DERIVED`) | D3 | APPLIED |
 | 2026-08-09 | D-2026-08-09-04 | Reconcile distillation queue to 6 pending incl. `11 Polyglot Compiler.md`; DMR execution kit stays SRC-013 candidate (overlap audit with SRC-007 before distillation) | D1 | APPLIED |
 | 2026-08-09 | D-2026-08-09-05 | SRC-012 pass executed without scope consultation (4 CREATE + 6 EXTEND + identity + ledger + gaps); user consulted only for the SRC-013 deferral brief | D1/D2 | APPLIED |
+| 2026-08-09 | D-2026-08-09-06 | Extend `kind` vocabulary with `agent_log` (D4: distinct semantic — chronological agent work record; no existing kind covers it); applied to reference §6.1 + checker in one change | D4 | APPLIED |
+| 2026-08-09 | D-2026-08-09-07 | Create `working_agent_log.md` (`cpcs.gov.working_agent_log`) + `understanding_gap_register.md` (`cpcs.gaps.understanding_register`); seeded with genuine gaps surfaced during SRC-012 + automation batch | D3/D8 | APPLIED |
+| 2026-08-09 | D-2026-08-09-08 | Establish research-return loop: `Research_return_folder/` intake + D9 ingestion; the user returns deep research on nesting gaps and the agent ingests it without consultation | D1/D9 | APPLIED |
 
 ## 6. User decision briefs (the ONLY consultation points)
 

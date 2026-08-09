@@ -12,16 +12,17 @@
 
 | Property | Value |
 | --- | --- |
-| Last updated | 2026-08-09 15:17:43 UTC |
+| Last updated | 2026-08-09 15:35:05 UTC |
 | Root | `cpcs/` |
-| Total routes | 1123 |
-| Leaf routes | 1010 |
+| Total routes | 1124 |
+| Leaf routes | 1011 |
 
 ## Route Tree
 
 ```text
 cpcs/
 ├── 00_governance/
+│   ├── agent_logs/
 │   ├── authority/
 │   ├── change_control/
 │   ├── contracts/
