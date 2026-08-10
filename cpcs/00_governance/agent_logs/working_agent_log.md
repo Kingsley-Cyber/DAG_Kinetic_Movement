@@ -223,3 +223,26 @@ interfaces:
 - **Housekeeping:** doctrine D-2026-08-09-16; README story row; cpcs tree
   untouched (DIRECTORY/checker counts unaffected — folder is outside cpcs/).
 - **Open threads:** UG-001..007, UG-009 await user research.
+
+---
+
+## 2026-08-09 — Terminal Descent 30-second Fight IR
+
+- **Request:** encode the requested peak-action anime fight in the format that
+  best preserves temporal, causal, contact, camera, exposure, and continuity
+  alignment.
+- **Created:** `Additional/TERMINAL_DESCENT_FIGHT_IR_v1.json` — resolved
+  canonical JSON Fight IR for a 30.0 s / 24 fps / 720-frame original sequence;
+  includes persistent actor/world state, ability contracts, six interval
+  contacts, overlapping action phases, seven beats, explicit state deltas,
+  event anchors, volumetric camera shots, X-sheet-style exposure events, audio
+  bindings, seven continuity-linked generation clips, and ordered hard gates.
+- **Decision:** JSON owns resolved machine truth per carrier-role doctrine;
+  YAML/XML are optional projections and provider-facing natural language is
+  explicitly lossy. Scene facts are CREATIVE_CHOICE; control structure is
+  PROJECT_DERIVED; tolerances remain authored calibration targets.
+- **Gaps captured:** none new; provider remains unspecified, so capability
+  negotiation and provider projection are intentionally deferred.
+- **Open threads:** choose a target provider/workflow, attach the strongest
+  available motion/endpoint/depth/camera controls, compile clip projections,
+  generate multiple seeds, and verify hard gates before aesthetic scoring.

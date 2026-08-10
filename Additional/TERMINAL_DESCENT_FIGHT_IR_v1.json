@@ -1,0 +1,774 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_id": "cpcs.fight_ir.terminal_descent.v1",
+  "version": "1.0",
+  "title": "Terminal Descent",
+  "description": "Resolved canonical alignment score for a 30-second original supernatural anime fight.",
+  "epistemic_status": {
+    "scene_content": "CREATIVE_CHOICE",
+    "control_model": "PROJECT_DERIVED",
+    "numeric_tolerances": "authored_starting_targets_not_universal_laws"
+  },
+  "source_basis": [
+    "Additional/Continous Combat State.md",
+    "cpcs/knowledge/05_action/combat/combat_math_metrics_layer.md",
+    "cpcs/knowledge/06_body_motion/action_primitives/combat_action_coding.md",
+    "cpcs/knowledge/06_body_motion/phase_grammar/phase_timing_presets.md",
+    "cpcs/knowledge/12_camera_image_formation/camera_impact_sync.md",
+    "cpcs/knowledge/16_style_visual_language/anime_sakuga_representation.md",
+    "cpcs/knowledge/18_sequence_continuity/continuity_state.md",
+    "cpcs/runtime/07_compiler/structured_prompting_architecture.md"
+  ],
+  "format_policy": {
+    "canonical_authority": "this_resolved_json",
+    "authoring_projection": "yaml_optional",
+    "ordered_interchange_projection": "xml_optional",
+    "provider_projection": "natural_language_lossy",
+    "rule": "Provider output never overwrites canonical intent."
+  },
+  "timebase": {
+    "master_clock": "seconds",
+    "duration_s": 30.0,
+    "output_fps": 24,
+    "frame_count": 720,
+    "frame_domain": "[0,720)",
+    "frame_derivation": "frame_index = round(time_s * output_fps) only at export",
+    "intermediate_rounding_forbidden": true,
+    "stage_time_and_presentation_time_separate": true
+  },
+  "dramatic_contract": {
+    "question": "Can Mara prevent Veyr from touching the reactor core until the seal closes at 30.0 seconds?",
+    "sequence_objective": "Escalate continuously from interception to coupled contact, environmental inversion, moving-arena combat, freefall grapple, and an unresolved reactor-ring fracture.",
+    "resolution_policy": "No winner and no completed objective before cut-to-black.",
+    "event_density_policy": "No neutral reset or disconnected move card; low-density key holds remain active through camera, background, debris, lighting, or sound motion."
+  },
+  "style": {
+    "medium": "original premium contemporary 2D supernatural action anime",
+    "quality_target": "theatrical sakuga sequence with strong authored drawings and volumetric geography",
+    "copyright_boundary": "Do not reproduce existing characters, costumes, signature techniques, exact shots, or a named studio style.",
+    "dual_representation": {
+      "choreographic_skeleton": "world-space action, support, phase, contact, momentum, and state causality",
+      "graphic_motion_layer": "key drawings, silhouettes, exposure, smears, flashes, effects, and camera-plane motion"
+    },
+    "motion_profile": {
+      "weight": "strong",
+      "time": "sudden_with_authored_micro_holds",
+      "space": "direct_then_volumetrically_redirected",
+      "flow": "bound_during_contact_free_during_release",
+      "power_escalation_monotonic": true
+    },
+    "forbidden_drift": [
+      "flat_side_view_fighting_game_staging",
+      "street_level_punch_trading",
+      "neutral_pose_resets",
+      "camera_motion_substituting_for_body_motion",
+      "uniform_fluid_interpolation",
+      "random_anatomy_smears",
+      "unmotivated_axis_flips",
+      "reaction_before_contact",
+      "identity_or_costume_drift"
+    ]
+  },
+  "ability_contracts": [
+    {
+      "actor_id": "mara",
+      "ability_id": "vector_redirect",
+      "observable_rule": "Mara can redirect existing momentum only through a continuous physical contact chain.",
+      "requires": [
+        "active_contact_interval",
+        "declared_source_momentum",
+        "declared_destination_path",
+        "support_or_countermass"
+      ],
+      "forbids": [
+        "creating_momentum_from_nothing",
+        "redirecting_after_contact_release",
+        "teleporting_contact_endpoints"
+      ]
+    },
+    {
+      "actor_id": "veyr",
+      "ability_id": "mass_debt",
+      "observable_rule": "Veyr stores force through a braced support surface and later releases it through the same connected surface chain.",
+      "requires": [
+        "load_bearing_support_contact",
+        "visible_bracing_or_compression",
+        "declared_storage_interval",
+        "connected_release_surface"
+      ],
+      "forbids": [
+        "charging_while_fully_airborne",
+        "release_through_an_unconnected_surface",
+        "environmental_break_without_a_release_event"
+      ]
+    }
+  ],
+  "initial_state": {
+    "state_id": "state.v0",
+    "world_time_s": 0.0,
+    "actors": {
+      "mara": {
+        "identity_lock": "mara",
+        "objective": "deny Veyr access to reactor_core until 30.0 seconds",
+        "tactic": "intercept his route, maintain contact, and turn his stored force into environmental displacement",
+        "beliefs": [
+          {
+            "proposition": "Veyr requires a braced support surface before releasing stored force",
+            "confidence": 0.45,
+            "truth_status": "true_but_not_yet_confirmed"
+          }
+        ],
+        "fatigue": {
+          "rpe_0_10": 4.1,
+          "local_capacity": {
+            "left_arm": 0.92,
+            "right_shoulder": 1.0,
+            "left_leg": 0.9,
+            "right_leg": 0.91
+          }
+        },
+        "injuries": [],
+        "support": ["left_sole_upper_platform", "right_sole_upper_platform"],
+        "position_world_m": [-3.8, 1.2, 18.0],
+        "facing_world": [0.92, -0.18, -0.34]
+      },
+      "veyr": {
+        "identity_lock": "veyr",
+        "objective": "touch reactor_core before 30.0 seconds",
+        "tactic": "ignore the duel frame, break through Mara, and descend by converting support surfaces into launch vectors",
+        "beliefs": [
+          {
+            "proposition": "Mara's redirection requires palm contact",
+            "confidence": 0.77,
+            "truth_status": "false"
+          }
+        ],
+        "fatigue": {
+          "rpe_0_10": 4.8,
+          "local_capacity": {
+            "left_arm": 0.88,
+            "right_arm": 0.9,
+            "left_leg": 0.84,
+            "right_leg": 0.93
+          }
+        },
+        "injuries": [],
+        "support": ["left_sole_upper_platform", "right_sole_upper_platform"],
+        "position_world_m": [4.6, -0.4, 19.2],
+        "facing_world": [-0.86, 0.12, -0.49]
+      }
+    },
+    "advantage_vector": {
+      "initiative": {"mara": 0.42, "veyr": 0.58},
+      "position": {"mara": 0.34, "veyr": 0.66},
+      "information": {"mara": 0.68, "veyr": 0.32},
+      "balance": {"mara": 0.55, "veyr": 0.63},
+      "energy": {"mara": 0.61, "veyr": 0.76},
+      "tempo": {"mara": 0.57, "veyr": 0.43}
+    },
+    "active_contacts": []
+  },
+  "geography": {
+    "world_frame": "W",
+    "up_axis": "+Z",
+    "units": "meters",
+    "zones": [
+      {
+        "id": "upper_platform",
+        "z_range_m": [17.0, 20.0],
+        "affordances": ["run", "brace", "store_force", "break", "fall_from"]
+      },
+      {
+        "id": "rotating_walkway",
+        "z_range_m": [12.0, 18.0],
+        "affordances": ["rotate", "wall_run", "pivot", "occlude", "collapse"]
+      },
+      {
+        "id": "hanging_train_car",
+        "z_range_m": [7.0, 13.0],
+        "affordances": ["enter_through_roof", "brace", "swing", "detach", "become_moving_arena"]
+      },
+      {
+        "id": "reactor_shaft",
+        "z_range_m": [-12.0, 17.0],
+        "affordances": ["freefall", "depth_crossing", "debris_parallax"]
+      },
+      {
+        "id": "reactor_ring",
+        "z_range_m": [-10.0, -7.0],
+        "affordances": ["rotate", "store_force", "redirect_force", "fracture"]
+      },
+      {
+        "id": "reactor_core",
+        "position_world_m": [0.0, 0.0, -10.5],
+        "affordances": ["objective_target", "forbidden_touch_before_cut"]
+      }
+    ],
+    "depth_layers_at_start": {
+      "near": ["foreground_pillar_fragments", "rain_sheets"],
+      "mid": ["mara", "veyr", "upper_platform"],
+      "far": ["reactor_ring", "reactor_core"]
+    },
+    "persistent_objects": [
+      "upper_platform",
+      "rotating_walkway",
+      "support_cable_03",
+      "hanging_train_car",
+      "reactor_ring",
+      "reactor_core"
+    ]
+  },
+  "continuity_invariants": [
+    "Exactly two principal fighters persist through every shot.",
+    "Mara remains Mara and Veyr remains Veyr across cuts, occlusion, debris, and frame exit/re-entry.",
+    "Mara's right-shoulder injury begins at state.v2 and persists through the final frame.",
+    "No active contact disappears without an explicit release cause.",
+    "No action boundary discards support, root velocity, orientation, injury, ownership, or active contact.",
+    "Reactor core position remains world-stable until reactor-ring fracture changes its enclosure, not the core itself.",
+    "Every environmental break is caused by a declared mass-debt release or redirected momentum event.",
+    "Every receiver reaction begins at or after its causal contact.",
+    "Every camera-axis crossing is visible, bridged, or explicitly motivated.",
+    "Every clip begins from the previous clip's accepted terminal state."
+  ],
+  "alignment_anchors": [
+    {"event_id": "e000_sequence_start", "time_s": 0.0, "frame": 0, "type": "state_anchor", "description": "Veyr drives toward the core; Mara commits to interception."},
+    {"event_id": "e010_intercept_commit", "time_s": 2.5, "frame": 60, "type": "decision_key", "description": "Mara abandons the duel line and cuts diagonally across Veyr's route."},
+    {"event_id": "e020_c01_onset", "time_s": 4.333333, "frame": 104, "type": "contact_onset", "contact_id": "c01_forearm_redirect"},
+    {"event_id": "e030_rail_force_release", "time_s": 6.75, "frame": 162, "type": "ability_release", "ability_id": "mass_debt"},
+    {"event_id": "e040_shoulder_injury_commit", "time_s": 8.125, "frame": 195, "type": "state_commit", "state_id": "state.v2"},
+    {"event_id": "e050_cable_acquire", "time_s": 9.0, "frame": 216, "type": "contact_onset", "contact_id": "c02_cable_grip"},
+    {"event_id": "e060_walkway_rotation", "time_s": 10.25, "frame": 246, "type": "world_state_change", "description": "The walkway rotates ninety degrees; floor becomes wall."},
+    {"event_id": "e070_train_breach", "time_s": 12.5, "frame": 300, "type": "spatial_transition", "description": "Residual momentum carries both fighters through the hanging train roof."},
+    {"event_id": "e080_c03_onset", "time_s": 13.25, "frame": 318, "type": "contact_onset", "contact_id": "c03_train_forearm_hook"},
+    {"event_id": "e090_false_parry_start", "time_s": 17.0, "frame": 408, "type": "decision_key", "description": "Mara presents a mechanically weak right-hand parry as deliberate bait."},
+    {"event_id": "e100_c04_frame_acquire", "time_s": 17.75, "frame": 426, "type": "contact_onset", "contact_id": "c04_train_frame_support"},
+    {"event_id": "e110_carriage_force_release", "time_s": 19.25, "frame": 462, "type": "ability_release", "ability_id": "mass_debt"},
+    {"event_id": "e120_carriage_detach_freefall", "time_s": 21.5, "frame": 516, "type": "world_state_change", "state_id": "state.v5"},
+    {"event_id": "e130_c05_hook_onset", "time_s": 21.75, "frame": 522, "type": "contact_onset", "contact_id": "c05_freefall_hook"},
+    {"event_id": "e140_final_preparation", "time_s": 26.0, "frame": 624, "type": "phase_anchor", "description": "Mara's failed freefall recoil becomes preparation for the final redirect."},
+    {"event_id": "e150_c06_final_contact", "time_s": 27.625, "frame": 663, "type": "contact_onset", "contact_id": "c06_final_redirect"},
+    {"event_id": "e160_inverse_impact_flash", "time_s": 27.625, "frame": 663, "type": "presentation_accent", "description": "One-frame inverse-color flash bound to final contact."},
+    {"event_id": "e170_reactor_ring_fracture", "time_s": 27.75, "frame": 666, "type": "world_state_change", "state_id": "state.v7"},
+    {"event_id": "e180_near_core_reveal", "time_s": 29.5, "frame": 708, "type": "story_key", "description": "Veyr's fingers stop short of the core; the fracture reveals a larger mechanism below."},
+    {"event_id": "e190_cut_black", "time_s": 30.0, "frame": 720, "type": "cut", "description": "Cut before touch, victory, or defeat resolves."}
+  ],
+  "contacts": [
+    {
+      "id": "c01_forearm_redirect",
+      "interval_s": [4.333333, 6.75],
+      "a": {"actor": "mara", "region": "left_forearm_ulnar"},
+      "b": {"actor": "veyr", "region": "right_forearm_radial"},
+      "mode_sequence": [
+        {"mode": "impact", "interval_s": [4.333333, 4.458333]},
+        {"mode": "slide", "interval_s": [4.458333, 5.875]},
+        {"mode": "pivot", "interval_s": [5.875, 6.75]}
+      ],
+      "intended_function": "Mara rides Veyr's guard across his route while Veyr completes a hidden rail charge.",
+      "force_transfer_chain": ["upper_platform", "veyr.right_foot", "veyr.pelvis", "veyr.right_forearm", "mara.left_forearm", "mara.trunk", "mara.left_foot", "upper_platform"],
+      "release": {"time_s": 6.75, "cause": "Veyr releases stored rail force and the coupled bodies separate along different vectors."},
+      "visibility": "required"
+    },
+    {
+      "id": "c02_cable_grip",
+      "interval_s": [9.0, 12.5],
+      "a": {"actor": "mara", "region": "left_palm_and_fingers"},
+      "b": {"object": "support_cable_03", "region": "braided_outer_surface"},
+      "mode_sequence": [
+        {"mode": "grip", "interval_s": [9.0, 10.25]},
+        {"mode": "support", "interval_s": [10.25, 11.75]},
+        {"mode": "pivot", "interval_s": [11.75, 12.5]}
+      ],
+      "intended_function": "Convert Mara's injury recoil into a supported arc toward the train roof.",
+      "release": {"time_s": 12.5, "cause": "Mara clears the roof edge and deliberately releases to enter the carriage."},
+      "visibility": "hand may be briefly occluded; cable tension and body arc must remain readable"
+    },
+    {
+      "id": "c03_train_forearm_hook",
+      "interval_s": [13.25, 15.5],
+      "a": {"actor": "veyr", "region": "left_forearm_radial"},
+      "b": {"actor": "mara", "region": "left_forearm_ulnar"},
+      "mode_sequence": [
+        {"mode": "hook_or_trap", "interval_s": [13.25, 13.875]},
+        {"mode": "grip", "interval_s": [13.875, 14.75]},
+        {"mode": "pivot", "interval_s": [14.75, 15.5]}
+      ],
+      "intended_function": "Veyr turns the cable-driven entry into a coupled swing; Mara uses ceiling support to rotate out.",
+      "release": {"time_s": 15.5, "cause": "Mara plants both soles on the ceiling and rotates her forearm through the open escape direction."},
+      "visibility": "required at hook acquisition and release"
+    },
+    {
+      "id": "c04_train_frame_support",
+      "interval_s": [17.75, 21.5],
+      "a": {"actor": "mara", "region": "left_forearm_and_palm"},
+      "b": {"object": "hanging_train_car", "region": "door_frame_02"},
+      "mode_sequence": [
+        {"mode": "support", "interval_s": [17.75, 19.25]},
+        {"mode": "press", "interval_s": [19.25, 20.75]},
+        {"mode": "pivot", "interval_s": [20.75, 21.5]}
+      ],
+      "intended_function": "Maintain the contact chain required to redirect Veyr's released force through the entire carriage.",
+      "release": {"time_s": 21.5, "cause": "The carriage detaches and the door frame tears away under redirected load."},
+      "visibility": "contact itself may be partially occluded; forearm compression, frame deformation, and carriage response must expose the chain"
+    },
+    {
+      "id": "c05_freefall_hook",
+      "interval_s": [21.75, 25.875],
+      "a": {"actor": "veyr", "region": "right_forearm_and_wrist"},
+      "b": {"actor": "mara", "region": "left_forearm_and_wrist"},
+      "mode_sequence": [
+        {"mode": "hook_or_trap", "interval_s": [21.75, 22.5]},
+        {"mode": "grip", "interval_s": [22.5, 24.0]},
+        {"mode": "pivot", "interval_s": [24.0, 25.875]}
+      ],
+      "intended_function": "Veyr uses Mara as a moving bridge toward the core while Mara preserves the contact needed for a later redirect.",
+      "release": {"time_s": 25.875, "cause": "Mara's heel finds the falling carriage edge, changing the support graph and breaking Veyr's wrist alignment."},
+      "visibility": "required during mode changes"
+    },
+    {
+      "id": "c06_final_redirect",
+      "interval_s": [27.625, 29.083333],
+      "a": {"actor": "mara", "region": "left_forearm_ulnar"},
+      "b": {"actor": "veyr", "region": "right_forearm_radial"},
+      "mode_sequence": [
+        {"mode": "impact", "interval_s": [27.625, 27.75]},
+        {"mode": "stick", "interval_s": [27.75, 28.5]},
+        {"mode": "pivot", "interval_s": [28.5, 29.083333]}
+      ],
+      "intended_function": "Mara routes Veyr's downward momentum sideways into the reactor ring as Veyr releases stored force through that same ring.",
+      "force_transfer_chain": ["falling_train_car_edge", "mara.left_foot", "mara.pelvis", "mara.left_forearm", "veyr.right_forearm", "veyr.trunk", "veyr.left_foot", "reactor_ring"],
+      "release": {"time_s": 29.083333, "cause": "The reactor ring fractures and removes the shared support path."},
+      "visibility": "mandatory; no foreground occlusion at impact or mode change"
+    }
+  ],
+  "actions": [
+    {
+      "id": "a01_mara_intercept_and_ride",
+      "actor": "mara",
+      "semantic_action": "intercept Veyr's route and convert the collision into a maintained outside redirect",
+      "interval_s": [0.0, 6.75],
+      "phases": [
+        {"role": "orientation", "interval_s": [0.0, 0.75]},
+        {"role": "anticipatory_adjustment", "interval_s": [0.5, 1.5], "detail": "pelvis shifts over left foot before shoulders turn"},
+        {"role": "diagonal_acceleration", "interval_s": [1.25, 4.333333]},
+        {"role": "contact_stroke", "interval_s": [4.333333, 4.458333], "contact_id": "c01_forearm_redirect"},
+        {"role": "slide_and_redirect", "interval_s": [4.458333, 5.875], "contact_id": "c01_forearm_redirect"},
+        {"role": "pivot_overshoot", "interval_s": [5.875, 6.75], "contact_id": "c01_forearm_redirect"}
+      ],
+      "boundary_momentum_resolution": "redirect_then_forced_separation",
+      "forbids": ["square_duel_pose", "bounce_to_neutral"]
+    },
+    {
+      "id": "a02_veyr_core_drive_and_rail_charge",
+      "actor": "veyr",
+      "semantic_action": "drive past Mara toward the core while charging the rail through his right-foot support",
+      "interval_s": [0.0, 8.125],
+      "phases": [
+        {"role": "power_approach", "interval_s": [0.0, 4.0]},
+        {"role": "brace_and_store", "interval_s": [2.75, 6.75], "support": "right_sole_upper_platform"},
+        {"role": "coupled_drive", "interval_s": [4.333333, 6.75], "contact_id": "c01_forearm_redirect"},
+        {"role": "release", "interval_s": [6.75, 6.875], "event_id": "e030_rail_force_release"},
+        {"role": "follow_through", "interval_s": [6.875, 8.125]}
+      ],
+      "boundary_momentum_resolution": "carry_downward_and_toward_core"
+    },
+    {
+      "id": "a03_mara_recoil_to_cable_pivot",
+      "actor": "mara",
+      "semantic_action": "turn the rail-blast recoil and shoulder injury into a left-handed cable-supported arc",
+      "interval_s": [6.75, 12.5],
+      "phases": [
+        {"role": "injury_recoil", "interval_s": [6.75, 8.125]},
+        {"role": "successor_preparation", "interval_s": [7.75, 9.0], "detail": "left gaze and hand search for cable before recoil finishes"},
+        {"role": "grip_acquisition", "interval_s": [9.0, 9.125], "contact_id": "c02_cable_grip"},
+        {"role": "supported_swing", "interval_s": [9.125, 11.75], "contact_id": "c02_cable_grip"},
+        {"role": "train_entry_pivot", "interval_s": [11.75, 12.5], "contact_id": "c02_cable_grip"}
+      ],
+      "injury_constraint": "right arm cannot perform high-load catch or full-extension strike"
+    },
+    {
+      "id": "a04_veyr_walkway_inversion",
+      "actor": "veyr",
+      "semantic_action": "use the charged walkway to invert the action plane and preserve the shortest route to the core",
+      "interval_s": [6.5, 12.5],
+      "phases": [
+        {"role": "preload_completion", "interval_s": [6.5, 6.75]},
+        {"role": "force_release", "interval_s": [6.75, 7.0]},
+        {"role": "surface_rotation_response", "interval_s": [7.0, 10.25]},
+        {"role": "wall_run", "interval_s": [10.25, 12.0]},
+        {"role": "train_breach", "interval_s": [12.0, 12.5]}
+      ],
+      "boundary_momentum_resolution": "carry_into_train_interior"
+    },
+    {
+      "id": "a05_train_exchange_coupled",
+      "actors": ["mara", "veyr"],
+      "semantic_action": "resolve entry momentum through a forearm hook, ceiling plant, rotating near-miss, and explicit release",
+      "interval_s": [12.5, 17.0],
+      "phases": [
+        {"role": "shared_entry_recoil", "interval_s": [12.5, 13.25]},
+        {"role": "veyr_hook", "interval_s": [13.25, 13.875], "contact_id": "c03_train_forearm_hook"},
+        {"role": "coupled_swing", "interval_s": [13.875, 14.75], "contact_id": "c03_train_forearm_hook"},
+        {"role": "mara_ceiling_support_acquire", "interval_s": [14.25, 14.75]},
+        {"role": "mara_pivoted_near_miss", "interval_s": [14.75, 15.5], "contact_id": "c03_train_forearm_hook"},
+        {"role": "release_and_reorientation", "interval_s": [15.5, 16.25]},
+        {"role": "false_parry_preparation", "interval_s": [16.0, 17.0]}
+      ],
+      "causal_result": "Mara confirms Veyr's bracing requirement and converts injury display into deceptive information."
+    },
+    {
+      "id": "a06_mara_false_parry_and_carriage_redirect",
+      "actor": "mara",
+      "semantic_action": "bait Veyr into charging the train wall while quietly establishing a left-side contact chain to the carriage",
+      "interval_s": [16.0, 21.5],
+      "phases": [
+        {"role": "deceptive_right_arm_initiation", "interval_s": [16.0, 17.5]},
+        {"role": "left_forearm_support_acquisition", "interval_s": [17.25, 17.75]},
+        {"role": "contact_chain_hold", "interval_s": [17.75, 19.25], "contact_id": "c04_train_frame_support"},
+        {"role": "redirect_stroke", "interval_s": [19.25, 20.75], "contact_id": "c04_train_frame_support"},
+        {"role": "carriage_pivot_overshoot", "interval_s": [20.75, 21.5], "contact_id": "c04_train_frame_support"}
+      ],
+      "boundary_momentum_resolution": "redirect_entire_carriage_into_shaft"
+    },
+    {
+      "id": "a07_veyr_carriage_discharge",
+      "actor": "veyr",
+      "semantic_action": "brace against the train wall and release stored force through the carriage",
+      "interval_s": [17.0, 21.5],
+      "phases": [
+        {"role": "false_belief_response", "interval_s": [17.0, 17.75]},
+        {"role": "wall_brace", "interval_s": [17.75, 19.25]},
+        {"role": "force_release", "interval_s": [19.25, 19.375], "event_id": "e110_carriage_force_release"},
+        {"role": "unexpected_carriage_rotation", "interval_s": [19.375, 21.5]}
+      ],
+      "causal_result": "Veyr's force advances him vertically but gives Mara control of the moving arena."
+    },
+    {
+      "id": "a08_freefall_grapple",
+      "actors": ["mara", "veyr"],
+      "semantic_action": "Veyr uses a maintained forearm hook as a bridge toward the core while Mara preserves contact and searches for counter-support",
+      "interval_s": [21.5, 26.0],
+      "phases": [
+        {"role": "freefall_orientation", "interval_s": [21.5, 21.75]},
+        {"role": "hook_acquisition", "interval_s": [21.75, 22.5], "contact_id": "c05_freefall_hook"},
+        {"role": "grip_and_pull", "interval_s": [22.5, 24.0], "contact_id": "c05_freefall_hook"},
+        {"role": "coupled_pivot", "interval_s": [24.0, 25.875], "contact_id": "c05_freefall_hook"},
+        {"role": "mara_heel_support_acquisition", "interval_s": [25.25, 25.875]},
+        {"role": "grip_break_and_final_prep", "interval_s": [25.875, 26.0]}
+      ],
+      "injury_effect": "Mara cannot win the grip exchange through right-arm force; she must alter the support graph."
+    },
+    {
+      "id": "a09_final_coupled_release",
+      "actors": ["mara", "veyr"],
+      "semantic_action": "Mara redirects Veyr's descent into the ring while Veyr simultaneously releases stored force through it",
+      "interval_s": [26.0, 29.5],
+      "phases": [
+        {"role": "mara_support_load_and_torso_wind", "interval_s": [26.0, 26.833333]},
+        {"role": "veyr_core_line_acceleration", "interval_s": [26.25, 27.625]},
+        {"role": "mara_contact_acceleration", "interval_s": [26.833333, 27.625]},
+        {"role": "shared_contact_stroke", "interval_s": [27.625, 27.75], "contact_id": "c06_final_redirect"},
+        {"role": "simultaneous_redirect_and_release", "interval_s": [27.75, 28.5], "contact_id": "c06_final_redirect"},
+        {"role": "ring_fracture_pivot", "interval_s": [28.5, 29.083333], "contact_id": "c06_final_redirect"},
+        {"role": "opposing_depth_separation", "interval_s": [29.083333, 29.5]}
+      ],
+      "boundary_momentum_resolution": "shared_support_path_breaks; fighters separate into opposing depth vectors"
+    }
+  ],
+  "beats": [
+    {
+      "id": "b01_route_interception",
+      "interval_s": [0.0, 4.0],
+      "frame_range": [0, 95],
+      "dramatic_function": "Establish that Veyr is pursuing the core, not participating in a flat duel.",
+      "preconditions": ["state.v0 active", "reactor_core visible in far depth"],
+      "intentions": {"mara": "cut across Veyr's descent path", "veyr": "ignore the duel line and preserve the shortest route to the core"},
+      "actions": ["a01_mara_intercept_and_ride", "a02_veyr_core_drive_and_rail_charge"],
+      "contacts": [],
+      "effects": ["distance closes volumetrically", "Veyr begins charging the rail through right-foot support"],
+      "post_state_ref": "state.v1",
+      "attention_target": "route geometry and opposing objectives"
+    },
+    {
+      "id": "b02_forearm_redirect_and_injury",
+      "interval_s": [4.0, 8.125],
+      "frame_range": [96, 194],
+      "dramatic_function": "Convert interception into coupled contact, then make the first major consequence persist.",
+      "preconditions": ["Mara intersects Veyr's route", "Veyr rail charge active", "right-foot support connected to rail"],
+      "intentions": {"mara": "ride the guard and divert Veyr away from the core", "veyr": "complete the rail charge during contact and release through her redirect"},
+      "actions": ["a01_mara_intercept_and_ride", "a02_veyr_core_drive_and_rail_charge", "a03_mara_recoil_to_cable_pivot"],
+      "contacts": ["c01_forearm_redirect"],
+      "effects": ["rail force released at 6.75s", "Mara passes through glass partition", "Mara right shoulder capacity falls to 0.46", "Veyr gains positional advantage toward core"],
+      "post_state_ref": "state.v2",
+      "attention_target": "impact-slide-pivot topology and shoulder consequence"
+    },
+    {
+      "id": "b03_walkway_inversion",
+      "interval_s": [8.125, 12.5],
+      "frame_range": [195, 299],
+      "dramatic_function": "Turn recovery into preparation and rotate the arena without resetting either fighter.",
+      "preconditions": ["Mara right shoulder injured", "Mara retains downward-left recoil", "support_cable_03 reachable", "walkway rotation initiated"],
+      "intentions": {"mara": "use left-hand cable support to redirect into the train", "veyr": "wall-run the rotating surface and continue descending"},
+      "actions": ["a03_mara_recoil_to_cable_pivot", "a04_veyr_walkway_inversion"],
+      "contacts": ["c02_cable_grip"],
+      "effects": ["walkway rotates ninety degrees", "world floor becomes image-space wall", "Mara injury changes available actions", "both enter train on carried momentum"],
+      "post_state_ref": "state.v3",
+      "attention_target": "depth rotation, cable tension, and persistent injury"
+    },
+    {
+      "id": "b04_moving_interior_exchange",
+      "interval_s": [12.5, 17.0],
+      "frame_range": [300, 407],
+      "dramatic_function": "Use close contact to reveal the opponent's rule rather than pause for exposition.",
+      "preconditions": ["shared train-entry momentum", "Mara right shoulder remains limited", "train ceiling and rails available as support"],
+      "intentions": {"mara": "survive the hook and confirm Veyr's bracing dependency", "veyr": "convert entry chaos into a direct bridge toward the core"},
+      "actions": ["a05_train_exchange_coupled", "a06_mara_false_parry_and_carriage_redirect"],
+      "contacts": ["c03_train_forearm_hook"],
+      "effects": ["Mara confirms mass-debt bracing rule", "Veyr retains false palm-contact belief", "Mara begins false-parry preparation before release finishes"],
+      "post_state_ref": "state.v4",
+      "attention_target": "hook-grip-pivot continuity and ceiling support"
+    },
+    {
+      "id": "b05_carriage_redirect",
+      "interval_s": [17.0, 21.5],
+      "frame_range": [408, 515],
+      "dramatic_function": "Transform injury and false belief into a tactical reversal that moves the entire arena.",
+      "preconditions": ["Mara false parry readable", "Veyr believes palm contact is required", "train wall available for bracing", "Mara left forearm can contact door frame"],
+      "intentions": {"mara": "invite wall discharge and redirect the carriage", "veyr": "break through the injured parry and launch toward the core"},
+      "actions": ["a06_mara_false_parry_and_carriage_redirect", "a07_veyr_carriage_discharge"],
+      "contacts": ["c04_train_frame_support"],
+      "effects": ["Veyr releases through train wall", "Mara redirects through full carriage", "hanging_train_car detaches", "arena enters reactor-shaft freefall"],
+      "post_state_ref": "state.v5",
+      "attention_target": "left-side contact chain and whole-carriage response"
+    },
+    {
+      "id": "b06_freefall_grapple",
+      "interval_s": [21.5, 26.0],
+      "frame_range": [516, 623],
+      "dramatic_function": "Keep both fighters coupled in open volume while the core becomes an immediate spatial threat.",
+      "preconditions": ["carriage detached", "both fighters share downward momentum", "Veyr closer to core line", "Mara right shoulder still limited"],
+      "intentions": {"mara": "preserve contact until counter-support appears", "veyr": "use Mara as a moving bridge to the core"},
+      "actions": ["a08_freefall_grapple", "a09_final_coupled_release"],
+      "contacts": ["c05_freefall_hook"],
+      "effects": ["Mara cannot muscle free", "falling carriage edge becomes new support", "hook alignment breaks", "final preparation begins before full separation"],
+      "post_state_ref": "state.v6",
+      "attention_target": "forearm contact, falling depth, and support acquisition"
+    },
+    {
+      "id": "b07_reactor_ring_collision",
+      "interval_s": [26.0, 30.0],
+      "frame_range": [624, 719],
+      "dramatic_function": "Deliver the largest coupled consequence without resolving victory.",
+      "preconditions": ["Mara has falling-carriage heel support", "Veyr accelerates on core line", "reactor ring available as Veyr support", "Mara final redirect prepared"],
+      "intentions": {"mara": "route descent away from the core through the ring", "veyr": "release all stored force through the ring and reach the core"},
+      "actions": ["a09_final_coupled_release"],
+      "contacts": ["c06_final_redirect"],
+      "effects": ["reactor ring fractures", "shared support path breaks", "fighters separate into opposing depth vectors", "core remains untouched at cut", "larger mechanism is revealed below"],
+      "post_state_ref": "state.v7",
+      "attention_target": "authoritative contact, ring fracture, near-core reveal"
+    }
+  ],
+  "state_deltas": [
+    {
+      "state_id": "state.v1",
+      "at_s": 4.0,
+      "from": "state.v0",
+      "changes": ["fighters within contact range", "Veyr rail charge active", "Mara diagonal interception committed"]
+    },
+    {
+      "state_id": "state.v2",
+      "at_s": 8.125,
+      "from": "state.v1",
+      "changes": ["Mara right_shoulder capacity 1.0 -> 0.46", "Mara pain_0_10 0 -> 5", "Veyr position advantage 0.66 -> 0.74", "c01 released with cause"]
+    },
+    {
+      "state_id": "state.v3",
+      "at_s": 12.5,
+      "from": "state.v2",
+      "changes": ["walkway orientation rotated 90 degrees", "c02 released with cause", "both actors enter hanging_train_car", "Mara right-shoulder injury persists"]
+    },
+    {
+      "state_id": "state.v4",
+      "at_s": 17.0,
+      "from": "state.v3",
+      "changes": ["Mara belief confidence in Veyr bracing rule 0.45 -> 0.88", "Veyr false palm-contact belief remains 0.77", "c03 released with cause", "Mara false parry preparation active"]
+    },
+    {
+      "state_id": "state.v5",
+      "at_s": 21.5,
+      "from": "state.v4",
+      "changes": ["hanging_train_car attachment attached -> detached", "all occupants enter freefall", "Mara information advantage rises", "c04 released because frame tears away", "Mara injury persists"]
+    },
+    {
+      "state_id": "state.v6",
+      "at_s": 26.0,
+      "from": "state.v5",
+      "changes": ["c05 released with support-change cause", "Mara left heel acquires falling-carriage support", "Veyr retains core-line positional advantage", "final preparations overlap"]
+    },
+    {
+      "state_id": "state.v7",
+      "at_s": 27.75,
+      "from": "state.v6",
+      "changes": ["reactor_ring intact -> fractured", "c06 remains active through fracture pivot", "Veyr core contact remains false", "larger mechanism visibility hidden -> partial"]
+    }
+  ],
+  "presentation": {
+    "camera_shots": [
+      {
+        "shot_id": "s01_route_master",
+        "interval_s": [0.0, 4.333333],
+        "lens_mm": 28,
+        "movement": "descending diagonal track through foreground pillar debris toward the interaction centroid",
+        "motivation": "establish near-mid-far geography and show both objectives on intersecting paths",
+        "must_show": ["both full-body trajectories", "reactor_core in far depth", "Veyr right-foot rail load"],
+        "axis_policy": "remain on positive side of actor axis"
+      },
+      {
+        "shot_id": "s02_contact_countertrack",
+        "interval_s": [4.333333, 8.125],
+        "lens_mm": 35,
+        "movement": "lateral counter-track that preserves forearm contact while the background accelerates opposite their motion",
+        "motivation": "make impact-slide-pivot topology and rail release readable",
+        "must_show": ["c01_forearm_redirect", "Veyr support foot", "Mara shoulder collision"],
+        "camera_impulse": {"anchor_event": "e020_c01_onset", "amplitude": 0.18, "peak_offset_frames": 0, "decay_frames": 5}
+      },
+      {
+        "shot_id": "s03_visible_axis_cross",
+        "interval_s": [8.125, 12.5],
+        "lens_mm": 24,
+        "movement": "camera cranes beneath the rotating rail and visibly crosses the action axis as the walkway becomes a wall",
+        "motivation": "preserve orientation during world-plane inversion",
+        "must_show": ["c02 cable tension", "Mara injured right arm protected", "train roof destination"],
+        "axis_policy": "crossing allowed only because camera path visibly traverses axis"
+      },
+      {
+        "shot_id": "s04_train_interior",
+        "interval_s": [12.5, 17.0],
+        "lens_mm": 28,
+        "movement": "short stabilized interior arc tied to the coupled forearm centroid",
+        "motivation": "clarify ceiling support and hook-grip-pivot modes without random orbit",
+        "must_show": ["c03 acquisition", "both foot-support changes", "c03 release"]
+      },
+      {
+        "shot_id": "s05_carriage_reversal",
+        "interval_s": [17.0, 21.5],
+        "lens_mm": 32,
+        "movement": "controlled pullback through the carriage doorway as the entire vehicle begins rotating",
+        "motivation": "reveal that Mara redirects the arena rather than Veyr's body",
+        "must_show": ["weak right-parry bait", "left-forearm frame compression", "carriage detachment"]
+      },
+      {
+        "shot_id": "s06_freefall_below",
+        "interval_s": [21.5, 26.0],
+        "lens_mm": 20,
+        "movement": "camera falls below the actors while tracking their interaction centroid; foreground debris crosses faster than the distant shaft",
+        "motivation": "make freefall depth and core approach legible through parallax",
+        "must_show": ["c05 mode changes", "Mara heel support acquisition", "core distance closing"],
+        "axis_policy": "no unexplained reversal"
+      },
+      {
+        "shot_id": "s07_final_convergence",
+        "interval_s": [26.0, 30.0],
+        "lens_mm": 35,
+        "movement": "counter-dolly away from the reactor ring while subjects converge toward it; brief band-limited impulse at contact",
+        "motivation": "increase relative image velocity, preserve the final contact, and reveal fracture scale",
+        "must_show": ["c06 final contact", "reactor-ring support path", "Veyr fingers short of core", "larger mechanism reveal"],
+        "camera_impulse": {"anchor_event": "e150_c06_final_contact", "amplitude": 0.22, "peak_offset_frames": 0, "decay_frames": 6}
+      }
+    ],
+    "exposure_events": [
+      {"frame_range": [0, 2], "rank": "K0", "type": "decision_key_hold", "principal_layer": "veyr_route_commit", "other_layers": "rain and reactor rotation continue on ones"},
+      {"frame_range": [102, 103], "rank": "K5", "type": "trajectory_smear", "source": "intercept_extreme", "destination": "c01_contact_key", "preserve": ["head identities", "contact destination", "screen direction"]},
+      {"frame_range": [104, 106], "rank": "K1", "type": "contact_key_hold", "contact_id": "c01_forearm_redirect", "other_layers": "rail sparks, rain, and camera impulse continue"},
+      {"frame_range": [193, 194], "rank": "K0", "type": "injury_state_key", "principal_layer": "mara_shoulder_recoil", "other_layers": "glass and Veyr trajectory continue"},
+      {"frame_range": [195, 299], "rank": "K3", "type": "mixed_exposure_run", "character_policy": "twos with one-frame transition accents", "background_policy": "ones", "purpose": "world-plane inversion without uniform-fluid washout"},
+      {"frame_range": [516, 623], "rank": "K4", "type": "freefall_density_ramp", "character_policy": "twos -> ones near support acquisition", "background_policy": "ones", "purpose": "increase urgency while preserving contact readability"},
+      {"frame_range": [661, 662], "rank": "K5", "type": "trajectory_smear", "source": "final_acceleration", "destination": "c06_contact_key", "preserve": ["head identities", "left-foot support", "reactor-ring destination"]},
+      {"frame_range": [663, 663], "rank": "K1", "type": "inverse_color_impact_flash", "contact_id": "c06_final_redirect"},
+      {"frame_range": [664, 665], "rank": "K1", "type": "contact_key_hold", "contact_id": "c06_final_redirect", "other_layers": "ring rotation, rain, debris, camera impulse, and audio tail continue on ones"},
+      {"frame_range": [708, 713], "rank": "K0", "type": "near_core_story_key", "principal_layer": "veyr_fingers_and_smile", "other_layers": "fracture propagation and falling debris continue"}
+    ],
+    "audio_cues": [
+      {"id": "aud01_storm_bed", "interval_s": [0.0, 30.0], "type": "continuous_ambience", "description": "rain, distant reactor harmonic, metal strain"},
+      {"id": "aud02_c01_preimpact_drop", "time_s": 4.25, "type": "brief_spectral_drop", "binds_to": "e020_c01_onset"},
+      {"id": "aud03_c01_transient", "time_s": 4.333333, "type": "sharp_contact_transient", "binds_to": "e020_c01_onset"},
+      {"id": "aud04_rail_release_body", "time_s": 6.791667, "type": "low_frequency_release", "lags": {"event_id": "e030_rail_force_release", "frames": 1}},
+      {"id": "aud05_freefall_vacuum", "interval_s": [21.5, 22.0], "type": "pressure_drop_then_air_rush"},
+      {"id": "aud06_final_preimpact_silence", "interval_s": [27.5, 27.625], "type": "silence_gap"},
+      {"id": "aud07_final_transient", "time_s": 27.625, "type": "high_frequency_contact_transient", "binds_to": "e150_c06_final_contact"},
+      {"id": "aud08_final_sub_body", "time_s": 27.708333, "type": "low_frequency_body", "lags": {"event_id": "e150_c06_final_contact", "frames": 2}},
+      {"id": "aud09_cut_tail", "time_s": 30.0, "type": "hard_cut_with_reactor_harmonic_tail"}
+    ]
+  },
+  "execution_plan": {
+    "control_ceiling": "Exact alignment requires the highest available carrier: pose/reference motion, endpoint frames, camera controls, and editorial assembly. Natural-language projection alone is semantic guidance.",
+    "provider_status": "unspecified_unknown",
+    "preferred_control_ladder": [
+      "validated Fight IR",
+      "pose or reference-motion trajectory",
+      "first and last frame anchors per clip",
+      "depth or edge control for geography",
+      "camera trajectory or optical-flow reference",
+      "concise positive provider prompt",
+      "post-generation measurement and local repair"
+    ],
+    "clips": [
+      {"clip_id": "clip01_route", "interval_s": [0.0, 4.333333], "frame_range": [0, 103], "first_state": "state.v0", "terminal_event": "e020_c01_onset", "end_frame_goal": "forearms one frame from authoritative contact; Veyr right foot visibly braced"},
+      {"clip_id": "clip02_contact_injury", "interval_s": [4.333333, 8.125], "frame_range": [104, 194], "first_event": "e020_c01_onset", "terminal_state": "state.v2", "end_frame_goal": "Mara in shoulder recoil with injury readable; Veyr continuing coreward"},
+      {"clip_id": "clip03_inversion", "interval_s": [8.125, 12.5], "frame_range": [195, 299], "first_state": "state.v2", "terminal_state": "state.v3", "end_frame_goal": "both actors breach train roof on carried momentum"},
+      {"clip_id": "clip04_train_exchange", "interval_s": [12.5, 17.0], "frame_range": [300, 407], "first_state": "state.v3", "terminal_state": "state.v4", "end_frame_goal": "c03 released; Mara's false right-parry preparation already visible"},
+      {"clip_id": "clip05_carriage_redirect", "interval_s": [17.0, 21.5], "frame_range": [408, 515], "first_state": "state.v4", "terminal_state": "state.v5", "end_frame_goal": "carriage detached at freefall onset; both identities and injury preserved"},
+      {"clip_id": "clip06_freefall", "interval_s": [21.5, 26.0], "frame_range": [516, 623], "first_state": "state.v5", "terminal_state": "state.v6", "end_frame_goal": "c05 released by support change; Mara heel planted on falling carriage edge"},
+      {"clip_id": "clip07_final", "interval_s": [26.0, 30.0], "frame_range": [624, 719], "first_state": "state.v6", "terminal_state": "state.v7", "end_frame_goal": "ring fractured; Veyr short of core; larger mechanism revealed; no winner"}
+    ],
+    "continuity_handoff_required_fields": [
+      "actor_identity",
+      "actor_count",
+      "world_position",
+      "root_velocity",
+      "root_angular_velocity",
+      "facing",
+      "support_contacts",
+      "active_contact_or_release_event",
+      "injury_and_fatigue",
+      "ability_charge_state",
+      "object_state",
+      "screen_direction",
+      "camera_side",
+      "open_obligations"
+    ]
+  },
+  "verification": {
+    "hard_gate_order": [
+      "identity_and_body_count_integrity",
+      "geography_and_object_integrity",
+      "critical_contact_topology",
+      "persistent_state_consequences",
+      "action_order_and_phase_continuity",
+      "camera_visibility_and_axis_intent",
+      "anime_exposure_intent",
+      "aesthetic_quality"
+    ],
+    "hard_gates": [
+      {"id": "gate_identity", "assertion": "actor_count == 2 and identities remain stable", "failure_blocks_acceptance": true},
+      {"id": "gate_duration", "assertion": "duration_s == 30.0 and frame_count == 720 at 24 fps", "failure_blocks_acceptance": true},
+      {"id": "gate_contact", "assertion": "all six contact intervals preserve endpoints, ordered modes, and declared release causes", "failure_blocks_acceptance": true},
+      {"id": "gate_reaction", "assertion": "no receiver reaction begins before causal contact", "failure_blocks_acceptance": true},
+      {"id": "gate_injury", "assertion": "Mara right-shoulder capacity remains <= 0.46 from 8.125s through 30.0s", "failure_blocks_acceptance": true},
+      {"id": "gate_no_reset", "assertion": "neutral_reset_count == 0", "failure_blocks_acceptance": true},
+      {"id": "gate_environment", "assertion": "every fracture, rotation, and detachment has a declared force-release or redirect cause", "failure_blocks_acceptance": true},
+      {"id": "gate_camera", "assertion": "critical contacts remain visible and each axis crossing is motivated", "failure_blocks_acceptance": true},
+      {"id": "gate_objective", "assertion": "Veyr does not touch reactor_core before cut-to-black", "failure_blocks_acceptance": true}
+    ],
+    "diagnostic_targets": [
+      {"metric": "contact_onset_error", "target": "within 2 frames of authored anchor", "status": "calibration_target"},
+      {"metric": "critical_contact_interval_iou", "target": ">= 0.70", "status": "authored_starting_target"},
+      {"metric": "subject_offscreen_rate_during_must_show", "target": 0.0, "status": "hard_target"},
+      {"metric": "neutral_reset_rate", "target": 0.0, "status": "hard_target"},
+      {"metric": "uncaused_state_change_rate", "target": 0.0, "status": "hard_target"},
+      {"metric": "screen_direction_continuity", "target": "all reversals declared", "status": "hard_target"},
+      {"metric": "parallax_rank_consistency", "target": "near layers move more than far layers during lateral translation", "status": "diagnostic"},
+      {"metric": "power_escalation_monotonic", "target": true, "status": "hard_target"}
+    ],
+    "repair_policy": "Repair the earliest broken layer and regenerate only the smallest affected interval; do not rewrite the entire sequence for a local failure."
+  }
+}
