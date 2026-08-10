@@ -204,6 +204,7 @@ not a step.
 | 2026-08-09 | D-2026-08-09-13 | Ingest user supplement gap_answer_05 as SRC-016 + DIST-016: hand-identity label stability EXTENDed into interaction_lifecycle; role_renaming/hand_spawn/reentry_reset rows added to failure_mode_catalog | D1/D2/D9 | APPLIED |
 | 2026-08-09 | D-2026-08-09-14 | Re-pasted quad-carrier prompt verified character-identical to the captured specimen (line diff, 0 differing lines) — no duplicate capture; analysis card remains authoritative; DMR kit renumbered to SRC-017 candidate | D7/H7 | APPLIED |
 | 2026-08-09 | D-2026-08-09-15 | Standalone distillation created — quad-carrier prompt document + analysis merged into one file (cpcs.distillation.quad_carrier_prompt_standalone_findings), verbatim block verified 0-line diff vs specimen, corroborated by SRC-013/014 research | D7/H5 | APPLIED |
+| 2026-08-09 | D-2026-08-09-16 | User request — major-MD collection folder created at Research_distillation_folder/major_md (61 docs + INDEX.md, flattened copies, source tree untouched); cpcs tree unaffected | D7 | APPLIED |
 
 ## 6. User decision briefs (the ONLY consultation points)
 

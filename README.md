@@ -227,6 +227,7 @@ git -c core.longpaths=true -c user.name="Kingsley-Cyber" `
 | 2026-08-09 | Representation analysis | Specimen + quad-carrier prompt analysis (UG-008); 185 objects, 211 files |
 | 2026-08-09 | D9 ingestion batch | UG-008 CLOSED: SRC-013 + supplements SRC-014/015/016 (10 EXTENDs across 5 cards); 193 objects, 219 files |
 | 2026-08-09 | Standalone distillation | Quad-carrier prompt document + analysis merged into one file with SRC-013/014 corroboration; 194 objects, 220 files |
+| 2026-08-09 | Major MD collection | Research_distillation_folder/major_md — 61 major research docs flattened + INDEX.md (source tree untouched) |
 
 ### Pending work (pick up here)
 

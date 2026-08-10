@@ -1,0 +1,176 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2869
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 ---\
+id: cpcs.research.query.living_performance_realism\
+kind: deep_research_prompt\
+epistemic_status: AUTHORED\
+primary_route: cpcs/research/gaps/\
+enhances: cpcs.reference.living_performance_realism\
+---\
+\
+# Deep Research Prompt \'97 Living Performance & Capture Realism gap closure\
+\
+## Mission\
+\
+Turn the **Living Performance & Capture Realism** spec (`LIVING_PERFORMANCE_REALISM.md`, layers\
+L1\'96L7 + capture + voice) from **qualitative direction into measured, source-cited control**. The\
+goal is that a director/coding agent can, at generation time, place *time-indexed, quantified*\
+realism behavior for **any gender and any living thing** and know which encoding actually conditions\
+each provider.\
+\
+Do **not** redesign CPCS. This is knowledge that must integrate behind the existing semantic\
+authority as promotable concepts + mappings (concept \uc0\u8594  control, with format projections), so each\
+result should be shaped for the `distill \uc0\u8594  curate \u8594  promote` path into `lab/concepts.jsonl` and\
+`lab/second_brain/curated/mappings.jsonl`.\
+\
+For every gap, connect the runtime chain and **label each step** as `deterministic`,\
+`constraint_solved`, `model_mediated`, `human_authored`, `observed`, `measured`, or `experimental`:\
+\
+```\
+subject/scene condition\
+\uc0\u8594  evidence or authored intent\
+\uc0\u8594  Director decision (which lever, what value, at what time)\
+\uc0\u8594  Canonical Score field (timeline event)\
+\uc0\u8594  solver/validator (physics/continuity/anatomy check)\
+\uc0\u8594  provider capability decision (can this model express it?)\
+\uc0\u8594  emitted control (the prose/param the model reads)\
+\uc0\u8594  observed measurement (how you verify it in the render)\
+\uc0\u8594  accept / repair / degrade / fail-closed\
+```\
+\
+Name the exact **runtime owner** and the **smallest executable consumer** for every new field.\
+\
+## Coverage table (reproduce and complete)\
+\
+Answer each gap and end it as `closed | implementable_now | requires_experiment | unknown | deferred | rejected` with a one-line reason.\
+\
+**Acquisition legend** \'97 how each gap's truth is obtained (a gap may use several; order = primary\uc0\u8594 supporting):\
+`L` literature / formulated principle (epistemic `authored`) \'b7\
+`H` 12labs-harvest \'97 Pegasus/Segment/Marengo/Jockey *find & route* instances at scale (epistemic `interpreted`, never a number) \'b7\
+`M` local-measure \'97 frame/audio detectors compute the actual value (epistemic `measured`) \'b7\
+`X` experiment \'97 generate + measure to prove a model-conditioning effect (epistemic `experimental`).\
+The canonical empirical path is **H \uc0\u8594  M** (12labs finds the moment, the local lane measures it); `L` supplies the invariant law; `X` is the only source for "does this phrasing move the generator."\
+\
+| Gap | Layer | Question type | Acquire | Scope |\
+|---|---|---|---|---|\
+| LPR-001 | L1 aliveness/autonomic | WHAT/HOW | **M + L** | breath cadence, blink rate, resting micro-sway amplitude & frequency \'97 by species, age, arousal |\
+| LPR-002 | L2 attention/gaze | WHAT/HOW | **H\uc0\u8594 M + L** | saccade durations, eyes\u8594 head\u8594 torso **lead-times (ms)**, blink\'96gaze coupling; predator/prey scan patterns |\
+| LPR-003 | L3 affect display | WHAT/WHEN | **H\uc0\u8594 M + L** | FACS AU onset/apex/offset durations; Duchenne markers; cross-species affect signal catalog (ears/tail/gular/pupil); VAD\u8594 signal map |\
+| LPR-004 | L4 motor initiation | WHY/HOW | **M + L** (H to sample) | proximal-to-distal lead-times; anticipation:action:recovery ratios; gait phase; body-wave propagation (fish/reptile) |\
+| LPR-005 | L5 emphasis dynamics | HOW/APPLY | **H\uc0\u8594 M + X** | prosodic stress \u8594  Laban effort accent magnitude + lean displacement + timing offset; audio-visual accent sync window |\
+| LPR-006 | L6 asymmetry/noise | WHAT/WHY | **M + L** | bilateral asymmetry magnitudes; **correlated (1/f) vs white** micro-noise spectra; the "not random jitter" bound |\
+| LPR-007 | L7 surface realism | WHAT/WHEN | **L + M(proxy)** | measurable descriptors separating real skin/fur/scale/feather from waxy/plastic; uncanny-valley thresholds |\
+| LPR-008 | capture | WHAT/HOW | **H\uc0\u8594 M** | autofocus hunt durations, exposure adaptation time-constants, handheld shake spectra, wide-lens distortion by focal length \'97 the "real device" signature |\
+| LPR-009 | voice/vocalization | HOW/APPLY | **M + L** (H to sample) | speech pace ranges, pre-line breath timing, filler/pause rates, audio-visual lip-sync tolerance; animal vocalization\'96motion sync |\
+| LPR-010 | gender invariance | WHY/BLEND | **L + M(audit)** | which realism levers are gender-invariant; where perceptual/annotation bias enters; how to keep direction neutral without losing realism |\
+| LPR-011 | cross-species map | BLEND | **L + M** | validate the function\uc0\u8594 signal mapping per species class; where a human lever has no valid animal analog (and what replaces it) |\
+| LPR-012 | provider conditioning | APPLY | **X** | which **prose encoding** of each measured lever actually moves which model (Veo/Sora/Kling/Runway); minimal-token phrasing that survives |\
+\
+## Local-measurement lane spec (the `M` lane \'97 what actually computes the numbers)\
+\
+12labs cannot emit these values; run these detectors on the exact authorized frames/audio. Each\
+produces a `measured` observation. This lane already exists in the repo (`lab/second_brain/src/measurement.py`,\
+`immutable/measurement_observations.jsonl`, cascade field `measurement_observation_ids`).\
+\
+| Detector (open, swappable) | Input | Emits (measured) | Units | Feeds |\
+|---|---|---|---|---|\
+| **FACS AU** \'97 OpenFace 2.x / py-feat | face frames | per-frame AU intensity + presence \uc0\u8594  onset/apex/offset; Duchenne = AU6\u8743 AU12 co-onset | AU r 0\'965; ms | LPR-003 |\
+| **Face mesh / iris** \'97 MediaPipe FaceLandmarker | face frames | EAR\uc0\u8594 blink events; iris\u8594 gaze vector; slow/rapid blink split | blinks/min; deg; ms | LPR-001, LPR-002 |\
+| **Head-pose vs pose lead** \'97 OpenFace/MP head pose + body pose | frames | angular-velocity onset offsets: eyes\uc0\u8594 head\u8594 torso | ms lead-times | LPR-002, LPR-004 |\
+| **Body pose** \'97 MediaPipe Pose / RTMPose / MoveNet | frames | joint tracks \uc0\u8594  velocities \u8594  proximal-to-distal onset offsets; gait phase; anticipation:action:recovery; contact via velocity zero-cross | ms; ratio; s | LPR-004 |\
+| **Hands** \'97 MediaPipe Hands | frames | finger count / anatomy validity; grasp stability | count; bool | anatomy **invariant** check, product handling |\
+| **Optical flow** \'97 RAFT / Farneback | frames | global camera motion \uc0\u8594  handheld-shake PSD; reframe detection | Hz; px | LPR-008 |\
+| **Focus measure** \'97 variance of Laplacian | frames | sharpness time series \uc0\u8594  AF hunt duration & count | ms; n | LPR-008 |\
+| **Luma / histogram stats** | frames | mean-luma time series \uc0\u8594  exposure adaptation time-constant | ms; EV | LPR-008 |\
+| **Landmark-residual PSD** \'97 FFT of micro-motion | landmark tracks | log-log PSD slope (1/f pink \uc0\u8776  \u8722 1 vs white \u8776  0); bilateral asymmetry magnitude | dB/oct; mag | LPR-006 |\
+| **Surface texture** \'97 high-freq FFT + specular map | skin/coat patch | texture-energy + specular-distribution **proxy** (not the uncanny threshold \'97 that's `L`) | a.u. | LPR-007 (proxy) |\
+| **ASR + forced alignment** \'97 Whisper + aligner | audio | word timestamps \uc0\u8594  wpm, inter-word pauses, fillers, pre-emphasis pause | wpm; ms; count | LPR-009, LPR-005 |\
+| **Audio DSP** \'97 librosa / parselmouth | audio | F0 + energy \uc0\u8594  stress peaks; low-energy inhale (breath) detection | Hz; dB; ms | LPR-005, LPR-009 |\
+| **AV sync** \'97 stress\'d7accent cross-correlation | audio stress + visual accent (velocity peak) | offset between spoken stress and body/head accent | ms | LPR-005 |\
+\
+**Measured-observation record** (each detector output; keep it promotable + fusable):\
+```json\
+\{\
+  "id": "meas_<slug>", "metric_id": "<e.g. blink_rate | p2d_lead_ms | af_hunt_ms>",\
+  "value": \{"summary": "median|mean|range", "n": 0, "series_ref": "optional"\},\
+  "units": "<hz|ms|deg|ratio|...>",\
+  "interval": \{"start_s": 0.0, "end_s": 0.0\},\
+  "source_id": "<video>", "source_sha256": "<64hex>",\
+  "extractor": \{"name": "openface", "version": "2.2.0", "model": "..."\},\
+  "epistemic_class": "measured",\
+  "confidence_basis": "detector validation / reported detector accuracy",\
+  "quantifies_vog_node": "<pegasus observation_id this measures>",\
+  "limitations": ["e.g. AU intensity unreliable under occlusion / low light"]\
+\}\
+```\
+\
+## 12labs \uc0\u8594  local-measure handoff (the `H\u8594 M` pipeline)\
+\
+For every `H\uc0\u8594 M` gap, the two lanes compose \'97 12labs routes, the local lane rules:\
+\
+```\
+1. HARVEST (12labs):   Pegasus Analyze/Segment over a corpus returns typed INTERVALS for the nuance\
+                       ("gaze shift", "genuine smile", "emphasis beat", "focus hunts") + timestamps.\
+2. AUTHORIZE:          each returned interval (>=4s clip rule) becomes the exact window to measure.\
+3. MEASURE (local):    run the detector(s) above ONLY on those windows \uc0\u8594  measured observations.\
+4. FUSE (VOG):         attach measured obs to the Pegasus node via quantifies_vog_node.\
+                       KEEP LANES SEPARATE \'97 never average measured with interpreted confidence.\
+5. PROMOTE:            concept (the principle) + mapping (control + projections) +\
+                       conditioning_effect (epistemic_class = measured, with scope + evidence_refs).\
+```\
+\
+Marengo (embeddings) clusters instances so measured values are aggregated over *like* moments;\
+Jockey surfaces cross-video patterns to know *which* nuances are worth measuring at all.\
+\
+## Required output shape (per lever, directly promotable)\
+\
+For each measured lever, return a record that maps cleanly onto the CPCS concept + mapping schema so\
+it can be promoted without reshaping:\
+\
+- **concept**: `id (c_*)`, `kind` (use registered kinds: `technique`/`doctrine`/`structure`),\
+  `layer` (registered), `name`, `what` (the measured principle), `use_when`, `nl_triggers` (\uc0\u8805 3),\
+  `query_term_gate.any`, `source[]` (exact citations), `status`.\
+- **mapping**: `concept_id` \uc0\u8594  `target_type: control`, `target_id` in a registered\
+  `control_namespace` (e.g. `motion.*`, `performance.*`, `camera.*`), with a\
+  `representation_strategy.projections[]` **per format** (`natural_language`, `yaml`, `json`, `xml`)\
+  giving the exact prose/param the model reads.\
+- **conditioning_effect** (one or more): `claim`, `effect_type`, `direction`\
+  (positive/negative/neutral/mixed/unknown), `epistemic_class`\
+  (measured/detected/inferred/interpreted/authored/simulated/derived), `evidence_status`\
+  (unverified/supported/contradicted/qualified/deprecated), `confidence` [0\'961],\
+  `confidence_basis`, `scope \{ provider, model_version, task_class, duration_seconds,\
+  prompt_budget_chars \}`, `evidence_refs[]`, `limitations[]`.\
+\
+## Source demands\
+\
+- Draw from: **FACS** (Ekman/Friesen action units + timing), **Laban/Bartenieff** effort & shape,\
+  **ethology / animal behavior** (species affect and locomotion signals), **biomechanics** (motor\
+  sequencing, gait, wave propagation), **oculomotor & psychophysics** (saccade/blink/gaze, uncanny\
+  valley thresholds), **cinematography & camera forensics** (AF/AE behavior, handheld shake spectra,\
+  lens distortion), **speech science / prosody** (stress, breath, disfluency, AV sync).\
+- Prefer **numeric ranges with citations** over prose. Where a value is population-dependent, give\
+  the range + the moderator (species, age, arousal, culture) \'97 do **not** collapse to one number.\
+- **Every gender claim must be justified or marked invariant** \'97 do not encode gendered performance\
+  defaults; if a lever differs by perceived gender, cite the source and mark it as perceptual bias\
+  to be neutralized, not a directing rule.\
+- Flag `requires_experiment` where the effect on a *generative model* (not on humans/animals) is\
+  unproven \'97 those become CPCS ablation candidates, not asserted facts.\
+\
+## Anti-scope (do not do)\
+\
+- Do not invent packaging, identities, or claims. Do not produce gendered or species stereotypes.\
+- Do not return definitions without a runtime decision path. Do not collapse the four format\
+  projections into one. Do not assert model-conditioning effects without either a citation or a\
+  `requires_experiment` flag.\
+\
+## Deliverable\
+\
+1. Completed coverage table (every gap terminated with a status + reason).\
+2. Per-lever promotable records (concept + mapping + conditioning_effect) as above.\
+3. A short **measurement\uc0\u8594 control\u8594 verification** appendix: for each lever, how to *check it in a\
+   render* (the observed-measurement step), so verification is possible, not just direction.}

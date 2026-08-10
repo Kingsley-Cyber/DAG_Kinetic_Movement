@@ -208,3 +208,18 @@ interfaces:
   (194 objects, 220 files); README counts + story row; DIRECTORY regenerated;
   checker 0 deviations.
 - **Open threads:** UG-001..007, UG-009 await user research.
+
+---
+
+## 2026-08-09 — Major MD collection (Research_distillation_folder)
+
+- **Request:** folder containing all the major md files from
+  `Research_distillation_folder\research\`.
+- **Created:** `Research_distillation_folder\major_md\` — 61 flattened copies
+  (selection rule: package-root docs depth <= 3 + every README.md, excluding
+  .git internals) + INDEX.md mapping each file back to its source path;
+  includes the 3 top-level research papers, gap report, all package READMEs,
+  the full Failure_Aware package doc set, and execution-kit prompts.
+- **Housekeeping:** doctrine D-2026-08-09-16; README story row; cpcs tree
+  untouched (DIRECTORY/checker counts unaffected — folder is outside cpcs/).
+- **Open threads:** UG-001..007, UG-009 await user research.
