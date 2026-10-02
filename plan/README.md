@@ -1,19 +1,26 @@
-# CPCS Director — living plan
+# CPCS Director — plan folder (the handoff pack)
 
-A text-only prompt compiler for AI video models, built on the owner's research in this repo.
-An LLM session reasons over a user's ask in named director passes, writes a small IR, and code
+A text-only prompt compiler for AI video models, built on the owner's research in this repo. An
+LLM session reasons over a user's ask in named director passes, writes a small IR, and code
 validates it and emits the prompt with a receipt and a loss record.
 
-Files in this folder:
+This folder is the complete plan an implementing model (Sonnet-class) works from. Read in this
+order:
 
-| File | Holds |
-|---|---|
-| `README.md` | this page: principles, map, load path |
-| `ARCHITECTURE.md` | control layer, reasoning layer, time and beats, knowledge format, dialects, mapping onto the research |
-| `PHASES.md` | phases with exit tests, budgets, kill criteria |
-| `STATUS.md` | dated log of what is done, next, blocked |
-| `DECISIONS.md` | decisions, governance overrides, admission ledger, not-doing list, open questions, owner inputs |
-| `legacy/` | previous AGENTS/CLAUDE instructions (not operative) |
+| Order | File | Holds |
+|---|---|---|
+| 1 | `GOALS.md` | goal and intent, success criteria, non-goals, principles, decision rights, quality bar |
+| 2 | `STATUS.md` | dated log: done, next, blocked |
+| 3 | `TASKS.md` | ordered tasks with files, acceptance tests, dependencies, status |
+| 4 | `HANDOFF.md` | boot sequence, working loop, conventions, what exists on disk |
+| 5 | `ARCHITECTURE.md` | the design in depth: pipeline, reasoning layer, control layer, time and beats, movement control layer, knowledge format, dialects, steering, mapping onto the research |
+| 6 | `CONTROL_LAYER.md` | the control layer as checkable requirements R-01…R-33 with status |
+| 7 | `OWNER_INPUTS.md` | the owner's intents from the planning conversation, in full |
+| 8 | `PHASES.md` | phases, exit tests, budgets, kill criteria, render-evidence procedure |
+| 9 | `DECISIONS.md` | decisions, governance overrides, admission ledger, not-doing list, open questions |
+| — | `legacy/` | previous AGENTS/CLAUDE instructions (not operative) |
+
+Reference implementation of phases 0–1: `director/` (see `HANDOFF.md → What exists on disk`).
 
 ## Principles
 
@@ -26,9 +33,11 @@ Files in this folder:
 4. Order first, texture second. Reason-tier beats and action stages are fixed before Style and
    Render add weights and texture.
 5. No invented precision. Numbers inherit the origin of their inputs.
-6. Old plans enter only as knowledge or as validators of LLM-written output, with a named
-   consumer (see the admission ledger).
-7. Evidence before machinery. One ask end to end, rendered and judged, before breadth.
+6. Everything scaled, nothing absolute; one anchor, one relative escalation.
+7. Camera grammar is mandatory; every contact has a stated reaction.
+8. Old plans enter only as knowledge or as validators of LLM-written output, with a named
+   consumer (admission ledger).
+9. Evidence before machinery. One ask end to end, rendered and judged, before breadth.
 
 ## Map
 

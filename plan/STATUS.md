@@ -2,6 +2,16 @@
 
 Newest first. One entry per working session or phase exit.
 
+## 2026-10-02 — Handoff pack written
+
+The owner asked for a folder that holds the plans, goals and intent control layer so a
+Sonnet-class model can implement from it. Added `GOALS.md`, `CONTROL_LAYER.md` (R-01…R-33),
+`OWNER_INPUTS.md`, `TASKS.md` (T00–T80 with acceptance tests), `HANDOFF.md`; `README.md` now gives
+the reading order. The phase 0–1 slice stays as the reference implementation.
+
+Next: the implementing session starts at `HANDOFF.md` and takes T10. The owner's part is the
+Seedance renders for run 001 (T13).
+
 ## 2026-10-02 — Phase 1 done (vertical slice, Reason tier); Phase 2 waits on renders
 
 Done:

@@ -1,0 +1,150 @@
+# Owner inputs (2026-10-02), in full
+
+The implementer must read these as intent, not as suggestions. Where an input conflicts with an
+older file in the tree, the input wins and `DECISIONS.md` records the override.
+
+## 1. Purpose
+
+"I do AI video deep research workflows trying to find meta ways to prompt and communicate with an
+AI video model to bypass the weak prompt outputs. I do the research and the intent of the repo is
+to cannibalize it and make the nuances part of prompt creation, and it must know how users'
+language maps to the deep latent knowledge."
+
+## 2. What the kitchen must become
+
+An elite "kitchen" that is a strong, accurate compiler using research to create a proper prompt,
+plus a reasoning control layer so any LLM understands how to use the research: the abstract layer
+(why a technique works) and the semantic layer (what the model actually reads).
+
+## 3. Model architecture awareness
+
+The compiler should understand how video models read a prompt: rewriters, caption-style training
+text, token limits and negation, temporal compression, reference images (out of scope for now),
+and priors. Per-model profiles with every fact tagged documented / measured / guess.
+
+## 4. Reasoning and friction points
+
+Modular prompting; motion, movement and hands as friction points; an overall logical pass on what
+the prompt is actually prompting; layered reasoning that is granular but coherent; compile to
+natural language or a structured format; research-grounded motion and Laban prompting (the
+hardest to compile); mathematical calculations, science scales, thinking types and creative
+lenses.
+
+## 5. Dynamics and ingest
+
+Diversity so the compiler varies prompts for different users and their ideas; a research-ingest
+control layer that knows how to expand and integrate itself for future prompting. Layers grow:
+color, world, and more.
+
+## 6. Layer taxonomy (owner's A–F, now sub-modules of the passes)
+
+A Narrative intent (action, objective, obstacle, relationship, subtext, beat changes, audience
+information) · B Dimensional affect (valence, arousal, dominance) · C Visible performance (FACS
+and timing; head, gaze, blink, speech; body actions and postures; Laban Body, Effort, Shape,
+Space; gesture and asymmetry) · D Motion realization (root path and facing, joint motion, phase,
+contact, support and balance, speed/acceleration/force, constraints between people, props, set) ·
+E Cinematic presentation (camera, lens, focus, framing, shot length, cuts) · F Generative
+conditioning (text, control signals, pose or depth, camera data, reference images, audio).
+
+"Laban is missing weights": the Weight factor must be listed; each quality needs a strength
+number; each layer needs an importance weight.
+
+## 7. The 14 passes + synthesis (owner's pasted design, adopted by name)
+
+Intent & Narrative · World & Environment · Entity & Identity · Action & Motion · Interaction &
+Contact · Performance & Expression · Space & Staging · Time & Rhythm · Physics & Causality ·
+Camera & Composition · Attention & Information · Continuity & State · Style & Presentation ·
+Audio & Dialogue · Cross-Domain Director Synthesis. Plus Light & Color (owner: "light and color").
+
+Each pass: knowledge mode research-backed / reasoning-backed / mixed; origin tags on every
+decision; the same eight-step pattern; a pass planner (mandatory / conditional / optional);
+provider adaptation and formatting are downstream, never passes. World answers "how should the
+surrounding world respond to what happens" (pool example: trajectory → surface contact →
+displacement → splash → ripples → wet clothing → resistance → sound → persistent wetness).
+
+## 8. Router, not DAG
+
+"Your current architecture is a retrieval and relay system: understand intent → identify
+domain/section → open the article by id → hand the LLM exactly the material it needs… Claude Code
+already is the reasoning graph." Adopt declared dependency as data (interfaces in frontmatter, one
+machine map, flat decision/loss records), not a graph executor. Adopt a graph mechanism only when
+query logs show a failure class the router cannot fix.
+
+## 9. Shot stack and tiers
+
+Shot stack: 01 shot intent · 02 composition/blocking · 03 camera · 04 character motion ·
+05 contact/physics · 06 performance · 07 environment motion · VFX …
+
+Three output tiers: Reason (beat graph + action integrity), Style (sref-tinted priorities per beat,
+e.g. silhouette 0.8, anticipation 0.7, impact 0.9), Render (UGC texture + continuity locks). Ship
+Reason first. "Order beats first, then apply UGC texture to the rendering — not the other way
+around." Each tier independently testable: valid beat orders; readable silhouettes; non-morphing
+objects.
+
+Logical action pathway (R3 in the owner's text): grip contact → force transfer → state change →
+continuity check; the engine refuses a prompt where a beat jumps directly to the completed state;
+reusable per object type; pose-to-pose (decide the end state first); minimum anticipation → action
+→ aftermath; "play one action at a time".
+
+Sakuga: design for perceptual motion (held cels, key poses, smears, impact flashes, rhythm
+breaks); the prompt says which frames matter and in what order; silhouette and simplicity first;
+prompt for motion grammar, not anatomy; short motion-focused clips.
+
+## 10. Time and beats ("the big one")
+
+Steerable beat production with diversity; no single formula; never squeeze a 30 s idea into 10 s.
+Master clock in seconds; frame and musical clocks derived. Hierarchy sequence → scene → phrase →
+exchange → action → phase → micro-event → frame. Independent rhythm fields (tempo, tempo curve,
+cadence, meter, beat phase, syncopation, micro-pauses, anticipation beats, accent strength, event
+density, swing, rubato, entrainment, phase lock). Timing profiles snappy_24fps, floaty_24fps,
+anime_limited (conventions). `impact_frames = anticipation + strike + hold + settle`. Emotional
+formula: slow onset 6–12 f + long key-pose hold 2–12 f + minimal smear + long settle 8–18 f + wide
+establishing shot before the apex + rest periods; slow element inside a fast context. Fight
+granularity: superhero low density, kung fu maximal, boxing metered. The six questions: register,
+directorial beats, tempo curve, micro-pauses and anticipation, apex density, variation.
+
+## 11. Text-only, calculations, structured modes
+
+"Right now mocap isn't being used; we are strictly talking text generation, and some calculations
+will be in research papers that can be used to reason and generate prompts." Mode C compiler
+(parses, validates, rejects unsupported or unverified controls) emitting Mode A text; the existing
+reasoning-policy layer stays as thinking modes; what was missing is the decision-semantic bridge
+problem → treatment → decision → control → expected visual effect → verification. Reasoning
+decides; the control layer emits and validates. Control surfaces: native, reference_conditioned,
+prompt_only, postprocess, unsupported, unknown, legacy; levels L0–L5 (text reaches L0–L1). No
+format or reasoning operator is globally superior; thresholds need experiments.
+
+## 12. Movement text control: Laban, Bartenieff, film grammar
+
+Three layers with independent dials: Laban (quality), Bartenieff (origination and connectivity),
+film grammar / cinematography (camera, mandatory). Laban output is Bayesian and scaled, never
+absolute terms. Laban has a cause-and-effect sub-layer, "impact and physics language", producing a
+contact-and-recoil layer with explicit stated reactions rather than assumptions.
+
+World bundle (gravity, terrain, mass, camera distance, momentum source, frame discipline) →
+Effort (4 factors) × Shape (Door, Table, Wheel planes) × Body (Bartenieff six patterns) →
+constraint compiler → strength-scaled emitter (strong: full constraint set; weak: 3–5 core lines +
+camera/continuity compensation). Anti-arcade signatures: single-plane motion, zero anticipation,
+momentumless impact, unbroken bound flow. Priority: Effort quantification → anti-arcade detectors
+→ Bartenieff pathways → strength-adaptive emitter → world bundle.
+
+Relative prompting: always use anchors; one escalating unit relative to the anchor, never two
+absolutes.
+
+## 13. Semantic core and dialects
+
+A model-agnostic semantic core with a dialect per model: Hailuo ("h3"), Seedance, Kling,
+Gemini/Veo, Wan. Seedance first.
+
+## 14. References supplied
+
+LaMoGen (arXiv 2509.24469), Guo et al. 2022 Laban-based motion classification, bodily expressed
+emotion via LMA (S2666389923001854); Bartenieff Fundamentals overviews (Wikipedia; Academia
+"Using LMA Effort to Enhance Body Connectivity"; laban-analyses.org). Laban has AI-side evidence;
+Bartenieff is untested vocabulary; Laban AI label sets: byebye_dab/glide/flick/float; Effort
+Space direct/indirect, Time sudden/sustained, plus Weight and Flow.
+
+## 15. On old plans
+
+"Be careful with any old plans being integrated as it can misalign the current plan." Audit in
+`DECISIONS.md` (admission ledger, overrides, not-doing list).
