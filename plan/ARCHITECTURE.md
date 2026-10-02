@@ -1,0 +1,461 @@
+# Architecture
+
+Scope: text-only prompts for AI video models. In the research's own terms this is a **Mode C
+compiler** (parses, validates, negotiates, emits) producing a **Mode A artifact** (text pasted
+into a prompt field, `text_interpretation_only`), at **control levels L0 (prose semantics) and
+L1 (compiled state and timeline)**. Mode D, L2–L5, pose, depth, mocap and reference images are
+out of scope and are recorded only as exclusions.
+
+Sources cited by short name are listed at the end.
+
+## 1. Pipeline
+
+```
+ASK → intent brief → pass plan → Reason tier → Style tier → Render tier → IR → check → emit → read-back
+```
+
+- **Intent brief** (LLM): restate the clip in one paragraph: what is locked by the user, what is
+  open, target model, duration if given.
+- **Pass plan** (LLM, from `director/passes.yaml`): each pass is mandatory, conditional (with a
+  trigger) or optional. A simple ask activates few passes.
+- **Three tiers** (owner): Reason fixes what happens and in what order; Style decides which
+  moments matter and how they read; Render adds texture and locks. Later tiers never reorder or
+  remove what Reason fixed.
+- **IR** (`ir.json`, written by the LLM): clip → shots → beats, plus entities, hand ledger,
+  action pathways, controls, decisions, verification targets. A field exists only if `check` or
+  `emit` reads it.
+- **check** (code): validators over the IR. **emit** (code): deterministic prompt assembly from
+  treatment wording, per model profile, with a receipt and a loss record.
+- **Cold read-back** (separate LLM call): reads only the prompt, lists the beats it sees, in
+  order, with state changes. Mismatch = repair the IR, never patch the prompt by hand.
+
+## 2. Reasoning layer
+
+### 2.1 Passes
+
+| Pass | Tier | Owns | Sub-modules |
+|---|---|---|---|
+| intent | Reason | objective, dramatic function, conflict, reveal, consequence, directorial beats (every change of relationship or intention) | action, objective, obstacle, relationship, subtext, audience information |
+| entity | Reason | who and what, and what stays true | identity, wardrobe, anatomy, sides, possessions |
+| world | Reason | what changes in the scene and how the world responds | environment state, object state, affordances, material response, persistent changes |
+| action | Reason | what bodies do | locomotion, phase, root path, support and balance, speed and force, recovery, secondary motion |
+| interaction | Reason | contacts between entities and objects | grasp, hand ledger, action pathways, collision, impact, support, release, impact-and-physics language (stated reactions) |
+| physics | Reason | why and how it happens | cause and effect, recoil, momentum, material response, feasibility |
+| time | Reason | when, how long, how dense | beats, rhythm fields, timing profiles, holds, overload |
+| staging | Reason | where things are relative to each other | blocking, depth, screen direction, action axis, proxemics |
+| continuity | Reason / Render | what must persist | state carry-over, wetness, damage, object state, locks |
+| performance | Style | how it is acted | acting intent, body, face (FACS when useful), gaze and blink, posture, breath, gesture, Laban Effort (Weight, Time, Space, Flow), Shape, Body, Space, Bartenieff connectivity, affect |
+| camera | Style (mandatory on every ask) | how it is seen; explicit camera grammar is always emitted | motion layer, optics layer, framing, shot length, cuts |
+| attention | Style | what the viewer sees, misses, discovers | reveal, withhold, hooks, key-pose ranking |
+| style | Style / Render | how it looks and feels | visual style, motion style (sakuga, limited animation), realism, capture texture, VFX |
+| light_color | Style | how it is lit and coloured | sources, direction, quality, exposure, white balance, palette, grade, colour continuity |
+| audio | Render | what is heard | speech, pauses, effects, music, sync |
+| synthesis | after Reason and after Style | the whole treatment | contradictions, competing controls, excess complexity, alignment across passes |
+
+Rules: one owner pass per IR field; a sub-module becomes a pass only when it needs its own IR
+state and activates on its own; adding a sub-module or pass is a `passes.yaml` entry plus
+treatments, with no code change; provider and format handling are never passes.
+
+### 2.2 The pass pattern
+
+```
+input state → check research → check treatments → identify gaps
+→ reason where allowed → resolve decisions → write output state → declare uncertainty
+```
+
+A pass with no research closes in one line: "no research; reasoned: X". Full records are kept
+only for decisions that change the prompt.
+
+### 2.3 Records
+
+Every decision that changes the prompt carries the **bridge chain** from the ADRG closure:
+`problem → treatment → directorial decision → canonical control → expected visual effect →
+verification target`, and the DecisionRecord subset: `decision_id, question, alternatives,
+selected, criteria, confidence`. `selected` must be one of `alternatives`. Confidence is not a
+probability of being right; `selected` does not mean rendered success.
+
+**Origin** uses the tree's `epistemic_status` values: SOURCE_EVIDENCE, INFERENCE,
+CREATIVE_CHOICE, PROJECT_DERIVED, PROVIDER_EXPERIMENT, UNVERIFIED, CONTRADICTED, UNKNOWN.
+INFERENCE decisions are appended to `director/gaps.jsonl` (the research-gap log). Gaps that
+recur become the owner's next research prompts.
+
+### 2.4 Thinking modes (instructions to the LLM, not executors)
+
+| Mode | Use when | Maps to the existing registry |
+|---|---|---|
+| direct | one plausible plan, validators strong | rp_direct |
+| compare alternatives | a creative fork or a high-impact, uncertain choice | tree-of-thoughts |
+| calculation | durations, frames, speech capacity, distances | chain-of-code → `calc` |
+| aggregation | merging partial decisions from several passes | graph-of-thoughts → synthesis pass |
+| repair | an observed failure | failure-directed repair: smallest patch, never a full rewrite |
+
+Choice uses the research's router features (impact, uncertainty, coupling, irreversibility,
+validator strength, budget) as starting rules. Thresholds are engineering conventions until
+experiments set them.
+
+### 2.5 Action pathways (the anti-magic guard)
+
+Every physical task is an ordered stage list, planned pose-to-pose: the end state is declared
+first, then the stages that reach it. Minimum three stages: anticipation → action → aftermath.
+Template from `HANDS`: precondition → anticipation → approach → contact → transfer → effect →
+follow-through → recovery → postcondition.
+
+Rules checked by code:
+
+- A state change (cap off, door open, object moved) needs a preceding contact stage and a force
+  or transfer stage in the same pathway.
+- No beat moves from the initial state to the completed state without the intermediate stages.
+- Each stage names the hands or body parts it uses; the hand ledger must have them free.
+- Continuity: the object's identity properties (scale, colour, shape) are listed as locks before
+  and after.
+
+Pathways are reusable per object type (bottle, door, phone, weapon, cup). Everyday task
+decomposition is not research-backed: pathways are tagged INFERENCE and logged as gaps until
+renders or research support them.
+
+### 2.6 Hand ledger
+
+Per actor, per beat: `left_hand` and `right_hand` each hold `free`, `holding <object>`,
+`on <surface>` or `camera` (a selfie or handheld shot occupies one hand for the whole clip unless
+a prop or release is declared). Code checks: no hand holds two things; a stage needing N hands
+finds N free; ownership changes only through an overlapping grip; a held object persists until a
+release stage.
+
+## 3. Control layer
+
+### 3.1 Controls
+
+A control: `id, pass, field, value, importance 0..1, lock, origin, treatment_id`.
+
+Each control gets, for the target model:
+
+- a **capability class**: native, approximate, semantic, unsupported, unknown
+- exactly one **terminal disposition**: native, approximated, semantic, omitted, unsupported, unknown
+- a **realization status** on emission: native_exact, compressed_to_text, dropped_with_warning,
+  unsupported_error (the reference and post-process statuses are recorded only as exclusions)
+
+A phrase is never upgraded to native because it sometimes works. In text-only work nearly every
+control is `semantic`; `native` applies only to API fields the model profile lists (duration,
+aspect ratio, negative prompt, seed, frame rate where offered).
+
+Exact requests text cannot enforce ("the release lands on frame 36") become order wording plus a
+loss record (`temporal_precision_unenforceable`, policy `block_or_explicit_degrade`). If the user
+locked the exact value, emission blocks and says why.
+
+### 3.2 Loss record and receipt
+
+Loss record fields (unchanged from the research): `loss_id, canonical_field, requested{value,
+unit}, provider, capability, projection, replacement, loss{type, severity}, accepted`.
+Loss types: unsupported_semantic, approximation, observability_loss, scope_loss, temporal_loss,
+laterality_loss, intensity_loss, causal_loss, continuity_loss, interaction_loss,
+priority_suppression, provider_attention_loss.
+
+Receipt: every emitted sentence maps to a treatment id and a control id, or is marked INFERENCE.
+Four validity levels are reported separately: parses, matches schema, decisions correct, render
+succeeded.
+
+### 3.3 Verification targets
+
+Each control with visible intent carries `expected_visual_effect` and a check a human or vision
+model can run (`target → observable expectation → measurement method → metric → threshold →
+verdict`). Adherence is judged per dimension (identity, action, spatial, temporal,
+performance quality, facial, connectivity, camera, continuity), never as one score. A vision
+model's "looks right" is `interpreted`, not measured.
+
+### 3.4 Camera sub-layers
+
+From `camera_three_layer_semantics`:
+
+| Layer | Contents | Owner |
+|---|---|---|
+| motion | locked/static, pan, tilt, roll, dolly, tracking, crane/elevate, orbit/arc, handheld/drift | camera |
+| optics | focal length, field of view, distance, height, focus plane, depth of field, aperture, rack focus, motion blur / shutter | camera |
+| image formation | exposure, white balance, dynamic range → **light_color**; device character, lens distortion, stabilization look, compression and noise → **style (capture texture)** | split |
+
+Failure mode to guard: optical parameters emitted as camera motion.
+
+### 3.5 Movement text control: three layers (owner)
+
+Movement and motion are controlled in text through three vocabularies, each with its own dials:
+
+| Layer | Vocabulary | Controls | Pass |
+|---|---|---|---|
+| quality | Laban Effort, Shape, Space, Body | how a movement feels: Weight, Time, Space, Flow as scaled values | performance |
+| origination | Bartenieff | where a movement starts and how it travels: core-initiated, sequential weight shift, cross-lateral connection, proximal-to-distal | performance, action |
+| film grammar | cinematography | how it is seen: motion layer, optics layer, framing, cuts | camera (**mandatory** on every ask) |
+
+Laban has a specialized sub-layer for cause and effect, **impact and physics language**: every
+contact gets an explicit, stated reaction (recoil, displacement, material response, sound) in the
+IR and the prompt. Reactions are never assumed. Owned jointly by interaction (the contact) and
+physics (the consequence); `check` fails a contact with no stated reaction.
+
+Laban values are **scaled, not absolute**, and reported as beliefs: each Effort factor is a
+position between its poles in [0, 1] with a confidence (e.g. Weight 0.75 toward strong,
+confidence 0.6), updated by render verdicts. The IR never stores bare pole words; the emitter maps
+the scale to a wording rung (numeric experiment, Laban term, visible body consequence) by the
+model profile and importance. The movement classes used in the Laban AI literature (dab, glide,
+flick, float, and the rest of the eight Effort actions) are treatments that set all four factors
+at once.
+
+- Effort factors, all four: Weight (light ↔ strong), Time (sustained ↔ sudden), Space (indirect
+  ↔ direct), Flow (free ↔ bound). Shape (rising/sinking, spreading/enclosing,
+  advancing/retreating), Body and Space are sibling sub-modules.
+
+#### 3.5.1 Movement control layer for action (owner; anti-arcade)
+
+Flat, "2D arcade" fights are a dimensionality failure: motion treated as screen-space movement
+instead of weighted, spatial, effort-driven body action. The fix is layered reasoning that every
+motion decision passes through, whatever the model's strength:
+
+```
+WORLD BUNDLE  (world pass)      gravity · terrain · opponent/object mass · camera distance ·
+                                momentum source (foot plant) · frame discipline (ones/twos)
+      ↓
+LABAN / BARTENIEFF REASONING    Effort: 4 factors, scaled, per beat
+(performance + action passes)   Shape: 3 planes (Door · Table · Wheel) — plane transitions per beat
+                                Body: Bartenieff connectivity (Core-Distal, Head-Tail, Upper-Lower,
+                                Body-Half, Cross-Lateral) — the force-transmission path
+      ↓
+CONSTRAINT RESOLUTION (synthesis)   world × motion: heavy opponent → Strong Weight; slope +
+                                gravity → root sinks on a lunge; close camera → Shape legible,
+                                far camera → Effort only
+      ↓
+STRENGTH-SCALED EMISSION (emit, per model profile)
+      strong model → full constraint set (Effort values, plane transitions, pathway, world facts)
+      weak model   → minimal core (3–5 highest-leverage lines: weight + anticipation, grounding,
+                     plane variation, follow-through) + camera/continuity compensation
+                     (staggered cuts, angle changes, matched action)
+```
+
+Anti-arcade signatures the validators detect on the IR of any power action:
+
+| Signature | Detection on the IR | Corrective constraint |
+|---|---|---|
+| single-plane motion | no Shape plane change across the action's beats | require a plane transition at impact (Table → Wheel for a hook; Door → Wheel for a kick) |
+| zero anticipation | no anticipation stage before the action | require a wind-up beat with opposing weight build |
+| momentumless impact | no weight-transfer path (foot → pelvis → torso → limb) recorded | require Upper-Lower and Cross-Lateral connectivity before impact |
+| unbroken bound flow | Flow never alternates across beats | alternate bound (controlled) and free (committed) phases |
+
+Priority order for building it: Effort quantification per beat → anti-arcade detectors →
+Bartenieff pathways on all power strikes → strength-scaled emitter → world-bundle conditioning.
+The numeric Laban calibration contract in the tree applies: values are typed proxies with
+tolerances, never physical units.
+
+#### 3.5.2 Relative prompting with anchors (owner rule)
+
+The prompt never states two absolute intensities side by side. It sets one **anchor** (the
+baseline movement, stated once) and expresses each escalation **relative to the anchor, one unit at
+a time**: "the second swing is faster and lands heavier than the first", not two separate
+speeds. This matches the scaled Laban values: the IR stores the scale; the emitter writes the
+anchor and the step. Validators flag two absolute magnitude words for the same quality in one
+clause.
+- Each quality has three strengths of wording: numeric (experiment only), the Laban term, and a
+  visible body consequence (what a caption would say). The pole → visible-body mapping does not
+  exist in the research yet and is a named gap.
+- Each quality is localized to a phase: "Time = Sudden" is not "the whole clip is fast".
+- Bartenieff gives initiation and sequencing language (core-initiated, sequential weight shift,
+  cross-lateral connection). It has no AI-side research; treatments using it are UNVERIFIED
+  until renders support them.
+- Importance weights: each layer, beat and control carries `importance 0..1` (default from
+  `passes.yaml`, raised or lowered per ask). Importance decides budget survival, position and
+  word share in the prompt, and which strength rung is used.
+
+## 4. Time and beats (owner: "the big one")
+
+### 4.1 Clocks and hierarchy
+
+Master clock in seconds is authoritative; frame clock (`frames = seconds × fps`) and any musical
+grid are derived. Never round intermediate values. Hierarchy: sequence → scene → phrase →
+exchange → action → phase → micro-event → frame.
+
+### 4.2 Rhythm is a set of fields, not a number
+
+Independent fields (from `rhythm_metrics_contract`): tempo, tempo curve, cadence, meter, beat
+phase, syncopation, micro-pauses, anticipation beats, accent strength, event density, swing,
+rubato, entrainment, phase lock. A fast scene may hold a long micro-pause; a slow scene may
+carry one sudden accent. Steering sets values on these axes, not "fast" or "slow".
+
+### 4.3 Timing profiles (conventions, labelled as such)
+
+| Profile | Onset | Accel | Impact hold | Settle | Status |
+|---|---|---|---|---|---|
+| snappy_24fps | 2–4 f | 2–4 f | 0–2 f | 3–7 f | CPCS_CONVENTION |
+| floaty_24fps | 6–12 f | 6–14 f | 0–1 f | 8–18 f | CPCS_CONVENTION |
+| anime_limited | key-pose hold 2–12 f | smear 1–2 f | impact 1–3 f | — | PRACTICE / CPCS_CONVENTION |
+| ugc_natural | loose onsets, casual pauses, no designed impact | — | — | — | owner practice (UGC manuals) |
+
+Punch of one action beat: `impact_frames = anticipation + strike + hold + settle`. Fewer
+in-betweens read faster; one in-between turns a snap into a rolling hit. Small screens compress
+motion: shorten action beats for phone playback.
+
+### 4.4 Beat planning procedure (the LLM, in the time pass)
+
+1. Emotional register: slow-hold, floaty or snappy.
+2. Directorial beats: one per change of relationship or intention.
+3. Tempo curve across the scene, not one tempo.
+4. Micro-pauses and anticipation beats.
+5. Event density at the apex (superhero low, kung fu maximal, boxing metered).
+6. Variation: never one rhythm all scene.
+7. Key poses named and ranked (K0–K6): the prompt says which frames matter and in what order.
+
+Emotional formula (anime): slow onset 6–12 f + long key-pose hold 2–12 f + minimal smear + long
+settle 8–18 f + a wide establishing shot before the apex + rest periods; the slow element sits
+inside a fast context, never fast–stop–fast–stop.
+
+### 4.5 Fit and overload (code)
+
+Each beat carries a minimum readable time (convention, origin tagged). `check` computes
+`load = Σ min_time`, then `load ÷ clip_length` → FITS / TIGHT / OVERLOADED. Duration is never
+invented: unknown duration gives order and relative shares only. Overload returns options: cut
+lowest-importance beats, overlap beats with no causal path between them, split into shots or
+clips with a state handoff, lengthen if the model allows. Prompts are never squeezed.
+
+Motion budget per shot (production heuristic): one dominant subject action, one major camera
+move, one or two secondary body actions, one to three passive material responses. Three or four
+ordered events outperform a paragraph of simultaneous actions. 8-second models: one clip per
+beat.
+
+### 4.6 Speech
+
+Speech rate 150–190 words per minute; a Veo-class 8 s clip carries about 10–12 words of
+dialogue; pre-emphasis pause 200–300 ms; turn gap about 200 ms; about one disfluency per 5–7 s
+and never zero in a casual register. Line length is checked against clip length.
+
+## 5. Knowledge format: treatments
+
+Prompt wording lives in small files: `director/treatments/<pass>/<id>.md`.
+
+```
+---
+id: interaction.grip_power_bottle
+pass: interaction
+triggers: ["opens a bottle", "unscrews the cap", "twist-off"]
+not_when: ["bottle already open", "two-handed task impossible: one hand holds the camera"]
+backs: [cpcs.contact.interaction_lifecycle, cpcs.mx.affordance_constraints]
+from: "Additional/HANDS_CONTACT_MANIPULATION.md §2.2, §5"
+origin: PROJECT_DERIVED
+importance: 0.7
+---
+## Wording
+```prompt core
+<model-agnostic wording>
+```
+```prompt dialect=seedance
+<optional override for one model>
+```
+## Failure signs
+- ...
+## Effects
+- claim · evidence_status (unverified | supported | contradicted) · model · run ids
+```
+
+Rules: frontmatter is routing only; the body headings are fixed and parsed by `emit`; cards and
+manuals stay whole as sources; nothing is migrated in bulk. The 132 kitchen cards and 15 blocks
+in the prompt-system repo are read when an ask needs them and become treatments one at a time.
+
+## 6. Semantic core and model dialects (owner)
+
+The IR and the `core` wording are model-agnostic. Each model has a profile and may have a
+dialect:
+
+- **Profile** (`director/profiles/<model>.yaml`): prompt length limit, negative-prompt field,
+  durations, aspect ratios, frame rate, audio, native API fields, every fact tagged documented /
+  measured / guess, with source and date.
+- **Dialect** (same file): clause order, vocabulary the model responds to, words to avoid, how
+  it treats structure pasted as text, separate-field habits (Veo: shot, style, lighting,
+  character kept as separate parts; Runway: subject motion, scene motion, camera motion, style
+  compiled separately; Kling: camera moves may map to native parameters).
+- Treatments carry `core` wording plus optional `dialect=<model>` blocks. `emit` picks the
+  dialect block when present, else core.
+- Candidate models named by the owner: Seedance, Kling, Hailuo, Gemini/Veo, Wan. Seedance first.
+  Evidence is per model: a result on one model is UNVERIFIED on another.
+
+## 7. Stylized motion (sakuga, limited animation)
+
+Design for silhouette and simplicity; prompt for motion grammar (key poses, holds, smears,
+impact flashes, rhythm breaks), not anatomy; keep clips short and motion-focused; name which
+frames matter and in what order. Style-tier weights per beat (e.g. silhouette 0.8, anticipation
+0.7, impact 0.9) sit on top of Reason-tier order; Render may texture interstitial motion (for a
+UGC look: handheld sway, imperfect hands) while the designed impact frame stays crisp and object
+locks hold. A character-visualization stage (image first) is out of scope for text-only and is
+recorded as an exclusion.
+
+## 8. Steering and diversity
+
+One small profile merged defaults → user → project → ask (later wins, locks hold):
+
+| Group | Dials |
+|---|---|
+| Control | per pass off / auto / on; depth light / standard / deep; importance; locks |
+| Reasoning diversity | lens (director, cinematographer, animator, choreographer, editor, marketer); thinking mode per pass; alternatives considered; risk (proven ↔ exploratory); seed |
+| Output style | prose voice (terse caption, rich cinematic, shot list); words per beat; explicit numbers; `variation` 0–1; `n` variants |
+| Time | the rhythm fields and timing profile of §4 |
+
+Only free fields vary. Same seed and inputs → same prompt. Variants come back labelled by what
+differs, so a batch doubles as an A/B test. A per-user taste profile (from verdicts) weights
+sampling.
+
+## 9. Validators and calculators
+
+Validators check only what the LLM wrote; they never parse the ask:
+
+hand ledger · action pathway completeness · stated reaction for every contact · explicit camera
+grammar present · beat fit and order (`precedes` is not `causes`) · speech capacity · one owner
+per field · exactly-once disposition · budget and channel validity · tier rule (Style and Render
+did not reorder Reason) · receipt completeness.
+
+Calculators (`calc`) hold research formulas and tag outputs with the origin of their inputs:
+beat frames, phase ratios × duration, exposure time `shutter_angle / (360 × fps)`, apparent
+image velocity `x = fX/Z` (qualitative use: long lens and follow-cam dampen perceived speed),
+speech words from seconds, strike phase split (anticipation 25–35 %, contact 10–15 %,
+follow-through 25–35 %, recovery 15–30 %), engagement range check.
+
+Rig- or mocap-only quantities (jerk, path straightness, inverse dynamics, image-plane flow,
+intrinsics) are out of scope.
+
+## 10. Evaluation
+
+- Baseline per ask: a plain prompt written without the compiler. Compiled vs baseline rendered on
+  the same model; owner verdict per adherence dimension; logged in the run folder and
+  `director/runs/ledger.jsonl`.
+- Trigger matching: an ask test set (seeded from the prompt-system repo's
+  `retrieval_benchmark.yaml` plus owner asks) scored against the kitchen's `concepts.py` as the
+  baseline once there are enough treatments to matter.
+- Kill criterion: if compiled prompts do not beat baselines on most asks in phase 2, stop and
+  rethink before building more.
+
+## 11. Research ingest (procedure written after doing it by hand)
+
+Document route: new paper or notes → proposed treatments, sub-modules or passes (question, IR
+fields, validators, slot), numbers and scales, model facts, parked claims → owner approves. Each
+new treatment needs ≥ 3 triggers and ≥ 1 test ask. A package is integrated when every claim is a
+treatment, a validator, a scale, a model fact, or explicitly parked. Video harvest is parked.
+
+Known gaps to research: everyday task decomposition for object handling; Laban pole → visible
+body mapping; clip capacity (events per clip length) per model; Seedance facts; light and colour;
+attention; world reactions; Bartenieff applied to video prompting.
+
+## 12. Mapping onto the existing research (cite, do not relocate)
+
+| Director piece | Cites |
+|---|---|
+| Capability classes, dispositions, loss records | `cpcs/runtime/07_compiler/semantic_mapping/capability_classes_and_loss_records.md` |
+| Budget and what survives | `cpcs/runtime/07_compiler/salience_budgeting/control_priority_attention_budget.md` |
+| Text fallback order | `cpcs/runtime/08_provider_negotiation/text_fallback/provider_fallback_ladder.md` |
+| Modes A–D, carrier roles, clause order, compression order | `cpcs/runtime/07_compiler/structured_prompting_architecture.md`, `carrier_planner/carrier_role_semantics.md`, `format_ownership.md`, `Additional/FORMAT_CRAFT_encoding_video_prompts.md` |
+| Decision record, bridge chain | `cpcs/runtime/04_synthesis/decision_record.md`; `Additional/04_ADRG_DIRECTOR_REASONING_GAP_CLOSURE_COMPLETE.md` §10 (record shapes only) |
+| Origin and evidence | `cpcs/knowledge/00_foundations/invariants/epistemic_firewall.md`, `.../uncertainty/evidence_two_axis_model.md`, `cpcs/00_governance/policies/control_plane_reference.md` §6 |
+| Time vocabulary and profiles | `cpcs/runtime/06_canonical/temporal_tracks/temporal_coupling.md`, `cpcs/knowledge/10_time_rhythm/rhythm_metrics_contract.md`, `beat_syncpoint_alignment.md`, `cpcs/knowledge/06_body_motion/phase_grammar/` |
+| Hands, contact, pathways | `Additional/HANDS_CONTACT_MANIPULATION.md`, `cpcs/knowledge/07_interaction_contact/actor_object/interaction_lifecycle.md`, `cpcs/knowledge/08_objects_affordances/affordance_constraints.md` |
+| Capture texture | `Additional/CAPTURE_SURFACE_REALISM.md`; prompt-system `lab/blocks.yaml` `blk_device_iphone12` |
+| Performance | `Additional/LIVING_PERFORMANCE_REALISM.md`, `Additional/NATURAL_DIALOGUE_MODE.md`, FACS and Laban cards under `cpcs/knowledge/04_character_performance/`, `06_body_motion/laban_bess/`, `bartenieff/` |
+| Camera | `cpcs/knowledge/12_camera_image_formation/` (three layers, impact sync, parallax) |
+| Verification | `cpcs/verification/semantic/verification_expectation_model.md`, `cpcs/verification/failures/failure_mode_catalog.md`, `cpcs/verification/repair_strategy.md` |
+| Sakuga, combat timing | `cpcs/knowledge/16_style_visual_language/anime_sakuga.md`, `cpcs/knowledge/05_action/combat/`, `Additional/Continous Combat State.md` (key-pose ranking, control ladder) |
+| Provider findings | `cpcs/providers/{veo,kling,runway}/src001_findings.md`, `cpcs/runtime/08_provider_negotiation/provider_capability_snapshots.md` |
+
+External references supplied by the owner (not yet read into treatments): LaMoGen
+(arxiv 2509.24469, Laban-conditioned motion diffusion); Guo et al. 2022, Laban-based motion
+classification; bodily expressed emotion via LMA (S2666389923001854); Bartenieff Fundamentals
+overviews (Wikipedia; Academia "Using LMA Effort to Enhance Body Connectivity";
+laban-analyses.org summary). Laban has AI-side evidence; Bartenieff is an untested vocabulary.

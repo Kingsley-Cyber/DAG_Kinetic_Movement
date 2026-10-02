@@ -1,0 +1,170 @@
+# Director passes — the registry every ask is planned from.
+# Passes are referred to by name. `owns` lists IR field prefixes only this pass may write.
+# `activate`: mandatory | conditional (see `when`) | optional. `after`: passes that run first.
+# Adding a pass or sub-module is an entry here plus treatments in director/treatments/<pass>/.
+version: "0.1"
+tiers: [reason, style, render]
+
+passes:
+  - id: intent
+    tier: reason
+    activate: mandatory
+    after: []
+    importance: 0.9
+    owns: [clip.objective, clip.dramatic_function, beats.directorial, intent]
+    question: "What must the viewer understand or feel, and where does intention or relationship change?"
+    sub_modules: [action, objective, obstacle, relationship, subtext, audience_information]
+
+  - id: entity
+    tier: reason
+    activate: mandatory
+    after: [intent]
+    importance: 0.9
+    owns: [entities]
+    question: "Who and what is in the clip, and which of their properties must stay true throughout?"
+    sub_modules: [identity, wardrobe, anatomy, sides, possessions]
+
+  - id: world
+    tier: reason
+    activate: conditional
+    when: "an object, surface or environment changes state, or the world must react to an action"
+    after: [entity]
+    importance: 0.7
+    owns: [world]
+    question: "How does the surrounding world respond to what happens, and what stays changed afterwards? What are gravity, terrain, masses, camera distance and the momentum source?"
+    sub_modules: [environment_state, object_state, affordances, material_response, persistent_changes, world_bundle]
+
+  - id: action
+    tier: reason
+    activate: conditional
+    when: "a body moves beyond a static pose"
+    after: [entity]
+    importance: 0.8
+    owns: [action]
+    question: "What do bodies do, in which phases, from which support, and how do they recover?"
+    sub_modules: [locomotion, phase, root_path, support_balance, speed_force, recovery, secondary_motion, weight_transfer_path, plane_transitions]
+
+  - id: interaction
+    tier: reason
+    activate: conditional
+    when: "an actor touches an object, a surface or another actor"
+    after: [action]
+    importance: 0.9
+    owns: [pathways, hands, interaction]
+    question: "Which contacts happen, with which hands or body parts, through which stages, and what does each contact cause?"
+    sub_modules: [grasp, hand_ledger, action_pathways, collision, impact, support, release, impact_physics_language]
+
+  - id: physics
+    tier: reason
+    activate: conditional
+    when: "a contact, fall, throw, impact or material response occurs"
+    after: [interaction]
+    importance: 0.8
+    owns: [physics]
+    question: "Why and how does each effect follow its cause, and is it feasible for these bodies and materials?"
+    sub_modules: [cause_effect, recoil, momentum, material_response, feasibility]
+
+  - id: staging
+    tier: reason
+    activate: conditional
+    when: "more than one actor, or the spatial relationship between actor, object and camera matters"
+    after: [interaction]
+    importance: 0.6
+    owns: [staging]
+    question: "Where is everything relative to everything else, and which screen direction is conserved?"
+    sub_modules: [blocking, depth, screen_direction, action_axis, proxemics]
+
+  - id: continuity
+    tier: reason
+    activate: conditional
+    when: "an object, mark or state must persist or change visibly across the clip"
+    after: [world, interaction]
+    importance: 0.8
+    owns: [continuity, entities.locks]
+    question: "What must stay identical, what changes once and stays changed, and what is hidden but still exists?"
+    sub_modules: [state_carry_over, object_state, locks, hidden_state]
+
+  - id: time
+    tier: reason
+    activate: mandatory
+    after: [intent, action, interaction, physics]
+    importance: 0.9
+    owns: [beats, clip.duration_s, time]
+    question: "In what order do events happen, how long does each need to read, how dense is the apex, and does it all fit the clip?"
+    sub_modules: [beats, rhythm_fields, timing_profiles, holds, overload, key_poses]
+    procedure:
+      - "emotional register: slow-hold, floaty or snappy"
+      - "directorial beats: one per change of relationship or intention"
+      - "tempo curve across the scene, not one tempo"
+      - "micro-pauses and anticipation beats"
+      - "event density at the apex"
+      - "variation: never one rhythm throughout"
+      - "key poses named and ranked"
+
+  - id: performance
+    tier: style
+    activate: conditional
+    when: "a living performer is on screen"
+    after: [time]
+    importance: 0.7
+    owns: [performance]
+    question: "How is it acted: register, face, gaze, posture, breath, movement quality (Laban, scaled), origination (Bartenieff)?"
+    sub_modules: [acting_intent, body, face_facs, gaze_blink, posture, breath, gesture, laban_effort_scaled, laban_shape_planes, bartenieff_patterns, affect]
+
+  - id: camera
+    tier: style
+    activate: mandatory
+    after: [time, staging]
+    importance: 0.9
+    owns: [camera, clip.aspect_ratio]
+    question: "How is it seen: camera motion layer, optics layer, framing, shot length, aspect ratio? Camera grammar is always stated."
+    sub_modules: [motion_layer, optics_layer, framing, shot_length, cuts]
+
+  - id: attention
+    tier: style
+    activate: optional
+    after: [camera]
+    importance: 0.5
+    owns: [attention]
+    question: "What must the viewer notice, miss, or discover, and in which order?"
+    sub_modules: [reveal, withhold, hooks, key_pose_ranking]
+
+  - id: light_color
+    tier: style
+    activate: conditional
+    when: "lighting or colour is specified, or realism depends on light"
+    after: [camera]
+    importance: 0.6
+    owns: [light_color]
+    question: "Where does light come from, what quality is it, what is exposure and colour doing, and does it stay consistent?"
+    sub_modules: [sources, direction, quality, exposure, white_balance, palette, grade, colour_continuity]
+
+  - id: style
+    tier: render
+    activate: conditional
+    when: "a look, realism target, capture device or motion style is asked for or implied"
+    after: [camera, light_color]
+    importance: 0.7
+    owns: [style]
+    question: "How does it look and feel: visual style, motion style, realism and capture texture, effects? Texture never reorders beats."
+    sub_modules: [visual_style, motion_style, realism, capture_texture, vfx]
+
+  - id: audio
+    tier: render
+    activate: conditional
+    when: "the model renders audio, or dialogue or sound is asked for"
+    after: [time, performance]
+    importance: 0.5
+    owns: [audio]
+    question: "What is heard, when, and how does it sync with the beats?"
+    sub_modules: [speech, pauses, effects, music, sync]
+
+  - id: synthesis
+    tier: reason
+    activate: mandatory
+    after: [intent, entity, world, action, interaction, physics, staging, continuity, time, performance, camera, attention, light_color, style, audio]
+    importance: 1.0
+    owns: [synthesis, negatives]
+    question: "Do the decisions contradict each other, exceed what one clip can hold, or break a hard constraint? Resolve, simplify, align camera with action and style with motion."
+    sub_modules: [contradictions, competing_controls, complexity, alignment]
+    runs_twice: "after the Reason tier (logic) and after the Style tier (taste)"

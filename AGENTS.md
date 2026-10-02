@@ -1,109 +1,46 @@
-# AGENTS.md — CPCS Repository Guide
+# AGENTS.md — CPCS Director (branch `director`)
 
-Instructions for AI agents and human contributors working in this repository.
+This repository is the owner's AI-video prompting research (`cpcs/`, `Additional/`,
+`Research_distillation_folder/`) plus a text-only prompt compiler (`director/`) and its living
+plan (`plan/`). Read `plan/README.md` first (one page), then this file.
 
-> **Start with [`README.md`](./README.md)** — it is the boot file: live
-> state, boot sequence, control plane (doctrine D1–D9), the gap/research
-> loop, commands, and git conventions at granular detail.
+## Roles
 
-## What This Repository Is
+- **You (the LLM session) reason.** You read the ask, decide which passes run, read the
+  treatments for those passes, and write the IR (`ir.json`) and decision records.
+- **Code validates and emits.** `director/tools/director.py check` validates what you wrote;
+  `emit` writes the prompt deterministically with a receipt and a loss record.
+- **A separate call verifies.** The cold read-back is done by a different LLM call that sees only
+  the prompt. You never declare your own output valid.
 
-This repository contains **CPCS**: a structured, DAG-style knowledge and
-runtime architecture for directing, compiling, and verifying kinetic
-cinematic performance (live-action, anime, documentary, UGC, etc.).
+## Load path for an ask
 
-It is **live, not a skeleton**: 12 research sources (SRC-001 … SRC-012)
-have been distilled into 183 `cpcs.*` objects across 209 files; the
-ontology checker runs clean (0 deviations) and DIRECTORY.md tracks 1,124
-routes (1,011 leaves). The control plane is agent-automated
-(`control_plane_automation_doctrine.md`) — resolve decisions via its
-decision tree and record them in its §5 register; consult the user only
-on its §6 brief triggers. Session continuity: read the latest entries in
-`00_governance/agent_logs/working_agent_log.md` and append one after every
-batch (H6). Understanding gaps awaiting user deep research: see
-`research/gaps/understanding_gap_register.md` (UG-001 … UG-007).
+1. `plan/README.md` → `director/protocol.md` → `director/passes.yaml`
+2. Treatments for the active passes only: `director/treatments/<pass>/*.md`
+3. Cite `cpcs/**` cards and `Additional/*.md` manuals by path when a treatment points to them.
+   Do not read the whole tree.
+4. Write `director/runs/<n>_<slug>/{ask.md, ir.json, decisions.jsonl}`
+5. `python3 director/tools/director.py check <run>` then `emit <run> --model <profile>`
+6. Cold read-back → `verdict.md` after the owner renders.
 
-The architecture has three planes:
+## Rules
 
-1. **Knowledge plane** — a taxonomy of concepts ("routes"): story, audience,
-   performance, motion, physics, camera, lighting, editing, audio, style,
-   continuity, plus cross-domain interfaces.
-2. **Research plane** — sources, distillation, evidence, numerics, and
-   coverage tracking that feed the knowledge plane.
-3. **Runtime plane** — a pipeline from request → world model → routing →
-   retrieval → synthesis → strategy → canonical score → compiler →
-   provider negotiation → execution, with verification, evaluation, and
-   maintenance loops around it.
-
-## Repository Layout (top level under `cpcs/`)
-
-| Route | Purpose |
-| --- | --- |
-| `00_governance/` | Authority, policies, naming, versioning, change control, release/deprecation policy |
-| `knowledge/` | The taxonomy itself: `00_foundations` … `20_interfaces` |
-| `research/` | Sources, source registry, distillation, curation, evidence, numerics, representation, coverage |
-| `observation/` | Measurement from reference video/pegasus: detection, tracking, pose, gaze, contact, reverse compiler |
-| `profiles/` | Reusable domain and department profiles (cinematic, anime, camera, audio, …) |
-| `runtime/` | The pipeline: `00_request` … `09_execution` |
-| `providers/` | Capability registry and per-provider adapters (seedance, kling, veo, runway, luma, ltx, sora, …) |
-| `verification/` | Post-generation checks, failure diagnosis, and repair strategies |
-| `evaluation/` | Golden cases, benchmarks, ablations, human ratings, calibration |
-| `maintenance/` | Health checks, migrations, deprecations, archives for every subsystem |
-| `schemas/` | Formal schemas for every subsystem |
-| `generated/` | Machine-generated artifacts (repository maps, indexes, snapshots) — never hand-edit |
-| `tests/` | Unit, integration, semantic, retrieval, regression, canaries, fixtures |
-| `examples/` | Worked examples per domain and per pipeline stage |
-| `archive/` | Frozen, superseded, or deprecated material |
-
-The complete, always-current list of every route lives in
-[`DIRECTORY.md`](./DIRECTORY.md).
-
-## MANDATORY Rule: DIRECTORY.md Sync
-
-`DIRECTORY.md` at the repo root is a **generated, live index of every route**
-in `cpcs/`. Whenever a directory (route) under `cpcs/` is **added, removed,
-renamed, or moved**, you MUST regenerate it in the same change:
-
-```pwsh
-pwsh -NoProfile -File .\update_directory_md.ps1
-```
-
-- Run it from the repo root after the filesystem change succeeds.
-- Confirm the route count in its output reflects your change.
-- Never hand-edit `DIRECTORY.md`; the generator script owns its content.
-- A task that touches `cpcs/` routes is **not complete** until `DIRECTORY.md`
-  has been regenerated.
-
-## Conventions
-
-- **Route naming**: lowercase `snake_case`, singular nouns preferred
-  (`weight_transfer`, not `weightTransfers`). Cross-domain interfaces use the
-  `domain_x_domain` pattern (`motion_x_physics`).
-- **Numbered prefixes** encode order/stage and must be preserved:
-  `knowledge/00_foundations` … `knowledge/20_interfaces`,
-  `runtime/00_request` … `runtime/09_execution`.
-- **Never put content in `generated/`** by hand; it is rebuilt by tooling.
-- **Deprecation over deletion**: obsolete material moves to `archive/`
-  following `00_governance/deprecation_policy/` — do not silently delete
-  routes that may be referenced elsewhere.
-- **Epistemic discipline**: knowledge content respects the classes in
-  `knowledge/00_foundations/epistemic_classes/` (observed, detected,
-  measured, interpreted, inferred, authored, creative_choice). Label claims
-  with their class; do not present inference as observation.
-- New routes should sit at the correct place in the taxonomy DAG; when in
-  doubt, prefer a leaf under the closest existing route over inventing a new
-  top-level branch.
-
-## Scripts
-
-| Script | Purpose |
-| --- | --- |
-| `update_directory_md.ps1` | Regenerate `DIRECTORY.md` from the filesystem (mandatory after route changes) |
-
-## Current Status
-
-- Skeleton only: directories exist, content is pending.
-- No git repository initialized yet; once one is, a pre-commit hook should
-  enforce the `DIRECTORY.md` sync rule.
-- Do not create throwaway/test directories inside `cpcs/`; route additions
-  are deliberate and must be registered via `DIRECTORY.md`.
+- No DAG or graph executor. The repo is material; you are the reasoner.
+- Text only: Mode C compiler, Mode A artifact, control levels L0–L1. No pose, depth, mocap or
+  reference-image conditioning.
+- Order first, texture second. Reason-tier beats and action stages are never reordered or
+  removed by Style or Render decisions.
+- Every decision carries an origin from `epistemic_status` (SOURCE_EVIDENCE, INFERENCE,
+  CREATIVE_CHOICE, PROJECT_DERIVED, PROVIDER_EXPERIMENT, UNVERIFIED, UNKNOWN). Reasoned
+  decisions are logged to `director/gaps.jsonl`.
+- Never invent numeric precision. A number inherits the origin of its inputs; conventions are
+  labelled conventions.
+- One owner pass per IR field. Other passes request; the owner writes.
+- `cpcs/**` and `Additional/**` are read-only on this branch. Knowledge enters through the
+  ingest procedure once it exists (`plan/PHASES.md`, phase 8).
+- Commits are local, on this branch, at phase exits. Nothing is pushed without the owner saying
+  so. No changes to `/Users/king/ai-video-movement-prompt-system` or
+  `/Users/king/Documents/New project`.
+- `plan/legacy/` holds the previous AGENTS/CLAUDE instructions. They describe a DAG runtime and
+  an automation doctrine and are **not operative**. `cpcs/00_governance/policies/` is honored
+  except where `plan/DECISIONS.md` records an override.
