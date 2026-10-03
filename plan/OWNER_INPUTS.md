@@ -300,6 +300,12 @@ motion; the fix is deliberate spacing structure, segment by segment"; motion gra
 compiler for movement (timing chart = data, profiles = enum, effort actions = semantic layer);
 three scales: shot grammar, editing grammar, motion ("writing with motion").
 
+Definition (second paste): motion grammar is the set of governing rules for constructing and
+presenting movement so a viewer can read it, the visual-language equivalent of sentence grammar;
+a filmmaker selects shots as "words" and assembles them into "sentences" by sequence. "Grammar is
+the difference between movement a viewer watches and movement a viewer reads", and deliberate
+structure, segment by segment, separates crafted motion from uniform slop.
+
 ## 24. On old plans
 
 "Be careful with any old plans being integrated as it can misalign the current plan." Audit in

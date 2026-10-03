@@ -653,7 +653,15 @@ Punch of one action beat: `impact_frames = anticipation + strike + hold + settle
 in-betweens read faster; one in-between turns a snap into a rolling hit. Small screens compress
 motion: shorten action beats for phone playback.
 
-### 4.3a Spacing: the finite alphabet (owner; animation practice)
+### 4.3a Motion grammar and spacing: the finite alphabet (owner; animation practice)
+
+**Definition.** Motion grammar is the set of governing rules for constructing and presenting
+movement so a viewer can *read* it: the visual-language equivalent of sentence grammar. Shots are
+the words, sequence makes the sentences, and audiences have learned to read them through a
+lifetime of exposure. Grammar is the difference between movement a viewer watches and movement a
+viewer reads. For this compiler that sets the test for every motion decision: can a viewer read
+what happened, in order, from the frames the prompt asks for (the cold read-back checks exactly
+this on the prompt).
 
 "AI slop is constant motion; the fix is deliberate spacing structure, segment by segment." Motion
 grammar works as a compiler for movement: the timing chart is its data, the profiles its enum, the
