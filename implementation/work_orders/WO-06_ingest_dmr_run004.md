@@ -14,12 +14,13 @@ and prove them on the DMR shared fixture.
 `cpcs/runtime/06_canonical/temporal_tracks/temporal_coupling.md` ·
 `director/vocab/camera_moves.yaml` · `plan/CONTROL_LAYER.md` R-50…R-53.
 
-## Part A — triage (no code)
+## Part A — triage (done 2026-10-03 by the planning session)
 
-Write `plan/ingest/DMR_triage.md`: one row per gap G001–G022 with status (closed,
-implementable_now, requires_experiment, unknown, deferred, rejected), the reason, and where it
-lands. Start from INGEST §4; correct it where the package says otherwise; recover G010, G018 and
-G022 from the package's register, do not infer them from numbering.
+`plan/ingest/DMR_triage.md` exists: all 22 gaps triaged from the package's register
+(`director_motion_reasoning_gap_report.md` §3), including G010 (generation runner), G018 (hybrid
+retrieval) and G022 (runtime CI), plus the Seedance 2.0 facts from §6 now in the profile. Read it
+first. Your job in Part A is only to spot-check three rows against the register and note any
+disagreement in `plan/STATUS.md`; do not rewrite the table.
 
 ## Part B — rules (code, tests first)
 
@@ -36,6 +37,13 @@ G022 from the package's register, do not infer them from numbering.
    `beat` → error `"one camera move per shot"`.
 3. **Profile lifecycle (R-52).** `emit` reads `status` from the profile: `reprobe_due` or
    `invalidated` → block native dispositions with `"profile status"`. `stale` → warning.
+4. **Runtime CI (G022).** Add `.github/workflows/director-tests.yml`: on push and pull request,
+   Python 3.11, `pip install pyyaml jsonschema`, then
+   `python3 -m unittest discover -s director/tools/tests`. Nothing else in the workflow.
+5. **Camera fixed (Seedance fact).** When the target profile lists `camera_fixed` in
+   `native_fields` and the camera control's `move` is `static`, `emit` adds
+   `camera_fixed: true` to `settings` and still writes the camera grammar in prose. Test:
+   `test_static_move_sets_camera_fixed_on_profiles_that_have_it`.
 
 Tests (new class `IngestDMR`): `test_outcomes_include_not_applicable_and_indeterminate`,
 `test_unknown_camera_move_fails`, `test_custom_move_needs_decision_record`,

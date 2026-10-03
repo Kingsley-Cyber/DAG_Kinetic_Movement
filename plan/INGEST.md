@@ -85,6 +85,11 @@ Changed behavior is quarantined as a new dated fact; history is never rewritten.
 
 ## 4. What the DMR return gives this plan (first ingest, task T36)
 
+**Superseded on 2026-10-03 by `plan/ingest/DMR_triage.md`**, written after reading the package's
+actual gap register. The table below was a pre-triage from the deep-research prompt alone; it
+lacked G010 (generation runner), G018 (hybrid retrieval) and G022 (runtime CI) and missed the
+package's documented Seedance 2.0 facts. Use the triage file.
+
 | DMR gap | Status for a text-only compiler | Lands as |
 |---|---|---|
 | G001 ScenePlan authority | implementable_now, reduced: the IR is the execution projection; `cpcs/**` cards are semantic authority; the owner's inputs are authored intent | authority note in `ARCHITECTURE.md` §3; invariant "the IR never becomes a second semantic authority" (R-50) |

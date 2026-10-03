@@ -10,7 +10,7 @@ until the owner acts (see `OWNER_ACTIONS.md`).
 | WO-03 | Passes connect: `reads`, beat-scoped controls, coupling checks | T17 | WO-02 | todo |
 | WO-04 | Run 002: product handling with two hands (handoff test) | T12 | WO-03 | todo |
 | WO-05 | Run 003: thrown into the pool (world reactions) | T12, T30 (as needed) | WO-04 | todo |
-| WO-06 | First ingest: DMR package; run 004 glass fixture; camera move validator | T36, T38 | WO-05 | todo |
+| WO-06 | First ingest: DMR package (triage already written in `plan/ingest/DMR_triage.md`); typed outcomes, camera move validator, profile lifecycle, CI workflow; run 004 glass fixture | T36, T38 | WO-05 | todo |
 | WO-07 | Run 005: camera-only | T12 | WO-06 | todo |
 | WO-08 | Experiment arms: absolute vs relative, wording rungs (emit flags + one run) | T18 | WO-06 | todo |
 | **GATE A** | **Owner confirms the model route, renders E1 (runs 001–005) and E2/E3 arms, fills verdicts** | T13 | WO-07, WO-08 | blocked on owner |
