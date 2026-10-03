@@ -1,7 +1,8 @@
 {
   "run_id": "001_bottle_selfie",
   "model": "seedance",
-  "prompt_sha256": "f394a0f5aa66992b5acccb20ff6e056dba46896207c019d3f7a0e550b544d5f1",
+  "prompt_sha256": "207ff2008b2f5dd569f643a420b8ad498c435262b250daae970ebbddf079a525",
+  "prompt_sha256_of": "prompt.txt bytes as written (including the trailing newline)",
   "lines": [
     {
       "line": 1,

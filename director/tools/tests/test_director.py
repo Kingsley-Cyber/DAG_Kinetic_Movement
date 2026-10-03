@@ -242,5 +242,83 @@ class Emit(unittest.TestCase):
             tr.cleanup()
 
 
+class ReviewRegressions(unittest.TestCase):
+    """Holes found by the 2026-10-02 external review (compiler-review.md): each was a green check or a
+    successful emit on an invalid or lossy input."""
+
+    def test_native_duration_is_carried_as_text_on_a_route_without_native_fields(self):
+        tr = TempRun()
+        try:
+            report = director.emit(tr.dir, "hailuo")  # hailuo profile has native_fields: []
+            prompt = (tr.dir / "prompt.txt").read_text()
+            self.assertIn("8-second clip", prompt)
+            self.assertEqual(report["settings"], {})
+            losses = [json.loads(l) for l in (tr.dir / "loss.jsonl").read_text().splitlines()]
+            self.assertTrue(any(l.get("loss_code") == "native_field_unsupported_by_route" and l["canonical_field"] == "clip.duration_s" for l in losses))
+            receipt = json.loads((tr.dir / "receipt.json").read_text())
+            srcs = [l["source"] for l in receipt["lines"] if isinstance(l["source"], dict)]
+            self.assertTrue(any(s.get("id") == "c_duration" and s.get("realization") == "compressed_to_text" for s in srcs))
+        finally:
+            tr.cleanup()
+
+    def test_locked_native_control_without_text_fallback_blocks(self):
+        def mutate(ir):
+            ir["controls"].append({"id": "c_seed", "pass": "time", "field": "time.seed", "value": 12345,
+                                   "importance": 0.5, "lock": True, "origin": "USER_EXPLICIT", "treatment": None,
+                                   "capability": "native", "disposition": "native", "exactness": "exact"})
+        tr = TempRun(mutate)
+        try:
+            with self.assertRaises(SystemExit) as ctx:
+                director.emit(tr.dir, "hailuo")
+            self.assertIn("no channel", str(ctx.exception))
+        finally:
+            tr.cleanup()
+
+    def test_same_hand_counted_twice_is_rejected(self):
+        def mutate(ir):
+            ir["pathways"][0]["stages"][2]["hands"] = [{"actor": "woman", "hand": "left"}, {"actor": "woman", "hand": "left"}]
+        errs = errors_for(mutate)
+        self.assertTrue(any("listed twice" in e for e in errs), errs)
+        self.assertTrue(any("distinct hand" in e for e in errs), errs)
+
+    def test_disconnected_state_chain_is_rejected(self):
+        def mutate(ir):
+            ir["pathways"][0]["stages"][3]["state_before"] = "sealed_on_table"  # transfer no longer starts where contact ended
+        errs = errors_for(mutate)
+        self.assertTrue(any("disconnected state chain" in e for e in errs), errs)
+
+    def test_emphasis_lever_applies_for_hailuo_and_core_wording_for_seedance(self):
+        def mutate(ir):
+            for c in ir["controls"]:
+                if c["id"] == "c_register":
+                    c["value"]["emphasis"] = ["unforced"]
+        tr = TempRun(mutate)
+        try:
+            director.emit(tr.dir, "hailuo")
+            hailuo_prompt = (tr.dir / "prompt.txt").read_text()
+            hailuo_receipt = json.loads((tr.dir / "receipt.json").read_text())
+            self.assertIn("<i>unforced</i>", hailuo_prompt)
+            self.assertTrue(any(isinstance(l["source"], dict) and l["source"].get("lever", {}).get("intent") == "emphasis"
+                                for l in hailuo_receipt["lines"]))
+            director.emit(tr.dir, "seedance")
+            seedance_prompt = (tr.dir / "prompt.txt").read_text()
+            self.assertIn("unforced", seedance_prompt)
+            self.assertNotIn("<i>", seedance_prompt)
+            losses = [json.loads(l) for l in (tr.dir / "loss.jsonl").read_text().splitlines()]
+            self.assertTrue(any(l.get("loss_code") == "no_lever_for_intent:emphasis" for l in losses))
+        finally:
+            tr.cleanup()
+
+    def test_receipt_hash_matches_prompt_file_bytes(self):
+        import hashlib
+        tr = TempRun()
+        try:
+            director.emit(tr.dir, "seedance")
+            receipt = json.loads((tr.dir / "receipt.json").read_text())
+            self.assertEqual(receipt["prompt_sha256"], hashlib.sha256((tr.dir / "prompt.txt").read_bytes()).hexdigest())
+        finally:
+            tr.cleanup()
+
+
 if __name__ == "__main__":
     unittest.main()

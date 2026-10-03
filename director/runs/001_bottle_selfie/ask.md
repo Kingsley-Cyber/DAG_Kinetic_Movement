@@ -4,7 +4,8 @@
 
 > A woman films herself opening a water bottle and drinking, 8 seconds, phone selfie.
 
-Target model: seedance (profile all-unknown; 1,000-character budget as a guess).
+Target model: seedance (route unconfirmed; 2,000-character budget from third-party API docs, see
+`profiles/seedance.yaml`; the Runway-hosted route would be 1,000).
 
 ## Intent brief
 

@@ -2,6 +2,38 @@
 
 Newest first. One entry per working session or phase exit.
 
+## 2026-10-03 — External review (FAIL) and remediation
+
+Review: `/Users/king/Documents/Codex/2026-10-02/short-verdict-the-plan-matches-the/outputs/compiler-review.md`
+(Codex, against `f2f478c`). Verdict FAIL on compiler requirements, not on video quality. Verified
+holes, all now closed with RED→GREEN tests (T09; 26 tests green, the original 20 untouched):
+
+- Retargeting run 001 to Hailuo dropped the locked 8 s duration silently (no native field, no
+  loss). Now: a native control the route cannot carry is emitted as text with a
+  `native_field_unsupported_by_route` loss and `compressed_to_text` in the receipt, or blocks when
+  locked with no text form.
+- The checker accepted one hand listed twice for a two-hand stage. Now: distinct (actor, hand)
+  pairs only.
+- The checker accepted a disconnected within-pathway state chain. Now: each stage must start where
+  the previous one ended.
+- Hailuo emphasis levers were stored but unused. Now: `emit` applies the best-evidence lever for
+  an agnostic `emphasis` intent and records it in the receipt; a model without a lever emits core
+  wording and a `provider_attention_loss` when the intent mattered.
+- Receipt hash now covers the prompt file bytes as written.
+
+Handoff contradictions the review listed were fixed where they were plain errors (STATUS next
+task, ingest-is-not-a-phase, `treatment` key name, camera runs after interaction and physics,
+conditional-pass closure rule, synthesis runs twice, read-back raw artifact, 1,000 vs 2,000,
+decision rights, "one clip per beat" as hypothesis, T12 asks fixed with run 004 = the glass
+fixture). Its "where to cut" was adopted: T10 optional, T11 and T14 deferred; the 55 requirements
+are a backlog, not obligations before the first render.
+
+Rejected by the review and left to the owner: taste-first sequencing and restoring reference
+images (the owner's recorded intent says "ship Reason first" and excludes references for now).
+
+Next: (1) owner renders run 001 compiled vs baseline on the confirmed route; (2) an independent
+LLM runs the first T12 ask from `HANDOFF.md` alone (handoff test); (3) T36 first ingest.
+
 ## 2026-10-02 — Handoff pack written
 
 The owner asked for a folder that holds the plans, goals and intent control layer so a

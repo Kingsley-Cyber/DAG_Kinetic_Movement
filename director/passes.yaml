@@ -127,7 +127,7 @@ passes:
   - id: camera
     tier: style
     activate: mandatory
-    after: [time, staging]
+    after: [time, staging, interaction, physics]   # the camera must know what happens and whether contact is shown or hidden
     importance: 0.9
     owns: [camera, clip.aspect_ratio]
     question: "How is it seen: camera motion layer, optics layer, framing, shot length, aspect ratio? Camera grammar is always stated."

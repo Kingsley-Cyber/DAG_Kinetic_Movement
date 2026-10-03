@@ -37,7 +37,7 @@ plan (`plan/`). Read `plan/README.md` first (one page), then this file.
   labelled conventions.
 - One owner pass per IR field. Other passes request; the owner writes.
 - `cpcs/**` and `Additional/**` are read-only on this branch. Knowledge enters through the
-  ingest procedure once it exists (`plan/PHASES.md`, phase 8).
+  ingest procedure in `plan/INGEST.md`, which runs alongside every phase.
 - Commits are local, on this branch, at phase exits. Nothing is pushed without the owner saying
   so. No changes to `/Users/king/ai-video-movement-prompt-system` or
   `/Users/king/Documents/New project`.

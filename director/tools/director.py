@@ -252,7 +252,13 @@ def check(run_dir: Path) -> CheckResult:
             res.errors.append("pathway %s: last stage ends in '%s', not end_state '%s'" % (pw["id"], stages[-1]["state_after"], pw["end_state"]))
         seen_kinds: set = set()
         last_beat_order = 0
+        prev_state_after: Optional[str] = None
         for s in stages:
+            # within-pathway state continuity: each stage starts where the previous one ended
+            if prev_state_after is not None and s["state_before"] != prev_state_after:
+                res.errors.append("pathway %s/%s: disconnected state chain: begins in '%s' but the previous stage ended in '%s'"
+                                  % (pw["id"], s["id"], s["state_before"], prev_state_after))
+            prev_state_after = s["state_after"]
             if s["beat"] not in beat_order:
                 res.errors.append("pathway %s/%s: unknown beat '%s'" % (pw["id"], s["id"], s["beat"]))
             else:
@@ -276,9 +282,12 @@ def check(run_dir: Path) -> CheckResult:
                                       % (pw["id"], s["id"], s["state_before"], s["state_after"], "/".join(missing)))
             if s["kind"] == "effect" and not (s.get("reaction") or "").strip():
                 res.errors.append("pathway %s/%s: effect stage has no stated reaction (impact-and-physics language)" % (pw["id"], s["id"]))
-            # hands
-            if len(s["hands"]) < s["hands_required"]:
-                res.errors.append("pathway %s/%s: needs %d hand(s), lists %d" % (pw["id"], s["id"], s["hands_required"], len(s["hands"])))
+            # hands: distinct (actor, hand) pairs only; one hand cannot be counted twice
+            pairs = [(hd["actor"], hd["hand"]) for hd in s["hands"]]
+            if len(set(pairs)) < len(pairs):
+                res.errors.append("pathway %s/%s: the same hand is listed twice (%s)" % (pw["id"], s["id"], pairs))
+            if len(set(pairs)) < s["hands_required"]:
+                res.errors.append("pathway %s/%s: needs %d hand(s), lists %d distinct hand(s)" % (pw["id"], s["id"], s["hands_required"], len(set(pairs))))
             for hd in s["hands"]:
                 state = ledger.get((hd["actor"], hd["hand"], s["beat"]))
                 if state is None:
@@ -345,6 +354,37 @@ def check(run_dir: Path) -> CheckResult:
 
 
 # ----------------------------------------------------------------------------- emit
+
+# Text fallbacks for API-level controls when the selected route has no native field for them.
+# A native control is never dropped silently: it is carried as text (compressed_to_text, with a
+# loss record) or, when locked and no text form exists, emission blocks.
+NATIVE_TEXT = {
+    "duration_s": "{v}-second clip",
+    "aspect_ratio": "{v} aspect ratio",
+    "fps": "{v} fps",
+}
+LEVER_EVIDENCE_RANK = {"documented": 0, "measured": 1, "documented_thirdparty": 2, "owner_observed": 3, "unknown": 4}
+
+
+def select_lever(profile: dict, intent: str) -> Optional[dict]:
+    """Deterministic lever choice: best evidence first, then file order."""
+    levers = [l for l in (profile.get("dialect", {}) or {}).get("levers", []) or [] if l.get("intent") == intent]
+    if not levers:
+        return None
+    indexed = list(enumerate(levers))
+    indexed.sort(key=lambda il: (LEVER_EVIDENCE_RANK.get(il[1].get("evidence", "unknown"), 9), il[0]))
+    return indexed[0][1]
+
+
+def apply_emphasis(text: str, words: List[str], lever: dict, warnings: List[str], cid: str) -> str:
+    for w in words:
+        pattern = r"\b%s\b" % re.escape(str(w))
+        if not re.search(pattern, text):
+            warnings.append("%s: emphasis word '%s' not present in the emitted wording" % (cid, w))
+            continue
+        text = re.sub(pattern, lever["syntax"].replace("{word}", str(w)), text, count=1)
+    return text
+
 
 LABAN_WORDS = {
     "weight": ("light, easy", "grounded, forceful"),
@@ -473,14 +513,28 @@ def emit(run_dir: Path, model: str) -> dict:
             ltype = "temporal_loss" if c["field"].startswith(("time.", "beats")) else "approximation"
             losses.append(_loss("loss_%s" % c["id"], c["field"], requested, model, c["capability"], "semantic",
                                 "order wording", ltype, "medium", code="temporal_precision_unenforceable" if ltype == "temporal_loss" else None))
+        native_text = None
         if disp == "native":
             field_key = c["field"].split(".")[-1]
             if field_key in native_fields or c["field"] in native_fields:
                 settings[field_key] = c["value"]
             else:
-                warnings.append("%s: disposition native but '%s' is not a native field of %s" % (c["id"], c["field"], model))
+                # Resolve against the selected route: carry through text or block; never drop silently.
+                tmpl = NATIVE_TEXT.get(field_key)
+                if tmpl:
+                    native_text = tmpl.format(v=c["value"])
+                    losses.append(_loss("loss_%s_route" % c["id"], c["field"], requested, model, "semantic", "compressed_to_text",
+                                        native_text, "approximation", "medium" if c["lock"] else "low",
+                                        code="native_field_unsupported_by_route"))
+                elif c["lock"]:
+                    raise SystemExit("emit blocked: locked native control %s (%s) has no channel on %s: no native field and no text fallback (unsupported_error)"
+                                     % (c["id"], c["field"], model))
+                else:
+                    losses.append(_loss("loss_%s_route" % c["id"], c["field"], requested, model, "unknown", "omitted", None,
+                                        "unsupported_semantic", "low", accepted=True, code="native_field_unsupported_by_route"))
+                    continue
         # wording
-        text = None
+        text = native_text
         short = None
         tid = c.get("treatment")
         if tid:
@@ -504,9 +558,28 @@ def emit(run_dir: Path, model: str) -> dict:
                 text = ", ".join(str(v) for v in c["value"])
         if not text:
             continue
+        # dialect lens: agnostic intents in the IR, model syntax applied here and recorded in the receipt
+        lever_used = None
+        emphasis = c["value"].get("emphasis") if isinstance(c["value"], dict) else None
+        if emphasis:
+            lever = select_lever(profile, "emphasis")
+            if lever:
+                text = apply_emphasis(text, emphasis, lever, warnings, c["id"])
+                if short:
+                    short = apply_emphasis(short, emphasis, lever, [], c["id"])
+                lever_used = {"intent": "emphasis", "syntax": lever["syntax"], "evidence": lever.get("evidence", "unknown")}
+            elif c["importance"] >= 0.7:
+                losses.append(_loss("loss_%s_emphasis" % c["id"], c["field"], {"value": emphasis, "unit": None}, model, "unknown",
+                                    "semantic", "core wording, no emphasis marks", "provider_attention_loss", "low",
+                                    code="no_lever_for_intent:emphasis"))
         clause = _clause_for(c)
+        source = {"kind": "control", "id": c["id"], "treatment": tid, "origin": c["origin"]}
+        if lever_used:
+            source["lever"] = lever_used
+        if native_text is not None:
+            source["realization"] = "compressed_to_text"
         lines.append({"clause": clause, "key": (2, -c["importance"], c["id"]), "text": text, "short": short,
-                      "source": {"kind": "control", "id": c["id"], "treatment": tid, "origin": c["origin"]},
+                      "source": source,
                       "importance": c["importance"], "lock": c["lock"], "droppable": not c["lock"], "control": c})
         emitted_controls.append(c["id"])
 
@@ -582,13 +655,16 @@ def emit(run_dir: Path, model: str) -> dict:
                             model, c.get("capability", "semantic"), "omitted", None, "priority_suppression", "low", code="token_budget"))
         prompt, receipt, negative_text = assemble(active_lines)
 
-    (run_dir / "prompt.txt").write_text(prompt + "\n", encoding="utf-8")
+    prompt_bytes = (prompt + "\n").encode("utf-8")
+    (run_dir / "prompt.txt").write_bytes(prompt_bytes)
     if negative_text is not None:
         (run_dir / "negative.txt").write_text(negative_text + "\n", encoding="utf-8")
     with open(run_dir / "loss.jsonl", "w", encoding="utf-8") as fh:
         for rec in losses:
             fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
-    receipt_doc = {"run_id": ir["run_id"], "model": model, "prompt_sha256": hashlib.sha256(prompt.encode("utf-8")).hexdigest(),
+    receipt_doc = {"run_id": ir["run_id"], "model": model,
+                   "prompt_sha256": hashlib.sha256(prompt_bytes).hexdigest(),
+                   "prompt_sha256_of": "prompt.txt bytes as written (including the trailing newline)",
                    "lines": receipt}
     (run_dir / "receipt.json").write_text(json.dumps(receipt_doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     dispositions: Dict[str, int] = {}

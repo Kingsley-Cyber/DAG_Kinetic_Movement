@@ -1,7 +1,7 @@
 {
   "run_id": "001_bottle_selfie",
   "model": "seedance",
-  "emitted_at": "2026-10-03T02:57:26+00:00",
+  "emitted_at": "2026-10-03T03:26:53+00:00",
   "chars": 1896,
   "char_limit": 2000,
   "mode": "C→A text_interpretation_only",

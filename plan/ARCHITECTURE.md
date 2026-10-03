@@ -149,7 +149,7 @@ release stage.
 
 ### 3.1 Controls
 
-A control: `id, pass, field, value, importance 0..1, lock, origin, treatment_id`.
+A control: `id, pass, field, value, importance 0..1, lock, origin, treatment` (the treatment's id).
 
 Each control gets, for the target model:
 
@@ -548,8 +548,9 @@ clips with a state handoff, lengthen if the model allows. Prompts are never sque
 
 Motion budget per shot (production heuristic): one dominant subject action, one major camera
 move, one or two secondary body actions, one to three passive material responses. Three or four
-ordered events outperform a paragraph of simultaneous actions. 8-second models: one clip per
-beat.
+ordered events outperform a paragraph of simultaneous actions. "8-second models: one clip per
+beat" (LIVING §11) is a hypothesis to test, not a rule: run 001 holds seven beats in one 8 s clip
+and fits.
 
 ### 4.6 Speech
 
@@ -697,8 +698,10 @@ intrinsics) are out of scope.
 ## 11. Research ingest (procedure written after doing it by hand)
 
 Document route: new paper or notes → proposed treatments, sub-modules or passes (question, IR
-fields, validators, slot), numbers and scales, model facts, parked claims → owner approves. Each
-new treatment needs ≥ 3 triggers and ≥ 1 test ask. A package is integrated when every claim is a
+fields, validators, slot), numbers and scales, model facts, parked claims → recorded and committed
+per `GOALS.md → Decision rights` (sourced treatments, new fields with a consumer and new
+sub-modules or passes are recorded in `DECISIONS.md` and proceed; the owner approves only
+principle changes, spend and pushes). Each new treatment needs ≥ 3 triggers and ≥ 1 test ask. A package is integrated when every claim is a
 treatment, a validator, a scale, a model fact, or explicitly parked. Video harvest is parked.
 
 Known gaps to research: everyday task decomposition for object handling; Laban pole → visible

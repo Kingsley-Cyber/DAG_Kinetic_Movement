@@ -13,7 +13,12 @@ style), what is open, the target model. Write it to `runs/<n>_<slug>/ask.md` und
 
 Read `passes.yaml`. For every pass write one line in `ir.json → pass_plan`:
 `{pass, active: true|false, reason}`. Mandatory passes are always active. Conditional passes are
-active when their `when` condition holds for this ask. Keep inactive passes inactive.
+active when their `when` condition holds for this ask. One override exists: a conditional pass
+whose condition holds may still close when an active pass has already written everything this
+pass would own for the ask; the reason must name that pass (run 001: world and action closed as
+"covered by interaction"). `after` applies to active passes only. Synthesis runs twice: once after
+the last active Reason-tier pass (logic) and once after the last active Style- or Render-tier pass
+(taste); there is no third run.
 
 ## 3. Run the active passes in `after` order
 
@@ -143,9 +148,15 @@ python3 director/tools/director.py emit  director/runs/<n>_<slug> --model seedan
 `check` fails loudly with the rule that failed. Fix the IR, never the prompt. `emit` writes
 `prompt.txt`, `receipt.json`, `loss.jsonl`, `emit_report.json`.
 
-Cold read-back: a separate LLM call is given only `prompt.txt` and asked to list, in order, the
-beats it sees and every state change. Compare with the IR. A mismatch is repaired in the IR with
-the smallest change (repair mode), then `check` and `emit` run again.
+Cold read-back: a separate LLM call (a subagent, a second model, or a fresh session) is given only
+`prompt.txt` and the five instructions in `runs/001_bottle_selfie/readback_raw.md`. Record the
+exact input and the full response verbatim in `readback_raw.md`, and the comparison in
+`readback.md`. A mismatch is repaired in the IR with the smallest change (repair mode), then
+`check` and `emit` run again.
+
+Treatment references on a control use the key `treatment` (the treatment's frontmatter `id`).
+A control's `value` is a string, a list, or a dict whose keys are the placeholders the treatment's
+wording expects; read the treatment's `## Wording` block to see which keys it needs.
 
 ## 6. After the owner renders
 
