@@ -211,7 +211,32 @@ End grammar). Stored as `director/vocab/camera_moves.yaml` with layer (motion vs
 special), the research's motion kind, and a function hint per move; used by the camera pass via
 `camera.move_from_catalog`.
 
-## 20. On old plans
+## 20. Consolidated layer summary (owner, 2026-10-03)
+
+Architecture (not content): model-agnostic core in JSON with numbers mapped to words; dialect
+files (format, section order, phrase map, supported/unsupported, defaults to counter, access path,
+version, evidence, date tested); compiler (validate, capability check that degrades or flags,
+render, lint); eval log (input, compiled prompt, seed, dialect version, access path, scores);
+failures registry (hands, zippers, exact choreography, graphic contact).
+
+Content layers: 1 body movement quality (Laban BESS, with compound drives); 2 body connectivity
+(Bartenieff: core initiation, sequential weight shift, spiraling, diagonal cross-body
+counter-motion); 3 relative scaling (anchor beat, explicit comparisons); 4 camera, 12 sub-layers
+in five groups (where, movement, lens, time, connection) plus proposed stance, shot function and
+locked-off as the test control; 5 cause and effect (trigger, contact surface, relative force,
+primary and secondary reactions, settle; contact state; depends_on, must_not_imply, edge
+admission); 6 world state (gravity, mass, terrain, momentum, friction, drag, scale, atmosphere);
+7 face (FACS event dimensions; valence–arousal with optional dominance, mapped to action units);
+8 look (lighting, colour grade, film look; barely discussed).
+
+Cross-cutting: one intent per beat; negative and constraint language; ordering and emphasis;
+multi-seed testing; seed-image quality for image-to-video; hand and fine-motor avoidance framing.
+
+Evidence status: the frameworks are real literature; none is verified on a video model; LaMoGen
+covers motion generation only; the camera position sub-layer, causal event schema and dialect
+fields are design proposals. Mapping onto the passes: ARCHITECTURE §2.1a.
+
+## 21. On old plans
 
 "Be careful with any old plans being integrated as it can misalign the current plan." Audit in
 `DECISIONS.md` (admission ledger, overrides, not-doing list).

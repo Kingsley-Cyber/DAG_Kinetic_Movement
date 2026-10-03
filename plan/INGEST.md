@@ -7,6 +7,17 @@ The implementing model must turn each return into treatments, validators, schema
 facts and runs, without inventing a competing authority and without importing machinery that has
 no consumer. Knowledge stays thin exactly as long as this procedure is not run.
 
+## 0a. Every return lands on the layer tree (owner rule)
+
+A research return must **add, change or edit the current layers of prompt composition**
+(`director/passes.yaml`: passes and their sub-modules). Each accepted claim ends as exactly one
+of: a new sub-module or pass (add), a changed rule, owner, activation or validator on an existing
+layer (change), or new or revised treatments and vocab for an existing layer (edit). A claim that
+touches no layer is parked, however interesting. The camera move catalog is an example of
+"edit" (the `motion_layer` sub-module gained a vocabulary); the physics causal-event schema was
+"add" (the `causal_events` sub-module); FACS as an event was "change" (the `face_facs` sub-module
+became `facs_events` with a record and validators).
+
 ## 0. The rule that governs everything
 
 A definition or schema **without a decision path is not implementable** and is parked. Every

@@ -33,6 +33,8 @@ passes:
     owns: [world]
     question: "How does the surrounding world respond to what happens, and what stays changed afterwards? What are gravity, terrain, masses, camera distance and the momentum source?"
     sub_modules: [environment_state, object_state, affordances, material_response, persistent_changes, world_bundle]
+    notes:
+      world_bundle: "standing rules of the scene: gravity, mass, terrain, momentum source, friction, drag, scale, atmosphere, camera distance, frame discipline; read by the Laban/physics reasoning, never emitted as numbers"
 
   - id: action
     tier: reason
@@ -118,8 +120,8 @@ passes:
     sub_modules: [acting_intent, body, facs_events, gaze_blink, posture, breath, gesture, laban_bess, bartenieff_patterns, affect]
     notes:
       facs_events: "spatiotemporal events: action units, laterality, A–E intensity, onset/apex/offset in seconds, co-occurring AUs, head pose, gaze, visibility; compiled to visible behaviour, never emotion words"
-      laban_bess: "Body, Effort (Weight, Time, Space, Flow as scaled values with confidence), Shape (Door, Table, Wheel planes; rising/sinking, spreading/enclosing, advancing/retreating; shape flow, directional, carving), Space (reach, zone, pathway)"
-      bartenieff_patterns: "six patterns of total body connectivity: Breath, Core-Distal, Head-Tail, Upper-Lower, Body-Half (side named), Cross-Lateral; the force path of a movement; kept separate from the Basic Six exercises"
+      laban_bess: "Body (which parts initiate, which follow), Effort (Weight, Time, Space, Flow as scaled values with confidence; compound drives such as a punch = direct + sudden + strong), Shape (Door, Table, Wheel planes; rising/sinking, spreading/enclosing, advancing/retreating; shape flow, directional, carving), Space (pathways, levels, kinesphere reach and zone)"
+      bartenieff_patterns: "six patterns of total body connectivity: Breath, Core-Distal, Head-Tail, Upper-Lower, Body-Half (side named), Cross-Lateral; plus core initiation, sequential weight shift, spiraling, diagonal cross-body counter-motion as travel wording; kept separate from the Basic Six exercises"
       affect: "valence, arousal, optional dominance as scaled trajectories with a declared scale; experienced vs displayed (masking); never derived from AUs; never emitted as affect words"
 
   - id: camera
@@ -129,10 +131,24 @@ passes:
     importance: 0.9
     owns: [camera, clip.aspect_ratio]
     question: "How is it seen: camera motion layer, optics layer, framing, shot length, aspect ratio? Camera grammar is always stated."
-    sub_modules: [motion_layer, optics_layer, framing, shot_length, cuts]
+    # 12 sub-layers in five groups (owner), plus three proposed additions.
+    sub_modules: [where.shot_scale, where.angle, where.position_to_action,
+                  movement.type, movement.quality, movement.relation_to_subject,
+                  lens.focal_length, lens.focus_dof, lens.composition,
+                  time.slow_motion_speed_ramps, time.motion_blur,
+                  connection.cuts_sequencing, connection.start_end_states,
+                  stance, shot_function, locked_off_control]
     notes:
-      motion_layer: "pick one move from director/vocab/camera_moves.yaml by function; state Movement / Speed / Framing / End; one move per shot"
-      optics_layer: "zooms, crash zooms, tilt-shift, focal length, focus; a lens change is never written as camera motion"
+      where: "shot scale (ECU…wide), angle (eye level, low, high, Dutch), position relative to the action axis"
+      movement.type: "one move from director/vocab/camera_moves.yaml by function; state Movement / Speed / Framing / End; one move per shot"
+      movement.quality: "speed, ease (in/out), stability (locked, handheld sway, gimbal)"
+      movement.relation_to_subject: "leads, follows, counters, orbits, holds"
+      lens: "focal length and field of view; focus plane and depth of field; composition and headroom; a lens change is never written as camera motion"
+      time: "slow motion, speed ramps, motion blur / shutter; declare origin — no invented frame-exactness"
+      connection: "cuts and sequencing between shots; declared start and end states so the next shot can match"
+      stance: "proposed: objective, subjective, POV"
+      shot_function: "proposed: establishing, insert, reaction, reveal"
+      locked_off_control: "proposed: the static locked-off shot is the test control in A/B renders"
 
   - id: attention
     tier: style
@@ -152,6 +168,8 @@ passes:
     owns: [light_color]
     question: "Where does light come from, what quality is it, what is exposure and colour doing, and does it stay consistent?"
     sub_modules: [sources, direction, quality, exposure, white_balance, palette, grade, colour_continuity]
+    notes:
+      look: "the owner's 'Look' layer = light_color (lighting, colour grade) + style.visual_style (film look)"
 
   - id: style
     tier: render

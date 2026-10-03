@@ -56,6 +56,30 @@ Rules: one owner pass per IR field; a sub-module becomes a pass only when it nee
 state and activates on its own; adding a sub-module or pass is a `passes.yaml` entry plus
 treatments, with no code change; provider and format handling are never passes.
 
+#### 2.1a The owner's content layers, mapped onto the passes
+
+| Owner's content layer | Lives in | Notes |
+|---|---|---|
+| 1 Body movement quality (Laban: Body, Effort, Shape, Space) | performance → `laban_bess`; action for travel | Effort incl. compound drives (punch = direct + sudden + strong); Space = pathways, levels, kinesphere; Body = which parts initiate and follow |
+| 2 Body connectivity (Bartenieff) | performance → `bartenieff_patterns`; action → `connectivity` | six patterns + core initiation, sequential weight shift, spiraling, diagonal counter-motion |
+| 3 Relative scaling | cross-cutting rule (§3.5.3) | anchor beat, later beats as explicit comparisons |
+| 4 Camera (12 sub-layers) | camera → `where.*`, `movement.*`, `lens.*`, `time.*`, `connection.*`, plus proposed `stance`, `shot_function`, `locked_off_control` | see §3.4 |
+| 5 Cause and effect (contact) | physics → `causal_events`; interaction → `impact_physics_language` | §3.5.7 |
+| 6 World state | world → `world_bundle` | gravity, mass, terrain, momentum, friction, drag, scale, atmosphere |
+| 7 Face (FACS + valence–arousal) | performance → `facs_events`, `affect` | §3.5.2, §3.5.6 |
+| 8 Look | light_color (lighting, grade) + style → `visual_style` (film look) | the thinnest layer today |
+
+Cross-cutting techniques and where they live: one intent per beat (protocol §3; R-41 one causal
+event per beat); negative and constraint language (R-24 positive-first, `must_not_imply`);
+ordering and emphasis (clause order, intent catalog §6.1, importance weights); multi-seed testing
+(R-45, ≥ 3 seeds); hand and fine-motor avoidance framing (HANDS cut strategy, `contact_state`
+downgrade, R-43); seed-image quality for image-to-video (out of scope, recorded as an exclusion).
+
+Evidence status, stated plainly: Laban, Bartenieff, FACS, valence–arousal and the camera vocabulary
+come from real literature; **none has been verified on a video model here**. LaMoGen shows Laban
+conditioning works on a motion-generation model, not a video model. The camera position
+sub-layer, the causal event schema and the dialect fields are design proposals.
+
 ### 2.2 The pass pattern
 
 ```
@@ -163,6 +187,18 @@ performance quality, facial, connectivity, camera, continuity), never as one sco
 model's "looks right" is `interpreted`, not measured.
 
 ### 3.4 Camera sub-layers
+
+Twelve sub-layers in five groups (owner), plus three proposed additions; the research's three
+image layers (below) sit inside them:
+
+| Group | Sub-layers | Vocabulary |
+|---|---|---|
+| Where | shot scale · angle · position relative to the action | ECU, CU, MCU, MS, MLS, LS, wide; eye level, low, high, Dutch; on-axis, off-axis, over-the-shoulder |
+| Movement | type · quality (speed, ease, stability) · relation to subject (leads, follows, counters, orbits, holds) | `director/vocab/camera_moves.yaml` (48 moves, four-part grammar) |
+| Lens | focal length · focus and depth of field · composition | mm equivalents, deep vs shallow, rack focus, headroom, rule of thirds |
+| Time | slow motion and speed ramps · motion blur | declared origin; no invented frame-exactness |
+| Connection | cuts and sequencing · start and end states | match-on-action, declared end framing so the next shot can match |
+| Proposed | stance (objective, subjective, POV) · shot function (establishing, insert, reaction, reveal) · locked-off as the A/B test control | — |
 
 From `camera_three_layer_semantics`:
 
@@ -450,7 +486,8 @@ dialect version, seed, access path, and three yes/no scores per event: contact h
 followed, end pose sane. At least three seeds per prompt; one good output can be luck.
 Repair goes upstream: `depends_on` says which earlier event to fix when a reaction fails.
 
-**Failures registry** (`director/failures.jsonl`): seeded with the A/B/C test on the stomp —
+**Failures registry** (`director/failures.jsonl`): seed classes hands, zippers and fine
+mechanisms, exact choreography, graphic contact; seeded with the A/B/C test on the stomp —
 plain prompt vs causal prompt vs prop-instead-of-person. The result separates failures wording
 fixes from model limits and tests the safety-avoidance hypothesis for graphic contact.
 
@@ -559,7 +596,11 @@ dialect:
 
 - **Profile** (`director/profiles/<model>.yaml`): prompt length limit, negative-prompt field,
   durations, aspect ratios, frame rate, audio, native API fields, every fact tagged documented /
-  measured / guess, with source and date.
+  measured / guess, with source and date. Dialect-file fields (owner): format, section order
+  (`clause_order`), phrase map (`levers`, `prefer`, `avoid`), supported/unsupported (facts and
+  `contact_risk`), **defaults to counter** (what the model does unasked, and the wording that
+  counters it, e.g. slow motion, cinematic grade, waxy skin), access path (native app, API, host),
+  version, evidence, date tested, lifecycle state (§INGEST 3).
 - **Dialect** (same file): clause order, vocabulary the model responds to, words to avoid, how
   it treats structure pasted as text, separate-field habits (Veo: shot, style, lighting,
   character kept as separate parts; Runway: subject motion, scene motion, camera motion, style

@@ -1,8 +1,12 @@
 # Model profile: Hailuo (owner's "h3"; version and route unconfirmed). Facts tagged; levers carry evidence.
 model: hailuo
 display_name: "Hailuo (version and route unconfirmed)"
-status: unverified
+status: unverified          # lifecycle: unverified → verified → stale → reprobe_due → invalidated
+version: null
+access_path: null
+date_tested: null
 updated: 2026-10-02
+defaults_to_counter: []
 
 facts:
   - key: prompt_char_limit

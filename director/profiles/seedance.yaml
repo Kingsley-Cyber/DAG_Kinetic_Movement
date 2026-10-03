@@ -2,8 +2,12 @@
 # Nothing here is treated as supported until a tag says documented (with source) or measured (with run id).
 model: seedance
 display_name: "Seedance (route and version unconfirmed)"
-status: unverified
+status: unverified          # lifecycle: unverified → verified → stale → reprobe_due → invalidated
+version: null               # model version the facts refer to
+access_path: null           # native app | native API | host (Runway, fal, ...) — owner to confirm
+date_tested: null
 updated: 2026-10-02
+defaults_to_counter: []     # what the model does unasked and the wording that counters it; filled from renders
 
 facts:
   - key: prompt_char_limit
