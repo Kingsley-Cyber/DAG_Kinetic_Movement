@@ -31,6 +31,11 @@ def main(argv: Optional[List[str]] = None) -> int:
     pe = sub.add_parser("emit", help="emit prompt.txt + receipt + loss records for a model profile")
     pe.add_argument("run_dir")
     pe.add_argument("--model", required=True)
+    pe.add_argument("--magnitudes", choices=["relative", "absolute"], default="relative",
+                    help="experiment arm (E2): absolute writes bare magnitude words and omits anchor sentences")
+    pe.add_argument("--rung", choices=["visible", "term", "numeric"], default="visible",
+                    help="experiment arm (E3): wording rung for controls that carry Laban scales")
+    pe.add_argument("--out", help="write the outputs into this folder instead of the run folder")
     pp = sub.add_parser("pack", help="print the scratchpad view one pass receives")
     pp.add_argument("run_dir")
     pp.add_argument("pass_id")
@@ -56,7 +61,8 @@ def main(argv: Optional[List[str]] = None) -> int:
             print("CHECK %s%s" % ("GREEN" if res.ok() else "RED (%d error%s)" % (len(res.errors), "" if len(res.errors) == 1 else "s"), scope))
         return 0 if res.ok() else 1
     if args.cmd == "emit":
-        report = emit(run_dir, args.model)
+        report = emit(run_dir, args.model, magnitudes=args.magnitudes, rung=args.rung,
+                      out_dir=Path(args.out).resolve() if args.out else None)
         print(json.dumps(report, indent=2))
         return 0
     if args.cmd == "pack":

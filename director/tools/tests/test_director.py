@@ -914,5 +914,120 @@ class IngestDMR(unittest.TestCase):
         self.assertIn("3.11", text)
 
 
+class ExperimentArms(unittest.TestCase):
+    """WO-08 / E2, E3: one IR, several emissions (magnitude mode, wording rung, output folder)."""
+
+    @staticmethod
+    def _delta(ir):
+        ir.setdefault("anchors", []).append({
+            "id": "a1", "quality": "speed", "beat": "b2", "label": "the first reach",
+            "description": "She reaches for the bottle at an ordinary, everyday pace"})
+        beat = [b for b in ir["beats"] if b["id"] == "b5"][0]
+        beat["relative"] = [{"quality": "speed", "relative_to": "a1", "step": "slightly", "direction": "less"}]
+
+    def test_absolute_mode_drops_anchor_and_comparison(self):
+        tr = TempRun(self._delta)
+        try:
+            report = director.emit(tr.dir, "seedance", magnitudes="absolute")
+            prompt = (tr.dir / "prompt.txt").read_text()
+            receipt = json.loads((tr.dir / "receipt.json").read_text())
+            self.assertNotIn("than the first reach", prompt)
+            self.assertNotIn("ordinary, everyday pace", prompt)
+            self.assertRegex(prompt, r", slow\.")
+            kinds = [l["source"].get("kind") for l in receipt["lines"] if isinstance(l["source"], dict)]
+            self.assertNotIn("anchor", kinds)
+            self.assertEqual(report["magnitudes"], "absolute")
+        finally:
+            tr.cleanup()
+
+    def test_absolute_mode_writes_event_force_as_a_bare_word(self):
+        def mutate(ir):
+            ir.setdefault("anchors", []).append({
+                "id": "a_grip", "quality": "intensity", "beat": "b2", "label": "her first grip",
+                "description": "Her fingers close around the bottle with an easy, ordinary grip"})
+            ir["physics_events"] = [_event(force={"relative_to": "a_grip", "step": "more", "direction": "more"})]
+        tr = TempRun(mutate)
+        try:
+            director.emit(tr.dir, "seedance")
+            self.assertIn("more intense than her first grip", (tr.dir / "prompt.txt").read_text())
+            director.emit(tr.dir, "seedance", magnitudes="absolute")
+            prompt = (tr.dir / "prompt.txt").read_text()
+            self.assertNotIn("than her first grip", prompt)
+            self.assertIn("twist the cap, hard,", prompt)
+        finally:
+            tr.cleanup()
+
+    def test_relative_mode_is_default_and_unchanged(self):
+        tr = TempRun(self._delta)
+        try:
+            default_report = director.emit(tr.dir, "seedance")
+            default_prompt = (tr.dir / "prompt.txt").read_bytes()
+            explicit_report = director.emit(tr.dir, "seedance", magnitudes="relative", rung="visible")
+            self.assertEqual((tr.dir / "prompt.txt").read_bytes(), default_prompt)
+            self.assertEqual(default_report, explicit_report)
+            self.assertIn(b"slightly slower than the first reach", default_prompt)
+            self.assertNotIn("magnitudes", default_report)
+            self.assertNotIn("rung", default_report)
+        finally:
+            tr.cleanup()
+        # the golden run still emits its committed prompt byte for byte
+        tr = TempRun()
+        try:
+            director.emit(tr.dir, "seedance")
+            self.assertEqual((tr.dir / "prompt.txt").read_bytes(), (RUN / "prompt.txt").read_bytes())
+        finally:
+            tr.cleanup()
+
+    def test_rung_term_names_poles(self):
+        tr = TempRun()
+        try:
+            report = director.emit(tr.dir, "seedance", rung="term")
+            prompt = (tr.dir / "prompt.txt").read_text()
+            receipt = json.loads((tr.dir / "receipt.json").read_text())
+            self.assertIn("Effort: light, sustained, direct, free.", prompt)
+            self.assertNotIn("Her manner is", prompt)
+            src = [l["source"] for l in receipt["lines"] if isinstance(l["source"], dict) and l["source"].get("id") == "c_register"][0]
+            self.assertEqual(src["rung"], "term")
+            self.assertEqual(report["rung"], "term")
+        finally:
+            tr.cleanup()
+
+        def mid(ir):
+            reg = [c for c in ir["controls"] if c["id"] == "c_register"][0]
+            reg["value"]["time"] = 0.5          # between 0.4 and 0.6: no pole is named
+            reg["value"]["subject"] = "The woman"
+        tr = TempRun(mid)
+        try:
+            director.emit(tr.dir, "seedance", rung="term")
+            self.assertIn("The woman's Effort: light, direct, free.", (tr.dir / "prompt.txt").read_text())
+        finally:
+            tr.cleanup()
+
+    def test_rung_numeric_prints_scales(self):
+        tr = TempRun()
+        try:
+            director.emit(tr.dir, "seedance", rung="numeric")
+            prompt = (tr.dir / "prompt.txt").read_text()
+            self.assertIn("effort {weight: 0.3, time: 0.35, space: 0.7, flow: 0.35}", prompt)
+            self.assertNotIn("confidence", prompt)
+            self.assertNotIn("Her manner is", prompt)
+        finally:
+            tr.cleanup()
+
+    def test_out_dir_receives_all_outputs(self):
+        tr = TempRun(self._delta)
+        try:
+            out = tr.dir / "arms" / "E2_absolute"
+            code = director.main(["emit", str(tr.dir), "--model", "seedance", "--magnitudes", "absolute",
+                                  "--rung", "visible", "--out", str(out)])
+            self.assertEqual(code, 0)
+            for name in ("prompt.txt", "receipt.json", "loss.jsonl", "emit_report.json"):
+                self.assertTrue((out / name).exists(), name)
+                self.assertFalse((tr.dir / name).exists(), name)
+            self.assertNotIn("than the first reach", (out / "prompt.txt").read_text())
+        finally:
+            tr.cleanup()
+
+
 if __name__ == "__main__":
     unittest.main()

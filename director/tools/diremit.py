@@ -86,6 +86,40 @@ def derive_laban(value: dict) -> Dict[str, str]:
     return out
 
 
+# Experiment arms (WO-08; EXPERIMENTS E2, E3). Defaults reproduce the ordinary emission exactly.
+MAGNITUDE_MODES = ("relative", "absolute")
+RUNGS = ("visible", "term", "numeric")
+ABSOLUTE_WORDS = {  # quality → (more, less): the bare word the absolute arm writes instead of a comparison
+    "speed": ("fast", "slow"),
+    "weight": ("heavy", "light"),
+    "reach": ("wide", "tight"),
+    "size": ("big", "small"),
+    "intensity": ("intense", "gentle"),
+    "distance": ("far", "close"),
+    "tempo": ("quick", "slow"),
+}
+ABSOLUTE_FORCE = {"more": "hard", "less": "lightly"}   # E2 fair arm: "she slams into him hard"
+LABAN_KEYS = ("weight", "time", "space", "flow")
+LABAN_POLES = {"weight": ("light", "strong"), "time": ("sustained", "sudden"),
+               "space": ("indirect", "direct"), "flow": ("free", "bound")}
+
+
+def absolute_clause(relative: List[dict]) -> str:
+    """'fast and heavy' from a beat's deltas: the step and the anchor are not written."""
+    return " and ".join(ABSOLUTE_WORDS[r["quality"]][0 if r["direction"] == "more" else 1] for r in relative)
+
+
+def laban_rung_text(value: dict, rung: str) -> str:
+    """One movement quality on the `term` or `numeric` wording rung (E3)."""
+    subject = str(value.get("subject") or "").strip()
+    scales = [(k, value[k]) for k in LABAN_KEYS if isinstance(value.get(k), (int, float))]
+    if rung == "numeric":
+        block = "effort {%s}" % ", ".join("%s: %s" % (k, v) for k, v in scales)
+        return "%s: %s" % (subject, block) if subject else block
+    poles = [LABAN_POLES[k][0] if v <= 0.4 else LABAN_POLES[k][1] for k, v in scales if v <= 0.4 or v >= 0.6]
+    return "%sEffort: %s." % (subject + "'s " if subject else "", ", ".join(poles))
+
+
 def fill(template: str, value, warnings: List[str], cid: str) -> str:
     mapping: Dict[str, str] = {}
     if isinstance(value, dict):
@@ -128,7 +162,13 @@ def _loss(loss_id, field, requested, model, capability, projection, replacement,
     return rec
 
 
-def emit(run_dir: Path, model: str) -> dict:
+def emit(run_dir: Path, model: str, magnitudes: str = "relative", rung: str = "visible",
+         out_dir: Optional[Path] = None) -> dict:
+    if magnitudes not in MAGNITUDE_MODES:
+        raise SystemExit("emit blocked: --magnitudes must be one of %s" % ", ".join(MAGNITUDE_MODES))
+    if rung not in RUNGS:
+        raise SystemExit("emit blocked: --rung must be one of %s" % ", ".join(RUNGS))
+    absolute = magnitudes == "absolute"
     result = check(run_dir)
     if not result.ok():
         raise SystemExit("emit blocked: check failed\n" + "\n".join(" - " + e for e in result.errors))
@@ -185,7 +225,9 @@ def emit(run_dir: Path, model: str) -> dict:
     anchors_by_id = {a["id"]: a for a in ir.get("anchors", [])}
     for i, b in enumerate(beats):
         lead = "First," if i == 0 else ("Finally," if i == n - 1 else "Then")
-        delta = comparison_clause(b["relative"], anchors_by_id) if b.get("relative") else ""
+        delta = ""
+        if b.get("relative"):
+            delta = absolute_clause(b["relative"]) if absolute else comparison_clause(b["relative"], anchors_by_id)
         spacing = SPACING_CLAUSE.get(b.get("spacing") or "", "")
         def beat_text(desc: str, with_pose: bool) -> str:
             desc = desc.strip().rstrip(".")
@@ -201,7 +243,7 @@ def emit(run_dir: Path, model: str) -> dict:
                       "importance": b["importance"], "lock": True, "droppable": False})
         # the anchor is stated once, as a visible fact, right after its beat (R-16)
         for a in ir.get("anchors", []):
-            if a["beat"] == b["id"]:
+            if a["beat"] == b["id"] and not absolute:
                 lines.append({"clause": "subject_action", "key": (1, b["order"] + 0.5),
                               "text": a["description"].strip().rstrip(".") + ".", "short": None,
                               "source": {"kind": "anchor", "id": a["id"], "origin": "PROJECT_DERIVED"},
@@ -214,7 +256,9 @@ def emit(run_dir: Path, model: str) -> dict:
         actor = trig["actor"].strip()
         cause = "%s's %s %s" % (actor[:1].upper() + actor[1:], trig["part"].strip(), trig["action"].strip().rstrip("."))
         force = ev.get("force")
-        if force and force.get("relative_to"):
+        if force and force.get("relative_to") and absolute:
+            cause += ", " + ABSOLUTE_FORCE[force["direction"]]
+        elif force and force.get("relative_to"):
             cause += ", " + comparison_clause([dict(force, quality=anchors_by_id[force["relative_to"]]["quality"])], anchors_by_id)
         surface = ev["contact_surface"].strip().rstrip(".")
         state = ev["contact_state"]
@@ -288,6 +332,9 @@ def emit(run_dir: Path, model: str) -> dict:
                 text = fill(template, c["value"], warnings, c["id"])
             if w.get("short"):
                 short = fill(w["short"], c["value"], warnings, c["id"])
+        rung_used = None
+        if rung != "visible" and isinstance(c["value"], dict) and set(LABAN_KEYS) & set(c["value"].keys()):
+            text, short, rung_used = laban_rung_text(c["value"], rung), None, rung
         if text is None and disp == "native":
             continue  # API settings carry native controls; no prose unless a treatment gives it
         if text is None:
@@ -321,6 +368,8 @@ def emit(run_dir: Path, model: str) -> dict:
             source["lever"] = lever_used
         if native_text is not None:
             source["realization"] = "compressed_to_text"
+        if rung_used:
+            source["rung"] = rung_used
         lines.append({"clause": clause, "key": (2, -c["importance"], c["id"]), "text": text, "short": short,
                       "source": source,
                       "importance": c["importance"], "lock": c["lock"], "droppable": not c["lock"], "control": c})
@@ -400,18 +449,20 @@ def emit(run_dir: Path, model: str) -> dict:
                             model, c.get("capability", "semantic"), "omitted", None, "priority_suppression", "low", code="token_budget"))
         prompt, receipt, negative_text = assemble(active_lines)
 
+    out = Path(out_dir) if out_dir else run_dir
+    out.mkdir(parents=True, exist_ok=True)
     prompt_bytes = (prompt + "\n").encode("utf-8")
-    (run_dir / "prompt.txt").write_bytes(prompt_bytes)
+    (out / "prompt.txt").write_bytes(prompt_bytes)
     if negative_text is not None:
-        (run_dir / "negative.txt").write_text(negative_text + "\n", encoding="utf-8")
-    with open(run_dir / "loss.jsonl", "w", encoding="utf-8") as fh:
+        (out / "negative.txt").write_text(negative_text + "\n", encoding="utf-8")
+    with open(out / "loss.jsonl", "w", encoding="utf-8") as fh:
         for rec in losses:
             fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
     receipt_doc = {"run_id": ir["run_id"], "model": model,
                    "prompt_sha256": hashlib.sha256(prompt_bytes).hexdigest(),
                    "prompt_sha256_of": "prompt.txt bytes as written (including the trailing newline)",
                    "lines": receipt}
-    (run_dir / "receipt.json").write_text(json.dumps(receipt_doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    (out / "receipt.json").write_text(json.dumps(receipt_doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     dispositions: Dict[str, int] = {}
     for c in ir["controls"]:
         dispositions[c["disposition"]] = dispositions.get(c["disposition"], 0) + 1
@@ -420,5 +471,9 @@ def emit(run_dir: Path, model: str) -> dict:
               "compressed_for_budget": compressed,
               "loss_records": len(losses), "fit": result.fit, "warnings": warnings,
               "validity": {"parses": True, "schema": True, "decisions_correct": "not judged by code", "render_succeeded": "pending"}}
-    (run_dir / "emit_report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    if absolute:
+        report["magnitudes"] = magnitudes      # arm settings are recorded only when they differ from the default
+    if rung != "visible":
+        report["rung"] = rung
+    (out / "emit_report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     return report
