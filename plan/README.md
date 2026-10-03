@@ -24,6 +24,10 @@ order:
 
 Reference implementation of phases 0–1: `director/` (see `HANDOFF.md → What exists on disk`).
 
+**To execute the plan:** `implementation/START_HERE.md` (kickoff prompt for the implementing
+model), `implementation/QUEUE.md` (ordered work orders and gates), `implementation/work_orders/`
+(one self-contained brief each), `implementation/OWNER_ACTIONS.md` (the owner's three jobs).
+
 ## Principles
 
 1. The repo is rationalized material. The LLM session reasons. Code validates what the LLM wrote

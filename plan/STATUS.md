@@ -2,6 +2,22 @@
 
 Newest first. One entry per working session or phase exit.
 
+## 2026-10-03 — Implementation folder written; branch pushed
+
+`implementation/`: `START_HERE.md` (one kickoff prompt to paste), `QUEUE.md` (WO-01…WO-09 with
+GATE A for the owner's renders), `OWNER_ACTIONS.md` (route, renders and verdicts, push), and nine
+work orders with decisions already made, exact schema fields, error-message substrings, test
+names, commands, acceptance and stop conditions. Order follows the external review: enforce
+contracts (anchors, causal events, coupling), handoff test (run 002), runs 003–005, first ingest
+(DMR) with run 004, experiment arms, then the render gate and the kill check. Phase 3 work orders
+are written only if the kill check passes.
+
+Also this session: relative prompting hard at IR level and lint at wording level; explicit-vs-open
+contract; passes connect; terminology fixed; `EXPERIMENTS.md` E1–E6.
+
+Next: an implementing session pastes the kickoff prompt and takes WO-01.
+Blocked: Seedance route (owner); renders at GATE A (owner).
+
 ## 2026-10-03 — External review (FAIL) and remediation
 
 Review: `/Users/king/Documents/Codex/2026-10-02/short-verdict-the-plan-matches-the/outputs/compiler-review.md`

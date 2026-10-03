@@ -2,6 +2,9 @@
 
 ## Boot sequence (every session, in this order; about 15 minutes of reading)
 
+Executing sessions start from `implementation/START_HERE.md` and take the next work order in
+`implementation/QUEUE.md`; the work order's "Read first" list replaces steps 4–7 below.
+
 1. `AGENTS.md` (repo root) — roles and rules.
 2. `plan/GOALS.md` — goal, success, non-goals, decision rights.
 3. `plan/STATUS.md` — newest entry: what is done, next, blocked.
