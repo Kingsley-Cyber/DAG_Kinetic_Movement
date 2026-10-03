@@ -6,7 +6,7 @@ until the owner acts (see `OWNER_ACTIONS.md`).
 | # | Work order | Plan task | Depends on | Status |
 |---|---|---|---|---|
 | WO-01 | Relative prompting: anchors in the IR, comparisons in the emitter, magnitude and vague-word lint | T16 | — | done 2026-10-03 (11 tests; run 001 prompt unchanged; tool split into dircheck.py, diremit.py, director.py) |
-| WO-02 | Physics causal events (minimal): schema, validators, emission | T35 (first slice) | WO-01 | todo |
+| WO-02 | Physics causal events (minimal): schema, validators, emission | T35 (first slice) | WO-01 | done 2026-10-03 (8 tests; run 001 prompt unchanged) |
 | WO-03 | Passes connect: `reads`, beat-scoped controls, coupling checks | T17 | WO-02 | todo |
 | WO-03b | Shared scratchpad: `pack <pass>`, `check --pass`, `open.jsonl`, saved `check_report.json`; beat spacing and the constant-motion warning | T33 (first slice) | WO-03 | todo |
 | WO-04 | Run 002: product handling with two hands (handoff test) | T12 | WO-03b | todo |

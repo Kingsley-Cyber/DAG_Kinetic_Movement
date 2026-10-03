@@ -258,6 +258,48 @@ def check(run_dir: Path) -> CheckResult:
                 res.errors.append("beats: %s: one escalation per quality (two deltas for '%s')" % (b["id"], r["quality"]))
             seen_qualities.add(r["quality"])
 
+    # physics causal events (R-41, R-42): one per beat, named cause, stated reaction and settle
+    events = ir.get("physics_events", [])
+    event_beat: Dict[str, str] = {}
+    beats_with_event: set = set()
+    for ev in events:
+        eid = ev["event_id"]
+        if eid in event_beat:
+            res.errors.append("physics_events: duplicate event id '%s'" % eid)
+        event_beat[eid] = ev["beat"]
+        if ev["beat"] not in beat_order:
+            res.errors.append("physics_events %s: event references unknown beat '%s'" % (eid, ev["beat"]))
+        elif ev["beat"] in beats_with_event:
+            res.errors.append("physics_events %s: one causal event per beat (beat %s already has one)" % (eid, ev["beat"]))
+        beats_with_event.add(ev["beat"])
+        for name in ("contact_surface", "primary_reaction", "settle"):
+            if not ev[name].strip():
+                res.errors.append("physics_events %s: edge admission: '%s' is empty (no effect without a named cause, contact and settle)" % (eid, name))
+        if ev["contact_state"] == "near_contact" and ev["primary_reaction"].strip() and not ev.get("must_not_imply"):
+            res.warnings.append("physics_events %s: near contact with a reaction: state what must not be implied" % eid)
+        force = ev.get("force")
+        if force is not None and ev["beat"] in beat_order:
+            ref = force["relative_to"]
+            if ref is None:
+                own = [a for a in anchor_list if a["beat"] == ev["beat"] and a["quality"] in ("weight", "intensity")]
+                if not own:
+                    res.errors.append("physics_events %s: force anchor: a first event needs a weight or intensity anchor on its own beat" % eid)
+            else:
+                a = anchors.get(ref)
+                if a is None:
+                    res.errors.append("physics_events %s: force anchor: unknown anchor '%s'" % (eid, ref))
+                elif a["quality"] not in ("weight", "intensity"):
+                    res.errors.append("physics_events %s: force anchor: '%s' is a %s anchor, not weight or intensity" % (eid, ref, a["quality"]))
+                elif a["beat"] in beat_order and beat_order[a["beat"]] >= beat_order[ev["beat"]]:
+                    res.errors.append("physics_events %s: force anchor: '%s' is not earlier than the event" % (eid, ref))
+    for ev in events:
+        for dep in ev.get("depends_on", []):
+            if dep not in event_beat:
+                res.errors.append("physics_events %s: depends_on unknown event '%s'" % (ev["event_id"], dep))
+            elif (event_beat[dep] in beat_order and ev["beat"] in beat_order
+                  and beat_order[event_beat[dep]] >= beat_order[ev["beat"]]):
+                res.errors.append("physics_events %s: depends_on '%s' which is not earlier (cause before effect)" % (ev["event_id"], dep))
+
     # wording lint on LLM-written free text (warnings; treatment wording is not scanned)
     for b in beats:
         lint_text("beats %s" % b["id"], b["description"], res.warnings)

@@ -100,6 +100,16 @@ direction: more | less}]`; one delta per quality per beat; the anchor's beat mus
 The emitter writes the anchor once after its beat and the delta as "…, slightly slower than the
 first reach".
 
+**Physics event** (one per beat at most): `physics_events[] = {event_id, beat, trigger: {actor,
+part, action}, contact_surface, contact_state, force?, primary_reaction, secondary[], settle,
+depends_on[], must_not_imply[], risk, origin}`. `contact_state` is physical_contact_confirmed,
+near_contact, occluded_contact, editorial_impact or unknown. `force` is `{relative_to: <weight or
+intensity anchor id, earlier beat> | null, step, direction}`; a first event with `relative_to:
+null` needs such an anchor on its own beat. Write `trigger.action` as a verb phrase that follows
+"<Actor>'s <part>" ("twist the cap", "comes down"). `must_not_imply` lines go to `verdict.md`,
+never into the prompt. The emitter writes: cause, landing on the surface; reaction as the
+secondary effects, then the settle.
+
 **Laban** (performance pass): never a bare pole word. Each factor is a scaled position with a
 confidence: `{"weight": 0.3, "time": 0.4, "space": 0.7, "flow": 0.6, "confidence": 0.5}` where 0 is
 the first pole (light, sustained, indirect, free) and 1 the second (strong, sudden, direct,

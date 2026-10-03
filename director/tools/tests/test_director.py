@@ -423,5 +423,103 @@ class RelativePrompting(unittest.TestCase):
             tr.cleanup()
 
 
+def _event(beat="b4", **over):
+    ev = {"event_id": "evt_open", "beat": beat,
+          "trigger": {"actor": "woman", "part": "right thumb and index finger", "action": "twist the cap"},
+          "contact_surface": "the ridged edge of the cap", "contact_state": "physical_contact_confirmed",
+          "primary_reaction": "the cap breaks its seal and turns free",
+          "secondary": ["a faint ripple runs through the water"],
+          "settle": "the cap rests pinched in her right fingers, the bottle open in her left hand",
+          "depends_on": [], "must_not_imply": [], "risk": "high", "origin": "INFERENCE"}
+    ev.update(over)
+    return ev
+
+
+class CausalEvents(unittest.TestCase):
+    """WO-02 / R-41, R-42, R-44: cause-and-effect records per beat."""
+
+    def test_two_events_on_one_beat_fail(self):
+        def mutate(ir):
+            ir["physics_events"] = [_event(), _event(event_id="evt_two")]
+        self.assertTrue(any("one causal event per beat" in e for e in errors_for(mutate)))
+
+    def test_event_on_unknown_beat_fails(self):
+        def mutate(ir):
+            ir["physics_events"] = [_event(beat="b99")]
+        self.assertTrue(any("event references unknown beat" in e for e in errors_for(mutate)))
+
+    def test_event_depends_on_later_event_fails(self):
+        def mutate(ir):
+            ir["physics_events"] = [_event(depends_on=["evt_drink"]), _event(event_id="evt_drink", beat="b6")]
+        self.assertTrue(any("depends_on" in e for e in errors_for(mutate)))
+
+        def unknown(ir):
+            ir["physics_events"] = [_event(depends_on=["nope"])]
+        self.assertTrue(any("depends_on" in e for e in errors_for(unknown)))
+
+    def test_force_anchor_must_exist_and_be_earlier(self):
+        def missing(ir):
+            ir["physics_events"] = [_event(force={"relative_to": "a_none", "step": "more", "direction": "more"})]
+        self.assertTrue(any("force anchor" in e for e in errors_for(missing)))
+
+        def later(ir):
+            ir["anchors"] = [{"id": "a_w", "quality": "weight", "beat": "b6", "label": "the drink",
+                              "description": "She tilts the bottle with an easy, light wrist"}]
+            ir["physics_events"] = [_event(force={"relative_to": "a_w", "step": "more", "direction": "more"})]
+        self.assertTrue(any("force anchor" in e for e in errors_for(later)))
+
+        def good(ir):
+            ir["anchors"] = [{"id": "a_w", "quality": "weight", "beat": "b2", "label": "her first grip",
+                              "description": "Her fingers close on the bottle with a light, easy grip"}]
+            ir["physics_events"] = [_event(force={"relative_to": "a_w", "step": "slightly", "direction": "more"})]
+        self.assertEqual([e for e in errors_for(good) if "force anchor" in e], [])
+
+    def test_empty_reaction_or_settle_fails_edge_admission(self):
+        for field in ("primary_reaction", "settle", "contact_surface"):
+            def mutate(ir, field=field):
+                ir["physics_events"] = [_event(**{field: "  "})]
+            self.assertTrue(any("edge admission" in e for e in errors_for(mutate)), field)
+
+    def test_emit_orders_cause_contact_reaction_settle(self):
+        def mutate(ir):
+            ir["physics_events"] = [_event()]
+        tr = TempRun(mutate)
+        try:
+            director.emit(tr.dir, "seedance")
+            prompt = (tr.dir / "prompt.txt").read_text()
+            order = [prompt.index("right thumb and index finger twist the cap"),
+                     prompt.index("landing on the ridged edge of the cap"),
+                     prompt.index("The cap breaks its seal and turns free"),
+                     prompt.index("a faint ripple runs through the water"),
+                     prompt.index("then the cap rests pinched in her right fingers")]
+            self.assertEqual(order, sorted(order))
+            receipt = json.loads((tr.dir / "receipt.json").read_text())
+            self.assertIn("event", [l["source"].get("kind") for l in receipt["lines"] if isinstance(l["source"], dict)])
+        finally:
+            tr.cleanup()
+
+    def test_near_contact_changes_landing_wording(self):
+        def mutate(ir):
+            ir["physics_events"] = [_event(contact_state="near_contact", must_not_imply=["the fingers never touch the cap"])]
+        tr = TempRun(mutate)
+        try:
+            director.emit(tr.dir, "seedance")
+            prompt = (tr.dir / "prompt.txt").read_text()
+            self.assertIn("passing just short of the ridged edge of the cap", prompt)
+            self.assertNotIn("landing on", prompt)
+        finally:
+            tr.cleanup()
+
+    def test_must_not_imply_is_never_emitted(self):
+        def mutate(ir):
+            ir["physics_events"] = [_event(must_not_imply=["SECRET_CHECKLIST_LINE the cap is never bitten off"])]
+        tr = TempRun(mutate)
+        try:
+            director.emit(tr.dir, "seedance")
+            self.assertNotIn("SECRET_CHECKLIST_LINE", (tr.dir / "prompt.txt").read_text())
+        finally:
+            tr.cleanup()
+
+
 if __name__ == "__main__":
     unittest.main()

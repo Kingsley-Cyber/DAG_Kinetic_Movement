@@ -14,7 +14,14 @@ Newest first. One entry per working session or phase exit.
   flagged word (wide shot, wide lens, wide angle, hard cut, hard light, big close-up).
 - The tool passed 800 lines and was split: `dircheck.py`, `diremit.py`, `director.py` (CLI).
 
-Next: WO-02 (physics causal events).
+- WO-02 (T35 first slice; R-41, R-42, R-44): `physics_events[]` in the schema; checks for one
+  event per beat, unknown beat, `depends_on` order, force anchor (weight or intensity, earlier),
+  edge admission (non-empty contact surface, reaction, settle), near-contact warning; emitter
+  writes cause → contact → reaction → settle after the beat with wording variants per
+  `contact_state`; `must_not_imply` is never emitted. 8 new tests, RED first; 69 total green; run
+  001 unchanged. Not in this slice: risk-based degradation, eval-log fields, failures registry.
+
+Next: WO-03 (passes connect).
 
 ## 2026-10-03 — TwelveLabs client refreshed (WO-10) and DMR triage
 

@@ -171,6 +171,38 @@ def emit(run_dir: Path, model: str) -> dict:
                               "source": {"kind": "anchor", "id": a["id"], "origin": "PROJECT_DERIVED"},
                               "importance": 1.0, "lock": True, "droppable": False})
 
+    # physics causal events → one sentence pair after the beat: cause → contact → reaction → settle (R-44)
+    beat_orders = {b["id"]: b["order"] for b in beats}
+    for ev in ir.get("physics_events", []):
+        trig = ev["trigger"]
+        actor = trig["actor"].strip()
+        cause = "%s's %s %s" % (actor[:1].upper() + actor[1:], trig["part"].strip(), trig["action"].strip().rstrip("."))
+        force = ev.get("force")
+        if force and force.get("relative_to"):
+            cause += ", " + comparison_clause([dict(force, quality=anchors_by_id[force["relative_to"]]["quality"])], anchors_by_id)
+        surface = ev["contact_surface"].strip().rstrip(".")
+        state = ev["contact_state"]
+        if state == "near_contact":
+            first = "%s, passing just short of %s." % (cause, surface)
+        elif state == "occluded_contact":
+            first = "%s, reaching %s out of the camera's view." % (cause, surface)
+        elif state == "editorial_impact":
+            first = "%s." % cause
+        else:
+            first = "%s, landing on %s." % (cause, surface)
+        reaction = ev["primary_reaction"].strip().rstrip(".")
+        reaction = reaction[:1].upper() + reaction[1:]
+        secondary = [s.strip().rstrip(".") for s in ev.get("secondary", []) if s.strip()]
+        second = reaction + (" as " + " and ".join(secondary) if secondary else "")
+        second += ", then %s." % ev["settle"].strip().rstrip(".")
+        if state == "editorial_impact":
+            second = "Cut to: " + second
+        lines.append({"clause": "subject_action", "key": (1, beat_orders[ev["beat"]] + 0.7),
+                      "text": first + " " + second, "short": None,
+                      "source": {"kind": "event", "id": ev["event_id"], "origin": ev.get("origin", "UNKNOWN"),
+                                 "contact_state": state},
+                      "importance": 1.0, "lock": True, "droppable": False})
+
     # controls
     emitted_controls = []
     for c in sorted(ir["controls"], key=lambda x: (-x["importance"], x["id"])):
