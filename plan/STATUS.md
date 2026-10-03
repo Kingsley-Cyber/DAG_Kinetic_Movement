@@ -2,6 +2,43 @@
 
 Newest first. One entry per working session or phase exit.
 
+## 2026-10-03 — WO-04 done: run 002 earbuds unboxing (handoff test)
+
+- Run folder `director/runs/002_earbuds_unbox/`: `ask.md`, `ir.json`, `decisions.jsonl` (d001–d009), `open.jsonl` (o001 resolved), `baseline.txt`, `prompt.txt`, `receipt.json`, `loss.jsonl`, `emit_report.json`, `check_report.json`, `readback_raw.md`, `readback.md`, `verdict.md`.
+- `check`: GREEN, fit TIGHT (7.20 s of 8.00 s, ratio 0.9). The first draft (12 beats, 9.80 s) was OVERLOADED; resolved in the open (d001, o001) by cutting the establishing beat and folding the three effect-read-only beats into the action beats. No `min_s` was changed.
+- `emit --model seedance`: 1,987 / 2,000 characters; dropped for budget: `c_pace`, `c_negatives`, `c_register`; 20 loss records. First emit blocked at 2,014 characters; repaired in the IR (guess 15).
+- Read-back (Haiku subagent): beat order MATCH, state changes MATCH, camera MATCH. Findings for the emitter in `readback.md` (case opening stated three times; comparison far from its anchor; awkward occluded-contact wording).
+- New treatments: `interaction.grip_case_and_earbud`, `style.capture_iphone_rear_handheld`, `performance.casual_product_handling` (reused: `interaction.contact_causal_chain`, `continuity.object_locks`, `camera.move_from_catalog`).
+- Tests: 83 green, none changed; run 001 `ir.json` untouched.
+- Guesses (what the protocol, a treatment or a tool did not specify; file and line of the gap):
+  1. Whether an effect-read beat (run-001 convention 0.6 s) stays separate when a physics event already carries cause, reaction and settle on one beat. `director/protocol.md` line 84–86 (Beat) and line 108–112 (Physics event) are silent. Chose to fold the three effect-read beats into their action beats; recorded in d001.
+  2. Which printed OVERLOADED option to take when the printed cut still overloads (b1+b12 gives 8.2 s) and `overlap_non_causal_pairs` is empty. `implementation/work_orders/WO-04_run002_product_hands.md` line 27–28 lists the options but not what to do when none suffices alone. Combined a cut with a fold.
+  3. Whether folding beats counts as "shrinking min_s". The work order (line 27–28) forbids shrinking `min_s` only; no rule on merging beats. Kept every remaining `min_s` at the run-001 value.
+  4. Reading times for opening a box, lifting a case, a hinge push and an earbud pinch: no source. Reused run-001 conventions (0.8 / 1.0 / 0.6 / 0.8). `director/treatments/time/beat_schedule_ugc.md` line 9–11 only says they are conventions.
+  5. Whether an off-screen friend holding the camera belongs in the hand ledger or the entities. `director/protocol.md` line 96–97 covers only the actor's own hands on the camera. Chose: no ledger rows for the friend; an entity of kind `camera` (later emptied for budget).
+  6. Which state strings may appear in the hand ledger for a hand that grips a part (lid, case). The schema pattern allows `holding:<id>`, but the check (`dircheck.py` line 362 and 422) only accepts ids equal to the pathway's `object` or `parts`; `protocol.md` line 94–97 does not say so. Declared `parts` on every pathway.
+  7. A pathway may not repeat stage kinds (`dircheck.py` line 365–367 requires sorted kinds), so grip + lift-out + lid-open could not be one pathway. `protocol.md` line 86–91 ("one per physical task") does not say how to split. Used four pathways (unbox, take out, open, ear).
+  8. Which field name the catalog camera control takes. `protocol.md` line 160–168 and `camera/move_from_catalog.md` do not name it; the check needs a `motion` key or a `camera.motion` field (`dircheck.py` line 513), while the treatment's keys are `movement`, `phrase`, `speed`, `framing`, `end`. Used field `camera.motion`.
+  9. First beat description casing. `diremit.py` line 173 lowercases every beat except the first, so a first description starting with a capital prints "First, He ...". Wrote the first description in lowercase.
+  10. Which treatments fit. No rule defines "fit"; judged by wording (existing `performance.casual_register`, `style.capture_iphone_selfie` and `time.beat_schedule_ugc` name a bottle, a cap, a front camera and a drink) and wrote three new treatments instead of editing the run-001 ones (editing would change run 001's prompt).
+  11. Pace control with no treatment (`beat_schedule_ugc.md` line 20 mentions "the drink"). Plain text, origin INFERENCE.
+  12. Where an OVERLOADED resolution is recorded "in the open". The work order says to resolve it in the open and record in `decisions.jsonl`; `protocol.md` line 143–148 defines `open.jsonl` items for revision requests only. Wrote an `alternative` item with status `resolved` (does not block emit) and decision d001.
+  13. How to reference an anchor for a physics event's force. `protocol.md` line 108–114 allows `relative_to` an earlier weight or intensity anchor; chose intensity on the thumb push, consumed by the ear-press force, and no beat delta (avoids saying it twice). The first event has no `force` because a first `force` with `relative_to: null` would need its own anchor and emits no comparison.
+  14. Insertion into the ear as `occluded_contact` with `risk: high`. `HANDS_CONTACT_MANIPULATION.md` §2.3/§5 say conceal or commit short; no earbud-specific guidance, and `contact_risk` in `profiles/seedance.yaml` is all `unknown`.
+  15. The budget repair path. `emit` blocked at 2,014 / 2,000 with only locked content left; the options printed ("shorten locked content in the IR") do not say what to shorten. Shortened the chain list, the lock sentence, the anchor sentence, the camera phrase, one box line and removed four spacing clauses; rejected locking `c_capture`. Dropped by the emitter: `c_register`, `c_pace`, `c_negatives`.
+  16. Whether spacing is required on every moving beat (`protocol.md` line 157 says so) when the budget cannot carry it. Kept one spacing clause (b5) and dropped the rest as a budget trade; the warning rule in `dircheck.py` (line 306) only fires when `action` is active, which it was not.
+  17. Aspect ratio 9:16 (the ask is silent; `protocol.md` has no rule). Same as run 001.
+  18. Which ear and which hand: "his right ear" with the right hand; handedness assumed.
+  19. Device wording for a rear camera: the old treatment says "front camera"; `CAPTURE_SURFACE_REALISM.md` §4 gives one `iphone_recent` row with no front/rear split. Used "main camera held by a friend" and kept the 30 fps / HDR phrases from the old treatment even though `fps_assumed` is 24 (the same mismatch exists in run 001).
+  20. New-treatment `from` for the performance treatment cites `LIVING_PERFORMANCE_REALISM.md` §4, §8, §9, which the work order's Read-first list does not include; read only those sections.
+  21. Date of records: used 2026-10-03 (UTC, as the tool's `emitted_at`) although the session clock said 2026-10-02.
+  22. Read-back: launched a Haiku general-purpose subagent through the Agent tool with the five instructions and `prompt.txt`; the harness reports one tool use (its hand-back). Assumed this counts as "a separate call".
+  23. Whether to run `pack` and `check --pass` (WO-03b) during the run; the work order says nothing. Ran `pack` and `check --pass` for time, physics and camera after the IR existed; no change resulted.
+  24. Whether `ledger.jsonl` is touched now; left for the owner (verdict.md says after renders).
+- Owner: render `prompt.txt` and `baseline.txt` and fill `runs/002_earbuds_unbox/verdict.md` (gate A).
+
+Next: WO-05 (run 003, thrown into the pool).
+
 ## 2026-10-03 — Queue execution started: WO-01 done
 
 - WO-01 (T16, R-16, R-59): `anchors[]` and beat `relative` deltas in the schema; IR-level checks

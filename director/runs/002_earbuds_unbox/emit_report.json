@@ -1,0 +1,57 @@
+{
+  "run_id": "002_earbuds_unbox",
+  "model": "seedance",
+  "emitted_at": "2026-10-03T05:13:55+00:00",
+  "chars": 1987,
+  "char_limit": 2000,
+  "mode": "C→A text_interpretation_only",
+  "control_level": "L0–L1",
+  "settings": {
+    "duration_s": 8,
+    "aspect_ratio": "9:16"
+  },
+  "dispositions": {
+    "native": 2,
+    "semantic": 9
+  },
+  "dropped_for_budget": [
+    "c_pace",
+    "c_negatives",
+    "c_register"
+  ],
+  "compressed_for_budget": [
+    "b8",
+    "b1",
+    "b3",
+    "b6",
+    "c_register",
+    "b4",
+    "c_capture",
+    "c_locks",
+    "c_grip",
+    "b2",
+    "b7",
+    "c_camera",
+    "c_chain",
+    "b5",
+    "box",
+    "case",
+    "man"
+  ],
+  "loss_records": 20,
+  "fit": {
+    "verdict": "TIGHT",
+    "load_s": 7.2,
+    "duration_s": 8,
+    "ratio": 0.9
+  },
+  "warnings": [
+    "fit: TIGHT (load 7.20s of 8.00s)"
+  ],
+  "validity": {
+    "parses": true,
+    "schema": true,
+    "decisions_correct": "not judged by code",
+    "render_succeeded": "pending"
+  }
+}

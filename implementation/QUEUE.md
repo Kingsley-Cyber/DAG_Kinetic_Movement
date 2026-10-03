@@ -9,7 +9,7 @@ until the owner acts (see `OWNER_ACTIONS.md`).
 | WO-02 | Physics causal events (minimal): schema, validators, emission | T35 (first slice) | WO-01 | done 2026-10-03 (8 tests; run 001 prompt unchanged) |
 | WO-03 | Passes connect: `reads`, beat-scoped controls, coupling checks | T17 | WO-02 | done 2026-10-03 (6 tests; run 001 prompt unchanged) |
 | WO-03b | Shared scratchpad: `pack <pass>`, `check --pass`, `open.jsonl`, saved `check_report.json`; beat spacing and the constant-motion warning | T33 (first slice) | WO-03 | done 2026-10-03 (8 tests; run 001 prompt unchanged) |
-| WO-04 | Run 002: product handling with two hands (handoff test) | T12 | WO-03b | todo |
+| WO-04 | Run 002: product handling with two hands (handoff test) | T12 | WO-03b | done 2026-10-03 (check GREEN/TIGHT 0.9; prompt 1,987/2,000; read-back MATCH by a Haiku subagent; 3 new treatments; 83 tests unchanged; 24 guesses in STATUS; owner renders pending) |
 | WO-05 | Run 003: thrown into the pool (world reactions) | T12, T30 (as needed) | WO-04 | todo |
 | WO-06 | First ingest: DMR package (triage already written in `plan/ingest/DMR_triage.md`); typed outcomes, camera move validator, profile lifecycle, CI workflow; run 004 glass fixture | T36, T38 | WO-05 | todo |
 | WO-07 | Run 005: camera-only | T12 | WO-06 | todo |
