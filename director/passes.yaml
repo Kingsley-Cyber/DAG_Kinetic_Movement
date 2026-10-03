@@ -99,7 +99,9 @@ passes:
     importance: 0.9
     owns: [beats, clip.duration_s, time]
     question: "In what order do events happen, how long does each need to read, how dense is the apex, and does it all fit the clip?"
-    sub_modules: [beats, rhythm_fields, timing_profiles, holds, overload, key_poses]
+    sub_modules: [beats, rhythm_fields, timing_profiles, spacing, holds, overload, key_poses]
+    notes:
+      spacing: "per moving beat: ease_in | ease_out | ease_in_out | even (constant; needs a reason); pose roles key | extreme | breakdown; constant motion throughout is the AI-slop signature"
     procedure:
       - "emotional register: slow-hold, floaty or snappy"
       - "directorial beats: one per change of relationship or intention"
@@ -127,7 +129,7 @@ passes:
   - id: camera
     tier: style
     activate: mandatory
-    after: [time, staging, interaction, physics]   # the camera must know what happens and whether contact is shown or hidden
+    after: [time, staging, interaction, physics, attention]   # the camera must know what happens, whether contact is shown or hidden, and what the viewer must notice
     importance: 0.9
     owns: [camera, clip.aspect_ratio]
     question: "How is it seen: camera motion layer, optics layer, framing, shot length, aspect ratio? Camera grammar is always stated."
@@ -153,7 +155,7 @@ passes:
   - id: attention
     tier: style
     activate: optional
-    after: [camera]
+    after: [intent, time]   # directive chain: objective → viewer attention → composition → camera
     importance: 0.5
     owns: [attention]
     question: "What must the viewer notice, miss, or discover, and in which order?"

@@ -53,6 +53,11 @@ the word `than`, and the word is not inside an allowed phrase:
 `defaults_to_counter` (profile is known only in `emit`; in `check` use the fixed list).
 Record both word lists as module constants with a comment "convention (R-16); promoted by E2".
 
+Second lint in the same scan (R-59): warn `"vague style word '<w>': name the variables (colour,
+framing, lens, frame rate, mount, light)"` for `cinematic, epic, beautiful, stunning, dramatic,
+dynamic, professional, high quality` in the same free-text fields. Treatment wording is not
+scanned. Tests: `test_vague_style_word_warns`, `test_treatment_wording_is_not_linted`.
+
 ## Emit rules
 
 - An anchor adds one sentence directly after its beat's sentence: the `description`, ending with

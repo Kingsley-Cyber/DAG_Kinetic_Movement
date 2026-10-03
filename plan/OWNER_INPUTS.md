@@ -276,7 +276,31 @@ a hard failure only if at least two of three relative runs show better physical 
 equivalent intent. Adopted into `EXPERIMENTS.md` E2 with fair arms, paired seeds and a
 single-beat clip.
 
-## 23. On old plans
+## 23. Shared scratchpad, writing principles, grammar as a finite alphabet (2026-10-03)
+
+Scratchpad: a shared, structured record of scene state and decisions with a short rationale for
+each consequential choice: user intent and locks; accepted scene decisions (beats, actions,
+staging, contacts, anchors); decision rationale and source; open alternatives and conflicts;
+validation results. Code supplies each pass with its view; the LLM proposes; validation decides
+what enters accepted state. Do not pass every draft thought forward. A later pass can request a
+revision but never silently overwrites. Replay needs the saved accepted scratchpad and inputs;
+re-reasoning is a new creative run.
+
+Writing principles, corpus-checked: "cinematic" means the deliberate use of tools (colour,
+framing, lens, frame rate, handheld vs mounted, lighting) to add meaning and mood, so name the
+variables; the directive chain is narrative objective → viewer attention → composition →
+camera/performance/editing/lighting; lead with the main idea before details (core force of the
+pose first, fingernails last); start a scene as late as possible; budget seconds as a timeline
+rather than adjectives; establish geography before close-ups. A "first 20–30 words" rule is a
+prompt-engineering heuristic outside the corpus.
+
+Grammar: shot grammar is a common language with soft rules; animation has a finite, checkable
+alphabet (spacing types × keys, extremes, breakdowns × frame budgeting): "AI slop is constant
+motion; the fix is deliberate spacing structure, segment by segment"; motion grammar is a
+compiler for movement (timing chart = data, profiles = enum, effort actions = semantic layer);
+three scales: shot grammar, editing grammar, motion ("writing with motion").
+
+## 24. On old plans
 
 "Be careful with any old plans being integrated as it can misalign the current plan." Audit in
 `DECISIONS.md` (admission ledger, overrides, not-doing list).

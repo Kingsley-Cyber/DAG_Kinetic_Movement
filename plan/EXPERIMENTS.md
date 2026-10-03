@@ -87,6 +87,14 @@ Arms: `<i>word</i>` · `<emphasis>word</emphasis>` · `*word*` · no emphasis. D
 with the best result becomes the profile's first `emphasis` lever with `evidence: measured`;
 asterisks are dropped if they produce bleeps.
 
+## E7 — front-loading
+
+**Hypothesis (prompt-engineering heuristic; not in the research):** the first 20–30 words carry
+more weight, so the main action should sit there. Arms: the emitter's default order (shot line,
+subject, ordered action, …) · the same content with the core action sentence moved to the very
+first line · the same content with camera and capture first. Decision: the best order becomes the
+model profile's `clause_order`; no universal claim.
+
 ## E6 — camera grammar form — task T38
 
 Arms: bare move word ("dolly in") · the four-part grammar (Movement / Speed / Framing / End) ·

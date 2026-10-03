@@ -110,6 +110,31 @@ bound). The emitter turns scales into wording.
 3. **Read before you decide.** Each pass lists `reads` in `passes.yaml`; take those earlier
    decisions as fixed inputs and make yours consistent with them.
 
+## 4·1 The scratchpad and how passes hand off
+
+The run folder is the shared scratchpad: `ir.json` holds accepted decisions only;
+`decisions.jsonl` the rationale and source of each consequential choice; `open.jsonl` open
+alternatives, conflicts and revision requests; `check_report.json` the validation results.
+
+- Take your pass's view (question, `reads`, treatments, locks). Propose your contribution, run the
+  check for your pass, and only then treat it as accepted.
+- Pass forward accepted decisions, a one-line rationale and unresolved questions. Do not pass
+  draft thoughts or abandoned options.
+- If you need another pass's decision changed, write a revision request to `open.jsonl`
+  (`{"from_pass", "to_pass", "field", "reason"}`); never overwrite it. Synthesis closes or
+  escalates every open item before emit.
+- Reasoning again from the same scratchpad is a new creative run: give it a new variant id.
+
+## 4·2 Writing rules
+
+- Replace a vague style word with the variables behind it: not "cinematic" but the colour,
+  framing, lens, frame rate, mount and light that produce the intended meaning.
+- Lead each description with the main idea: the core action and the force of the pose first,
+  small details last.
+- Budget seconds as a timeline, not adjectives. Start the clip as late as the story allows.
+- Declare spacing on every moving beat (`ease_in`, `ease_out`, `ease_in_out`; `even` only with a
+  reason) and name the key poses. Constant motion throughout is the default failure.
+
 ## 4a. Camera grammar (mandatory on every ask)
 
 Choose the camera move from `director/vocab/camera_moves.yaml` (48 moves in 7 categories, each

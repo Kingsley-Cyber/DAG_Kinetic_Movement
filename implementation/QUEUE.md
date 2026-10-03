@@ -8,7 +8,8 @@ until the owner acts (see `OWNER_ACTIONS.md`).
 | WO-01 | Relative prompting: anchors in the IR, comparisons in the emitter, magnitude lint | T16 | — | todo |
 | WO-02 | Physics causal events (minimal): schema, validators, emission | T35 (first slice) | WO-01 | todo |
 | WO-03 | Passes connect: `reads`, beat-scoped controls, coupling checks | T17 | WO-02 | todo |
-| WO-04 | Run 002: product handling with two hands (handoff test) | T12 | WO-03 | todo |
+| WO-03b | Shared scratchpad: `pack <pass>`, `check --pass`, `open.jsonl`, saved `check_report.json`; beat spacing and the constant-motion warning | T33 (first slice) | WO-03 | todo |
+| WO-04 | Run 002: product handling with two hands (handoff test) | T12 | WO-03b | todo |
 | WO-05 | Run 003: thrown into the pool (world reactions) | T12, T30 (as needed) | WO-04 | todo |
 | WO-06 | First ingest: DMR package (triage already written in `plan/ingest/DMR_triage.md`); typed outcomes, camera move validator, profile lifecycle, CI workflow; run 004 glass fixture | T36, T38 | WO-05 | todo |
 | WO-07 | Run 005: camera-only | T12 | WO-06 | todo |

@@ -189,6 +189,54 @@ needs. Two mechanisms carry dependencies forward:
 The LLM authors the scene; explicit state, relative relationships and checks keep its decisions
 coherent. A persuasive rationale is not evidence; origin tags and render verdicts are.
 
+### 2.9 The shared scratchpad (owner)
+
+The passes share one structured scratchpad of scene state and decisions. It is the run folder,
+not a new store:
+
+| Record | Purpose | File |
+|---|---|---|
+| user intent and locks | what must remain true | `ask.md`, `ir.json → clip`, locked controls |
+| accepted scene decisions | beats, actions, staging, contacts, anchors | `ir.json` (accepted state only) |
+| decision rationale and source | why chosen; research-backed or authored | `decisions.jsonl` (origin, treatment, alternatives rejected) |
+| open alternatives and conflicts | what still needs resolution; revision requests | `open.jsonl` |
+| validation results | what passed, failed or remains unknown | `check_report.json` (typed outcomes, R-51) |
+
+Rules:
+
+- **Propose, validate, accept.** A pass receives its view of the scratchpad (`pack <pass>`: its
+  question, its `reads`, the treatments, the locks), returns a proposed contribution, and the
+  contribution enters `ir.json` only after `check --pass <pass>` accepts it.
+- **Only accepted decisions travel.** Draft thoughts and abandoned options are not passed forward;
+  what travels is the accepted decision, a short rationale and any unresolved question.
+- **Request, never overwrite.** A later pass that needs an earlier decision changed writes a
+  revision request to `open.jsonl` (`{from_pass, to_pass, field, reason}`); the owning pass
+  decides. Synthesis closes or escalates every open item; a run cannot emit with open conflicts.
+- **Replay is the saved scratchpad.** The same accepted `ir.json`, profile and treatments give the
+  same prompt (R-22). Asking the LLM to reason again, even from the same scratchpad, is a new
+  creative run and gets a new variant id.
+
+### 2.10 Writing rules the emitter and the lint enforce (owner; corpus-checked)
+
+- **Name the variables behind a vague word.** "Cinematic" is not a look; it is the deliberate use
+  of tools (colour, framing, lens, frame rate, handheld versus mounted, lighting) to add meaning
+  and mood. A vague style word in free text (`cinematic, epic, beautiful, stunning, dramatic,
+  dynamic, professional, high quality`) is a lint warning with the instruction to name the
+  variables instead. Treatment wording may use such a word only to exclude it ("not cinematic").
+- **The directive chain orders the passes:** narrative objective → viewer attention → composition
+  → camera, performance, editing, lighting. Attention therefore runs before camera.
+- **Lead with the main idea** (the pyramid: the core force of the pose first, fingernails last).
+  The emitter already puts shot, subject and ordered action before performance, camera and
+  exclusions; beat descriptions follow the same rule. A fixed "first 20–30 words" rule is a
+  prompt-engineering heuristic, not in the research: `EXPERIMENTS.md` E7 tests it.
+- **Budget seconds as a timeline, not adjectives; start as late as possible** without losing a
+  structural element; establish geography (a wider view) before close-ups in multi-shot work.
+  Soft rules: the LLM may override with a recorded reason.
+- **Shot grammar is a shared language with soft rules**: interpretation and subversion are
+  allowed, the basics persist. Three scales: shot grammar (camera `where` and `lens`), editing
+  grammar (camera `connection`), and motion ("writing with motion": camera `movement` plus the
+  action and time passes).
+
 ## 3. Control layer
 
 ### 3.1 Controls
@@ -604,6 +652,23 @@ carry one sudden accent. Steering sets values on these axes, not "fast" or "slow
 Punch of one action beat: `impact_frames = anticipation + strike + hold + settle`. Fewer
 in-betweens read faster; one in-between turns a snap into a rolling hit. Small screens compress
 motion: shorten action beats for phone playback.
+
+### 4.3a Spacing: the finite alphabet (owner; animation practice)
+
+"AI slop is constant motion; the fix is deliberate spacing structure, segment by segment." Motion
+grammar works as a compiler for movement: the timing chart is its data, the profiles its enum, the
+Effort actions its semantic layer. The closed set the time and action passes choose from:
+
+| Dimension | Values |
+|---|---|
+| spacing per beat or segment | `ease_in` (slow start, fast end) · `ease_out` (fast start, slow settle) · `ease_in_out` · `even` (constant; allowed only with a recorded reason) |
+| pose role | `key` · `extreme` · `breakdown` |
+| frame budget | from the timing profile (§4.3), as a convention |
+
+Each beat that contains movement declares its spacing; key poses are named and ranked. A clip in
+which every moving beat is `even`, or none declares spacing, gets a "constant motion" warning.
+The emitter writes spacing as visible behaviour ("starts slow and snaps through", "arrives fast
+and settles"), never as the term.
 
 ### 4.4 Beat planning procedure (the LLM, in the time pass)
 
