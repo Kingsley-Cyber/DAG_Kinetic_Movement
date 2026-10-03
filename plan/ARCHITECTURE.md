@@ -560,6 +560,36 @@ dialect:
 - Candidate models named by the owner: Seedance, Kling, Hailuo, Gemini/Veo, Wan. Seedance first.
   Evidence is per model: a result on one model is UNVERIFIED on another.
 
+### 6.1 Intent catalog and dialect levers (owner: "agnostic first, dialects as lenses")
+
+The IR marks **intents** in model-agnostic form. A dialect is a lens applied at emission that maps
+each intent to the lever that model responds to, with its own evidence status. Nothing
+model-specific ever enters the IR.
+
+| Intent (agnostic, in the IR) | IR representation | Example dialect levers (per profile, each with evidence) |
+|---|---|---|
+| emphasize a word or beat | `emphasis: [spans]` on a dialogue or performance control | Hailuo: `<i>word</i>`, `<emphasis>word</emphasis>`, `*word*` (owner-observed; asterisks sometimes read as a bleep) · others: unknown |
+| pause or hold | beat with `hold: true` / `pause_s` | "beat", "pause", ellipsis, explicit seconds; per model |
+| camera move | camera control (motion layer) | Kling: native camera parameters (horizontal, vertical, zoom, pan, tilt, roll) · prose elsewhere |
+| speech line | `audio.dialogue` control | Veo: quoted line + "(no subtitles)" · models without audio: omit, loss record |
+| order and timing | beats order; `time.*` controls | order words, timestamps, shot lists (Seedance guides: timecoded shot list for long clips) |
+| exclusion | `negatives.*` controls | dedicated negative field (Veo) · shared prompt text (Kling) · none (Runway) |
+| identity anchor | entity locks | reference image where supported (out of scope); descriptive locks in text |
+| shot settings | `clip.duration_s`, `clip.aspect_ratio` | API fields where native; prose otherwise |
+
+Rules:
+
+- A lever lives only in `director/profiles/<model>.yaml → dialect.levers[]` with
+  `{intent, syntax, evidence: owner_observed | documented | measured | unknown, caveats, runs}`.
+  The owner's untested observations enter as `owner_observed`, never as fact.
+- `emit` applies levers after assembly and records each application in the receipt
+  (`lever: <intent>`), so a render verdict can credit or blame the lever.
+- An intent with no lever in the target dialect is emitted in core wording and recorded as a loss
+  (`provider_attention_loss`, severity low) when the intent mattered (importance ≥ 0.7).
+- Lever evidence is per model and per route; a lever proven on one route is `unknown` on another.
+- The reasoning layer sees the lever list during model fit (synthesis, taste pass) so it does not
+  plan intents the dialect cannot carry, but it never writes lever syntax into the IR.
+
 ## 7. Stylized motion (sakuga, limited animation)
 
 Design for silhouette and simplicity; prompt for motion grammar (key poses, holds, smears,

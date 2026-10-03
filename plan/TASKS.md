@@ -65,6 +65,7 @@ done · blocked. Update this file and `STATUS.md` when a task changes state. Req
 | T50 | Steering profile (`director/steering/default.yaml`, per user, per ask) merged later-wins with locks; dials per `ARCHITECTURE.md` §8 | same seed → same prompt; locked content never varies | T20 | todo |
 | T51 | Variants: `emit --n 3 --seed S --variation 0.5` → labelled variants differing only in free fields | labels list what differs; test | T50 | todo |
 | T52 | Dialect rules in profiles (R-23): prefer/avoid vocabulary, clause order per model; `dialect=` blocks in treatments | a treatment with a dialect block emits differently per model, same order | T13 | todo |
+| T53 | Intent catalog and lever application (R-47…R-49): `emphasis`, `hold`, `pause_s` fields in the schema; a schema check that rejects model syntax in IR strings (`<i>`, `<emphasis>`, `*word*`, API field names); `emit` applies `dialect.levers` and writes `lever:` into the receipt; loss record when a mattering intent has no lever; first test on Hailuo emphasis (three forms, one run, ≥ 3 seeds each) | schema, `director.py`, profiles, tests, run | RED→GREEN; same IR emits `<i>not</i>` for hailuo and plain "not" for seedance; receipt shows the lever; ledger compares the three forms | T52 | todo |
 
 ## Phase 7 — structured carriers (experiment)
 

@@ -53,3 +53,9 @@ dialect:
   notes: "No Seedance findings exist in the owner's research. Third-party guides (2026-10-02, unverified by renders) recommend 60–100 words, a subject → action → scene → camera → style order, explicit camera-movement words, and shot lists with timecodes for long clips. Core wording is used unchanged until renders say otherwise."
   prefer: []
   avoid: []
+  levers: []   # intent → syntax mappings with evidence; none known for Seedance yet
+
+contact_risk:
+  low: unknown
+  medium: unknown
+  high: unknown

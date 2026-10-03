@@ -180,7 +180,19 @@ the full typed graph, five sub-compilers, trajectory splines, newtons and biomec
 "one causal event per clip" before making it a rule. Treat every rule as a hypothesis until runs
 confirm it; automatic physical-commonsense checking is unsolved (VideoPhy-2).
 
-## 17. On old plans
+## 17. Agnostic first, dialects as lenses; the Hailuo ("h3") emphasis levers
+
+"It's agnostic first and then we add model dialects as lenses to be used." Dialect knowledge is
+stored per model as intent → lever with evidence. Owner's Hailuo observations (not extensively
+tested, relative merit unknown): words can be stressed with `<i></i>` or `<emphasis></emphasis>`
+around the word, or with asterisks around *key words*, though the model sometimes reads asterisks
+as a bleep for a swear word. Stored in `director/profiles/hailuo.yaml` as `owner_observed`.
+
+The reasoning control layer must say how to think per pass (modes, router features, the six time
+questions, anchors) and how to use the dialect lens during model fit without writing model syntax
+into the IR (`director/protocol.md` §4b–4c).
+
+## 18. On old plans
 
 "Be careful with any old plans being integrated as it can misalign the current plan." Audit in
 `DECISIONS.md` (admission ledger, overrides, not-doing list).

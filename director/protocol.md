@@ -92,6 +92,37 @@ confidence: `{"weight": 0.3, "time": 0.4, "space": 0.7, "flow": 0.6, "confidence
 the first pole (light, sustained, indirect, free) and 1 the second (strong, sudden, direct,
 bound). The emitter turns scales into wording.
 
+## 4b. Intents and the dialect lens
+
+The IR is model-agnostic. When you want the model to do something a prompt can carry in
+different ways (stress a word, hold a beat, move the camera, speak a line, exclude something),
+write the **intent** in agnostic form on the control (for example `value.emphasis: ["not"]` on a
+dialogue control, `hold: true` on a beat). Never write model syntax (`<i>`, asterisks, API field
+names) into the IR.
+
+During model fit (the synthesis pass after Style), read `director/profiles/<model>.yaml →
+dialect.levers`. If the dialect has no lever for an intent that matters, lower the control's
+importance or choose another way to carry the meaning, and record the decision. `emit` applies the
+lever at assembly and writes `lever: <intent>` into the receipt so the render verdict can credit or
+blame it. A lever's `evidence` (owner_observed, documented, measured, unknown) is per model and per
+route; treat `owner_observed` as a hypothesis.
+
+## 4c. Reasoning control layer: how to think per pass
+
+| Situation | Mode | What you produce |
+|---|---|---|
+| one plausible plan, validators strong | direct | the control, one line of reason |
+| creative fork, or high impact with uncertainty | compare alternatives | a DecisionRecord with ≥ 2 alternatives and criteria |
+| durations, frames, speech capacity, distances | calculation | the number with its inputs and their origins |
+| merging partial decisions across passes | aggregation (synthesis) | the resolved control and the conflicts you removed |
+| a failed render or read-back | repair | the smallest IR patch, upstream of the failure (`depends_on`) |
+
+Router features to weigh (initial rules, not scientific scales): impact on meaning or hard
+compliance, uncertainty after reading treatments, coupling across passes, irreversibility, how
+strong the validator is, budget. Ask the time pass's six questions in order (register, directorial
+beats, tempo curve, micro-pauses and anticipation, apex density, variation). Use anchors: one
+baseline and one relative escalation per quality, never two absolutes.
+
 ## 5. Check, emit, read back
 
 ```

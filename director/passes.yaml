@@ -177,5 +177,7 @@ passes:
     importance: 1.0
     owns: [synthesis, negatives]
     question: "Do the decisions contradict each other, exceed what one clip can hold, or break a hard constraint? Resolve, simplify, align camera with action and style with motion."
-    sub_modules: [contradictions, competing_controls, complexity, alignment]
+    sub_modules: [contradictions, competing_controls, complexity, alignment, model_fit]
+    notes:
+      model_fit: "read the target profile's dialect.levers and capability facts; do not plan intents the dialect cannot carry; never write lever syntax into the IR (the emitter applies the lens)"
     runs_twice: "after the Reason tier (logic) and after the Style tier (taste)"

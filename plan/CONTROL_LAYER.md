@@ -42,6 +42,9 @@ cite it. The reference implementation of R-01…R-20 is `director/tools/director
 | R-44 | Causal event emission: one sentence per event in the order cause → contact → reaction → settle with connectors; force resolved to relative words; `must_not_imply` never emitted as prompt text | to build (T35) |
 | R-45 | Eval log fields per render: IR hash, prompt hash, dialect version, seed, access path, per-event yes/no for contact happened, reaction followed, end pose sane; ≥ 3 seeds per prompt before a verdict | to build (T35) |
 | R-46 | Failures registry `director/failures.jsonl`: failure, run, event, class (vocabulary gap vs ceiling), hypothesis status | to build (T35) |
+| R-47 | Intent catalog: intents (emphasis, hold, camera move, speech line, order and timing, exclusion, identity anchor, shot settings) are written in the IR in agnostic form only; model syntax in the IR is a schema error | to build (T53) |
+| R-48 | Dialect levers live only in `profiles/<model>.yaml → dialect.levers[] {intent, syntax, evidence, caveats, runs}`; `owner_observed` is never promoted without a logged run | profiles done (hailuo, seedance); validator to build (T53) |
+| R-49 | Lever application happens at emission; each application is written to the receipt as `lever: <intent>`; an intent with no lever and importance ≥ 0.7 produces a `provider_attention_loss` record | to build (T53) |
 | R-40 | Affect and Shape and Bartenieff emission: compiled to visible behaviour (face, breath, posture, travel of the movement, voice), never framework terms or affect words; emitter word list for affect words is a recorded convention | to build (T28, T29) |
 
 ## C. Emitter
