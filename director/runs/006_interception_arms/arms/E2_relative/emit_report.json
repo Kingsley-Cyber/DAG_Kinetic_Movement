@@ -1,0 +1,32 @@
+{
+  "run_id": "006_interception_arms",
+  "model": "seedance",
+  "chars": 1955,
+  "char_limit": 2000,
+  "mode": "C→A text_interpretation_only",
+  "control_level": "L0–L1",
+  "settings": {
+    "duration_s": 4,
+    "aspect_ratio": "16:9"
+  },
+  "dispositions": {
+    "native": 2,
+    "semantic": 7
+  },
+  "dropped_for_budget": [],
+  "compressed_for_budget": [],
+  "loss_records": 0,
+  "fit": {
+    "verdict": "FITS",
+    "load_s": 3.0,
+    "duration_s": 4,
+    "ratio": 0.75
+  },
+  "warnings": [],
+  "validity": {
+    "parses": true,
+    "schema": true,
+    "decisions_correct": "not judged by code",
+    "render_succeeded": "pending"
+  }
+}

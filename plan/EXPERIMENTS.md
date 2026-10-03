@@ -59,6 +59,13 @@ than"). Multipliers, newtons, metres per second and g-forces are not written int
 stiff or exaggerated motion; relative arm → the anchor drifts across the clip, or the
 foreground/background differential collapses when camera, subject and background all move.
 
+**Arms on disk (WO-08, 2026-10-02):** `director/runs/006_interception_arms/arms/E2_relative` and
+`E2_absolute`, emitted from one IR with `emit --magnitudes relative|absolute`. Absolute-arm
+convention in the emitter: a delta becomes the bare word for its quality (fast, heavy, wide, big,
+intense, far, quick; or slow, light, tight, small, gentle, close, slow), the step is not written,
+a causal-event force becomes "hard" or "lightly", and anchor sentences are omitted. The camera
+row of the table above is not varied in run 006: camera wording is identical in both arms.
+
 **Decision:** relative better on at least two of three paired seeds for physical plausibility
 with equal intent → the wording lint becomes a hard failure for that model. Otherwise the
 warning stands. Either way the IR-level rule stays.
@@ -73,6 +80,12 @@ term ("a strong, sudden, direct strike: a punch drive") · visible description (
 in the planted rear foot, turns through hips and shoulders, and lands with the whole body behind
 it"). Decision: the best rung becomes that model's default in its profile; the others stay
 available as experiments.
+
+**Arms on disk (WO-08, 2026-10-02):** `director/runs/006_interception_arms/arms/E3_visible`
+(byte-identical to `E2_relative`), `E3_term` ("Mara's Effort: strong, sudden, direct, bound.") and
+`E3_numeric` ("Mara: effort {weight: 0.9, time: 0.9, space: 0.9, flow: 0.8}."), emitted with
+`emit --rung visible|term|numeric` from the control `c_effort` (treatment
+`performance.effort_quality`). A scale between 0.4 and 0.6 names no pole.
 
 ## E4 — causal wording and the safety-avoidance question — task T35
 

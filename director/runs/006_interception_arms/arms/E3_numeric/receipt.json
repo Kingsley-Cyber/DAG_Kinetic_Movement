@@ -1,0 +1,195 @@
+{
+  "run_id": "006_interception_arms",
+  "model": "seedance",
+  "prompt_sha256": "95756ee7482f063be7cd47790a539883a98a8361d18f51a5da1fa5187969e386",
+  "prompt_sha256_of": "prompt.txt bytes as written (including the trailing newline)",
+  "lines": [
+    {
+      "line": 1,
+      "clause": "shot",
+      "channel": "prompt",
+      "text": "A 4-second animated clip, one continuous shot, no cuts.",
+      "source": {
+        "kind": "control",
+        "id": "c_shot_line",
+        "treatment": null,
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 2,
+      "clause": "shot",
+      "channel": "prompt",
+      "text": "Contemporary 2D hand-drawn action anime: clean line art, flat cel shading, clear readable silhouettes.",
+      "source": {
+        "kind": "control",
+        "id": "c_style",
+        "treatment": null,
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 3,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Veyr, a tall man in a long charcoal coat, is on the left of a rain-wet steel platform, facing the reactor core.",
+      "source": {
+        "kind": "entity",
+        "id": "veyr",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 4,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Mara, a woman in a short dark red jacket with her hair tied back, stands on the right of the platform, nearer the camera.",
+      "source": {
+        "kind": "entity",
+        "id": "mara",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 5,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "The platform hangs high inside a reactor shaft in falling rain; the reactor core glows inside its ring in the far right background.",
+      "source": {
+        "kind": "entity",
+        "id": "platform",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 6,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "First, Veyr walks straight across the platform toward the core, eyes fixed on it.",
+      "source": {
+        "kind": "beat",
+        "id": "b1",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 7,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Veyr strides at a steady walking pace, one even step after another.",
+      "source": {
+        "kind": "anchor",
+        "id": "a_walk",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 8,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Each of his boots comes down flat on the wet steel with an ordinary, even weight.",
+      "source": {
+        "kind": "anchor",
+        "id": "a_tread",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 9,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then Mara sprints diagonally across the platform into his path, much faster than Veyr's walk.",
+      "source": {
+        "kind": "beat",
+        "id": "b2",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 10,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Finally, Mara meets him in the middle of the platform.",
+      "source": {
+        "kind": "beat",
+        "id": "b3",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 11,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Mara's left forearm swings in against Veyr, much heavier than Veyr's footfalls, landing on the outside of his raised right forearm. Veyr's arm is pushed off his line and he gives a full step sideways as his shoulders turn away from the core, then they hold forearm against forearm, Mara standing between him and the core.",
+      "source": {
+        "kind": "event",
+        "id": "ev_intercept",
+        "origin": "CREATIVE_CHOICE",
+        "contact_state": "physical_contact_confirmed"
+      }
+    },
+    {
+      "line": 12,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Veyr moves left to right toward the core; Mara comes from the right; they meet mid-frame.",
+      "source": {
+        "kind": "control",
+        "id": "c_stage",
+        "treatment": null,
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 13,
+      "clause": "performance",
+      "channel": "prompt",
+      "text": "Mara: effort {weight: 0.9, time: 0.9, space: 0.9, flow: 0.8}.",
+      "source": {
+        "kind": "control",
+        "id": "c_effort",
+        "treatment": "performance.effort_quality",
+        "origin": "PROJECT_DERIVED",
+        "rung": "numeric"
+      }
+    },
+    {
+      "line": 14,
+      "clause": "camera",
+      "channel": "prompt",
+      "text": "Wide shot from chest height, wide lens, both figures full-length, the core in the far background.",
+      "source": {
+        "kind": "control",
+        "id": "c_cam_frame",
+        "treatment": null,
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 15,
+      "clause": "camera",
+      "channel": "prompt",
+      "text": "Camera: dolly in toward the point where their paths cross. Movement: move the camera straight forward toward the meeting point. Speed: smooth controlled push. Framing: keep height and lens direction constant, both figures fully in frame. End: finish medium-wide with the forearm contact at frame centre.",
+      "source": {
+        "kind": "control",
+        "id": "c_cam_move",
+        "treatment": "camera.move_from_catalog",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 16,
+      "clause": "negatives",
+      "channel": "prompt",
+      "text": "Avoid: a punch to the face, Veyr falling, extra limbs or a third figure, a cut, on-screen text.",
+      "source": [
+        {
+          "kind": "control",
+          "id": "c_negatives",
+          "treatment": null,
+          "origin": "PROJECT_DERIVED"
+        }
+      ]
+    }
+  ]
+}

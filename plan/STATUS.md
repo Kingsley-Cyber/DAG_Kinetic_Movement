@@ -2,6 +2,32 @@
 
 Newest first. One entry per working session or phase exit.
 
+## 2026-10-02 — WO-08 done: experiment arms (E2, E3); GATE A reached
+
+- Part A, emitter flags (tests first; 6 tests in class `ExperimentArms`, RED then GREEN; 103 tests, none of the earlier 97 changed):
+  `emit --magnitudes relative|absolute` (default relative), `--rung visible|term|numeric` (default visible), `--out <dir>`.
+  Defaults are byte-identical: runs 001–004 re-emitted with no file change; a test pins run 001's committed `prompt.txt`.
+  `emit_report.json` records `magnitudes` / `rung` only when they differ from the default.
+- Part B, run `director/runs/006_interception_arms/` (ask, ir, decisions d001–d008, check_report, readback_raw, readback, verdict, `arms/`).
+  Specimen: the interception from the owner's fight IR (b01–b02, contact c01), 4 s (shortest duration in the Seedance profile), three beats, one physics event, two anchors on beat 1 (speed: Veyr's walk; weight: Veyr's footfalls), one catalog camera move (`dolly_in`).
+  `check` GREEN, FITS 3.0 s of 4 s (0.75).
+- Five arm folders, four distinct prompts (`E2_relative` and `E3_visible` are byte-identical): 1,955 / 1,751 / 1,865 / 1,881 characters of 2,000. No arm was compressed or had a line dropped, so arms differ only in the wording under test. Diff E2: the two anchor sentences, "much faster than Veyr's walk" vs "fast", "much heavier than Veyr's footfalls" vs "hard". Diff E3: the one movement-quality sentence.
+- One new treatment: `performance.effort_quality` (wording is the `visible` sentence; scales reach the prompt only through `--rung`).
+- Read-back (Haiku subagent, no tools, both E2 prompts): MATCH on beat order, causal order and camera for both arms. Findings in `readback.md`, not repaired: the walk and footfall anchors read as repeats; "heavier" is ambiguous (mass or impact); the meeting place is named three ways; "rear foot" does not say which.
+- Decisions taken where the work order was silent (guesses):
+  1. Absolute arm: the bare word ignores the step ("much faster than" → "fast"), following the E2 table; an event force becomes "hard" / "lightly" whatever the anchor's quality.
+  2. Term and numeric rungs replace the whole line of any control whose value has Laban keys, and take an optional `subject` ("Mara's Effort: …", "Mara: effort {…}").
+  3. Force baseline: a weight anchor on Veyr's footfalls, not an earlier shove (one causal event per test; the checker needs a weight or intensity anchor before the event).
+  4. Screen sides chosen so both contact forearms face the camera (Veyr from the left, Mara from the right).
+  5. First draft was 2,380 characters uncompressed and the long arm alone was compressed; the causal-chain control and the key-pose line were removed and camera wording shortened so every arm fits uncompressed.
+  6. No spacing on beats: the spacing clauses contain speed words that would sit in both E2 arms.
+  7. `duration_origin` is `MODEL_DEFAULT` (the work order's rule), not `USER_EXPLICIT`; the ask was written by the session from the fight IR, not typed by the owner.
+  8. Appearances of Mara and Veyr are authored (the fight IR has none).
+  9. The E2 table's camera row ("fast dolly in" vs "the foreground closes faster than the background") is not varied: WO-08 says camera is identical across arms.
+- Tool notes: the constant-motion warning only fires when the action pass is active (it was closed here and in run 005). The emitter cannot vary camera wording per arm.
+
+**GATE A reached.** Queue WO-01…WO-08 and WO-10 (code) are done. Next is the owner's: name the Seedance route, render Part 1 (runs 001–005, compiled vs baseline, 10 renders) and Part 2 (run 006 arms, 12 renders), fill the verdicts (`implementation/OWNER_ACTIONS.md` §2). Then WO-09 (kill check). Nothing was rendered; no claim in this plan is yet supported by a render. Local commits are not pushed.
+
 ## 2026-10-02 — WO-07 done: run 005 kitchen at dawn (camera-only, no performer)
 
 - Run `director/runs/005_kitchen_dawn/` (ask, ir, decisions d001-d005, baseline, prompt, receipt, loss, emit_report, check_report, readback_raw, readback, verdict). Ask: "A slow reveal of an empty kitchen at dawn as light moves across the counter, 6 seconds." No performer: `hands` and `pathways` are empty arrays, no physics events, action/interaction/physics/staging/performance/attention/audio closed with reasons. Active: intent, entity, world, continuity, time, camera, light_color, style, synthesis.
