@@ -1,0 +1,161 @@
+{
+  "run_id": "005_kitchen_dawn",
+  "model": "seedance",
+  "prompt_sha256": "ca702680608330bd1c0200efb8ca469fb5545c9ce1839916d80c857cc1be07b0",
+  "prompt_sha256_of": "prompt.txt bytes as written (including the trailing newline)",
+  "lines": [
+    {
+      "line": 1,
+      "clause": "shot",
+      "channel": "prompt",
+      "text": "A 6-second video clip, one continuous take, no cuts.",
+      "source": {
+        "kind": "control",
+        "id": "c_shot_line",
+        "treatment": null,
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 2,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "An empty kitchen at dawn, with nobody in it: a window in the left wall, a pale plaster wall at the far end facing the camera, and a tiled floor.",
+      "source": {
+        "kind": "entity",
+        "id": "kitchen",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 3,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "A wooden counter with visible grain runs away from the camera along the left wall under the window, with a white kettle and a ceramic bowl standing on it.",
+      "source": {
+        "kind": "entity",
+        "id": "counter",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 4,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "First, a thin band of sunlight reaches the near edge of the counter.",
+      "source": {
+        "kind": "beat",
+        "id": "b1",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 5,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then the band of light spreads along the counter away from the camera, passing over the bowl and the kettle, which throw long shadows.",
+      "source": {
+        "kind": "beat",
+        "id": "b2",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 6,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Finally, the light leaves the far end of the counter and settles as a bright patch on the plaster far wall, then stays there. Key pose: a bright patch of light on the plaster far wall, nothing else changing.",
+      "source": {
+        "kind": "beat",
+        "id": "b3",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 7,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Only the light changes: no person, hand or animal appears and nothing in the room moves.",
+      "source": {
+        "kind": "control",
+        "id": "c_world_light",
+        "treatment": null,
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 8,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Throughout, the kettle and the bowl stay where they stand and the room stays empty.",
+      "source": {
+        "kind": "control",
+        "id": "c_room_lock",
+        "treatment": "continuity.object_locks",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 9,
+      "clause": "camera",
+      "channel": "prompt",
+      "text": "Low close framing at the near end of the counter at counter height, standard lens: the counter edge and the first of the light fill the left of frame, the window above it, with the far wall small and dim at the end of the counter.",
+      "source": {
+        "kind": "control",
+        "id": "c_cam_frame",
+        "treatment": null,
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 10,
+      "clause": "camera",
+      "channel": "prompt",
+      "text": "Camera: slow dolly out from the counter edge. Movement: move the camera physically backward in a straight line away from the counter's near end. Speed: slow, smooth, steady retreat across the whole clip, easing to a stop on the last beat. Framing: keep lens direction and camera height consistent while more of the kitchen enters the frame. End: finish in a wider composition that holds the counter and the lit patch on the far wall.",
+      "source": {
+        "kind": "control",
+        "id": "c_cam_move",
+        "treatment": "camera.move_from_catalog",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 11,
+      "clause": "camera",
+      "channel": "prompt",
+      "text": "Light comes only from the window in the left wall: low, warm, hard-edged dawn light, the rest of the room dim; faint noise in the shadows.",
+      "source": {
+        "kind": "control",
+        "id": "c_light",
+        "treatment": "light_color.dawn_window_light",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 12,
+      "clause": "camera",
+      "channel": "prompt",
+      "text": "Real footage, natural colour with no grade, deep focus.",
+      "source": {
+        "kind": "control",
+        "id": "c_style",
+        "treatment": null,
+        "origin": "INFERENCE"
+      }
+    },
+    {
+      "line": 13,
+      "clause": "negatives",
+      "channel": "prompt",
+      "text": "Avoid: people or hands, the light flickering or jumping, the room brightening everywhere at once, objects moving by themselves, a cut or a zoom, on-screen text.",
+      "source": [
+        {
+          "kind": "control",
+          "id": "c_negatives",
+          "treatment": null,
+          "origin": "PROJECT_DERIVED"
+        }
+      ]
+    }
+  ]
+}

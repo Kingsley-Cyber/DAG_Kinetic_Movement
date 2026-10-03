@@ -1,0 +1,35 @@
+{
+  "run_id": "005_kitchen_dawn",
+  "model": "seedance",
+  "chars": 1961,
+  "char_limit": 2000,
+  "mode": "C→A text_interpretation_only",
+  "control_level": "L0–L1",
+  "settings": {
+    "duration_s": 6,
+    "aspect_ratio": "16:9"
+  },
+  "dispositions": {
+    "native": 2,
+    "semantic": 8
+  },
+  "dropped_for_budget": [],
+  "compressed_for_budget": [
+    "b1",
+    "c_light"
+  ],
+  "loss_records": 2,
+  "fit": {
+    "verdict": "FITS",
+    "load_s": 5.0,
+    "duration_s": 6,
+    "ratio": 0.833
+  },
+  "warnings": [],
+  "validity": {
+    "parses": true,
+    "schema": true,
+    "decisions_correct": "not judged by code",
+    "render_succeeded": "pending"
+  }
+}

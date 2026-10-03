@@ -2,6 +2,29 @@
 
 Newest first. One entry per working session or phase exit.
 
+## 2026-10-02 — WO-07 done: run 005 kitchen at dawn (camera-only, no performer)
+
+- Run `director/runs/005_kitchen_dawn/` (ask, ir, decisions d001-d005, baseline, prompt, receipt, loss, emit_report, check_report, readback_raw, readback, verdict). Ask: "A slow reveal of an empty kitchen at dawn as light moves across the counter, 6 seconds." No performer: `hands` and `pathways` are empty arrays, no physics events, action/interaction/physics/staging/performance/attention/audio closed with reasons. Active: intent, entity, world, continuity, time, camera, light_color, style, synthesis.
+- `check` GREEN at the first run, no errors or warnings: fit FITS, 5.0 s of 6 s (ratio 0.833). The empty `hands`/`pathways` needed no tool change (the "Stop if" case did not occur); `test_run_without_performers_is_valid` was not added. `emit --model seedance`: 1,961 / 2,000 characters, nothing dropped, `b1` and `c_light` compressed to short wording, 2 loss records, no warnings.
+- Camera: `dolly_out`, chosen by function "reveal, isolate, release" (catalog). Alternatives recorded in d003: `truck_right` (lateral reveal), `slider_right`, `tilt_up`, `static`. Pace is in the `speed` field plus a held last beat (d004); no anchor.
+- One new treatment: `light_color.dawn_window_light` (from CAPTURE_SURFACE_REALISM §2, §5 rules 1, 4, 5; origin PROJECT_DERIVED, effects unverified).
+- Read-back (Haiku subagent, no tools, sees only the prompt and the five instructions): MATCH. It listed the light's three states in order (edge of the counter, along the counter over the bowl and kettle, patch on the far wall held), one backward camera move ending wider, and no performer language. Findings in `readback.md`: "settles / stays there" and "nothing moves / room stays empty" read as repeats.
+- All 103 existing tests pass, none changed. No file under `director/tools/` changed.
+- Guesses (what the work order, the protocol or a tool did not specify):
+  1. The WO-04 file name: the work order cites `WO-04_run002_handoff.md`, the file is `WO-04_run002_product_hands.md`; its steps 1-8 were followed.
+  2. The room layout (window in the left wall, counter along it, kettle, bowl, plaster far wall, tiled floor) and the light's route are CREATIVE_CHOICE; the ask gives none.
+  3. The camera starts low and close at the counter's near end and moves back; 16:9 is an INFERENCE.
+  4. Reading times 1.5, 2.0, 1.5 s reuse the run-001 conventions; no source for how long a travelling light edge needs.
+  5. `dolly_out` over `truck_right`: judged by function and by the end frame holding the far wall; no rule ranks reveal moves.
+  6. The light is carried by `world.environment_state` (a control without a treatment) and the beats; the schema has no `world` block, only controls.
+  7. No `spacing` on the beats: `SPACING_CLAUSE` writes "arriving fast and settling", which does not fit a light and has a bare magnitude word. Only the action pass checks spacing, and it is closed.
+  8. Style: one INFERENCE control (`style.capture`, real footage, no grade, deep focus) with no treatment; the existing capture treatments are phone-selfie specific.
+  9. `light_color.*` and `style.*` fields land in the `camera` clause (FIELD_CLAUSE), so the light line sits after the camera grammar.
+  10. Two room locks (`c_world_light`, `c_room_lock`) overlap; kept for the kettle and bowl lock using `continuity.object_locks`.
+- Tool behaviour that differed from the documents: `emit_report.json` `chars` (1,961) is the prompt without its trailing newline (as in runs 003 and 004). The beat-key-pose line ("Key pose: ...") is emitted after the third beat as for earlier runs; it reads as a repeat. The work order says "if the lint still warns on the ask text inside `ask`": the lint does not scan `ask`, and no warning appeared anywhere.
+
+Next: WO-08 (part A in the log; arms run). Blocked: owner renders of runs 001-005.
+
 ## 2026-10-02 — WO-06 done: first ingest (DMR) landed as rules; run 004 glass fixture
 
 - Part A (spot check): rows G002, G007 and G022 of `plan/ingest/DMR_triage.md` compared with the register in `director_motion_reasoning_gap_report.md` §3 (lines 89, 94, 109). Priority, dependency and acceptance text agree; the recorded deviation for G007 (an unverified profile emits with a flag) is consistent with the register's "stale/unknown contract blocks execution" for API calls only. No disagreement; the table was not rewritten. `plan/INGEST.md` §4 already states it is superseded by the triage file, so it was not edited.
