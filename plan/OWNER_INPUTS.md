@@ -192,7 +192,18 @@ The reasoning control layer must say how to think per pass (modes, router featur
 questions, anchors) and how to use the dialect lens during model fit without writing model syntax
 into the IR (`director/protocol.md` §4b–4c).
 
-## 18. On old plans
+## 18. Why knowledge is thin, and the fix
+
+"The reason knowledge is thin is because the coding model must know how to take a deep research
+and add upon or refactor upon the compiler with rules." The owner's deep-research prompts (e.g.
+the DMR Gap Closure prompt) already demand the right shape: for every gap, a decision path from
+scene condition to emitted control to observed result, each step labelled by kind, with the exact
+runtime owner and smallest executable consumer; definitions without a decision path are
+insufficient; statuses closed / implementable_now / requires_experiment / unknown / deferred /
+rejected; a shared fixture traced end to end; acceptance and falsification. `plan/INGEST.md` makes
+that the compiler's intake procedure.
+
+## 19. On old plans
 
 "Be careful with any old plans being integrated as it can misalign the current plan." Audit in
 `DECISIONS.md` (admission ledger, overrides, not-doing list).

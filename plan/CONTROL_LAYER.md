@@ -45,6 +45,9 @@ cite it. The reference implementation of R-01…R-20 is `director/tools/director
 | R-47 | Intent catalog: intents (emphasis, hold, camera move, speech line, order and timing, exclusion, identity anchor, shot settings) are written in the IR in agnostic form only; model syntax in the IR is a schema error | to build (T53) |
 | R-48 | Dialect levers live only in `profiles/<model>.yaml → dialect.levers[] {intent, syntax, evidence, caveats, runs}`; `owner_observed` is never promoted without a logged run | profiles done (hailuo, seedance); validator to build (T53) |
 | R-49 | Lever application happens at emission; each application is written to the receipt as `lever: <intent>`; an intent with no lever and importance ≥ 0.7 produces a `provider_attention_loss` record | to build (T53) |
+| R-50 | The IR is an execution projection, never a second semantic authority: every control cites a treatment, a card, an owner input or an INFERENCE tag; no field is treated as knowledge after the run | to build (T36) |
+| R-51 | Every validator returns a typed outcome: pass · fail · indeterminate · not_applicable · unobservable; an unknown prerequisite is never treated as a pass downstream | to build (T36; current checks return pass/fail only) |
+| R-52 | Profile facts and levers carry a lifecycle state (unverified → verified → stale → reprobe_due → invalidated) with dates; reprobe_due and invalidated block native dispositions for that fact | to build (T36) |
 | R-40 | Affect and Shape and Bartenieff emission: compiled to visible behaviour (face, breath, posture, travel of the movement, voice), never framework terms or affect words; emitter word list for affect words is a recorded convention | to build (T28, T29) |
 
 ## C. Emitter

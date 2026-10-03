@@ -13,6 +13,13 @@ done · blocked. Update this file and `STATUS.md` when a task changes state. Req
 | T02 | `check` (R-01…R-14) and `emit` (R-17…R-22, R-24, R-29) with 20 tests | `director/tools/director.py`, `tests/test_director.py` |
 | T03 | Run 001 bottle selfie: IR, decisions, prompt, receipt, losses, cold read-back MATCH | `director/runs/001_bottle_selfie/` |
 
+## Ingest (runs alongside every phase; the engine that makes knowledge grow)
+
+| Id | Task | Files | Acceptance | Depends | Status |
+|---|---|---|---|---|---|
+| T36 | First ingest by `plan/INGEST.md`: the DMR gap-closure package (`Research_distillation_folder/research/continue_detail/director_motion_reasoning_complete_package/`, prompt `Additional/06 Deep Research Prompt — Director Motion Reasoning Runtime Gap Clo.md`). Triage G001–G022 into the six statuses; implement the `implementable_now` rows in INGEST §4 (typed validator outcomes R-51, IR-not-authority invariant R-50, provider lifecycle states in profiles, state-variable continuity treatments); trace the shared fixture (glass strike) as run 004 | `plan/`, schema, `director.py`, profiles, treatments, run 004 | every gap has a status with a reason; run 004 `check` GREEN and read-back MATCH; no new field without a consumer | T02 | todo |
+| T37 | Second ingest: one of the owner's `Completed MD` returns chosen by the gap log (e.g. `07 CPCS World Model _ Causal State _ Attention Gap Closure.md` for the world, attention and continuity passes) | same | world and attention passes gain treatments a run uses | T36 | todo |
+
 ## Phase 2 — evidence (owner renders; implementer prepares)
 
 | Id | Task | Files | Acceptance | Depends | Status |
@@ -77,7 +84,7 @@ done · blocked. Update this file and `STATUS.md` when a task changes state. Req
 
 | Id | Task | Acceptance | Depends | Status |
 |---|---|---|---|---|
-| T70 | Ingest one owner document by hand into treatments and sub-modules; write the procedure from what was done (`plan/INGEST.md`) | a new sub-module and a new pass added with no code edit | T30 | todo |
+| T70 | Revise `plan/INGEST.md` from what T36 and T37 taught; prove it by adding a new sub-module and a new pass from a return with no code edit | a new sub-module and a new pass added with no code edit | T36, T37 | todo |
 | T71 | Gap log → research prompts: `director.py gaps --prompts` groups `gaps.jsonl` into research questions | owner receives a list | T32 | todo |
 
 ## Phase 9 — more models

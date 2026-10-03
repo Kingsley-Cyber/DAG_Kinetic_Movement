@@ -8,6 +8,8 @@
 4. `plan/TASKS.md` — pick the first `todo` task whose dependencies are `done`.
 5. `plan/ARCHITECTURE.md` sections the task touches; `plan/CONTROL_LAYER.md` for the R-ids.
 6. `plan/OWNER_INPUTS.md` when the task touches intent, taste, time or movement.
+6b. `plan/INGEST.md` whenever the task starts from a research return. Knowledge enters the
+    compiler only through that procedure; a claim without a decision path is parked, not coded.
 7. The reference implementation for the pattern: `director/tools/director.py`,
    `director/tools/tests/test_director.py`, `director/runs/001_bottle_selfie/`.
 

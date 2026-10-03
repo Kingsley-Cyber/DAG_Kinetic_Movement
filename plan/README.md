@@ -16,8 +16,9 @@ order:
 | 5 | `ARCHITECTURE.md` | the design in depth: pipeline, reasoning layer, control layer, time and beats, movement control layer, knowledge format, dialects, steering, mapping onto the research |
 | 6 | `CONTROL_LAYER.md` | the control layer as checkable requirements R-01…R-33 with status |
 | 7 | `OWNER_INPUTS.md` | the owner's intents from the planning conversation, in full |
-| 8 | `PHASES.md` | phases, exit tests, budgets, kill criteria, render-evidence procedure |
-| 9 | `DECISIONS.md` | decisions, governance overrides, admission ledger, not-doing list, open questions |
+| 8 | `INGEST.md` | how a research return becomes compiler rules: the return contract, the decision-path chain, the procedure, provider lifecycle, the DMR first ingest |
+| 9 | `PHASES.md` | phases, exit tests, budgets, kill criteria, render-evidence procedure |
+| 10 | `DECISIONS.md` | decisions, governance overrides, admission ledger, not-doing list, open questions |
 | — | `legacy/` | previous AGENTS/CLAUDE instructions (not operative) |
 
 Reference implementation of phases 0–1: `director/` (see `HANDOFF.md → What exists on disk`).
