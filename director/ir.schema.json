@@ -130,6 +130,7 @@
           "caused_by": {"type": "array", "items": {"type": "string"}},
           "key_pose": {"type": ["string", "null"]},
           "importance": {"type": "number", "minimum": 0, "maximum": 1},
+          "relative": {"$ref": "#/$defs/relative"},
           "origin": {"$ref": "#/$defs/origin"}
         }
       }
@@ -158,9 +159,40 @@
         }
       }
     },
+    "anchors": {
+      "type": "array",
+      "description": "Baselines for relative prompting (R-16): one visible fact per quality, on a named beat.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "quality", "beat", "label", "description"],
+        "properties": {
+          "id": {"type": "string"},
+          "quality": {"$ref": "#/$defs/quality"},
+          "beat": {"type": "string"},
+          "label": {"type": "string", "description": "short phrase used to refer back, e.g. 'the first cast'"},
+          "description": {"type": "string", "minLength": 20, "description": "a visible fact, not an adjective"}
+        }
+      }
+    },
     "notes": {"type": "array", "items": {"type": "string"}}
   },
   "$defs": {
+    "quality": {"enum": ["speed", "weight", "reach", "size", "intensity", "distance", "tempo"]},
+    "relative": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["quality", "relative_to", "step", "direction"],
+        "properties": {
+          "quality": {"$ref": "#/$defs/quality"},
+          "relative_to": {"type": "string", "description": "anchor id; a delta never points at another delta"},
+          "step": {"enum": ["slightly", "more", "much"]},
+          "direction": {"enum": ["more", "less"]}
+        }
+      }
+    },
     "origin": {"enum": ["USER_EXPLICIT", "SOURCE_EVIDENCE", "INFERENCE", "CREATIVE_CHOICE", "PROJECT_DERIVED", "PROVIDER_EXPERIMENT", "UNVERIFIED", "CONTRADICTED", "UNKNOWN"]}
   }
 }

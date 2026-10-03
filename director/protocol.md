@@ -92,6 +92,14 @@ Plan pose-to-pose: write `end_state` first.
 `holding:<object id>` or `on:<surface>`. A selfie or handheld shot keeps one hand on `camera`
 for every beat unless a stage explicitly props or releases the phone.
 
+**Anchors and deltas** (relative prompting): `anchors[] = {id, quality, beat, label, description}`
+where `quality` is one of speed, weight, reach, size, intensity, distance, tempo, `label` is the
+short phrase used to refer back ("the first reach") and `description` is a visible fact. A later
+beat carries `relative: [{quality, relative_to: <anchor id>, step: slightly | more | much,
+direction: more | less}]`; one delta per quality per beat; the anchor's beat must be earlier.
+The emitter writes the anchor once after its beat and the delta as "…, slightly slower than the
+first reach".
+
 **Laban** (performance pass): never a bare pole word. Each factor is a scaled position with a
 confidence: `{"weight": 0.3, "time": 0.4, "space": 0.7, "flow": 0.6, "confidence": 0.5}` where 0 is
 the first pole (light, sustained, indirect, free) and 1 the second (strong, sudden, direct,

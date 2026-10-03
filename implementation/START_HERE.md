@@ -44,8 +44,9 @@ original tests in director/tools/tests/test_director.py; add new tests in new cl
 - **Records at the end of every work order:** `implementation/QUEUE.md` status;
   `plan/STATUS.md` entry (done, next, blocked); `plan/TASKS.md` status; `plan/DECISIONS.md` for any
   decision; `director/gaps.jsonl` for every INFERENCE; local commit naming the work order.
-- **Budgets:** if `director/tools/director.py` passes about 800 lines, split it into modules
-  inside `director/tools/` keeping the one CLI. Do not add dependencies.
+- **Code layout:** `director/tools/dircheck.py` (validators, loaders, lint), `diremit.py`
+  (emitter), `director.py` (CLI; re-exports `check` and `emit`). If a module passes about 800
+  lines, split it again keeping the one CLI. Do not add dependencies.
 - **Never:** push, touch other repositories, invent model facts, treat a convention or a
   third-party doc as fact, implement the test names cited inside `cpcs/` cards, add a layer or
   requirement that no work order asks for.

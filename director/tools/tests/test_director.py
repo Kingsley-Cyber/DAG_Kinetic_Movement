@@ -320,5 +320,108 @@ class ReviewRegressions(unittest.TestCase):
             tr.cleanup()
 
 
+class RelativePrompting(unittest.TestCase):
+    """WO-01 / R-16, R-59: anchors, deltas, magnitude and vague-word lint."""
+
+    @staticmethod
+    def _anchor(ir, beat="b2", quality="speed"):
+        ir.setdefault("anchors", []).append({
+            "id": "a1", "quality": quality, "beat": beat, "label": "the first reach",
+            "description": "She reaches for the bottle at an ordinary, everyday pace"})
+
+    @staticmethod
+    def _beat(ir, bid):
+        return [b for b in ir["beats"] if b["id"] == bid][0]
+
+    def test_unknown_anchor_reference_fails(self):
+        def mutate(ir):
+            self._beat(ir, "b5")["relative"] = [{"quality": "speed", "relative_to": "nope", "step": "slightly", "direction": "less"}]
+        self.assertTrue(any("unknown anchor" in e for e in errors_for(mutate)))
+
+    def test_anchor_not_earlier_than_delta_fails(self):
+        def later(ir):
+            self._anchor(ir, beat="b5")
+            self._beat(ir, "b2")["relative"] = [{"quality": "speed", "relative_to": "a1", "step": "more", "direction": "more"}]
+        self.assertTrue(any("anchor is not earlier" in e for e in errors_for(later)))
+
+        def same(ir):
+            self._anchor(ir, beat="b5")
+            self._beat(ir, "b5")["relative"] = [{"quality": "speed", "relative_to": "a1", "step": "more", "direction": "more"}]
+        self.assertTrue(any("anchor is not earlier" in e for e in errors_for(same)))
+
+    def test_two_deltas_same_quality_on_one_beat_fail(self):
+        def mutate(ir):
+            self._anchor(ir)
+            self._beat(ir, "b5")["relative"] = [
+                {"quality": "speed", "relative_to": "a1", "step": "slightly", "direction": "less"},
+                {"quality": "speed", "relative_to": "a1", "step": "much", "direction": "more"}]
+        self.assertTrue(any("one escalation per quality" in e for e in errors_for(mutate)))
+
+    def test_quality_mismatch_fails(self):
+        def mutate(ir):
+            self._anchor(ir, quality="speed")
+            self._beat(ir, "b5")["relative"] = [{"quality": "weight", "relative_to": "a1", "step": "more", "direction": "more"}]
+        self.assertTrue(any("quality mismatch" in e for e in errors_for(mutate)))
+
+    def test_anchor_on_unknown_beat_fails(self):
+        def mutate(ir):
+            self._anchor(ir, beat="b99")
+        self.assertTrue(any("anchor references unknown beat" in e for e in errors_for(mutate)))
+
+    def _check(self, mutate):
+        tr = TempRun(mutate)
+        try:
+            return director.check(tr.dir)
+        finally:
+            tr.cleanup()
+
+    def test_bare_magnitude_word_warns_but_check_stays_green(self):
+        def mutate(ir):
+            self._beat(ir, "b3")["description"] += ". She pulls hard"
+        res = self._check(mutate)
+        self.assertEqual(res.errors, [])
+        self.assertTrue(any("bare magnitude word 'hard'" in w for w in res.warnings), res.warnings)
+
+    def test_named_technique_does_not_warn(self):
+        def mutate(ir):
+            self._beat(ir, "b4")["description"] += ". A hard cut would hide it, and slow motion is not used"
+        res = self._check(mutate)
+        self.assertFalse(any("bare magnitude word" in w for w in res.warnings), res.warnings)
+
+    def test_comparative_with_than_does_not_warn(self):
+        def mutate(ir):
+            self._beat(ir, "b5")["description"] += ". Her arm is fast here, more than in the first reach"
+        res = self._check(mutate)
+        self.assertFalse(any("bare magnitude word" in w for w in res.warnings), res.warnings)
+
+    def test_vague_style_word_warns(self):
+        def mutate(ir):
+            self._beat(ir, "b1")["description"] += ". It looks cinematic"
+        res = self._check(mutate)
+        self.assertEqual(res.errors, [])
+        self.assertTrue(any("vague style word 'cinematic'" in w for w in res.warnings), res.warnings)
+
+    def test_treatment_wording_is_not_linted(self):
+        res = director.check(RUN)  # the capture treatment says "not cinematic"; only IR free text is scanned
+        self.assertFalse(any("vague style word" in w or "bare magnitude word" in w for w in res.warnings), res.warnings)
+
+    def test_emit_writes_anchor_once_then_comparison(self):
+        def mutate(ir):
+            self._anchor(ir)
+            self._beat(ir, "b5")["relative"] = [{"quality": "speed", "relative_to": "a1", "step": "slightly", "direction": "less"}]
+        tr = TempRun(mutate)
+        try:
+            director.emit(tr.dir, "seedance")
+            prompt = (tr.dir / "prompt.txt").read_text()
+            receipt = json.loads((tr.dir / "receipt.json").read_text())
+            self.assertEqual(prompt.count("She reaches for the bottle at an ordinary, everyday pace"), 1)
+            self.assertIn("slightly slower than the first reach", prompt)
+            self.assertLess(prompt.index("ordinary, everyday pace"), prompt.index("slightly slower than the first reach"))
+            kinds = [l["source"].get("kind") for l in receipt["lines"] if isinstance(l["source"], dict)]
+            self.assertIn("anchor", kinds)
+        finally:
+            tr.cleanup()
+
+
 if __name__ == "__main__":
     unittest.main()

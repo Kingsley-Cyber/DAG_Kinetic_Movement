@@ -2,6 +2,20 @@
 
 Newest first. One entry per working session or phase exit.
 
+## 2026-10-03 — Queue execution started: WO-01 done
+
+- WO-01 (T16, R-16, R-59): `anchors[]` and beat `relative` deltas in the schema; IR-level checks
+  (unknown anchor, anchor not earlier, one escalation per quality, quality mismatch, anchor on
+  unknown beat); emitter writes the anchor once after its beat and the delta as a comparison;
+  lint warnings for bare magnitude words (named techniques allowed, sentences with "than" pass)
+  and vague style words. 11 new tests, RED first; 61 total green; run 001 `check` GREEN and its
+  prompt byte-identical.
+- Implementation detail recorded: the allowed-phrase list also holds camera terms that contain a
+  flagged word (wide shot, wide lens, wide angle, hard cut, hard light, big close-up).
+- The tool passed 800 lines and was split: `dircheck.py`, `diremit.py`, `director.py` (CLI).
+
+Next: WO-02 (physics causal events).
+
 ## 2026-10-03 — TwelveLabs client refreshed (WO-10) and DMR triage
 
 - **TwelveLabs:** `director/tools/tlclient/` + launcher `director/tools/tl.py`; 24 new unit tests
