@@ -572,5 +572,114 @@ class PassCoupling(unittest.TestCase):
         self.assertEqual(passes["synthesis"]["reads"], ["everything"])
 
 
+class Scratchpad(unittest.TestCase):
+    """WO-03b / R-58, R-60: pass views, per-pass check, open items, saved validation, spacing."""
+
+    def test_pack_returns_reads_locks_treatments_for_pass(self):
+        pack = director.pack(RUN, "camera")
+        self.assertEqual(pack["pass"]["id"], "camera")
+        self.assertIn("beats", pack["reads"])
+        self.assertIn("pathways", pack["reads"])
+        self.assertTrue(all(c["lock"] for c in pack["locked_controls"]))
+        self.assertIn("c_chain", [c["id"] for c in pack["locked_controls"]])
+        ids = [t["id"] for t in pack["treatments"]]
+        self.assertIn("camera.selfie_framing", ids)
+        self.assertIn("camera.move_from_catalog", ids)
+        self.assertEqual(pack["open_items"], [])
+
+    def test_pack_camera_includes_move_functions(self):
+        pack = director.pack(RUN, "camera")
+        self.assertGreaterEqual(len(pack["camera_moves"]), 46)
+        self.assertTrue(all("function" in m and "id" in m and "layer" in m for m in pack["camera_moves"]))
+        self.assertNotIn("camera_moves", director.pack(RUN, "time"))
+
+    def test_check_pass_limits_rules_and_marks_others_not_applicable(self):
+        def mutate(ir):
+            ir["controls"] = [c for c in ir["controls"] if c["pass"] != "camera"]  # camera failure
+            for h in ir["hands"]:
+                if h["hand"] == "right" and h["beat"] == "b3":
+                    h["state"] = "camera"                                           # interaction failure
+        tr = TempRun(mutate)
+        try:
+            full = director.check(tr.dir)
+            cam = director.check(tr.dir, only_pass="camera")
+            self.assertTrue(any("holds the camera" in e for e in full.errors))
+            self.assertTrue(cam.errors and all(e.startswith("camera") for e in cam.errors), cam.errors)
+            by_group = {o["rule"]: o["outcome"] for o in cam.outcomes}
+            self.assertEqual(by_group["camera"], "fail")
+            self.assertEqual(by_group["hands"], "not_applicable")
+        finally:
+            tr.cleanup()
+
+    def test_check_writes_report_and_no_write_suppresses_it(self):
+        tr = TempRun()
+        try:
+            self.assertEqual(director.main(["check", str(tr.dir), "--no-write"]), 0)
+            self.assertFalse((tr.dir / "check_report.json").exists())
+            self.assertEqual(director.main(["check", str(tr.dir)]), 0)
+            report = json.loads((tr.dir / "check_report.json").read_text())
+            self.assertTrue(report["ok"])
+            self.assertIn("outcomes", report)
+            self.assertIn("ir_sha256", report)
+        finally:
+            tr.cleanup()
+
+    def _open(self, tr, status):
+        line = {"id": "o1", "kind": "revision_request", "from_pass": "camera", "to_pass": "time",
+                "field": "beats.b4.min_s", "reason": "the cap release needs a longer hold to read", "status": status,
+                "resolution": None if status == "open" else "time raised b4 to 0.8 s"}
+        (tr.dir / "open.jsonl").write_text(json.dumps(line) + "\n")
+
+    def test_open_revision_request_blocks_emit(self):
+        tr = TempRun()
+        try:
+            self._open(tr, "open")
+            with self.assertRaises(SystemExit) as ctx:
+                director.emit(tr.dir, "seedance")
+            self.assertIn("open items block emit", str(ctx.exception))
+            self.assertEqual(len(director.pack(tr.dir, "time")["open_items"]), 1)
+        finally:
+            tr.cleanup()
+
+    def test_resolved_items_do_not_block_emit(self):
+        tr = TempRun()
+        try:
+            self._open(tr, "resolved")
+            director.emit(tr.dir, "seedance")
+            self.assertTrue((tr.dir / "prompt.txt").exists())
+        finally:
+            tr.cleanup()
+
+    def test_constant_motion_warns_when_action_active_and_no_spacing(self):
+        def activate(ir):
+            for p in ir["pass_plan"]:
+                if p["pass"] == "action":
+                    p["active"], p["reason"] = True, "a body moves"
+        tr = TempRun(activate)
+        try:
+            self.assertTrue(any("constant motion" in w for w in director.check(tr.dir).warnings))
+        finally:
+            tr.cleanup()
+
+        def spaced(ir):
+            activate(ir)
+            ir["beats"][2]["spacing"] = "ease_in"
+        tr = TempRun(spaced)
+        try:
+            self.assertFalse(any("constant motion" in w for w in director.check(tr.dir).warnings))
+        finally:
+            tr.cleanup()
+
+    def test_spacing_clause_is_emitted(self):
+        def mutate(ir):
+            ir["beats"][2]["spacing"] = "ease_in"
+        tr = TempRun(mutate)
+        try:
+            director.emit(tr.dir, "seedance")
+            self.assertIn("starting slow and accelerating", (tr.dir / "prompt.txt").read_text())
+        finally:
+            tr.cleanup()
+
+
 if __name__ == "__main__":
     unittest.main()

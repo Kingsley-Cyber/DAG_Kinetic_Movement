@@ -11,6 +11,7 @@ from typing import Dict, List, Optional, Tuple
 from dircheck import (
     FIELD_CLAUSE,
     PROFILES_DIR,
+    blocking_open_items,
     check,
     comparison_clause,
     load_ir,
@@ -23,6 +24,13 @@ from dircheck import (
 # Text fallbacks for API-level controls when the selected route has no native field for them.
 # A native control is never dropped silently: it is carried as text (compressed_to_text, with a
 # loss record) or, when locked and no text form exists, emission blocks.
+# Spacing (R-60) written as visible behaviour, never as the term. `even` adds nothing.
+SPACING_CLAUSE = {
+    "ease_in": "starting slow and accelerating",
+    "ease_out": "arriving fast and settling",
+    "ease_in_out": "easing in and out",
+}
+
 NATIVE_TEXT = {
     "duration_s": "{v}-second clip",
     "aspect_ratio": "{v} aspect ratio",
@@ -120,6 +128,13 @@ def emit(run_dir: Path, model: str) -> dict:
     result = check(run_dir)
     if not result.ok():
         raise SystemExit("emit blocked: check failed\n" + "\n".join(" - " + e for e in result.errors))
+    try:
+        blocking = blocking_open_items(run_dir)
+    except ValueError as exc:
+        raise SystemExit("emit blocked: %s" % exc)
+    if blocking:
+        raise SystemExit("emit blocked: open items block emit: %s"
+                         % "; ".join("%s (%s → %s: %s)" % (i["id"], i["from_pass"], i["to_pass"], i["field"]) for i in blocking))
     ir = load_ir(run_dir)
     profile = load_yaml(PROFILES_DIR / ("%s.yaml" % model))
     treatments = load_treatments()
@@ -152,10 +167,11 @@ def emit(run_dir: Path, model: str) -> dict:
     for i, b in enumerate(beats):
         lead = "First," if i == 0 else ("Finally," if i == n - 1 else "Then")
         delta = comparison_clause(b["relative"], anchors_by_id) if b.get("relative") else ""
+        spacing = SPACING_CLAUSE.get(b.get("spacing") or "", "")
         def beat_text(desc: str, with_pose: bool) -> str:
             desc = desc.strip().rstrip(".")
             body = desc[0].lower() + desc[1:] if desc and lead != "First," else desc
-            t = "%s %s%s." % (lead, body, ", " + delta if delta else "")
+            t = "%s %s%s%s." % (lead, body, ", " + spacing if spacing else "", ", " + delta if delta else "")
             if with_pose and b.get("key_pose"):
                 t += " Key pose: %s." % b["key_pose"].strip().rstrip(".")
             return t

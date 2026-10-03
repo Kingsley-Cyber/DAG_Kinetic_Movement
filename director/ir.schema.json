@@ -354,6 +354,22 @@
           },
           "origin": {
             "$ref": "#/$defs/origin"
+          },
+          "spacing": {
+            "enum": [
+              "ease_in",
+              "ease_out",
+              "ease_in_out",
+              "even"
+            ],
+            "description": "how the motion of this beat is spaced; `even` (constant) needs a recorded reason"
+          },
+          "pose_role": {
+            "enum": [
+              "key",
+              "extreme",
+              "breakdown"
+            ]
           }
         }
       }
@@ -617,6 +633,10 @@
           }
         }
       }
+    },
+    "variant_id": {
+      "type": "string",
+      "description": "identifies one creative run; re-reasoning from the same scratchpad gets a new id"
     }
   },
   "$defs": {

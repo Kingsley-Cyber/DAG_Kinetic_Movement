@@ -150,13 +150,14 @@ class CheckResult:
         self.warnings: List[str] = []
         self.notes: List[str] = []
         self.fit: dict = {}
+        self.outcomes: List[dict] = []
 
     def ok(self) -> bool:
         return not self.errors
 
     def to_dict(self) -> dict:
         return {"ok": self.ok(), "errors": self.errors, "warnings": self.warnings,
-                "notes": self.notes, "fit": self.fit}
+                "notes": self.notes, "fit": self.fit, "outcomes": self.outcomes}
 
 
 def _field_owner(field: str, passes: dict) -> Optional[str]:
@@ -188,7 +189,7 @@ def _causal_closure(beats: List[dict]) -> Dict[str, set]:
     return {b["id"]: reach(b["id"]) for b in beats}
 
 
-def check(run_dir: Path) -> CheckResult:
+def _check_all(run_dir: Path) -> CheckResult:
     res = CheckResult()
     ir = load_ir(run_dir)
     schema = load_json(SCHEMA_PATH)
@@ -300,6 +301,12 @@ def check(run_dir: Path) -> CheckResult:
             elif (event_beat[dep] in beat_order and ev["beat"] in beat_order
                   and beat_order[event_beat[dep]] >= beat_order[ev["beat"]]):
                 res.errors.append("physics_events %s: depends_on '%s' which is not earlier (cause before effect)" % (ev["event_id"], dep))
+
+    # spacing (R-60): constant motion throughout is the default failure
+    if "action" in active:
+        declared = [b["spacing"] for b in beats if b.get("spacing")]
+        if not declared or all(s == "even" for s in declared):
+            res.warnings.append("beats: constant motion: no beat declares spacing other than 'even' (ease_in, ease_out, ease_in_out)")
 
     # wording lint on LLM-written free text (warnings; treatment wording is not scanned)
     for b in beats:
@@ -509,3 +516,137 @@ def check(run_dir: Path) -> CheckResult:
             res.errors.append("camera: no camera.framing or camera.optics control (explicit camera grammar is mandatory)")
 
     return res
+
+
+# ----------------------------------------------------------------------------- scratchpad (R-58)
+
+# Which pass owns each rule group. Error and warning messages start with the group name.
+GROUP_OWNER = {
+    "pass_plan": "synthesis",
+    "beats": "time",
+    "fit": "time",
+    "anchors": "time",
+    "hands": "interaction",
+    "pathway": "interaction",
+    "physics_events": "physics",
+    "camera": "camera",
+}
+OPEN_KINDS = ("alternative", "conflict", "revision_request")
+OPEN_STATUSES = ("open", "resolved", "escalated")
+OPEN_REQUIRED = ("id", "kind", "from_pass", "to_pass", "field", "reason", "status")
+
+
+def _group_of(message: str, control_pass: Dict[str, str]) -> Tuple[str, Optional[str]]:
+    """Return (rule group, owner pass) for one error or warning message."""
+    head = re.match(r"^([a-z_]+)(?: ([A-Za-z0-9_.-]+))?", message)
+    group = head.group(1) if head else "other"
+    if group == "controls":
+        return "controls", control_pass.get(head.group(2) or "")
+    if group == "schema":
+        return "schema", None
+    return group, GROUP_OWNER.get(group)
+
+
+def check(run_dir: Path, only_pass: Optional[str] = None) -> CheckResult:
+    """Validate a run. With `only_pass`, keep only the rules that pass owns (per-pass acceptance)."""
+    res = _check_all(run_dir)
+    try:
+        control_pass = {c["id"]: c["pass"] for c in load_ir(run_dir).get("controls", []) if isinstance(c, dict) and "id" in c}
+    except Exception:
+        control_pass = {}
+    failing: Dict[str, set] = {}
+    for message in res.errors:
+        group, owner = _group_of(message, control_pass)
+        failing.setdefault(group, set()).add(owner)
+    groups = sorted(set(GROUP_OWNER) | {"controls"})
+    outcomes = []
+    for group in groups:
+        owner = GROUP_OWNER.get(group)
+        if only_pass is not None and group != "controls" and owner != only_pass:
+            outcome = "not_applicable"
+        elif only_pass is not None and group == "controls" and only_pass not in failing.get("controls", {only_pass}):
+            outcome = "pass"
+        elif group in failing and (only_pass is None or group != "controls" or only_pass in failing[group]):
+            outcome = "fail"
+        else:
+            outcome = "pass"
+        outcomes.append({"rule": group, "owner": owner or "per control", "outcome": outcome})
+    if res.fit.get("verdict") == "UNDERSPECIFIED":
+        for o in outcomes:
+            if o["rule"] == "fit" and o["outcome"] == "pass":
+                o["outcome"] = "indeterminate"
+    res.outcomes = outcomes
+    if only_pass is not None:
+        def keep(message: str) -> bool:
+            group, owner = _group_of(message, control_pass)
+            return group == "schema" or owner == only_pass
+        res.errors = [m for m in res.errors if keep(m)]
+        res.warnings = [m for m in res.warnings if keep(m)]
+    return res
+
+
+def load_open_items(run_dir: Path) -> List[dict]:
+    """Read open.jsonl (alternatives, conflicts, revision requests). Missing file = no items."""
+    path = Path(run_dir) / "open.jsonl"
+    if not path.exists():
+        return []
+    items = []
+    for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            item = json.loads(line)
+        except ValueError:
+            raise ValueError("open.jsonl line %d: not valid JSON" % n)
+        missing = [k for k in OPEN_REQUIRED if k not in item]
+        if missing or item.get("kind") not in OPEN_KINDS or item.get("status") not in OPEN_STATUSES:
+            raise ValueError("open.jsonl line %d: needs %s; kind in %s; status in %s"
+                             % (n, ", ".join(OPEN_REQUIRED), "/".join(OPEN_KINDS), "/".join(OPEN_STATUSES)))
+        items.append(item)
+    return items
+
+
+def blocking_open_items(run_dir: Path) -> List[dict]:
+    return [i for i in load_open_items(run_dir)
+            if i["status"] == "open" and i["kind"] in ("conflict", "revision_request")]
+
+
+def pack(run_dir: Path, pass_id: str) -> dict:
+    """The view of the scratchpad one pass receives: its entry, what it reads, locks, treatments, open items."""
+    passes = load_passes()
+    if pass_id not in passes:
+        raise ValueError("unknown pass '%s'" % pass_id)
+    entry = passes[pass_id]
+    ir = load_ir(Path(run_dir))
+    reads: Dict[str, object] = {}
+    wanted = entry.get("reads", [])
+    if "everything" in wanted:
+        wanted = ["entities", "hands", "pathways", "beats", "anchors", "physics_events"] + ["controls:%s" % p for p in passes]
+    for area in wanted:
+        if area.startswith("controls:"):
+            owner = area.split(":", 1)[1]
+            found = [c for c in ir.get("controls", []) if c.get("pass") == owner]
+            if found:
+                reads[area] = found
+        elif ir.get(area):
+            reads[area] = ir[area]
+    treatments = [
+        {"id": t["id"], "triggers": t.get("triggers", []), "not_when": t.get("not_when", []),
+         "from": t.get("from"), "origin": t.get("origin"), "path": t["_path"]}
+        for t in load_treatments().values() if t.get("pass") == pass_id
+    ]
+    out = {
+        "run_id": ir.get("run_id"),
+        "ask": ir.get("ask"),
+        "clip": ir.get("clip"),
+        "pass": {k: entry.get(k) for k in ("id", "tier", "activate", "when", "after", "owns", "reads", "question", "sub_modules", "notes", "procedure") if entry.get(k) is not None},
+        "reads": reads,
+        "locked_controls": [c for c in ir.get("controls", []) if c.get("lock")],
+        "treatments": sorted(treatments, key=lambda t: t["id"]),
+        "open_items": [i for i in load_open_items(Path(run_dir)) if i.get("to_pass") == pass_id and i.get("status") == "open"],
+    }
+    if pass_id == "camera":
+        moves = load_yaml(ROOT / "vocab" / "camera_moves.yaml")["moves"]
+        out["camera_moves"] = [{"id": m["id"], "layer": m["layer"], "category": m["category"], "function": m["function"]} for m in moves]
+    return out
+

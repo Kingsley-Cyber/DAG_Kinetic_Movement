@@ -27,7 +27,17 @@ Newest first. One entry per working session or phase exit.
   rule that an event's trigger names actor and part. 6 new tests, RED first; 75 total green; run
   001 unchanged.
 
-Next: WO-03b (scratchpad, pass views, spacing).
+- WO-03b (R-58, R-60): `director.py pack <run> <pass>` (the pass's view: entry, reads, locked
+  controls, treatments, open items; camera also gets the 48 moves with function hints);
+  `check --pass <pass>` (only the rules that pass owns; others `not_applicable`); full `check`
+  writes `check_report.json` (typed outcomes per rule group, IR hash); `open.jsonl` with open
+  conflicts or revision requests blocks `emit`; beat `spacing` and `pose_role`; the
+  "constant motion" warning when the action pass is active and nothing declares spacing; spacing
+  emitted as visible behaviour. 8 new tests, RED first; 83 total green; run 001 unchanged.
+  Deviation from the work order: the report carries the IR hash, not a timestamp, so the file
+  does not change between identical runs.
+
+Next: WO-04 (run 002, the handoff test).
 
 ## 2026-10-03 — TwelveLabs client refreshed (WO-10) and DMR triage
 
