@@ -145,6 +145,50 @@ a prop or release is declared). Code checks: no hand holds two things; a stage n
 finds N free; ownership changes only through an overlapping grip; a held object persists until a
 release stage.
 
+### 2.7 Explicit versus open (owner: "certain things should be explicit")
+
+What must be **stated** in the IR and the prompt, and what may be left **open** for the LLM to
+author (labelled CREATIVE_CHOICE or INFERENCE, never presented as research) or for the model.
+
+| Pass | Must be explicit | May be open |
+|---|---|---|
+| intent | what happens and why it matters to the viewer; each change of intention | subtext, tone |
+| entity | who and what; which side or hand; what stays identical | wardrobe, look when unspecified |
+| interaction | every contact: who, which hand or part, on what surface; the stages in order | grip variant when several work |
+| physics | the stated reaction to every contact; the settle pose for ground or water endings | secondary flourishes |
+| world | what changes state and stays changed | ambient background life |
+| time | event order; the anchor beat; which moment is the apex | exact seconds when no duration is given |
+| staging | who is where; screen direction across a contact | incidental blocking |
+| continuity | locks on identity and objects; what persists | — |
+| performance | visible behaviour for any quality that matters, relative to its anchor | register details, micro-behaviour |
+| camera | camera grammar: where, movement, lens, end state (mandatory) | stance, shot function when the ask is silent |
+| light_color, style | the look when the user named one | everything else, as CREATIVE_CHOICE |
+| audio | any spoken line, verbatim | ambience |
+
+When the ask leaves something open ("anime fight between wizards"), the LLM invents how the
+action unfolds; the invention is labelled, and it is still bound by the explicit column.
+"Wizard fight" does not automatically mean fast movement, strong Effort and a moving camera: those
+are contextual judgements held as soft defaults the LLM may override with a recorded reason.
+
+### 2.8 The passes connect (coherence across passes)
+
+Choosing each layer independently produces an incoherent prompt: a full-body spell cast changes the
+movement pathway, the anticipation, the contact reaction, the beat timing and what the camera
+needs. Two mechanisms carry dependencies forward:
+
+- **`reads` per pass** (`passes.yaml`): the earlier decisions a pass must receive in its pack.
+  Camera reads beats, pathways, causal events and contact states; time reads pathway stages and
+  causal events; performance reads beats, anchors and causal-event force; physics reads pathways
+  and the world bundle; synthesis reads everything.
+- **Coupling checks** (code, small set): the camera control on a beat is consistent with that
+  beat's contact state (an `occluded_contact` beat cannot have a framing that shows the contact
+  point; a `physical_contact_confirmed` beat cannot be hidden); a power action's Effort scale
+  agrees in direction with its causal-event force delta; beat timing covers every pathway stage
+  assigned to the beat; a later-tier control never contradicts a Reason-tier lock.
+
+The LLM authors the scene; explicit state, relative relationships and checks keep its decisions
+coherent. A persuasive rationale is not evidence; origin tags and render verdicts are.
+
 ## 3. Control layer
 
 ### 3.1 Controls
@@ -324,12 +368,28 @@ relative word against the anchor expression, one step at a time (§3.5.3).
 
 #### 3.5.3 Relative prompting with anchors (owner rule)
 
-The prompt never states two absolute intensities side by side. It sets one **anchor** (the
-baseline movement, stated once) and expresses each escalation **relative to the anchor, one unit at
-a time**: "the second swing is faster and lands heavier than the first", not two separate
-speeds. This matches the scaled Laban values: the IR stores the scale; the emitter writes the
-anchor and the step. Validators flag two absolute magnitude words for the same quality in one
-clause.
+**A compile invariant, not a style tip (owner: "relativity prompting is a must; no absolute").**
+A video model has no absolute scale; the only magnitudes it can honour are comparisons inside the
+clip. The prompt never states two absolute intensities side by side. It sets one **anchor** (the
+baseline, stated once) and expresses each escalation **relative to the anchor, one unit at a
+time**: "the second swing is faster and lands heavier than the first", not two separate speeds.
+
+- **Anchors are first-class in the IR:** `anchors[] = {id, quality (speed, weight, reach, size,
+  intensity, distance, …), beat, description}`. The anchor's description is a **visible fact**
+  ("a compact cast held close to the chest, hands at shoulder width"), never an adjective, because
+  the anchor itself cannot be relative.
+- **Later beats and controls carry a delta:** `relative_to: <anchor id>` plus a step
+  (`slightly | more | much`) and a direction (`more | less`) on the same quality. The scaled Laban
+  values and causal-event `force` use the same mechanism (`force.relative_to`).
+- **One escalation per quality against one anchor.** No chains ("faster than the second, which
+  was heavier than the first").
+- **Emitter:** writes the anchor once in its beat, then each delta as a comparison in words.
+- **Hard check:** a magnitude word (fast, heavy, strong, wide, hard, big, and their comparatives
+  without a referent) with no anchor in scope fails; two absolute magnitude words for one quality
+  in one clause fail.
+
+Hypothesis status: that relative wording improves adherence is untested on renders; as a
+discipline for a coherent IR it holds regardless.
 - Each quality has three strengths of wording: numeric (experiment only), the Laban term, and a
   visible body consequence (what a caption would say). The pole → visible-body mapping does not
   exist in the research yet and is a named gap.

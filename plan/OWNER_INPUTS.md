@@ -236,7 +236,32 @@ Evidence status: the frameworks are real literature; none is verified on a video
 covers motion generation only; the camera position sub-layer, causal event schema and dialect
 fields are design proposals. Mapping onto the passes: ARCHITECTURE §2.1a.
 
-## 21. On old plans
+## 21. Explicitness, relativity, and coherent steering (2026-10-03)
+
+"Certain things should be explicit, and relativity prompting for AI video models is a must. No
+absolute." Relative prompting is a compilation invariant: establish an anchor, then express
+changes against it; keep actors, contacts and event order explicit.
+
+Steering governs the whole creative process, including inventing how the action unfolds when the
+user leaves it open ("anime fight between wizards" activates action, movement quality, body
+connectivity, magical cause and effect, rhythm, staging and camera). Each pass receives the scene
+decisions it needs, the research and explicit constraints; the LLM fills creative gaps from its
+training, labelled CREATIVE_CHOICE or INFERENCE, never as research. The passes must connect: a
+full-body spell cast changes pathway, anticipation, contact reaction, beat timing and camera.
+"Wizard fight" must not automatically become fast movement, strong Effort and a moving camera.
+Example: a compact first cast, then the next cast wider than the first, beginning in the planted
+foot and travelling through hips and shoulder into the casting hand; the camera follows that
+chosen action.
+
+Open terminology: "Laban has three layers" may mean the movement control stack (Laban quality,
+Bartenieff origination, film grammar) or the wording rungs (numeric, Laban term, visible wording);
+owner to say which.
+
+Also proposed in pasted notes and **not yet adopted** (owner decision pending): a Python
+orchestrator loop that builds each pass prompt, validates each pass output with retry, logs every
+pass (inputs, output, rationale, variant id) and sets temperature per pass type.
+
+## 22. On old plans
 
 "Be careful with any old plans being integrated as it can misalign the current plan." Audit in
 `DECISIONS.md` (admission ledger, overrides, not-doing list).

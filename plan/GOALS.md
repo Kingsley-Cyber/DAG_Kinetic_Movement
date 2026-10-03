@@ -49,7 +49,11 @@ diversity rather than one formula.
 5. No invented precision. Every number inherits the origin of its inputs; conventions are
    labelled conventions.
 6. Everything scaled, nothing absolute: Laban and other qualities are positions on a scale with a
-   confidence; prompts use one anchor and one relative escalation, never two absolutes.
+   confidence. Relative prompting is a compile invariant: one anchor stated as a visible fact, then
+   one relative escalation per quality; a bare magnitude word fails the check.
+6b. Explicit where the contract says so (actors, hands, contact surfaces, event order, reactions,
+   end states, camera grammar); open elsewhere, authored by the LLM and labelled. The passes
+   connect: each reads the earlier decisions it depends on.
 7. Camera grammar is mandatory on every prompt. Every contact has a stated reaction.
 8. Old plans and old code enter only as knowledge or as a validator of LLM output, with a named
    consumer (admission ledger in `DECISIONS.md`).

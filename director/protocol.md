@@ -97,6 +97,18 @@ confidence: `{"weight": 0.3, "time": 0.4, "space": 0.7, "flow": 0.6, "confidence
 the first pole (light, sustained, indirect, free) and 1 the second (strong, sudden, direct,
 bound). The emitter turns scales into wording.
 
+## 4·0 Three invariants for every pass
+
+1. **Relative, never absolute.** Set one anchor per quality as a visible fact on a named beat
+   (`anchors[]`). Every later magnitude is a delta against that anchor (`relative_to`, step,
+   direction), one escalation per quality. Do not write a bare magnitude word.
+2. **Explicit where the contract says so** (`plan/ARCHITECTURE.md` §2.7): actors, hands, contact
+   surfaces, event order, the reaction to every contact, end states, camera grammar. Where the ask
+   is silent you author the scene, label it CREATIVE_CHOICE or INFERENCE, and stay inside the
+   explicit column. Soft defaults ("a fight is fast") are overridable with a recorded reason.
+3. **Read before you decide.** Each pass lists `reads` in `passes.yaml`; take those earlier
+   decisions as fixed inputs and make yours consistent with them.
+
 ## 4a. Camera grammar (mandatory on every ask)
 
 Choose the camera move from `director/vocab/camera_moves.yaml` (48 moves in 7 categories, each
