@@ -68,7 +68,12 @@ changes to `/Users/king/ai-video-movement-prompt-system` or `/Users/king/Documen
 4. Agent-run (the LLM session drives; current default) versus a Python orchestrator loop (code
    calls the LLM per pass, validates and retries, logs each pass, sets temperature per pass type).
    Shared pieces (`pack`, per-pass `check`, pass log) serve both. Owner to choose.
-5. What "Laban has three layers" names: the movement control stack or the wording rungs.
+5. What "three layers" names. Three candidate readings: (a) the movement control stack (Laban
+   quality, Bartenieff origination, film grammar); (b) the wording rungs (numeric, Laban term,
+   visible wording); (c) from the owner's earlier voice note as another model heard it: timeline
+   (when things happen across the shot), face (per-second FACS events), performance formula
+   (numeric dials such as Laban values with valence–arousal). Laban's own components are four
+   (Body, Effort, Shape, Space). Owner to say which.
 
 ## Owner inputs log
 
@@ -88,6 +93,7 @@ changes to `/Users/king/ai-video-movement-prompt-system` or `/Users/king/Documen
 | 2026-10-02 | Seedance first | D9 |
 | 2026-10-02 | Movement control layer: world bundle → Laban Effort (scaled) × Shape (3 planes) × Bartenieff (6 patterns) → constraint resolution → strength-scaled emission; four anti-arcade signatures as detectors; priority order | ARCHITECTURE §3.5.1; phases 3–5 |
 | 2026-10-02 | Relative prompting: one anchor, one escalating unit at a time, never two absolutes | ARCHITECTURE §3.5.2; emitter rule |
+| 2026-10-03 | Second critique adopted: relative prompting stays a hard invariant in the IR, but the wording check is a lint warning until an absolute-vs-relative A/B on renders supports a hard failure; named techniques with learned meaning are allowed; coupling checks kept few; wording-rung A/B added (T18) | ARCHITECTURE §3.5.3; CONTROL_LAYER R-16; TASKS T16, T18 |
 | 2026-10-03 | Relative prompting promoted to a compile invariant with anchors in the IR; explicit-versus-open contract per pass; passes connect through `reads` and coupling checks; creative gaps authored by the LLM and labelled | GOALS principle 6; ARCHITECTURE §2.7, §2.8, §3.5.3; protocol §4·0; CONTROL_LAYER R-16, R-56, R-57; TASKS T16, T17 |
 | 2026-10-03 | Owner's eight content layers mapped onto the passes (§2.1a); camera expanded to 12 sub-layers in five groups + stance, shot function, locked-off control; world bundle gains friction, drag, scale, atmosphere; dialect-file fields (defaults_to_counter, access_path, version, date_tested) added to profiles; evidence status recorded: nothing verified on a video model yet | ARCHITECTURE §2.1a, §3.4, §6; passes.yaml; profiles; R-54, R-55; T39 |
 | 2026-10-03 | Camera move catalog (48 moves) as `director/vocab/camera_moves.yaml`, wording UNVERIFIED from aicameramovements.com, function hints PROJECT_DERIVED; camera pass picks by function and states the four-part grammar; zoom is optics, never motion | ARCHITECTURE §3.4; protocol §4a; CONTROL_LAYER R-53; TASKS T38 |

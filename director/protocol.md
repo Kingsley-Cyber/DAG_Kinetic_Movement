@@ -101,7 +101,8 @@ bound). The emitter turns scales into wording.
 
 1. **Relative, never absolute.** Set one anchor per quality as a visible fact on a named beat
    (`anchors[]`). Every later magnitude is a delta against that anchor (`relative_to`, step,
-   direction), one escalation per quality. Do not write a bare magnitude word.
+   direction), one escalation per quality. Avoid bare magnitude words in descriptions (the checker
+   warns); named techniques such as "slow motion" or "real-time" are fine.
 2. **Explicit where the contract says so** (`plan/ARCHITECTURE.md` §2.7): actors, hands, contact
    surfaces, event order, the reaction to every contact, end states, camera grammar. Where the ask
    is silent you author the scene, label it CREATIVE_CHOICE or INFERENCE, and stay inside the

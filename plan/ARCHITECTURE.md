@@ -384,12 +384,21 @@ time**: "the second swing is faster and lands heavier than the first", not two s
 - **One escalation per quality against one anchor.** No chains ("faster than the second, which
   was heavier than the first").
 - **Emitter:** writes the anchor once in its beat, then each delta as a comparison in words.
-- **Hard check:** a magnitude word (fast, heavy, strong, wide, hard, big, and their comparatives
-  without a referent) with no anchor in scope fails; two absolute magnitude words for one quality
-  in one clause fail.
+- **Two levels of enforcement.**
+  - *IR level (hard, now):* every scaled quality on a later beat, and every causal-event `force`,
+    references an anchor. This is about a coherent IR, not about render efficacy, so it does not
+    wait for evidence. The emitter never generates two absolutes from scaled values.
+  - *Wording level (lint warning, until evidence):* a bare magnitude word (fast, heavy, strong,
+    wide, hard, big) in free-text descriptions with no anchor in scope is reported as a warning,
+    not a failure. Named techniques that carry learned meaning are allowed as they are
+    ("slow motion", "real-time", "time-lapse", and any term a model profile lists under
+    `defaults_to_counter`). Absolute words are imprecise, not meaningless.
+- **Promotion rule:** the wording lint becomes a hard failure only if the absolute-versus-relative
+  A/B (T18) shows relative wording is followed better on renders, per model.
 
-Hypothesis status: that relative wording improves adherence is untested on renders; as a
-discipline for a coherent IR it holds regardless.
+Hypothesis status: that a video model honours "heavier than the jab" inside one clip is untested.
+The idea comes from LaMoGen's per-action baselines, which work by optimizing embeddings on a
+motion model, not by wording on a video model.
 - Each quality has three strengths of wording: numeric (experiment only), the Laban term, and a
   visible body consequence (what a caption would say). The pole → visible-body mapping does not
   exist in the research yet and is a named gap.
