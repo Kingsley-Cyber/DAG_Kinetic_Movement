@@ -109,7 +109,10 @@ passes:
     importance: 0.7
     owns: [performance]
     question: "How is it acted: register, face, gaze, posture, breath, movement quality (Laban, scaled), origination (Bartenieff)?"
-    sub_modules: [acting_intent, body, face_facs, gaze_blink, posture, breath, gesture, laban_effort_scaled, laban_shape_planes, bartenieff_patterns, affect]
+    sub_modules: [acting_intent, body, facs_events, gaze_blink, posture, breath, gesture, laban_bess, bartenieff_patterns, affect]
+    notes:
+      facs_events: "spatiotemporal events: action units, laterality, A–E intensity, onset/apex/offset in seconds, co-occurring AUs, head pose, gaze, visibility; compiled to visible behaviour, never emotion words"
+      laban_bess: "Body, Effort (Weight, Time, Space, Flow as scaled values with confidence), Shape (Door, Table, Wheel planes), Space (reach, zone, pathway)"
 
   - id: camera
     tier: style

@@ -144,7 +144,19 @@ emotion via LMA (S2666389923001854); Bartenieff Fundamentals overviews (Wikipedi
 Bartenieff is untested vocabulary; Laban AI label sets: byebye_dab/glide/flick/float; Effort
 Space direct/indirect, Time sudden/sustained, plus Weight and Flow.
 
-## 15. On old plans
+## 15. FACS and BESS
+
+FACS specifies which muscles are active (the action units); laterality (bilateral or one-sided);
+intensity on an A-through-E scale; the temporal phases onset, apex, offset (the timing of the
+movement rising and falling); co-occurrence (which action units fire together, since real
+expressions are combinations, not one isolated unit); plus head pose, gaze direction, and
+visibility or occlusion of the action. "FACS is genuinely a spatiotemporal event description, much
+closer to the richness of a motion-capture log than a simple label."
+
+Laban has four Effort controls (Weight, Time, Space, Flow) inside the BESS framework: Body,
+Effort, Shape, Space.
+
+## 16. On old plans
 
 "Be careful with any old plans being integrated as it can misalign the current plan." Audit in
 `DECISIONS.md` (admission ledger, overrides, not-doing list).

@@ -180,7 +180,7 @@ Movement and motion are controlled in text through three vocabularies, each with
 
 | Layer | Vocabulary | Controls | Pass |
 |---|---|---|---|
-| quality | Laban Effort, Shape, Space, Body | how a movement feels: Weight, Time, Space, Flow as scaled values | performance |
+| quality | Laban BESS: Body, Effort (4 factors), Shape, Space | how a movement feels: Effort Weight, Time, Space, Flow as scaled values; Shape planes; Body part and sequencing; Space reach, zone, pathway | performance |
 | origination | Bartenieff | where a movement starts and how it travels: core-initiated, sequential weight shift, cross-lateral connection, proximal-to-distal | performance, action |
 | film grammar | cinematography | how it is seen: motion layer, optics layer, framing, cuts | camera (**mandatory** on every ask) |
 
@@ -241,7 +241,32 @@ Bartenieff pathways on all power strikes → strength-scaled emitter → world-b
 The numeric Laban calibration contract in the tree applies: values are typed proxies with
 tolerances, never physical units.
 
-#### 3.5.2 Relative prompting with anchors (owner rule)
+#### 3.5.2 FACS as a spatiotemporal event (owner)
+
+FACS is not a label. It is an event description close to a motion-capture log, with these
+dimensions, all of which the IR carries for the face sub-module of the performance pass:
+
+| Dimension | Values | Source cards |
+|---|---|---|
+| action units | which muscles are active (AU codes, e.g. AU6, AU12) | `facs.au_catalog` |
+| laterality | bilateral, left, right (asymmetry is a realism cue) | `facs.bilateral_asymmetry`, `found.numeric.bilateral_side_semantics` |
+| intensity | ordinal A–E; never converted to 0–1 as truth; B–C normal, D one peak, E caricature (lab convention) | `facs.intensity_ordinal_contract` |
+| temporal phases | onset → apex start → apex end → offset, in master-clock seconds, inside a beat | `facs.temporal_event` |
+| co-occurrence | AUs firing together as a combination (AU6+12 genuine smile, AU1+12 polite, AU4+5+7 negative flash, AU4+7 pre-contact in combat) | `facs.relation_layer`, `facs.au_catalog` |
+| head pose and gaze | head orientation change and gaze direction coupled to the event (gaze leads the hand, about 0.12–0.18 s) | `mx.gaze_body_coupling` |
+| visibility / occlusion | whether the action is visible to the camera; an occluded AU is `estimated`, never claimed | `continuity.visibility_not_existence` |
+
+IR shape (to add in T27, read by `check` and `emit`):
+`performance.face_events[] = {id, beat, aus: [], laterality, intensity, onset_s, apex_start_s,
+apex_end_s, offset_s, combination, head_pose, gaze, visibility, origin}`.
+
+Rules: FACS is descriptive, never an emotion claim (`facs.descriptive_not_emotion`); the emitter
+compiles AUs to what the camera sees ("cheeks lift and the eyes crease", not "AU6+12", not "she is
+happy"); onset < apex start ≤ apex end < offset and all inside the beat's span; an asymmetric
+event names its side; an occluded event cannot be a verification target; intensity is emitted as a
+relative word against the anchor expression, one step at a time (§3.5.3).
+
+#### 3.5.3 Relative prompting with anchors (owner rule)
 
 The prompt never states two absolute intensities side by side. It sets one **anchor** (the
 baseline movement, stated once) and expresses each escalation **relative to the anchor, one unit at

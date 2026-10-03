@@ -30,6 +30,9 @@ cite it. The reference implementation of R-01…R-20 is `director/tools/director
 | R-14 | Speech capacity: words ≤ duration × 190 / 60 for any `audio.dialogue` control | done |
 | R-15 | Anti-arcade detectors on power actions: plane transition present; anticipation present; weight-transfer path recorded; Flow alternates | to build (phase 3) |
 | R-16 | Relative prompting: flag two absolute magnitude words for one quality in one clause; require an anchor before an escalation | to build (phase 3) |
+| R-34 | FACS event record in the IR: `aus, laterality, intensity (A–E ordinal), onset/apex_start/apex_end/offset (s), combination, head_pose, gaze, visibility, origin`, bound to a beat | to build (T27) |
+| R-35 | FACS validators: onset < apex start ≤ apex end < offset, inside the beat span; laterality stated when asymmetric; occluded events are never verification targets; intensity never stored as 0–1 | to build (T27) |
+| R-36 | FACS emission: AUs and combinations compile to visible facial behaviour in plain words; no AU codes and no emotion claims in the prompt; intensity emitted relative to the anchor expression | to build (T27) |
 
 ## C. Emitter
 

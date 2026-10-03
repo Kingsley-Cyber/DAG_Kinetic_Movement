@@ -35,6 +35,7 @@ done · blocked. Update this file and `STATUS.md` when a task changes state. Req
 | T24 | Sakuga and UGC texture treatments; the fusion case (sakuga beats, UGC render) as run 006 | treatments, run 006 | `check` shows Reason order unchanged after Style/Render controls | T20 | todo |
 | T25 | Anti-arcade detectors (R-15) on IR fields `action.plane_transitions`, `action.weight_transfer_path`, `performance.laban.flow` per beat, pathway anticipation | schema, `director.py`, tests | each of the four signatures has a RED→GREEN test on a fight run | T12 | todo |
 | T26 | Relative-prompting validator (R-16): anchor before escalation; no two absolute magnitude words for one quality in one clause | `director.py`, tests | RED→GREEN | — | todo |
+| T27 | FACS as a spatiotemporal event (R-34…R-36): `performance.face_events[]` in the schema; validators for phase order, beat span, laterality, occlusion, ordinal intensity; emitter maps AU combinations to plain visible wording via a `performance/facs_combinations.md` treatment (AU6+12, AU1+12, AU4+5+7, AU4+7 from `cpcs/knowledge/04_character_performance/facs/`); a dialogue or reaction run uses it | schema, `director.py`, treatment, tests, run | RED→GREEN on each validator; prompt contains no AU codes or emotion words; read-back lists the facial event at the right beat | T12 | todo |
 
 ## Phase 4 — widen on demand, records
 
