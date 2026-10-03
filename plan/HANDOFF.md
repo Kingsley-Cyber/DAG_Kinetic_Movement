@@ -72,7 +72,9 @@ the owner.
   plan/                              this folder
   director/                          passes.yaml, protocol.md, ir.schema.json, gaps.jsonl,
                                      profiles/seedance.yaml, treatments/<pass>/*.md (7),
-                                     tools/director.py (+ tests), runs/001_bottle_selfie/
+                                     tools/director.py (+ tests), runs/001_bottle_selfie/,
+                                     tools/tl.py + tools/tlclient/ (TwelveLabs: list, find, upload,
+                                     analyze, embed; run with .venv/bin/python; optional dependency)
   cpcs/, Additional/, Research_*     the research (read-only)
 /Users/king/cpcs-director-graft      throwaway worktree with graft/ and graphify-out/
 /Users/king/Backups/cpcs-director-2026-10-02/   backups of loose research files

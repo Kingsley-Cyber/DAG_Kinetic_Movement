@@ -2,6 +2,21 @@
 
 Newest first. One entry per working session or phase exit.
 
+## 2026-10-03 — TwelveLabs client refreshed (WO-10) and DMR triage
+
+- **TwelveLabs:** `director/tools/tlclient/` + launcher `director/tools/tl.py`; 24 new unit tests
+  (50 total, green on Python 3.9 and 3.11). What was stale in the old client: exact SDK pin 1.3.1
+  (latest 1.3.5); `marengo3.0` as a constant while Marengo 3.5 shipped 2026-08-31 with a different
+  sync body (`multi_input`); no function to list or find assets; local uploads refused above
+  200 MB with no multipart; the key reachable only through an untracked wrapper. Live checks
+  passed: `doctor` ready (key from keychain), `assets list` (1 video in the library:
+  `x_video2.mp4`), `assets find x_video`. Live uploads (one image, one short video) and one
+  analyze and embed call wait for the owner to name the files.
+- **DMR ingest:** `plan/ingest/DMR_triage.md` written from the package's real gap register; the
+  Seedance 2.0 facts found there are in `profiles/seedance.yaml`.
+
+Next: owner names an image and a short video for the live upload test; then the queue from WO-01.
+
 ## 2026-10-03 — Implementation folder written; branch pushed
 
 `implementation/`: `START_HERE.md` (one kickoff prompt to paste), `QUEUE.md` (WO-01…WO-09 with

@@ -1,5 +1,16 @@
 # WO-10 — TwelveLabs client refresh: models, request bodies, asset library, uploads
 
+> **Status 2026-10-03: implemented.** Owner chose the director repo (D1) and read-only plus test
+> uploads (D3). Code: `director/tools/tlclient/` (`common`, `assets`, `analyze`, `embed`, `cli`),
+> launcher `director/tools/tl.py`, tests `director/tools/tests/test_tlclient.py` (24 tests, fake
+> clients), SDK 1.3.5 in `.venv/` (gitignored; `director/tools/tlclient/requirements.txt`).
+> Live, verified: `doctor` ready (key from the keychain, value never printed); `assets list`
+> returned the library (1 video, `x_video2.mp4`); `assets find x_video` found it. Remaining: live
+> steps 4–6 below wait for the owner to name one image and one short video.
+> The package is named `tlclient` because a local package called `twelvelabs` would shadow the SDK.
+> Knowledge stores and Jockey were not ported: no consumer in this repo yet.
+> Run: `.venv/bin/python director/tools/tl.py <command>`.
+
 ## Goal
 
 A working, current TwelveLabs client the agent can use to (1) find assets already in the owner's
