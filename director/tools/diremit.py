@@ -39,6 +39,7 @@ NATIVE_TEXT = {
     "aspect_ratio": "{v} aspect ratio",
     "fps": "{v} fps",
 }
+BLOCKING_PROFILE_STATUS = ("reprobe_due", "invalidated")
 LEVER_EVIDENCE_RANK = {"documented": 0, "measured": 1, "documented_thirdparty": 2, "owner_observed": 3, "unknown": 4}
 
 
@@ -145,11 +146,26 @@ def emit(run_dir: Path, model: str) -> dict:
     losses: List[dict] = []
     settings: Dict[str, object] = {}
     native_fields = set(profile.get("native_fields", []))
+    # provider lifecycle (R-52): reprobe_due / invalidated block native dispositions; stale warns
+    status = profile.get("status")
+    if status in BLOCKING_PROFILE_STATUS:
+        native_ids = [c["id"] for c in ir["controls"] if c["disposition"] == "native"]
+        if native_ids:
+            raise SystemExit("emit blocked: profile status '%s' for %s blocks native dispositions (%s); reprobe the profile or change the controls"
+                             % (status, model, ", ".join(native_ids)))
+    elif status == "stale":
+        warnings.append("profile status: %s is stale; re-verify its facts before trusting native fields" % model)
     limit = None
     for f in profile.get("facts", []):
         if f.get("key") == "prompt_char_limit":
             limit = f.get("value")
     negative_field = any(f.get("key") == "negative_prompt_field" and f.get("value") for f in profile.get("facts", []))
+
+    # Seedance fact (E05): a static move maps to the native camera_fixed parameter; the grammar is still written in prose
+    moves = [c["value"]["move"] for c in ir["controls"]
+             if c["field"].startswith("camera.") and isinstance(c["value"], dict) and "move" in c["value"]]
+    if "camera_fixed" in native_fields and moves and all(m == "static" for m in moves):
+        settings["camera_fixed"] = True
 
     # Candidate lines: (clause, sort_key, text, source)
     lines: List[dict] = []

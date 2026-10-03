@@ -6,49 +6,70 @@
   ],
   "outcomes": [
     {
+      "rule": "schema",
+      "owner": "per control",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
       "rule": "anchors",
       "owner": "time",
-      "outcome": "pass"
+      "outcome": "pass",
+      "detail": ""
     },
     {
       "rule": "beats",
       "owner": "time",
-      "outcome": "pass"
+      "outcome": "pass",
+      "detail": ""
     },
     {
       "rule": "camera",
       "owner": "camera",
-      "outcome": "pass"
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "camera_move",
+      "owner": "camera",
+      "outcome": "not_applicable",
+      "detail": "no camera control names a catalog move"
     },
     {
       "rule": "controls",
       "owner": "per control",
-      "outcome": "pass"
+      "outcome": "pass",
+      "detail": ""
     },
     {
       "rule": "fit",
       "owner": "time",
-      "outcome": "pass"
+      "outcome": "pass",
+      "detail": ""
     },
     {
       "rule": "hands",
       "owner": "interaction",
-      "outcome": "pass"
+      "outcome": "pass",
+      "detail": ""
     },
     {
       "rule": "pass_plan",
       "owner": "synthesis",
-      "outcome": "pass"
+      "outcome": "pass",
+      "detail": ""
     },
     {
       "rule": "pathway",
       "owner": "interaction",
-      "outcome": "pass"
+      "outcome": "pass",
+      "detail": ""
     },
     {
       "rule": "physics_events",
       "owner": "physics",
-      "outcome": "pass"
+      "outcome": "pass",
+      "detail": ""
     }
   ],
   "fit": {

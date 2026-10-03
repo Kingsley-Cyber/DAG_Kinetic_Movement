@@ -740,5 +740,179 @@ class HandoffFindings(unittest.TestCase):
             tr.cleanup()
 
 
+class IngestDMR(unittest.TestCase):
+    """WO-06 (DMR ingest): typed outcomes (R-51), camera move validator (R-53), profile lifecycle (R-52),
+    runtime CI (G022) and the Seedance camera_fixed fact."""
+
+    @staticmethod
+    def _move(cid, move, beat=None, text=None):
+        value = {"move": move, "phrase": text or "locked-off shot", "movement": "hold the position",
+                 "speed": "still", "framing": "both people readable", "end": "same framing"}
+        c = {"id": cid, "pass": "camera", "field": "camera.move", "value": value, "importance": 0.8,
+             "lock": False, "origin": "UNVERIFIED", "treatment": "camera.move_from_catalog",
+             "capability": "semantic", "disposition": "semantic"}
+        if beat:
+            c["beat"] = beat
+        return c
+
+    def _errs(self, mutate, decisions=None):
+        tr = TempRun(mutate)
+        try:
+            if decisions:
+                with open(tr.dir / "decisions.jsonl", "a") as fh:
+                    fh.write(json.dumps(decisions) + "\n")
+            return director.check(tr.dir).errors
+        finally:
+            tr.cleanup()
+
+    def test_outcomes_include_not_applicable_and_indeterminate(self):
+        kinds = {"pass", "fail", "indeterminate", "not_applicable", "unobservable"}
+        res = director.check(RUN)
+        by_rule = {o["rule"]: o for o in res.outcomes}
+        self.assertTrue(all({"rule", "outcome", "detail"} <= set(o) for o in res.outcomes), res.outcomes)
+        self.assertTrue({o["outcome"] for o in res.outcomes} <= kinds)
+        self.assertEqual(by_rule["physics_events"]["outcome"], "not_applicable")  # run 001 has no events
+        self.assertIn("no", by_rule["physics_events"]["detail"])
+        self.assertEqual(by_rule["camera_move"]["outcome"], "not_applicable")
+        self.assertEqual(by_rule["beats"]["outcome"], "pass")
+
+        def no_duration(ir):
+            ir["clip"]["duration_s"] = None
+        tr = TempRun(no_duration)
+        try:
+            res = director.check(tr.dir)
+            self.assertEqual({o["rule"]: o["outcome"] for o in res.outcomes}["fit"], "indeterminate")
+        finally:
+            tr.cleanup()
+
+        def break_hands(ir):
+            for h in ir["hands"]:
+                if h["hand"] == "right" and h["beat"] == "b3":
+                    h["state"] = "camera"
+        tr = TempRun(break_hands)
+        try:
+            out = {o["rule"]: o for o in director.check(tr.dir).outcomes}
+            self.assertEqual(out["pathway"]["outcome"], "fail")
+            self.assertIn("holds the camera", out["pathway"]["detail"])
+        finally:
+            tr.cleanup()
+
+    def test_check_json_prints_outcomes(self):
+        import contextlib
+        import io
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            director.main(["check", str(RUN), "--json", "--no-write"])
+        data = json.loads(buf.getvalue())
+        self.assertTrue(all("detail" in o for o in data["outcomes"]))
+
+    def test_unknown_camera_move_fails(self):
+        errs = self._errs(lambda ir: ir["controls"].append(self._move("c_mv", "warp_drive")))
+        self.assertTrue(any("unknown camera move" in e and "c_mv" in e for e in errs), errs)
+        errs = self._errs(lambda ir: ir["controls"].append(self._move("c_mv", "pan_right")))
+        self.assertFalse(any("camera_move" in e for e in errs), errs)
+
+    def test_custom_move_needs_decision_record(self):
+        add = lambda ir: ir["controls"].append(self._move("c_mv", "custom"))  # noqa: E731
+        errs = self._errs(add)
+        self.assertTrue(any("unknown camera move" in e and "decision" in e for e in errs), errs)
+        record = {"decision_id": "d900", "pass": "camera", "question": "q", "alternatives": ["a", "b"], "selected": "a",
+                  "criteria": ["c"], "confidence": 0.5, "problem": "p", "treatment": None, "control": "c_mv",
+                  "expected_visual_effect": "e", "verification_target": "v", "origin": "CREATIVE_CHOICE"}
+        self.assertFalse(any("camera_move" in e for e in self._errs(add, record)))
+
+    def test_zoom_written_as_motion_fails(self):
+        errs = self._errs(lambda ir: ir["controls"].append(self._move("c_mv", "zoom_in_slow", text="the camera moves in with a dolly")))
+        self.assertTrue(any("optics written as camera motion" in e for e in errs), errs)
+        errs = self._errs(lambda ir: ir["controls"].append(self._move("c_mv", "zoom_in_slow", text="the lens zooms in slowly")))
+        self.assertFalse(any("camera_move" in e for e in errs), errs)
+
+    def test_two_unscoped_moves_fail(self):
+        def two(ir):
+            ir["controls"] += [self._move("c_m1", "pan_right"), self._move("c_m2", "tilt_down")]
+        self.assertTrue(any("one camera move per shot" in e for e in self._errs(two)))
+
+        def scoped(ir):
+            ir["controls"] += [self._move("c_m1", "pan_right", beat="b1"), self._move("c_m2", "tilt_down", beat="b3")]
+        self.assertFalse(any("camera_move" in e for e in self._errs(scoped)))
+
+    def _emit_with_profile(self, status, mutate=None, model="seedance"):
+        import tempfile
+        from unittest import mock
+
+        import diremit
+        import yaml
+        prof_dir = Path(tempfile.mkdtemp(prefix="profiles_"))
+        tr = TempRun(mutate)
+        try:
+            for src in (HERE.parent.parent / "profiles").glob("*.yaml"):
+                data = yaml.safe_load(src.read_text())
+                if src.stem == model and status:
+                    data["status"] = status
+                (prof_dir / src.name).write_text(yaml.safe_dump(data, sort_keys=False))
+            with mock.patch.object(diremit, "PROFILES_DIR", prof_dir):
+                report = director.emit(tr.dir, model)
+            return report, tr.dir
+        except BaseException:
+            tr.cleanup()
+            shutil.rmtree(prof_dir, ignore_errors=True)
+            raise
+
+    def test_invalidated_profile_blocks_native(self):
+        for status in ("invalidated", "reprobe_due"):
+            with self.assertRaises(SystemExit) as ctx:
+                self._emit_with_profile(status)
+            self.assertIn("profile status", str(ctx.exception))
+            self.assertIn(status, str(ctx.exception))
+        # a run with no native control is not blocked
+        def no_native(ir):
+            ir["controls"] = [c for c in ir["controls"] if c["disposition"] != "native"]
+        report, run_dir = self._emit_with_profile("invalidated", no_native)
+        self.assertEqual(report["settings"], {})
+        shutil.rmtree(run_dir, ignore_errors=True)
+
+    def test_stale_profile_warns_and_still_emits(self):
+        report, run_dir = self._emit_with_profile("stale")
+        try:
+            self.assertTrue(any("profile status" in w and "stale" in w for w in report["warnings"]), report["warnings"])
+            self.assertIn("duration_s", report["settings"])
+        finally:
+            shutil.rmtree(run_dir, ignore_errors=True)
+
+    def test_static_move_sets_camera_fixed_on_profiles_that_have_it(self):
+        def static(ir):
+            ir["controls"] = [c for c in ir["controls"] if c["field"] != "camera.grammar"]
+            ir["controls"].append(self._move("c_mv", "static", text="locked-off static shot"))
+        tr = TempRun(static)
+        try:
+            report = director.emit(tr.dir, "seedance")
+            self.assertIs(report["settings"].get("camera_fixed"), True)
+            self.assertIn("locked-off static shot", (tr.dir / "prompt.txt").read_text())
+            self.assertNotIn("camera_fixed", director.emit(tr.dir, "hailuo")["settings"])
+        finally:
+            tr.cleanup()
+
+        def pan(ir):
+            ir["controls"] = [c for c in ir["controls"] if c["field"] != "camera.grammar"]
+            ir["controls"].append(self._move("c_mv", "pan_right", text="pan right"))
+        tr = TempRun(pan)
+        try:
+            self.assertNotIn("camera_fixed", director.emit(tr.dir, "seedance")["settings"])
+        finally:
+            tr.cleanup()
+
+    def test_ci_workflow_runs_the_unit_tests(self):
+        import yaml
+        wf = HERE.parent.parent.parent / ".github" / "workflows" / "director-tests.yml"
+        data = yaml.safe_load(wf.read_text())
+        triggers = data.get("on", data.get(True))
+        self.assertIn("push", triggers)
+        self.assertIn("pull_request", triggers)
+        text = wf.read_text()
+        self.assertIn("python3 -m unittest discover -s director/tools/tests", text)
+        self.assertIn("pip install pyyaml jsonschema", text)
+        self.assertIn("3.11", text)
+
+
 if __name__ == "__main__":
     unittest.main()

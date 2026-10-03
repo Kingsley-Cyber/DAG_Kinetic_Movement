@@ -15,6 +15,10 @@ SCHEMA_PATH = ROOT / "ir.schema.json"
 PASSES_PATH = ROOT / "passes.yaml"
 TREATMENTS_DIR = ROOT / "treatments"
 PROFILES_DIR = ROOT / "profiles"
+CAMERA_MOVES_PATH = ROOT / "vocab" / "camera_moves.yaml"
+# R-53: words that make an optics (lens) move read as the camera body moving. Conventions.
+OPTICS_MOTION_PHRASES = ("camera moves", "moves the camera", "dolly", "track")
+OUTCOME_KINDS = ("pass", "fail", "indeterminate", "not_applicable", "unobservable")
 
 STAGE_ORDER = ["precondition", "anticipation", "approach", "contact", "transfer",
                "effect", "follow_through", "recovery", "postcondition"]
@@ -187,6 +191,21 @@ def _causal_closure(beats: List[dict]) -> Dict[str, set]:
         return out
 
     return {b["id"]: reach(b["id"]) for b in beats}
+
+
+def _decision_controls(run_dir: Path) -> set:
+    """Control ids that have a decision record in decisions.jsonl (missing file = none)."""
+    path = Path(run_dir) / "decisions.jsonl"
+    found: set = set()
+    if path.exists():
+        for line in path.read_text(encoding="utf-8").splitlines():
+            try:
+                rec = json.loads(line)
+            except ValueError:
+                continue
+            if isinstance(rec, dict) and rec.get("control"):
+                found.add(rec["control"])
+    return found
 
 
 def _check_all(run_dir: Path) -> CheckResult:
@@ -514,6 +533,29 @@ def _check_all(run_dir: Path) -> CheckResult:
             res.errors.append("beats: %s: beat does not cover its pathway stages (%d stages need at least %.1fs; min_s is %.1fs)"
                               % (b["id"], stages_on_beat[b["id"]], need, b["min_s"]))
 
+    # camera move validator (R-53): catalog id or custom + decision record; optics never as motion;
+    # one move per shot unless beats order them
+    move_controls = [c for c in ir["controls"] if c["field"].startswith("camera.")
+                     and isinstance(c["value"], dict) and "move" in c["value"]]
+    if move_controls:
+        catalog = {m["id"]: m for m in load_yaml(CAMERA_MOVES_PATH)["moves"]}
+        decided = _decision_controls(run_dir)
+        for c in move_controls:
+            move = c["value"]["move"]
+            if move == "custom":
+                if c["id"] not in decided:
+                    res.errors.append("camera_move %s: unknown camera move: 'custom' needs a decision record with control '%s' in decisions.jsonl" % (c["id"], c["id"]))
+            elif move not in catalog:
+                res.errors.append("camera_move %s: unknown camera move '%s' (not in camera_moves.yaml; use 'custom' with a decision record)" % (c["id"], move))
+            elif catalog[move].get("layer") == "optics":
+                text = _strings(c["value"]).lower()
+                hit = [p for p in OPTICS_MOTION_PHRASES if p in text]
+                if hit:
+                    res.errors.append("camera_move %s: optics written as camera motion ('%s' is a lens change but the value says '%s')" % (c["id"], move, hit[0]))
+        unscoped = [c["id"] for c in move_controls if not c.get("beat")]
+        if len(unscoped) > 1:
+            res.errors.append("camera_move: one camera move per shot (controls %s have no beat; scope each move to a beat or keep one)" % ", ".join(unscoped))
+
     if "camera" in active:
         if not ({"motion", "movement", "move", "phrase"} & camera_cov):
             res.errors.append("camera: no camera.motion control (explicit camera grammar is mandatory)")
@@ -535,6 +577,7 @@ GROUP_OWNER = {
     "pathway": "interaction",
     "physics_events": "physics",
     "camera": "camera",
+    "camera_move": "camera",
 }
 OPEN_KINDS = ("alternative", "conflict", "revision_request")
 OPEN_STATUSES = ("open", "resolved", "escalated")
@@ -552,34 +595,69 @@ def _group_of(message: str, control_pass: Dict[str, str]) -> Tuple[str, Optional
     return group, GROUP_OWNER.get(group)
 
 
+def _absent_input(ir: dict, group: str) -> Optional[str]:
+    """Why a rule group had nothing to run on (R-51 not_applicable), or None."""
+    if group == "anchors" and not ir.get("anchors") and not any(b.get("relative") for b in ir.get("beats", [])):
+        return "no anchors or relative deltas in the IR"
+    if group == "physics_events" and not ir.get("physics_events"):
+        return "no physics events in the IR"
+    if group == "hands" and not ir.get("hands"):
+        return "no hand ledger entries in the IR"
+    if group == "pathway" and not ir.get("pathways"):
+        return "no pathways in the IR"
+    if group == "controls" and not ir.get("controls"):
+        return "no controls in the IR"
+    if group == "camera":
+        planned = {p["pass"]: p for p in ir.get("pass_plan", [])}
+        if not planned.get("camera", {}).get("active"):
+            return "camera pass is not active"
+    if group == "camera_move" and not any(
+            c["field"].startswith("camera.") and isinstance(c["value"], dict) and "move" in c["value"]
+            for c in ir.get("controls", [])):
+        return "no camera control names a catalog move"
+    return None
+
+
 def check(run_dir: Path, only_pass: Optional[str] = None) -> CheckResult:
-    """Validate a run. With `only_pass`, keep only the rules that pass owns (per-pass acceptance)."""
+    """Validate a run. With `only_pass`, keep only the rules that pass owns (per-pass acceptance).
+
+    `outcomes` is one typed record per rule group: {rule, owner, outcome, detail}, outcome in OUTCOME_KINDS.
+    """
     res = _check_all(run_dir)
     try:
-        control_pass = {c["id"]: c["pass"] for c in load_ir(run_dir).get("controls", []) if isinstance(c, dict) and "id" in c}
+        ir = load_ir(run_dir)
+        control_pass = {c["id"]: c["pass"] for c in ir.get("controls", []) if isinstance(c, dict) and "id" in c}
     except Exception:
-        control_pass = {}
+        ir, control_pass = {}, {}
     failing: Dict[str, set] = {}
+    messages: Dict[str, List[str]] = {}
     for message in res.errors:
         group, owner = _group_of(message, control_pass)
         failing.setdefault(group, set()).add(owner)
+        messages.setdefault(group, []).append(message)
+    schema_failed = bool(messages.get("schema"))
     groups = sorted(set(GROUP_OWNER) | {"controls"})
-    outcomes = []
+    outcomes = [{"rule": "schema", "owner": "per control", "outcome": "fail" if schema_failed else "pass",
+                 "detail": _detail(messages.get("schema", []))}]
     for group in groups:
         owner = GROUP_OWNER.get(group)
-        if only_pass is not None and group != "controls" and owner != only_pass:
-            outcome = "not_applicable"
+        if schema_failed:
+            outcome, detail = "indeterminate", "schema invalid; rule not run"
+        elif only_pass is not None and group != "controls" and owner != only_pass:
+            outcome, detail = "not_applicable", "owned by pass '%s'; not run for pass '%s'" % (owner, only_pass)
         elif only_pass is not None and group == "controls" and only_pass not in failing.get("controls", {only_pass}):
-            outcome = "pass"
+            outcome, detail = "pass", ""
         elif group in failing and (only_pass is None or group != "controls" or only_pass in failing[group]):
-            outcome = "fail"
+            outcome, detail = "fail", _detail(messages.get(group, []))
         else:
-            outcome = "pass"
-        outcomes.append({"rule": group, "owner": owner or "per control", "outcome": outcome})
-    if res.fit.get("verdict") == "UNDERSPECIFIED":
-        for o in outcomes:
-            if o["rule"] == "fit" and o["outcome"] == "pass":
-                o["outcome"] = "indeterminate"
+            outcome, detail = "pass", ""
+        if outcome == "pass":
+            absent = _absent_input(ir, group)
+            if absent:
+                outcome, detail = "not_applicable", absent
+        if group == "fit" and outcome == "pass" and res.fit.get("verdict") == "UNDERSPECIFIED":
+            outcome, detail = "indeterminate", "no duration: order and relative shares only, no seconds invented"
+        outcomes.append({"rule": group, "owner": owner or "per control", "outcome": outcome, "detail": detail})
     res.outcomes = outcomes
     if only_pass is not None:
         def keep(message: str) -> bool:
@@ -588,6 +666,12 @@ def check(run_dir: Path, only_pass: Optional[str] = None) -> CheckResult:
         res.errors = [m for m in res.errors if keep(m)]
         res.warnings = [m for m in res.warnings if keep(m)]
     return res
+
+
+def _detail(messages: List[str]) -> str:
+    if not messages:
+        return ""
+    return messages[0] if len(messages) == 1 else "%s (+%d more)" % (messages[0], len(messages) - 1)
 
 
 def load_open_items(run_dir: Path) -> List[dict]:
