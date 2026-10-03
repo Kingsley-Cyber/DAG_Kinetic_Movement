@@ -263,9 +263,19 @@ for decision-making (intensify, reveal, accompany, energize, orient, embody). Th
 by function, states all four parts, one move per shot, and never writes a zoom as motion. Treatment:
 `camera.move_from_catalog`. Validator R-53 (T38) checks the id exists and the layer is respected.
 
-### 3.5 Movement text control: three layers (owner)
+### 3.5 Movement text control
 
-Movement and motion are controlled in text through three vocabularies, each with its own dials:
+**Terminology (fixed 2026-10-03 so one phrase has one meaning):**
+
+| Term | Means |
+|---|---|
+| **Laban's three layers** | Effort · Shape · Space, with Body underneath as the physical substrate (the BESS sense; Effort has four factors: Weight, Time, Space, Flow) |
+| **control stack** | the three vocabularies production coordinates: Laban (quality) · Bartenieff (how it starts and travels) · film grammar (how it is seen) |
+| **wording rungs** | three ways to write the same motion: numeric value · Laban term · visible body description |
+| **performance control** | timeline (when things happen across the shot) · face (per-second FACS events) · performance formula (Laban values with valence–arousal) |
+
+The control stack: movement and motion are controlled in text through three vocabularies, each
+with its own dials:
 
 | Layer | Vocabulary | Controls | Pass |
 |---|---|---|---|
@@ -388,19 +398,21 @@ time**: "the second swing is faster and lands heavier than the first", not two s
   - *IR level (hard, now):* every scaled quality on a later beat, and every causal-event `force`,
     references an anchor. This is about a coherent IR, not about render efficacy, so it does not
     wait for evidence. The emitter never generates two absolutes from scaled values.
-  - *Wording level (lint warning, until evidence):* a bare magnitude word (fast, heavy, strong,
-    wide, hard, big) in free-text descriptions with no anchor in scope is reported as a warning,
-    not a failure. Named techniques that carry learned meaning are allowed as they are
-    ("slow motion", "real-time", "time-lapse", and any term a model profile lists under
-    `defaults_to_counter`). Absolute words are imprecise, not meaningless.
+  - *Wording level (lint warning, until evidence):* a bare magnitude word (fast, heavy, powerful,
+    strong, wide, hard, big, exaggerated) in free-text descriptions with no anchor in scope is
+    reported as a warning, not a failure. Named techniques that carry learned meaning are allowed
+    as they are ("slow motion", "real-time", "speed ramp", "time-lapse", and any term a model
+    profile lists under `defaults_to_counter`). Absolute words are imprecise, not meaningless.
 - **Promotion rule:** the wording lint becomes a hard failure only if the absolute-versus-relative
-  A/B (T18) shows relative wording is followed better on renders, per model.
+  A/B (`EXPERIMENTS.md` E2, task T18) shows relative wording is followed better on renders, per
+  model. The IR may store multipliers against an anchor; the emitter always resolves them into
+  words. Multipliers, newtons and metres per second are never written into a prompt.
 
 Hypothesis status: that a video model honours "heavier than the jab" inside one clip is untested.
 The idea comes from LaMoGen's per-action baselines, which work by optimizing embeddings on a
 motion model, not by wording on a video model.
-- Each quality has three strengths of wording: numeric (experiment only), the Laban term, and a
-  visible body consequence (what a caption would say). The pole → visible-body mapping does not
+- Each quality can be written on three **wording rungs**: numeric (experiment only), the Laban
+  term, and a visible body consequence (what a caption would say); `EXPERIMENTS.md` E3 tests them. The pole → visible-body mapping does not
   exist in the research yet and is a named gap.
 - Each quality is localized to a phase: "Time = Sudden" is not "the whole clip is fast".
 - Bartenieff gives initiation and sequencing language (core-initiated, sequential weight shift,

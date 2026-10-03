@@ -261,7 +261,22 @@ Also proposed in pasted notes and **not yet adopted** (owner decision pending): 
 orchestrator loop that builds each pass prompt, validates each pass output with retry, logs every
 pass (inputs, output, rationale, variant id) and sets temperature per pass type.
 
-## 22. On old plans
+## 22. Terminology resolution and the T18 brief (2026-10-03, pasted by the owner)
+
+Reserve "three layers" for Effort · Shape · Space with Body underneath (the BESS-derived sense);
+call the Laban / Bartenieff / film-grammar grouping the control stack and numeric / Laban term /
+visible description the wording rungs. Space includes pathway, kinesphere and Space Harmony
+(motion along the body's diagonals reads alive; along a single axis it reads robotic).
+
+T18 brief: emit the same fight IR (Terminal Descent, "Can Mara prevent Veyr from touching the
+reactor core until the seal closes at 30.0 s?") with absolute and with relative magnitudes, three
+or more seeds each; IR rule hard, free-text absolutes as warnings, named techniques (slow motion,
+real-time, speed ramp) allowed; flagged words include fast, powerful, heavy, exaggerated; adopt as
+a hard failure only if at least two of three relative runs show better physical plausibility with
+equivalent intent. Adopted into `EXPERIMENTS.md` E2 with fair arms, paired seeds and a
+single-beat clip.
+
+## 23. On old plans
 
 "Be careful with any old plans being integrated as it can misalign the current plan." Audit in
 `DECISIONS.md` (admission ledger, overrides, not-doing list).
