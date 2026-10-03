@@ -1,0 +1,45 @@
+{
+  "run_id": "004_glass_strike",
+  "model": "seedance",
+  "chars": 1997,
+  "char_limit": 2000,
+  "mode": "C→A text_interpretation_only",
+  "control_level": "L0–L1",
+  "settings": {
+    "duration_s": 8,
+    "aspect_ratio": "16:9"
+  },
+  "dispositions": {
+    "native": 2,
+    "semantic": 9,
+    "unsupported": 1
+  },
+  "dropped_for_budget": [],
+  "compressed_for_budget": [
+    "b1",
+    "c_floor",
+    "c_cam_reveal",
+    "c_shards",
+    "b4",
+    "b5",
+    "c_cam_reframe",
+    "c_chain",
+    "b2",
+    "b3",
+    "glass"
+  ],
+  "loss_records": 12,
+  "fit": {
+    "verdict": "FITS",
+    "load_s": 5.4,
+    "duration_s": 8,
+    "ratio": 0.675
+  },
+  "warnings": [],
+  "validity": {
+    "parses": true,
+    "schema": true,
+    "decisions_correct": "not judged by code",
+    "render_succeeded": "pending"
+  }
+}

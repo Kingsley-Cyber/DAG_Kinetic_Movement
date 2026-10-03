@@ -1,0 +1,1 @@
+Actor A rotates toward a table and accidentally strikes a drinking glass with the right forearm. The glass leaves the table, breaks on the floor, and the shards persist. Actor B notices the impact after a short reaction delay. The camera reframes to Actor B, then reveals the broken glass. 8 seconds.

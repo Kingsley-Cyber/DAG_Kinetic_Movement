@@ -1,0 +1,230 @@
+{
+  "run_id": "004_glass_strike",
+  "model": "seedance",
+  "prompt_sha256": "81b95f8febb517eee4b5617550f9eaf64fff9d4ce101195bedc094d29cd55020",
+  "prompt_sha256_of": "prompt.txt bytes as written (including the trailing newline)",
+  "lines": [
+    {
+      "line": 1,
+      "clause": "shot",
+      "channel": "prompt",
+      "text": "An 8-second video clip, one continuous take, no cuts.",
+      "source": {
+        "kind": "control",
+        "id": "c_shot_line",
+        "treatment": null,
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 2,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Ines, a woman in a grey sweater and jeans, stands screen-left in a kitchen beside a wooden table.",
+      "source": {
+        "kind": "entity",
+        "id": "ines",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 3,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Theo, a man in a navy shirt, stands screen-right in the kitchen doorway, facing the room.",
+      "source": {
+        "kind": "entity",
+        "id": "theo",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 4,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "A clear drinking glass stands at the table edge, above a tile floor.",
+      "source": {
+        "kind": "entity",
+        "id": "glass",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 5,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "First, Ines spins toward the table, right arm swinging out, starting slow and accelerating.",
+      "source": {
+        "kind": "beat",
+        "id": "b1",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 6,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then the swing carries her right forearm across the table edge.",
+      "source": {
+        "kind": "beat",
+        "id": "b2",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 7,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Ines's right forearm knocks into the glass, landing on its side near the base. The glass tips and slides off the table edge as it spins once, then it is airborne and falling toward the floor.",
+      "source": {
+        "kind": "event",
+        "id": "ev_strike",
+        "origin": "PROJECT_DERIVED",
+        "contact_state": "physical_contact_confirmed"
+      }
+    },
+    {
+      "line": 8,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then the glass drops toward the tile floor.",
+      "source": {
+        "kind": "beat",
+        "id": "b3",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 9,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "The glass's base and side come down, landing on the tile floor. The glass bursts apart as pieces skid across the tile and a few spin and settle, then the pieces lie still where they stopped.",
+      "source": {
+        "kind": "event",
+        "id": "ev_break",
+        "origin": "PROJECT_DERIVED",
+        "contact_state": "physical_contact_confirmed"
+      }
+    },
+    {
+      "line": 10,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then Theo stays still, turns toward the sound and steps back.",
+      "source": {
+        "kind": "beat",
+        "id": "b4",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 11,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Finally, on the tile, the broken glass lies scattered and still.",
+      "source": {
+        "kind": "beat",
+        "id": "b5",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 12,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "In order: forearm strike, glass leaves the table, floor impact and break, Theo notices, the shards are shown; nothing changes before it is touched.",
+      "source": {
+        "kind": "control",
+        "id": "c_chain",
+        "treatment": "interaction.contact_causal_chain",
+        "origin": "SOURCE_EVIDENCE"
+      }
+    },
+    {
+      "line": 13,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Throughout, the pieces stay on the tile where they stopped; both keep their clothes and sides.",
+      "source": {
+        "kind": "control",
+        "id": "c_shards",
+        "treatment": "continuity.object_locks",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 14,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "The table stands screen-center; the glass falls from its near edge to the floor in front of it.",
+      "source": {
+        "kind": "control",
+        "id": "c_stage",
+        "treatment": null,
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 15,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "The floor is hard tile; broken glass skids and stays where it stops.",
+      "source": {
+        "kind": "control",
+        "id": "c_floor",
+        "treatment": "world.glass_break",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 16,
+      "clause": "camera",
+      "channel": "prompt",
+      "text": "Medium-wide shot at standing height, standard lens: Ines and the table on the left, Theo small in the doorway on the right, the floor in front of the table in frame.",
+      "source": {
+        "kind": "control",
+        "id": "c_cam_frame",
+        "treatment": null,
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 17,
+      "clause": "camera",
+      "channel": "prompt",
+      "text": "Camera: once the glass has broken, pan right from Ines to Theo; smooth constant rotation; settle with Theo centered in the doorway.",
+      "source": {
+        "kind": "control",
+        "id": "c_cam_reframe",
+        "treatment": "camera.move_from_catalog",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 18,
+      "clause": "camera",
+      "channel": "prompt",
+      "text": "Camera: then tilt down to the floor; smooth constant tilt; land on the broken glass.",
+      "source": {
+        "kind": "control",
+        "id": "c_cam_reveal",
+        "treatment": "camera.move_from_catalog",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 19,
+      "clause": "negatives",
+      "channel": "prompt",
+      "text": "Avoid: extra or missing fingers, the glass breaking in the air, the glass bouncing whole, pieces disappearing, Theo reacting before the glass breaks, a cut or a zoom, on-screen text.",
+      "source": [
+        {
+          "kind": "control",
+          "id": "c_negatives",
+          "treatment": null,
+          "origin": "PROJECT_DERIVED"
+        }
+      ]
+    }
+  ]
+}

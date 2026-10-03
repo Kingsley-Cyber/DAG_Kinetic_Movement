@@ -2,6 +2,40 @@
 
 Newest first. One entry per working session or phase exit.
 
+## 2026-10-02 — WO-06 done: first ingest (DMR) landed as rules; run 004 glass fixture
+
+- Part A (spot check): rows G002, G007 and G022 of `plan/ingest/DMR_triage.md` compared with the register in `director_motion_reasoning_gap_report.md` §3 (lines 89, 94, 109). Priority, dependency and acceptance text agree; the recorded deviation for G007 (an unverified profile emits with a flag) is consistent with the register's "stale/unknown contract blocks execution" for API calls only. No disagreement; the table was not rewritten. `plan/INGEST.md` §4 already states it is superseded by the triage file, so it was not edited.
+- Part B, code (tests first; RED with 10 failures, then GREEN; class `IngestDMR`, 97 tests, none of the 87 earlier tests changed):
+  1. Typed outcomes (R-51): `CheckResult.outcomes` rows are `{rule, owner, outcome, detail}`; new `schema` row; absent input gives `not_applicable` (`test_outcomes_include_not_applicable_and_indeterminate`, `test_check_json_prints_outcomes`).
+  2. Camera move validator (R-53), rule group `camera_move` (`test_unknown_camera_move_fails`, `test_custom_move_needs_decision_record`, `test_zoom_written_as_motion_fails`, `test_two_unscoped_moves_fail`).
+  3. Profile lifecycle (R-52): `reprobe_due` / `invalidated` block native dispositions in `emit` ("profile status"), `stale` warns (`test_invalidated_profile_blocks_native`, `test_stale_profile_warns_and_still_emits`).
+  4. CI: `.github/workflows/director-tests.yml` (`test_ci_workflow_runs_the_unit_tests`).
+  5. Seedance `camera_fixed`: `test_static_move_sets_camera_fixed_on_profiles_that_have_it`.
+- Runs 001–003: `ir.json` unchanged; `prompt.txt`, `receipt.json`, `loss.jsonl`, `emit_report.json` byte-identical after re-emit (git shows only their `check_report.json` changed: the new `outcomes` rows).
+- Run 004 `director/runs/004_glass_strike/`: `check` GREEN at the first run (fit FITS, 5.4 s of 8 s, ratio 0.675); `emit --model seedance` 1,997 / 2,000 characters, nothing dropped, eleven lines compressed, 12 loss records, no warnings; read-back (Haiku subagent, no tools) MATCH on beat order, causal order (Theo after the break; shards present at the end) and camera (pan right, then tilt down). Findings in `readback.md` (table position read as contradictory; "stays still, turns" read as contradictory; "both keep their clothes and sides" read as dangling). One new treatment: `world.glass_break`. `c_latency` (an exact latency in milliseconds, exactness exact, unlocked) has `capability: unsupported`: the profile documents exact event timestamps as unsupported (E05), and the loss ledger holds an `unsupported_semantic` record for it.
+- Guesses (what the work order, the protocol or a tool did not specify):
+  1. The rule-group name and message format for the camera checks: group `camera_move`, owner camera, messages "camera_move <id>: unknown camera move ...". `WO-06` gives only the error phrases.
+  2. How a `custom` move finds its decision record: any line of `decisions.jsonl` whose `control` equals the control id. `WO-06` says "a decision record with that control id".
+  3. The optics test is a plain substring match on "camera moves", "moves the camera", "dolly", "track" (so "tracking" also matches), as listed in `WO-06`; the phrase list is a convention (`dircheck.py` `OPTICS_MOTION_PHRASES`).
+  4. "One camera move per shot": only controls without `beat` are counted; one unscoped plus scoped moves passes. `WO-06` says "two camera controls with `move` and no `beat`".
+  5. `detail` text: the first message of the group, plus "(+n more)"; empty for pass. A schema failure marks every other rule `indeterminate`. `unobservable` is allowed but no rule produces it (needs geometry; DMR_triage G006).
+  6. Which groups are `not_applicable` when their input is absent: anchors (no anchors and no deltas), physics_events, hands, pathway, controls, camera (pass inactive), camera_move (no `move` control). `WO-06` names the principle only.
+  7. Lifecycle is read at profile level only (`status`); the per-fact and per-lever states of `INGEST.md` §3 are not built. The current profiles are `unverified`, which emits.
+  8. `camera_fixed: true` is set only when every camera control with a `move` is `static`; a clip with a static move and a later pan does not fix the camera.
+  9. Theo's reaction is a beat (`caused_by` the break), not a physics event: the event templates would write "landing on" or "Cut to:". `WO-06` says "B's reaction `depends_on` the break"; `depends_on` exists only on events, so the break depends on the strike and the reaction is ordered by `after` and `caused_by`.
+  10. No force anchor on the strike: it is an accident and the ask gives no earlier baseline.
+  11. Names Ines and Theo, screen sides, a kitchen, a tile floor, grey sweater, navy shirt, 16:9: all CREATIVE_CHOICE or INFERENCE (`protocol.md` line 205 only says "name the open elements").
+  12. Handedness of the spin and which way the table lies relative to Ines is left unstated (the right forearm is named, the turn direction is not); the reader still read it consistently.
+  13. The pause before Theo's head turn is "stays still for a moment" (order plus a still hold). The reader found it self-contradictory; a better wording needs a latency treatment.
+  14. Camera: the opening frame is an unscoped `camera.framing` text control (no treatment); lens and height in text, as in run 003 guess 9.
+  15. Reading times (1.0, 1.0, 1.0, 1.2, 1.2 s) reuse the run-001 conventions; no source.
+  16. Shards persist through `continuity.object_locks` (no new treatment); the glass break got a new world treatment because none fit.
+  17. Dates in records use 2026-10-02.
+  18. CI runs the whole `test_tlclient.py` too; it was not run on GitHub (no push), only locally on Python 3.9.
+- Tool behaviour that differed from the documents: the `emit_report.json` `chars` (1,997) is the prompt without its trailing newline, `prompt.txt` is 1,998 bytes (as in run 003). `check` rewrote `check_report.json` for runs 001–003 with the new `outcomes` shape; the documents say run folders are fixtures only for `ir.json` and `prompt.txt`.
+
+Next: WO-07 (run 005, camera-only). Blocked: owner renders of runs 001–004.
+
 ## 2026-10-02 — WO-05 done: run 003 thrown into the pool (world reactions)
 
 - Run folder `director/runs/003_pool_shove/`: `ask.md`, `ir.json`, `decisions.jsonl` (d001–d011), `baseline.txt`, `prompt.txt`, `receipt.json`, `loss.jsonl`, `emit_report.json`, `check_report.json`, `readback_raw.md`, `readback.md`, `verdict.md`. No `open.jsonl` (nothing open).

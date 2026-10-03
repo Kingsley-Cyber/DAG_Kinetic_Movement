@@ -1,0 +1,694 @@
+{
+ "schema_version": "0.1",
+ "run_id": "004_glass_strike",
+ "ask": "Actor A rotates toward a table and accidentally strikes a drinking glass with the right forearm. The glass leaves the table, breaks on the floor, and the shards persist. Actor B notices the impact after a short reaction delay. The camera reframes to Actor B, then reveals the broken glass. 8 seconds.",
+ "model": "seedance",
+ "clip": {
+  "duration_s": 8,
+  "duration_origin": "USER_EXPLICIT",
+  "aspect_ratio": "16:9",
+  "fps_assumed": 24,
+  "objective": "an accident with a clear causal chain: strike, fall, break, a reaction that comes after the break, then the proof on the floor",
+  "dramatic_function": "the camera hands attention from the cause to the witness to the consequence"
+ },
+ "pass_plan": [
+  {
+   "pass": "intent",
+   "active": true,
+   "reason": "mandatory"
+  },
+  {
+   "pass": "entity",
+   "active": true,
+   "reason": "mandatory"
+  },
+  {
+   "pass": "world",
+   "active": true,
+   "reason": "a brittle object falls onto a hard floor: the floor responds at the impact point and the pieces persist"
+  },
+  {
+   "pass": "action",
+   "active": false,
+   "reason": "reasoned, covered by interaction and physics: the spin, the strike and the fall are fully described by the pathway stages and the two physics events"
+  },
+  {
+   "pass": "interaction",
+   "active": true,
+   "reason": "the forearm contacts the glass and the glass contacts the floor"
+  },
+  {
+   "pass": "physics",
+   "active": true,
+   "reason": "two contacts with stated reactions: forearm on glass (tips and leaves the table); glass on floor (breaks, pieces skid)"
+  },
+  {
+   "pass": "staging",
+   "active": true,
+   "reason": "two actors, a table and a doorway: screen sides must hold across the strike, the reframe and the reveal"
+  },
+  {
+   "pass": "continuity",
+   "active": true,
+   "reason": "the broken glass changes once and stays changed through the last frame"
+  },
+  {
+   "pass": "time",
+   "active": true,
+   "reason": "mandatory"
+  },
+  {
+   "pass": "performance",
+   "active": false,
+   "reason": "reasoned: no register or acting direction asked; Theo's reaction is stated as visible behaviour on the beat"
+  },
+  {
+   "pass": "camera",
+   "active": true,
+   "reason": "mandatory: explicit camera grammar, two ordered moves"
+  },
+  {
+   "pass": "attention",
+   "active": false,
+   "reason": "reasoned: nothing is withheld; the reveal is ordered by the two camera moves"
+  },
+  {
+   "pass": "light_color",
+   "active": false,
+   "reason": "reasoned: not asked"
+  },
+  {
+   "pass": "style",
+   "active": false,
+   "reason": "reasoned: no look, device or realism target asked for"
+  },
+  {
+   "pass": "audio",
+   "active": false,
+   "reason": "reasoned: not asked; model audio support unknown; the sound is implied by Theo turning toward it"
+  },
+  {
+   "pass": "synthesis",
+   "active": true,
+   "reason": "mandatory"
+  }
+ ],
+ "entities": [
+  {
+   "id": "ines",
+   "kind": "actor",
+   "description": "Ines, a woman in a grey sweater and jeans, stands screen-left in a kitchen beside a wooden table",
+   "short": "Ines, in a grey sweater and jeans, stands screen-left beside a wooden table",
+   "locks": [
+    "identity_stable",
+    "anatomy_correct",
+    "wardrobe"
+   ],
+   "origin": "CREATIVE_CHOICE"
+  },
+  {
+   "id": "theo",
+   "kind": "actor",
+   "description": "Theo, a man in a navy shirt, stands screen-right in the kitchen doorway, facing the room",
+   "short": "Theo, in a navy shirt, stands screen-right in the doorway",
+   "locks": [
+    "identity_stable",
+    "anatomy_correct",
+    "wardrobe"
+   ],
+   "origin": "CREATIVE_CHOICE"
+  },
+  {
+   "id": "glass",
+   "kind": "object",
+   "description": "A clear drinking glass stands near the edge of the table, above a tile floor",
+   "short": "A clear drinking glass stands at the table edge, above a tile floor",
+   "locks": [
+    "scale",
+    "colour"
+   ],
+   "origin": "CREATIVE_CHOICE"
+  }
+ ],
+ "hands": [
+  {
+   "actor": "ines",
+   "hand": "left",
+   "beat": "b1",
+   "state": "free"
+  },
+  {
+   "actor": "ines",
+   "hand": "right",
+   "beat": "b1",
+   "state": "free"
+  },
+  {
+   "actor": "ines",
+   "hand": "left",
+   "beat": "b2",
+   "state": "free"
+  },
+  {
+   "actor": "ines",
+   "hand": "right",
+   "beat": "b2",
+   "state": "free"
+  },
+  {
+   "actor": "ines",
+   "hand": "left",
+   "beat": "b3",
+   "state": "free"
+  },
+  {
+   "actor": "ines",
+   "hand": "right",
+   "beat": "b3",
+   "state": "free"
+  },
+  {
+   "actor": "theo",
+   "hand": "left",
+   "beat": "b4",
+   "state": "free"
+  },
+  {
+   "actor": "theo",
+   "hand": "right",
+   "beat": "b4",
+   "state": "free"
+  },
+  {
+   "actor": "theo",
+   "hand": "left",
+   "beat": "b5",
+   "state": "free"
+  },
+  {
+   "actor": "theo",
+   "hand": "right",
+   "beat": "b5",
+   "state": "free"
+  }
+ ],
+ "beats": [
+  {
+   "id": "b1",
+   "order": 1,
+   "label": "turn toward the table",
+   "actor": "ines",
+   "description": "Ines spins on the spot toward the table, her right arm swinging out",
+   "short": "Ines spins toward the table, right arm swinging out",
+   "min_s": 1.0,
+   "min_s_origin": "PROJECT_DERIVED convention (run-001 reading times) (one bounded motion + anticipation)",
+   "after": [],
+   "caused_by": [],
+   "key_pose": null,
+   "importance": 0.7,
+   "origin": "PROJECT_DERIVED",
+   "spacing": "ease_in"
+  },
+  {
+   "id": "b2",
+   "order": 2,
+   "label": "forearm strikes the glass",
+   "actor": "ines",
+   "description": "The swing carries her right forearm across the near edge of the table",
+   "short": "the swing carries her right forearm across the table edge",
+   "min_s": 1.0,
+   "min_s_origin": "PROJECT_DERIVED convention (run-001 reading times) (one bounded motion; four pathway stages)",
+   "after": [
+    "b1"
+   ],
+   "caused_by": [
+    "b1"
+   ],
+   "key_pose": null,
+   "importance": 1.0,
+   "origin": "PROJECT_DERIVED"
+  },
+  {
+   "id": "b3",
+   "order": 3,
+   "label": "glass falls and breaks",
+   "actor": null,
+   "description": "The glass drops from the table toward the tile floor",
+   "short": "the glass drops toward the tile floor",
+   "min_s": 1.0,
+   "min_s_origin": "PROJECT_DERIVED convention (a short fall plus an impact; five pathway stages)",
+   "after": [
+    "b2"
+   ],
+   "caused_by": [
+    "b2"
+   ],
+   "key_pose": null,
+   "importance": 1.0,
+   "origin": "PROJECT_DERIVED"
+  },
+  {
+   "id": "b4",
+   "order": 4,
+   "label": "Theo notices",
+   "actor": "theo",
+   "description": "Theo, in the doorway, stays still for a moment, turns his head toward the sound and steps back",
+   "short": "Theo stays still, turns toward the sound and steps back",
+   "min_s": 1.2,
+   "min_s_origin": "PROJECT_DERIVED convention (a still hold, then a head turn and a step)",
+   "after": [
+    "b3"
+   ],
+   "caused_by": [
+    "b3"
+   ],
+   "key_pose": null,
+   "importance": 0.9,
+   "origin": "PROJECT_DERIVED"
+  },
+  {
+   "id": "b5",
+   "order": 5,
+   "label": "the broken glass is revealed",
+   "actor": null,
+   "description": "On the tile floor, the pieces of the broken glass lie scattered and still",
+   "short": "on the tile, the broken glass lies scattered and still",
+   "min_s": 1.2,
+   "min_s_origin": "PROJECT_DERIVED convention (reveal, then end on a hold)",
+   "after": [
+    "b4"
+   ],
+   "caused_by": [
+    "b3"
+   ],
+   "key_pose": "scattered shards on the tile, nothing moving",
+   "importance": 0.9,
+   "origin": "PROJECT_DERIVED"
+  }
+ ],
+ "anchors": [],
+ "pathways": [
+  {
+   "id": "p_strike",
+   "object": "glass",
+   "end_state": "glass_falling_toward_floor",
+   "origin": "CREATIVE_CHOICE",
+   "stages": [
+    {
+     "id": "s1",
+     "kind": "anticipation",
+     "beat": "b1",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "glass_upright_at_table_edge",
+     "state_after": "glass_upright_at_table_edge",
+     "description": "Ines spins toward the table, right arm out"
+    },
+    {
+     "id": "s2",
+     "kind": "contact",
+     "beat": "b2",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "glass_upright_at_table_edge",
+     "state_after": "glass_struck_by_forearm",
+     "description": "her right forearm meets the side of the glass"
+    },
+    {
+     "id": "s3",
+     "kind": "transfer",
+     "beat": "b2",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "glass_struck_by_forearm",
+     "state_after": "glass_leaving_table",
+     "description": "the swing's momentum goes into the glass"
+    },
+    {
+     "id": "s4",
+     "kind": "effect",
+     "beat": "b2",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "glass_leaving_table",
+     "state_after": "glass_leaving_table",
+     "description": "the glass tips over the table edge",
+     "reaction": "the glass tips and slides off the table edge, spinning once"
+    },
+    {
+     "id": "s5",
+     "kind": "follow_through",
+     "beat": "b2",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "glass_leaving_table",
+     "state_after": "glass_falling_toward_floor",
+     "description": "the glass is airborne"
+    }
+   ]
+  },
+  {
+   "id": "p_break",
+   "object": "glass",
+   "end_state": "shards_at_rest_on_floor",
+   "origin": "CREATIVE_CHOICE",
+   "stages": [
+    {
+     "id": "k1",
+     "kind": "anticipation",
+     "beat": "b3",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "glass_falling_toward_floor",
+     "state_after": "glass_falling_toward_floor",
+     "description": "the glass tumbles toward the tile"
+    },
+    {
+     "id": "k2",
+     "kind": "contact",
+     "beat": "b3",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "glass_falling_toward_floor",
+     "state_after": "glass_at_floor_impact",
+     "description": "the glass meets the tile floor"
+    },
+    {
+     "id": "k3",
+     "kind": "transfer",
+     "beat": "b3",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "glass_at_floor_impact",
+     "state_after": "glass_fracturing",
+     "description": "the fall's energy goes into the glass"
+    },
+    {
+     "id": "k4",
+     "kind": "effect",
+     "beat": "b3",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "glass_fracturing",
+     "state_after": "glass_fracturing",
+     "description": "the glass gives way at the impact point",
+     "reaction": "the glass bursts into jagged pieces that skid across the tile"
+    },
+    {
+     "id": "k5",
+     "kind": "follow_through",
+     "beat": "b4",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "glass_fracturing",
+     "state_after": "shards_at_rest_on_floor",
+     "description": "the pieces slow and stop"
+    },
+    {
+     "id": "k6",
+     "kind": "postcondition",
+     "beat": "b5",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "shards_at_rest_on_floor",
+     "state_after": "shards_at_rest_on_floor",
+     "description": "the pieces lie where they stopped"
+    }
+   ]
+  }
+ ],
+ "physics_events": [
+  {
+   "event_id": "ev_strike",
+   "beat": "b2",
+   "trigger": {
+    "actor": "Ines",
+    "part": "right forearm",
+    "action": "knocks into the glass"
+   },
+   "contact_surface": "its side near the base",
+   "contact_state": "physical_contact_confirmed",
+   "primary_reaction": "the glass tips and slides off the table edge",
+   "secondary": [
+    "it spins once"
+   ],
+   "settle": "it is airborne and falling toward the floor",
+   "depends_on": [],
+   "must_not_imply": [
+    "a deliberate swipe or throw",
+    "the forearm passes through the glass",
+    "the glass leaves the table before the forearm touches it"
+   ],
+   "risk": "low",
+   "pathway_stage": "s4",
+   "origin": "PROJECT_DERIVED"
+  },
+  {
+   "event_id": "ev_break",
+   "beat": "b3",
+   "trigger": {
+    "actor": "the glass",
+    "part": "base and side",
+    "action": "come down"
+   },
+   "contact_surface": "the tile floor",
+   "contact_state": "physical_contact_confirmed",
+   "primary_reaction": "the glass bursts apart",
+   "secondary": [
+    "pieces skid across the tile",
+    "a few spin and settle"
+   ],
+   "settle": "the pieces lie still where they stopped",
+   "depends_on": [
+    "ev_strike"
+   ],
+   "must_not_imply": [
+    "the glass bounces without breaking",
+    "the glass breaks in the air before it lands",
+    "pieces vanish or return to the table",
+    "the glass lands in Ines's hand"
+   ],
+   "risk": "low",
+   "pathway_stage": "k4",
+   "origin": "PROJECT_DERIVED"
+  }
+ ],
+ "controls": [
+  {
+   "id": "c_duration",
+   "pass": "time",
+   "field": "clip.duration_s",
+   "value": 8,
+   "importance": 1.0,
+   "lock": true,
+   "origin": "USER_EXPLICIT",
+   "treatment": null,
+   "capability": "native",
+   "disposition": "native",
+   "exactness": "exact",
+   "clause": "shot"
+  },
+  {
+   "id": "c_aspect",
+   "pass": "camera",
+   "field": "clip.aspect_ratio",
+   "value": "16:9",
+   "importance": 0.6,
+   "lock": false,
+   "origin": "INFERENCE",
+   "treatment": null,
+   "capability": "native",
+   "disposition": "native",
+   "exactness": "exact",
+   "clause": "shot"
+  },
+  {
+   "id": "c_shot_line",
+   "pass": "intent",
+   "field": "intent.shot_line",
+   "value": "An 8-second video clip, one continuous take, no cuts",
+   "importance": 0.95,
+   "lock": true,
+   "origin": "PROJECT_DERIVED",
+   "treatment": null,
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "approximate",
+   "clause": "shot",
+   "expected_visual_effect": "single continuous clip",
+   "check": "no cuts"
+  },
+  {
+   "id": "c_stage",
+   "pass": "staging",
+   "field": "staging.screen_direction",
+   "value": "The table stands screen-center; the glass falls from its near edge to the floor in front of it",
+   "importance": 0.85,
+   "lock": true,
+   "origin": "CREATIVE_CHOICE",
+   "treatment": null,
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "stable sides across the strike, the reframe and the reveal",
+   "check": "Ines stays screen-left, Theo screen-right; the shards are in front of the table"
+  },
+  {
+   "id": "c_chain",
+   "pass": "interaction",
+   "field": "interaction.causal_chain",
+   "value": {
+    "chain": "forearm strike, glass leaves the table, floor impact and break, Theo notices, the shards are shown"
+   },
+   "importance": 0.9,
+   "lock": true,
+   "origin": "SOURCE_EVIDENCE",
+   "treatment": "interaction.contact_causal_chain",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "the glass moves only after the forearm touches it; Theo reacts only after the break",
+   "check": "frame order matches the chain"
+  },
+  {
+   "id": "c_floor",
+   "pass": "world",
+   "field": "world.material_response",
+   "value": {
+    "floor": "hard tile"
+   },
+   "importance": 0.75,
+   "lock": false,
+   "origin": "PROJECT_DERIVED",
+   "treatment": "world.glass_break",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "the break happens at the floor contact; pieces skid outward and stop",
+   "check": "no break in the air; pieces stay in the frame after the break"
+  },
+  {
+   "id": "c_shards",
+   "pass": "continuity",
+   "field": "continuity.locks",
+   "value": {
+    "items": "the pieces stay on the tile where they stopped and never vanish, re-form or return to the table; Ines and Theo keep their clothes and their sides",
+    "items_short": "the pieces stay on the tile where they stopped; both keep their clothes and sides"
+   },
+   "importance": 0.85,
+   "lock": true,
+   "origin": "PROJECT_DERIVED",
+   "treatment": "continuity.object_locks",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "the shards are visible and unchanged from the break to the last frame",
+   "check": "shards present in b4 and b5; none on the table"
+  },
+  {
+   "id": "c_latency",
+   "pass": "time",
+   "field": "time.reaction_latency",
+   "value": "an exact latency, in milliseconds, between the glass breaking and Theo's first movement",
+   "importance": 0.5,
+   "lock": false,
+   "origin": "INFERENCE",
+   "treatment": null,
+   "capability": "unsupported",
+   "disposition": "unsupported",
+   "exactness": "exact",
+   "expected_visual_effect": "Theo's first movement follows the break by a measured delay",
+   "check": "unobservable from the prompt; order only (b4 after b3)"
+  },
+  {
+   "id": "c_cam_frame",
+   "pass": "camera",
+   "field": "camera.framing",
+   "value": "Medium-wide shot at standing height, standard lens: Ines and the table on the left, Theo small in the doorway on the right, the floor in front of the table in frame",
+   "importance": 0.95,
+   "lock": true,
+   "origin": "PROJECT_DERIVED",
+   "treatment": null,
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "the strike and the break are both in frame before the camera moves",
+   "check": "strike and floor impact visible"
+  },
+  {
+   "id": "c_cam_reframe",
+   "pass": "camera",
+   "field": "camera.move",
+   "beat": "b4",
+   "value": {
+    "move": "pan_right",
+    "phrase": "once the glass has broken, pan right from Ines to Theo",
+    "movement": "rotate the camera horizontally from left to right from one fixed point",
+    "speed": "smooth constant rotation",
+    "framing": "keep the horizon level while new space enters from the right side of the frame",
+    "end": "settle with Theo centered in the doorway"
+   },
+   "importance": 0.9,
+   "lock": true,
+   "origin": "PROJECT_DERIVED",
+   "treatment": "camera.move_from_catalog",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "attention passes from the cause to the witness without a cut",
+   "check": "pan starts after the break and ends on Theo"
+  },
+  {
+   "id": "c_cam_reveal",
+   "pass": "camera",
+   "field": "camera.move",
+   "beat": "b5",
+   "value": {
+    "move": "tilt_down",
+    "phrase": "then tilt down to the floor",
+    "movement": "rotate the camera downward from one fixed point",
+    "speed": "smooth constant tilt",
+    "framing": "keep the table edge in frame as the view travels down to the tile",
+    "end": "land on the broken glass"
+   },
+   "importance": 0.85,
+   "lock": true,
+   "origin": "PROJECT_DERIVED",
+   "treatment": "camera.move_from_catalog",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "the last image is the scattered pieces on the tile",
+   "check": "shards readable in the final frames"
+  },
+  {
+   "id": "c_negatives",
+   "pass": "synthesis",
+   "field": "negatives.failures",
+   "value": [
+    "extra or missing fingers",
+    "the glass breaking in the air",
+    "the glass bouncing whole",
+    "pieces disappearing",
+    "Theo reacting before the glass breaks",
+    "a cut or a zoom",
+    "on-screen text"
+   ],
+   "importance": 0.65,
+   "lock": false,
+   "origin": "PROJECT_DERIVED",
+   "treatment": null,
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "none of the listed failures appear",
+   "check": "visual inspection against the list"
+  }
+ ],
+ "notes": [
+  "Two contacts, each with a pathway and one physics event (ev_strike b2, ev_break b3); ev_break depends_on ev_strike.",
+  "Theo's reaction is a beat (b4, caused_by b3), not a physics event: it is not a contact (decision d002).",
+  "The reaction latency is order (b4 after b3); the exact-millisecond request is c_latency, unsupported on this profile (decision d003).",
+  "Two camera moves scoped to beats: pan_right on b4, tilt_down on b5 (decision d001)."
+ ]
+}
