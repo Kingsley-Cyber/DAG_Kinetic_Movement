@@ -16,6 +16,7 @@ until the owner acts (see `OWNER_ACTIONS.md`).
 | **GATE A** | **Owner confirms the model route, renders E1 (runs 001–005) and E2/E3 arms, fills verdicts** | T13 | WO-07, WO-08 | blocked on owner |
 | WO-09 | Kill check and effects: read the ledger, write the result in STATUS, update treatment `## Effects` | T14 | GATE A | todo |
 | — | After WO-09: Phase 3 work orders (T20–T29, T39) are written only if the kill check passes | | | not written |
+| WO-10 | TwelveLabs client refresh (models, request bodies, asset library listing, image and video uploads incl. multipart). Independent of the gates; needs the owner's decision D1 (location) and a go for each live upload | — | owner decision D1 | todo |
 
 Notes:
 - The order follows the external review's remediation order: enforce existing contracts, one
