@@ -1,7 +1,6 @@
 """Director emit: deterministic prompt assembly from treatments, per model profile, with a receipt
 and loss records. Runs `check` first and refuses on any error.
 """
-import datetime as _dt
 import hashlib
 import json
 import re
@@ -24,6 +23,10 @@ from dircheck import (
 # Text fallbacks for API-level controls when the selected route has no native field for them.
 # A native control is never dropped silently: it is carried as text (compressed_to_text, with a
 # loss record) or, when locked and no text form exists, emission blocks.
+# After "First," / "Then" only these sentence openers are lowercased; names keep their capital.
+LOWERCASE_AFTER_LEAD = frozenset(("He", "She", "They", "It", "The", "A", "An", "His", "Her", "Their", "Its",
+                                  "After", "With", "One", "Both", "Each", "As", "While", "In", "On", "At"))
+
 # Spacing (R-60) written as visible behaviour, never as the term. `even` adds nothing.
 SPACING_CLAUSE = {
     "ease_in": "starting slow and accelerating",
@@ -170,7 +173,8 @@ def emit(run_dir: Path, model: str) -> dict:
         spacing = SPACING_CLAUSE.get(b.get("spacing") or "", "")
         def beat_text(desc: str, with_pose: bool) -> str:
             desc = desc.strip().rstrip(".")
-            body = desc[0].lower() + desc[1:] if desc and lead != "First," else desc
+            first_word = desc.split(" ", 1)[0] if desc else ""
+            body = desc[0].lower() + desc[1:] if first_word in LOWERCASE_AFTER_LEAD else desc  # keep names as written
             t = "%s %s%s%s." % (lead, body, ", " + spacing if spacing else "", ", " + delta if delta else "")
             if with_pose and b.get("key_pose"):
                 t += " Key pose: %s." % b["key_pose"].strip().rstrip(".")
@@ -368,8 +372,10 @@ def emit(run_dir: Path, model: str) -> dict:
                        "shorten locked content in the IR (beats, locks, camera) and re-emit"]
             if len(state_changing) > 1:
                 options.insert(0, "split into one clip per causal event (research rule R3): pathways %s" % ", ".join(state_changing))
-            raise SystemExit("emit blocked: prompt is %d chars against a %d-char limit and only locked content remains (unsupported_error). Options: %s"
-                             % (len(prompt), limit, " | ".join(options)))
+            longest = sorted((l for l in active_lines if not l.get("droppable")), key=lambda l: -len(l["text"]))[:5]
+            named = "; ".join("%s:%s (%d chars)" % (l["source"]["kind"], l["source"]["id"], len(l["text"])) for l in longest)
+            raise SystemExit("emit blocked: prompt is %d chars against a %d-char limit and only locked content remains (unsupported_error). Options: %s. The longest locked lines: %s"
+                             % (len(prompt), limit, " | ".join(options), named))
         victim = sorted(droppable, key=lambda l: (l["importance"], str(l["source"]["id"])))[0]
         active_lines.remove(victim)
         c = victim.get("control", {})
@@ -393,8 +399,7 @@ def emit(run_dir: Path, model: str) -> dict:
     dispositions: Dict[str, int] = {}
     for c in ir["controls"]:
         dispositions[c["disposition"]] = dispositions.get(c["disposition"], 0) + 1
-    report = {"run_id": ir["run_id"], "model": model, "emitted_at": _dt.datetime.now(_dt.timezone.utc).isoformat(timespec="seconds"),
-              "chars": len(prompt), "char_limit": limit, "mode": "C→A text_interpretation_only", "control_level": "L0–L1",
+    report = {"run_id": ir["run_id"], "model": model,               "chars": len(prompt), "char_limit": limit, "mode": "C→A text_interpretation_only", "control_level": "L0–L1",
               "settings": settings, "dispositions": dispositions, "dropped_for_budget": dropped,
               "compressed_for_budget": compressed,
               "loss_records": len(losses), "fit": result.fit, "warnings": warnings,

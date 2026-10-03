@@ -333,7 +333,12 @@ def _check_all(run_dir: Path) -> CheckResult:
             res.warnings.append("fit: TIGHT (load %.2fs of %.2fs)" % (load, duration))
         if verdict == "OVERLOADED":
             closure = _causal_closure(beats)
-            cuts = [b["id"] for b in sorted(beats, key=lambda x: (x["importance"], x["order"]))][:2]
+            cuts, remaining = [], load  # cut lowest-importance beats until the rest fits
+            for cand in sorted(beats, key=lambda x: (x["importance"], x["order"])):
+                if remaining <= duration:
+                    break
+                cuts.append(cand["id"])
+                remaining -= cand["min_s"]
             overlappable = []
             for i, a in enumerate(beats):
                 for c in beats[i + 1:]:
@@ -510,7 +515,7 @@ def _check_all(run_dir: Path) -> CheckResult:
                               % (b["id"], stages_on_beat[b["id"]], need, b["min_s"]))
 
     if "camera" in active:
-        if not ({"motion"} & camera_cov):
+        if not ({"motion", "movement", "move", "phrase"} & camera_cov):
             res.errors.append("camera: no camera.motion control (explicit camera grammar is mandatory)")
         if not ({"framing", "optics"} & camera_cov):
             res.errors.append("camera: no camera.framing or camera.optics control (explicit camera grammar is mandatory)")

@@ -681,5 +681,64 @@ class Scratchpad(unittest.TestCase):
             tr.cleanup()
 
 
+class HandoffFindings(unittest.TestCase):
+    """Defects the WO-04 handoff test (run 002, Sonnet) exposed."""
+
+    def test_first_beat_pronoun_is_lowercased_but_names_are_kept(self):
+        def mutate(ir):
+            ir["beats"][0].pop("short", None)
+            ir["beats"][0]["description"] = "She leans in and glances at the lens"
+            ir["beats"][1].pop("short", None)
+            ir["beats"][1]["description"] = "Mara reaches down and grips the bottle"
+            ir["controls"] = [c for c in ir["controls"] if c["lock"] or c["pass"] == "camera"]
+        tr = TempRun(mutate)
+        try:
+            director.emit(tr.dir, "hailuo")  # no length limit: full wording is used
+            prompt = (tr.dir / "prompt.txt").read_text()
+            self.assertIn("First, she leans in", prompt)
+            self.assertIn("Then Mara reaches down", prompt)
+        finally:
+            tr.cleanup()
+
+    def test_catalog_camera_keys_satisfy_camera_grammar(self):
+        def mutate(ir):
+            ir["controls"] = [c for c in ir["controls"] if c["pass"] != "camera"]
+            ir["controls"].append({"id": "c_move", "pass": "camera", "field": "camera.move",
+                                   "value": {"move": "handheld", "phrase": "handheld shot", "movement": "hold the camera at operator height",
+                                             "speed": "responsive", "framing": "medium shot, subject readable", "end": "settle on him"},
+                                   "importance": 0.9, "lock": True, "origin": "UNVERIFIED", "treatment": "camera.move_from_catalog",
+                                   "capability": "semantic", "disposition": "semantic"})
+        self.assertEqual([e for e in errors_for(mutate) if e.startswith("camera")], [])
+
+    def test_overload_cut_suggestion_actually_fits(self):
+        def mutate(ir):
+            for b in ir["beats"]:
+                b["min_s"] = 1.6  # 11.2 s of content in 8 s
+        tr = TempRun(mutate)
+        try:
+            res = director.check(tr.dir)
+            cuts = res.fit["options"]["cut_lowest_importance"]
+            ir = json.loads((tr.dir / "ir.json").read_text())
+            remaining = sum(b["min_s"] for b in ir["beats"] if b["id"] not in cuts)
+            self.assertLessEqual(remaining, 8.0)
+            self.assertGreaterEqual(len(cuts), 2)
+        finally:
+            tr.cleanup()
+
+    def test_budget_block_names_the_longest_locked_lines(self):
+        def mutate(ir):
+            for b in ir["beats"]:
+                b["description"] = b["description"] + " " + ("and more detail " * 40)
+                b.pop("short", None)
+        tr = TempRun(mutate)
+        try:
+            with self.assertRaises(SystemExit) as ctx:
+                director.emit(tr.dir, "seedance")
+            self.assertIn("longest locked lines", str(ctx.exception))
+            self.assertIn("beat:b", str(ctx.exception))
+        finally:
+            tr.cleanup()
+
+
 if __name__ == "__main__":
     unittest.main()

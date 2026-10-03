@@ -1,7 +1,6 @@
 {
   "run_id": "002_earbuds_unbox",
   "model": "seedance",
-  "emitted_at": "2026-10-03T05:13:55+00:00",
   "chars": 1987,
   "char_limit": 2000,
   "mode": "C→A text_interpretation_only",

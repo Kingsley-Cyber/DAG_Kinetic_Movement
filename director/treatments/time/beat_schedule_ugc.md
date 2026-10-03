@@ -17,7 +17,7 @@ order and pace, and the schedule stays in the IR.
 
 ## Wording
 ```prompt core
-Pace: {pace}. One action at a time, each given its own moment; a short pause before the drink; the clip ends on a held settle, not mid-motion.
+Pace: {pace}. One action at a time, each given its own moment; the clip ends on a held settle, not mid-motion.
 ```
 
 ```prompt core short

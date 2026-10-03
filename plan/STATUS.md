@@ -2,6 +2,32 @@
 
 Newest first. One entry per working session or phase exit.
 
+## 2026-10-03 — Handoff test reviewed (WO-04) and the tool defects it found are fixed
+
+Run 002 was executed by a Sonnet session from the repository's instructions alone: `check` GREEN
+(fit TIGHT, 7.2 s of 8 s), prompt 1,987 of 2,000 characters, independent read-back MATCH, three new
+treatments, 24 guesses listed in the entry below. What the guesses showed, and what changed:
+
+| Finding | Fix |
+|---|---|
+| First beat printed as "First, He…" | emitter lowercases common sentence openers after the lead word and keeps names (test) |
+| The catalog camera treatment's keys did not satisfy the camera-grammar check | check accepts `move`, `movement`, `phrase` as the motion part (test) |
+| The OVERLOADED cut suggestion still overloaded | `check` now lists as many lowest-importance beats as it takes to fit (test) |
+| `emit` blocked with "only locked content remains" and no hint what to shorten | the message names the five longest locked lines (test) |
+| The pace treatment said "before the drink" | wording made generic |
+| Protocol silent on: one pathway per contact cycle, `holding:` ids, folding effect-read beats, where to record an OVERLOADED resolution, beat vs event vs anchor repeating the same action, anchor labels, catalog camera value keys, sentence case, budget repair | `director/protocol.md` §4·3 |
+| `emit_report.json` changed on every emit (timestamp) | timestamp removed; the file is stable |
+
+Still open from the handoff (not tool defects): reading-time conventions have no source; which
+existing treatment "fits" is a judgement; the same action is still stated more than once when a
+beat, an anchor and an event describe it (redundancy suppression is T21, after the kill check);
+acting direction was dropped for budget in run 002.
+
+Verdict on the handoff: a second model produced a valid, readable run from the documents, with
+guesses concentrated in the places listed above. "Any LLM" is not proven; one Sonnet run is.
+
+Next: WO-05 (run 003, pool).
+
 ## 2026-10-03 — WO-04 done: run 002 earbuds unboxing (handoff test)
 
 - Run folder `director/runs/002_earbuds_unbox/`: `ask.md`, `ir.json`, `decisions.jsonl` (d001–d009), `open.jsonl` (o001 resolved), `baseline.txt`, `prompt.txt`, `receipt.json`, `loss.jsonl`, `emit_report.json`, `check_report.json`, `readback_raw.md`, `readback.md`, `verdict.md`.

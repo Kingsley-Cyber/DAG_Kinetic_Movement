@@ -198,6 +198,32 @@ strong the validator is, budget. Ask the time pass's six questions in order (reg
 beats, tempo curve, micro-pauses and anticipation, apex density, variation). Use anchors: one
 baseline and one relative escalation per quality, never two absolutes.
 
+## 4·3 Clarifications from the first handoff run (run 002)
+
+- **One pathway per contact cycle.** Stage kinds cannot repeat inside a pathway; a task with
+  several contacts (open the box, take the case, open the case, insert the earbud) is several
+  pathways on the same or different objects.
+- **Hand ledger ids.** A `holding:<id>` state must name the pathway's `object` or one of its
+  `parts` for the stages that use that hand.
+- **Effect-read beats.** When a physics event already states the reaction, the "result is seen"
+  moment may be folded into the action beat that carries the event; record the fold as a decision.
+  Do not lower `min_s` to make a run fit.
+- **OVERLOADED.** `check` lists the lowest-importance beats whose removal makes the clip fit.
+  Taking a different resolution (folding, splitting, lengthening) is allowed with a decision record;
+  an `alternative` item in `open.jsonl` with status `resolved` is the place to show what was weighed.
+- **A beat that has a physics event** should describe the approach and setup only; the event
+  sentence carries contact, reaction and settle. An anchor's description should not restate the
+  beat. Otherwise the same action is written three times.
+- **Anchor labels** must name the action unambiguously ("the thumb push on the case lid", not
+  "the push"), because the comparison may land several sentences later.
+- **Camera from the catalog.** Use field `camera.move` with the value keys `move` (catalog id),
+  `phrase`, `movement`, `speed`, `framing`, `end`; these satisfy the camera-grammar check.
+- **Sentence case.** Write beat descriptions as normal sentences. After "First," or "Then" the
+  emitter lowercases common openers (She, He, The, A, …) and keeps names as written.
+- **Budget block.** When `emit` blocks with only locked content left, it names the longest locked
+  lines; shorten those in the IR (add `short` forms first), never unlock a constraint to fit.
+- **Dates** in records use the session's local date.
+
 ## 5. Check, emit, read back
 
 ```
