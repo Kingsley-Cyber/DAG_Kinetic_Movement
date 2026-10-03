@@ -1,0 +1,53 @@
+{
+  "run_id": "001_bottle_selfie",
+  "model": "seedance",
+  "emitted_at": "2026-10-02T23:36:05+00:00",
+  "chars": 1896,
+  "char_limit": 2000,
+  "mode": "C→A text_interpretation_only",
+  "control_level": "L0–L1",
+  "settings": {
+    "duration_s": 8,
+    "aspect_ratio": "9:16"
+  },
+  "dispositions": {
+    "native": 2,
+    "semantic": 10
+  },
+  "dropped_for_budget": [
+    "c_pace",
+    "c_negatives"
+  ],
+  "compressed_for_budget": [
+    "b1",
+    "c_pace",
+    "b5",
+    "b7",
+    "c_register",
+    "c_capture",
+    "c_locks",
+    "b2",
+    "b3",
+    "b6",
+    "c_camera",
+    "c_chain",
+    "b4",
+    "bottle",
+    "phone",
+    "woman"
+  ],
+  "loss_records": 18,
+  "fit": {
+    "verdict": "FITS",
+    "load_s": 6.4,
+    "duration_s": 8,
+    "ratio": 0.8
+  },
+  "warnings": [],
+  "validity": {
+    "parses": true,
+    "schema": true,
+    "decisions_correct": "not judged by code",
+    "render_succeeded": "pending"
+  }
+}

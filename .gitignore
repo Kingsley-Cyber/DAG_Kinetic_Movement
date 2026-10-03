@@ -7,3 +7,6 @@
 # OS noise
 Thumbs.db
 .DS_Store
+
+# Python caches
+__pycache__/

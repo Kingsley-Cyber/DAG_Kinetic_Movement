@@ -1,0 +1,55 @@
+# Model profile: Seedance — route unknown. Every fact is tagged: documented | measured | guess.
+# Nothing here is treated as supported until a tag says documented (with source) or measured (with run id).
+model: seedance
+display_name: "Seedance (route and version unconfirmed)"
+status: unverified
+updated: 2026-10-02
+
+facts:
+  - key: prompt_char_limit
+    value: 2000
+    tag: documented_thirdparty
+    source: "Third-party API docs for Seedance 1.5 and 2.0 state a 2,000-character prompt maximum (seedanceapi.org/docs/v1; docs.laozhang.ai seedance2-video-generation), looked up 2026-10-02. Not ByteDance's own page. Runway-hosted route is 1–1,000 UTF-16 units (research SRC-014); use 1000 if that is the route."
+  - key: recommended_prompt_words
+    value: "60-100"
+    tag: documented_thirdparty
+    source: "Seedance 2.0 prompt guides (invideo.io, help.apiyi.com), 2026-10-02: longer prompts degrade quality; a 30 s clip may use a shot list with timecodes (~4,700 chars)"
+  - key: negative_prompt_field
+    value: false
+    tag: guess
+    source: "Runway route has no negative field; native route unknown"
+  - key: durations_s
+    value: null
+    tag: unknown
+    source: "Research mentions 'up to 30 seconds in a single pass' for Seedance 2.5 (Granular Motion Control doc) — unverified"
+  - key: aspect_ratios
+    value: null
+    tag: unknown
+  - key: fps
+    value: 24
+    tag: guess
+    source: "animation baseline convention; derived clock only"
+  - key: audio
+    value: null
+    tag: unknown
+  - key: structured_text_handling
+    value: null
+    tag: unknown
+    source: "no measured finding; assume prose is read as prose"
+
+# API fields the emitter may treat as `native` controls. Guess until documented.
+native_fields: [duration_s, aspect_ratio]
+
+# Default capability class for text-only controls.
+default_capability: semantic
+
+# Natural-language clause order (cpcs/runtime/07_compiler/format_ownership.md, SRC-011 §13; PROJECT_DERIVED).
+clause_order: [shot, subject_action, performance, timing, camera, negatives]
+
+# How negatives are emitted when there is no negative field: one short positive-first line at the end.
+negatives_style: inline_avoid_line
+
+dialect:
+  notes: "No Seedance findings exist in the owner's research. Third-party guides (2026-10-02, unverified by renders) recommend 60–100 words, a subject → action → scene → camera → style order, explicit camera-movement words, and shot lists with timecodes for long clips. Core wording is used unchanged until renders say otherwise."
+  prefer: []
+  avoid: []

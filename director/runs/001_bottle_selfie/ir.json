@@ -1,0 +1,116 @@
+{
+  "schema_version": "0.1",
+  "run_id": "001_bottle_selfie",
+  "ask": "A woman films herself opening a water bottle and drinking, 8 seconds, phone selfie.",
+  "model": "seedance",
+  "clip": {
+    "duration_s": 8,
+    "duration_origin": "USER_EXPLICIT",
+    "aspect_ratio": "9:16",
+    "fps_assumed": 24,
+    "objective": "a believable, unforced moment: she opens the bottle and drinks, nothing performed",
+    "dramatic_function": "small everyday relief; the drink is the payoff of the open"
+  },
+  "pass_plan": [
+    {"pass": "intent", "active": true, "reason": "mandatory"},
+    {"pass": "entity", "active": true, "reason": "mandatory"},
+    {"pass": "world", "active": false, "reason": "no research; reasoned: no environment reaction beyond the bottle itself"},
+    {"pass": "action", "active": false, "reason": "no research; reasoned: seated upper-body action fully described by the interaction stages"},
+    {"pass": "interaction", "active": true, "reason": "actor touches a bottle and its cap"},
+    {"pass": "physics", "active": true, "reason": "a contact (twist) with a stated reaction (cap comes free, water moves)"},
+    {"pass": "staging", "active": false, "reason": "no research; reasoned: one actor, one object, fixed camera"},
+    {"pass": "continuity", "active": true, "reason": "bottle, cap and water level persist across beats"},
+    {"pass": "time", "active": true, "reason": "mandatory"},
+    {"pass": "performance", "active": true, "reason": "a living performer is on screen"},
+    {"pass": "camera", "active": true, "reason": "mandatory: explicit camera grammar"},
+    {"pass": "attention", "active": false, "reason": "no research; reasoned: nothing is withheld or revealed"},
+    {"pass": "light_color", "active": false, "reason": "no research; reasoned: available flat light stated in the capture texture"},
+    {"pass": "style", "active": true, "reason": "a real phone look is implied by 'films herself'"},
+    {"pass": "audio", "active": false, "reason": "no research; model audio support unknown; no dialogue asked"},
+    {"pass": "synthesis", "active": true, "reason": "mandatory"}
+  ],
+  "entities": [
+    {"id": "woman", "kind": "actor", "description": "A woman in her late twenties with her hair tied back, in a plain T-shirt, sitting at a kitchen table", "short": "A woman, hair tied back, plain T-shirt, at a kitchen table", "locks": ["identity_stable", "anatomy_correct"], "origin": "CREATIVE_CHOICE"},
+    {"id": "bottle", "kind": "object", "description": "A clear plastic water bottle with a white screw cap, label facing the camera, water about two-thirds full", "short": "A clear plastic water bottle, white screw cap, label to camera", "locks": ["scale", "colour", "label_readable", "shape"], "origin": "INFERENCE"},
+    {"id": "bottle_cap", "kind": "object", "description": "", "locks": ["stays_visible_after_removal"], "origin": "INFERENCE"},
+    {"id": "phone", "kind": "camera", "description": "Her phone is propped against a mug on the table, front camera facing her, so both hands are free", "short": "Her phone is propped against a mug, front camera on her, both hands free", "origin": "PROJECT_DERIVED"},
+    {"id": "table", "kind": "surface", "description": "", "origin": "INFERENCE"}
+  ],
+  "hands": [
+    {"actor": "woman", "hand": "left", "beat": "b1", "state": "free"},
+    {"actor": "woman", "hand": "right", "beat": "b1", "state": "free"},
+    {"actor": "woman", "hand": "left", "beat": "b2", "state": "holding:bottle"},
+    {"actor": "woman", "hand": "right", "beat": "b2", "state": "holding:bottle_cap"},
+    {"actor": "woman", "hand": "left", "beat": "b3", "state": "holding:bottle"},
+    {"actor": "woman", "hand": "right", "beat": "b3", "state": "holding:bottle_cap"},
+    {"actor": "woman", "hand": "left", "beat": "b4", "state": "holding:bottle"},
+    {"actor": "woman", "hand": "right", "beat": "b4", "state": "holding:bottle_cap"},
+    {"actor": "woman", "hand": "left", "beat": "b5", "state": "holding:bottle"},
+    {"actor": "woman", "hand": "right", "beat": "b5", "state": "holding:bottle_cap"},
+    {"actor": "woman", "hand": "left", "beat": "b6", "state": "holding:bottle"},
+    {"actor": "woman", "hand": "right", "beat": "b6", "state": "holding:bottle_cap"},
+    {"actor": "woman", "hand": "left", "beat": "b7", "state": "holding:bottle"},
+    {"actor": "woman", "hand": "right", "beat": "b7", "state": "holding:bottle_cap"}
+  ],
+  "pathways": [
+    {
+      "id": "p_open",
+      "object": "bottle",
+      "parts": ["bottle_cap"],
+      "end_state": "cap_off_held_in_right_fingers_bottle_open_in_left_hand",
+      "origin": "INFERENCE",
+      "stages": [
+        {"id": "s1", "kind": "precondition", "beat": "b1", "hands_required": 0, "hands": [], "state_before": "sealed_on_table", "state_after": "sealed_on_table", "description": "bottle sealed on the table; phone propped; both hands free"},
+        {"id": "s2", "kind": "anticipation", "beat": "b2", "hands_required": 0, "hands": [], "state_before": "sealed_on_table", "state_after": "sealed_on_table", "description": "small breath; gaze drops to the bottle; hands move toward it"},
+        {"id": "s3", "kind": "contact", "beat": "b2", "hands_required": 2, "hands": [{"actor": "woman", "hand": "left"}, {"actor": "woman", "hand": "right"}], "state_before": "sealed_on_table", "state_after": "sealed_in_hands", "description": "left hand wraps the body in a full grip; right thumb and index pinch the cap"},
+        {"id": "s4", "kind": "transfer", "beat": "b3", "hands_required": 2, "hands": [{"actor": "woman", "hand": "left"}, {"actor": "woman", "hand": "right"}], "state_before": "sealed_in_hands", "state_after": "cap_loosened", "description": "one short counter-clockwise twist; the cap turns, the body stays still"},
+        {"id": "s5", "kind": "effect", "beat": "b4", "hands_required": 2, "hands": [{"actor": "woman", "hand": "left"}, {"actor": "woman", "hand": "right"}], "state_before": "cap_loosened", "state_after": "cap_off", "reaction": "the cap comes free with a small click and lifts away in her right fingers; the bottle mouth is open; a faint ripple runs through the water", "description": "seal breaks"},
+        {"id": "s6", "kind": "follow_through", "beat": "b4", "hands_required": 1, "hands": [{"actor": "woman", "hand": "right"}], "state_before": "cap_off", "state_after": "cap_off", "description": "right hand lifts the cap clear, still pinched"},
+        {"id": "s7", "kind": "recovery", "beat": "b5", "hands_required": 1, "hands": [{"actor": "woman", "hand": "left"}], "state_before": "cap_off", "state_after": "cap_off_held_in_right_fingers_bottle_open_in_left_hand", "description": "left hand raises the open bottle; right hand lowers the cap toward the table edge"},
+        {"id": "s8", "kind": "postcondition", "beat": "b5", "hands_required": 0, "hands": [], "state_before": "cap_off_held_in_right_fingers_bottle_open_in_left_hand", "state_after": "cap_off_held_in_right_fingers_bottle_open_in_left_hand", "description": "bottle open in the left hand, cap visible in the right"}
+      ]
+    },
+    {
+      "id": "p_drink",
+      "object": "bottle",
+      "parts": ["bottle_cap"],
+      "end_state": "bottle_lowered_water_level_lower",
+      "origin": "INFERENCE",
+      "stages": [
+        {"id": "d1", "kind": "anticipation", "beat": "b5", "hands_required": 1, "hands": [{"actor": "woman", "hand": "left"}], "state_before": "open_raised", "state_after": "open_raised", "description": "bottle rises toward her mouth; eyes glance down to it"},
+        {"id": "d2", "kind": "contact", "beat": "b6", "hands_required": 1, "hands": [{"actor": "woman", "hand": "left"}], "state_before": "open_raised", "state_after": "rim_at_lips", "description": "rim meets her lips"},
+        {"id": "d3", "kind": "transfer", "beat": "b6", "hands_required": 1, "hands": [{"actor": "woman", "hand": "left"}], "state_before": "rim_at_lips", "state_after": "tilted_pouring", "description": "she tilts the bottle"},
+        {"id": "d4", "kind": "effect", "beat": "b6", "hands_required": 1, "hands": [{"actor": "woman", "hand": "left"}], "state_before": "tilted_pouring", "state_after": "two_swallows_done", "reaction": "her throat moves with two swallows; the water level tilts and drops a little", "description": "two swallows"},
+        {"id": "d5", "kind": "follow_through", "beat": "b7", "hands_required": 1, "hands": [{"actor": "woman", "hand": "left"}], "state_before": "two_swallows_done", "state_after": "bottle_lowered_water_level_lower", "description": "she lowers the bottle; a small exhale"},
+        {"id": "d6", "kind": "recovery", "beat": "b7", "hands_required": 0, "hands": [], "state_before": "bottle_lowered_water_level_lower", "state_after": "bottle_lowered_water_level_lower", "description": "settle; glance back to the lens"}
+      ]
+    }
+  ],
+  "beats": [
+    {"id": "b1", "order": 1, "label": "settle in", "actor": "woman", "description": "She leans slightly into frame and glances at the lens; the sealed bottle stands on the table in front of her", "short": "she leans in and glances at the lens; the sealed bottle sits in front of her", "min_s": 0.8, "min_s_origin": "PROJECT_DERIVED convention (establish beat)", "after": [], "caused_by": [], "key_pose": "head and shoulders centred, bottle visible lower frame", "importance": 0.6, "origin": "CREATIVE_CHOICE"},
+    {"id": "b2", "order": 2, "label": "reach and grip", "actor": "woman", "description": "After a small breath she reaches down; her left hand wraps the bottle body and her right thumb and index finger pinch the cap", "short": "she reaches down; left hand wraps the bottle, right fingers pinch the cap", "min_s": 0.8, "min_s_origin": "PROJECT_DERIVED convention (reach + grasp)", "after": ["b1"], "caused_by": [], "key_pose": null, "importance": 0.9, "origin": "PROJECT_DERIVED"},
+    {"id": "b3", "order": 3, "label": "twist", "actor": "woman", "description": "She gives the cap one short counter-clockwise twist; the cap turns while the bottle stays still", "short": "one short counter-clockwise twist; the cap turns, the bottle stays still", "min_s": 1.0, "min_s_origin": "PROJECT_DERIVED convention (one bounded motion)", "after": ["b2"], "caused_by": ["b2"], "key_pose": null, "importance": 0.9, "origin": "PROJECT_DERIVED"},
+    {"id": "b4", "order": 4, "label": "cap comes free", "actor": "woman", "description": "The cap comes free with a small click and lifts away in her right fingers; the bottle mouth is open and a faint ripple runs through the water", "short": "the cap comes free with a click and lifts in her fingers; the water ripples", "min_s": 0.6, "min_s_origin": "PROJECT_DERIVED convention (effect read)", "after": ["b3"], "caused_by": ["b3"], "key_pose": "cap held clear, bottle open", "importance": 1.0, "origin": "PROJECT_DERIVED"},
+    {"id": "b5", "order": 5, "label": "raise", "actor": "woman", "description": "She raises the open bottle with her left hand, eyes dropping to it, and lowers the cap toward the table edge with her right", "short": "she raises the open bottle, eyes on it, cap lowered in her right hand", "min_s": 0.8, "min_s_origin": "PROJECT_DERIVED convention (raise)", "after": ["b4"], "caused_by": ["b4"], "key_pose": null, "importance": 0.7, "origin": "PROJECT_DERIVED"},
+    {"id": "b6", "order": 6, "label": "drink", "actor": "woman", "description": "The rim meets her lips, she tilts the bottle and takes two swallows; her throat moves and the water level drops a little", "short": "rim to lips, two swallows; the water level drops", "min_s": 1.6, "min_s_origin": "PROJECT_DERIVED convention (two swallows)", "after": ["b5"], "caused_by": ["b5"], "key_pose": "bottle tilted at the lips", "importance": 0.9, "origin": "PROJECT_DERIVED"},
+    {"id": "b7", "order": 7, "label": "lower and settle", "actor": "woman", "description": "She lowers the bottle, exhales softly and glances back at the lens with a faint satisfied look, then holds still", "short": "she lowers the bottle, exhales, glances to the lens and holds still", "min_s": 0.8, "min_s_origin": "PROJECT_DERIVED convention (settle; end on a hold)", "after": ["b6"], "caused_by": ["b6"], "key_pose": "bottle lowered, cap in right hand, eyes to lens", "importance": 0.7, "origin": "PROJECT_DERIVED"}
+  ],
+  "controls": [
+    {"id": "c_duration", "pass": "time", "field": "clip.duration_s", "value": 8, "importance": 1.0, "lock": true, "origin": "USER_EXPLICIT", "treatment": null, "capability": "native", "disposition": "native", "exactness": "exact", "clause": "shot"},
+    {"id": "c_aspect", "pass": "camera", "field": "clip.aspect_ratio", "value": "9:16", "importance": 0.6, "lock": false, "origin": "INFERENCE", "treatment": null, "capability": "native", "disposition": "native", "exactness": "exact", "clause": "shot"},
+    {"id": "c_shot_line", "pass": "intent", "field": "intent.shot_line", "value": "An 8-second vertical phone selfie clip, one continuous take, no cuts", "importance": 0.95, "lock": true, "origin": "USER_EXPLICIT", "treatment": null, "capability": "semantic", "disposition": "semantic", "exactness": "approximate", "clause": "shot", "expected_visual_effect": "single continuous vertical clip", "check": "no cuts; vertical framing"},
+    {"id": "c_grip", "pass": "interaction", "field": "interaction.grip", "value": {"bottle_hand": "left", "cap_hand": "right"}, "importance": 0.85, "lock": false, "origin": "PROJECT_DERIVED", "treatment": "interaction.grip_power_bottle", "capability": "semantic", "disposition": "semantic", "exactness": "qualitative", "expected_visual_effect": "left hand wraps the body; right thumb and index pinch and turn the cap; cap rotates, body still", "check": "cap rotates while bottle body stays still; five fingers each hand"},
+    {"id": "c_chain", "pass": "interaction", "field": "interaction.causal_chain", "value": {"chain": "grip, one twist, cap free, lift, drink"}, "importance": 0.9, "lock": true, "origin": "SOURCE_EVIDENCE", "treatment": "interaction.contact_causal_chain", "capability": "semantic", "disposition": "semantic", "exactness": "qualitative", "expected_visual_effect": "cap is attached until after the twist; drink only after the open", "check": "frame order: grip before twist, twist before cap off, cap off before drink"},
+    {"id": "c_reaction", "pass": "physics", "field": "physics.reaction", "value": "The twist has a visible result: the cap releases with a small click, lifts clear in her fingers, and the water inside ripples once", "importance": 0.8, "lock": false, "origin": "INFERENCE", "treatment": null, "capability": "semantic", "disposition": "semantic", "exactness": "qualitative", "expected_visual_effect": "cap separation is a distinct moment with a reaction", "check": "cap separation visible as its own frame range"},
+    {"id": "c_locks", "pass": "continuity", "field": "continuity.locks", "value": {"items": "the bottle keeps its size, shape, colour and readable label; the cap stays in her right fingers after it comes off and never reattaches or vanishes; the water level only drops when she drinks", "items_short": "the bottle keeps its size, label and colour; the cap stays in her fingers; the water only drops as she drinks"}, "importance": 0.8, "lock": true, "origin": "PROJECT_DERIVED", "treatment": "continuity.object_locks", "capability": "semantic", "disposition": "semantic", "exactness": "qualitative", "expected_visual_effect": "same bottle every frame; cap visible after removal", "check": "bottle scale and label constant; cap present after b4"},
+    {"id": "c_register", "pass": "performance", "field": "performance.register", "value": {"register": "casual and unforced, like a friend on a call", "weight": 0.3, "time": 0.35, "space": 0.7, "flow": 0.35, "confidence": 0.5}, "importance": 0.7, "lock": false, "origin": "PROJECT_DERIVED", "treatment": "performance.casual_register", "capability": "semantic", "disposition": "semantic", "exactness": "qualitative", "expected_visual_effect": "light, unhurried, direct movements; relaxed grip; alive face without a held smile", "check": "no locked stare; at least one blink and one glance away"},
+    {"id": "c_camera", "pass": "camera", "field": "camera.grammar", "value": {"motion": "the phone is propped and static, with a faint settle in the first moment and no movement after", "optics": "wide front camera at arm's length, about 24 mm equivalent, mild barrel distortion, deep focus with everything sharp", "framing": "medium close-up, head and shoulders, slightly below eye level; the bottle enters from the bottom of the frame", "motion_short": "propped phone, static", "optics_short": "wide front camera, deep focus", "framing_short": "medium close-up, slightly low angle"}, "importance": 0.9, "lock": true, "origin": "PROJECT_DERIVED", "treatment": "camera.selfie_framing", "capability": "semantic", "disposition": "semantic", "exactness": "qualitative", "expected_visual_effect": "static vertical selfie framing, wide lens look, deep focus", "check": "no camera motion after the first second; no bokeh"},
+    {"id": "c_capture", "pass": "style", "field": "style.capture_texture", "value": {"device": "iphone_recent"}, "importance": 0.8, "lock": false, "origin": "PROVIDER_EXPERIMENT", "treatment": "style.capture_iphone_selfie", "capability": "semantic", "disposition": "semantic", "exactness": "qualitative", "expected_visual_effect": "reads as real phone footage; visible skin texture; no grade", "check": "no bokeh, no cinematic grade, skin not waxy"},
+    {"id": "c_pace", "pass": "time", "field": "time.pace", "value": {"pace": "unhurried, real-time, no slow motion"}, "importance": 0.6, "lock": false, "origin": "PROJECT_DERIVED", "treatment": "time.beat_schedule_ugc", "capability": "semantic", "disposition": "semantic", "exactness": "qualitative", "expected_visual_effect": "actions read one at a time; clip ends on a held settle", "check": "no overlapping actions; last half second still"},
+    {"id": "c_negatives", "pass": "synthesis", "field": "negatives.failures", "value": ["extra or missing fingers", "hand fused with the bottle", "cap off before the twist", "bottle changing size or label", "waxy smooth skin", "bokeh or cinematic grade", "camera moving on its own", "slow motion", "on-screen text or subtitles"], "importance": 0.7, "lock": false, "origin": "PROJECT_DERIVED", "treatment": null, "capability": "semantic", "disposition": "semantic", "exactness": "qualitative", "expected_visual_effect": "none of the listed failures appear", "check": "visual inspection against the list"}
+  ],
+  "notes": [
+    "Phone propped (decision d001) so both hands are free for a screw cap; a handheld variant would need a one-hand opening treatment.",
+    "Minimum readable seconds are conventions (gaps.jsonl)."
+  ]
+}

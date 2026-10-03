@@ -1,0 +1,213 @@
+{
+  "run_id": "001_bottle_selfie",
+  "model": "seedance",
+  "prompt_sha256": "f394a0f5aa66992b5acccb20ff6e056dba46896207c019d3f7a0e550b544d5f1",
+  "lines": [
+    {
+      "line": 1,
+      "clause": "shot",
+      "channel": "prompt",
+      "text": "An 8-second vertical phone selfie clip, one continuous take, no cuts.",
+      "source": {
+        "kind": "control",
+        "id": "c_shot_line",
+        "treatment": null,
+        "origin": "USER_EXPLICIT"
+      }
+    },
+    {
+      "line": 2,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "A woman, hair tied back, plain T-shirt, at a kitchen table.",
+      "source": {
+        "kind": "entity",
+        "id": "woman",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 3,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "A clear plastic water bottle, white screw cap, label to camera.",
+      "source": {
+        "kind": "entity",
+        "id": "bottle",
+        "origin": "INFERENCE"
+      }
+    },
+    {
+      "line": 4,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Her phone is propped against a mug, front camera on her, both hands free.",
+      "source": {
+        "kind": "entity",
+        "id": "phone",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 5,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "First, she leans in and glances at the lens; the sealed bottle sits in front of her.",
+      "source": {
+        "kind": "beat",
+        "id": "b1",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 6,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then she reaches down; left hand wraps the bottle, right fingers pinch the cap.",
+      "source": {
+        "kind": "beat",
+        "id": "b2",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 7,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then one short counter-clockwise twist; the cap turns, the bottle stays still.",
+      "source": {
+        "kind": "beat",
+        "id": "b3",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 8,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then the cap comes free with a click and lifts in her fingers; the water ripples.",
+      "source": {
+        "kind": "beat",
+        "id": "b4",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 9,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then she raises the open bottle, eyes on it, cap lowered in her right hand.",
+      "source": {
+        "kind": "beat",
+        "id": "b5",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 10,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then rim to lips, two swallows; the water level drops.",
+      "source": {
+        "kind": "beat",
+        "id": "b6",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 11,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Finally, she lowers the bottle, exhales, glances to the lens and holds still.",
+      "source": {
+        "kind": "beat",
+        "id": "b7",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 12,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "In order: grip, one twist, cap free, lift, drink; nothing changes before it is touched.",
+      "source": {
+        "kind": "control",
+        "id": "c_chain",
+        "treatment": "interaction.contact_causal_chain",
+        "origin": "SOURCE_EVIDENCE"
+      }
+    },
+    {
+      "line": 13,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Her left hand wraps the bottle body in a full grip and holds it still; her right thumb and index finger pinch the cap and turn it once, counter-clockwise, in one short motion. The cap turns while the bottle stays still, label facing the camera.",
+      "source": {
+        "kind": "control",
+        "id": "c_grip",
+        "treatment": "interaction.grip_power_bottle",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 14,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Throughout, the bottle keeps its size, label and colour; the cap stays in her fingers; the water only drops as she drinks.",
+      "source": {
+        "kind": "control",
+        "id": "c_locks",
+        "treatment": "continuity.object_locks",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 15,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "The twist has a visible result: the cap releases with a small click, lifts clear in her fingers, and the water inside ripples once.",
+      "source": {
+        "kind": "control",
+        "id": "c_reaction",
+        "treatment": null,
+        "origin": "INFERENCE"
+      }
+    },
+    {
+      "line": 16,
+      "clause": "performance",
+      "channel": "prompt",
+      "text": "Her manner is casual and unforced, like a friend on a call; light, easy, unhurried movements; a breath before she reaches, a glance down as the cap turns, eyes back to the lens after the drink; face alive, no fixed smile.",
+      "source": {
+        "kind": "control",
+        "id": "c_register",
+        "treatment": "performance.casual_register",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 17,
+      "clause": "camera",
+      "channel": "prompt",
+      "text": "Camera: propped phone, static; wide front camera, deep focus; medium close-up, slightly low angle.",
+      "source": {
+        "kind": "control",
+        "id": "c_camera",
+        "treatment": "camera.selfie_framing",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 18,
+      "clause": "camera",
+      "channel": "prompt",
+      "text": "Shot on a recent iPhone front camera, real not cinematic: 30fps, flat HDR tone, deep focus, no bokeh, faint sensor noise, no grade; real skin with visible pores, not smooth or waxy.",
+      "source": {
+        "kind": "control",
+        "id": "c_capture",
+        "treatment": "style.capture_iphone_selfie",
+        "origin": "PROVIDER_EXPERIMENT"
+      }
+    }
+  ]
+}

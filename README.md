@@ -1,5 +1,10 @@
 # CPCS — Knowledge Tree for Kinetic Cinematic Performance
 
+> **Branch `director` (2026-10):** this tree is now the knowledge base for a text-only prompt
+> compiler in `director/`, planned in `plan/`. Start at `AGENTS.md` and `plan/README.md`.
+> The DAG-runtime and control-plane instructions below describe the earlier distillation
+> workflow and are kept for reference; `plan/DECISIONS.md` lists what is honored and overridden.
+
 > **Boot file for humans and agents.** This repository is a *living knowledge
 > tree*, not a codebase: research sources are distilled into a DAG-style
 > ontology, agents operate it through an automated control plane, and gaps in
