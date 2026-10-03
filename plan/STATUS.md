@@ -2,6 +2,34 @@
 
 Newest first. One entry per working session or phase exit.
 
+## 2026-10-02 — WO-05 done: run 003 thrown into the pool (world reactions)
+
+- Run folder `director/runs/003_pool_shove/`: `ask.md`, `ir.json`, `decisions.jsonl` (d001–d011), `baseline.txt`, `prompt.txt`, `receipt.json`, `loss.jsonl`, `emit_report.json`, `check_report.json`, `readback_raw.md`, `readback.md`, `verdict.md`. No `open.jsonl` (nothing open).
+- `check`: GREEN at the first run, no repair round; fit FITS (5.6 s of 8 s, ratio 0.7). Six beats: step up and nudge, plant and shove, loses balance and falls, water entry, surfaces, settles laughing. Three pathways (`p_nudge`, `p_shove`, `p_water`), two physics events (`ev_shove` b2 with force "much more intense than the first nudge", `ev_water` b4), one anchor (`a_nudge`, intensity).
+- `emit --model seedance`: 1,967 / 2,000 characters; dropped for budget: `c_laugh`, `c_pace`, `c_negatives`; twelve lines compressed; 15 loss records; no warnings.
+- Read-back (Haiku subagent, no tools): beat order MATCH, causal order and state changes MATCH (splash after the entry, wet state after surfacing), camera MATCH. Findings in `readback.md`: "arriving fast and settling" and "easing in and out" read as ambiguous.
+- New treatments: `world.water_entry` (from `material_response.md`, `affordance_constraints.md`; PROJECT_DERIVED) and `continuity.wet_state` (from the World Model gap-closure document §1 and `material_response.md`; PROJECT_DERIVED). Reused: `interaction.contact_causal_chain`, `camera.move_from_catalog`, `time.beat_schedule_ugc`.
+- Tests: 87 green, none changed; runs 001 and 002 untouched (git shows no change under them).
+- Guesses (what the protocol, a treatment or a tool did not specify; file and line of the gap):
+  1. Whether the nudge may be added when seconds allow but characters are tight. `implementation/work_orders/WO-05_run003_pool.md` line 28–29 says "only if the 8 s fit allows the extra beat" (seconds); the 2,000-character limit is the real constraint. Added the nudge (load 5.6 s) and it fit, with three unlocked controls dropped (d001, d011).
+  2. How to model a contact that is only the force baseline (the nudge). `protocol.md` line 203 ("one pathway per contact cycle") and line 108–111 (physics events) do not say whether such a tap needs a physics event. Chose a pathway (`p_nudge`) and the anchor sentence; no event (d002).
+  3. A first anchor's `description` as a contact-plus-reaction sentence. `protocol.md` line 217 asks anchors to be visible facts and not restate the beat; the nudge fact is a cause, contact and reaction in one sentence.
+  4. Which actor id owns the hand ledger for a person-to-person push. `protocol.md` line 94–97 covers hands on objects and the camera; used state `free` for the pusher's hands on the contact beats and no ledger rows for the friend who is pushed.
+  5. The pathway `object` for a body that is pushed or falls. `protocol.md` line 90–92 defines `object` for things; used the actor id (`friend_b`) as the object of all three pathways.
+  6. Whether effect stages may carry no hands when the event is a body-on-water contact. `dircheck.py` line 362 onward lets `hands_required: 0`; used it for the water contact, transfer and effect.
+  7. The `action` pass closed although its condition holds (a body falls). Used the protocol section 2 override (reason names interaction and physics); `protocol.md` line 16–18 gives only the run-001 example.
+  8. Aspect ratio 16:9 and no capture or look (style closed): the ask is silent and `protocol.md` has no rule (d010).
+  9. Camera pass: "lens" has no field in the catalog or the treatment. Put "standard lens" in `phrase` and "deep focus" in `framing`; `director/treatments/camera/move_from_catalog.md` has no optics key.
+  10. Staging has no treatment and no template: wrote `staging.screen_direction` as a plain-text control (CREATIVE_CHOICE) with no `short` form, so it cannot be compressed.
+  11. Where the splash lives. Event, world control and continuity control could all state it; `protocol.md` says "one owner per field" but not how to split wording across three passes. Split by d006: event = splash and bubbles; world = where displaced water goes; continuity = wet clothes, hair and the moving surface. Words still overlap ("rocking", "settles").
+  12. Intensity comparison wording. The brief says "much harder than the nudge"; `diremit.py` `COMPARATIVES` renders intensity as "much more intense than the first nudge" ("hard" is a banned magnitude word). Accepted the tool's wording.
+  13. Spacing clauses on three beats. `protocol.md` line 157 asks for spacing on every moving beat; the tool prints "arriving fast and settling" and "easing in and out" after the beat text, which the reader found ambiguous. Kept three clauses (ease_out on the shove, ease_in on the fall, ease_in_out on the surfacing) and left the finding open.
+  14. Reading times for a fall and a water entry: no source. Reused run-001 conventions (0.8 / 1.0).
+  15. Dates in records: used 2026-10-02, the session's local date (`protocol.md` line 225); STATUS entries for WO-04 carry 2026-10-03.
+- Tool behaviour that differed from the documents: none blocking. `pack` prints the pass view but not the treatments; the emit report's `chars` (1,967) is the prompt without its trailing newline, `prompt.txt` is 1,968 bytes.
+
+Next: WO-06 (first ingest: DMR package; typed outcomes, camera move validator, profile lifecycle, CI workflow; run 004 glass fixture). Blocked: owner renders of runs 001–003.
+
 ## 2026-10-03 — Handoff test reviewed (WO-04) and the tool defects it found are fixed
 
 Run 002 was executed by a Sonnet session from the repository's instructions alone: `check` GREEN

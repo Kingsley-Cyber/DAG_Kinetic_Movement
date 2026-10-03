@@ -1,0 +1,833 @@
+{
+ "schema_version": "0.1",
+ "run_id": "003_pool_shove",
+ "ask": "At a backyard party, one friend shoves another into the swimming pool; he goes in fully clothed and comes up laughing, 8 seconds.",
+ "model": "seedance",
+ "clip": {
+  "duration_s": 8,
+  "duration_origin": "USER_EXPLICIT",
+  "aspect_ratio": "16:9",
+  "fps_assumed": 24,
+  "objective": "a believable shove into a pool: the splash follows the entry and he comes up soaked and laughing",
+  "dramatic_function": "a prank with a clear payoff: the laugh after he surfaces"
+ },
+ "pass_plan": [
+  {
+   "pass": "intent",
+   "active": true,
+   "reason": "mandatory"
+  },
+  {
+   "pass": "entity",
+   "active": true,
+   "reason": "mandatory"
+  },
+  {
+   "pass": "world",
+   "active": true,
+   "reason": "the pool water must respond to a body entering it and the world keeps a persistent change (splash decays, wet surface)"
+  },
+  {
+   "pass": "action",
+   "active": false,
+   "reason": "reasoned, covered by interaction and physics: the nudge, the shove, the fall and the surfacing are fully described by the pathway stages and the two physics events"
+  },
+  {
+   "pass": "interaction",
+   "active": true,
+   "reason": "an actor touches another actor twice (nudge, shove)"
+  },
+  {
+   "pass": "physics",
+   "active": true,
+   "reason": "two contacts with stated reactions: palms on chest (rocks back, heels leave the edge); back on the water surface (splash, goes under)"
+  },
+  {
+   "pass": "staging",
+   "active": true,
+   "reason": "two actors and a pool: screen direction must hold across the shove and the fall"
+  },
+  {
+   "pass": "continuity",
+   "active": true,
+   "reason": "wet clothes and hair and a moving pool surface change once and stay changed"
+  },
+  {
+   "pass": "time",
+   "active": true,
+   "reason": "mandatory"
+  },
+  {
+   "pass": "performance",
+   "active": true,
+   "reason": "living performers on screen; the laugh after surfacing is performance"
+  },
+  {
+   "pass": "camera",
+   "active": true,
+   "reason": "mandatory: explicit camera grammar"
+  },
+  {
+   "pass": "attention",
+   "active": false,
+   "reason": "reasoned: nothing is withheld; both contacts are shown"
+  },
+  {
+   "pass": "light_color",
+   "active": false,
+   "reason": "reasoned: not asked; daylight versus evening is left to the model"
+  },
+  {
+   "pass": "style",
+   "active": false,
+   "reason": "reasoned: no look, device or realism target asked for"
+  },
+  {
+   "pass": "audio",
+   "active": false,
+   "reason": "reasoned: not asked; the laugh is stated as visible behaviour; model audio support unknown"
+  },
+  {
+   "pass": "synthesis",
+   "active": true,
+   "reason": "mandatory"
+  }
+ ],
+ "entities": [
+  {
+   "id": "friend_a",
+   "kind": "actor",
+   "description": "A man in a red t-shirt and shorts, barefoot on the stone edge of a backyard swimming pool at a party",
+   "short": "A man in a red t-shirt and shorts at the edge of a backyard pool at a party",
+   "locks": [
+    "identity_stable",
+    "anatomy_correct"
+   ],
+   "origin": "CREATIVE_CHOICE"
+  },
+  {
+   "id": "friend_b",
+   "kind": "actor",
+   "description": "His friend, in a white button-up shirt, blue jeans and sneakers, stands on the pool's edge with his back to the water",
+   "short": "His friend, in a white shirt, jeans and sneakers, back to the water",
+   "locks": [
+    "identity_stable",
+    "anatomy_correct",
+    "wardrobe"
+   ],
+   "origin": "CREATIVE_CHOICE"
+  },
+  {
+   "id": "pool",
+   "kind": "environment",
+   "description": "A clear blue swimming pool with a pale stone edge; guests stand on the lawn behind them",
+   "short": "A clear blue pool, pale stone edge; guests on the lawn behind",
+   "locks": [
+    "scale",
+    "colour"
+   ],
+   "origin": "CREATIVE_CHOICE"
+  }
+ ],
+ "hands": [
+  {
+   "actor": "friend_a",
+   "hand": "left",
+   "beat": "b1",
+   "state": "free"
+  },
+  {
+   "actor": "friend_a",
+   "hand": "right",
+   "beat": "b1",
+   "state": "free"
+  },
+  {
+   "actor": "friend_a",
+   "hand": "left",
+   "beat": "b2",
+   "state": "free"
+  },
+  {
+   "actor": "friend_a",
+   "hand": "right",
+   "beat": "b2",
+   "state": "free"
+  },
+  {
+   "actor": "friend_a",
+   "hand": "left",
+   "beat": "b3",
+   "state": "free"
+  },
+  {
+   "actor": "friend_a",
+   "hand": "right",
+   "beat": "b3",
+   "state": "free"
+  },
+  {
+   "actor": "friend_a",
+   "hand": "left",
+   "beat": "b4",
+   "state": "free"
+  },
+  {
+   "actor": "friend_a",
+   "hand": "right",
+   "beat": "b4",
+   "state": "free"
+  },
+  {
+   "actor": "friend_a",
+   "hand": "left",
+   "beat": "b5",
+   "state": "free"
+  },
+  {
+   "actor": "friend_a",
+   "hand": "right",
+   "beat": "b5",
+   "state": "free"
+  },
+  {
+   "actor": "friend_a",
+   "hand": "left",
+   "beat": "b6",
+   "state": "free"
+  },
+  {
+   "actor": "friend_a",
+   "hand": "right",
+   "beat": "b6",
+   "state": "free"
+  }
+ ],
+ "pathways": [
+  {
+   "id": "p_nudge",
+   "object": "friend_b",
+   "end_state": "friend_b_standing_at_edge",
+   "origin": "CREATIVE_CHOICE",
+   "stages": [
+    {
+     "id": "n1",
+     "kind": "anticipation",
+     "beat": "b1",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "friend_b_standing_at_edge",
+     "state_after": "friend_b_standing_at_edge",
+     "description": "he steps up to his friend, hands rising"
+    },
+    {
+     "id": "n2",
+     "kind": "contact",
+     "beat": "b1",
+     "hands_required": 2,
+     "hands": [
+      {
+       "actor": "friend_a",
+       "hand": "left"
+      },
+      {
+       "actor": "friend_a",
+       "hand": "right"
+      }
+     ],
+     "state_before": "friend_b_standing_at_edge",
+     "state_after": "palms_on_chest",
+     "description": "both palms touch his friend's chest"
+    },
+    {
+     "id": "n3",
+     "kind": "transfer",
+     "beat": "b1",
+     "hands_required": 2,
+     "hands": [
+      {
+       "actor": "friend_a",
+       "hand": "left"
+      },
+      {
+       "actor": "friend_a",
+       "hand": "right"
+      }
+     ],
+     "state_before": "palms_on_chest",
+     "state_after": "tap_rocking_him_back",
+     "description": "a light tap passes through the palms"
+    },
+    {
+     "id": "n4",
+     "kind": "effect",
+     "beat": "b1",
+     "hands_required": 2,
+     "hands": [
+      {
+       "actor": "friend_a",
+       "hand": "left"
+      },
+      {
+       "actor": "friend_a",
+       "hand": "right"
+      }
+     ],
+     "state_before": "tap_rocking_him_back",
+     "state_after": "tap_rocking_him_back",
+     "description": "he rocks back on his heels",
+     "reaction": "he rocks back on his heels, then steps forward again"
+    },
+    {
+     "id": "n5",
+     "kind": "recovery",
+     "beat": "b1",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "tap_rocking_him_back",
+     "state_after": "friend_b_standing_at_edge",
+     "description": "he steps forward again, laughing"
+    }
+   ]
+  },
+  {
+   "id": "p_shove",
+   "object": "friend_b",
+   "end_state": "friend_b_falling_off_the_edge",
+   "origin": "CREATIVE_CHOICE",
+   "stages": [
+    {
+     "id": "h1",
+     "kind": "anticipation",
+     "beat": "b2",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "friend_b_standing_at_edge",
+     "state_after": "friend_b_standing_at_edge",
+     "description": "the man in red plants his front foot and swings both arms forward"
+    },
+    {
+     "id": "h2",
+     "kind": "contact",
+     "beat": "b2",
+     "hands_required": 2,
+     "hands": [
+      {
+       "actor": "friend_a",
+       "hand": "left"
+      },
+      {
+       "actor": "friend_a",
+       "hand": "right"
+      }
+     ],
+     "state_before": "friend_b_standing_at_edge",
+     "state_after": "palms_on_chest_pushing",
+     "description": "both palms land flat on his friend's chest"
+    },
+    {
+     "id": "h3",
+     "kind": "transfer",
+     "beat": "b2",
+     "hands_required": 2,
+     "hands": [
+      {
+       "actor": "friend_a",
+       "hand": "left"
+      },
+      {
+       "actor": "friend_a",
+       "hand": "right"
+      }
+     ],
+     "state_before": "palms_on_chest_pushing",
+     "state_after": "weight_driven_past_the_edge",
+     "description": "the push carries his friend's weight back toward the water"
+    },
+    {
+     "id": "h4",
+     "kind": "effect",
+     "beat": "b2",
+     "hands_required": 2,
+     "hands": [
+      {
+       "actor": "friend_a",
+       "hand": "left"
+      },
+      {
+       "actor": "friend_a",
+       "hand": "right"
+      }
+     ],
+     "state_before": "weight_driven_past_the_edge",
+     "state_after": "weight_driven_past_the_edge",
+     "description": "his friend's heels leave the edge",
+     "reaction": "his friend's upper body rocks back from the hips, his arms fly out and his heels slide off the edge"
+    },
+    {
+     "id": "h5",
+     "kind": "follow_through",
+     "beat": "b3",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "weight_driven_past_the_edge",
+     "state_after": "friend_b_falling_off_the_edge",
+     "description": "he tips back over the water and drops"
+    }
+   ]
+  },
+  {
+   "id": "p_water",
+   "object": "friend_b",
+   "end_state": "friend_b_treading_water_soaked",
+   "origin": "CREATIVE_CHOICE",
+   "stages": [
+    {
+     "id": "w1",
+     "kind": "anticipation",
+     "beat": "b3",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "friend_b_falling_toward_water",
+     "state_after": "friend_b_falling_toward_water",
+     "description": "his back faces the surface as he drops"
+    },
+    {
+     "id": "w2",
+     "kind": "contact",
+     "beat": "b4",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "friend_b_falling_toward_water",
+     "state_after": "back_on_water_surface",
+     "description": "his back meets the water surface"
+    },
+    {
+     "id": "w3",
+     "kind": "transfer",
+     "beat": "b4",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "back_on_water_surface",
+     "state_after": "body_sinking_under_surface",
+     "description": "his momentum goes into the water and he sinks"
+    },
+    {
+     "id": "w4",
+     "kind": "effect",
+     "beat": "b4",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "body_sinking_under_surface",
+     "state_after": "body_sinking_under_surface",
+     "description": "the water gives way around him",
+     "reaction": "water bursts up and outward in a crown around him and he goes fully under"
+    },
+    {
+     "id": "w5",
+     "kind": "follow_through",
+     "beat": "b5",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "body_sinking_under_surface",
+     "state_after": "head_above_surface",
+     "description": "he rises, head and shoulders breaking the surface"
+    },
+    {
+     "id": "w6",
+     "kind": "postcondition",
+     "beat": "b6",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "head_above_surface",
+     "state_after": "friend_b_treading_water_soaked",
+     "description": "he treads water, soaked, laughing"
+    }
+   ]
+  }
+ ],
+ "beats": [
+  {
+   "id": "b1",
+   "order": 1,
+   "label": "step up and nudge",
+   "actor": "friend_a",
+   "description": "The man in red steps up to his friend on the pool's edge and raises both hands",
+   "short": "the man in red steps up and raises both hands",
+   "min_s": 1.0,
+   "min_s_origin": "PROJECT_DERIVED convention (run-001 reading times) (one bounded motion + a light tap)",
+   "after": [],
+   "caused_by": [],
+   "key_pose": null,
+   "importance": 0.6,
+   "origin": "PROJECT_DERIVED"
+  },
+  {
+   "id": "b2",
+   "order": 2,
+   "label": "plant and shove",
+   "actor": "friend_a",
+   "description": "The man in red plants his front foot and swings both arms forward",
+   "short": "the man in red plants his front foot and swings both arms forward",
+   "min_s": 1.0,
+   "min_s_origin": "PROJECT_DERIVED convention (run-001 reading times) (one bounded motion)",
+   "after": [
+    "b1"
+   ],
+   "caused_by": [
+    "b1"
+   ],
+   "key_pose": null,
+   "importance": 1.0,
+   "origin": "PROJECT_DERIVED",
+   "spacing": "ease_out"
+  },
+  {
+   "id": "b3",
+   "order": 3,
+   "label": "loses balance and falls",
+   "actor": "friend_b",
+   "description": "His friend tips backwards over the water, arms still out, and drops toward the surface",
+   "short": "his friend tips backwards over the water and drops",
+   "min_s": 0.8,
+   "min_s_origin": "PROJECT_DERIVED convention (run-001 reading times) (reach + grasp slot reused for a short fall)",
+   "after": [
+    "b2"
+   ],
+   "caused_by": [
+    "b2"
+   ],
+   "key_pose": null,
+   "importance": 0.9,
+   "origin": "PROJECT_DERIVED",
+   "spacing": "ease_in"
+  },
+  {
+   "id": "b4",
+   "order": 4,
+   "label": "water entry",
+   "actor": "friend_b",
+   "description": "He goes into the pool fully clothed, back first",
+   "short": "he goes into the pool fully clothed, back first",
+   "min_s": 1.0,
+   "min_s_origin": "PROJECT_DERIVED convention (run-001 reading times) (one bounded motion)",
+   "after": [
+    "b3"
+   ],
+   "caused_by": [
+    "b3"
+   ],
+   "key_pose": null,
+   "importance": 1.0,
+   "origin": "PROJECT_DERIVED"
+  },
+  {
+   "id": "b5",
+   "order": 5,
+   "label": "surfaces",
+   "actor": "friend_b",
+   "description": "He rises, head and shoulders breaking the surface, and shakes the water from his hair",
+   "short": "he rises through the surface and shakes the water from his hair",
+   "min_s": 1.0,
+   "min_s_origin": "PROJECT_DERIVED convention (run-001 reading times) (one bounded motion)",
+   "after": [
+    "b4"
+   ],
+   "caused_by": [
+    "b4"
+   ],
+   "key_pose": null,
+   "importance": 0.8,
+   "origin": "PROJECT_DERIVED",
+   "spacing": "ease_in_out"
+  },
+  {
+   "id": "b6",
+   "order": 6,
+   "label": "settle laughing",
+   "actor": "friend_b",
+   "description": "He treads water, laughing, one hand wiping his face, and looks up at his friend on the edge",
+   "short": "he treads water, laughing, wiping his face, looking up at his friend",
+   "min_s": 0.8,
+   "min_s_origin": "PROJECT_DERIVED convention (run-001 reading times) (settle; end on a hold)",
+   "after": [
+    "b5"
+   ],
+   "caused_by": [
+    "b5"
+   ],
+   "key_pose": null,
+   "importance": 0.7,
+   "origin": "PROJECT_DERIVED"
+  }
+ ],
+ "anchors": [
+  {
+   "id": "a_nudge",
+   "quality": "intensity",
+   "beat": "b1",
+   "label": "the first nudge",
+   "description": "A light two-handed tap on his chest rocks him back on his heels and he steps forward again, laughing"
+  }
+ ],
+ "physics_events": [
+  {
+   "event_id": "ev_shove",
+   "beat": "b2",
+   "trigger": {
+    "actor": "the man in red",
+    "part": "palms",
+    "action": "drive forward"
+   },
+   "contact_surface": "his friend's chest",
+   "contact_state": "physical_contact_confirmed",
+   "force": {
+    "relative_to": "a_nudge",
+    "step": "much",
+    "direction": "more"
+   },
+   "primary_reaction": "his friend's upper body rocks back from the hips",
+   "secondary": [
+    "his arms fly out to the sides",
+    "his heels slide off the edge"
+   ],
+   "settle": "his weight is past the edge and he starts to fall",
+   "depends_on": [],
+   "must_not_imply": [
+    "the shove lands before the man in red has planted his foot",
+    "the friend jumps or steps into the pool on his own",
+    "the man in red falls in too",
+    "hands fused with the shirt"
+   ],
+   "risk": "medium",
+   "pathway_stage": "h4",
+   "origin": "PROJECT_DERIVED"
+  },
+  {
+   "event_id": "ev_water",
+   "beat": "b4",
+   "trigger": {
+    "actor": "his friend",
+    "part": "back and shoulders",
+    "action": "come down"
+   },
+   "contact_surface": "the pool surface",
+   "contact_state": "physical_contact_confirmed",
+   "primary_reaction": "water bursts up and outward around him in a crown",
+   "secondary": [
+    "spray flies over the stone edge",
+    "his body goes fully under"
+   ],
+   "settle": "the water falls back and bubbles rise where he went under",
+   "depends_on": [
+    "ev_shove"
+   ],
+   "must_not_imply": [
+    "a splash before his back touches the water",
+    "he bounces off or skates across the surface",
+    "he stays dry",
+    "the splash hangs in the air"
+   ],
+   "risk": "low",
+   "pathway_stage": "w4",
+   "origin": "PROJECT_DERIVED"
+  }
+ ],
+ "controls": [
+  {
+   "id": "c_duration",
+   "pass": "time",
+   "field": "clip.duration_s",
+   "value": 8,
+   "importance": 1.0,
+   "lock": true,
+   "origin": "USER_EXPLICIT",
+   "treatment": null,
+   "capability": "native",
+   "disposition": "native",
+   "exactness": "exact",
+   "clause": "shot"
+  },
+  {
+   "id": "c_aspect",
+   "pass": "camera",
+   "field": "clip.aspect_ratio",
+   "value": "16:9",
+   "importance": 0.6,
+   "lock": false,
+   "origin": "INFERENCE",
+   "treatment": null,
+   "capability": "native",
+   "disposition": "native",
+   "exactness": "exact",
+   "clause": "shot"
+  },
+  {
+   "id": "c_shot_line",
+   "pass": "intent",
+   "field": "intent.shot_line",
+   "value": "An 8-second video clip, one continuous take, no cuts",
+   "importance": 0.95,
+   "lock": true,
+   "origin": "PROJECT_DERIVED",
+   "treatment": null,
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "approximate",
+   "clause": "shot",
+   "expected_visual_effect": "single continuous clip",
+   "check": "no cuts"
+  },
+  {
+   "id": "c_stage",
+   "pass": "staging",
+   "field": "staging.screen_direction",
+   "value": "The man in red stands screen-left, his friend screen-right with the pool behind him; the nudge, the shove and the fall all run left to right into the water",
+   "importance": 0.85,
+   "lock": true,
+   "origin": "CREATIVE_CHOICE",
+   "treatment": null,
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "the push and the fall keep one direction across the cut-free take",
+   "check": "no flip of screen direction between the shove and the fall"
+  },
+  {
+   "id": "c_chain",
+   "pass": "interaction",
+   "field": "interaction.causal_chain",
+   "value": {
+    "chain": "nudge, shove, fall, water entry and splash, surfacing"
+   },
+   "importance": 0.9,
+   "lock": true,
+   "origin": "SOURCE_EVIDENCE",
+   "treatment": "interaction.contact_causal_chain",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "he is in the water only after the shove lands; the splash follows the entry",
+   "check": "frame order matches the chain"
+  },
+  {
+   "id": "c_water",
+   "pass": "world",
+   "field": "world.material_response",
+   "value": {
+    "depth": "deep, clear and still"
+   },
+   "importance": 0.7,
+   "lock": false,
+   "origin": "PROJECT_DERIVED",
+   "treatment": "world.water_entry",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "water displaced outward and upward at the entry point; some slops over the edge",
+   "check": "splash bound to the entry; surface not flat the instant after"
+  },
+  {
+   "id": "c_wet",
+   "pass": "continuity",
+   "field": "continuity.wet_state",
+   "value": {
+    "wet": "his shirt and jeans stay soaked and cling to him, his hair stays wet and flat",
+    "wet_short": "his clothes stay soaked and clinging, his hair wet",
+    "surface": "the pool surface keeps rocking in widening ripples",
+    "surface_short": "the pool keeps rocking"
+   },
+   "importance": 0.85,
+   "lock": true,
+   "origin": "PROJECT_DERIVED",
+   "treatment": "continuity.wet_state",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "wet cling and a decaying ripple field through the last frame",
+   "check": "soaked before the end of b5; ripples still visible in b6"
+  },
+  {
+   "id": "c_pace",
+   "pass": "time",
+   "field": "time.pace",
+   "value": {
+    "pace": "the nudge and the shove quick, the surfacing and the laugh unhurried"
+   },
+   "importance": 0.6,
+   "lock": false,
+   "origin": "INFERENCE",
+   "treatment": "time.beat_schedule_ugc",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "a clear change of tempo after the splash",
+   "check": "last half second still"
+  },
+  {
+   "id": "c_laugh",
+   "pass": "performance",
+   "field": "performance.reaction",
+   "value": "Faces stay alive and uneven: a grin at the nudge, a gasp as he goes in, an open laugh once he surfaces",
+   "importance": 0.6,
+   "lock": false,
+   "origin": "INFERENCE",
+   "treatment": null,
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "readable reactions at the nudge, the entry and the surfacing",
+   "check": "laugh visible at b6; no fixed smile"
+  },
+  {
+   "id": "c_camera",
+   "pass": "camera",
+   "field": "camera.move",
+   "value": {
+    "move": "handheld",
+    "phrase": "handheld medium-wide shot from the lawn side at chest height, standard lens",
+    "movement": "hold the camera at human operator height with natural body movement",
+    "speed": "responsive and organic",
+    "framing": "both men and the pool surface stay in frame side-on while the frame has subtle sway and micro-adjustments; deep focus",
+    "end": "finish on him treading water, his friend still in frame"
+   },
+   "importance": 0.9,
+   "lock": true,
+   "origin": "PROJECT_DERIVED",
+   "treatment": "camera.move_from_catalog",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "a human-held side-on frame in which the shove, the fall and the splash are all readable",
+   "check": "no zoom or orbit; both contacts in frame"
+  },
+  {
+   "id": "c_negatives",
+   "pass": "synthesis",
+   "field": "negatives.failures",
+   "value": [
+    "extra or missing fingers",
+    "hands fused with his shirt",
+    "him in the water before the shove lands",
+    "dry clothes or dry hair after he surfaces",
+    "a splash before he touches the water",
+    "still water after the splash",
+    "on-screen text"
+   ],
+   "importance": 0.7,
+   "lock": false,
+   "origin": "PROJECT_DERIVED",
+   "treatment": null,
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "none of the listed failures appear",
+   "check": "visual inspection against the list"
+  }
+ ],
+ "notes": [
+  "Two contacts, each with its own pathway and reaction (nudge, shove) plus the water entry; one causal event per beat (ev_shove b2, ev_water b4); the nudge is the intensity anchor on b1 (decision d001).",
+  "Minimum readable seconds are run-001 conventions (gaps.jsonl).",
+  "Screen direction: man in red screen-left, friend and the pool screen-right (d004)."
+ ]
+}

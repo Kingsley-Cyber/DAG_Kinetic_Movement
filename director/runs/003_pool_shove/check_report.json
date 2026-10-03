@@ -1,0 +1,59 @@
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [],
+  "outcomes": [
+    {
+      "rule": "anchors",
+      "owner": "time",
+      "outcome": "pass"
+    },
+    {
+      "rule": "beats",
+      "owner": "time",
+      "outcome": "pass"
+    },
+    {
+      "rule": "camera",
+      "owner": "camera",
+      "outcome": "pass"
+    },
+    {
+      "rule": "controls",
+      "owner": "per control",
+      "outcome": "pass"
+    },
+    {
+      "rule": "fit",
+      "owner": "time",
+      "outcome": "pass"
+    },
+    {
+      "rule": "hands",
+      "owner": "interaction",
+      "outcome": "pass"
+    },
+    {
+      "rule": "pass_plan",
+      "owner": "synthesis",
+      "outcome": "pass"
+    },
+    {
+      "rule": "pathway",
+      "owner": "interaction",
+      "outcome": "pass"
+    },
+    {
+      "rule": "physics_events",
+      "owner": "physics",
+      "outcome": "pass"
+    }
+  ],
+  "fit": {
+    "verdict": "FITS",
+    "load_s": 5.6,
+    "duration_s": 8,
+    "ratio": 0.7
+  },
+  "ir_sha256": "158ce31d344553b5a8325d3d3696bdfbcf1038427e0164bc9c4408aac74a7169"
+}
