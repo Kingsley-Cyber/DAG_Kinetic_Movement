@@ -373,6 +373,83 @@ an emotion label, and it is never inferred from action units (`test_affect_not_i
   whenever a masking decision exists; no affect words in `prompt.txt` (a word list in the emitter,
   convention).
 
+#### 3.5.7 Specialized physics layer: cause and effect (owner)
+
+Laban says how a subject moves, camera grammar how the shot frames it, world-state the standing
+rules of the scene. This layer covers **consequences**: a foot hits a face, a body hits water, a
+hand pulls a zipper. Video models render plausible footage and do not simulate physics; they show
+action and reaction as loosely associated visuals. The causal chain has to be written into the
+prompt. Owned by the physics pass (consequences) with interaction (the contact itself).
+
+**Anatomy of a causal event, in this order:** trigger (who acts, with what part or object) →
+contact (the exact surface where the two things meet; the part models skip most) → force quality
+(Laban Weight and Time, anchored to a baseline beat) → primary reaction (the immediate response of
+what was hit) → secondary reactions (the world a beat later: water displacing, hair and cloth
+whipping, dust lifting) → settle (the resting pose and state; where "weird position" failures live).
+
+**Event record** (one per beat; T35; `physics.events[]`):
+
+```json
+{"event_id": "evt_01", "beat": "b4",
+ "trigger": {"actor": "A", "part": "right boot", "action": "downward stomp"},
+ "contact_surface": "B's face",
+ "contact_state": "physical_contact_confirmed",
+ "force": {"weight": 0.9, "time": 0.8, "relative_to": "evt_00"},
+ "primary_reaction": "B's head snaps sideways into the ground",
+ "secondary": ["dust bursts outward", "B's hair whips"],
+ "settle": "B lies motionless, face turned away, arms limp",
+ "depends_on": [], "must_not_imply": [], "risk": "high", "origin": "CREATIVE_CHOICE"}
+```
+
+`contact_state` ∈ physical_contact_confirmed · near_contact · occluded_contact · editorial_impact ·
+unknown. `depends_on` records causes (the splash comes from the dive); `must_not_imply` records
+what must stay false (A never touches B) and feeds the scoring checklist, not the prompt, until
+tests show negatives help.
+
+**Rules (hypotheses until runs confirm them):**
+
+- Edge admission: no reaction enters the IR without a named trigger and contact. A noun list
+  ("punch, recoil, dust") with no causal links is rejected.
+- One causal event per beat. "One causal event per clip" is a trade-off to test, not a rule: a 15–30 s
+  fight becomes many clips and each handoff risks drift.
+- Force is relative: `relative_to` names an earlier event or beat; the emitter resolves the
+  comparison into words ("much heavier than the previous strike"). Never two absolutes (§3.5.3).
+- Settle pose named whenever the event ends on the ground or in water, or the owner marks it.
+- Compile order is cause → contact → reaction → settle in one flowing sentence with connectors
+  ("landing squarely on", "as", "on impact", "then"): "A's right boot comes down hard and fast,
+  much heavier than the previous strike, landing squarely on B's face. B's head snaps sideways
+  into the ground as dust bursts outward and his hair whips, then he lies motionless, face turned
+  away, arms limp."
+- No newtons, anthropometry or biomechanics in a text prompt; the relative dial is enough.
+- Defer the typed event graph, sub-compilers and trajectory splines; add `depends_on` edges only
+  when a beat has dependent events (dive, then kick).
+
+**Capability check by risk, per dialect** (model profile `contact_risk`):
+
+| Risk | Contact types | If the dialect is flagged unreliable |
+|---|---|---|
+| low | splashes, debris, cloth and hair reacting | emit as is |
+| medium | body-on-body strikes, awkward falls | degrade: wind-up then cut to the reaction, or reaction-only shot |
+| high | fine mechanisms (zippers, caps), graphic contact, exact choreography | degrade: hide the contact point with the camera angle (`occluded_contact`) or cut to the reaction (`editorial_impact`); log the downgrade as a loss |
+
+Unknown reliability (the default for a new dialect) emits in full and marks the event for the eval
+log. Vocabulary gaps (missing secondary effects, bad end poses, effect before cause) are fixed by
+wording; ceilings (fine mechanisms, exact choreography, possibly graphic contact) are not.
+
+**Eval log** (extends `director/runs/ledger.jsonl`): per render store IR hash, prompt hash,
+dialect version, seed, access path, and three yes/no scores per event: contact happened, reaction
+followed, end pose sane. At least three seeds per prompt; one good output can be luck.
+Repair goes upstream: `depends_on` says which earlier event to fix when a reaction fails.
+
+**Failures registry** (`director/failures.jsonl`): seeded with the A/B/C test on the stomp —
+plain prompt vs causal prompt vs prop-instead-of-person. The result separates failures wording
+fixes from model limits and tests the safety-avoidance hypothesis for graphic contact.
+
+**Verification reality:** automatic checking of physical commonsense is unsolved (VideoPhy-2
+trained a dedicated 7B video-language judge for it); v1 verification is the owner or a VLM
+answering the three yes/no questions. "Negative phrasing cannot encode physics" and "causal wording
+fixes reaction failures" are both hypotheses the eval log settles.
+
 ## 4. Time and beats (owner: "the big one")
 
 ### 4.1 Clocks and hierarchy

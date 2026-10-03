@@ -36,6 +36,12 @@ cite it. The reference implementation of R-01…R-20 is `director/tools/director
 | R-37 | Bartenieff connectivity record `action.connectivity[]` (pattern, side_relationship, initiator, receiver_sequence, intensity, range); a power action records Upper-Lower and Cross-Lateral; Body-Half names its side; Basic Six exercises never mixed in | to build (T28) |
 | R-38 | Shape record `beats[].shape` (plane_path over Door/Table/Wheel, form, three scaled qualities); a power action changes plane at least once; single-plane motion is flagged | to build (T28) |
 | R-39 | Affect record `performance.affect` (experienced and optional displayed trajectories of valence, arousal, dominance; monotonic t; declared scale); affect is never derived from AUs; `displayed` required when a masking decision exists | to build (T29) |
+| R-41 | Causal event record `physics.events[]` (trigger, contact_surface, contact_state, force relative_to, primary_reaction, secondary, settle, depends_on, must_not_imply, risk); at most one event per beat | to build (T35) |
+| R-42 | Edge admission: every reaction in the IR belongs to an event with a named trigger and contact surface; `force.relative_to` and `depends_on` reference earlier events or beats; settle named for ground or water endings | to build (T35) |
+| R-43 | Contact-risk capability check: profile `contact_risk` per dialect (reliable, unreliable, unknown) per risk class; unreliable medium/high events are downgraded to `occluded_contact` or `editorial_impact` with a loss record; unknown emits in full and flags the event for the eval log | to build (T35) |
+| R-44 | Causal event emission: one sentence per event in the order cause → contact → reaction → settle with connectors; force resolved to relative words; `must_not_imply` never emitted as prompt text | to build (T35) |
+| R-45 | Eval log fields per render: IR hash, prompt hash, dialect version, seed, access path, per-event yes/no for contact happened, reaction followed, end pose sane; ≥ 3 seeds per prompt before a verdict | to build (T35) |
+| R-46 | Failures registry `director/failures.jsonl`: failure, run, event, class (vocabulary gap vs ceiling), hypothesis status | to build (T35) |
 | R-40 | Affect and Shape and Bartenieff emission: compiled to visible behaviour (face, breath, posture, travel of the movement, voice), never framework terms or affect words; emitter word list for affect words is a recorded convention | to build (T28, T29) |
 
 ## C. Emitter

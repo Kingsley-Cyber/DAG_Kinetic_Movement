@@ -64,8 +64,11 @@ passes:
     after: [interaction]
     importance: 0.8
     owns: [physics]
-    question: "Why and how does each effect follow its cause, and is it feasible for these bodies and materials?"
-    sub_modules: [cause_effect, recoil, momentum, material_response, feasibility]
+    question: "Why and how does each effect follow its cause, and is it feasible for these bodies and materials? For every contact: trigger, contact surface, force relative to a baseline, primary reaction, secondary reactions, settle."
+    sub_modules: [causal_events, cause_effect, recoil, momentum, material_response, feasibility, contact_risk]
+    notes:
+      causal_events: "one per beat: trigger → contact → force (relative) → primary reaction → secondary reactions → settle; contact_state physical_contact_confirmed | near_contact | occluded_contact | editorial_impact | unknown; depends_on, must_not_imply; no reaction without a named cause"
+      contact_risk: "low (splash, debris, cloth, hair) · medium (body-on-body, awkward falls) · high (fine mechanisms, graphic contact, exact choreography); unreliable dialects degrade to occluded or editorial contact with a loss record"
 
   - id: staging
     tier: reason

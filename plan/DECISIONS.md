@@ -84,6 +84,7 @@ changes to `/Users/king/ai-video-movement-prompt-system` or `/Users/king/Documen
 | 2026-10-02 | Seedance first | D9 |
 | 2026-10-02 | Movement control layer: world bundle → Laban Effort (scaled) × Shape (3 planes) × Bartenieff (6 patterns) → constraint resolution → strength-scaled emission; four anti-arcade signatures as detectors; priority order | ARCHITECTURE §3.5.1; phases 3–5 |
 | 2026-10-02 | Relative prompting: one anchor, one escalating unit at a time, never two absolutes | ARCHITECTURE §3.5.2; emitter rule |
+| 2026-10-02 | Specialized physics layer: causal event schema, contact_state, risk-tagged capability check with degradation, eval log (3 yes/no, ≥3 seeds), failures registry, hypotheses flagged | ARCHITECTURE §3.5.7; CONTROL_LAYER R-41…R-46; TASKS T35 |
 | 2026-10-02 | Detail requested for Bartenieff six patterns, Shape planes, FACS, valence–arousal | ARCHITECTURE §3.5.4–3.5.6; CONTROL_LAYER R-37…R-40; TASKS T28, T29 |
 | 2026-10-02 | FACS as a spatiotemporal event (AUs, laterality, A–E intensity, onset/apex/offset, co-occurrence, head pose, gaze, visibility); Laban = 4 Effort controls within BESS | ARCHITECTURE §3.5.2; CONTROL_LAYER R-34…R-36; TASKS T27 |
 | 2026-10-02 | Three layers of movement text control: Laban (quality), Bartenieff (origination), film grammar (camera); independent dials per layer; Laban as scaled Bayesian output, never absolute terms; impact-and-physics language sub-layer with explicit stated reactions; camera grammar mandatory | ARCHITECTURE §3.5, §2.1, §9; `passes.yaml` |

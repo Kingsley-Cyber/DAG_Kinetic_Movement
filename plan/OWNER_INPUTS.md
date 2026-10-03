@@ -160,7 +160,27 @@ Requested detail (2026-10-02): Bartenieff's six patterns, Shape planes, FACS, an
 each specified in the plan (ARCHITECTURE §3.5.2, §3.5.4–3.5.6; CONTROL_LAYER R-34…R-40;
 TASKS T27–T29).
 
-## 16. On old plans
+## 16. Specialized physics layer (cause and effect)
+
+Its own layer because models render plausible footage and do not simulate physics; action and
+reaction come out as loosely associated visuals (a splash that does not happen, a stomp that lands
+in front of the face, a zipper that moves but never opens). Every causal event has the same parts
+in order: trigger → contact → force quality (Laban weight and time, anchored to a baseline) →
+primary reaction → secondary reactions → settle. Writing rules: state the contact point; order
+the sentence cause, reaction, settle with connectors; one causal event per beat; name the end pose
+when it matters; anchor force relatively. Capability check tags contact types by risk (low:
+splashes, debris, cloth, hair; medium: body-on-body strikes, awkward falls; high: fine mechanisms,
+graphic contact, exact choreography) and degrades unreliable cases (wind-up then cut, reaction
+shot, hiding angle) instead of failing, logging the downgrade. Adopt `contact_state`
+(physical_contact_confirmed, near_contact, occluded_contact, editorial_impact, unknown),
+`depends_on`, `must_not_imply`, an edge-admission rule (no effect without a named cause), and
+upstream repair. Eval log with three yes/no scores (contact happened, reaction followed, end pose
+sane), three or more seeds per prompt. Failures registry seeded with the A/B/C stomp test. Defer
+the full typed graph, five sub-compilers, trajectory splines, newtons and biomechanics; test
+"one causal event per clip" before making it a rule. Treat every rule as a hypothesis until runs
+confirm it; automatic physical-commonsense checking is unsolved (VideoPhy-2).
+
+## 17. On old plans
 
 "Be careful with any old plans being integrated as it can misalign the current plan." Audit in
 `DECISIONS.md` (admission ledger, overrides, not-doing list).
