@@ -1,8 +1,10 @@
 # AGENTS.md — CPCS Director (branch `director`)
 
 This repository is the owner's AI-video prompting research (`cpcs/`, `Additional/`,
-`Research_distillation_folder/`) plus a text-only prompt compiler (`director/`) and its living
-plan (`plan/`). Read `plan/README.md` first (one page), then this file.
+`Research_distillation_folder/`) plus a text-only prompt compiler (`director/`), its living
+plan (`plan/`) and the execution queue (`implementation/`). Read `plan/README.md` first (one
+page), then this file. To build: `implementation/START_HERE.md`, then the next work order in
+`implementation/QUEUE.md`.
 
 ## Roles
 
@@ -37,7 +39,7 @@ plan (`plan/`). Read `plan/README.md` first (one page), then this file.
   labelled conventions.
 - One owner pass per IR field. Other passes request; the owner writes.
 - `cpcs/**` and `Additional/**` are read-only on this branch. Knowledge enters through the
-  ingest procedure once it exists (`plan/PHASES.md`, phase 8).
+  ingest procedure in `plan/INGEST.md`, which runs alongside every phase.
 - Commits are local, on this branch, at phase exits. Nothing is pushed without the owner saying
   so. No changes to `/Users/king/ai-video-movement-prompt-system` or
   `/Users/king/Documents/New project`.

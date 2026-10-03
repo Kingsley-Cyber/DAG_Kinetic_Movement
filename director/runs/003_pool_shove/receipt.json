@@ -1,0 +1,214 @@
+{
+  "run_id": "003_pool_shove",
+  "model": "seedance",
+  "prompt_sha256": "a8edb1306566390c337aa0523755fa00dfc38d13b22a964852a503fdc83e4927",
+  "prompt_sha256_of": "prompt.txt bytes as written (including the trailing newline)",
+  "lines": [
+    {
+      "line": 1,
+      "clause": "shot",
+      "channel": "prompt",
+      "text": "An 8-second video clip, one continuous take, no cuts.",
+      "source": {
+        "kind": "control",
+        "id": "c_shot_line",
+        "treatment": null,
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 2,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "A man in a red t-shirt and shorts at the edge of a backyard pool at a party.",
+      "source": {
+        "kind": "entity",
+        "id": "friend_a",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 3,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "His friend, in a white shirt, jeans and sneakers, back to the water.",
+      "source": {
+        "kind": "entity",
+        "id": "friend_b",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 4,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "A clear blue pool, pale stone edge; guests on the lawn behind.",
+      "source": {
+        "kind": "entity",
+        "id": "pool",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 5,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "First, the man in red steps up and raises both hands.",
+      "source": {
+        "kind": "beat",
+        "id": "b1",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 6,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "A light two-handed tap on his chest rocks him back on his heels and he steps forward again, laughing.",
+      "source": {
+        "kind": "anchor",
+        "id": "a_nudge",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 7,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then the man in red plants his front foot and swings both arms forward, arriving fast and settling.",
+      "source": {
+        "kind": "beat",
+        "id": "b2",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 8,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "The man in red's palms drive forward, much more intense than the first nudge, landing on his friend's chest. His friend's upper body rocks back from the hips as his arms fly out to the sides and his heels slide off the edge, then his weight is past the edge and he starts to fall.",
+      "source": {
+        "kind": "event",
+        "id": "ev_shove",
+        "origin": "PROJECT_DERIVED",
+        "contact_state": "physical_contact_confirmed"
+      }
+    },
+    {
+      "line": 9,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then his friend tips backwards over the water and drops, starting slow and accelerating.",
+      "source": {
+        "kind": "beat",
+        "id": "b3",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 10,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then he goes into the pool fully clothed, back first.",
+      "source": {
+        "kind": "beat",
+        "id": "b4",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 11,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "His friend's back and shoulders come down, landing on the pool surface. Water bursts up and outward around him in a crown as spray flies over the stone edge and his body goes fully under, then the water falls back and bubbles rise where he went under.",
+      "source": {
+        "kind": "event",
+        "id": "ev_water",
+        "origin": "PROJECT_DERIVED",
+        "contact_state": "physical_contact_confirmed"
+      }
+    },
+    {
+      "line": 12,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then he rises through the surface and shakes the water from his hair, easing in and out.",
+      "source": {
+        "kind": "beat",
+        "id": "b5",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 13,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Finally, he treads water, laughing, wiping his face, looking up at his friend.",
+      "source": {
+        "kind": "beat",
+        "id": "b6",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 14,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "In order: nudge, shove, fall, water entry and splash, surfacing; nothing changes before it is touched.",
+      "source": {
+        "kind": "control",
+        "id": "c_chain",
+        "treatment": "interaction.contact_causal_chain",
+        "origin": "SOURCE_EVIDENCE"
+      }
+    },
+    {
+      "line": 15,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "The man in red stands screen-left, his friend screen-right with the pool behind him; the nudge, the shove and the fall all run left to right into the water.",
+      "source": {
+        "kind": "control",
+        "id": "c_stage",
+        "treatment": null,
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 16,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "From the water on, his clothes stay soaked and clinging, his hair wet, and the pool keeps rocking.",
+      "source": {
+        "kind": "control",
+        "id": "c_wet",
+        "treatment": "continuity.wet_state",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 17,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "The pool is deep, clear and still; displaced water slops over the stone edge.",
+      "source": {
+        "kind": "control",
+        "id": "c_water",
+        "treatment": "world.water_entry",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 18,
+      "clause": "camera",
+      "channel": "prompt",
+      "text": "Camera: handheld medium-wide shot from the lawn side at chest height, standard lens; responsive and organic; finish on him treading water, his friend still in frame.",
+      "source": {
+        "kind": "control",
+        "id": "c_camera",
+        "treatment": "camera.move_from_catalog",
+        "origin": "PROJECT_DERIVED"
+      }
+    }
+  ]
+}

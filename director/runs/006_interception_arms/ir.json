@@ -1,0 +1,551 @@
+{
+  "schema_version": "0.1",
+  "run_id": "006_interception_arms",
+  "ask": "On a rain-wet steel platform high inside a reactor shaft, Veyr walks toward the reactor core. Mara cuts across the platform and blocks him, forearm against forearm, turning him off his line. 4 seconds, 2D action anime.",
+  "model": "seedance",
+  "clip": {
+    "duration_s": 4,
+    "duration_origin": "MODEL_DEFAULT",
+    "aspect_ratio": "16:9",
+    "fps_assumed": 24,
+    "objective": "the viewer sees that Veyr wants the core and that Mara's block, not chance, takes him off his line",
+    "dramatic_function": "interception: a pursuit becomes coupled contact"
+  },
+  "pass_plan": [
+    {
+      "pass": "intent",
+      "active": true,
+      "reason": "mandatory"
+    },
+    {
+      "pass": "entity",
+      "active": true,
+      "reason": "mandatory"
+    },
+    {
+      "pass": "world",
+      "active": false,
+      "reason": "reasoned: nothing in the environment changes state inside this beat; rain and the platform are fixed setting, stated on the environment entity"
+    },
+    {
+      "pass": "action",
+      "active": false,
+      "reason": "reasoned, covered by interaction and physics: the walk, the run and the block are fully described by the beats, the pathway and the physics event (same choice as runs 003 and 004)"
+    },
+    {
+      "pass": "interaction",
+      "active": true,
+      "reason": "Mara's forearm contacts Veyr's forearm"
+    },
+    {
+      "pass": "physics",
+      "active": true,
+      "reason": "one body-on-body contact with a stated reaction and settle"
+    },
+    {
+      "pass": "staging",
+      "active": true,
+      "reason": "two actors on crossing paths and a goal in the background: screen sides must hold"
+    },
+    {
+      "pass": "continuity",
+      "active": false,
+      "reason": "reasoned: nothing must persist beyond identity and wardrobe, which the entity locks carry"
+    },
+    {
+      "pass": "time",
+      "active": true,
+      "reason": "mandatory"
+    },
+    {
+      "pass": "performance",
+      "active": true,
+      "reason": "the block's movement quality is the wording under test in experiment E3"
+    },
+    {
+      "pass": "camera",
+      "active": true,
+      "reason": "mandatory: explicit camera grammar, one catalog move"
+    },
+    {
+      "pass": "attention",
+      "active": false,
+      "reason": "reasoned: nothing is withheld; the contact is at frame centre by the camera's end state"
+    },
+    {
+      "pass": "light_color",
+      "active": false,
+      "reason": "reasoned: not asked; the fight IR's lighting accents belong to later beats"
+    },
+    {
+      "pass": "style",
+      "active": true,
+      "reason": "the owner's fight IR fixes the medium: contemporary 2D action anime"
+    },
+    {
+      "pass": "audio",
+      "active": false,
+      "reason": "reasoned: not asked; the fight IR's storm bed is outside the experiment"
+    },
+    {
+      "pass": "synthesis",
+      "active": true,
+      "reason": "mandatory"
+    }
+  ],
+  "entities": [
+    {
+      "id": "veyr",
+      "kind": "actor",
+      "description": "Veyr, a tall man in a long charcoal coat, is on the left of a rain-wet steel platform, facing the reactor core",
+      "locks": [
+        "identity_stable",
+        "anatomy_correct",
+        "wardrobe"
+      ],
+      "origin": "CREATIVE_CHOICE"
+    },
+    {
+      "id": "mara",
+      "kind": "actor",
+      "description": "Mara, a woman in a short dark red jacket with her hair tied back, stands on the right of the platform, nearer the camera",
+      "locks": [
+        "identity_stable",
+        "anatomy_correct",
+        "wardrobe"
+      ],
+      "origin": "CREATIVE_CHOICE"
+    },
+    {
+      "id": "platform",
+      "kind": "environment",
+      "description": "The platform hangs high inside a reactor shaft in falling rain; the reactor core glows inside its ring in the far right background",
+      "locks": [
+        "layout"
+      ],
+      "origin": "CREATIVE_CHOICE"
+    }
+  ],
+  "hands": [
+    {
+      "actor": "veyr",
+      "hand": "left",
+      "beat": "b1",
+      "state": "free"
+    },
+    {
+      "actor": "veyr",
+      "hand": "right",
+      "beat": "b1",
+      "state": "free"
+    },
+    {
+      "actor": "mara",
+      "hand": "left",
+      "beat": "b1",
+      "state": "free"
+    },
+    {
+      "actor": "mara",
+      "hand": "right",
+      "beat": "b1",
+      "state": "free"
+    },
+    {
+      "actor": "veyr",
+      "hand": "left",
+      "beat": "b2",
+      "state": "free"
+    },
+    {
+      "actor": "veyr",
+      "hand": "right",
+      "beat": "b2",
+      "state": "free"
+    },
+    {
+      "actor": "mara",
+      "hand": "left",
+      "beat": "b2",
+      "state": "free"
+    },
+    {
+      "actor": "mara",
+      "hand": "right",
+      "beat": "b2",
+      "state": "free"
+    },
+    {
+      "actor": "veyr",
+      "hand": "left",
+      "beat": "b3",
+      "state": "free"
+    },
+    {
+      "actor": "veyr",
+      "hand": "right",
+      "beat": "b3",
+      "state": "free"
+    },
+    {
+      "actor": "mara",
+      "hand": "left",
+      "beat": "b3",
+      "state": "free"
+    },
+    {
+      "actor": "mara",
+      "hand": "right",
+      "beat": "b3",
+      "state": "free"
+    }
+  ],
+  "pathways": [
+    {
+      "id": "p_intercept",
+      "object": "veyr",
+      "parts": [
+        "right forearm"
+      ],
+      "end_state": "veyr_blocked_from_core",
+      "origin": "CREATIVE_CHOICE",
+      "stages": [
+        {
+          "id": "s1",
+          "kind": "anticipation",
+          "beat": "b2",
+          "hands_required": 0,
+          "hands": [],
+          "state_before": "veyr_walking_to_core",
+          "state_after": "veyr_walking_to_core",
+          "description": "Mara shifts her weight and commits to the run"
+        },
+        {
+          "id": "s2",
+          "kind": "approach",
+          "beat": "b2",
+          "hands_required": 0,
+          "hands": [],
+          "state_before": "veyr_walking_to_core",
+          "state_after": "veyr_walking_to_core",
+          "description": "she closes the distance across his path"
+        },
+        {
+          "id": "s3",
+          "kind": "contact",
+          "beat": "b3",
+          "hands_required": 0,
+          "hands": [],
+          "state_before": "veyr_walking_to_core",
+          "state_after": "veyr_forearm_met",
+          "description": "her left forearm meets the outside of his raised right forearm"
+        },
+        {
+          "id": "s4",
+          "kind": "transfer",
+          "beat": "b3",
+          "hands_required": 0,
+          "hands": [],
+          "state_before": "veyr_forearm_met",
+          "state_after": "veyr_being_turned",
+          "description": "the momentum of her run goes into his arm"
+        },
+        {
+          "id": "s5",
+          "kind": "effect",
+          "beat": "b3",
+          "hands_required": 0,
+          "hands": [],
+          "state_before": "veyr_being_turned",
+          "state_after": "veyr_off_line",
+          "description": "his arm and shoulders are turned away from the core",
+          "reaction": "Veyr's arm is pushed off his line and he gives a full step sideways"
+        },
+        {
+          "id": "s6",
+          "kind": "follow_through",
+          "beat": "b3",
+          "hands_required": 0,
+          "hands": [],
+          "state_before": "veyr_off_line",
+          "state_after": "veyr_blocked_from_core",
+          "description": "they hold, forearm against forearm, Mara between him and the core"
+        }
+      ]
+    }
+  ],
+  "beats": [
+    {
+      "id": "b1",
+      "order": 1,
+      "label": "Veyr heads for the core",
+      "actor": "veyr",
+      "description": "Veyr walks straight across the platform toward the core, eyes fixed on it",
+      "min_s": 0.8,
+      "min_s_origin": "PROJECT_DERIVED convention (run-001 reading times: one readable baseline action)",
+      "after": [],
+      "caused_by": [],
+      "key_pose": null,
+      "importance": 0.8,
+      "origin": "CREATIVE_CHOICE"
+    },
+    {
+      "id": "b2",
+      "order": 2,
+      "label": "Mara cuts across",
+      "actor": "mara",
+      "description": "Mara sprints diagonally across the platform into his path",
+      "min_s": 1.0,
+      "min_s_origin": "PROJECT_DERIVED convention (one bounded motion with anticipation)",
+      "after": [
+        "b1"
+      ],
+      "caused_by": [],
+      "key_pose": null,
+      "importance": 0.9,
+      "origin": "CREATIVE_CHOICE",
+      "relative": [
+        {
+          "quality": "speed",
+          "relative_to": "a_walk",
+          "step": "much",
+          "direction": "more"
+        }
+      ]
+    },
+    {
+      "id": "b3",
+      "order": 3,
+      "label": "the interception",
+      "actor": "mara",
+      "description": "Mara meets him in the middle of the platform",
+      "min_s": 1.2,
+      "min_s_origin": "PROJECT_DERIVED convention (contact, reaction and a held settle; four pathway stages)",
+      "after": [
+        "b2"
+      ],
+      "caused_by": [
+        "b2"
+      ],
+      "key_pose": null,
+      "importance": 1.0,
+      "origin": "CREATIVE_CHOICE",
+      "pose_role": "key"
+    }
+  ],
+  "anchors": [
+    {
+      "id": "a_walk",
+      "quality": "speed",
+      "beat": "b1",
+      "label": "Veyr's walk",
+      "description": "Veyr strides at a steady walking pace, one even step after another"
+    },
+    {
+      "id": "a_tread",
+      "quality": "weight",
+      "beat": "b1",
+      "label": "Veyr's footfalls",
+      "description": "Each of his boots comes down flat on the wet steel with an ordinary, even weight"
+    }
+  ],
+  "physics_events": [
+    {
+      "event_id": "ev_intercept",
+      "beat": "b3",
+      "trigger": {
+        "actor": "Mara",
+        "part": "left forearm",
+        "action": "swings in against Veyr"
+      },
+      "contact_surface": "the outside of his raised right forearm",
+      "contact_state": "physical_contact_confirmed",
+      "force": {
+        "relative_to": "a_tread",
+        "step": "much",
+        "direction": "more"
+      },
+      "primary_reaction": "Veyr's arm is pushed off his line and he gives a full step sideways",
+      "secondary": [
+        "his shoulders turn away from the core"
+      ],
+      "settle": "they hold forearm against forearm, Mara standing between him and the core",
+      "depends_on": [],
+      "must_not_imply": [
+        "a punch to the face or body",
+        "Veyr falling or being thrown",
+        "one forearm passing through the other",
+        "Veyr leaving his line before the forearms meet",
+        "the two bouncing apart to neutral stances"
+      ],
+      "risk": "medium",
+      "pathway_stage": "s5",
+      "origin": "CREATIVE_CHOICE"
+    }
+  ],
+  "controls": [
+    {
+      "id": "c_duration",
+      "pass": "time",
+      "field": "clip.duration_s",
+      "value": 4,
+      "importance": 1.0,
+      "lock": true,
+      "origin": "PROJECT_DERIVED",
+      "treatment": null,
+      "capability": "native",
+      "disposition": "native",
+      "exactness": "exact",
+      "clause": "shot"
+    },
+    {
+      "id": "c_aspect",
+      "pass": "camera",
+      "field": "clip.aspect_ratio",
+      "value": "16:9",
+      "importance": 0.6,
+      "lock": false,
+      "origin": "INFERENCE",
+      "treatment": null,
+      "capability": "native",
+      "disposition": "native",
+      "exactness": "exact",
+      "clause": "shot"
+    },
+    {
+      "id": "c_shot_line",
+      "pass": "intent",
+      "field": "intent.shot_line",
+      "value": "A 4-second animated clip, one continuous shot, no cuts",
+      "importance": 0.95,
+      "lock": true,
+      "origin": "PROJECT_DERIVED",
+      "treatment": null,
+      "capability": "semantic",
+      "disposition": "semantic",
+      "exactness": "approximate",
+      "clause": "shot",
+      "expected_visual_effect": "single continuous clip",
+      "check": "no cuts"
+    },
+    {
+      "id": "c_style",
+      "pass": "style",
+      "field": "style.visual_style",
+      "value": "Contemporary 2D hand-drawn action anime: clean line art, flat cel shading, clear readable silhouettes",
+      "importance": 0.9,
+      "lock": true,
+      "origin": "CREATIVE_CHOICE",
+      "treatment": null,
+      "capability": "semantic",
+      "disposition": "semantic",
+      "exactness": "qualitative",
+      "clause": "shot",
+      "expected_visual_effect": "drawn 2D animation, not live action or 3D render",
+      "check": "line art and flat shading on both figures"
+    },
+    {
+      "id": "c_stage",
+      "pass": "staging",
+      "field": "staging.screen_direction",
+      "value": "Veyr moves left to right toward the core; Mara comes from the right; they meet mid-frame",
+      "importance": 0.85,
+      "lock": true,
+      "origin": "CREATIVE_CHOICE",
+      "treatment": null,
+      "capability": "semantic",
+      "disposition": "semantic",
+      "exactness": "qualitative",
+      "expected_visual_effect": "screen sides hold: Veyr from the left, Mara from the right, the core far right",
+      "check": "neither figure swaps sides; the core stays in the far right background"
+    },
+    {
+      "id": "c_effort",
+      "pass": "performance",
+      "field": "performance.effort",
+      "value": {
+        "subject": "Mara",
+        "weight": 0.9,
+        "time": 0.9,
+        "space": 0.9,
+        "flow": 0.8,
+        "confidence": 0.6,
+        "visible": "Mara's block starts in her planted rear foot, turns through her hips and shoulders, and arrives with her whole body behind the forearm"
+      },
+      "importance": 0.85,
+      "lock": true,
+      "origin": "PROJECT_DERIVED",
+      "treatment": "performance.effort_quality",
+      "capability": "semantic",
+      "disposition": "semantic",
+      "exactness": "qualitative",
+      "expected_visual_effect": "the block is delivered by the whole body: foot plants, hips and shoulders turn, the forearm arrives last",
+      "check": "rear foot planted before contact; hips turn before the forearm lands"
+    },
+    {
+      "id": "c_cam_frame",
+      "pass": "camera",
+      "field": "camera.framing",
+      "value": "Wide shot from chest height, wide lens, both figures full-length, the core in the far background",
+      "importance": 0.95,
+      "lock": true,
+      "origin": "PROJECT_DERIVED",
+      "treatment": null,
+      "capability": "semantic",
+      "disposition": "semantic",
+      "exactness": "qualitative",
+      "expected_visual_effect": "both bodies and both paths readable before the contact",
+      "check": "both figures full-length at the start"
+    },
+    {
+      "id": "c_cam_move",
+      "pass": "camera",
+      "field": "camera.move",
+      "value": {
+        "move": "dolly_in",
+        "phrase": "dolly in toward the point where their paths cross",
+        "movement": "move the camera straight forward toward the meeting point",
+        "speed": "smooth controlled push",
+        "framing": "keep height and lens direction constant, both figures fully in frame",
+        "end": "finish medium-wide with the forearm contact at frame centre"
+      },
+      "importance": 0.9,
+      "lock": true,
+      "origin": "PROJECT_DERIVED",
+      "treatment": "camera.move_from_catalog",
+      "capability": "semantic",
+      "disposition": "semantic",
+      "exactness": "qualitative",
+      "expected_visual_effect": "the frame tightens on the meeting point; the contact is visible, not hidden",
+      "check": "forearm contact inside the frame in the last second"
+    },
+    {
+      "id": "c_negatives",
+      "pass": "synthesis",
+      "field": "negatives.failures",
+      "value": [
+        "a punch to the face",
+        "Veyr falling",
+        "extra limbs or a third figure",
+        "a cut",
+        "on-screen text"
+      ],
+      "importance": 0.65,
+      "lock": false,
+      "origin": "PROJECT_DERIVED",
+      "treatment": null,
+      "capability": "semantic",
+      "disposition": "semantic",
+      "exactness": "qualitative",
+      "expected_visual_effect": "none of the listed failures appear",
+      "check": "visual inspection against the list"
+    }
+  ],
+  "notes": [
+    "Specimen: the interception from the owner's fight IR (Additional/TERMINAL_DESCENT_FIGHT_IR_v1.json: beats b01-b02, contact c01_forearm_redirect, action a01). One contact, one physics event.",
+    "Left out of this single-beat specimen: Veyr's mass-debt rail charge and release, the glass partition, Mara's shoulder injury, the camera impulse, the storm audio bed.",
+    "No beat declares spacing: the spacing clauses contain speed words ('arriving fast', 'starting slow') that would blur the magnitude arms of E2 (decision d005).",
+    "No short wording anywhere: every arm must emit without compression so the arms differ only in the wording under test.",
+    "No interaction.causal_chain control and no key-pose line: the physics event already states cause, contact, reaction and settle, and a second statement of the same contact would push the arms over the limit (decision d006)."
+  ]
+}

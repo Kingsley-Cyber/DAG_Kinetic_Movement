@@ -1,0 +1,80 @@
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [],
+  "outcomes": [
+    {
+      "rule": "schema",
+      "owner": "per control",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "anchors",
+      "owner": "time",
+      "outcome": "not_applicable",
+      "detail": "no anchors or relative deltas in the IR"
+    },
+    {
+      "rule": "beats",
+      "owner": "time",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "camera",
+      "owner": "camera",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "camera_move",
+      "owner": "camera",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "controls",
+      "owner": "per control",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "fit",
+      "owner": "time",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "hands",
+      "owner": "interaction",
+      "outcome": "not_applicable",
+      "detail": "no hand ledger entries in the IR"
+    },
+    {
+      "rule": "pass_plan",
+      "owner": "synthesis",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "pathway",
+      "owner": "interaction",
+      "outcome": "not_applicable",
+      "detail": "no pathways in the IR"
+    },
+    {
+      "rule": "physics_events",
+      "owner": "physics",
+      "outcome": "not_applicable",
+      "detail": "no physics events in the IR"
+    }
+  ],
+  "fit": {
+    "verdict": "FITS",
+    "load_s": 5.0,
+    "duration_s": 6,
+    "ratio": 0.833
+  },
+  "ir_sha256": "e003e4116a0dd0bf0d1143c38d99e4bf589211426a1628633b20349c5e3098f7"
+}

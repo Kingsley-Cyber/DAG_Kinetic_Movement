@@ -56,6 +56,30 @@ Rules: one owner pass per IR field; a sub-module becomes a pass only when it nee
 state and activates on its own; adding a sub-module or pass is a `passes.yaml` entry plus
 treatments, with no code change; provider and format handling are never passes.
 
+#### 2.1a The owner's content layers, mapped onto the passes
+
+| Owner's content layer | Lives in | Notes |
+|---|---|---|
+| 1 Body movement quality (Laban: Body, Effort, Shape, Space) | performance → `laban_bess`; action for travel | Effort incl. compound drives (punch = direct + sudden + strong); Space = pathways, levels, kinesphere; Body = which parts initiate and follow |
+| 2 Body connectivity (Bartenieff) | performance → `bartenieff_patterns`; action → `connectivity` | six patterns + core initiation, sequential weight shift, spiraling, diagonal counter-motion |
+| 3 Relative scaling | cross-cutting rule (§3.5.3) | anchor beat, later beats as explicit comparisons |
+| 4 Camera (12 sub-layers) | camera → `where.*`, `movement.*`, `lens.*`, `time.*`, `connection.*`, plus proposed `stance`, `shot_function`, `locked_off_control` | see §3.4 |
+| 5 Cause and effect (contact) | physics → `causal_events`; interaction → `impact_physics_language` | §3.5.7 |
+| 6 World state | world → `world_bundle` | gravity, mass, terrain, momentum, friction, drag, scale, atmosphere |
+| 7 Face (FACS + valence–arousal) | performance → `facs_events`, `affect` | §3.5.2, §3.5.6 |
+| 8 Look | light_color (lighting, grade) + style → `visual_style` (film look) | the thinnest layer today |
+
+Cross-cutting techniques and where they live: one intent per beat (protocol §3; R-41 one causal
+event per beat); negative and constraint language (R-24 positive-first, `must_not_imply`);
+ordering and emphasis (clause order, intent catalog §6.1, importance weights); multi-seed testing
+(R-45, ≥ 3 seeds); hand and fine-motor avoidance framing (HANDS cut strategy, `contact_state`
+downgrade, R-43); seed-image quality for image-to-video (out of scope, recorded as an exclusion).
+
+Evidence status, stated plainly: Laban, Bartenieff, FACS, valence–arousal and the camera vocabulary
+come from real literature; **none has been verified on a video model here**. LaMoGen shows Laban
+conditioning works on a motion-generation model, not a video model. The camera position
+sub-layer, the causal event schema and the dialect fields are design proposals.
+
 ### 2.2 The pass pattern
 
 ```
@@ -121,11 +145,103 @@ a prop or release is declared). Code checks: no hand holds two things; a stage n
 finds N free; ownership changes only through an overlapping grip; a held object persists until a
 release stage.
 
+### 2.7 Explicit versus open (owner: "certain things should be explicit")
+
+What must be **stated** in the IR and the prompt, and what may be left **open** for the LLM to
+author (labelled CREATIVE_CHOICE or INFERENCE, never presented as research) or for the model.
+
+| Pass | Must be explicit | May be open |
+|---|---|---|
+| intent | what happens and why it matters to the viewer; each change of intention | subtext, tone |
+| entity | who and what; which side or hand; what stays identical | wardrobe, look when unspecified |
+| interaction | every contact: who, which hand or part, on what surface; the stages in order | grip variant when several work |
+| physics | the stated reaction to every contact; the settle pose for ground or water endings | secondary flourishes |
+| world | what changes state and stays changed | ambient background life |
+| time | event order; the anchor beat; which moment is the apex | exact seconds when no duration is given |
+| staging | who is where; screen direction across a contact | incidental blocking |
+| continuity | locks on identity and objects; what persists | — |
+| performance | visible behaviour for any quality that matters, relative to its anchor | register details, micro-behaviour |
+| camera | camera grammar: where, movement, lens, end state (mandatory) | stance, shot function when the ask is silent |
+| light_color, style | the look when the user named one | everything else, as CREATIVE_CHOICE |
+| audio | any spoken line, verbatim | ambience |
+
+When the ask leaves something open ("anime fight between wizards"), the LLM invents how the
+action unfolds; the invention is labelled, and it is still bound by the explicit column.
+"Wizard fight" does not automatically mean fast movement, strong Effort and a moving camera: those
+are contextual judgements held as soft defaults the LLM may override with a recorded reason.
+
+### 2.8 The passes connect (coherence across passes)
+
+Choosing each layer independently produces an incoherent prompt: a full-body spell cast changes the
+movement pathway, the anticipation, the contact reaction, the beat timing and what the camera
+needs. Two mechanisms carry dependencies forward:
+
+- **`reads` per pass** (`passes.yaml`): the earlier decisions a pass must receive in its pack.
+  Camera reads beats, pathways, causal events and contact states; time reads pathway stages and
+  causal events; performance reads beats, anchors and causal-event force; physics reads pathways
+  and the world bundle; synthesis reads everything.
+- **Coupling checks** (code, small set): the camera control on a beat is consistent with that
+  beat's contact state (an `occluded_contact` beat cannot have a framing that shows the contact
+  point; a `physical_contact_confirmed` beat cannot be hidden); a power action's Effort scale
+  agrees in direction with its causal-event force delta; beat timing covers every pathway stage
+  assigned to the beat; a later-tier control never contradicts a Reason-tier lock.
+
+The LLM authors the scene; explicit state, relative relationships and checks keep its decisions
+coherent. A persuasive rationale is not evidence; origin tags and render verdicts are.
+
+### 2.9 The shared scratchpad (owner)
+
+The passes share one structured scratchpad of scene state and decisions. It is the run folder,
+not a new store:
+
+| Record | Purpose | File |
+|---|---|---|
+| user intent and locks | what must remain true | `ask.md`, `ir.json → clip`, locked controls |
+| accepted scene decisions | beats, actions, staging, contacts, anchors | `ir.json` (accepted state only) |
+| decision rationale and source | why chosen; research-backed or authored | `decisions.jsonl` (origin, treatment, alternatives rejected) |
+| open alternatives and conflicts | what still needs resolution; revision requests | `open.jsonl` |
+| validation results | what passed, failed or remains unknown | `check_report.json` (typed outcomes, R-51) |
+
+Rules:
+
+- **Propose, validate, accept.** A pass receives its view of the scratchpad (`pack <pass>`: its
+  question, its `reads`, the treatments, the locks), returns a proposed contribution, and the
+  contribution enters `ir.json` only after `check --pass <pass>` accepts it.
+- **Only accepted decisions travel.** Draft thoughts and abandoned options are not passed forward;
+  what travels is the accepted decision, a short rationale and any unresolved question.
+- **Request, never overwrite.** A later pass that needs an earlier decision changed writes a
+  revision request to `open.jsonl` (`{from_pass, to_pass, field, reason}`); the owning pass
+  decides. Synthesis closes or escalates every open item; a run cannot emit with open conflicts.
+- **Replay is the saved scratchpad.** The same accepted `ir.json`, profile and treatments give the
+  same prompt (R-22). Asking the LLM to reason again, even from the same scratchpad, is a new
+  creative run and gets a new variant id.
+
+### 2.10 Writing rules the emitter and the lint enforce (owner; corpus-checked)
+
+- **Name the variables behind a vague word.** "Cinematic" is not a look; it is the deliberate use
+  of tools (colour, framing, lens, frame rate, handheld versus mounted, lighting) to add meaning
+  and mood. A vague style word in free text (`cinematic, epic, beautiful, stunning, dramatic,
+  dynamic, professional, high quality`) is a lint warning with the instruction to name the
+  variables instead. Treatment wording may use such a word only to exclude it ("not cinematic").
+- **The directive chain orders the passes:** narrative objective → viewer attention → composition
+  → camera, performance, editing, lighting. Attention therefore runs before camera.
+- **Lead with the main idea** (the pyramid: the core force of the pose first, fingernails last).
+  The emitter already puts shot, subject and ordered action before performance, camera and
+  exclusions; beat descriptions follow the same rule. A fixed "first 20–30 words" rule is a
+  prompt-engineering heuristic, not in the research: `EXPERIMENTS.md` E7 tests it.
+- **Budget seconds as a timeline, not adjectives; start as late as possible** without losing a
+  structural element; establish geography (a wider view) before close-ups in multi-shot work.
+  Soft rules: the LLM may override with a recorded reason.
+- **Shot grammar is a shared language with soft rules**: interpretation and subversion are
+  allowed, the basics persist. Three scales: shot grammar (camera `where` and `lens`), editing
+  grammar (camera `connection`), and motion ("writing with motion": camera `movement` plus the
+  action and time passes).
+
 ## 3. Control layer
 
 ### 3.1 Controls
 
-A control: `id, pass, field, value, importance 0..1, lock, origin, treatment_id`.
+A control: `id, pass, field, value, importance 0..1, lock, origin, treatment` (the treatment's id).
 
 Each control gets, for the target model:
 
@@ -164,6 +280,18 @@ model's "looks right" is `interpreted`, not measured.
 
 ### 3.4 Camera sub-layers
 
+Twelve sub-layers in five groups (owner), plus three proposed additions; the research's three
+image layers (below) sit inside them:
+
+| Group | Sub-layers | Vocabulary |
+|---|---|---|
+| Where | shot scale · angle · position relative to the action | ECU, CU, MCU, MS, MLS, LS, wide; eye level, low, high, Dutch; on-axis, off-axis, over-the-shoulder |
+| Movement | type · quality (speed, ease, stability) · relation to subject (leads, follows, counters, orbits, holds) | `director/vocab/camera_moves.yaml` (48 moves, four-part grammar) |
+| Lens | focal length · focus and depth of field · composition | mm equivalents, deep vs shallow, rack focus, headroom, rule of thirds |
+| Time | slow motion and speed ramps · motion blur | declared origin; no invented frame-exactness |
+| Connection | cuts and sequencing · start and end states | match-on-action, declared end framing so the next shot can match |
+| Proposed | stance (objective, subjective, POV) · shot function (establishing, insert, reaction, reveal) · locked-off as the A/B test control | — |
+
 From `camera_three_layer_semantics`:
 
 | Layer | Contents | Owner |
@@ -174,9 +302,28 @@ From `camera_three_layer_semantics`:
 
 Failure mode to guard: optical parameters emitted as camera motion.
 
-### 3.5 Movement text control: three layers (owner)
+**Camera move catalog** (`director/vocab/camera_moves.yaml`, from aicameramovements.com, read
+2026-10-03; wording UNVERIFIED; 46 site moves + roll and dolly zoom): every move the camera pass may
+choose, in 7 categories (pan/tilt, zoom/lens, dolly/track, physical moves, human camera,
+drone/crane, specials), each with the site's four-part prompt grammar (Movement · Speed · Framing ·
+End), its layer (motion, optics, special), the research's motion kind, and a `function` hint
+for decision-making (intensify, reveal, accompany, energize, orient, embody). The camera pass picks
+by function, states all four parts, one move per shot, and never writes a zoom as motion. Treatment:
+`camera.move_from_catalog`. Validator R-53 (T38) checks the id exists and the layer is respected.
 
-Movement and motion are controlled in text through three vocabularies, each with its own dials:
+### 3.5 Movement text control
+
+**Terminology (fixed 2026-10-03 so one phrase has one meaning):**
+
+| Term | Means |
+|---|---|
+| **Laban's three layers** | Effort · Shape · Space, with Body underneath as the physical substrate (the BESS sense; Effort has four factors: Weight, Time, Space, Flow) |
+| **control stack** | the three vocabularies production coordinates: Laban (quality) · Bartenieff (how it starts and travels) · film grammar (how it is seen) |
+| **wording rungs** | three ways to write the same motion: numeric value · Laban term · visible body description |
+| **performance control** | timeline (when things happen across the shot) · face (per-second FACS events) · performance formula (Laban values with valence–arousal) |
+
+The control stack: movement and motion are controlled in text through three vocabularies, each
+with its own dials:
 
 | Layer | Vocabulary | Controls | Pass |
 |---|---|---|---|
@@ -279,14 +426,41 @@ relative word against the anchor expression, one step at a time (§3.5.3).
 
 #### 3.5.3 Relative prompting with anchors (owner rule)
 
-The prompt never states two absolute intensities side by side. It sets one **anchor** (the
-baseline movement, stated once) and expresses each escalation **relative to the anchor, one unit at
-a time**: "the second swing is faster and lands heavier than the first", not two separate
-speeds. This matches the scaled Laban values: the IR stores the scale; the emitter writes the
-anchor and the step. Validators flag two absolute magnitude words for the same quality in one
-clause.
-- Each quality has three strengths of wording: numeric (experiment only), the Laban term, and a
-  visible body consequence (what a caption would say). The pole → visible-body mapping does not
+**A compile invariant, not a style tip (owner: "relativity prompting is a must; no absolute").**
+A video model has no absolute scale; the only magnitudes it can honour are comparisons inside the
+clip. The prompt never states two absolute intensities side by side. It sets one **anchor** (the
+baseline, stated once) and expresses each escalation **relative to the anchor, one unit at a
+time**: "the second swing is faster and lands heavier than the first", not two separate speeds.
+
+- **Anchors are first-class in the IR:** `anchors[] = {id, quality (speed, weight, reach, size,
+  intensity, distance, …), beat, description}`. The anchor's description is a **visible fact**
+  ("a compact cast held close to the chest, hands at shoulder width"), never an adjective, because
+  the anchor itself cannot be relative.
+- **Later beats and controls carry a delta:** `relative_to: <anchor id>` plus a step
+  (`slightly | more | much`) and a direction (`more | less`) on the same quality. The scaled Laban
+  values and causal-event `force` use the same mechanism (`force.relative_to`).
+- **One escalation per quality against one anchor.** No chains ("faster than the second, which
+  was heavier than the first").
+- **Emitter:** writes the anchor once in its beat, then each delta as a comparison in words.
+- **Two levels of enforcement.**
+  - *IR level (hard, now):* every scaled quality on a later beat, and every causal-event `force`,
+    references an anchor. This is about a coherent IR, not about render efficacy, so it does not
+    wait for evidence. The emitter never generates two absolutes from scaled values.
+  - *Wording level (lint warning, until evidence):* a bare magnitude word (fast, heavy, powerful,
+    strong, wide, hard, big, exaggerated) in free-text descriptions with no anchor in scope is
+    reported as a warning, not a failure. Named techniques that carry learned meaning are allowed
+    as they are ("slow motion", "real-time", "speed ramp", "time-lapse", and any term a model
+    profile lists under `defaults_to_counter`). Absolute words are imprecise, not meaningless.
+- **Promotion rule:** the wording lint becomes a hard failure only if the absolute-versus-relative
+  A/B (`EXPERIMENTS.md` E2, task T18) shows relative wording is followed better on renders, per
+  model. The IR may store multipliers against an anchor; the emitter always resolves them into
+  words. Multipliers, newtons and metres per second are never written into a prompt.
+
+Hypothesis status: that a video model honours "heavier than the jab" inside one clip is untested.
+The idea comes from LaMoGen's per-action baselines, which work by optimizing embeddings on a
+motion model, not by wording on a video model.
+- Each quality can be written on three **wording rungs**: numeric (experiment only), the Laban
+  term, and a visible body consequence (what a caption would say); `EXPERIMENTS.md` E3 tests them. The pole → visible-body mapping does not
   exist in the research yet and is a named gap.
 - Each quality is localized to a phase: "Time = Sudden" is not "the whole clip is fast".
 - Bartenieff gives initiation and sequencing language (core-initiated, sequential weight shift,
@@ -441,7 +615,8 @@ dialect version, seed, access path, and three yes/no scores per event: contact h
 followed, end pose sane. At least three seeds per prompt; one good output can be luck.
 Repair goes upstream: `depends_on` says which earlier event to fix when a reaction fails.
 
-**Failures registry** (`director/failures.jsonl`): seeded with the A/B/C test on the stomp —
+**Failures registry** (`director/failures.jsonl`): seed classes hands, zippers and fine
+mechanisms, exact choreography, graphic contact; seeded with the A/B/C test on the stomp —
 plain prompt vs causal prompt vs prop-instead-of-person. The result separates failures wording
 fixes from model limits and tests the safety-avoidance hypothesis for graphic contact.
 
@@ -478,6 +653,31 @@ Punch of one action beat: `impact_frames = anticipation + strike + hold + settle
 in-betweens read faster; one in-between turns a snap into a rolling hit. Small screens compress
 motion: shorten action beats for phone playback.
 
+### 4.3a Motion grammar and spacing: the finite alphabet (owner; animation practice)
+
+**Definition.** Motion grammar is the set of governing rules for constructing and presenting
+movement so a viewer can *read* it: the visual-language equivalent of sentence grammar. Shots are
+the words, sequence makes the sentences, and audiences have learned to read them through a
+lifetime of exposure. Grammar is the difference between movement a viewer watches and movement a
+viewer reads. For this compiler that sets the test for every motion decision: can a viewer read
+what happened, in order, from the frames the prompt asks for (the cold read-back checks exactly
+this on the prompt).
+
+"AI slop is constant motion; the fix is deliberate spacing structure, segment by segment." Motion
+grammar works as a compiler for movement: the timing chart is its data, the profiles its enum, the
+Effort actions its semantic layer. The closed set the time and action passes choose from:
+
+| Dimension | Values |
+|---|---|
+| spacing per beat or segment | `ease_in` (slow start, fast end) · `ease_out` (fast start, slow settle) · `ease_in_out` · `even` (constant; allowed only with a recorded reason) |
+| pose role | `key` · `extreme` · `breakdown` |
+| frame budget | from the timing profile (§4.3), as a convention |
+
+Each beat that contains movement declares its spacing; key poses are named and ranked. A clip in
+which every moving beat is `even`, or none declares spacing, gets a "constant motion" warning.
+The emitter writes spacing as visible behaviour ("starts slow and snaps through", "arrives fast
+and settles"), never as the term.
+
 ### 4.4 Beat planning procedure (the LLM, in the time pass)
 
 1. Emotional register: slow-hold, floaty or snappy.
@@ -502,8 +702,9 @@ clips with a state handoff, lengthen if the model allows. Prompts are never sque
 
 Motion budget per shot (production heuristic): one dominant subject action, one major camera
 move, one or two secondary body actions, one to three passive material responses. Three or four
-ordered events outperform a paragraph of simultaneous actions. 8-second models: one clip per
-beat.
+ordered events outperform a paragraph of simultaneous actions. "8-second models: one clip per
+beat" (LIVING §11) is a hypothesis to test, not a rule: run 001 holds seven beats in one 8 s clip
+and fits.
 
 ### 4.6 Speech
 
@@ -550,7 +751,11 @@ dialect:
 
 - **Profile** (`director/profiles/<model>.yaml`): prompt length limit, negative-prompt field,
   durations, aspect ratios, frame rate, audio, native API fields, every fact tagged documented /
-  measured / guess, with source and date.
+  measured / guess, with source and date. Dialect-file fields (owner): format, section order
+  (`clause_order`), phrase map (`levers`, `prefer`, `avoid`), supported/unsupported (facts and
+  `contact_risk`), **defaults to counter** (what the model does unasked, and the wording that
+  counters it, e.g. slow motion, cinematic grade, waxy skin), access path (native app, API, host),
+  version, evidence, date tested, lifecycle state (§INGEST 3).
 - **Dialect** (same file): clause order, vocabulary the model responds to, words to avoid, how
   it treats structure pasted as text, separate-field habits (Veo: shot, style, lighting,
   character kept as separate parts; Runway: subject motion, scene motion, camera motion, style
@@ -559,6 +764,36 @@ dialect:
   dialect block when present, else core.
 - Candidate models named by the owner: Seedance, Kling, Hailuo, Gemini/Veo, Wan. Seedance first.
   Evidence is per model: a result on one model is UNVERIFIED on another.
+
+### 6.1 Intent catalog and dialect levers (owner: "agnostic first, dialects as lenses")
+
+The IR marks **intents** in model-agnostic form. A dialect is a lens applied at emission that maps
+each intent to the lever that model responds to, with its own evidence status. Nothing
+model-specific ever enters the IR.
+
+| Intent (agnostic, in the IR) | IR representation | Example dialect levers (per profile, each with evidence) |
+|---|---|---|
+| emphasize a word or beat | `emphasis: [spans]` on a dialogue or performance control | Hailuo: `<i>word</i>`, `<emphasis>word</emphasis>`, `*word*` (owner-observed; asterisks sometimes read as a bleep) · others: unknown |
+| pause or hold | beat with `hold: true` / `pause_s` | "beat", "pause", ellipsis, explicit seconds; per model |
+| camera move | camera control (motion layer) | Kling: native camera parameters (horizontal, vertical, zoom, pan, tilt, roll) · prose elsewhere |
+| speech line | `audio.dialogue` control | Veo: quoted line + "(no subtitles)" · models without audio: omit, loss record |
+| order and timing | beats order; `time.*` controls | order words, timestamps, shot lists (Seedance guides: timecoded shot list for long clips) |
+| exclusion | `negatives.*` controls | dedicated negative field (Veo) · shared prompt text (Kling) · none (Runway) |
+| identity anchor | entity locks | reference image where supported (out of scope); descriptive locks in text |
+| shot settings | `clip.duration_s`, `clip.aspect_ratio` | API fields where native; prose otherwise |
+
+Rules:
+
+- A lever lives only in `director/profiles/<model>.yaml → dialect.levers[]` with
+  `{intent, syntax, evidence: owner_observed | documented | measured | unknown, caveats, runs}`.
+  The owner's untested observations enter as `owner_observed`, never as fact.
+- `emit` applies levers after assembly and records each application in the receipt
+  (`lever: <intent>`), so a render verdict can credit or blame the lever.
+- An intent with no lever in the target dialect is emitted in core wording and recorded as a loss
+  (`provider_attention_loss`, severity low) when the intent mattered (importance ≥ 0.7).
+- Lever evidence is per model and per route; a lever proven on one route is `unknown` on another.
+- The reasoning layer sees the lever list during model fit (synthesis, taste pass) so it does not
+  plan intents the dialect cannot carry, but it never writes lever syntax into the IR.
 
 ## 7. Stylized motion (sakuga, limited animation)
 
@@ -617,8 +852,10 @@ intrinsics) are out of scope.
 ## 11. Research ingest (procedure written after doing it by hand)
 
 Document route: new paper or notes → proposed treatments, sub-modules or passes (question, IR
-fields, validators, slot), numbers and scales, model facts, parked claims → owner approves. Each
-new treatment needs ≥ 3 triggers and ≥ 1 test ask. A package is integrated when every claim is a
+fields, validators, slot), numbers and scales, model facts, parked claims → recorded and committed
+per `GOALS.md → Decision rights` (sourced treatments, new fields with a consumer and new
+sub-modules or passes are recorded in `DECISIONS.md` and proceed; the owner approves only
+principle changes, spend and pushes). Each new treatment needs ≥ 3 triggers and ≥ 1 test ask. A package is integrated when every claim is a
 treatment, a validator, a scale, a model fact, or explicitly parked. Video harvest is parked.
 
 Known gaps to research: everyday task decomposition for object handling; Laban pole → visible

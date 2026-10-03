@@ -1,0 +1,80 @@
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [],
+  "outcomes": [
+    {
+      "rule": "schema",
+      "owner": "per control",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "anchors",
+      "owner": "time",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "beats",
+      "owner": "time",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "camera",
+      "owner": "camera",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "camera_move",
+      "owner": "camera",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "controls",
+      "owner": "per control",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "fit",
+      "owner": "time",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "hands",
+      "owner": "interaction",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "pass_plan",
+      "owner": "synthesis",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "pathway",
+      "owner": "interaction",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "physics_events",
+      "owner": "physics",
+      "outcome": "pass",
+      "detail": ""
+    }
+  ],
+  "fit": {
+    "verdict": "FITS",
+    "load_s": 5.6,
+    "duration_s": 8,
+    "ratio": 0.7
+  },
+  "ir_sha256": "158ce31d344553b5a8325d3d3696bdfbcf1038427e0164bc9c4408aac74a7169"
+}

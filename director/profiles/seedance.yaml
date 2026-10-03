@@ -2,8 +2,12 @@
 # Nothing here is treated as supported until a tag says documented (with source) or measured (with run id).
 model: seedance
 display_name: "Seedance (route and version unconfirmed)"
-status: unverified
+status: unverified          # lifecycle: unverified → verified → stale → reprobe_due → invalidated
+version: null               # model version the facts refer to
+access_path: null           # native app | native API | host (Runway, fal, ...) — owner to confirm
+date_tested: null
 updated: 2026-10-02
+defaults_to_counter: []     # what the model does unasked and the wording that counters it; filled from renders
 
 facts:
   - key: prompt_char_limit
@@ -19,26 +23,53 @@ facts:
     tag: guess
     source: "Runway route has no negative field; native route unknown"
   - key: durations_s
-    value: null
-    tag: unknown
-    source: "Research mentions 'up to 30 seconds in a single pass' for Seedance 2.5 (Granular Motion Control doc) — unverified"
+    value: "4-15"
+    tag: documented
+    source: "Owner's research, DMR gap report §6 capability table, evidence E05: BytePlus ModelArk Video Generation API (docs.byteplus.com/en/docs/modelark/1520757), accessed 2026-07-31, for BytePlus Seedance 2.0. Applies to the BytePlus native route only; 'up to 30 seconds' for Seedance 2.5 (Granular Motion Control doc) is unverified"
   - key: aspect_ratios
-    value: null
-    tag: unknown
+    value: "native parameter (values not recorded)"
+    tag: documented
+    source: "same (E05)"
+  - key: seed
+    value: "native parameter"
+    tag: documented
+    source: "same (E05)"
+  - key: camera_fixed
+    value: "native parameter: fixes the camera; all other camera trajectory is semantic text only"
+    tag: documented
+    source: "same (E05); DMR table row 'Native camera trajectory: S except camera_fixed parameter'"
+  - key: exact_event_timestamps
+    value: unsupported
+    tag: documented
+    source: "same (E05 table)"
+  - key: contact_facs_laban_numeric
+    value: "semantic text only"
+    tag: documented
+    source: "same (E05 table): contact constraints S (or media via reference), FACS numeric tracks S, Laban numeric tracks S"
+  - key: multi_shot
+    value: "semantic or unknown"
+    tag: documented
+    source: "same (E05 table)"
+  - key: prompt_embedded_parameters
+    value: "legacy parameters embedded in prompt text are not equivalent to top-level API parameters"
+    tag: documented
+    source: "DMR gap report §6, BytePlus Seedance 2.0 findings"
   - key: fps
     value: 24
     tag: guess
     source: "animation baseline convention; derived clock only"
   - key: audio
-    value: null
-    tag: unknown
+    value: "native audio generation on BytePlus Seedance 2.0"
+    tag: documented
+    source: "DMR gap report §6 (E05), accessed 2026-07-31"
   - key: structured_text_handling
     value: null
     tag: unknown
     source: "no measured finding; assume prose is read as prose"
 
-# API fields the emitter may treat as `native` controls. Guess until documented.
-native_fields: [duration_s, aspect_ratio]
+# API fields the emitter may treat as `native` controls. Documented for the BytePlus ModelArk
+# route (E05, 2026-07-31); on another route (app, Runway, other host) confirm before relying on them.
+native_fields: [duration_s, aspect_ratio, resolution, seed, camera_fixed]
 
 # Default capability class for text-only controls.
 default_capability: semantic
@@ -53,3 +84,9 @@ dialect:
   notes: "No Seedance findings exist in the owner's research. Third-party guides (2026-10-02, unverified by renders) recommend 60–100 words, a subject → action → scene → camera → style order, explicit camera-movement words, and shot lists with timecodes for long clips. Core wording is used unchanged until renders say otherwise."
   prefer: []
   avoid: []
+  levers: []   # intent → syntax mappings with evidence; none known for Seedance yet
+
+contact_risk:
+  low: unknown
+  medium: unknown
+  high: unknown

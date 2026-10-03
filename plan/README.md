@@ -16,11 +16,17 @@ order:
 | 5 | `ARCHITECTURE.md` | the design in depth: pipeline, reasoning layer, control layer, time and beats, movement control layer, knowledge format, dialects, steering, mapping onto the research |
 | 6 | `CONTROL_LAYER.md` | the control layer as checkable requirements R-01…R-33 with status |
 | 7 | `OWNER_INPUTS.md` | the owner's intents from the planning conversation, in full |
-| 8 | `PHASES.md` | phases, exit tests, budgets, kill criteria, render-evidence procedure |
-| 9 | `DECISIONS.md` | decisions, governance overrides, admission ledger, not-doing list, open questions |
+| 8 | `INGEST.md` | how a research return becomes compiler rules: the return contract, the decision-path chain, the procedure, provider lifecycle, the DMR first ingest |
+| 9 | `EXPERIMENTS.md` | what renders must decide: E1 compiled vs baseline, E2 absolute vs relative, E3 wording rungs, E4 causal wording and the stomp, E5 emphasis levers, E6 camera grammar form |
+| 9b | `PHASES.md` | phases, exit tests, budgets, kill criteria, render-evidence procedure |
+| 10 | `DECISIONS.md` | decisions, governance overrides, admission ledger, not-doing list, open questions |
 | — | `legacy/` | previous AGENTS/CLAUDE instructions (not operative) |
 
 Reference implementation of phases 0–1: `director/` (see `HANDOFF.md → What exists on disk`).
+
+**To execute the plan:** `implementation/START_HERE.md` (kickoff prompt for the implementing
+model), `implementation/QUEUE.md` (ordered work orders and gates), `implementation/work_orders/`
+(one self-contained brief each), `implementation/OWNER_ACTIONS.md` (the owner's three jobs).
 
 ## Principles
 

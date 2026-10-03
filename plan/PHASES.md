@@ -1,7 +1,8 @@
 # Phases
 
 Each phase ends with a test that must pass before the next begins. Every phase must add
-treatments or evidence, not only code.
+treatments or evidence, not only code. Ingest (`plan/INGEST.md`, tasks T36/T37) is not a phase: it
+runs alongside every phase whenever a research return arrives.
 
 | # | Phase | Exit test | Status |
 |---|---|---|---|

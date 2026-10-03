@@ -2,12 +2,17 @@
 
 ## Boot sequence (every session, in this order; about 15 minutes of reading)
 
+Executing sessions start from `implementation/START_HERE.md` and take the next work order in
+`implementation/QUEUE.md`; the work order's "Read first" list replaces steps 4–7 below.
+
 1. `AGENTS.md` (repo root) — roles and rules.
 2. `plan/GOALS.md` — goal, success, non-goals, decision rights.
 3. `plan/STATUS.md` — newest entry: what is done, next, blocked.
 4. `plan/TASKS.md` — pick the first `todo` task whose dependencies are `done`.
 5. `plan/ARCHITECTURE.md` sections the task touches; `plan/CONTROL_LAYER.md` for the R-ids.
 6. `plan/OWNER_INPUTS.md` when the task touches intent, taste, time or movement.
+6b. `plan/INGEST.md` whenever the task starts from a research return. Knowledge enters the
+    compiler only through that procedure; a claim without a decision path is parked, not coded.
 7. The reference implementation for the pattern: `director/tools/director.py`,
    `director/tools/tests/test_director.py`, `director/runs/001_bottle_selfie/`.
 
@@ -67,7 +72,9 @@ the owner.
   plan/                              this folder
   director/                          passes.yaml, protocol.md, ir.schema.json, gaps.jsonl,
                                      profiles/seedance.yaml, treatments/<pass>/*.md (7),
-                                     tools/director.py (+ tests), runs/001_bottle_selfie/
+                                     tools/director.py (+ tests), runs/001_bottle_selfie/,
+                                     tools/tl.py + tools/tlclient/ (TwelveLabs: list, find, upload,
+                                     analyze, embed; run with .venv/bin/python; optional dependency)
   cpcs/, Additional/, Research_*     the research (read-only)
 /Users/king/cpcs-director-graft      throwaway worktree with graft/ and graphify-out/
 /Users/king/Backups/cpcs-director-2026-10-02/   backups of loose research files

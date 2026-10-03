@@ -1,0 +1,1027 @@
+{
+ "schema_version": "0.1",
+ "run_id": "002_earbuds_unbox",
+ "ask": "A man unboxes a pair of wireless earbuds at a desk, opens the charging case and puts one earbud in his ear, 8 seconds, shot on a phone held by a friend.",
+ "model": "seedance",
+ "clip": {
+  "duration_s": 8,
+  "duration_origin": "USER_EXPLICIT",
+  "aspect_ratio": "9:16",
+  "fps_assumed": 24,
+  "objective": "a believable, unforced unboxing: the lid comes off, the case opens, one earbud goes in his ear",
+  "dramatic_function": "small everyday anticipation; the earbud in the ear is the payoff"
+ },
+ "pass_plan": [
+  {
+   "pass": "intent",
+   "active": true,
+   "reason": "mandatory"
+  },
+  {
+   "pass": "entity",
+   "active": true,
+   "reason": "mandatory"
+  },
+  {
+   "pass": "world",
+   "active": false,
+   "reason": "reasoned, covered by interaction: the box lid, case lid and earbud are the only state changes and the interaction pathways own them"
+  },
+  {
+   "pass": "action",
+   "active": false,
+   "reason": "reasoned, covered by interaction: seated upper-body hand work fully described by the pathway stages"
+  },
+  {
+   "pass": "interaction",
+   "active": true,
+   "reason": "actor touches a box, a case and an earbud"
+  },
+  {
+   "pass": "physics",
+   "active": true,
+   "reason": "contacts with stated reactions: thumb opens the case lid (lid swings up); fingers seat the earbud in the ear"
+  },
+  {
+   "pass": "staging",
+   "active": false,
+   "reason": "reasoned: one actor on screen, one fixed desk layout stated in the entity text; the friend is off screen"
+  },
+  {
+   "pass": "continuity",
+   "active": true,
+   "reason": "box, case lid and the single earbud change state once and stay changed"
+  },
+  {
+   "pass": "time",
+   "active": true,
+   "reason": "mandatory"
+  },
+  {
+   "pass": "performance",
+   "active": true,
+   "reason": "a living performer is on screen"
+  },
+  {
+   "pass": "camera",
+   "active": true,
+   "reason": "mandatory: explicit camera grammar"
+  },
+  {
+   "pass": "attention",
+   "active": false,
+   "reason": "reasoned: nothing is withheld or revealed beyond the hidden ear contact, which the physics event and camera grammar already carry"
+  },
+  {
+   "pass": "light_color",
+   "active": false,
+   "reason": "reasoned: available indoor light is stated in the capture texture"
+  },
+  {
+   "pass": "style",
+   "active": true,
+   "reason": "a real phone look is asked for ('shot on a phone')"
+  },
+  {
+   "pass": "audio",
+   "active": false,
+   "reason": "reasoned: not asked; no dialogue; model audio support unknown"
+  },
+  {
+   "pass": "synthesis",
+   "active": true,
+   "reason": "mandatory"
+  }
+ ],
+ "entities": [
+  {
+   "id": "man",
+   "kind": "actor",
+   "description": "A man in his early thirties with short dark hair, in a plain grey sweatshirt, sitting at a wooden desk",
+   "short": "A man, short dark hair, plain grey sweatshirt, at a wooden desk",
+   "locks": [
+    "identity_stable",
+    "anatomy_correct"
+   ],
+   "origin": "CREATIVE_CHOICE"
+  },
+  {
+   "id": "box",
+   "kind": "object",
+   "description": "A small white rectangular earbud box with a separate lid, closed on the desk in front of him",
+   "short": "A small white earbud box, lid on, on the desk",
+   "locks": [
+    "scale",
+    "colour",
+    "shape"
+   ],
+   "origin": "INFERENCE"
+  },
+  {
+   "id": "box_lid",
+   "kind": "object",
+   "description": "",
+   "locks": [
+    "stays_visible_after_removal"
+   ],
+   "origin": "INFERENCE"
+  },
+  {
+   "id": "case",
+   "kind": "object",
+   "description": "A white charging case with a hinged lid sits inside the box, holding a pair of white earbuds with short stems",
+   "short": "A white hinged-lid charging case inside the box, holding two earbuds",
+   "locks": [
+    "scale",
+    "colour",
+    "shape"
+   ],
+   "origin": "INFERENCE"
+  },
+  {
+   "id": "case_lid",
+   "kind": "object",
+   "description": "",
+   "origin": "INFERENCE"
+  },
+  {
+   "id": "earbud",
+   "kind": "object",
+   "description": "",
+   "locks": [
+    "scale",
+    "colour",
+    "shape"
+   ],
+   "origin": "INFERENCE"
+  },
+  {
+   "id": "desk",
+   "kind": "surface",
+   "description": "",
+   "origin": "INFERENCE"
+  },
+  {
+   "id": "phone",
+   "kind": "camera",
+   "description": "",
+   "origin": "INFERENCE"
+  }
+ ],
+ "hands": [
+  {
+   "actor": "man",
+   "hand": "left",
+   "beat": "b1",
+   "state": "holding:box_lid"
+  },
+  {
+   "actor": "man",
+   "hand": "right",
+   "beat": "b1",
+   "state": "holding:box_lid"
+  },
+  {
+   "actor": "man",
+   "hand": "left",
+   "beat": "b2",
+   "state": "holding:box_lid"
+  },
+  {
+   "actor": "man",
+   "hand": "right",
+   "beat": "b2",
+   "state": "holding:box_lid"
+  },
+  {
+   "actor": "man",
+   "hand": "left",
+   "beat": "b3",
+   "state": "holding:case"
+  },
+  {
+   "actor": "man",
+   "hand": "left",
+   "beat": "b4",
+   "state": "holding:case"
+  },
+  {
+   "actor": "man",
+   "hand": "left",
+   "beat": "b5",
+   "state": "holding:case"
+  },
+  {
+   "actor": "man",
+   "hand": "left",
+   "beat": "b6",
+   "state": "holding:case"
+  },
+  {
+   "actor": "man",
+   "hand": "left",
+   "beat": "b7",
+   "state": "holding:case"
+  },
+  {
+   "actor": "man",
+   "hand": "left",
+   "beat": "b8",
+   "state": "holding:case"
+  },
+  {
+   "actor": "man",
+   "hand": "right",
+   "beat": "b3",
+   "state": "free"
+  },
+  {
+   "actor": "man",
+   "hand": "right",
+   "beat": "b4",
+   "state": "free"
+  },
+  {
+   "actor": "man",
+   "hand": "right",
+   "beat": "b5",
+   "state": "free"
+  },
+  {
+   "actor": "man",
+   "hand": "right",
+   "beat": "b6",
+   "state": "holding:earbud"
+  },
+  {
+   "actor": "man",
+   "hand": "right",
+   "beat": "b7",
+   "state": "holding:earbud"
+  },
+  {
+   "actor": "man",
+   "hand": "right",
+   "beat": "b8",
+   "state": "free"
+  }
+ ],
+ "pathways": [
+  {
+   "id": "p_unbox",
+   "object": "box",
+   "parts": [
+    "box_lid"
+   ],
+   "end_state": "lid_off_case_visible_in_tray",
+   "origin": "INFERENCE",
+   "stages": [
+    {
+     "id": "s1",
+     "kind": "anticipation",
+     "beat": "b1",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "box_closed_on_desk",
+     "state_after": "box_closed_on_desk",
+     "description": "box closed on the desk; both hands free"
+    },
+    {
+     "id": "s2",
+     "kind": "contact",
+     "beat": "b1",
+     "hands_required": 2,
+     "hands": [
+      {
+       "actor": "man",
+       "hand": "left"
+      },
+      {
+       "actor": "man",
+       "hand": "right"
+      }
+     ],
+     "state_before": "box_closed_on_desk",
+     "state_after": "lid_gripped",
+     "description": "both hands grip the lid by its edges"
+    },
+    {
+     "id": "s3",
+     "kind": "transfer",
+     "beat": "b2",
+     "hands_required": 2,
+     "hands": [
+      {
+       "actor": "man",
+       "hand": "left"
+      },
+      {
+       "actor": "man",
+       "hand": "right"
+      }
+     ],
+     "state_before": "lid_gripped",
+     "state_after": "lid_lifting",
+     "description": "lid rises straight up with both hands"
+    },
+    {
+     "id": "s4",
+     "kind": "effect",
+     "beat": "b2",
+     "hands_required": 2,
+     "hands": [
+      {
+       "actor": "man",
+       "hand": "left"
+      },
+      {
+       "actor": "man",
+       "hand": "right"
+      }
+     ],
+     "state_before": "lid_lifting",
+     "state_after": "lid_off_case_visible_in_tray",
+     "description": "lid clear of the box",
+     "reaction": "the lid lifts clear of the box and the charging case is revealed in its tray"
+    },
+    {
+     "id": "s5",
+     "kind": "follow_through",
+     "beat": "b2",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "lid_off_case_visible_in_tray",
+     "state_after": "lid_off_case_visible_in_tray",
+     "description": "lid set down on the desk beside the box"
+    }
+   ]
+  },
+  {
+   "id": "p_takeout",
+   "object": "case",
+   "parts": [
+    "case_lid"
+   ],
+   "end_state": "case_upright_in_left_palm",
+   "origin": "INFERENCE",
+   "stages": [
+    {
+     "id": "t1",
+     "kind": "anticipation",
+     "beat": "b3",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "case_in_tray",
+     "state_after": "case_in_tray",
+     "description": "case sits closed in the tray"
+    },
+    {
+     "id": "t2",
+     "kind": "contact",
+     "beat": "b3",
+     "hands_required": 1,
+     "hands": [
+      {
+       "actor": "man",
+       "hand": "left"
+      }
+     ],
+     "state_before": "case_in_tray",
+     "state_after": "case_gripped_in_tray",
+     "description": "left hand wraps the closed case"
+    },
+    {
+     "id": "t3",
+     "kind": "transfer",
+     "beat": "b4",
+     "hands_required": 1,
+     "hands": [
+      {
+       "actor": "man",
+       "hand": "left"
+      }
+     ],
+     "state_before": "case_gripped_in_tray",
+     "state_after": "case_lifted_clear",
+     "description": "case rises out of the tray in the left hand"
+    },
+    {
+     "id": "t4",
+     "kind": "effect",
+     "beat": "b4",
+     "hands_required": 1,
+     "hands": [
+      {
+       "actor": "man",
+       "hand": "left"
+      }
+     ],
+     "state_before": "case_lifted_clear",
+     "state_after": "case_upright_in_left_palm",
+     "description": "case turned upright",
+     "reaction": "the case comes up out of the tray and settles upright in his left palm, lid on top"
+    },
+    {
+     "id": "t5",
+     "kind": "postcondition",
+     "beat": "b4",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "case_upright_in_left_palm",
+     "state_after": "case_upright_in_left_palm",
+     "description": "case held closed, thumb at the lid lip"
+    }
+   ]
+  },
+  {
+   "id": "p_open",
+   "object": "case",
+   "parts": [
+    "case_lid"
+   ],
+   "end_state": "case_open_lid_up",
+   "origin": "INFERENCE",
+   "stages": [
+    {
+     "id": "o1",
+     "kind": "anticipation",
+     "beat": "b4",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "case_upright_in_left_palm",
+     "state_after": "case_upright_in_left_palm",
+     "description": "left thumb moves to the lid lip"
+    },
+    {
+     "id": "o2",
+     "kind": "contact",
+     "beat": "b5",
+     "hands_required": 1,
+     "hands": [
+      {
+       "actor": "man",
+       "hand": "left"
+      }
+     ],
+     "state_before": "case_upright_in_left_palm",
+     "state_after": "thumb_on_lid_lip",
+     "description": "left thumb lands on the lid lip"
+    },
+    {
+     "id": "o3",
+     "kind": "transfer",
+     "beat": "b5",
+     "hands_required": 1,
+     "hands": [
+      {
+       "actor": "man",
+       "hand": "left"
+      }
+     ],
+     "state_before": "thumb_on_lid_lip",
+     "state_after": "lid_pushed_up",
+     "description": "one push lifts the lid"
+    },
+    {
+     "id": "o4",
+     "kind": "effect",
+     "beat": "b5",
+     "hands_required": 1,
+     "hands": [
+      {
+       "actor": "man",
+       "hand": "left"
+      }
+     ],
+     "state_before": "lid_pushed_up",
+     "state_after": "case_open_lid_up",
+     "description": "lid open",
+     "reaction": "the lid swings up on its hinge and stops upright, and the two earbuds show in their slots"
+    },
+    {
+     "id": "o5",
+     "kind": "follow_through",
+     "beat": "b5",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "case_open_lid_up",
+     "state_after": "case_open_lid_up",
+     "description": "thumb comes away; case open in the palm"
+    }
+   ]
+  },
+  {
+   "id": "p_ear",
+   "object": "earbud",
+   "end_state": "earbud_seated_in_ear",
+   "origin": "INFERENCE",
+   "stages": [
+    {
+     "id": "e1",
+     "kind": "anticipation",
+     "beat": "b6",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "earbud_in_slot",
+     "state_after": "earbud_in_slot",
+     "description": "right hand moves to the open case"
+    },
+    {
+     "id": "e2",
+     "kind": "contact",
+     "beat": "b6",
+     "hands_required": 1,
+     "hands": [
+      {
+       "actor": "man",
+       "hand": "right"
+      }
+     ],
+     "state_before": "earbud_in_slot",
+     "state_after": "earbud_pinched",
+     "description": "right thumb and index pinch one earbud by its stem"
+    },
+    {
+     "id": "e3",
+     "kind": "transfer",
+     "beat": "b6",
+     "hands_required": 1,
+     "hands": [
+      {
+       "actor": "man",
+       "hand": "right"
+      }
+     ],
+     "state_before": "earbud_pinched",
+     "state_after": "earbud_drawn_free",
+     "description": "earbud drawn out of its slot; the other stays"
+    },
+    {
+     "id": "e4",
+     "kind": "effect",
+     "beat": "b7",
+     "hands_required": 1,
+     "hands": [
+      {
+       "actor": "man",
+       "hand": "right"
+      }
+     ],
+     "state_before": "earbud_drawn_free",
+     "state_after": "earbud_seated_in_ear",
+     "description": "earbud pressed into his right ear",
+     "reaction": "the earbud seats in his right ear with its stem pointing down and the fingers release"
+    },
+    {
+     "id": "e5",
+     "kind": "follow_through",
+     "beat": "b7",
+     "hands_required": 1,
+     "hands": [
+      {
+       "actor": "man",
+       "hand": "right"
+      }
+     ],
+     "state_before": "earbud_seated_in_ear",
+     "state_after": "earbud_seated_in_ear",
+     "description": "right hand starts to lower"
+    },
+    {
+     "id": "e6",
+     "kind": "postcondition",
+     "beat": "b8",
+     "hands_required": 0,
+     "hands": [],
+     "state_before": "earbud_seated_in_ear",
+     "state_after": "earbud_seated_in_ear",
+     "description": "hand down; earbud stays in the ear"
+    }
+   ]
+  }
+ ],
+ "beats": [
+  {
+   "id": "b1",
+   "order": 1,
+   "label": "reach and grip the lid",
+   "actor": "man",
+   "description": "he reaches out with both hands and grips the lid of the closed box by its edges",
+   "short": "he reaches out and grips the box lid by its edges",
+   "min_s": 0.8,
+   "min_s_origin": "PROJECT_DERIVED convention (reach + grasp)",
+   "after": [],
+   "caused_by": [],
+   "key_pose": null,
+   "importance": 0.6,
+   "origin": "PROJECT_DERIVED"
+  },
+  {
+   "id": "b2",
+   "order": 2,
+   "label": "lift the lid off",
+   "actor": "man",
+   "description": "He lifts the lid straight up with both hands and sets it on the desk beside the box; the charging case shows in its tray",
+   "short": "he lifts the lid straight up and sets it beside the box; the case shows in its tray",
+   "min_s": 1.0,
+   "min_s_origin": "PROJECT_DERIVED convention (one bounded motion)",
+   "after": [
+    "b1"
+   ],
+   "caused_by": [
+    "b1"
+   ],
+   "key_pose": "lid clear of the box, case visible in the tray",
+   "importance": 0.9,
+   "origin": "PROJECT_DERIVED"
+  },
+  {
+   "id": "b3",
+   "order": 3,
+   "label": "reach and grip the case",
+   "actor": "man",
+   "description": "His left hand reaches into the tray and wraps the closed charging case",
+   "short": "his left hand reaches in and wraps the closed case",
+   "min_s": 0.8,
+   "min_s_origin": "PROJECT_DERIVED convention (reach + grasp)",
+   "after": [
+    "b2"
+   ],
+   "caused_by": [
+    "b2"
+   ],
+   "key_pose": null,
+   "importance": 0.6,
+   "origin": "PROJECT_DERIVED"
+  },
+  {
+   "id": "b4",
+   "order": 4,
+   "label": "lift the case out",
+   "actor": "man",
+   "description": "He lifts the case out of the tray and holds it upright in his left palm, thumb at the lid lip",
+   "short": "he lifts the case out and holds it upright in his left palm, thumb at the lid lip",
+   "min_s": 1.0,
+   "min_s_origin": "PROJECT_DERIVED convention (one bounded motion)",
+   "after": [
+    "b3"
+   ],
+   "caused_by": [
+    "b3"
+   ],
+   "key_pose": "case upright in the left palm, lid still shut",
+   "importance": 0.8,
+   "origin": "PROJECT_DERIVED"
+  },
+  {
+   "id": "b5",
+   "order": 5,
+   "label": "thumb opens the lid",
+   "actor": "man",
+   "description": "He opens the case with one push of his left thumb",
+   "short": "he opens the case with one thumb push",
+   "min_s": 1.0,
+   "min_s_origin": "PROJECT_DERIVED convention (one bounded motion)",
+   "after": [
+    "b4"
+   ],
+   "caused_by": [
+    "b4"
+   ],
+   "key_pose": "lid upright, two earbuds visible",
+   "importance": 1.0,
+   "origin": "PROJECT_DERIVED",
+   "spacing": "ease_out"
+  },
+  {
+   "id": "b6",
+   "order": 6,
+   "label": "pinch an earbud",
+   "actor": "man",
+   "description": "His right hand comes in, pinches one earbud by its stem and draws it out of its slot",
+   "short": "his right hand pinches one earbud and draws it out",
+   "min_s": 0.8,
+   "min_s_origin": "PROJECT_DERIVED convention (reach + grasp)",
+   "after": [
+    "b5"
+   ],
+   "caused_by": [
+    "b5"
+   ],
+   "key_pose": null,
+   "importance": 0.6,
+   "origin": "PROJECT_DERIVED"
+  },
+  {
+   "id": "b7",
+   "order": 7,
+   "label": "put it in his ear",
+   "actor": "man",
+   "description": "He raises the earbud to his right ear; the other earbud stays in the case",
+   "short": "he raises the earbud to his right ear; the other stays in the case",
+   "min_s": 1.0,
+   "min_s_origin": "PROJECT_DERIVED convention (one bounded motion)",
+   "after": [
+    "b6"
+   ],
+   "caused_by": [
+    "b6"
+   ],
+   "key_pose": "earbud seated in his right ear, hand lowering",
+   "importance": 0.9,
+   "origin": "PROJECT_DERIVED"
+  },
+  {
+   "id": "b8",
+   "order": 8,
+   "label": "settle and hold",
+   "actor": "man",
+   "description": "He lowers his hand, gives a faint nod and holds still, the earbud in and the case open in his left palm",
+   "short": "he lowers his hand, nods faintly and holds still with the earbud in",
+   "min_s": 0.8,
+   "min_s_origin": "PROJECT_DERIVED convention (settle; end on a hold)",
+   "after": [
+    "b7"
+   ],
+   "caused_by": [
+    "b7"
+   ],
+   "key_pose": "earbud in his right ear, case open in the left palm, eyes toward the lens",
+   "importance": 0.5,
+   "origin": "PROJECT_DERIVED"
+  }
+ ],
+ "anchors": [
+  {
+   "id": "a_push",
+   "quality": "intensity",
+   "beat": "b5",
+   "label": "the thumb push",
+   "description": "One thumb press on the lid lip, the case held steady in his palm"
+  }
+ ],
+ "physics_events": [
+  {
+   "event_id": "ev_open",
+   "beat": "b5",
+   "trigger": {
+    "actor": "the man",
+    "part": "left thumb",
+    "action": "pushes upward"
+   },
+   "contact_surface": "the case lid",
+   "contact_state": "physical_contact_confirmed",
+   "primary_reaction": "the lid swings up on its hinge",
+   "secondary": [
+    "the two earbuds show in their slots"
+   ],
+   "settle": "the lid stops upright and stays open",
+   "depends_on": [],
+   "must_not_imply": [
+    "the lid is open before the thumb touches it",
+    "the lid detaches from the case",
+    "the case turns or moves in the palm"
+   ],
+   "risk": "medium",
+   "pathway_stage": "o4",
+   "origin": "PROJECT_DERIVED"
+  },
+  {
+   "event_id": "ev_ear",
+   "beat": "b7",
+   "trigger": {
+    "actor": "the man",
+    "part": "right fingers",
+    "action": "press the earbud into his right ear"
+   },
+   "contact_surface": "the opening of his right ear",
+   "contact_state": "occluded_contact",
+   "force": {
+    "relative_to": "a_push",
+    "step": "slightly",
+    "direction": "less"
+   },
+   "primary_reaction": "the earbud seats in the ear with its stem pointing down",
+   "secondary": [
+    "his fingers release it"
+   ],
+   "settle": "his hand comes away and the earbud stays in place",
+   "depends_on": [
+    "ev_open"
+   ],
+   "must_not_imply": [
+    "the earbud fused with skin or the ear",
+    "an earbud in the hand and in the ear at the same time",
+    "both earbuds leave the case",
+    "close-up on the ear"
+   ],
+   "risk": "high",
+   "pathway_stage": "e4",
+   "origin": "PROJECT_DERIVED"
+  }
+ ],
+ "controls": [
+  {
+   "id": "c_duration",
+   "pass": "time",
+   "field": "clip.duration_s",
+   "value": 8,
+   "importance": 1.0,
+   "lock": true,
+   "origin": "USER_EXPLICIT",
+   "treatment": null,
+   "capability": "native",
+   "disposition": "native",
+   "exactness": "exact",
+   "clause": "shot"
+  },
+  {
+   "id": "c_aspect",
+   "pass": "camera",
+   "field": "clip.aspect_ratio",
+   "value": "9:16",
+   "importance": 0.6,
+   "lock": false,
+   "origin": "INFERENCE",
+   "treatment": null,
+   "capability": "native",
+   "disposition": "native",
+   "exactness": "exact",
+   "clause": "shot"
+  },
+  {
+   "id": "c_shot_line",
+   "pass": "intent",
+   "field": "intent.shot_line",
+   "value": "An 8-second vertical phone video clip, one continuous take, no cuts",
+   "importance": 0.95,
+   "lock": true,
+   "origin": "USER_EXPLICIT",
+   "treatment": null,
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "approximate",
+   "clause": "shot",
+   "expected_visual_effect": "single continuous clip filmed on a phone",
+   "check": "no cuts; vertical framing"
+  },
+  {
+   "id": "c_grip",
+   "pass": "interaction",
+   "field": "interaction.grip",
+   "value": {
+    "case_hand": "left",
+    "bud_hand": "right"
+   },
+   "importance": 0.85,
+   "lock": false,
+   "origin": "PROJECT_DERIVED",
+   "treatment": "interaction.grip_case_and_earbud",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "left palm cradles the case, thumb opens the lid; right thumb and index pinch one earbud by the stem",
+   "check": "five fingers each hand; one earbud leaves the case"
+  },
+  {
+   "id": "c_chain",
+   "pass": "interaction",
+   "field": "interaction.causal_chain",
+   "value": {
+    "chain": "lid off, case out, thumb push, earbud in ear"
+   },
+   "importance": 0.9,
+   "lock": true,
+   "origin": "SOURCE_EVIDENCE",
+   "treatment": "interaction.contact_causal_chain",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "case closed until the thumb push; earbud in the ear only after it left the case",
+   "check": "frame order matches the chain"
+  },
+  {
+   "id": "c_locks",
+   "pass": "continuity",
+   "field": "continuity.locks",
+   "value": {
+    "items": "the box, case and earbuds keep their size, shape and white colour; the box lid stays on the desk once lifted; the case lid stays up once opened; only one earbud leaves the case and it ends in his right ear",
+    "items_short": "the box, case and earbuds keep their size and colour; one earbud leaves the case"
+   },
+   "importance": 0.8,
+   "lock": true,
+   "origin": "PROJECT_DERIVED",
+   "treatment": "continuity.object_locks",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "same objects every frame; one earbud moves",
+   "check": "two earbuds in the case until b6; one after"
+  },
+  {
+   "id": "c_register",
+   "pass": "performance",
+   "field": "performance.register",
+   "value": {
+    "register": "casual and unforced, like a friend filming a moment",
+    "weight": 0.3,
+    "time": 0.4,
+    "space": 0.65,
+    "flow": 0.35,
+    "confidence": 0.5
+   },
+   "importance": 0.7,
+   "lock": false,
+   "origin": "PROJECT_DERIVED",
+   "treatment": "performance.casual_product_handling",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "light, unhurried, direct movements; alive face without a held smile",
+   "check": "no locked stare; at least one blink and one glance to the lens"
+  },
+  {
+   "id": "c_camera",
+   "pass": "camera",
+   "field": "camera.motion",
+   "value": {
+    "phrase": "handheld medium shot from the front, held by his friend",
+    "movement": "hold the camera at human operator height with natural body movement",
+    "speed": "responsive and organic",
+    "framing": "his face, both hands and the desk stay readable while the frame has subtle sway and micro-adjustments",
+    "end": "finish on him with the earbud in"
+   },
+   "importance": 0.9,
+   "lock": true,
+   "origin": "PROJECT_DERIVED",
+   "treatment": "camera.move_from_catalog",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "a human-held frame with small sway; hands and face readable; no zoom or orbit",
+   "check": "no camera move other than handheld sway; no close-up on the ear"
+  },
+  {
+   "id": "c_capture",
+   "pass": "style",
+   "field": "style.capture_texture",
+   "value": {
+    "device": "iphone_recent"
+   },
+   "importance": 0.8,
+   "lock": false,
+   "origin": "PROVIDER_EXPERIMENT",
+   "treatment": "style.capture_iphone_rear_handheld",
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "reads as real phone footage; visible skin texture; no grade",
+   "check": "no bokeh, no cinematic grade, skin not waxy"
+  },
+  {
+   "id": "c_pace",
+   "pass": "time",
+   "field": "time.pace",
+   "value": "Pace: unhurried and real-time; one action at a time, a short pause before each new object; the clip ends on a held settle, not mid-motion",
+   "importance": 0.6,
+   "lock": false,
+   "origin": "INFERENCE",
+   "treatment": null,
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "actions read one at a time; last half second still",
+   "check": "no overlapping actions"
+  },
+  {
+   "id": "c_negatives",
+   "pass": "synthesis",
+   "field": "negatives.failures",
+   "value": [
+    "extra or missing fingers",
+    "hand fused with the case or the earbud",
+    "lid open before the thumb push",
+    "both earbuds leaving the case",
+    "earbud fused with the ear",
+    "waxy smooth skin",
+    "bokeh or cinematic grade",
+    "camera zooming or orbiting",
+    "on-screen text or subtitles"
+   ],
+   "importance": 0.7,
+   "lock": false,
+   "origin": "PROJECT_DERIVED",
+   "treatment": null,
+   "capability": "semantic",
+   "disposition": "semantic",
+   "exactness": "qualitative",
+   "expected_visual_effect": "none of the listed failures appear",
+   "check": "visual inspection against the list"
+  }
+ ],
+ "notes": [
+  "Friend holds the phone, so both hands are free (decision d002); camera is the catalog handheld move, not the selfie treatment.",
+  "Minimum readable seconds are run-001 conventions (gaps.jsonl); OVERLOADED draft resolved by d001 / open.jsonl o001.",
+  "Ear insertion is carried as an occluded contact, not shown up close (d003)."
+ ]
+}

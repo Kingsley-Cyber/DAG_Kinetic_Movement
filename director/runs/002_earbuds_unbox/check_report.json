@@ -1,0 +1,82 @@
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [
+    "fit: TIGHT (load 7.20s of 8.00s)"
+  ],
+  "outcomes": [
+    {
+      "rule": "schema",
+      "owner": "per control",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "anchors",
+      "owner": "time",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "beats",
+      "owner": "time",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "camera",
+      "owner": "camera",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "camera_move",
+      "owner": "camera",
+      "outcome": "not_applicable",
+      "detail": "no camera control names a catalog move"
+    },
+    {
+      "rule": "controls",
+      "owner": "per control",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "fit",
+      "owner": "time",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "hands",
+      "owner": "interaction",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "pass_plan",
+      "owner": "synthesis",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "pathway",
+      "owner": "interaction",
+      "outcome": "pass",
+      "detail": ""
+    },
+    {
+      "rule": "physics_events",
+      "owner": "physics",
+      "outcome": "pass",
+      "detail": ""
+    }
+  ],
+  "fit": {
+    "verdict": "TIGHT",
+    "load_s": 7.2,
+    "duration_s": 8,
+    "ratio": 0.9
+  },
+  "ir_sha256": "824da62babe22b2af7815eca8367211e7b576c9334f6f9f165f2b70736bc8bc3"
+}

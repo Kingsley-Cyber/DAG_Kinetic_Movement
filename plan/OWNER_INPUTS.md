@@ -180,7 +180,133 @@ the full typed graph, five sub-compilers, trajectory splines, newtons and biomec
 "one causal event per clip" before making it a rule. Treat every rule as a hypothesis until runs
 confirm it; automatic physical-commonsense checking is unsolved (VideoPhy-2).
 
-## 17. On old plans
+## 17. Agnostic first, dialects as lenses; the Hailuo ("h3") emphasis levers
+
+"It's agnostic first and then we add model dialects as lenses to be used." Dialect knowledge is
+stored per model as intent → lever with evidence. Owner's Hailuo observations (not extensively
+tested, relative merit unknown): words can be stressed with `<i></i>` or `<emphasis></emphasis>`
+around the word, or with asterisks around *key words*, though the model sometimes reads asterisks
+as a bleep for a swear word. Stored in `director/profiles/hailuo.yaml` as `owner_observed`.
+
+The reasoning control layer must say how to think per pass (modes, router features, the six time
+questions, anchors) and how to use the dialect lens during model fit without writing model syntax
+into the IR (`director/protocol.md` §4b–4c).
+
+## 18. Why knowledge is thin, and the fix
+
+"The reason knowledge is thin is because the coding model must know how to take a deep research
+and add upon or refactor upon the compiler with rules." The owner's deep-research prompts (e.g.
+the DMR Gap Closure prompt) already demand the right shape: for every gap, a decision path from
+scene condition to emitted control to observed result, each step labelled by kind, with the exact
+runtime owner and smallest executable consumer; definitions without a decision path are
+insufficient; statuses closed / implementable_now / requires_experiment / unknown / deferred /
+rejected; a shared fixture traced end to end; acceptance and falsification. `plan/INGEST.md` makes
+that the compiler's intake procedure.
+
+## 19. Camera movements
+
+"All of these camera movements must be known to the models for decision-making prompts":
+aicameramovements.com (46 moves, 7 categories, one prompt each in a Movement / Speed / Framing /
+End grammar). Stored as `director/vocab/camera_moves.yaml` with layer (motion vs optics vs
+special), the research's motion kind, and a function hint per move; used by the camera pass via
+`camera.move_from_catalog`.
+
+## 20. Consolidated layer summary (owner, 2026-10-03)
+
+Architecture (not content): model-agnostic core in JSON with numbers mapped to words; dialect
+files (format, section order, phrase map, supported/unsupported, defaults to counter, access path,
+version, evidence, date tested); compiler (validate, capability check that degrades or flags,
+render, lint); eval log (input, compiled prompt, seed, dialect version, access path, scores);
+failures registry (hands, zippers, exact choreography, graphic contact).
+
+Content layers: 1 body movement quality (Laban BESS, with compound drives); 2 body connectivity
+(Bartenieff: core initiation, sequential weight shift, spiraling, diagonal cross-body
+counter-motion); 3 relative scaling (anchor beat, explicit comparisons); 4 camera, 12 sub-layers
+in five groups (where, movement, lens, time, connection) plus proposed stance, shot function and
+locked-off as the test control; 5 cause and effect (trigger, contact surface, relative force,
+primary and secondary reactions, settle; contact state; depends_on, must_not_imply, edge
+admission); 6 world state (gravity, mass, terrain, momentum, friction, drag, scale, atmosphere);
+7 face (FACS event dimensions; valence–arousal with optional dominance, mapped to action units);
+8 look (lighting, colour grade, film look; barely discussed).
+
+Cross-cutting: one intent per beat; negative and constraint language; ordering and emphasis;
+multi-seed testing; seed-image quality for image-to-video; hand and fine-motor avoidance framing.
+
+Evidence status: the frameworks are real literature; none is verified on a video model; LaMoGen
+covers motion generation only; the camera position sub-layer, causal event schema and dialect
+fields are design proposals. Mapping onto the passes: ARCHITECTURE §2.1a.
+
+## 21. Explicitness, relativity, and coherent steering (2026-10-03)
+
+"Certain things should be explicit, and relativity prompting for AI video models is a must. No
+absolute." Relative prompting is a compilation invariant: establish an anchor, then express
+changes against it; keep actors, contacts and event order explicit.
+
+Steering governs the whole creative process, including inventing how the action unfolds when the
+user leaves it open ("anime fight between wizards" activates action, movement quality, body
+connectivity, magical cause and effect, rhythm, staging and camera). Each pass receives the scene
+decisions it needs, the research and explicit constraints; the LLM fills creative gaps from its
+training, labelled CREATIVE_CHOICE or INFERENCE, never as research. The passes must connect: a
+full-body spell cast changes pathway, anticipation, contact reaction, beat timing and camera.
+"Wizard fight" must not automatically become fast movement, strong Effort and a moving camera.
+Example: a compact first cast, then the next cast wider than the first, beginning in the planted
+foot and travelling through hips and shoulder into the casting hand; the camera follows that
+chosen action.
+
+Open terminology: "Laban has three layers" may mean the movement control stack (Laban quality,
+Bartenieff origination, film grammar) or the wording rungs (numeric, Laban term, visible wording);
+owner to say which.
+
+Also proposed in pasted notes and **not yet adopted** (owner decision pending): a Python
+orchestrator loop that builds each pass prompt, validates each pass output with retry, logs every
+pass (inputs, output, rationale, variant id) and sets temperature per pass type.
+
+## 22. Terminology resolution and the T18 brief (2026-10-03, pasted by the owner)
+
+Reserve "three layers" for Effort · Shape · Space with Body underneath (the BESS-derived sense);
+call the Laban / Bartenieff / film-grammar grouping the control stack and numeric / Laban term /
+visible description the wording rungs. Space includes pathway, kinesphere and Space Harmony
+(motion along the body's diagonals reads alive; along a single axis it reads robotic).
+
+T18 brief: emit the same fight IR (Terminal Descent, "Can Mara prevent Veyr from touching the
+reactor core until the seal closes at 30.0 s?") with absolute and with relative magnitudes, three
+or more seeds each; IR rule hard, free-text absolutes as warnings, named techniques (slow motion,
+real-time, speed ramp) allowed; flagged words include fast, powerful, heavy, exaggerated; adopt as
+a hard failure only if at least two of three relative runs show better physical plausibility with
+equivalent intent. Adopted into `EXPERIMENTS.md` E2 with fair arms, paired seeds and a
+single-beat clip.
+
+## 23. Shared scratchpad, writing principles, grammar as a finite alphabet (2026-10-03)
+
+Scratchpad: a shared, structured record of scene state and decisions with a short rationale for
+each consequential choice: user intent and locks; accepted scene decisions (beats, actions,
+staging, contacts, anchors); decision rationale and source; open alternatives and conflicts;
+validation results. Code supplies each pass with its view; the LLM proposes; validation decides
+what enters accepted state. Do not pass every draft thought forward. A later pass can request a
+revision but never silently overwrites. Replay needs the saved accepted scratchpad and inputs;
+re-reasoning is a new creative run.
+
+Writing principles, corpus-checked: "cinematic" means the deliberate use of tools (colour,
+framing, lens, frame rate, handheld vs mounted, lighting) to add meaning and mood, so name the
+variables; the directive chain is narrative objective → viewer attention → composition →
+camera/performance/editing/lighting; lead with the main idea before details (core force of the
+pose first, fingernails last); start a scene as late as possible; budget seconds as a timeline
+rather than adjectives; establish geography before close-ups. A "first 20–30 words" rule is a
+prompt-engineering heuristic outside the corpus.
+
+Grammar: shot grammar is a common language with soft rules; animation has a finite, checkable
+alphabet (spacing types × keys, extremes, breakdowns × frame budgeting): "AI slop is constant
+motion; the fix is deliberate spacing structure, segment by segment"; motion grammar is a
+compiler for movement (timing chart = data, profiles = enum, effort actions = semantic layer);
+three scales: shot grammar, editing grammar, motion ("writing with motion").
+
+Definition (second paste): motion grammar is the set of governing rules for constructing and
+presenting movement so a viewer can read it, the visual-language equivalent of sentence grammar;
+a filmmaker selects shots as "words" and assembles them into "sentences" by sequence. "Grammar is
+the difference between movement a viewer watches and movement a viewer reads", and deliberate
+structure, segment by segment, separates crafted motion from uniform slop.
+
+## 24. On old plans
 
 "Be careful with any old plans being integrated as it can misalign the current plan." Audit in
 `DECISIONS.md` (admission ledger, overrides, not-doing list).

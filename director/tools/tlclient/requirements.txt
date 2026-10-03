@@ -1,0 +1,3 @@
+# Optional dependency for the TwelveLabs client (director/tools/tl.py). Not needed for check/emit.
+# Verified against SDK 1.3.5 on 2026-10-03. A new minor (1.4) must be re-verified before raising the cap.
+twelvelabs>=1.3.5,<1.4

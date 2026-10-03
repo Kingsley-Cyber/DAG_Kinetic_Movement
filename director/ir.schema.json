@@ -5,23 +5,70 @@
   "description": "Only fields that check or emit reads. Written by the LLM session.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "run_id", "ask", "model", "clip", "pass_plan", "entities", "hands", "pathways", "beats", "controls"],
+  "required": [
+    "schema_version",
+    "run_id",
+    "ask",
+    "model",
+    "clip",
+    "pass_plan",
+    "entities",
+    "hands",
+    "pathways",
+    "beats",
+    "controls"
+  ],
   "properties": {
-    "schema_version": {"const": "0.1"},
-    "run_id": {"type": "string"},
-    "ask": {"type": "string"},
-    "model": {"type": "string"},
+    "schema_version": {
+      "const": "0.1"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "ask": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
     "clip": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["duration_s", "duration_origin"],
+      "required": [
+        "duration_s",
+        "duration_origin"
+      ],
       "properties": {
-        "duration_s": {"type": ["number", "null"], "exclusiveMinimum": 0},
-        "duration_origin": {"enum": ["USER_EXPLICIT", "MODEL_DEFAULT", "UNKNOWN"]},
-        "aspect_ratio": {"type": ["string", "null"]},
-        "fps_assumed": {"type": "number", "default": 24},
-        "objective": {"type": "string"},
-        "dramatic_function": {"type": "string"}
+        "duration_s": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "duration_origin": {
+          "enum": [
+            "USER_EXPLICIT",
+            "MODEL_DEFAULT",
+            "UNKNOWN"
+          ]
+        },
+        "aspect_ratio": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fps_assumed": {
+          "type": "number",
+          "default": 24
+        },
+        "objective": {
+          "type": "string"
+        },
+        "dramatic_function": {
+          "type": "string"
+        }
       }
     },
     "pass_plan": {
@@ -29,11 +76,21 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["pass", "active", "reason"],
+        "required": [
+          "pass",
+          "active",
+          "reason"
+        ],
         "properties": {
-          "pass": {"type": "string"},
-          "active": {"type": "boolean"},
-          "reason": {"type": "string"}
+          "pass": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string"
+          }
         }
       }
     },
@@ -42,14 +99,39 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "kind", "description"],
+        "required": [
+          "id",
+          "kind",
+          "description"
+        ],
         "properties": {
-          "id": {"type": "string"},
-          "kind": {"enum": ["actor", "object", "surface", "camera", "environment"]},
-          "description": {"type": "string"},
-          "short": {"type": "string"},
-          "locks": {"type": "array", "items": {"type": "string"}},
-          "origin": {"$ref": "#/$defs/origin"}
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "actor",
+              "object",
+              "surface",
+              "camera",
+              "environment"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "short": {
+            "type": "string"
+          },
+          "locks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "origin": {
+            "$ref": "#/$defs/origin"
+          }
         }
       }
     },
@@ -58,12 +140,29 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["actor", "hand", "beat", "state"],
+        "required": [
+          "actor",
+          "hand",
+          "beat",
+          "state"
+        ],
         "properties": {
-          "actor": {"type": "string"},
-          "hand": {"enum": ["left", "right"]},
-          "beat": {"type": "string"},
-          "state": {"type": "string", "pattern": "^(free|camera|holding:[A-Za-z0-9_.-]+|on:[A-Za-z0-9_.-]+)$"}
+          "actor": {
+            "type": "string"
+          },
+          "hand": {
+            "enum": [
+              "left",
+              "right"
+            ]
+          },
+          "beat": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string",
+            "pattern": "^(free|camera|holding:[A-Za-z0-9_.-]+|on:[A-Za-z0-9_.-]+)$"
+          }
         }
       }
     },
@@ -72,38 +171,107 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "object", "end_state", "stages"],
+        "required": [
+          "id",
+          "object",
+          "end_state",
+          "stages"
+        ],
         "properties": {
-          "id": {"type": "string"},
-          "object": {"type": "string"},
-          "parts": {"type": "array", "items": {"type": "string"}},
-          "end_state": {"type": "string"},
-          "origin": {"$ref": "#/$defs/origin"},
+          "id": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "parts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "end_state": {
+            "type": "string"
+          },
+          "origin": {
+            "$ref": "#/$defs/origin"
+          },
           "stages": {
             "type": "array",
             "minItems": 1,
             "items": {
               "type": "object",
               "additionalProperties": false,
-              "required": ["id", "kind", "beat", "hands_required", "hands", "state_before", "state_after"],
+              "required": [
+                "id",
+                "kind",
+                "beat",
+                "hands_required",
+                "hands",
+                "state_before",
+                "state_after"
+              ],
               "properties": {
-                "id": {"type": "string"},
-                "kind": {"enum": ["precondition", "anticipation", "approach", "contact", "transfer", "effect", "follow_through", "recovery", "postcondition"]},
-                "beat": {"type": "string"},
-                "hands_required": {"type": "integer", "minimum": 0},
+                "id": {
+                  "type": "string"
+                },
+                "kind": {
+                  "enum": [
+                    "precondition",
+                    "anticipation",
+                    "approach",
+                    "contact",
+                    "transfer",
+                    "effect",
+                    "follow_through",
+                    "recovery",
+                    "postcondition"
+                  ]
+                },
+                "beat": {
+                  "type": "string"
+                },
+                "hands_required": {
+                  "type": "integer",
+                  "minimum": 0
+                },
                 "hands": {
                   "type": "array",
                   "items": {
                     "type": "object",
                     "additionalProperties": false,
-                    "required": ["actor", "hand"],
-                    "properties": {"actor": {"type": "string"}, "hand": {"enum": ["left", "right"]}}
+                    "required": [
+                      "actor",
+                      "hand"
+                    ],
+                    "properties": {
+                      "actor": {
+                        "type": "string"
+                      },
+                      "hand": {
+                        "enum": [
+                          "left",
+                          "right"
+                        ]
+                      }
+                    }
                   }
                 },
-                "state_before": {"type": "string"},
-                "state_after": {"type": "string"},
-                "reaction": {"type": ["string", "null"]},
-                "description": {"type": "string"}
+                "state_before": {
+                  "type": "string"
+                },
+                "state_after": {
+                  "type": "string"
+                },
+                "reaction": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "description": {
+                  "type": "string"
+                }
               }
             }
           }
@@ -116,21 +284,93 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "order", "label", "description", "min_s", "min_s_origin", "after", "caused_by", "importance"],
+        "required": [
+          "id",
+          "order",
+          "label",
+          "description",
+          "min_s",
+          "min_s_origin",
+          "after",
+          "caused_by",
+          "importance"
+        ],
         "properties": {
-          "id": {"type": "string"},
-          "order": {"type": "integer", "minimum": 1},
-          "label": {"type": "string"},
-          "actor": {"type": ["string", "null"]},
-          "description": {"type": "string"},
-          "short": {"type": "string", "description": "compressed wording used when the model's prompt limit is tight"},
-          "min_s": {"type": "number", "minimum": 0},
-          "min_s_origin": {"type": "string"},
-          "after": {"type": "array", "items": {"type": "string"}},
-          "caused_by": {"type": "array", "items": {"type": "string"}},
-          "key_pose": {"type": ["string", "null"]},
-          "importance": {"type": "number", "minimum": 0, "maximum": 1},
-          "origin": {"$ref": "#/$defs/origin"}
+          "id": {
+            "type": "string"
+          },
+          "order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "label": {
+            "type": "string"
+          },
+          "actor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "short": {
+            "type": "string",
+            "description": "compressed wording used when the model's prompt limit is tight"
+          },
+          "min_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "min_s_origin": {
+            "type": "string"
+          },
+          "after": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "caused_by": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "key_pose": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "importance": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "relative": {
+            "$ref": "#/$defs/relative"
+          },
+          "origin": {
+            "$ref": "#/$defs/origin"
+          },
+          "spacing": {
+            "enum": [
+              "ease_in",
+              "ease_out",
+              "ease_in_out",
+              "even"
+            ],
+            "description": "how the motion of this beat is spaced; `even` (constant) needs a recorded reason"
+          },
+          "pose_role": {
+            "enum": [
+              "key",
+              "extreme",
+              "breakdown"
+            ]
+          }
         }
       }
     },
@@ -139,28 +379,325 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "pass", "field", "value", "importance", "lock", "origin", "capability", "disposition"],
+        "required": [
+          "id",
+          "pass",
+          "field",
+          "value",
+          "importance",
+          "lock",
+          "origin",
+          "capability",
+          "disposition"
+        ],
         "properties": {
-          "id": {"type": "string"},
-          "pass": {"type": "string"},
-          "field": {"type": "string"},
+          "id": {
+            "type": "string"
+          },
+          "pass": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
           "value": {},
-          "importance": {"type": "number", "minimum": 0, "maximum": 1},
-          "lock": {"type": "boolean"},
-          "origin": {"$ref": "#/$defs/origin"},
-          "treatment": {"type": ["string", "null"]},
-          "capability": {"enum": ["native", "approximate", "semantic", "unsupported", "unknown"]},
-          "disposition": {"enum": ["native", "approximated", "semantic", "omitted", "unsupported", "unknown"]},
-          "exactness": {"enum": ["exact", "approximate", "qualitative"], "default": "qualitative"},
-          "expected_visual_effect": {"type": "string"},
-          "check": {"type": "string"},
-          "clause": {"enum": ["shot", "subject_action", "performance", "timing", "camera", "negatives"]}
+          "importance": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "lock": {
+            "type": "boolean"
+          },
+          "origin": {
+            "$ref": "#/$defs/origin"
+          },
+          "treatment": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "capability": {
+            "enum": [
+              "native",
+              "approximate",
+              "semantic",
+              "unsupported",
+              "unknown"
+            ]
+          },
+          "disposition": {
+            "enum": [
+              "native",
+              "approximated",
+              "semantic",
+              "omitted",
+              "unsupported",
+              "unknown"
+            ]
+          },
+          "exactness": {
+            "enum": [
+              "exact",
+              "approximate",
+              "qualitative"
+            ],
+            "default": "qualitative"
+          },
+          "expected_visual_effect": {
+            "type": "string"
+          },
+          "check": {
+            "type": "string"
+          },
+          "clause": {
+            "enum": [
+              "shot",
+              "subject_action",
+              "performance",
+              "timing",
+              "camera",
+              "negatives"
+            ]
+          },
+          "beat": {
+            "type": "string",
+            "description": "optional scope: the control applies to this beat only"
+          }
         }
       }
     },
-    "notes": {"type": "array", "items": {"type": "string"}}
+    "anchors": {
+      "type": "array",
+      "description": "Baselines for relative prompting (R-16): one visible fact per quality, on a named beat.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "quality",
+          "beat",
+          "label",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "quality": {
+            "$ref": "#/$defs/quality"
+          },
+          "beat": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string",
+            "description": "short phrase used to refer back, e.g. 'the first cast'"
+          },
+          "description": {
+            "type": "string",
+            "minLength": 20,
+            "description": "a visible fact, not an adjective"
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "physics_events": {
+      "type": "array",
+      "description": "Cause-and-effect records, at most one per beat (R-41). Emitted as cause → contact → reaction → settle.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "event_id",
+          "beat",
+          "trigger",
+          "contact_surface",
+          "contact_state",
+          "primary_reaction",
+          "settle"
+        ],
+        "properties": {
+          "event_id": {
+            "type": "string"
+          },
+          "beat": {
+            "type": "string"
+          },
+          "trigger": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "actor",
+              "part",
+              "action"
+            ],
+            "properties": {
+              "actor": {
+                "type": "string"
+              },
+              "part": {
+                "type": "string"
+              },
+              "action": {
+                "type": "string"
+              }
+            }
+          },
+          "contact_surface": {
+            "type": "string"
+          },
+          "contact_state": {
+            "enum": [
+              "physical_contact_confirmed",
+              "near_contact",
+              "occluded_contact",
+              "editorial_impact",
+              "unknown"
+            ]
+          },
+          "force": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "relative_to",
+              "step",
+              "direction"
+            ],
+            "properties": {
+              "relative_to": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "step": {
+                "enum": [
+                  "slightly",
+                  "more",
+                  "much"
+                ]
+              },
+              "direction": {
+                "enum": [
+                  "more",
+                  "less"
+                ]
+              }
+            }
+          },
+          "primary_reaction": {
+            "type": "string"
+          },
+          "secondary": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "settle": {
+            "type": "string"
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "must_not_imply": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "checklist lines for the verdict; never emitted into the prompt"
+          },
+          "risk": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "pathway_stage": {
+            "type": "string"
+          },
+          "origin": {
+            "$ref": "#/$defs/origin"
+          }
+        }
+      }
+    },
+    "variant_id": {
+      "type": "string",
+      "description": "identifies one creative run; re-reasoning from the same scratchpad gets a new id"
+    }
   },
   "$defs": {
-    "origin": {"enum": ["USER_EXPLICIT", "SOURCE_EVIDENCE", "INFERENCE", "CREATIVE_CHOICE", "PROJECT_DERIVED", "PROVIDER_EXPERIMENT", "UNVERIFIED", "CONTRADICTED", "UNKNOWN"]}
+    "quality": {
+      "enum": [
+        "speed",
+        "weight",
+        "reach",
+        "size",
+        "intensity",
+        "distance",
+        "tempo"
+      ]
+    },
+    "relative": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "quality",
+          "relative_to",
+          "step",
+          "direction"
+        ],
+        "properties": {
+          "quality": {
+            "$ref": "#/$defs/quality"
+          },
+          "relative_to": {
+            "type": "string",
+            "description": "anchor id; a delta never points at another delta"
+          },
+          "step": {
+            "enum": [
+              "slightly",
+              "more",
+              "much"
+            ]
+          },
+          "direction": {
+            "enum": [
+              "more",
+              "less"
+            ]
+          }
+        }
+      }
+    },
+    "origin": {
+      "enum": [
+        "USER_EXPLICIT",
+        "SOURCE_EVIDENCE",
+        "INFERENCE",
+        "CREATIVE_CHOICE",
+        "PROJECT_DERIVED",
+        "PROVIDER_EXPERIMENT",
+        "UNVERIFIED",
+        "CONTRADICTED",
+        "UNKNOWN"
+      ]
+    }
   }
 }

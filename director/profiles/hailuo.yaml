@@ -1,0 +1,61 @@
+# Model profile: Hailuo (owner's "h3"; version and route unconfirmed). Facts tagged; levers carry evidence.
+model: hailuo
+display_name: "Hailuo (version and route unconfirmed)"
+status: unverified          # lifecycle: unverified → verified → stale → reprobe_due → invalidated
+version: null
+access_path: null
+date_tested: null
+updated: 2026-10-02
+defaults_to_counter: []
+
+facts:
+  - key: prompt_char_limit
+    value: null
+    tag: unknown
+  - key: negative_prompt_field
+    value: null
+    tag: unknown
+  - key: durations_s
+    value: null
+    tag: unknown
+  - key: aspect_ratios
+    value: null
+    tag: unknown
+  - key: fps
+    value: 24
+    tag: guess
+    source: "animation baseline convention; derived clock only"
+  - key: audio
+    value: null
+    tag: unknown
+
+native_fields: []
+default_capability: semantic
+clause_order: [shot, subject_action, performance, timing, camera, negatives]
+negatives_style: inline_avoid_line
+
+dialect:
+  notes: "Owner observations only; no systematic comparison yet. Core wording is used unchanged except where a lever below applies."
+  prefer: []
+  avoid: []
+  levers:
+    - intent: emphasis
+      syntax: "<i>{word}</i>"
+      evidence: owner_observed
+      caveats: "works to some degree; not compared against the other emphasis forms"
+      runs: []
+    - intent: emphasis
+      syntax: "<emphasis>{word}</emphasis>"
+      evidence: owner_observed
+      caveats: "works to some degree; not compared against the other emphasis forms"
+      runs: []
+    - intent: emphasis
+      syntax: "*{word}*"
+      evidence: owner_observed
+      caveats: "sometimes interpreted as a bleep for a swear word; prefer the tag forms until tested"
+      runs: []
+
+contact_risk:
+  low: unknown
+  medium: unknown
+  high: unknown

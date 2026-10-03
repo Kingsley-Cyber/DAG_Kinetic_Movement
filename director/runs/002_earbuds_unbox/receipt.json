@@ -1,0 +1,236 @@
+{
+  "run_id": "002_earbuds_unbox",
+  "model": "seedance",
+  "prompt_sha256": "083e4209149a4e3987ca47da07c7082110b5783bfb1140f6b1e2ae78d4ef7a0c",
+  "prompt_sha256_of": "prompt.txt bytes as written (including the trailing newline)",
+  "lines": [
+    {
+      "line": 1,
+      "clause": "shot",
+      "channel": "prompt",
+      "text": "An 8-second vertical phone video clip, one continuous take, no cuts.",
+      "source": {
+        "kind": "control",
+        "id": "c_shot_line",
+        "treatment": null,
+        "origin": "USER_EXPLICIT"
+      }
+    },
+    {
+      "line": 2,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "A man, short dark hair, plain grey sweatshirt, at a wooden desk.",
+      "source": {
+        "kind": "entity",
+        "id": "man",
+        "origin": "CREATIVE_CHOICE"
+      }
+    },
+    {
+      "line": 3,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "A small white earbud box, lid on, on the desk.",
+      "source": {
+        "kind": "entity",
+        "id": "box",
+        "origin": "INFERENCE"
+      }
+    },
+    {
+      "line": 4,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "A white hinged-lid charging case inside the box, holding two earbuds.",
+      "source": {
+        "kind": "entity",
+        "id": "case",
+        "origin": "INFERENCE"
+      }
+    },
+    {
+      "line": 5,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "First, he reaches out and grips the box lid by its edges.",
+      "source": {
+        "kind": "beat",
+        "id": "b1",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 6,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then he lifts the lid straight up and sets it beside the box; the case shows in its tray.",
+      "source": {
+        "kind": "beat",
+        "id": "b2",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 7,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then his left hand reaches in and wraps the closed case.",
+      "source": {
+        "kind": "beat",
+        "id": "b3",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 8,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then he lifts the case out and holds it upright in his left palm, thumb at the lid lip.",
+      "source": {
+        "kind": "beat",
+        "id": "b4",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 9,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then he opens the case with one thumb push, arriving fast and settling.",
+      "source": {
+        "kind": "beat",
+        "id": "b5",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 10,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "One thumb press on the lid lip, the case held steady in his palm.",
+      "source": {
+        "kind": "anchor",
+        "id": "a_push",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 11,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "The man's left thumb pushes upward, landing on the case lid. The lid swings up on its hinge as the two earbuds show in their slots, then the lid stops upright and stays open.",
+      "source": {
+        "kind": "event",
+        "id": "ev_open",
+        "origin": "PROJECT_DERIVED",
+        "contact_state": "physical_contact_confirmed"
+      }
+    },
+    {
+      "line": 12,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then his right hand pinches one earbud and draws it out.",
+      "source": {
+        "kind": "beat",
+        "id": "b6",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 13,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Then he raises the earbud to his right ear; the other stays in the case.",
+      "source": {
+        "kind": "beat",
+        "id": "b7",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 14,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "The man's right fingers press the earbud into his right ear, slightly gentler than the thumb push, reaching the opening of his right ear out of the camera's view. The earbud seats in the ear with its stem pointing down as his fingers release it, then his hand comes away and the earbud stays in place.",
+      "source": {
+        "kind": "event",
+        "id": "ev_ear",
+        "origin": "PROJECT_DERIVED",
+        "contact_state": "occluded_contact"
+      }
+    },
+    {
+      "line": 15,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Finally, he lowers his hand, nods faintly and holds still with the earbud in.",
+      "source": {
+        "kind": "beat",
+        "id": "b8",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 16,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "In order: lid off, case out, thumb push, earbud in ear; nothing changes before it is touched.",
+      "source": {
+        "kind": "control",
+        "id": "c_chain",
+        "treatment": "interaction.contact_causal_chain",
+        "origin": "SOURCE_EVIDENCE"
+      }
+    },
+    {
+      "line": 17,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "His left hand cradles the case, thumb on the lid lip; his right thumb and index pinch one earbud by its stem.",
+      "source": {
+        "kind": "control",
+        "id": "c_grip",
+        "treatment": "interaction.grip_case_and_earbud",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 18,
+      "clause": "subject_action",
+      "channel": "prompt",
+      "text": "Throughout, the box, case and earbuds keep their size and colour; one earbud leaves the case.",
+      "source": {
+        "kind": "control",
+        "id": "c_locks",
+        "treatment": "continuity.object_locks",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 19,
+      "clause": "camera",
+      "channel": "prompt",
+      "text": "Camera: handheld medium shot from the front, held by his friend; responsive and organic; finish on him with the earbud in.",
+      "source": {
+        "kind": "control",
+        "id": "c_camera",
+        "treatment": "camera.move_from_catalog",
+        "origin": "PROJECT_DERIVED"
+      }
+    },
+    {
+      "line": 20,
+      "clause": "camera",
+      "channel": "prompt",
+      "text": "Shot on a recent iPhone main camera held by a friend, real not cinematic: 30fps, flat HDR tone, deep focus, no bokeh, faint sensor noise, no grade; real skin with visible pores, not smooth or waxy.",
+      "source": {
+        "kind": "control",
+        "id": "c_capture",
+        "treatment": "style.capture_iphone_rear_handheld",
+        "origin": "PROVIDER_EXPERIMENT"
+      }
+    }
+  ]
+}

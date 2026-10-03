@@ -10,3 +10,6 @@ Thumbs.db
 
 # Python caches
 __pycache__/
+
+# Local virtualenv for optional tools
+.venv/
