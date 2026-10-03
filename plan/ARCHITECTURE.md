@@ -174,6 +174,15 @@ From `camera_three_layer_semantics`:
 
 Failure mode to guard: optical parameters emitted as camera motion.
 
+**Camera move catalog** (`director/vocab/camera_moves.yaml`, from aicameramovements.com, read
+2026-10-03; wording UNVERIFIED; 46 site moves + roll and dolly zoom): every move the camera pass may
+choose, in 7 categories (pan/tilt, zoom/lens, dolly/track, physical moves, human camera,
+drone/crane, specials), each with the site's four-part prompt grammar (Movement · Speed · Framing ·
+End), its layer (motion, optics, special), the research's motion kind, and a `function` hint
+for decision-making (intensify, reveal, accompany, energize, orient, embody). The camera pass picks
+by function, states all four parts, one move per shot, and never writes a zoom as motion. Treatment:
+`camera.move_from_catalog`. Validator R-53 (T38) checks the id exists and the layer is respected.
+
 ### 3.5 Movement text control: three layers (owner)
 
 Movement and motion are controlled in text through three vocabularies, each with its own dials:

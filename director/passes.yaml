@@ -130,6 +130,9 @@ passes:
     owns: [camera, clip.aspect_ratio]
     question: "How is it seen: camera motion layer, optics layer, framing, shot length, aspect ratio? Camera grammar is always stated."
     sub_modules: [motion_layer, optics_layer, framing, shot_length, cuts]
+    notes:
+      motion_layer: "pick one move from director/vocab/camera_moves.yaml by function; state Movement / Speed / Framing / End; one move per shot"
+      optics_layer: "zooms, crash zooms, tilt-shift, focal length, focus; a lens change is never written as camera motion"
 
   - id: attention
     tier: style

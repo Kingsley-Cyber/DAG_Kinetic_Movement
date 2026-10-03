@@ -48,6 +48,7 @@ cite it. The reference implementation of R-01…R-20 is `director/tools/director
 | R-50 | The IR is an execution projection, never a second semantic authority: every control cites a treatment, a card, an owner input or an INFERENCE tag; no field is treated as knowledge after the run | to build (T36) |
 | R-51 | Every validator returns a typed outcome: pass · fail · indeterminate · not_applicable · unobservable; an unknown prerequisite is never treated as a pass downstream | to build (T36; current checks return pass/fail only) |
 | R-52 | Profile facts and levers carry a lifecycle state (unverified → verified → stale → reprobe_due → invalidated) with dates; reprobe_due and invalidated block native dispositions for that fact | to build (T36) |
+| R-53 | Camera move controls reference a `director/vocab/camera_moves.yaml` id (or `custom` with a decision record); the control's layer matches the catalog (an optics entry cannot be emitted as camera motion); one move per shot unless beats order them | catalog and treatment done; validator to build (T38) |
 | R-40 | Affect and Shape and Bartenieff emission: compiled to visible behaviour (face, breath, posture, travel of the movement, voice), never framework terms or affect words; emitter word list for affect words is a recorded convention | to build (T28, T29) |
 
 ## C. Emitter

@@ -203,7 +203,15 @@ insufficient; statuses closed / implementable_now / requires_experiment / unknow
 rejected; a shared fixture traced end to end; acceptance and falsification. `plan/INGEST.md` makes
 that the compiler's intake procedure.
 
-## 19. On old plans
+## 19. Camera movements
+
+"All of these camera movements must be known to the models for decision-making prompts":
+aicameramovements.com (46 moves, 7 categories, one prompt each in a Movement / Speed / Framing /
+End grammar). Stored as `director/vocab/camera_moves.yaml` with layer (motion vs optics vs
+special), the research's motion kind, and a function hint per move; used by the camera pass via
+`camera.move_from_catalog`.
+
+## 20. On old plans
 
 "Be careful with any old plans being integrated as it can misalign the current plan." Audit in
 `DECISIONS.md` (admission ledger, overrides, not-doing list).

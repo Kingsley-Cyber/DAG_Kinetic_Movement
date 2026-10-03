@@ -1,0 +1,591 @@
+# Camera move catalog — the moves the camera pass chooses from.
+# Source: aicameramovements.com (free reference, 46 clips, 7 categories), read 2026-10-03. Each entry keeps the
+# site's four-part prompt grammar (Movement / Speed / Framing / End). Wording origin: UNVERIFIED third-party
+# (untested on our runs). `function` is a film-grammar decision hint (PROJECT_DERIVED convention), used by the
+# LLM to pick a move from intent; it is never emitted as an affect word.
+# `layer` follows cpcs/knowledge/12_camera_image_formation/camera_three_layer_semantics.md:
+#   motion = the camera body moves or rotates · optics = lens/focal change (a zoom is NOT a camera move) ·
+#   special = composite or stylised moves. Never emit an optics change as camera motion.
+version: "0.1"
+source: "https://aicameramovements.com/"
+source_read: 2026-10-03
+origin: UNVERIFIED
+grammar: "<move phrase>. Movement: <what the camera does>. Speed: <pace>. Framing: <what stays readable>. End: <final composition>."
+
+moves:
+  # ── Pan / Tilt (rotation from a fixed point) ──────────────────────────────────────────────────────────
+  - id: static
+    name: Static shot
+    category: pan_tilt
+    layer: motion
+    kind: locked_static
+    phrase: "locked-off static shot"
+    movement: "hold one fixed camera position for the full clip"
+    speed: "still and steady"
+    framing: "keep the same angle, height, lens distance and composition"
+    end: "finish with the same framing and camera position"
+    function: "let performance or action carry the shot; UGC propped phone; stability for contact-heavy beats"
+  - id: pan_right
+    name: Pan right
+    category: pan_tilt
+    layer: motion
+    kind: pan
+    direction: right
+    phrase: "pan right"
+    movement: "rotate the camera horizontally from left to right from one fixed point"
+    speed: "smooth constant rotation"
+    framing: "keep the horizon level while new space enters from the right side of the frame"
+    end: "settle on a clear final composition"
+    function: "survey a space, follow a lateral move, hand attention from one subject to another"
+  - id: pan_left
+    name: Pan left
+    category: pan_tilt
+    layer: motion
+    kind: pan
+    direction: left
+    phrase: "pan left"
+    movement: "rotate the camera horizontally from right to left from one fixed point"
+    speed: "smooth constant rotation"
+    framing: "keep the horizon level while new space enters from the left side of the frame"
+    end: "settle on a clear final composition"
+    function: "as pan right, opposite direction; conserve screen direction with the action axis"
+  - id: whip_pan_right
+    name: Whip pan right
+    category: pan_tilt
+    layer: motion
+    kind: pan
+    direction: right
+    phrase: "whip pan right"
+    movement: "rotate rapidly from the starting direction toward a new target on the right"
+    speed: "fast snap with brief motion blur during the rotation"
+    framing: "begin on one readable composition and land on a second readable target"
+    end: "settle into a sharp final frame"
+    function: "energy, surprise, a transition that hides a cut or conceals a contact frame"
+  - id: whip_pan_left
+    name: Whip pan left
+    category: pan_tilt
+    layer: motion
+    kind: pan
+    direction: left
+    phrase: "whip pan left"
+    movement: "rotate rapidly from the starting direction toward a new target on the left"
+    speed: "fast snap with brief motion blur during the rotation"
+    framing: "begin on one readable composition and land on a second readable target"
+    end: "settle into a sharp final frame"
+    function: "as whip pan right, opposite direction"
+  - id: tilt_up
+    name: Tilt up
+    category: pan_tilt
+    layer: motion
+    kind: tilt
+    direction: up
+    phrase: "tilt up"
+    movement: "rotate the camera upward from one fixed point"
+    speed: "smooth constant tilt"
+    framing: "keep the vertical subject or architecture centered as the frame travels upward"
+    end: "land on the upper target"
+    function: "reveal height or scale; a slow reveal of a face from feet up"
+  - id: tilt_down
+    name: Tilt down
+    category: pan_tilt
+    layer: motion
+    kind: tilt
+    direction: down
+    phrase: "tilt down"
+    movement: "rotate the camera downward from one fixed point"
+    speed: "smooth constant tilt"
+    framing: "keep the vertical subject or architecture centered as the frame travels downward"
+    end: "land on the lower target"
+    function: "settle attention onto the ground-level subject; reveal what fell"
+
+  # ── Zoom / Lens (optics layer: focal length changes, the camera does not move) ─────────────────────────
+  - id: zoom_in_slow
+    name: Slow zoom in
+    category: zoom_lens
+    layer: optics
+    kind: zoom
+    direction: in
+    phrase: "slow zoom in"
+    movement: "slowly increase lens focal length toward a tighter frame"
+    speed: "gradual and even"
+    framing: "keep the main visual target readable as it becomes larger in frame"
+    end: "finish on a stable tighter composition"
+    function: "tighten attention without moving the camera; no parallax change (unlike a dolly)"
+  - id: zoom_out_slow
+    name: Slow zoom out
+    category: zoom_lens
+    layer: optics
+    kind: zoom
+    direction: out
+    phrase: "slow zoom out"
+    movement: "slowly decrease lens focal length toward a wider frame"
+    speed: "gradual and even"
+    framing: "keep the main visual target readable as more surrounding space appears"
+    end: "finish on a stable wider composition"
+    function: "reveal context slowly; isolate a subject in a growing space"
+  - id: zoom_in_fast
+    name: Fast zoom in
+    category: zoom_lens
+    layer: optics
+    kind: zoom
+    direction: in
+    phrase: "fast zoom in"
+    movement: "quickly increase lens focal length toward the main visual target"
+    speed: "quick decisive zoom"
+    framing: "keep the target centered or clearly readable during the scale change"
+    end: "finish on a stable tighter composition"
+    function: "decisive emphasis on a detail or reaction"
+  - id: zoom_out_fast
+    name: Fast zoom out
+    category: zoom_lens
+    layer: optics
+    kind: zoom
+    direction: out
+    phrase: "fast zoom out"
+    movement: "quickly decrease lens focal length away from the main visual target"
+    speed: "quick decisive zoom"
+    framing: "keep the target readable as the surrounding space appears"
+    end: "finish on a stable wider composition"
+    function: "sudden context reveal"
+  - id: crash_zoom_in
+    name: Crash zoom in
+    category: zoom_lens
+    layer: optics
+    kind: zoom
+    direction: in
+    phrase: "crash zoom in"
+    movement: "snap the lens rapidly toward the main visual target"
+    speed: "very fast and punchy"
+    framing: "keep the target readable through the sudden scale change"
+    end: "land on a bold tighter composition"
+    function: "shock or comedic punch; stylised emphasis (anime, action)"
+  - id: crash_zoom_out
+    name: Crash zoom out
+    category: zoom_lens
+    layer: optics
+    kind: zoom
+    direction: out
+    phrase: "crash zoom out"
+    movement: "snap the lens rapidly away from the main visual target"
+    speed: "very fast and punchy"
+    framing: "keep the target readable as the surrounding space appears"
+    end: "land on a bold wider composition"
+    function: "stylised release after a close moment"
+
+  # ── Dolly / Track (the camera body travels) ───────────────────────────────────────────────────────────
+  - id: dolly_in
+    name: Dolly in
+    category: dolly_track
+    layer: motion
+    kind: dolly
+    direction: forward
+    phrase: "dolly in"
+    movement: "move the camera physically forward in a straight line toward the main subject"
+    speed: "smooth controlled push"
+    framing: "keep camera height, lens direction and subject position consistent while distance closes"
+    end: "finish in a tighter composition"
+    function: "intensify, draw into a thought or a face; parallax makes the approach physical"
+  - id: dolly_out
+    name: Dolly out
+    category: dolly_track
+    layer: motion
+    kind: dolly
+    direction: backward
+    phrase: "dolly out"
+    movement: "move the camera physically backward in a straight line away from the main subject"
+    speed: "smooth controlled retreat"
+    framing: "keep lens direction and camera height consistent while more environment enters frame"
+    end: "finish in a wider composition"
+    function: "reveal, isolate, release; an ending beat"
+  - id: tracking
+    name: Tracking shot
+    category: dolly_track
+    layer: motion
+    kind: tracking
+    phrase: "tracking shot"
+    movement: "move through the scene with the main subject"
+    speed: "match the subject's pace"
+    framing: "keep the subject consistently readable while the environment moves around them"
+    end: "maintain a clear moving composition"
+    function: "accompany a moving subject; keep action continuous without cuts"
+  - id: follow_behind
+    name: Follow shot / over-the-shoulder
+    category: dolly_track
+    layer: motion
+    kind: tracking
+    direction: behind
+    phrase: "follow shot from behind"
+    movement: "move behind the subject along their route at shoulder height"
+    speed: "match the subject's pace"
+    framing: "keep the back, shoulder or head as the foreground guide while the route ahead stays readable"
+    end: "continue following with the subject leading the frame"
+    function: "share the subject's forward view; anticipation of what is ahead"
+  - id: reverse_tracking
+    name: Reverse tracking / walk-and-talk
+    category: dolly_track
+    layer: motion
+    kind: tracking
+    direction: ahead_facing_subject
+    phrase: "reverse tracking shot"
+    movement: "move backward in front of the walking subject"
+    speed: "match the subject's forward pace"
+    framing: "keep front-facing face and body framing stable as the background moves behind them"
+    end: "hold a clear front-facing moving composition"
+    function: "dialogue or monologue in motion; face stays primary"
+  - id: side_tracking
+    name: Side tracking
+    category: dolly_track
+    layer: motion
+    kind: tracking
+    direction: lateral
+    phrase: "side tracking shot"
+    movement: "move parallel beside the subject along their direction of travel"
+    speed: "match the subject's motion"
+    framing: "keep the subject in side profile or three-quarter profile at a stable distance"
+    end: "continue the parallel movement with clear horizontal motion"
+    function: "show locomotion and gait clearly; conserve screen direction"
+  - id: low_tracking
+    name: Low tracking
+    category: dolly_track
+    layer: motion
+    kind: tracking
+    direction: low
+    phrase: "low tracking shot"
+    movement: "move at ground or below-waist height alongside the subject's movement path"
+    speed: "match the subject, footsteps or wheels"
+    framing: "keep the low detail readable while the ground plane moves through frame"
+    end: "finish with the low perspective clearly maintained"
+    function: "speed, power, feet and ground contact; menace"
+  - id: vehicle_tracking
+    name: Vehicle tracking
+    category: dolly_track
+    layer: motion
+    kind: tracking
+    phrase: "vehicle tracking shot"
+    movement: "move with the vehicle along its route"
+    speed: "match the vehicle's pace"
+    framing: "keep the vehicle stable in frame while the road or environment moves past"
+    end: "maintain a clear moving vehicle composition"
+    function: "travel; the vehicle as subject"
+  - id: chase
+    name: Chase shot
+    category: dolly_track
+    layer: motion
+    kind: tracking
+    phrase: "chase shot"
+    movement: "follow a moving subject quickly along the action route"
+    speed: "fast, reactive and physically close"
+    framing: "keep the subject visible while allowing energetic reframing"
+    end: "stay connected to the subject in motion"
+    function: "urgency; sanctioned instability (contrast with handheld sway)"
+
+  # ── Physical moves (lateral, vertical, curved travel) ─────────────────────────────────────────────────
+  - id: truck_right
+    name: Truck right
+    category: physical
+    layer: motion
+    kind: truck
+    direction: right
+    phrase: "truck right"
+    movement: "move the camera physically to the right on a straight horizontal path"
+    speed: "smooth constant lateral travel"
+    framing: "keep the lens facing the same direction while the scene slides across frame"
+    end: "finish on a clean lateral composition"
+    function: "lateral reveal; parallax across layers"
+  - id: truck_left
+    name: Truck left
+    category: physical
+    layer: motion
+    kind: truck
+    direction: left
+    phrase: "truck left"
+    movement: "move the camera physically to the left on a straight horizontal path"
+    speed: "smooth constant lateral travel"
+    framing: "keep the lens facing the same direction while the scene slides across frame"
+    end: "finish on a clean lateral composition"
+    function: "as truck right, opposite direction"
+  - id: pedestal_up
+    name: Pedestal up
+    category: physical
+    layer: motion
+    kind: pedestal
+    direction: up
+    phrase: "pedestal up"
+    movement: "move the entire camera vertically upward in a straight line"
+    speed: "smooth constant lift"
+    framing: "keep the lens level and pointed in the same direction during the vertical move"
+    end: "finish with the higher framing clearly readable"
+    function: "rise with a standing subject; change eye level without tilting"
+  - id: pedestal_down
+    name: Pedestal down
+    category: physical
+    layer: motion
+    kind: pedestal
+    direction: down
+    phrase: "pedestal down"
+    movement: "move the entire camera vertically downward in a straight line"
+    speed: "smooth constant descent"
+    framing: "keep the lens level and pointed in the same direction during the vertical move"
+    end: "finish with the lower framing clearly readable"
+    function: "sink with a sitting or falling subject"
+  - id: slider_right
+    name: Slider right
+    category: physical
+    layer: motion
+    kind: slider
+    direction: right
+    phrase: "slider right"
+    movement: "slide the camera a small distance to the right"
+    speed: "slow controlled constant motion"
+    framing: "keep foreground, subject and background layers readable as parallax shifts"
+    end: "finish on a refined composition with the new right-side angle visible"
+    function: "subtle life on a static scene; product and food shots"
+  - id: slider_left
+    name: Slider left
+    category: physical
+    layer: motion
+    kind: slider
+    direction: left
+    phrase: "slider left"
+    movement: "slide the camera a small distance to the left"
+    speed: "slow controlled constant motion"
+    framing: "keep foreground, subject and background layers readable as parallax shifts"
+    end: "finish on a refined composition with the new left-side angle visible"
+    function: "as slider right, opposite direction"
+  - id: push_past
+    name: Push past / pass-by shot
+    category: physical
+    layer: motion
+    kind: dolly
+    direction: forward_past_foreground
+    phrase: "push past"
+    movement: "move forward past a visible foreground object, edge or opening"
+    speed: "smooth forward glide"
+    framing: "let the foreground pass close to the lens while the space beyond becomes clearer"
+    end: "arrive inside or beyond the foreground layer"
+    function: "depth and entry; arriving into a space"
+  - id: arc_right
+    name: Arc right
+    category: physical
+    layer: motion
+    kind: orbit_arc
+    direction: right
+    phrase: "arc right"
+    movement: "move on a shallow curved path around the main subject toward the right side"
+    speed: "smooth measured curve"
+    framing: "keep distance, height and subject readability consistent while the angle changes"
+    end: "finish from a new right-side angle"
+    function: "change angle on a held subject without cutting; dimensionality"
+  - id: arc_left
+    name: Arc left
+    category: physical
+    layer: motion
+    kind: orbit_arc
+    direction: left
+    phrase: "arc left"
+    movement: "move on a shallow curved path around the main subject toward the left side"
+    speed: "smooth measured curve"
+    framing: "keep distance, height and subject readability consistent while the angle changes"
+    end: "finish from a new left-side angle"
+    function: "as arc right, opposite direction"
+  - id: orbit_cw
+    name: Orbit clockwise
+    category: physical
+    layer: motion
+    kind: orbit_arc
+    direction: clockwise
+    phrase: "clockwise orbit"
+    movement: "circle clockwise around the main subject at a consistent radius"
+    speed: "smooth controlled orbit"
+    framing: "keep the subject centered while the background rotates around them"
+    end: "complete the intended arc or full circle with stable framing"
+    function: "hero moment; centre the subject; show the surround"
+  - id: orbit_ccw
+    name: Orbit counterclockwise
+    category: physical
+    layer: motion
+    kind: orbit_arc
+    direction: counterclockwise
+    phrase: "counterclockwise orbit"
+    movement: "circle counterclockwise around the main subject at a consistent radius"
+    speed: "smooth controlled orbit"
+    framing: "keep the subject centered while the background rotates around them"
+    end: "complete the intended arc or full circle with stable framing"
+    function: "as orbit clockwise, opposite direction"
+
+  # ── Human camera ──────────────────────────────────────────────────────────────────────────────────────
+  - id: handheld
+    name: Handheld shot
+    category: human_camera
+    layer: motion
+    kind: handheld_drift
+    phrase: "handheld shot"
+    movement: "hold the camera at human operator height with natural body movement"
+    speed: "responsive and organic"
+    framing: "keep the subject readable while the frame has subtle sway and micro-adjustments"
+    end: "finish with a natural handheld composition"
+    function: "immediacy, documentary or UGC feel; never for a propped selfie (use static with settle)"
+  - id: snorricam
+    name: Body-mounted camera / Snorricam
+    category: human_camera
+    layer: motion
+    kind: body_mounted
+    phrase: "body-mounted Snorricam"
+    movement: "keep the camera fixed relative to the subject's torso or face while the subject moves"
+    speed: "match the subject's body motion"
+    framing: "keep the subject close, centered and facing the camera as the background moves around them"
+    end: "finish with the subject still locked in frame"
+    function: "subjective disorientation; the world moves, the face does not"
+
+  # ── Drone / Crane (vertical and aerial travel) ────────────────────────────────────────────────────────
+  - id: crane_up
+    name: Crane up
+    category: drone_crane
+    layer: motion
+    kind: crane_elevate
+    direction: up
+    phrase: "crane up"
+    movement: "travel smoothly upward through open space"
+    speed: "slow controlled vertical lift"
+    framing: "keep the subject or location readable as the camera rises"
+    end: "finish with the higher scale clearly visible"
+    function: "scale, departure, an ending; lift out of a scene"
+  - id: crane_down
+    name: Crane down
+    category: drone_crane
+    layer: motion
+    kind: crane_elevate
+    direction: down
+    phrase: "crane down"
+    movement: "travel smoothly downward through open space"
+    speed: "slow controlled vertical descent"
+    framing: "keep the subject or location readable as the camera descends"
+    end: "finish with the lower subject or destination clearly visible"
+    function: "arrival; descend into a scene or onto a subject"
+  - id: drone_push_in
+    name: Drone push in
+    category: drone_crane
+    layer: motion
+    kind: aerial
+    direction: forward
+    phrase: "drone push in"
+    movement: "fly smoothly forward through open space toward the subject or destination"
+    speed: "controlled aerial glide"
+    framing: "keep the route and destination readable as the camera approaches"
+    end: "arrive at a closer aerial composition"
+    function: "establishing approach; geography before action"
+  - id: drone_pull_back
+    name: Drone pull back
+    category: drone_crane
+    layer: motion
+    kind: aerial
+    direction: backward
+    phrase: "drone pull back"
+    movement: "fly smoothly backward away from the subject or destination"
+    speed: "controlled aerial retreat"
+    framing: "keep the subject readable as more landscape appears"
+    end: "finish on a wider aerial composition"
+    function: "scale reveal; ending"
+  - id: helicopter
+    name: Helicopter shot
+    category: drone_crane
+    layer: motion
+    kind: aerial
+    phrase: "helicopter-style aerial shot"
+    movement: "move from high altitude along a broad gradual flight path"
+    speed: "steady controlled aerial motion"
+    framing: "keep the landscape or distant moving subject readable at wide scale"
+    end: "finish on a stable high-altitude composition"
+    function: "epic geography; travel montage"
+
+  # ── Specials (composite or stylised) ──────────────────────────────────────────────────────────────────
+  - id: fpv
+    name: First-person view
+    category: specials
+    layer: special
+    kind: pov
+    phrase: "first-person view"
+    movement: "move forward at human eye height from the character's perspective"
+    speed: "natural walking or reaching pace"
+    framing: "use visible hands, arms or body edges as the viewer's physical reference"
+    end: "arrive at the next point of action from the same point of view"
+    function: "embodiment; hands in frame make it a hand-ledger case"
+  - id: tilt_shift
+    name: Tilt-shift
+    category: specials
+    layer: optics
+    kind: tilt_shift
+    phrase: "tilt-shift miniature view"
+    movement: "hold or glide from a high angled view over the scene"
+    speed: "small precise movement"
+    framing: "keep a narrow band of sharp focus across the key subject area with soft blur above and below"
+    end: "finish with the miniature-scale view intact"
+    function: "toy-world distance; irony or overview"
+  - id: infinite_zoom
+    name: Infinite zoom
+    category: specials
+    layer: special
+    kind: zoom_composite
+    phrase: "infinite zoom"
+    movement: "zoom continuously inward toward the exact center target"
+    speed: "smooth accelerating zoom"
+    framing: "keep the circular target centered as it expands"
+    end: "finish when the next visual world fills the frame"
+    function: "transition between worlds; stylised"
+  - id: earth_zoom_out
+    name: Earth zoom out
+    category: specials
+    layer: special
+    kind: zoom_composite
+    phrase: "earth zoom out"
+    movement: "pull upward from the starting point through street, city, landscape and planet scale"
+    speed: "rapid expanding zoom out"
+    framing: "keep the original location centered as scale grows"
+    end: "finish on a planet-scale view with the starting point still implied at center"
+    function: "scale shock; ending"
+  - id: time_lapse
+    name: Time-lapse
+    category: specials
+    layer: special
+    kind: locked_static
+    phrase: "locked-camera time-lapse"
+    movement: "hold one fixed camera position while time moves rapidly forward"
+    speed: "fast time compression with a stable camera"
+    framing: "keep the same composition and horizon as motion passes through the frame"
+    end: "finish from the same camera angle with visible passage of time"
+    function: "passage of time; the camera is static, time is the movement"
+  - id: pass_through
+    name: Pass-through objects
+    category: specials
+    layer: special
+    kind: dolly
+    phrase: "pass-through movement"
+    movement: "move forward toward a visible object, surface or barrier and continue into the space beyond"
+    speed: "smooth centered glide"
+    framing: "keep the opening or surface centered as the transition point"
+    end: "arrive inside the revealed space beyond"
+    function: "impossible-camera transition; reveal an interior"
+
+  # ── Additions from standard film grammar (not on the site; PROJECT_DERIVED; untested) ─────────────────
+  - id: roll
+    name: Roll / Dutch roll
+    category: pan_tilt
+    layer: motion
+    kind: roll
+    phrase: "camera roll"
+    movement: "rotate the camera around the lens axis so the horizon tilts"
+    speed: "slow drift or a quick snap"
+    framing: "keep the subject readable while the horizon leaves level"
+    end: "settle on a canted or re-levelled frame"
+    function: "unease, disorientation; anime impact accent"
+  - id: dolly_zoom
+    name: Dolly zoom (vertigo)
+    category: specials
+    layer: special
+    kind: dolly_plus_zoom
+    phrase: "dolly zoom"
+    movement: "move the camera forward while zooming out (or back while zooming in) so the subject stays the same size"
+    speed: "smooth and matched"
+    framing: "keep the subject's size constant while the background stretches or compresses"
+    end: "settle with the altered background perspective"
+    function: "realisation, dread; motion and optics layers move together"

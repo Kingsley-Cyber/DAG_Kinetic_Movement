@@ -92,6 +92,16 @@ confidence: `{"weight": 0.3, "time": 0.4, "space": 0.7, "flow": 0.6, "confidence
 the first pole (light, sustained, indirect, free) and 1 the second (strong, sudden, direct,
 bound). The emitter turns scales into wording.
 
+## 4a. Camera grammar (mandatory on every ask)
+
+Choose the camera move from `director/vocab/camera_moves.yaml` (48 moves in 7 categories, each
+with a `function` hint: what the move does for the viewer). State it in the four-part grammar:
+move phrase · Movement · Speed · Framing · End. Name the layer: a move is the camera body moving or
+rotating; a zoom or tilt-shift is a lens change and must never be written as camera motion. One
+move per shot; a second move needs its own beat and an order word. If no catalog move fits, use
+`move: custom` and justify it in `decisions.jsonl`. For a propped or fixed selfie use
+`camera.selfie_framing` instead.
+
 ## 4b. Intents and the dialect lens
 
 The IR is model-agnostic. When you want the model to do something a prompt can carry in
