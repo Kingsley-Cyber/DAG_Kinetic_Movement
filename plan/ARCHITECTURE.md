@@ -256,6 +256,17 @@ dimensions, all of which the IR carries for the face sub-module of the performan
 | head pose and gaze | head orientation change and gaze direction coupled to the event (gaze leads the hand, about 0.12–0.18 s) | `mx.gaze_body_coupling` |
 | visibility / occlusion | whether the action is visible to the camera; an occluded AU is `estimated`, never claimed | `continuity.visibility_not_existence` |
 
+Working AU vocabulary (standard FACS; plain-language visible descriptions the emitter uses):
+AU1 inner brow raise · AU2 outer brow raise · AU4 brow lowerer · AU5 upper lid raise · AU6 cheek
+raise (eyes crease) · AU7 lid tightener · AU9 nose wrinkle · AU10 upper lip raise · AU12 lip
+corner pull · AU14 dimpler (not a lip press; the prompt-system reference misdescribes it) · AU15
+lip corner depress · AU17 chin raise · AU20 lip stretch · AU23 lip tightener · AU24 lip press ·
+AU25 lips part · AU26 jaw drop · AU43/45 eyes closed / blink. Combinations beyond the tree's
+cards follow the standard FACS prototypes (surprise AU1+2+5+26, fear AU1+2+4+5+20+26, sadness
+AU1+4+15, anger AU4+5+7+23, disgust AU9+10+17, contempt unilateral AU12+14) and are **descriptive
+patterns**, never emotion claims in a prompt. Blink about 0.135 s; a micro-expression apex is
+under about 0.5 s (standard figures; conventions until measured).
+
 IR shape (to add in T27, read by `check` and `emit`):
 `performance.face_events[] = {id, beat, aus: [], laterality, intensity, onset_s, apex_start_s,
 apex_end_s, offset_s, combination, head_pose, gaze, visibility, origin}`.
@@ -284,6 +295,83 @@ clause.
 - Importance weights: each layer, beat and control carries `importance 0..1` (default from
   `passes.yaml`, raised or lowered per ask). Importance decides budget survival, position and
   word share in the prompt, and which strength rung is used.
+
+#### 3.5.4 Bartenieff: the six patterns of total body connectivity (owner)
+
+Source card: `cpcs/knowledge/06_body_motion/bartenieff/bartenieff_six_patterns.md` (SOURCE_EVIDENCE).
+The six patterns (Hackney's developmental sequence) are **connectivity relationships**, not six
+scalar dials, and are kept separate from the **Basic Six exercises** (Thigh Lift, Forward Pelvic
+Shift, Lateral Pelvic Shift, Body Half, Knee Drop, Arm Circle). The order is pedagogical; one cross
+punch can use several at once.
+
+| Pattern | Meaning | Side rule | What the prompt says (visible consequence) |
+|---|---|---|---|
+| Breath | whole-body expansion and contraction around breathing | bilateral | "the torso widens on the inhale before the lift; the exhale lets the shoulders drop" |
+| Core-Distal | centre ↔ limb ends; movement radiates from or returns to the core | — | "the reach starts in the belly and opens out to the fingertips" |
+| Head-Tail | the spine as one axis from head to pelvis | — | "the head leads and the spine follows in a wave down to the hips" |
+| Upper-Lower | grounding: lower body supports, upper body acts | — | "weight settles into the front foot before the arm pushes" |
+| Body-Half | one side stabilizes while the other side moves | **left or right; never collapsed** | "the left side stays planted while the whole right side swings" |
+| Cross-Lateral | diagonal, contralateral coordination (left upper ↔ right lower) | contralateral | "power turns from the rear right foot through the hips and shoulders into the left fist" |
+
+Primitive encoding (from the card): `{connectivity_pattern, initiator, receiver_sequence,
+intensity, range, sequencing_delay_ms}` with a worked value of about 55 ms per segment for
+proximal-to-distal sequencing (project convention, not a Bartenieff standard).
+
+IR shape (T28): `action.connectivity[] = {id, beat, pattern, side_relationship, initiator,
+receiver_sequence: [], intensity 0..1, range 0..1, origin}`. Rules: a power action records at
+least Upper-Lower and Cross-Lateral (anti-arcade "momentumless impact"); Body-Half names its side;
+the emitter writes the travel of the movement in plain words, never the pattern name. Bartenieff
+has no AI-side evidence yet: every connectivity treatment starts UNVERIFIED.
+
+#### 3.5.5 Shape: planes and qualities (owner)
+
+Source: `laban_layering_doctrine.md` (shape qualities), MX §12.3, the owner's anti-arcade note.
+
+| Plane | Also called | Dimensions | Shape quality pair (scaled 0..1 with confidence) |
+|---|---|---|---|
+| Door | vertical plane | up–down and side–side | rising ↔ sinking (vertical) |
+| Table | horizontal plane | side–side and forward–back | spreading ↔ enclosing (horizontal) |
+| Wheel | sagittal plane | forward–back and up–down | advancing ↔ retreating (sagittal) |
+
+Shape forms, from the LMA framework (standard vocabulary; not yet in the tree's cards):
+**shape flow** (growing and shrinking around the body's own centre, breath-like), **directional**
+(spoke-like straight reach, arc-like sweep toward a point in space), **carving / shaping** (the
+body moulds itself to the space or an object, three-dimensional). Camera distance decides what is
+legible: close → Shape readable, far → only Effort reads.
+
+IR shape (T28): `beats[].shape = {plane_path: [door, wheel, …], form: shape_flow | directional_spoke
+| directional_arc | carving, vertical, horizontal, sagittal (each 0..1), confidence}`. Rules: a
+power action changes plane at least once across its beats (hook: Table → Wheel; kick: Door →
+Wheel); a motion that stays in one plane is flagged (anti-arcade "single-plane motion"); qualities
+are scaled and emitted as visible body change ("she rises and opens as she greets him"), never as
+the Laban term.
+
+#### 3.5.6 Affect: valence, arousal, dominance (owner)
+
+Source card: `cpcs/knowledge/04_character_performance/affect/affect_vad_trajectory.md`
+(SOURCE_EVIDENCE); FL §5.1–5.5; `NATURAL_DIALOGUE_MODE.md` §10 (VAD → acoustic presets).
+
+Affect is a **separate layer** from FACS and from Laban. It is a trajectory of scaled values, not
+an emotion label, and it is never inferred from action units (`test_affect_not_inferred_from_au`).
+
+- Dimensions: **valence** (negative ↔ positive), **arousal** (calm ↔ activated), optional
+  **dominance** (submissive ↔ dominant). Scale is project-normalized (the card) unless a source
+  states one; each value carries `basis` (authored, inferred, …).
+- Trajectory: knots `{t, valence, arousal, dominance}` with monotonic `t` in master-clock seconds,
+  tied to beats. Example from the card: 0.0 → (0.10, 0.15), 1.0 → (0.25, 0.20), 2.0 → (0.40, 0.35).
+- **Experienced vs displayed** (FL §5.3 masking, `M(t) = A_experienced − A_displayed`): two
+  trajectories when the character hides a feeling ("smiles subtly while hiding disappointment").
+  The displayed trajectory drives the face and voice; the difference drives leaks (a held breath,
+  a late blink, a smile that does not reach the eyes: AU12 without AU6).
+- Emission: affect is never written as an affect word (`format_ownership`: observable behaviour,
+  not "she feels afraid"). It compiles into visible behaviour through FACS combinations
+  (§3.5.2), breath and posture (Bartenieff Breath, Shape sinking/rising), Effort scaling (arousal
+  raises Time toward sudden and Weight toward strong; a hypothesis to test), and voice presets
+  (NATURAL_DIALOGUE §10: excited {valence .7, arousal .7, dominance .4}, sincere {.5, −.2, .3}).
+- IR shape (T29): `performance.affect = {experienced: [knots], displayed: [knots] | null, basis,
+  confidence}`. Validators: monotonic `t`; values within the declared scale; `displayed` present
+  whenever a masking decision exists; no affect words in `prompt.txt` (a word list in the emitter,
+  convention).
 
 ## 4. Time and beats (owner: "the big one")
 

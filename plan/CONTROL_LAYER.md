@@ -33,6 +33,10 @@ cite it. The reference implementation of R-01…R-20 is `director/tools/director
 | R-34 | FACS event record in the IR: `aus, laterality, intensity (A–E ordinal), onset/apex_start/apex_end/offset (s), combination, head_pose, gaze, visibility, origin`, bound to a beat | to build (T27) |
 | R-35 | FACS validators: onset < apex start ≤ apex end < offset, inside the beat span; laterality stated when asymmetric; occluded events are never verification targets; intensity never stored as 0–1 | to build (T27) |
 | R-36 | FACS emission: AUs and combinations compile to visible facial behaviour in plain words; no AU codes and no emotion claims in the prompt; intensity emitted relative to the anchor expression | to build (T27) |
+| R-37 | Bartenieff connectivity record `action.connectivity[]` (pattern, side_relationship, initiator, receiver_sequence, intensity, range); a power action records Upper-Lower and Cross-Lateral; Body-Half names its side; Basic Six exercises never mixed in | to build (T28) |
+| R-38 | Shape record `beats[].shape` (plane_path over Door/Table/Wheel, form, three scaled qualities); a power action changes plane at least once; single-plane motion is flagged | to build (T28) |
+| R-39 | Affect record `performance.affect` (experienced and optional displayed trajectories of valence, arousal, dominance; monotonic t; declared scale); affect is never derived from AUs; `displayed` required when a masking decision exists | to build (T29) |
+| R-40 | Affect and Shape and Bartenieff emission: compiled to visible behaviour (face, breath, posture, travel of the movement, voice), never framework terms or affect words; emitter word list for affect words is a recorded convention | to build (T28, T29) |
 
 ## C. Emitter
 

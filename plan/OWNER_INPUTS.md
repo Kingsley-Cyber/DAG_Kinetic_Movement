@@ -156,6 +156,10 @@ closer to the richness of a motion-capture log than a simple label."
 Laban has four Effort controls (Weight, Time, Space, Flow) inside the BESS framework: Body,
 Effort, Shape, Space.
 
+Requested detail (2026-10-02): Bartenieff's six patterns, Shape planes, FACS, and valence–arousal
+each specified in the plan (ARCHITECTURE §3.5.2, §3.5.4–3.5.6; CONTROL_LAYER R-34…R-40;
+TASKS T27–T29).
+
 ## 16. On old plans
 
 "Be careful with any old plans being integrated as it can misalign the current plan." Audit in

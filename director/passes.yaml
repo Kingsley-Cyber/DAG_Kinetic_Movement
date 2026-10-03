@@ -42,7 +42,10 @@ passes:
     importance: 0.8
     owns: [action]
     question: "What do bodies do, in which phases, from which support, and how do they recover?"
-    sub_modules: [locomotion, phase, root_path, support_balance, speed_force, recovery, secondary_motion, weight_transfer_path, plane_transitions]
+    sub_modules: [locomotion, phase, root_path, support_balance, speed_force, recovery, secondary_motion, weight_transfer_path, plane_transitions, connectivity]
+    notes:
+      connectivity: "Bartenieff pattern per power action: initiator, receiver sequence, side; a power strike records Upper-Lower and Cross-Lateral"
+      plane_transitions: "Shape plane path per beat (Door, Table, Wheel); a power action changes plane at least once"
 
   - id: interaction
     tier: reason
@@ -112,7 +115,9 @@ passes:
     sub_modules: [acting_intent, body, facs_events, gaze_blink, posture, breath, gesture, laban_bess, bartenieff_patterns, affect]
     notes:
       facs_events: "spatiotemporal events: action units, laterality, A–E intensity, onset/apex/offset in seconds, co-occurring AUs, head pose, gaze, visibility; compiled to visible behaviour, never emotion words"
-      laban_bess: "Body, Effort (Weight, Time, Space, Flow as scaled values with confidence), Shape (Door, Table, Wheel planes), Space (reach, zone, pathway)"
+      laban_bess: "Body, Effort (Weight, Time, Space, Flow as scaled values with confidence), Shape (Door, Table, Wheel planes; rising/sinking, spreading/enclosing, advancing/retreating; shape flow, directional, carving), Space (reach, zone, pathway)"
+      bartenieff_patterns: "six patterns of total body connectivity: Breath, Core-Distal, Head-Tail, Upper-Lower, Body-Half (side named), Cross-Lateral; the force path of a movement; kept separate from the Basic Six exercises"
+      affect: "valence, arousal, optional dominance as scaled trajectories with a declared scale; experienced vs displayed (masking); never derived from AUs; never emitted as affect words"
 
   - id: camera
     tier: style
