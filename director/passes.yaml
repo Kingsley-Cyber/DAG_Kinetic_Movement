@@ -66,6 +66,7 @@ passes:
     after: [interaction]
     importance: 0.8
     owns: [physics]
+    reads: [pathways, hands, anchors]   # earlier decisions this pass must receive in its pack
     question: "Why and how does each effect follow its cause, and is it feasible for these bodies and materials? For every contact: trigger, contact surface, force relative to a baseline, primary reaction, secondary reactions, settle."
     sub_modules: [causal_events, cause_effect, recoil, momentum, material_response, feasibility, contact_risk]
     notes:
@@ -79,6 +80,7 @@ passes:
     after: [interaction]
     importance: 0.6
     owns: [staging]
+    reads: [entities, pathways]   # earlier decisions this pass must receive in its pack
     question: "Where is everything relative to everything else, and which screen direction is conserved?"
     sub_modules: [blocking, depth, screen_direction, action_axis, proxemics]
 
@@ -89,6 +91,7 @@ passes:
     after: [world, interaction]
     importance: 0.8
     owns: [continuity, entities.locks]
+    reads: [entities, pathways, physics_events]   # earlier decisions this pass must receive in its pack
     question: "What must stay identical, what changes once and stays changed, and what is hidden but still exists?"
     sub_modules: [state_carry_over, object_state, locks, hidden_state]
 
@@ -98,6 +101,7 @@ passes:
     after: [intent, action, interaction, physics]
     importance: 0.9
     owns: [beats, clip.duration_s, time]
+    reads: [pathways, physics_events, anchors]   # earlier decisions this pass must receive in its pack
     question: "In what order do events happen, how long does each need to read, how dense is the apex, and does it all fit the clip?"
     sub_modules: [beats, rhythm_fields, timing_profiles, spacing, holds, overload, key_poses]
     notes:
@@ -118,6 +122,7 @@ passes:
     after: [time]
     importance: 0.7
     owns: [performance]
+    reads: [beats, anchors, physics_events]   # earlier decisions this pass must receive in its pack
     question: "How is it acted: register, face, gaze, posture, breath, movement quality (Laban, scaled), origination (Bartenieff)?"
     sub_modules: [acting_intent, body, facs_events, gaze_blink, posture, breath, gesture, laban_bess, bartenieff_patterns, affect]
     notes:
@@ -132,6 +137,7 @@ passes:
     after: [time, staging, interaction, physics, attention]   # the camera must know what happens, whether contact is shown or hidden, and what the viewer must notice
     importance: 0.9
     owns: [camera, clip.aspect_ratio]
+    reads: [beats, pathways, physics_events, controls:staging, controls:attention]   # earlier decisions this pass must receive in its pack
     question: "How is it seen: camera motion layer, optics layer, framing, shot length, aspect ratio? Camera grammar is always stated."
     # 12 sub-layers in five groups (owner), plus three proposed additions.
     sub_modules: [where.shot_scale, where.angle, where.position_to_action,
@@ -158,6 +164,7 @@ passes:
     after: [intent, time]   # directive chain: objective → viewer attention → composition → camera
     importance: 0.5
     owns: [attention]
+    reads: [beats, physics_events]   # earlier decisions this pass must receive in its pack
     question: "What must the viewer notice, miss, or discover, and in which order?"
     sub_modules: [reveal, withhold, hooks, key_pose_ranking]
 
@@ -168,6 +175,7 @@ passes:
     after: [camera]
     importance: 0.6
     owns: [light_color]
+    reads: [controls:camera, controls:continuity]   # earlier decisions this pass must receive in its pack
     question: "Where does light come from, what quality is it, what is exposure and colour doing, and does it stay consistent?"
     sub_modules: [sources, direction, quality, exposure, white_balance, palette, grade, colour_continuity]
     notes:
@@ -180,6 +188,7 @@ passes:
     after: [camera, light_color]
     importance: 0.7
     owns: [style]
+    reads: [controls:camera, controls:light_color]   # earlier decisions this pass must receive in its pack
     question: "How does it look and feel: visual style, motion style, realism and capture texture, effects? Texture never reorders beats."
     sub_modules: [visual_style, motion_style, realism, capture_texture, vfx]
 
@@ -190,6 +199,7 @@ passes:
     after: [time, performance]
     importance: 0.5
     owns: [audio]
+    reads: [beats, physics_events]   # earlier decisions this pass must receive in its pack
     question: "What is heard, when, and how does it sync with the beats?"
     sub_modules: [speech, pauses, effects, music, sync]
 
@@ -199,6 +209,7 @@ passes:
     after: [intent, entity, world, action, interaction, physics, staging, continuity, time, performance, camera, attention, light_color, style, audio]
     importance: 1.0
     owns: [synthesis, negatives]
+    reads: [everything]   # earlier decisions this pass must receive in its pack
     question: "Do the decisions contradict each other, exceed what one clip can hold, or break a hard constraint? Resolve, simplify, align camera with action and style with motion."
     sub_modules: [contradictions, competing_controls, complexity, alignment, model_fit]
     notes:

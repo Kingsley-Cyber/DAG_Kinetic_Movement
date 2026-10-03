@@ -72,6 +72,10 @@ ask, not a probability of render success.
  "expected_visual_effect": "...", "check": "..."}
 ```
 
+A control may carry `beat` (a beat id) to apply to that beat only; a camera control scoped to a
+beat must agree with that beat's contact state (a hidden contact is not shown in close-up; a
+confirmed contact is not cut away from).
+
 `capability` for the target model: native · approximate · semantic · unsupported · unknown.
 `disposition` (exactly one): native · approximated · semantic · omitted · unsupported · unknown.
 In text-only work nearly everything is `semantic`; `native` only for API fields the model profile

@@ -36,6 +36,7 @@ FIELD_CLAUSE = [
     ("continuity.", "subject_action"), ("intent.", "subject_action"),
 ]
 FIT_FITS, FIT_TIGHT = 0.85, 1.0
+STAGE_MIN_S = 0.2  # convention (R-57): minimum readable seconds per pathway stage on a beat
 SPEECH_WPM_MAX = 190  # NATURAL_DIALOGUE_MODE.md / ugc_realism_reference: 150–190 wpm
 
 # Relative prompting (R-16) and vague-word lint (R-59). The word lists are conventions. The
@@ -460,6 +461,47 @@ def check(run_dir: Path) -> CheckResult:
             cap = duration * SPEECH_WPM_MAX / 60.0
             if words > cap:
                 res.errors.append("controls %s: %d words exceed speech capacity %.1f for %.1fs" % (c["id"], words, cap, duration))
+    # coupling checks (R-57): keep these few
+    def _strings(value) -> str:
+        if isinstance(value, str):
+            return value
+        if isinstance(value, dict):
+            return " ".join(_strings(v) for v in value.values())
+        if isinstance(value, (list, tuple)):
+            return " ".join(_strings(v) for v in value)
+        return ""
+
+    event_on_beat = {ev["beat"]: ev for ev in events}
+    for ev in events:
+        if not ev["trigger"]["actor"].strip() or not ev["trigger"]["part"].strip():
+            res.errors.append("physics_events %s: explicit: trigger needs actor and part" % ev["event_id"])
+    for c in ir["controls"]:
+        scoped = c.get("beat")
+        if scoped is None:
+            continue
+        if scoped not in beat_order:
+            res.errors.append("controls %s: control on unknown beat '%s'" % (c["id"], scoped))
+            continue
+        ev = event_on_beat.get(scoped)
+        if ev is None or not c["field"].startswith("camera."):
+            continue
+        text = _strings(c["value"]).lower()
+        if ev["contact_state"] in ("occluded_contact", "editorial_impact"):
+            if ev["contact_surface"].strip().lower() in text and ("close-up" in text or "close up" in text):
+                res.errors.append("controls %s: camera shows a hidden contact (event %s is %s)" % (c["id"], ev["event_id"], ev["contact_state"]))
+        elif ev["contact_state"] == "physical_contact_confirmed":
+            if any(phrase in text for phrase in ("off-screen", "out of frame", "cut away")):
+                res.errors.append("controls %s: camera hides a confirmed contact (event %s)" % (c["id"], ev["event_id"]))
+    stages_on_beat: Dict[str, int] = {}
+    for pw in ir["pathways"]:
+        for s in pw["stages"]:
+            stages_on_beat[s["beat"]] = stages_on_beat.get(s["beat"], 0) + 1
+    for b in beats:
+        need = STAGE_MIN_S * stages_on_beat.get(b["id"], 0)
+        if b["min_s"] + 1e-9 < need:
+            res.errors.append("beats: %s: beat does not cover its pathway stages (%d stages need at least %.1fs; min_s is %.1fs)"
+                              % (b["id"], stages_on_beat[b["id"]], need, b["min_s"]))
+
     if "camera" in active:
         if not ({"motion"} & camera_cov):
             res.errors.append("camera: no camera.motion control (explicit camera grammar is mandatory)")

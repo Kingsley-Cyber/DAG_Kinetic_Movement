@@ -521,5 +521,56 @@ class CausalEvents(unittest.TestCase):
             tr.cleanup()
 
 
+class PassCoupling(unittest.TestCase):
+    """WO-03 / R-56, R-57: beat-scoped controls and the four coupling checks."""
+
+    @staticmethod
+    def _camera(beat, text):
+        return {"id": "c_cam_beat", "pass": "camera", "field": "camera.beat_framing", "value": text, "beat": beat,
+                "importance": 0.8, "lock": False, "origin": "CREATIVE_CHOICE", "treatment": None,
+                "capability": "semantic", "disposition": "semantic"}
+
+    def test_control_on_unknown_beat_fails(self):
+        def mutate(ir):
+            ir["controls"].append(self._camera("b99", "medium shot"))
+        self.assertTrue(any("control on unknown beat" in e for e in errors_for(mutate)))
+
+    def test_camera_close_up_on_hidden_contact_fails(self):
+        def mutate(ir):
+            ir["physics_events"] = [_event(contact_state="occluded_contact")]
+            ir["controls"].append(self._camera("b4", "close-up on the ridged edge of the cap as it turns"))
+        self.assertTrue(any("camera shows a hidden contact" in e for e in errors_for(mutate)))
+
+    def test_camera_cutaway_on_confirmed_contact_fails(self):
+        def mutate(ir):
+            ir["physics_events"] = [_event()]
+            ir["controls"].append(self._camera("b4", "cut away to her face, the hands out of frame"))
+        self.assertTrue(any("camera hides a confirmed contact" in e for e in errors_for(mutate)))
+
+    def test_beat_too_short_for_its_pathway_stages_fails(self):
+        def mutate(ir):
+            for b in ir["beats"]:
+                if b["id"] == "b6":
+                    b["min_s"] = 0.3  # three pathway stages sit on b6
+        self.assertTrue(any("beat does not cover its pathway stages" in e for e in errors_for(mutate)))
+
+    def test_event_trigger_needs_actor_and_part(self):
+        def mutate(ir):
+            ir["physics_events"] = [_event(trigger={"actor": "woman", "part": " ", "action": "twist the cap"})]
+        self.assertTrue(any("explicit: trigger needs actor and part" in e for e in errors_for(mutate)))
+
+    def test_passes_yaml_reads_reference_known_ir_areas(self):
+        passes = director.load_passes()
+        allowed = {"entities", "hands", "pathways", "beats", "anchors", "physics_events", "everything"}
+        allowed |= {"controls:%s" % pid for pid in passes}
+        with_reads = 0
+        for pid, p in passes.items():
+            for area in p.get("reads", []):
+                self.assertIn(area, allowed, "%s reads unknown area %s" % (pid, area))
+            with_reads += 1 if p.get("reads") else 0
+        self.assertGreaterEqual(with_reads, 10)
+        self.assertEqual(passes["synthesis"]["reads"], ["everything"])
+
+
 if __name__ == "__main__":
     unittest.main()

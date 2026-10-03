@@ -21,7 +21,13 @@ Newest first. One entry per working session or phase exit.
   `contact_state`; `must_not_imply` is never emitted. 8 new tests, RED first; 69 total green; run
   001 unchanged. Not in this slice: risk-based degradation, eval-log fields, failures registry.
 
-Next: WO-03 (passes connect).
+- WO-03 (T17; R-56, R-57): `reads` on 11 passes in `passes.yaml`; optional `beat` scope on
+  controls; coupling checks (camera close-up on a hidden contact, camera cut-away on a confirmed
+  contact, beat shorter than 0.2 s per pathway stage, control on an unknown beat) and the explicit
+  rule that an event's trigger names actor and part. 6 new tests, RED first; 75 total green; run
+  001 unchanged.
+
+Next: WO-03b (scratchpad, pass views, spacing).
 
 ## 2026-10-03 — TwelveLabs client refreshed (WO-10) and DMR triage
 

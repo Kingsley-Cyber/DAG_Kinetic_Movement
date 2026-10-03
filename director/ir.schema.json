@@ -444,6 +444,10 @@
               "camera",
               "negatives"
             ]
+          },
+          "beat": {
+            "type": "string",
+            "description": "optional scope: the control applies to this beat only"
           }
         }
       }
